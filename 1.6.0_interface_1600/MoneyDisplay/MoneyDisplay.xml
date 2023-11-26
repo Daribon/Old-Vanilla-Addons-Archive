@@ -1,0 +1,131 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+  <Script file="MoneyDisplay.lua"/>
+  <Frame name="MD_Frame" frameStrata="MEDIUM" toplevel="true" enableMouse="true" movable="true" parent="UIParent">
+    <Size>
+      <AbsDimension x="155" y="26"/>
+    </Size>
+    <Anchors>
+    	<Anchor point="TOP"/>
+    </Anchors>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+      <BackgroundInsets>
+        	<AbsInset left="5" right="5" top="5" bottom="5"/>
+      </BackgroundInsets>
+      <TileSize>
+        	<AbsValue val="16"/>
+      </TileSize>
+      <EdgeSize>
+        	<AbsValue val="16"/>
+      </EdgeSize>
+    </Backdrop>
+	<Frames>
+
+	<Button name="MD_CopperButton">
+		<Size>
+			<AbsDimension x="32" y="13"/>
+		</Size>
+		<Anchors>
+			<Anchor point="RIGHT">
+				<Offset>
+					<AbsDimension x="-13" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	  	<NormalTexture file="Interface\MoneyFrame\UI-MoneyIcons">
+			<Size>
+				<AbsDimension x="13" y="13"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+			<TexCoords left="0.5" right="0.75" top="0" bottom="1"/>
+	  	</NormalTexture>	
+
+		<NormalText name="MD_CopperText" inherits="GameFontNormal" justifyH="RIGHT">
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</NormalText>
+	</Button>	
+
+	<Button name="MD_SilverButton">
+		<Size>
+			<AbsDimension x="32" y="13"/>
+		</Size>
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="MD_CopperButton" relativePoint="LEFT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	  	<NormalTexture file="Interface\MoneyFrame\UI-MoneyIcons">
+			<Size>
+				<AbsDimension x="13" y="13"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+			<TexCoords left="0.25" right="0.5" top="0" bottom="1"/>
+	  	</NormalTexture>	
+
+		<NormalText name="MD_SilverText" inherits="GameFontNormal" justifyH="RIGHT">
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</NormalText>
+	</Button>
+
+	<Button name="MD_GoldButton">
+		<Size>
+			<AbsDimension x="40" y="13"/>
+		</Size>
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="MD_SilverButton" relativePoint="LEFT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	  	<NormalTexture file="Interface\MoneyFrame\UI-MoneyIcons">
+			<Size>
+				<AbsDimension x="13" y="13"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+			<TexCoords left="0" right="0.25" top="0" bottom="1"/>
+	  	</NormalTexture>	
+
+		<NormalText name="MD_GoldText" inherits="GameFontNormal" justifyH="RIGHT">
+			<Anchors>
+				<Anchor point="RIGHT"/>
+			</Anchors>
+		</NormalText>
+	</Button>
+
+    </Frames>
+    <Scripts>
+		<OnLoad>
+			MD_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			MD_OnEvent();
+		</OnEvent>
+		<OnUpdate>
+			MD_OnUpdate(arg1);
+		</OnUpdate>
+		<OnMouseDown>
+			if ( arg1 == "LeftButton" ) then
+				this:StartMoving();
+			end
+		</OnMouseDown>
+		<OnMouseUp>
+			if ( arg1 == "LeftButton" ) then
+				this:StopMovingOrSizing();
+   				MD_SavePosition();
+			end
+		</OnMouseUp>
+    </Scripts>
+  </Frame>
+</Ui>

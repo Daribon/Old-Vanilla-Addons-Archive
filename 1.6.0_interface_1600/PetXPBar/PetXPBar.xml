@@ -1,0 +1,92 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="PetXPBar.lua"/>
+	<StatusBar name="PetXPBar_BarTemplate" Parent="PetFrame" virtual="true" drawLayer="BACKGROUND" minValue="0" maxValue="100" defaultValue="0">
+		<Size>
+			<AbsDimension x="82" y="8"/>
+		</Size>
+		<BarTexture file="Interface\TargetingFrame\UI-StatusBar" />
+		<BarColor r="0.00" g="0.00" b="0.6" />
+	</StatusBar>
+	<Frame name="PetXPBar" parent="UIParent" enableMouse="false" movable="false" frameStrata="LOW" >
+		<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" bgFile="Interface\CharacterFrame\BarHighlight" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>	
+		<Size>
+			<AbsDimension x="92" y="18"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="BOTTOM" relativeTo="PetFrame">
+				<Offset>
+					<AbsDimension x="-37" y="11"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame setAllPoints="true">
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="PetXPBar_Text" inherits="GameFontNormalSmall" text="Loading...">
+							<Anchors>
+								<Anchor point="CENTER" relativeto="PetXPBar">
+									<Offset>
+										<AbsDimension x="0" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsDimension x="92" y="8" />
+							</Size>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="PetXPBar_PercentageText" inherits="GameFontNormalSmall">
+							<Anchors>
+								<Anchor point="CENTER" relativeto="PetXPBarBar">
+									<Offset>
+										<AbsDimension x="70" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Size>
+								<AbsDimension x="57" y="8" />
+							</Size>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<StatusBar name="PetXPBar_Status" inherits="PetXPBar_BarTemplate">
+				<Anchors>
+					<Anchor point="CENTER" relativeto="PetXPBar">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PetXPBar_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						PetXPBar_OnEvent(event);
+					</OnEvent>
+					<OnEnter>
+						PetXPBar_OnEnter();
+					</OnEnter>
+					<OnLeave>
+						PetXPBar_OnLeave();
+					</OnLeave>
+				</Scripts>
+			</StatusBar>
+		</Frames>
+	</Frame>			
+</Ui>

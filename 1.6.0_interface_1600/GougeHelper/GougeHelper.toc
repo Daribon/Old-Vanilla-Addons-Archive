@@ -1,0 +1,11 @@
+#
+## Interface: 1600
+## Title: |cFF006699UUI -|r GougeHelper
+## Title-frFR: GougeHelper (Aide pour Suriner)
+## Notes: Used to Display a "Gouge" timer
+## Notes-frFR: Affiche un indicateur de delai pour la compétence Suriner
+## Author: FizbanLaPolio
+## SavedVariables: GH_Save
+## OptionalDeps:
+## Dependencies: 
+GougeHelper.xml

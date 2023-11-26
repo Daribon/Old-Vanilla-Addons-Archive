@@ -1,0 +1,4 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r RaidAttendance
+## Notes: Displays raid attendance in a window to allow copy/paste.
+RaidAttendance.xml

@@ -1,0 +1,8 @@
+Some ideas which may or may not be implemented in future versions.
+
+- Add keybindings to all toolbars
+- Make the toolbars scalable
+- Let the user change orientation (vertical or horizontal) of all bars
+- Make the spell casting progress bar movable
+- Add commands for specifying z-order of all toolbars so they'd not get
+  overlaped by open bags etc

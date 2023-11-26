@@ -1,0 +1,1278 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+<!--********************************************************
+	MiniGroup 0.5
+	MiniGroup.xml
+
+	Author: Kaitlin
+	Official Site: wow.jaslaughter.com
+
+	Description:
+		A set of movable, configurable unit frames including
+		player,pet,target, and party member frames.
+
+	********************************************************
+	NOTICE:
+		Please  feel free to modify,  compile,  redistribute
+		or  otherwise use MG code and concepts in  your  own
+		works.  However if you do so, please give credit  to
+		me for my work.  I only ask for a small comment line
+		stating  that  this work has been used, and  nothing
+		more.
+
+		It  is a given that some Blizzard code must be  used
+		as  we are working within their  sandbox.  Any  code
+		that is  not  unique  to  MG can be  assumed  to  be
+		Blizzard's unless otherwise noted with the function.
+
+		Any  oversights  on my part are simply that  and  no
+		harm is intended.  If you notice an oversight please
+		point  it  out to me and it will be  remedied  ASAP.
+	********************************************************-->
+	<Script file="Interface\AddOns\MiniGroup\Localization\MiniGroup_localization.lua"/>
+	<Script file="Interface\AddOns\MiniGroup\Localization\MiniGroup_French.lua"/>
+	<Script file="Interface\AddOns\MiniGroup\Localization\MiniGroup_German.lua"/>
+	<Script file="Interface\AddOns\MiniGroup\Localization\MiniGroup_Korean.lua"/>
+	<Script file="MiniGroup.lua"/>
+	<FontString name="MGNotSoTinyFont" font="Fonts\FRIZQT__.TTF" virtual="true" nonspacewrap="true">
+	<!--<FontString name="MGNotSoTinyFont" font="Fonts\2002.TTF" virtual="true" nonspacewrap="true"> (Korean)-->
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<FontString name="MGTinyFont" font="Fonts\FRIZQT__.TTF" virtual="true" nonspacewrap="true">
+	<!--<FontString name="MGTinyFont" font="Fonts\2002.TTF" virtual="true" nonspacewrap="true"> (Korean)-->
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<FontString name="MGCombatFont" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+	<!--<FontString name="MGCombatFont" font="Fonts\K_Damage.TTF" outline="THICK" virtual="true"> (Korean)-->
+		<FontHeight>
+			<AbsValue val="16"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<!-- Templates -->
+	<!-- ************************** Aura Icon ************************** -->
+	<Button name="MGAuraTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="15" y="15"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" setAllPoints="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentOverlay" file="Interface\AddOns\MiniGroup\Images\UI-Debuff-Border-Small">
+					<Size>
+						<AbsDimension x="15" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.9375" top="0" bottom="0.9375"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				MiniGroup_Aura_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<!-- ************************** Member Button ************************** -->
+	<Button name="MGMemberTemplate" frameStrata="LOW" movable="true" parent="UIParent" virtual="true">
+		<Size>
+			<AbsDimension x="170" y="62"/>
+		</Size>
+		<Backdrop bgFile="Interface\AddOns\MiniGroup\Images\UI-Tooltip-Background-Solid" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Frame setAllPoints="true">
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD" hidden="true">
+							<Size>
+								<AbsDimension x="168" y="58"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+						<FontString name="$parent_NameLabel" inherits="GameFontNormalSmall" text="Not Initialized..." justifyH="LEFT" nonspacewrap="true">
+							<Size>
+								<AbsDimension x="162" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="8" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parent_ClassText" inherits="MGTinyFont" justifyH="RIGHT">
+							<Size>
+								<AbsDimension x="60" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-8" y="-14"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parent_HealthText" inherits="MGNotSoTinyFont" justifyH="RIGHT" text="9999/9999">
+							<Size>
+								<AbsDimension x="61" y="8"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="102" y="-23"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parent_ManaText" inherits="MGNotSoTinyFont" justifyH="RIGHT" text="9999/9999">
+							<Size>
+								<AbsDimension x="61" y="8"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="102" y="-32"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parent_HealthBar_BG">
+							<Size>
+								<AbsDimension x="92" y="6"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="9" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="0" g="0" b="0" a="0.25"/>
+						</Texture>
+						<Texture name="$parent_ManaBar_BG">
+							<Size>
+								<AbsDimension x="92" y="6"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="9" y="-33"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="0" g="0" b="0" a="0.25"/>
+						</Texture>
+						<Texture name="$parent_XPBar_BG" hidden="true">
+							<Size>
+								<AbsDimension x="92" y="4"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="9" y="-18"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="0" g="0" b="0" a="0.25"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="$parent_StatusText" inherits="GameFontNormalSmall">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-28" y="-26"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString name="$parent_HitIndicator" inherits="MGCombatFont" hidden="true">
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="$parent_HealthBar_BG" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parent_PVPIcon" hidden="true">
+							<Size>
+								<AbsDimension x="27" y="27"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="6" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_LeaderIcon" file="Interface\GroupFrame\UI-Group-LeaderIcon" hidden="true">
+							<Size>
+								<AbsDimension x="12" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="$parent_PVPIcon" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="2" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_MasterIcon" file="Interface\GroupFrame\UI-Group-MasterLooter" hidden="true">
+							<Size>
+								<AbsDimension x="10" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="$parent_LeaderIcon" relativePoint="LEFT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_EndcapLeft" file="Interface\AddOns\MiniGroup\Images\Endcap" hidden="false">
+							<Size>
+								<AbsDimension x="1" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="8" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.0625" top="0" bottom="0.875"/>
+						</Texture>
+						<Texture name="$parent_EndcapRight" file="Interface\AddOns\MiniGroup\Images\Endcap" hidden="false">
+							<Size>
+								<AbsDimension x="1" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="101" y="-25"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.0625" top="0" bottom="0.875"/>
+						</Texture>
+						<Texture name="$parent_XPEndcapLeft" file="Interface\AddOns\MiniGroup\Images\Endcap" hidden="true">
+							<Size>
+								<AbsDimension x="1" y="4"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="8" y="-18"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.0625" top="0" bottom="0.3125"/>
+						</Texture>
+						<Texture name="$parent_XPEndcapRight" file="Interface\AddOns\MiniGroup\Images\Endcap" hidden="true">
+							<Size>
+								<AbsDimension x="1" y="4"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="101" y="-18"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.0625" top="0" bottom="0.3125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<StatusBar name="$parent_HealthBar" drawLayer="ARTWORK">
+				<Size>
+					<AbsDimension x="92" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="9" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnValueChanged>
+						MiniGroup_StatusBars_OnValueChanged(arg1);
+					</OnValueChanged>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1" b="0"/>
+			</StatusBar>
+			<StatusBar name="$parent_ManaBar" drawLayer="ARTWORK">
+				<Size>
+					<AbsDimension x="92" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_HealthBar" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="0" b="1"/>
+			</StatusBar>
+			<StatusBar name="$parent_XPBar" drawLayer="ARTWORK" hidden="true">
+				<Size>
+					<AbsDimension x="92" y="4"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="9" y="-18"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r=".8" g="0" b=".7"/>
+			</StatusBar>
+			<Frame name="$parent_DropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="170" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						MiniGroup_DropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Button name="$parent_Aura1" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-41"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura2" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura3" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura4" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura5" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura6" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura7" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura8" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura9" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura8" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura10" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura9" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura11" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Aura1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura12" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura11" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura13" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura12" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura14" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura13" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura15" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura14" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura16" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura15" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura17" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura16" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura18" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura17" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura19" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura18" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Aura20" inherits="MGAuraTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Aura19" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				MiniGroup_Member_OnLoad();
+			</OnLoad>
+			<OnEnter>
+				MiniGroup_Member_OnEnter();
+				UnitFrame_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				MiniGroup_Member_OnLeave();
+				UnitFrame_OnLeave();
+			</OnLeave>
+			<OnMouseDown>
+				MiniGroup_Member_OnMouseDown(arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				MiniGroup_Member_OnMouseUp(arg1);
+			</OnMouseUp>
+			<OnHide>
+				this:StopMovingOrSizing();
+			</OnHide>
+		</Scripts>
+	</Button>
+	<!-- Actual Frames -->
+	<Button name="MiniGroup_Frame" frameStrata="LOW" movable="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="170" y="300"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="10" y="-4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\AddOns\MiniGroup\Images\UI-Tooltip-Background-Solid" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Frame name="MiniGroup_Dropdown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-20" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Button name="MGplayer" inherits="MGMemberTemplate" frameStrata="LOW" movable="true" id="0">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="MG_StatusTexture">
+						<Size>
+							<AbsDimension x="170" y="46"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOP"/>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<Texture name="$parent_TOPLEFT" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="10" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="2" y="-2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0" right="0.3125" top="0" bottom="0.3125"/>
+								</Texture>
+								<Texture name="$parent_TOPRIGHT" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="10" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="-2" y="-2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.625" right="0.9375" top="0" bottom="0.3125"/>
+								</Texture>
+								<Texture name="$parent_TOP" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="146" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOP">
+											<Offset>
+												<AbsDimension x="0" y="-2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.3125" right="0.625" top="0" bottom="0.3125"/>
+								</Texture>
+								<Texture name="$parent_BOTTOM" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="146" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOM">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.3125" right="0.625" top="0.625" bottom="0.9375"/>
+								</Texture>
+								<Texture name="$parent_BOTTOMLEFT" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="10" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="2" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0" right="0.3125" top="0.625" bottom="0.9375"/>
+								</Texture>
+								<Texture name="$parent_BOTTOMRIGHT" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="10" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="-2" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.625" right="0.9375" top="0.625" bottom="0.9375"/>
+								</Texture>
+								<Texture name="$parent_RIGHT" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="10" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT">
+											<Offset>
+												<AbsDimension x="-2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.625" right="0.9375" top="0.3125" bottom="0.625"/>
+								</Texture>
+								<Texture name="$parent_LEFT" file="Interface\AddOns\MiniGroup\Images\MG_Borders" alphaMode="ADD" hidden="false">
+									<Size>
+										<AbsDimension x="10" y="10"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0" right="0.3125" top="0.3125" bottom="0.625"/>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Frame>
+					<StatusBar name="$parent_XPBar_Rest" drawLayer="ARTWORK">
+						<Size>
+							<AbsDimension x="92" y="4"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="9" y="-18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+						<BarColor r=".8" g="0.75" b=".7"/>
+					</StatusBar>
+				</Frames>
+				<Scripts>
+					<OnEnter>
+						MiniGroup_Member_OnEnter();
+						MiniGroup_XPBar_OnEnter();
+					</OnEnter>
+					<OnLeave>
+						MiniGroup_Member_OnLeave();
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnReceiveDrag>
+						MiniGroup_Player_OnReceiveDrag();
+					</OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="MGpet" inherits="MGMemberTemplate" frameStrata="LOW" toplevel="true" movable="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MGplayer" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MGpet_Happiness" file="Interface\TargetingFrame\UI-TargetingFrame-LevelBackground">
+							<Size>
+								<AbsDimension x="158" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>
+						MiniGroup_Member_OnEnter();
+						if ( not HasPetUI() or MiniGroup_Member_UnitClass("player") == "WARLOCK" ) then
+							UnitFrame_OnEnter();
+						else
+							MiniGroup_XPBar_OnEnter();
+						end
+					</OnEnter>
+					<OnLeave>
+						MiniGroup_Member_OnLeave();
+						UnitFrame_OnLeave();
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="MGtarget" inherits="MGMemberTemplate" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="250" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MGtarget_NameBackground" file="Interface\TargetingFrame\UI-TargetingFrame-LevelBackground">
+							<Size>
+								<AbsDimension x="158" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="MGtarget_ComboText" inherits="MGNotSoTinyFont" justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-8" y="-13"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						MiniGroup_Target_OnShow();
+					</OnShow>
+					<OnHide>
+						MiniGroup_Target_OnHide();
+						this:StopMovingOrSizing();
+					</OnHide>
+				</Scripts>
+			</Button>
+			<Button name="MGparty1" inherits="MGMemberTemplate" frameStrata="LOW" toplevel="true" movable="true" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-128"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGparty2" inherits="MGMemberTemplate" frameStrata="LOW" toplevel="true" movable="true" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MGparty1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGparty3" inherits="MGMemberTemplate" frameStrata="LOW" toplevel="true" movable="true" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MGparty2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGparty4" inherits="MGMemberTemplate" frameStrata="LOW" toplevel="true" movable="true" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MGparty3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnMouseDown>
+				if ( arg1 == "LeftButton" ) then
+					this:StartMoving();
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+	<Frame name="MiniGroup_Glue" parent="UIParent" frameStrata="BACKGROUND">
+		<Scripts>
+			<OnLoad>
+				MiniGroup_Glue_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MiniGroup_Glue_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+		<Frames>
+			<Frame name="MiniGroup_Label_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_Labels_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_Labels_OnEvent(event,arg1);
+					</OnEvent>
+				</Scripts>
+			</Frame>
+			<Frame name="MiniGroup_StatusBar_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_StatusBars_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_StatusBars_OnEvent(event,arg1);
+					</OnEvent>
+				</Scripts>
+			</Frame>
+			<Frame name="MiniGroup_Aura_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_Aura_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_Aura_OnEvent(event,arg1);
+					</OnEvent>
+				</Scripts>
+			</Frame>
+			<Frame name="MiniGroup_Player_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_Player_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_Player_OnEvent(event);
+					</OnEvent>
+					<OnUpdate>
+						MiniGroup_Player_OnUpdate(arg1);
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+			<Frame name="MiniGroup_Pet_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_Pet_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_Pet_OnEvent(event);
+					</OnEvent>
+					<OnUpdate>
+						MiniGroup_Pet_OnUpdate(arg1);
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+			<Frame name="MiniGroup_Target_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_Target_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_Target_OnEvent(event);
+					</OnEvent>
+				</Scripts>
+			</Frame>
+			<Frame name="MiniGroup_Party_EventFrame">
+				<Scripts>
+					<OnLoad>
+						MiniGroup_Party_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						MiniGroup_Party_OnEvent(event,arg1);
+					</OnEvent>
+				</Scripts>
+			</Frame>
+			<Frame name="MGAuraTip" frameStrata="TOOLTIP" hidden="true">
+				<Size>
+					<AbsDimension x="200" y="75"/>
+				</Size>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<Button name="$parent_Buff1" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="9" y="-9"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff2" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff1" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff3" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff2" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff4" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff3" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff5" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff4" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff6" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff5" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff7" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff6" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff8" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff7" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff9" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parent_Buff1" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff10" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff9" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff11" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff10" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff12" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff11" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff13" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff12" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff14" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff13" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff15" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff14" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Buff16" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Buff15" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff1" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parent_Buff9" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff2" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff1" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff3" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff2" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff4" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff3" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff5" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff4" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff6" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff5" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff7" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff6" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parent_Debuff8" inherits="MGAuraTemplate">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent_Debuff7" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						MGTooltip_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<GameTooltip name="MGTooltip" hidden="true" parent="UIParent" inherits="GameTooltipTemplate">
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</GameTooltip>
+		</Frames>
+	</Frame>
+	<Button name="MG_MapButton" hidden="false" parent="MinimapCluster">
+		<Size>
+			<AbsDimension x="22" y="22"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-2" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\AddOns\MiniGroup\Images\MG_MapButton">
+					<Size>
+						<AbsDimension x="22" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP"/>
+					</Anchors>
+					<TexCoords left="0" right="0.6875" top="0" bottom="0.6875"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				MiniGroup_MapButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				MiniGroup_MapButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				MiniGroup_MapButton_OnLeave();
+			</OnLeave>
+		</Scripts>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight"/>
+	</Button>
+</Ui>

@@ -1,0 +1,469 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="Timers.lua"/>
+	<Button name="TimerListButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="240" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentName" inherits="GameFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="105" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTimeLeft" inherits="GameFontHighlightSmall">
+					<Size>
+						<AbsDimension x="85" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentName" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="47" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLeft" file="Interface\AuctionFrame\UI-AuctionItemNameFrame">
+					<Size>
+						<AbsDimension x="10" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="1" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.078125" top="0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\AuctionFrame\UI-AuctionItemNameFrame">
+					<Size>
+						<AbsDimension x="222" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.078125" right="0.75" top="0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\AuctionFrame\UI-AuctionItemNameFrame">
+					<Size>
+						<AbsDimension x="10" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.75" right="0.828125" top="0" bottom="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentResetButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentName" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<HitRectInsets>
+					<AbsInset left="9" right="7" top="-7" bottom="10"/>
+				</HitRectInsets>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
+						GameTooltip:SetText("Reset", 1.0, 1.0, 1.0, 1);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						TimerListButton_OnReset(this:GetParent():GetID());
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\Timers\Images\ResetButton-Up"/>
+				<PushedTexture file="Interface\AddOns\Timers\Images\ResetButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\CancelButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentRemoveButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentResetButton" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<HitRectInsets>
+					<AbsInset left="9" right="7" top="-7" bottom="10"/>
+				</HitRectInsets>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
+						GameTooltip:SetText("Remove", 1.0, 1.0, 1.0, 1);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						TimerListButton_OnRemove(this:GetParent():GetID());
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\CancelButton-Up"/>
+				<PushedTexture file="Interface\Buttons\CancelButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\CancelButton-Highlight" alphaMode="ADD"/>
+			</Button>
+		</Frames>
+	</Button>
+	<Frame name="TimersFrame" parent="UIParent" enableMouse="false" movable="true" hidden="true" frameStrata="BACKGROUND">
+		<Backdrop name="$parentBackdrop" bgFile="Interface\AddOns\Timers\Images\BackDrop" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>	
+		<Size>
+			<AbsDimension x="287" y="218"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="200" y="200"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				TimersFrame_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				TimersFrame_OnEvent(event);
+			</OnEvent>
+			<OnMouseDown>
+				TimersFrame_OnMouseDown(arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				TimersFrame_OnMouseUp(arg1);
+			</OnMouseUp>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameTooltipHeaderText" text="Timers" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Size>
+						<AbsDimension x="50" y="20"/>
+					</Size>
+					<Color r="1.0" g=".5" b="0.0"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TimersFrame_SetVisible(false);
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentMinimizeButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentCloseButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TimersFrame_SetMinimized(true);
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\Timers\Images\MinimizeButton-Up"/>
+				<PushedTexture file="Interface\AddOns\Timers\Images\MinimizeButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentMaximizeButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentCloseButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TimersFrame_SetMinimized(false);
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\Timers\Images\MaximizeButton-Up"/>
+				<PushedTexture file="Interface\AddOns\Timers\Images\MaximizeButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentHelpButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentMaximizeButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TimersFrame_ToggleHelp();
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\Timers\Images\HelpButton-Up"/>
+				<PushedTexture file="Interface\AddOns\Timers\Images\HelpButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="$parentNameSortButton" inherits="AuctionSortButtonTemplate" text="Name">
+				<Size>
+					<AbsDimension x="160" y="19"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TimersFrame_OnSortChanged("name");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTimeLeftSortButton" inherits="AuctionSortButtonTemplate" text="Time Left">
+				<Size>
+					<AbsDimension x="85" y="19"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentNameSortButton" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TimersFrame_OnSortChanged("timeLeft");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<ScrollFrame name="TimerListFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="239" y="159"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(AUCTIONS_BUTTON_HEIGHT, TimersFrame_Update)
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+			<Button name="TimerListButton1" inherits="TimerListButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TimerListFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TimerListButton2" inherits="TimerListButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TimerListButton1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TimerListButton3" inherits="TimerListButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TimerListButton2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TimerListButton4" inherits="TimerListButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TimerListButton3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TimerListButton5" inherits="TimerListButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TimerListButton4" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="TimersHelpFrame" toplevel="true" frameStrata="DIALOG" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="500" y="500"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Timers Help">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<ScrollFrame name="$parentOutputFrame" inherits="UIPanelScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="450" y="430"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<Frame name="$parentScrollChildFrame">
+						<Size>
+							<AbsDimension x="450" y="430"/>
+						</Size>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<FontString name="TimersHelpFrameText" inherits="GameFontHighlight" wraponspaces="true" alignment="LEFT" justifyH="LEFT">
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="5" y="-10"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame>		
+			<Button name="$parentCloseButton" inherits="GameMenuButtonTemplate" text="Close">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(TimersHelpFrame);
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				TimersHelpFrame_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,10 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r MiniGroup vK0.4b
+## Notes: Suite of DAoC-esque Mini-Group Windows
+## Author: Kaitlin of Sargeras
+## SavedVariables: MiniGroup_Config
+MiniGroup.xml
+MGParty.xml
+MGTarget.xml
+MGBuff.xml
+MGOptions.xml

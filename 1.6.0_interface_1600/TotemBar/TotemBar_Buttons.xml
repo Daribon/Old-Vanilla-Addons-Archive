@@ -1,0 +1,214 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<CheckButton name="TotemBar_ButtonTemplate" inherits="ActionButtonTemplate" virtual="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				TotemBar_Button_OnLoad();
+			</OnLoad>
+			<OnShow>
+				TotemBar_Button_Update();
+			</OnShow>
+			<OnUpdate>
+				TotemBar_Button_Update(arg1);
+			</OnUpdate>
+			<OnDragStart>
+				TotemBar_Button_OnDrag()
+				this:SetChecked(0);
+			</OnDragStart>
+			<OnClick>
+				TotemBar_Button_OnClick()
+				this:SetChecked(0);
+			</OnClick>
+			<OnEnter>
+				TotemBar_Button_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateTooltip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button1" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title1" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TotemBar_Title1" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button2" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title1" id="2">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button1" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button3" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title1" id="3">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button2" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button4" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title1" id="4">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button3" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button5" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title1" id="5">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button4" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button6" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title2" id="6">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TotemBar_Title2" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button7" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title2" id="7">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button6" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button8" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title2" id="8">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button7" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button9" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title2" id="9">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button8" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button10" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title2" id="10">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button9" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button11" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title3" id="11">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TotemBar_Title3" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button12" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title3" id="12">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button11" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button13" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title3" id="13">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button12" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button14" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title3" id="14">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button13" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button15" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title3" id="15">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button14" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button16" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title4" id="16">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TotemBar_Title4" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button17" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title4" id="17">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button16" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button18" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title4" id="18">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button17" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button19" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title4" id="19">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button18" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="TotemBar_Button20" inherits="TotemBar_ButtonTemplate" parent="TotemBar_Title4" id="20">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TotemBar_Button19" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+</Ui>

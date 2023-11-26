@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r HideShiftBars
+## Notes: Allows you to toggle the visibility of the rogue stealth bar, warrior stance bar, paladin aura bar, and druid shape shifting bar. (Hide/Show the Stealth/Stance/Aura/Shape bar)
+## Author: Jake Bolton (ninmonkey)
+## OptionalDeps:
+## Dependencies:
+## SavedVariables: HideShiftBarsData
+HideShiftBars.xml

@@ -1,0 +1,19 @@
+<Bindings>
+	<Binding name="TOTEMBAR_TOGGLE" header="TOTEMBAR" runOnUp="false" hidden="false">
+		if (TotemBar_ShowViaKeypress) then
+			TotemBar_ShowViaKeypress = nil;
+		else
+			TotemBar_ShowViaKeypress = 1;
+		end
+		TotemBar_BarShowHide();
+	</Binding>
+	<Binding name="TOTEMBAR_HOLD" runOnUp="true" hidden="false">
+		if ( keystate == "down" ) then
+			TotemBar_ShowViaKeypress = 1;
+			
+		else
+			TotemBar_ShowViaKeypress = nil;
+		end
+		TotemBar_BarShowHide();
+	</Binding>
+</Bindings>

@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r CustomHideBar
+## SavedVariables: CHB_BagBar, CHB_ActionBar, CHB_MicroBar, CHB_PetBar, CHB_ShapeshiftBar, CHB_Locked
+## Notes: Enable this addon if you want to hide all or parts of your main action bar. The options for it are in the UUI menu under "Action Bar Options". Drag around the parts of the bar by the green dots, then lock it up in the Action Bar Options.
+## DefaultState: Disabled
+CustomHideBar.xml

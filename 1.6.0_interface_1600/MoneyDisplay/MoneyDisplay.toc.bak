@@ -1,0 +1,9 @@
+## Interface: 1300
+## Author: Sphinx
+## Title: UUI - MoneyDisplay
+## Notes: MoneyDisplay - Small movable window displaying current Player Money.
+## Version : 1.6
+## OptionalDeps:
+## Dependencies:
+## SavedVariables: MoneyDisplaySettings
+MoneyDisplay.xml

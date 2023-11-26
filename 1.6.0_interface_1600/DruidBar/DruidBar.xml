@@ -1,0 +1,293 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="DruidBar.lua"/> 
+	<Script file="localization.lua"/>
+
+ <Frame name="DruidBarUpdateFrame">
+	<Scripts>
+	<OnUpdate>
+	DruidBar_OnUpdate(arg1);
+	</OnUpdate>
+	</Scripts>
+ </Frame>
+
+ <Frame name="DruidBarFrame" frameStrata="BACKGROUND" enableMouse="true" movable="true" parent="UIParent">
+	<Size>
+		<AbsDimension x="160" y="18"/>
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
+			<Offset>
+				<AbsDimension x="0" y="-10"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture file="Interface\Tooltips\UI-StatusBar-Border"/>
+            </Layer>
+	    <Layer level="FOREGROUND">
+			<FontString name="DruidBarText" inherits="GameFontNormalSmall" wraponspaces="true">
+				<Size>
+					<AbsDimension x="0" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER"/>
+				</Anchors>
+			</FontString>
+			<FontString name="DruidBarText1" inherits="TextStatusBarText" wraponspaces="true">
+				<Size>
+					<AbsDimension x="0" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER"/>
+				</Anchors>
+			</FontString>
+		</Layer>
+        </Layers>
+	<TitleRegion setAllPoints="true"/>
+	<Frames>
+		<StatusBar name="PlayerDruidBar" movable="true" inherits="TextStatusBar">
+														
+						<Size>
+							<AbsDimension x="150" y="12"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+
+						<Frames>
+							<Frame name="PlayerDruidBarBackground">
+								<Scripts>
+									<OnLoad>
+										PlayerDruidBar:SetFrameLevel("1");
+										this:SetFrameLevel("1");
+									</OnLoad>
+								</Scripts>
+								<Layers>
+									<Layer level="BACKGROUND">
+	
+										<Texture name="PlayerFrameDruidBarLowerBackground1">
+											<Size>
+												<AbsDimension x="140" y="12"/>
+											</Size>
+											<Anchors>
+												<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+											<Color r="0" g="0" b="0" a="0.5"/>
+										</Texture>	
+									</Layer>
+								</Layers>	
+							</Frame>
+						</Frames>			
+		</StatusBar>
+	</Frames>
+    <Scripts>
+      <OnLoad>
+	DruidBar_OnLoad();
+      </OnLoad>
+      <OnEvent>
+        DruidBar_OnEvent(event, arg1, arg2, arg3);
+      </OnEvent>
+      <OnEnter>
+	DruidBar_OnEnter();
+      </OnEnter>
+      <OnLeave>
+	DruidBar_OnLeave();
+      </OnLeave>
+    </Scripts>
+  </Frame>
+  <Button name="DruidBarDontMove" frameStrata="HIGH" toplevel="true" enableMouse="false" movable="false" parent="DruidBarFrame" hidden="true">
+	<Size>
+		<AbsDimension x="160" y="18"/>
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+			<Offset>
+				<AbsDimension x="0" y="0"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Scripts>
+		<OnEnter>
+			DruidBar_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			DruidBar_OnLeave();
+		</OnLeave>
+	</Scripts>
+  </Button>
+  <Frame name="DruidBarReplacetheManaBar" frameStrata="BACKGROUND" enableMouse="false" movable="false" parent="PlayerFrame" hidden="false">
+	<Size>
+		<AbsDimension x="119" y="19"/>
+	</Size>
+	<Anchors>
+		<Anchor point="LEFT" relativeTo="PlayerFrameManaBar" relativePoint="LEFT">
+			<Offset>
+				<AbsDimension x="0" y="0"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+        <Layers>
+		<Layer level="FOREGROUND">
+			<FontString name="PlayerFrameREText" inherits="GameFontNormalSmall" wraponspaces="true">
+				<Size>
+					<AbsDimension x="0" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="PlayerFrameManaBar" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString name="PlayerFrameDruidText" inherits="GameFontNormalSmall" wraponspaces="true">
+				<Size>
+					<AbsDimension x="0" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="PlayerFrameManaBar" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="80" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString name="PlayerFrameREText1" inherits="TextStatusBarText" wraponspaces="true">
+				<Size>
+					<AbsDimension x="0" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="PlayerFrameManaBar" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString name="PlayerFrameDruidText1" inherits="TextStatusBarText" wraponspaces="true">
+				<Size>
+					<AbsDimension x="0" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="PlayerFrameManaBar" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="80" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+		<StatusBar name="PlayerFrameREBar" movable="false" inherits="TextStatusBar">								
+						<Size>
+							<AbsDimension x="60" y="12"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="PlayerFrameManaBar" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>	
+		</StatusBar>
+		<StatusBar name="PlayerFrameDruidBar" movable="false" inherits="TextStatusBar">								
+						<Size>
+							<AbsDimension x="60" y="12"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="PlayerFrameREBar" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+		</StatusBar>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			PlayerFrameREBar:SetFrameLevel("2");
+			PlayerFrameDruidBar:SetFrameLevel("2");
+			DruidBarReplacetheManaBar:SetFrameLevel("5");
+		</OnLoad>
+		<OnEnter>
+			DruidBar1_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			DruidBar1_OnLeave();
+		</OnLeave>
+	</Scripts>
+  </Frame>
+<Frame name="DruidBarKMG" frameStrata="LOW" enableMouse="true" movable="true" parent="UIParent">
+	<Size>
+		<AbsDimension x="1" y="18"/>
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
+			<Offset>
+				<AbsDimension x="0" y="0"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<TitleRegion setAllPoints="true"/>
+	<Frames>
+		<StatusBar name="KMGDruidBar" movable="true" inherits="TextStatusBar">
+														
+						<Size>
+							<AbsDimension x="150" y="12"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+
+						<Frames>
+							<Frame name="KMGDruidBarBackground">
+								<Scripts>
+									<OnLoad>
+										DruidBarKMG:SetFrameLevel("1");
+										this:SetFrameLevel("1");
+									</OnLoad>
+								</Scripts>
+								<Layers>
+									<Layer level="BACKGROUND">
+	
+										<Texture name="KMGDruidBarLowerBackground1">
+											<Size>
+												<AbsDimension x="140" y="12"/>
+											</Size>
+											<Anchors>
+												<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+											<Color r="0" g="0" b="0" a="0.5"/>
+										</Texture>	
+									</Layer>
+								</Layers>	
+							</Frame>
+						</Frames>			
+		</StatusBar>
+	</Frames>
+  </Frame>
+   <GameTooltip name="DruidBarSpellCatcher" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate"/>
+ 
+</Ui>

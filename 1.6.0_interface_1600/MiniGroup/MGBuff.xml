@@ -1,0 +1,276 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Button name="MGBuff_ButtonTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="15" y="15"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				local unit;
+				if ( this:GetParent():GetID() == 0 ) then
+					unit = "player";
+				else
+					unit = "party"..this:GetParent():GetID();
+				end
+				GameTooltip:SetUnitBuff(unit, this:GetID());
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Frame name="MGBuff_Frame" toplevel="true" frameStrata="BACKGROUND" parent="UIParent" enableMouse="true" movable="true" hidden="true" setAllPoints="true">
+		<Size>
+			<AbsDimension x="170" y="180"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="-50" y="-50"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="$parentBackdrop" frameStrata="BACKGROUND" setAllPoints="true">
+				<Backdrop bgFile="Interface\AddOns\MiniGroup\Images\UI-Tooltip-Background-Solid.tga" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+			</Frame>
+			<Button name="$parentCloseButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MGParty_ToggleMGBuff();
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="MGBuffDrag">
+				<Size>
+					<AbsDimension x="170" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+					</OnLoad>
+					<OnMouseDown>
+						MiniGroup_OnMouseDown(this:GetParent(),arg1);
+					</OnMouseDown>
+					<OnMouseUp>
+						MiniGroup_OnMouseUp(this:GetParent(),arg1);
+					</OnMouseUp>
+				</Scripts>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentTitle" inherits="GameFontNormalSmall" text="Party Buffs">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				MiniGroup_SetFrameColor();
+			</OnLoad>
+			<OnShow>
+				MGBuff_RefreshBuffs();
+			</OnShow>
+		</Scripts>
+	</Frame>
+	<Button name="BuffFrameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="170" y="28"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHR" file="Interface\AddOns\MiniGroup\Images\DarkGrad.tga" hidden="true">
+					<Size>
+						<AbsDimension x="150" y="1"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentBuff1" inherits="MGBuff_ButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff2" inherits="MGBuff_ButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff3" inherits="MGBuff_ButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff4" inherits="MGBuff_ButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff5" inherits="MGBuff_ButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff6" inherits="MGBuff_ButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff7" inherits="MGBuff_ButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff8" inherits="MGBuff_ButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff9" inherits="MGBuff_ButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff8" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff10" inherits="MGBuff_ButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff9" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+	<Button name="MGBuffMember0" inherits="BuffFrameTemplate" parent="MGBuff_Frame" id="0">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="MGBuffDrag" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MGBuffMember1" inherits="BuffFrameTemplate" parent="MGBuff_Frame" id="1">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="MGBuffMember0" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MGBuffMember2" inherits="BuffFrameTemplate" parent="MGBuff_Frame" id="2">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="MGBuffMember1" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MGBuffMember3" inherits="BuffFrameTemplate" parent="MGBuff_Frame" id="3">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="MGBuffMember2" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MGBuffMember4" inherits="BuffFrameTemplate" parent="MGBuff_Frame" id="4">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="MGBuffMember3" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+</Ui>

@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r ImprovedErrorFrame
+## Notes: Shows multiple errors and allows the text to be selected
+## SavedVariables: error_message_reportlist, UUIShouldShowErrors
+ImprovedErrorFrame.xml

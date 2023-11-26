@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: UUI - CastParty v1.11
+## Author: danboo <wow@boorstein.net>
+## Notes: CastParty is a minimalistic party frame that allows binding of spells, actions and game functions to mouse clicks on party members.
+## URL: http://wow.boorstein.net/
+## $Id: CastParty.toc,v 1.5 2005-03-22 17:08:14-05 danboo Exp danboo $
+CastParty.xml

@@ -1,0 +1,28 @@
+<!-- $Id: Bindings.xml,v 1.2 2005-02-23 19:31:49-05 danboo Exp danboo $ -->
+<Bindings>
+
+   <Binding name="HEALOMATIC_DOTHERIGHTTHING" header="HEALOMATIC">
+      CastParty_DoTheRightThing()
+   </Binding>
+
+   <Binding name="HEALOMATIC_CUREPARTYMEMBER" header="HEALOMATIC">
+      CastParty_CurePartyMember()
+   </Binding>
+
+   <Binding name="HEALOMATIC_EFFICIENT" header="HEALOMATIC" runOnUp="true">
+      CastParty_ForceHeal(keystate, 'efficient')
+   </Binding>
+
+   <Binding name="HEALOMATIC_EMERGENCY" header="HEALOMATIC" runOnUp="true">
+      CastParty_ForceHeal(keystate, 'emergency')
+   </Binding>
+
+   <Binding name="HEALOMATIC_GROUP" header="HEALOMATIC" runOnUp="true">
+      CastParty_ForceHeal(keystate, 'group')
+   </Binding>
+
+   <Binding name="HEALOMATIC_INSTANT" header="HEALOMATIC" runOnUp="true">
+      CastParty_ForceHeal(keystate, 'instant')
+   </Binding>
+
+</Bindings>

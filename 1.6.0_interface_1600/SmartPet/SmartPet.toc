@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r SmartPet
+## Notes: Makes your pet smarter. V2.3.1
+## SavedVariables: SmartPet_Config
+## OptionalDeps: myAddOns, KeyMinder
+## Dependencies: 
+SmartPet.xml
+SmartPetGUI.xml

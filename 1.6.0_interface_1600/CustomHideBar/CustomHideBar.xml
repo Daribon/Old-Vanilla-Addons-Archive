@@ -1,0 +1,124 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="CustomHideBar.lua"/>
+	<Frame name="CustomHideBarFrame">
+		<!-- These are the most common events to respond to -->
+		<Scripts>
+			<OnLoad>
+				CustomHideBar_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				CustomHideBar_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+        
+        <Button name="CHBDragButtonTemplate" virtual="true" movable="true" frameStrata="DIALOG" toplevel="true">
+	<Scripts>
+		<OnMouseDown>this:StartMoving()</OnMouseDown>
+		<OnMouseUp>this:StopMovingOrSizing()</OnMouseUp>
+	</Scripts>
+	<Size>
+		<AbsDimension x="32" y="32"/> <!-- 15/15 -->
+	</Size>
+	<NormalTexture file="Interface\AddOns\CustomHideBar\DragPartIcon"/>
+	</Button>
+
+	<Frame name="CHBToolbarTemplate" virtual="true" frameStrata="BACKGROUND" visible="false" parent="UIParent" toplevel="true">
+		<TitleRegion setAllPoints="true"/>
+		<Size><AbsDimension x="36" y="36"/></Size>
+	</Frame>        
+
+	<Button name="CHBBagBarDragButton" inherits="CHBDragButtonTemplate" parent="UIParent">
+		<Anchors>
+			<Anchor point="BOTTOM">
+				<Offset><AbsDimension x="300" y="60"/></Offset>
+			</Anchor>
+		</Anchors>	
+		<Frames>
+			<Frame name="CHBBagBar" inherits="CHBToolbarTemplate">
+				<Scripts>
+					<OnLoad>
+				                CHB_LinkFrameToDragButton(this:GetName().."DragButton", this:GetName(), "RIGHT");
+						CHB_ConstructBagBar();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Button>        
+
+	<Button name="CHBMicroBarDragButton" inherits="CHBDragButtonTemplate" parent="UIParent">
+		<Anchors>
+			<Anchor point="BOTTOM">
+				<Offset><AbsDimension x="300" y="60"/></Offset>
+			</Anchor>
+		</Anchors>	
+		<Frames>
+			<Frame name="CHBMicroBar" inherits="CHBToolbarTemplate">
+				<Scripts>
+					<OnLoad>
+				                CHB_LinkFrameToDragButton(this:GetName().."DragButton", this:GetName(), "RIGHT");
+						CHB_ConstructMicroBar();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Button>
+        
+	<Button name="CHBActionBarDragButton" inherits="CHBDragButtonTemplate" parent="UIParent">
+		<Anchors>
+			<Anchor point="BOTTOM">
+				<Offset><AbsDimension x="300" y="60"/></Offset>
+			</Anchor>
+		</Anchors>	
+		<Frames>
+			<Frame name="CHBActionBar" inherits="CHBToolbarTemplate">
+				<Scripts>
+					<OnLoad>
+				                CHB_LinkFrameToDragButton(this:GetName().."DragButton", this:GetName(), "RIGHT");
+						CHB_ConstructActionBar();
+					</OnLoad>
+                                        <OnUpdate>CHB_UpdateActionBar();</OnUpdate>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Button>
+        
+	<Button name="CHBPetBarDragButton" inherits="CHBDragButtonTemplate" parent="PetActionBarFrame">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="UIParent">
+				<Offset><AbsDimension x="-180" y="294"/></Offset>
+			</Anchor>
+		</Anchors>	
+		<Frames>
+			<Frame name="CHBPetBar"  frameStrata="BACKGROUND" parent="PetActionBarFrame">
+				<Size><AbsDimension x="330" y="33"/></Size>
+				<Scripts>
+                                        <OnLoad>
+				                CHB_LinkFrameToDragButton(this:GetName().."DragButton", this:GetName(), "RIGHT");
+                                                CHB_ConstructPetBar();
+                                        </OnLoad>
+                                </Scripts>
+			</Frame>		
+		</Frames>
+	</Button>        
+	<Button name="CHBShapeshiftBarDragButton" inherits="CHBDragButtonTemplate" parent="ShapeshiftButton1">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="UIParent">
+				<Offset><AbsDimension x="-180" y="300"/></Offset>
+			</Anchor>
+		</Anchors>	
+		<Frames>
+			<Frame name="CHBShapeshiftBar" frameStrata="BACKGROUND" parent="ShapeshiftButton1">
+				<Size><AbsDimension x="115" y="39"/></Size>
+				<Scripts>
+                                        <OnLoad>
+				                CHB_LinkFrameToDragButton(this:GetName().."DragButton", this:GetName(), "RIGHT");
+                                                CHB_ConstructShapeshiftBar()
+                                        </OnLoad>
+                                </Scripts>
+			</Frame>		
+		</Frames>
+	</Button>        
+        
+</Ui>

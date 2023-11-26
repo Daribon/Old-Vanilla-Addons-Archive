@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+	<Script file="PartyComm.lua"/> 
+	<Frame name="PartyCommFrame">
+		<Scripts> 
+			<OnLoad> 
+				GTimer_OnLoad();
+				PartyComm_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				GTimer_OnEvent(event);
+				PartyComm_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				GTimer_OnUpdate(arg1);
+				PartyComm_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+   </Frame>
+</Ui>

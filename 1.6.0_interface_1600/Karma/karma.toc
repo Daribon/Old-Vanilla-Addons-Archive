@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Karma
+## Notes: Rating system for players in your faction.
+## SavedVariables: KarmaConfig, KarmaData
+Karma.xml

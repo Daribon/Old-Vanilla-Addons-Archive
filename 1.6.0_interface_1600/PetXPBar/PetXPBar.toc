@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Pet XP Bar
+## Notes: Adds an XP Bar under the Focus Bar for your Pet.
+## Author: Arys (Thanks to Mark Murray for inspiration)
+## OptionalDeps:
+## Dependencies: UltimateUI, Sea, Chronos
+## SavedVariables:
+PetXPBar.xml

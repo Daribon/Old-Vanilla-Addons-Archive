@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: PartyPets
+## Notes: Displays health for party members pets
+## OptionalDeps:
+## Dependencies: PartyComm
+PartyPets.xml
+PetUnitFrame.xml
+PartyPetFrame.xml

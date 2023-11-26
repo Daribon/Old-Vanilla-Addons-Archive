@@ -1,0 +1,10 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Clock
+## Title-deDE: Telos Uhr
+## Author: Telo
+## Notes: Adds a clock window with time-based tooltip information
+## Notes-deDE: Fügt ein Uhrfenster mit zeitbasiertem Tooltip hinzu
+## RequiredDeps: UltimateUI
+## OptionalDeps: UltimateUI, Sea
+## SavedVariables: Clock_PopupOnMouseOver
+Clock.xml

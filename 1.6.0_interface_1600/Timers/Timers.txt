@@ -1,0 +1,98 @@
+Timers v1.07
+
+Description : 
+Timers is a mod that was created to help my guild manage respawns in Molten Core. It has a simple interface that can be minimized so that it takes almost no space on the screen. When a timer goes off, a message is pasted across the screen and a sound is triggered. It also has a feature that lets the user send the current timer values to a channel. Triggers can also be specified to create a timer on a specific event. At the moment, it only attempts to find triggers on creature death and create emotes messages. The mod comes with 3 default triggers for Ancient Core Hounds, Lava Surgers and Core Hound packs.
+
+
+Usage: /ti command <parameter> [optional]
+
+show
+Displays the Timers frame.
+
+reset
+Resets the position of the frames.
+
+add <name> <time>
+Adds a new timer with the specified name and time (in minutes).
+
+spam <channel> [name]
+Spams the specified channel (raid, officer, ect.) once with the current timers. If a name is specified, then only that timer will be spammed.
+
+warning [time] [channel]
+Sets the automatic spamming.  If the time is 0, then warnings are disabled.
+
+list_triggers
+Lists all triggers.
+
+add_trigger <name> <time> [trigger]
+Adds a new trigger. The trigger parameter is optional. If no trigger string is specified, the trigger simply acts as a macro. See below on how to manually invoke a trigger.
+
+delete_trigger <name>
+Deletes a trigger.
+
+threshold <time>
+Sets a threshold for triggers (in seconds).
+
+
+About triggers:
+Triggers are used to get some timers to be created automatically when certain mobs die. It works by intercepting the combat log and looks for a specific line of text.
+
+For example, say I wanted to create a trigger for everytime an "Ancient Core Hound" dies in MC that creates an 18 minutes timer. I'd type the following command:
+
+/ti add_trigger hound 18 "Ancient Core Hound dies."
+
+The first parameter is the name of the trigger, the second is the time of the timer, and the third is the string of text to look for in the combat log.
+
+Once the trigger is created, the next time a hound dies, a message box will popup asking what you would want to use for the name of this timer. Once you choose a name, a new timer entry will appear in the timer list.
+
+A trigger can also be manually invoked by simply typing
+
+/ti <trigger> <name>
+
+For example, the following would manually invoke a trigger called "dog" with the name "1"
+
+/ti dog 1
+
+
+Note:
+For strings which contain spaces, they must be enclosed in double quotes.
+
+For example,
+
+/ti add "Two words" 15
+
+
+ 
+Changes :
+Version 1.08 (1300)
+- "/ti threshold" with no time should now display the current threshold.
+
+Version 1.07 (1300)
+- Added a reset command in case the windows get lost under other windows.
+- Added a rudimentary warnings system which is disabled by default (Check out /ti warning).
+- Added threshold on triggers.  Use the /ti threshold command to set the threshold value.
+- Added a feature to help manage trigger timers.  When a trigger is triggered, the popup window will appear as usual but now the Timers main frame will also be maximized.  If a reset button is pressed on one of the entries on the Timers window, the popup will disappear and the Timers window will be returned to its previous minimized/maximized state.  This should make it less annoying to manage these timers.
+
+Version 1.06 (4216)
+- Forgot to include images in 1.05. This is 1.05 with images.
+
+Version 1.05 (4216)
+- Fixed a problem with emote triggers.
+- Also has chat triggers. Anytime someone types "show_time" in guild officer chat, it spams the timers list.
+
+Version 1.04 (4216)
+- Fixed a minor bug with the popup window.
+
+Version 1.03 (4216)
+- Added a reset button to timer entries.
+- Added triggers.
+
+Version 1.02 (4216)
+- Made the timer list as a saved variable.
+
+Version 1.01 (4216)
+- Removed dependency on RaidBar.
+
+Version 1.0 (4216)
+- Initial Version 
+Required Dependencie: Chronos, Sea

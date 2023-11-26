@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: UUI - ItemCount
+## Version: 1.00
+## Author: Milena of Garona
+## Notes: Stack size numbering
+ItemCount.xml

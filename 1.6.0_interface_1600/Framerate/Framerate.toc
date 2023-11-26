@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Framerate Mod
+## Notes: Displays Framerate In A Movable Window.
+## OptionalDeps:
+## Dependencies:
+Framerate.xml

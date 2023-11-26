@@ -1,0 +1,9 @@
+## Interface: 1600
+## Author: Sphinx
+## Title: |cFF006699UUI -|r MoneyDisplay
+## Notes: MoneyDisplay - Small movable window displaying current Player Money.
+## Version : 1.7.1
+## OptionalDeps:
+## Dependencies:
+## SavedVariables: MoneyDisplaySettings
+MoneyDisplay.xml

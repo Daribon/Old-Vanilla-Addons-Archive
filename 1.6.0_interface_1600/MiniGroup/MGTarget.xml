@@ -1,0 +1,709 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="MGTarget.lua"/>
+	<!-- Templates -->
+	<Button name="MGTarget_DebuffButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="21" y="21"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" setAllPoints="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBorder" file="Interface\Buttons\UI-Debuff-Border">
+					<Size>
+						<AbsDimension x="23" y="23"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMRIGHT", 15, -25);
+				GameTooltip:SetUnitDebuff("target", this:GetID());
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="MGTarget_BuffButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="21" y="21"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMRIGHT", 15, -25);
+				GameTooltip:SetUnitBuff("target", this.id);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="MGTarget_Frame" frameStrata="BACKGROUND" toplevel="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="170" y="53"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="50" y="50"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="MGTarget_BG" file="Interface\TargetingFrame\UI-TargetingFrame-LevelBackground">
+					<Size>
+						<AbsDimension x="150" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="MGTarget_EndcapLeft" file="Interface\AddOns\MiniGroup\Images\EndcapLeft.tga" hidden="false">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-75" y="-19"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="MGTarget_EndcapRight" file="Interface\AddOns\MiniGroup\Images\EndcapRight.tga" hidden="false">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="75" y="-19"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="MGTarget_Title" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="118" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="-18" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MGTarget_TitleBliz" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="118" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="-18" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MGTarget_HealthText" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="118" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="18" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="MGTarget_PVP" hidden="true">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-29"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="MGTarget_DeadText" inherits="GameFontNormalSmall" text="DEAD" hidden="true">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MGTarget_Info" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="67" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="41" y="-30"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MGTarget_Combo" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="67" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="-41" y="-30"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentBackdrop" frameStrata="BACKGROUND" setAllPoints="true">
+				<Backdrop bgFile="Interface\AddOns\MiniGroup\Images\UI-Tooltip-Background-Solid.tga" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="MGTarget_DropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						MGTargetFrameDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<StatusBar name="MGTarget_HealthBar" inherits="TextStatusBar" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="146" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-19"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEvent>
+						UnitFrameHealthBar_Update(this, arg1);
+					</OnEvent>
+					<OnValueChanged>
+						MGHealthBar_OnValueChanged(arg1);
+						MGTargetHealthCheck();
+					</OnValueChanged>
+					<OnEnter>
+						MGTarget_OnEnter(this:GetParent());
+					</OnEnter>
+					<OnLeave>
+						MGTarget_OnLeave(this:GetParent());
+					</OnLeave>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1" b="0"/>
+			</StatusBar>
+			<StatusBar name="MGTarget_HealthBarBG" inherits="TextStatusBar" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="146" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-19"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						MGTarget_OnEnter(this:GetParent());
+					</OnEnter>
+					<OnLeave>
+						MGTarget_OnLeave(this:GetParent());
+					</OnLeave>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1" b="0" a="0.25"/>
+			</StatusBar>
+			<StatusBar name="MGTarget_ManaBar" inherits="TextStatusBar" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="146" y="3"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MGTarget_HealthBar" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEvent>
+						UnitFrameManaBar_Update(this, arg1);
+					</OnEvent>
+					<OnEnter>
+						MGTarget_OnEnter(this:GetParent());
+					</OnEnter>
+					<OnLeave>
+						MGTarget_OnLeave(this:GetParent());
+					</OnLeave>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="0" b="1.0"/>
+			</StatusBar>
+			<StatusBar name="MGTarget_ManaBarBG" inherits="TextStatusBar" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="146" y="3"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MGTarget_HealthBar" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						MGTarget_OnEnter(this:GetParent());
+					</OnEnter>
+					<OnLeave>
+						MGTarget_OnLeave(this:GetParent());
+					</OnLeave>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="0" b="1.0" a="0.25"/>
+			</StatusBar>
+			<Button name="MGTarget_Debuff1" inherits="MGTarget_DebuffButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="14" y="52"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Debuff2" inherits="MGTarget_DebuffButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Debuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Debuff3" inherits="MGTarget_DebuffButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Debuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Debuff4" inherits="MGTarget_DebuffButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Debuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Debuff5" inherits="MGTarget_DebuffButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Debuff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Debuff6" inherits="MGTarget_DebuffButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Debuff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Buff1" inherits="MGTarget_BuffButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MGTarget_Debuff1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Buff2" inherits="MGTarget_BuffButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Buff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Buff3" inherits="MGTarget_BuffButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Buff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Buff4" inherits="MGTarget_BuffButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Buff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Buff5" inherits="MGTarget_BuffButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Buff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MGTarget_Buff6" inherits="MGTarget_BuffButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MGTarget_Buff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				UnitFrame_Initialize("target", MGTarget_TitleBliz, TargetPortrait,
+									 MGTarget_HealthBar, nil,
+									 MGTarget_ManaBar, nil);
+				MGTarget_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MGTarget_OnEvent(event);
+			</OnEvent>
+			<OnShow>
+				MGTarget_OnShow();
+			</OnShow>
+			<OnHide>
+				MGTarget_OnHide();
+			</OnHide>
+			<OnEnter>
+				MGTarget_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				MGTarget_OnLeave();
+			</OnLeave>
+			<OnClick>
+				MGTarget_OnClick(arg1);
+			</OnClick>
+			<OnMouseDown>
+				MiniGroup_OnMouseDown(this,arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				MiniGroup_OnMouseUp(this,arg1)
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+	<Frame name="MGTarget_BuffTooltip" frameStrata="TOOLTIP" hidden="true">
+		<Size>
+			<AbsDimension x="200" y="75"/>
+		</Size>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Button name="$parent_Buff1" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="9" y="-9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff2" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff3" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff4" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff5" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff6" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff7" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff8" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff9" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_Buff1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff10" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff9" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff11" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff10" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff12" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff11" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff13" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff12" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff14" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff13" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff15" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff14" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Buff16" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Buff15" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff1" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_Buff9" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff2" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff3" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff4" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff5" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff6" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff7" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Debuff8" inherits="MGParty_BuffButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent_Debuff7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GameTooltip_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

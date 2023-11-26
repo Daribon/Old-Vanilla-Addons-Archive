@@ -1,0 +1,9 @@
+<Bindings>
+	<Binding name="Toggle Karma Window"  description="Opens or Closes the Karma main window." runOnUp="true" header="KARMA">
+		if ( keystate == "down" ) then
+			KarmaWindowKeyDown(1);
+		else
+			KarmaWindowKeyUp(1);
+		end
+	</Binding>
+</Bindings>

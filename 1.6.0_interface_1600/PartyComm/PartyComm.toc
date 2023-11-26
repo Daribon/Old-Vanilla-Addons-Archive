@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: PartyComm
+## Notes: Creates a hidden channel for the party you are currently in that can be used by addons for client/server style communication.
+## OptionalDeps:
+## Dependencies: 
+PartyComm.xml

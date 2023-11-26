@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Timers 1.07
+## Notes: Timer utility
+## Dependencies: Chronos
+## SavedVariables: TimersState
+Timers.xml

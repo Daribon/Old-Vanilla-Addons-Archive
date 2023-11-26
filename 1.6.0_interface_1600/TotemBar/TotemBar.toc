@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: UUI - TotemBar
+## Notes: Block of buttons that shows all Shaman totems. Mouse over above buttons 4-8 on the Actionbar, and press the shift key to show.
+## Author: Marc aka Saien on Hyjal
+## SavedVariables: TotemBar_Config
+TotemBar.xml

@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: UUI - Telo's InfoBar
+## Notes: The InfoBar is a bar for presenting at-a-glance information through an easily customized plugin architecture.  Individual plugins can display information on the bar or its summary tooltip and are configured through the InfoBar's interface.  Included are eight sample plugins: Bag Space, Money, Clock, FrameRate, Network Stats, Health Regen, Mana Regen and Coords.
+## SavedVariables: InfoBarState
+InfoBar.xml

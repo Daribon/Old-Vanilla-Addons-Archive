@@ -1,0 +1,6 @@
+## Interface: 1600
+## Version: 1.3 (CTMod 1.8)
+## Title: CT_PartyHealth
+## Notes: Allows you to view the health of party members.
+## SavedVariables: CT_PartyColors, CT_PartyHealth_CurrPosition, CT_PartyHealth_Status
+CT_PartyHealth.xml

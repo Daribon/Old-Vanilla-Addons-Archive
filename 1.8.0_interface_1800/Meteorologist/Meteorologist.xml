@@ -1,0 +1,94 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="Meteorologist.lua"/>
+	<Frame name="Meteorologist" hidden="true">
+		<Scripts>
+			<OnLoad>
+				Meteorologist_OnLoad();
+            </OnLoad>
+            <OnEvent>
+				Meteorologist_OnEvent(event);
+            </OnEvent>
+		</Scripts>
+	</Frame>
+	
+	
+	<!-- Sky party member icon END -->
+	<Button name="UnitFrameSkyIconTemplate" level="OVERLAY" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="25" y="25"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="-10" y="-5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentTexture" file="Interface\AddOns\Meteorologist\Skin\SkyCloud">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				Meteorologist_SkyIcon_OnLoad();
+			</OnLoad>
+			<OnEnter>
+				Meteorologist_SkyIcon_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				Meteorologist_SkyIcon_OnLeave();
+			</OnLeave>
+			<OnMouseDown>
+				Meteorologist_SkyIcon_OnMouseDown();
+			</OnMouseDown>
+			<OnMouseUp>
+				Meteorologist_SkyIcon_OnMouseUp();
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+	<Button name="$parentSkyIcon" inherits="UnitFrameSkyIconTemplate" parent="PartyMemberFrame1" id="1" />
+	<Button name="$parentSkyIcon" inherits="UnitFrameSkyIconTemplate" parent="PartyMemberFrame2" id="2" />
+	<Button name="$parentSkyIcon" inherits="UnitFrameSkyIconTemplate" parent="PartyMemberFrame3" id="3" />
+	<Button name="$parentSkyIcon" inherits="UnitFrameSkyIconTemplate" parent="PartyMemberFrame4" id="4" />
+	<!-- Sky party member icon END -->
+	
+	<!-- Sky player icon START -->
+	<Button name="$parentSkyIcon" inherits="UnitFrameSkyIconTemplate" parent="PlayerFrame">
+		<Scripts>
+			<OnLoad>
+				Meteorologist_PlayerFrameSkyIcon_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<!-- Sky player icon END -->
+	
+	<!-- Sky target icon START -->
+	<Button name="$parentSkyIcon" inherits="UnitFrameSkyIconTemplate" parent="TargetFrame">
+		<Scripts>
+			<OnLoad>
+				Meteorologist_TargetFrameSkyIcon_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<!-- Sky target icon END -->
+	
+	<!-- Sky list tooltip START -->
+	<GameTooltip name="MeteorologistTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate" parent="UIParent">
+	<Scripts>
+		<OnLoad>
+			Meteorologist_Tooltip_OnLoad();
+		</OnLoad>
+	</Scripts>
+	</GameTooltip>
+	<!-- Sky list tooltip END -->
+	
+</Ui>

@@ -1,0 +1,7 @@
+<Addon name="AllInOneInventory" current="0.46" path="" author="Anders Kronquist" email="k AT fukt DOT bth DOT se" url="http://www.curse-gaming.com/mod.php?addid=117">
+<Description>AllInOneInventory allows you to make one big window with all your inventory slots and have it replace the normal bags if you so wish.</Description>
+<Current number="0.46" date="2005-06-21">
+<File url="http://www.fukt.bth.se/~k/wow/scripts/AllInOneInventory/AllInOneInventory_1500_v0.46.zip" />
+</Current>
+<UpdateFile url="http://www.fukt.bth.se/~k/wow/scripts/AllInOneInventory/Interface/AddOns/AllInOneInventory/UpdateUI.xml" />
+</Addon>

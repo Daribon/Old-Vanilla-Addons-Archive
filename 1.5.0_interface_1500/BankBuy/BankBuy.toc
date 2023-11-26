@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: Bank Buy
+## Author: Egris
+## Notes: Show Confirmations for buying bank slots
+BankBuy.xml

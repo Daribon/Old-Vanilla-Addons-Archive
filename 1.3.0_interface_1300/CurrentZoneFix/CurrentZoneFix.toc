@@ -1,0 +1,5 @@
+## Interface: 1300
+## Title: CurrentZoneFix
+## Author: Legorol
+## Notes: Fixes a bug in SetMapToCurrentZone()
+CurrentZoneFix.xml

@@ -1,0 +1,8 @@
+## Interface: 4150
+## Title: AllInOneInventory
+## Notes: Allows you to view your inventory without caring about bags.
+## Author: sarf
+## OptionalDeps: Cosmos, CosmosSchedule, ReagentHelper, LootLink, SellValue
+## RequiredDeps: DynamicData
+## SavedVariables: AllInOneInventory_Enabled, AllInOneInventory_ReplaceBags
+AllInOneInventory.xml

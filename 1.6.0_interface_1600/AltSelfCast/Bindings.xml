@@ -1,0 +1,22 @@
+<Bindings>
+	<!-- Toggle AltSelfCast On/Off -->
+	<Binding name="ALTSELFCAST" description="Toggle alt-self cast" header="ALTSELFCASTHEADER">
+		AltSelfCast_Toggle_Enabled(-1);
+	</Binding>
+	
+	<!-- Toggle AltSelfCast Overriding On/Off -->
+	<Binding name="ALTSELFCASTOVERRIDE" description="Toggle alt-self cast overriding">
+		if ( keystate == "down" ) then
+			AltSelfCast_Toggle_Override(1);
+		else
+			AltSelfCast_Toggle_Override(0);
+		end
+	</Binding>
+
+	<!-- Toggle AltSelfCast continous Overriding On/Off -->
+	<Binding name="ALTSELFCASTTOGGLEOVERRIDE" description="Toggle continous alt-self cast overriding">
+		if ( keystate ~= "down" ) then
+			AltSelfCast_Toggle_Override(-1);
+		end
+	</Binding>
+</Bindings>

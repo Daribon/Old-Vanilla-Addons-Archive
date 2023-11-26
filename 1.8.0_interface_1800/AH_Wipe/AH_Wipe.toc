@@ -1,0 +1,12 @@
+## Interface: 1800
+## Title: AH Wipe
+## Author: Neriak
+## Notes: Adds a Reset-Button to the AH-Browse frame.
+## Notes-deDE: Fügt dem AH-Fenster einen Reset-Button hinzu.
+## Notes-frFR:
+## Dependencies: Ace
+## SavedVariables: AHWipeDB
+AH_WipeLocals_deDE.lua
+AH_WipeLocals.lua
+AH_Wipe.xml
+AH_Wipe.lua

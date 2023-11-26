@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r Masso's combo bar
+## Notes: Adds a window displaying combo points, an energy bar and a health bar.
+## SavedVariables: MassoComboBar_Config
+## DefaultState: disabled
+MassoComboBar.xml

@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Map Notes Target
+## Notes: Note a target's location, name, and level on the Worldmap.
+## OptionalDeps: UltimateUI, Sea, Thottbot
+## RequiredDeps: MapNotes
+MapNotesNoteTarget.xml

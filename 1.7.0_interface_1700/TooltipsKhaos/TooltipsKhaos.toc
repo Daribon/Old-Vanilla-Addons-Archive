@@ -1,0 +1,9 @@
+## Interface: 1700
+## Title: Tooltips: Complete
+## Author: AlexanderYoshi and Celandro
+## Notes: Provides a complete package for configuring tooltips
+## RequiredDeps: Sea, Chronos, Khaos
+## OptionalDeps: Gymnast
+## SavedVariables: PropsTooltips
+TooltipsKhaos.xml
+

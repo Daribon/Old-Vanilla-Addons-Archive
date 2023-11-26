@@ -1,0 +1,28 @@
+Version 1.1.4
+* Updated it to work with latest patch.
+* Added a bunch of precalibrated zones.
+* Made the function InInstance work correctly (I think!).
+* Also added a InBattleground function.
+* Added a few safety things to the calibration function, but I have not
+managed to trigger them yet.
+
+Version 1.1.3 (not released)
+* Added a lot of zone calibrations.
+
+Version 1.1.2
+* Another embarrasing bug found and fixed.
+
+Version 1.1.1
+* Embarrasing bug found and fixed.
+
+Version 1.1.0
+* Redesigned to reduce number of global variables.
+
+Version 1.0.2
+* Some bug fixes.
+
+Version 1.0.1
+* Drastically improved distance calculations.
+
+Version 1.0.0
+* First release (that was never really released).

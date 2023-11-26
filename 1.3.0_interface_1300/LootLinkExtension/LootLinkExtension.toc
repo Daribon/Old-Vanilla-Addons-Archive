@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: Telo's LootLink - Extended functionality
+## Notes: Extends LootLink functionality.
+## Author: sarf
+## OptionalDeps: Cosmos
+## RequiredDeps: LootLink
+LootLinkExtension.xml

@@ -1,0 +1,6 @@
+## Interface: 1600
+## Version: 1.3 (CTMod 1.8)
+## Title: CT_MailMod
+## Notes: Allows you to send multiple mails to the same person
+## OptionalDeps: CT_MasterMod
+CT_MailMod.xml

@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: TrackerToggle
+## Notes: Allows easy changing of tracking modes.
+## Author: Sinaloit
+## Dependencies: Sea, Chronos, Earth
+## OptionalDeps: MobileFrames
+TrackerToggle.xml

@@ -1,0 +1,7 @@
+## Title: Enchantrix
+## Interface: 1500 
+## Version: 1.14
+## OptionalDeps: LootLink
+## SavedVariables: EnchantedLocal
+Enchantrix.xml
+

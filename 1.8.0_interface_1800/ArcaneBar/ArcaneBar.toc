@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: A|c0099FF99rcaneBar|r
+## Notes: Adds a casting bar to the PlayerFrame.
+## SavedVariables: ArcaneBar_Colors
+## OptionalDeps: Khaos
+ArcaneBar.xml

@@ -1,0 +1,406 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:ProjectsWoWBinInterfaceFrameXMLUI.xsd">
+	<Script file="SuperMacro.lua"/>
+	<Script file="localization.lua"/>
+	<FontString name="MacroButtonFont" virtual="true" inherits="GameFontNormalLarge">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</FontString>
+	<Checkbutton name="SuperMacroButtonTemplate" virtual="true" inherits="MacroButtonTemplate">
+		<Layers>
+			<Layer>
+				<FontString name="$parentID" inherits="MacroButtonFont">
+				</FontString>
+			</Layer>
+		</Layers>
+	</Checkbutton>
+	<Frame frameLevel="1" parent="MacroFrame">
+		<Layers>
+			<Layer>
+				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+					<Size>
+						<AbsDimension x="138" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroFrame" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.5" right="1.0" top="0" bottom="1.0"/>
+				</Texture>
+				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+					<Size>
+						<AbsDimension x="68" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroFrame" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="394" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.5" right="1.0" top="0" bottom="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame frameLevel="1" parent="MacroFrame">
+		<Layers>
+			<Layer>
+				<Texture file="Interface\MacroFrame\MacroFrame-BotLeft">
+					<Size>
+						<AbsDimension x="206" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="MacroFrame" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.45" right="0.69" top="0" bottom="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame parent="MacroFrame">
+		<Layers>
+			<Layer>
+				<Texture file="Interface\MacroFrame\MacroFrame-BotLeft">
+					<Size>
+						<AbsDimension x="79" y="39"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="MacroFrame" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="178" y="64"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.45" right="0.69" top="0.5975" bottom="0.75"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="SuperMacroFrame" parent="MacroFrame">
+		<Scripts>
+			<OnLoad>
+				SuperMacro_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				SuperMacro_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+		<Layers>
+			<Layer>
+				<FontString name="SuperMacroFrameSelectedMacroName" inherits="GameFontNormalLarge">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroFrameSelectedMacroBackground" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-4" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton1ID" inherits="GameFontNormalLarge" text="1" parent="MacroButton1">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton1" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton2ID" inherits="GameFontNormalLarge" text="2" parent="MacroButton2">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton2" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton3ID" inherits="GameFontNormalLarge" text="3" parent="MacroButton3">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton3" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton4ID" inherits="GameFontNormalLarge" text="4" parent="MacroButton4">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton4" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton5ID" inherits="GameFontNormalLarge" text="5" parent="MacroButton5">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton5" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton6ID" inherits="GameFontNormalLarge" text="6" parent="MacroButton6">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton6" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton7ID" inherits="GameFontNormalLarge" text="7" parent="MacroButton7">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton7" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton8ID" inherits="GameFontNormalLarge" text="8" parent="MacroButton8">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton8" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton9ID" inherits="GameFontNormalLarge" text="9" parent="MacroButton9">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton9" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton10ID" inherits="GameFontNormalLarge" text="10" parent="MacroButton10">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton10" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton11ID" inherits="GameFontNormalLarge" text="11" parent="MacroButton11">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton11" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton12ID" inherits="GameFontNormalLarge" text="12" parent="MacroButton12">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton12" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton13ID" inherits="GameFontNormalLarge" text="13" parent="MacroButton13">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton13" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton14ID" inherits="GameFontNormalLarge" text="14" parent="MacroButton14">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton14" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton15ID" inherits="GameFontNormalLarge" text="15" parent="MacroButton15">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton15" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton16ID" inherits="GameFontNormalLarge" text="16" parent="MacroButton16">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton16" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton17ID" inherits="GameFontNormalLarge" text="17" parent="MacroButton17">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton17" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MacroButton18ID" inherits="GameFontNormalLarge" text="18" parent="MacroButton18">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MacroButton18" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="MacroButton19" inherits="SuperMacroButtonTemplate" id="19">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton18" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton20" inherits="SuperMacroButtonTemplate" id="20">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton19" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton21" inherits="SuperMacroButtonTemplate" id="21">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MacroButton11" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton22" inherits="SuperMacroButtonTemplate" id="22">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton21" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton23" inherits="SuperMacroButtonTemplate" id="23">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton22" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton24" inherits="SuperMacroButtonTemplate" id="24">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton23" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton25" inherits="SuperMacroButtonTemplate" id="25">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton24" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton26" inherits="SuperMacroButtonTemplate" id="26">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton25" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton27" inherits="SuperMacroButtonTemplate" id="27">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton26" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton28" inherits="SuperMacroButtonTemplate" id="28">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton27" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton29" inherits="SuperMacroButtonTemplate" id="29">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton28" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="MacroButton30" inherits="SuperMacroButtonTemplate" id="30">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MacroButton29" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="13" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<ScrollFrame name="SuperMacroFrameScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="500" y="150"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="MacroFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-70" y="-74"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+FauxScrollFrame_OnVerticalScroll(MACRO_ROW_HEIGHT, MacroFrame_Update);
+					</OnVerticalScroll>
+					<OnMouseWheel>
+ScrollFrameTemplate_OnMouseWheel(arg1);
+					</OnMouseWheel>
+				</Scripts>
+			</ScrollFrame>
+		</Frames>
+	</Frame>
+</Ui>

@@ -1,0 +1,7 @@
+## Interface: 4150
+## OptionalDeps: ImprovedErrorFrame
+## RequiredDeps: CosmosSchedule, Sea
+## SavedVariables: CosmosMaster_CVars, CosmosMaster_CosmosUsers
+CommonFrameTemplate.xml
+CosmosMaster.xml
+CosmosMenu.xml

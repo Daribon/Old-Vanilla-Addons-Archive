@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: Tooltips Props Target
+## Notes: Player labeling. Some labels for Cosmos developers included
+## Author: AlexanderYoshi, Celandro
+## RequiredDeps: TooltipsBase
+## SavedVariables: PropsTooltips
+TooltipsPropsTarget.xml

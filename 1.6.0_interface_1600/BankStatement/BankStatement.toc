@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Bank Statement
+## Author: Merphle
+## Notes: View the contents of your bank, anywhere in the world, including quantity of each item.
+## Dependencies: 
+## OptionalDeps: 
+## SavedVariables: BankStatementItems
+BankStatement.xml

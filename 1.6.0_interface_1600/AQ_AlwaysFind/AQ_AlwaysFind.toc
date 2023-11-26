@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: [AQ] Always Find
+## Notes: AddOn for ActionQueue - tries to make sure Find Herbs/Minerals is always active (in case of death et cetera). Will not override any present tracking skill.
+## Author: sarf
+## DefaultState: enabled
+## RequiredDeps: ActionQueue
+## SavedVariables: AQ_AlwaysFind_Options
+AQ_AlwaysFind.xml

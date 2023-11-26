@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: Telo's LootLink - Cosmos compatibility
+## Notes: Provides Cosmos compatibility with Telo's LootLink code.
+## OptionalDeps: LootLinkExtension
+## RequiredDeps: Cosmos, LootLink
+LootLinkCosmos.xml

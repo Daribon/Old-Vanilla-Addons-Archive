@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: BankItems v1.0
+## Notes: View bank contents from anywhere!
+## Author: jason.slaughter@gmail.com
+## SavedVariables: BankItems_Save
+BankItems.xml

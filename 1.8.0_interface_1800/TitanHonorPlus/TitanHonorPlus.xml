@@ -1,0 +1,23 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="TitanHonorPlus.lua"/>
+	<Frame parent="UIParent">
+		<Frames>
+			<Button name="TitanPanelHonorPlusButton" inherits="TitanPanelComboTemplate" frameStrata="FULLSCREEN" toplevel="true">
+				<Scripts>
+					<OnLoad>
+						TitanPanelHonorPlusButton_OnLoad();
+						TitanPanelButton_OnLoad();
+					</OnLoad>
+					<OnEvent>
+						TitanPanelHonorPlusButton_OnEvent();
+					</OnEvent>
+					<OnShow>
+						TitanPanelHonorPlusButton_OnShow();
+						TitanPanelButton_OnShow();
+					</OnShow>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLEQUESTSHARE" header="QUESTSHARE"> <!-- Toggle Quest Share -->
+		ToggleQuestShare();
+	</Binding>
+</Bindings>

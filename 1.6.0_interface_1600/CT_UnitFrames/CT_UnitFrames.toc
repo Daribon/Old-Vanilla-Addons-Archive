@@ -1,0 +1,8 @@
+## Interface: 1600
+## Version: 1.57 (CTMod 1.8)
+## Title: CT_UnitFrames
+## Notes: Changes display of hp/mana values and adds a percentage
+## Dependencies: CT_MasterMod
+## OptionalDeps: CT_RaidAssist
+CT_PlayerFrame.xml
+CT_TargetFrame.xml

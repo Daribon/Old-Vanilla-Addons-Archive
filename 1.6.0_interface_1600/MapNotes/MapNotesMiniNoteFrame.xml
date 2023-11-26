@@ -1,0 +1,346 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="MapNotes.lua"/>
+
+<!-- This is stuff for WorldMapFrame.xml -->
+<!-- Map Notes Begin Insert [ 1/ 7]-->
+	<Button name="MapNotesPOIButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\AddOns\MapNotes\POIIcons\Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				MapNotes_OnEnter(this:GetID());
+			</OnEnter>
+			<OnLeave>
+				MapNotes_OnLeave(this:GetID());
+			</OnLeave>
+			<OnClick>
+				MapNotes_Note_OnClick(arg1, this:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="MapNotesButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="144" y="21"/>
+		</Size>
+		<NormalText inherits="GameFontHighlight"/>
+		<DisabledText inherits="GameFontDisable"/>
+		<HighlightText inherits="GameFontHighlight"/>
+	</Button>
+<!-- Map Notes End Insert [ 1/ 7]-->
+<!-- Map Notes Begin Change [ 2/ 7]-->
+	<Button name="WorldMapMapNotesUnitTemplate" hidden="true" virtual="true">
+<!-- Map Notes End Change [ 2/ 7]-->
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" file="Interface\WorldMap\WorldMapPlayerIcon" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+                this:SetFrameLevel(this:GetFrameLevel() + 1);
+				if ( this:GetID() == 0 ) then
+					this.unit = "player";
+				else
+					this.unit = "party"..this:GetID();
+					getglobal(this:GetName().."Icon"):SetTexture("Interface\\WorldMap\\WorldMapPartyIcon");
+				end
+--[[<!-- Map Notes Begin Insert [ 3/ 7]-->]]
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+--[[<!-- Map Notes End Insert [ 3/ 7]-->]]
+			</OnLoad>
+			<OnEnter>
+				local x, y = this:GetCenter();
+				local parentX, parentY = this:GetParent():GetCenter();
+				if ( x > parentX ) then
+					WorldMapTooltip:SetOwner(this, "ANCHOR_LEFT");
+				else
+					WorldMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				end
+				WorldMapTooltip:SetText(UnitName(this.unit));
+				WorldMapTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				WorldMapTooltip:Hide();
+			</OnLeave>
+<!-- Map Notes Begin Insert [ 4/ 7]-->
+			<OnClick>
+				if (arg1 == "LeftButton") then
+					local x, y = this:GetCenter();
+					local centerX, centerY = WorldMapButton:GetCenter();
+					local width = WorldMapButton:GetWidth();
+					local height = WorldMapButton:GetHeight();
+					local adjustedY = (centerY + (height/2) - y) / height;
+					local adjustedX = (x - (centerX - (width/2))) / width;
+					if (GetCurrentMapZone() ~= 0) then
+						if (MapNotes_CheckNearNotes(GetCurrentMapContinent(), GetCurrentMapZone(), adjustedX, adjustedY)) then
+							MapNotesButtonNewNote:Disable();
+						else
+							MapNotesButtonNewNote:Enable();
+						end
+						MapNotes_ShowNewFrame(adjustedX, adjustedY);
+					end
+				end
+			</OnClick>
+<!-- Map Notes Begin Insert [ 4/ 7]-->
+		</Scripts>
+<!-- Map Notes Begin Change [ 5/ 7]-->
+	</Button>
+<!-- Map Notes End Change [ 5/ 7]-->
+
+	<Button name="WorldMapMapNotesMiscTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" file="Interface\AddOns\MapNotes\POIIcons\Icontloc" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				if (this:GetID() == 1) then
+					MapNotesPOIpartyTexture:SetTexture("Interface\\AddOns\\MapNotes\\POIIcons\\Iconparty");
+				end
+			</OnLoad>
+			<OnEnter>
+				local x, y = this:GetCenter();
+				local parentX, parentY = this:GetParent():GetCenter();
+				if ( x > parentX ) then
+					WorldMapTooltip:SetOwner(this, "ANCHOR_LEFT");
+				else
+					WorldMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				end
+				if (this:GetID() == 0) then
+					WorldMapTooltip:SetText(MAPNOTES_THOTTBOTLOC);
+				elseif (this:GetID() == 1) then
+					WorldMapTooltip:SetText(MAPNOTES_PARTYNOTE);
+				end
+				WorldMapTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				WorldMapTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				MapNotes_Misc_OnClick(arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+
+<!-- Here are the buttons, that need to be added to the WorldMapFrame.xml -->
+	<Button name="WorldMapMapNotesPlayer" inherits="WorldMapMapNotesUnitTemplate" id="0" parent="WorldMapButton"/> <!-- The New "Button" PlayerPOI -->
+	<Button name="MapNotesPOI1" inherits="MapNotesPOIButtonTemplate" id="1" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI2" inherits="MapNotesPOIButtonTemplate" id="2" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI3" inherits="MapNotesPOIButtonTemplate" id="3" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI4" inherits="MapNotesPOIButtonTemplate" id="4" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI5" inherits="MapNotesPOIButtonTemplate" id="5" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI6" inherits="MapNotesPOIButtonTemplate" id="6" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI7" inherits="MapNotesPOIButtonTemplate" id="7" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI8" inherits="MapNotesPOIButtonTemplate" id="8" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI9" inherits="MapNotesPOIButtonTemplate" id="9" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI10" inherits="MapNotesPOIButtonTemplate" id="10" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI11" inherits="MapNotesPOIButtonTemplate" id="11" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI12" inherits="MapNotesPOIButtonTemplate" id="12" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI13" inherits="MapNotesPOIButtonTemplate" id="13" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI14" inherits="MapNotesPOIButtonTemplate" id="14" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI15" inherits="MapNotesPOIButtonTemplate" id="15" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI16" inherits="MapNotesPOIButtonTemplate" id="16" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI17" inherits="MapNotesPOIButtonTemplate" id="17" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI18" inherits="MapNotesPOIButtonTemplate" id="18" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI19" inherits="MapNotesPOIButtonTemplate" id="19" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI20" inherits="MapNotesPOIButtonTemplate" id="20" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI21" inherits="MapNotesPOIButtonTemplate" id="21" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI22" inherits="MapNotesPOIButtonTemplate" id="22" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI23" inherits="MapNotesPOIButtonTemplate" id="23" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI24" inherits="MapNotesPOIButtonTemplate" id="24" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI25" inherits="MapNotesPOIButtonTemplate" id="25" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI26" inherits="MapNotesPOIButtonTemplate" id="26" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI27" inherits="MapNotesPOIButtonTemplate" id="27" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI28" inherits="MapNotesPOIButtonTemplate" id="28" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI29" inherits="MapNotesPOIButtonTemplate" id="29" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI30" inherits="MapNotesPOIButtonTemplate" id="30" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI31" inherits="MapNotesPOIButtonTemplate" id="31" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI32" inherits="MapNotesPOIButtonTemplate" id="32" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI33" inherits="MapNotesPOIButtonTemplate" id="33" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI34" inherits="MapNotesPOIButtonTemplate" id="34" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI35" inherits="MapNotesPOIButtonTemplate" id="35" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI36" inherits="MapNotesPOIButtonTemplate" id="36" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI37" inherits="MapNotesPOIButtonTemplate" id="37" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI38" inherits="MapNotesPOIButtonTemplate" id="38" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI39" inherits="MapNotesPOIButtonTemplate" id="39" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI40" inherits="MapNotesPOIButtonTemplate" id="40" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI41" inherits="MapNotesPOIButtonTemplate" id="41" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI42" inherits="MapNotesPOIButtonTemplate" id="42" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI43" inherits="MapNotesPOIButtonTemplate" id="43" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI44" inherits="MapNotesPOIButtonTemplate" id="44" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI45" inherits="MapNotesPOIButtonTemplate" id="45" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI46" inherits="MapNotesPOIButtonTemplate" id="46" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI47" inherits="MapNotesPOIButtonTemplate" id="47" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI48" inherits="MapNotesPOIButtonTemplate" id="48" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI49" inherits="MapNotesPOIButtonTemplate" id="49" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI50" inherits="MapNotesPOIButtonTemplate" id="50" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI51" inherits="MapNotesPOIButtonTemplate" id="51" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI52" inherits="MapNotesPOIButtonTemplate" id="52" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI53" inherits="MapNotesPOIButtonTemplate" id="53" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI54" inherits="MapNotesPOIButtonTemplate" id="54" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI55" inherits="MapNotesPOIButtonTemplate" id="55" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI56" inherits="MapNotesPOIButtonTemplate" id="56" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI57" inherits="MapNotesPOIButtonTemplate" id="57" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI58" inherits="MapNotesPOIButtonTemplate" id="58" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI59" inherits="MapNotesPOIButtonTemplate" id="59" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI60" inherits="MapNotesPOIButtonTemplate" id="60" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI61" inherits="MapNotesPOIButtonTemplate" id="61" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI62" inherits="MapNotesPOIButtonTemplate" id="62" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI63" inherits="MapNotesPOIButtonTemplate" id="63" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI64" inherits="MapNotesPOIButtonTemplate" id="64" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI65" inherits="MapNotesPOIButtonTemplate" id="65" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI66" inherits="MapNotesPOIButtonTemplate" id="66" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI67" inherits="MapNotesPOIButtonTemplate" id="67" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI68" inherits="MapNotesPOIButtonTemplate" id="68" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI69" inherits="MapNotesPOIButtonTemplate" id="69" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI70" inherits="MapNotesPOIButtonTemplate" id="70" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI71" inherits="MapNotesPOIButtonTemplate" id="71" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI72" inherits="MapNotesPOIButtonTemplate" id="72" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI73" inherits="MapNotesPOIButtonTemplate" id="73" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI74" inherits="MapNotesPOIButtonTemplate" id="74" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI75" inherits="MapNotesPOIButtonTemplate" id="75" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI76" inherits="MapNotesPOIButtonTemplate" id="76" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI77" inherits="MapNotesPOIButtonTemplate" id="77" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI78" inherits="MapNotesPOIButtonTemplate" id="78" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI79" inherits="MapNotesPOIButtonTemplate" id="79" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI80" inherits="MapNotesPOIButtonTemplate" id="80" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI81" inherits="MapNotesPOIButtonTemplate" id="81" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI82" inherits="MapNotesPOIButtonTemplate" id="82" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI83" inherits="MapNotesPOIButtonTemplate" id="83" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI84" inherits="MapNotesPOIButtonTemplate" id="84" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI85" inherits="MapNotesPOIButtonTemplate" id="85" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI86" inherits="MapNotesPOIButtonTemplate" id="86" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI87" inherits="MapNotesPOIButtonTemplate" id="87" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI88" inherits="MapNotesPOIButtonTemplate" id="88" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI89" inherits="MapNotesPOIButtonTemplate" id="89" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI90" inherits="MapNotesPOIButtonTemplate" id="90" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI91" inherits="MapNotesPOIButtonTemplate" id="91" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI92" inherits="MapNotesPOIButtonTemplate" id="92" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI93" inherits="MapNotesPOIButtonTemplate" id="93" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI94" inherits="MapNotesPOIButtonTemplate" id="94" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI95" inherits="MapNotesPOIButtonTemplate" id="95" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI96" inherits="MapNotesPOIButtonTemplate" id="96" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI97" inherits="MapNotesPOIButtonTemplate" id="97" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI98" inherits="MapNotesPOIButtonTemplate" id="98" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI99" inherits="MapNotesPOIButtonTemplate" id="99" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesPOI100" inherits="MapNotesPOIButtonTemplate" id="100" hidden="true" parent="WorldMapButton"/>
+
+<!-- for tloc function -->
+	<Button name="MapNotesPOItloc" inherits="WorldMapMapNotesMiscTemplate" id="0" parent="WorldMapButton"/>
+	<Button name="MapNotesPOIparty" inherits="WorldMapMapNotesMiscTemplate" id="1" parent="WorldMapButton"/>
+
+<!-- Adds the MiniNote POI to MiniMapFrame -->
+	<Button name="MiniNotePOI" parent="Minimap" toplevel="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="MinimapBackdrop" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-51" y="60"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("MINIMAP_UPDATE_ZOOM");
+				this:RegisterEvent("WORLD_MAP_UPDATE");
+				this:SetFrameLevel(5);
+			</OnLoad>
+			<OnEvent>
+				MapNotes_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				MapNotes_MiniNote_OnUpdate(arg1);
+			</OnUpdate>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText(MapNotes_MiniNote_Data.name, MapNotes_Colors[MapNotes_MiniNote_Data.color].r, MapNotes_Colors[MapNotes_MiniNote_Data.color].g, MapNotes_Colors[MapNotes_MiniNote_Data.color].b);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseUp>
+				Minimap_OnClick();
+			</OnMouseUp>
+		</Scripts>
+		<NormalTexture name="MiniNotePOITexture" file="Interface\AddOns\MapNotes\POIIcons\Icon3"/>
+	</Button>
+	
+	<Texture name="MapNotesLineTemplate" file="Interface\AddOns\MapNotes\MiscGFX\LineTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Texture>
+
+	<Frame name="MapNotesLinesFrame" parent="WorldMapDetailFrame" hidden="false">
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="MapNotesLines_1" file="Interface\AddOns\MapNotes\MiscGFX\LineTemplate" hidden="false">
+					<Size>
+						<AbsDimension x="512" y="512"/>
+					</Size>
+				</Texture>
+				<Texture name="MapNotesLines_2" inherits="MapNotesLineTemplate" id="2" hidden="true"/>
+				<Texture name="MapNotesLines_3" inherits="MapNotesLineTemplate" id="3" hidden="true"/>
+				<Texture name="MapNotesLines_4" inherits="MapNotesLineTemplate" id="4" hidden="true"/>
+				<Texture name="MapNotesLines_5" inherits="MapNotesLineTemplate" id="5" hidden="true"/>
+				<Texture name="MapNotesLines_6" inherits="MapNotesLineTemplate" id="6" hidden="true"/>
+				<Texture name="MapNotesLines_7" inherits="MapNotesLineTemplate" id="7" hidden="true"/>
+				<Texture name="MapNotesLines_8" inherits="MapNotesLineTemplate" id="8" hidden="true"/>
+				<Texture name="MapNotesLines_9" inherits="MapNotesLineTemplate" id="9" hidden="true"/>
+				<Texture name="MapNotesLines_10" inherits="MapNotesLineTemplate" id="10" hidden="true"/>
+				<Texture name="MapNotesLines_11" inherits="MapNotesLineTemplate" id="11" hidden="true"/>
+				<Texture name="MapNotesLines_12" inherits="MapNotesLineTemplate" id="12" hidden="true"/>
+				<Texture name="MapNotesLines_13" inherits="MapNotesLineTemplate" id="13" hidden="true"/>
+				<Texture name="MapNotesLines_14" inherits="MapNotesLineTemplate" id="14" hidden="true"/>
+				<Texture name="MapNotesLines_15" inherits="MapNotesLineTemplate" id="15" hidden="true"/>
+				<Texture name="MapNotesLines_16" inherits="MapNotesLineTemplate" id="16" hidden="true"/>
+				<Texture name="MapNotesLines_17" inherits="MapNotesLineTemplate" id="17" hidden="true"/>
+				<Texture name="MapNotesLines_18" inherits="MapNotesLineTemplate" id="18" hidden="true"/>
+				<Texture name="MapNotesLines_19" inherits="MapNotesLineTemplate" id="19" hidden="true"/>
+				<Texture name="MapNotesLines_20" inherits="MapNotesLineTemplate" id="20" hidden="true"/>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

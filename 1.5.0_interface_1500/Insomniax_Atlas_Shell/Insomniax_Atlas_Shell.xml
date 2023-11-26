@@ -1,0 +1,41 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<Script file="Insomniax_Atlas_Shell.lua"/>
+
+	<Button name="Insomniax_Atlas_Button" parent="Minimap" toplevel="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Insomniax_InitialiseIconMover(this, false, nIX_DEFAULTANGLE);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnClick>
+				Insomniax_Atlas_OptionsFrameToggle (arg1);
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				GameTooltip:SetText("Open Atlas v0.9.5", 255/255, 209/255, 0/255);
+				GameTooltip:AddLine("Right-click to move", 1.00, 1.00, 1.00);
+				GameTooltip:AddLine("Atlas is an in-game instance (dungeon) map browser.", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("All the maps are selectable from the drop down", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("menu and all known points of interest are marked.", 80/255, 143/255, 148/255);				
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\Insomniax_Atlas_Shell\Insomniax_Atlas_Button_Up"/>
+		<PushedTexture file="Interface\AddOns\Insomniax_Atlas_Shell\Insomniax_Atlas_Button_Down"/>
+		<HighlightTexture file="Interface\AddOns\Insomniax_Atlas_Shell\Insomniax_Shell_Button_Glow" alphaMode="ADD"/>
+	</Button>
+</Ui>

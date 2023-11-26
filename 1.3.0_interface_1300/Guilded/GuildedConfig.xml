@@ -1,0 +1,256 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<!-- Config Item template for Guilded Config frame -->
+    <Frame name="GuildedConfigFrameItemTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="270" y="15"/>
+        </Size>
+		<Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentLabel" inherits="GameFontNormal"  justifyH="RIGHT">
+    				<Size>
+	    				<AbsDimension x="140" y="15"/>
+		    		</Size>
+                    <Anchors>
+                        <Anchor point="LEFT"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<EditBox name="$parentText" autoFocus="false" inherits="InputBoxTemplate">
+				<Size>
+					<AbsDimension x="120" y="15"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentLabel" relativePoint="RIGHT">
+    					<Offset>
+	    					<AbsDimension x="9" y="0"/>
+		    			</Offset>
+			    	</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						this:ClearFocus();
+					</OnShow>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+					<OnChar>
+						this:SetTextColor(RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b);
+					</OnChar>
+                	<OnEnter>
+    	                if ( this.tooltipText ) then
+        	    			GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+       	            		GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+        	            end
+    	        	</OnEnter>
+                	<OnLeave>
+	                    GameTooltip:Hide();
+            		</OnLeave>
+				</Scripts>
+				<FontString inherits="GameFontNormal" bytes="64"/>
+			</EditBox>
+        </Frames>
+    </Frame>
+
+	<!-- Config CheckButton template for Guilded Config frame -->
+    <Frame name="GuildedConfigFrameCheckButtonTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="270" y="15"/>
+        </Size>
+		<Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentLabel" inherits="GameFontNormal"  justifyH="RIGHT">
+    				<Size>
+	    				<AbsDimension x="140" y="15"/>
+		    		</Size>
+                    <Anchors>
+                        <Anchor point="LEFT"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<CheckButton name="$parentCheckButton">
+        		<Size>
+		        	<AbsDimension x="32" y="32"/>
+        		</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentLabel" relativePoint="RIGHT">
+    					<Offset>
+	    					<AbsDimension x="0" y="0"/>
+		    			</Offset>
+			    	</Anchor>
+				</Anchors>
+		        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+        		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+        		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+        		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+				<Scripts>
+        			<OnClick>
+		        		if ( this:GetChecked() ) then
+				        	PlaySound("igMainMenuOptionCheckBoxOff");
+        				else
+		        			PlaySound("igMainMenuOptionCheckBoxOn");
+				        end
+						GuildedConfigGUI.onCheckButtonClick();
+        			</OnClick>
+                	<OnEnter>
+    	                if ( this.tooltipText ) then
+        	    			GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+       	            		GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+        	            end
+    	        	</OnEnter>
+                	<OnLeave>
+	                    GameTooltip:Hide();
+            		</OnLeave>
+				</Scripts>
+			</CheckButton>
+        </Frames>
+    </Frame>
+
+	<!-- Guilded Configuration sub frame -->
+	<Frame name="GuildedConfigFrame" parent="GuildedFrame" setAllPoints="true" hidden="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="GuildedConfigFrameStatus" inherits="GameFontNormalLarge">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-45"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="GuildedConfigFrameChannelSlashCmd" inherits="GuildedConfigFrameItemTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="GuildedConfigFrameChannelAlias" inherits="GuildedConfigFrameItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GuildedConfigFrameChannelSlashCmd" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="GuildedConfigFrameChannelName" inherits="GuildedConfigFrameItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GuildedConfigFrameChannelAlias" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="GuildedConfigFrameChannelPassword" inherits="GuildedConfigFrameItemTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GuildedConfigFrameChannelName" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="GuildedConfigFrameAdvertProf" inherits="GuildedConfigFrameCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GuildedConfigFrameChannelPassword" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						if ( GuildedConfig.advertProf ) then
+							GuildedConfigFrameAdvertProfCheckButton:SetChecked(1);
+						else
+							GuildedConfigFrameAdvertProfCheckButton:SetChecked(nil);
+						end
+					</OnShow>
+					<OnClick>
+						if ( GuildedConfig.advertProf ) then
+							GuildedConfig.advertProf = false;
+						else
+							GuildedConfig.advertProf = true;
+						end
+					</OnClick>
+				</Scripts>
+			</Frame>
+			<Button name="GuildedConfigFrameAcceptButton" inherits="UIPanelButtonTemplate" text="ACCEPT">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="GuildedConfigFrame">
+						<Offset>
+							<AbsDimension x="17" y="81"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+					    GuildedConfigGUI.onAccept();
+					</OnClick>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(nil, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_GUILDEDCONFIG_ACCEPT, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="GuildedConfigFrameResetButton" inherits="UIPanelButtonTemplate" text="GUILDEDCONFIG_RESET">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="GuildedConfigFrameAcceptButton" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="62" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						GuildedConfigGUI.onReset();
+					</OnClick>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(nil, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_GUILDEDCONFIG_RESET, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+        	<OnLoad>
+			    GuildedConfigFrameChannelSlashCmdLabel:SetText(GUILDEDCONFIG_LABEL_SLASHCMD);
+			    GuildedConfigFrameChannelAliasLabel:SetText(GUILDEDCONFIG_LABEL_CHANALIAS);
+			    GuildedConfigFrameChannelNameLabel:SetText(GUILDEDCONFIG_LABEL_CHANNAME);
+			    GuildedConfigFrameChannelPasswordLabel:SetText(GUILDEDCONFIG_LABEL_CHANPWD);
+				GuildedConfigFrameAdvertProfLabel:SetText(GUILDEDCONFIG_LABEL_ADVERTPROF);
+
+				GuildedConfigFrameChannelSlashCmdText.tooltipText = NEWBIE_TOOLTIP_GUILDEDCONFIG_SLASHCMD;
+			    GuildedConfigFrameChannelAliasText.tooltipText = NEWBIE_TOOLTIP_GUILDEDCONFIG_CHANALIAS;
+			    GuildedConfigFrameChannelNameText.tooltipText = NEWBIE_TOOLTIP_GUILDEDCONFIG_CHANNAME;
+			    GuildedConfigFrameChannelPasswordText.tooltipText = NEWBIE_TOOLTIP_GUILDEDCONFIG_CHANPWD;
+			    GuildedConfigFrameAdvertProfCheckButton.tooltipText = NEWBIE_TOOLTIP_GUILDEDCONFIG_ADVERTPROF;
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

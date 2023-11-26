@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="ATTACKTARGETEMOTE" description="ATTACKTARGETEMOTE" header="ASSISTMEHEADER">
+		DoEmote("ATTACKMYTARGET");
+	</Binding>
+	<Binding name="ASSISTLAST" description="ASSISTLAST">
+		AssistMe_AssistLast();
+	</Binding>
+</Bindings>

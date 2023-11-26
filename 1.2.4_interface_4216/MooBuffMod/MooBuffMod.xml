@@ -1,0 +1,444 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="MooBuffMod.lua"/>
+	<GameTooltip name="MooBuffTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+	<Button name="MooBuffButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="30" y="30"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon"/>
+				<FontString name="$parentExpireTextBelow" inherits="GameFontNormal" text="" hidden="true">
+					<Anchors>
+						<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="2" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExpireTextLeft" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="3" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExpireTextRight" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-3" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNameTextLeft" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="3" y="9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNameTextRight" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-3" y="9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				--this.buffFilter = "HELPFUL|PASSIVE";
+				this.buffFilter = "HELPFUL";
+				MooBuffButton_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MooBuffButton_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				MooBuffButton_OnUpdate(arg1);
+			</OnUpdate>
+			<OnClick>
+				MooBuffButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				CosmosTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				CosmosTooltip:SetPlayerBuff(this.buffIndex);
+			</OnEnter>
+			<OnLeave>
+				CosmosTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="MooBuffDebuffButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="30" y="30"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon"/>
+				<FontString name="$parentExpireTextBelow" inherits="GameFontNormal" text="" hidden="true">
+					<Anchors>
+						<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="2" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExpireTextLeft" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="3" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExpireTextRight" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-3" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNameTextLeft" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="3" y="9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNameTextRight" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-3" y="9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this.buffFilter = "HARMFUL";
+				MooBuffButton_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MooBuffButton_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				MooBuffButton_OnUpdate(arg1);
+			</OnUpdate>
+			<OnClick>
+				MooBuffButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				CosmosTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				CosmosTooltip:SetPlayerBuff(this.buffIndex);
+			</OnEnter>
+			<OnLeave>
+				CosmosTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="MooBuffButtonHelpful" inherits="MooBuffButtonTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				--this.buffFilter = "HELPFUL|PASSIVE";
+				this.buffFilter = "HELPFUL";
+				MooBuffButton_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Button name="MooBuffButtonHarmful" inherits="MooBuffDebuffButtonTemplate" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Buttons\UI-Debuff-Border">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this.buffFilter = "HARMFUL";
+				MooBuffButton_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="MooBuffFrame" parent="UIParent" frameStrata="LOW" toplevel="true">
+		<Size>
+			<AbsDimension x="50" y="50"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="UIParent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-280" y="-13"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="MooBuffButton0" inherits="MooBuffButtonHelpful" id="0">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton1" inherits="MooBuffButtonHelpful" id="1">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton0" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton2" inherits="MooBuffButtonHelpful" id="2">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton3" inherits="MooBuffButtonHelpful" id="3">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton4" inherits="MooBuffButtonHelpful" id="4">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton3" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton5" inherits="MooBuffButtonHelpful" id="5">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton4" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton6" inherits="MooBuffButtonHelpful" id="6">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton5" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton7" inherits="MooBuffButtonHelpful" id="7">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton6" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton8" inherits="MooBuffButtonHelpful" id="8">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton7" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton9" inherits="MooBuffButtonHelpful" id="9">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton8" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton10" inherits="MooBuffButtonHelpful" id="10">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton9" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton11" inherits="MooBuffButtonHelpful" id="11">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton10" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton12" inherits="MooBuffButtonHelpful" id="12">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton11" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton13" inherits="MooBuffButtonHelpful" id="13">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton12" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton14" inherits="MooBuffButtonHelpful" id="14">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton13" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton15" inherits="MooBuffButtonHelpful" id="15">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton14" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton16" inherits="MooBuffButtonHarmful" id="0">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="MooBuffButton0" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton17" inherits="MooBuffButtonHarmful" id="1">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton16" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton18" inherits="MooBuffButtonHarmful" id="2">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton17" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton19" inherits="MooBuffButtonHarmful" id="3">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton18" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton20" inherits="MooBuffButtonHarmful" id="4">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton19" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton21" inherits="MooBuffButtonHarmful" id="5">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton20" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton22" inherits="MooBuffButtonHarmful" id="6">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton21" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MooBuffButton23" inherits="MooBuffButtonHarmful" id="7">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="MooBuffButton22" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				MooBuffFrame_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MooBuffFrame_OnEvent(arg1);
+			</OnEvent>
+			<OnUpdate>
+				MooBuffFrame_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

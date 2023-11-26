@@ -1,0 +1,9 @@
+## Interface: 1600
+## Title: EnemyBuffs
+## Author: sarf
+## Notes: Powered by EnemySpellDetector, detects when target (or something named the same) gains spells and emulates the buff frame.
+## DefaultState: enabled
+## RequiredDeps: EnemySpellDetector
+## OptionalDeps: EnemyBuffs
+## SavedVariables: EnemyBuffs_Options, EnemyBuffs_UserBuffs
+EnemyBuffs.xml

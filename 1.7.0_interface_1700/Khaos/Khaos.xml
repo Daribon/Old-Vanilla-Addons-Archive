@@ -1,0 +1,1082 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<!-- $Id: Khaos.xml 2101 2005-07-11 07:12:57Z AlexYoshi $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+
+	<!-- Source -->
+	<Script file="Khaos.lua"/>
+
+	<!-- Khaos Tabs -->
+	<Button name="KhaosFrameTabButtonTemplate" inherits="EarthVerticalTabButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="60"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0" />
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon">
+					<Size>
+						<AbsDimension x="18" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="8" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 4);
+			</OnLoad>
+			<OnClick>
+				EarthPanelTemplates_Vertical_Tab_OnClick(KhaosFrame);
+				Khaos_Tab_OnClick();
+			</OnClick>
+			<OnShow>
+				EarthPanelTemplates_Vertical_TabResize(2, this, 58);
+				getglobal(this:GetName().."HighlightTexture"):SetHeight(this:GetHeight() - 20);
+			</OnShow>
+			<OnEnter>
+				Khaos_Tab_OnEnter()
+			</OnEnter>
+			<OnLeave>
+				Khaos_Tab_OnLeave()
+			</OnLeave>
+		</Scripts>
+	</Button>
+	
+	<!-- Configuration Selection Pane -->
+	<Frame name="KhaosConfigurationSelectionPaneTemplate" virtual="true" inherits="EarthObjectTemplate" >
+		<Size>
+			<AbsDimension x="230" y="390"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0.0" />
+				</Texture>
+			</Layer>
+		</Layers>		
+		<Frames>
+			<!-- Main Data View -->
+			<Frame name="$parentContainer" >
+				<Size>
+					<AbsDimension x="230" y="340" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4" />	
+						<Size>
+							<AbsDimension x="128" y="17" />
+						</Size>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="16" />
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="16" />
+					</EdgeSize>
+				</Backdrop>				
+				
+				<Frames>
+					<Frame name="$parentTree" inherits="EarthTreeTemplate">
+						<Size>
+							<AbsDimension x="196" y="340" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>			
+		</Frames>
+	</Frame>
+	<!-- Configuration Set Pane -->
+	<Frame name="KhaosConfigurationSetSelectionPaneTemplate" virtual="true" inherits="EarthObjectTemplate" >
+		<Size>
+			<AbsDimension x="180" y="390"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0.0" />
+				</Texture>
+			</Layer>
+		</Layers>		
+		<Frames>
+			<!-- Main Data View -->
+			<Frame name="$parentContainer" >
+				<Size>
+					<AbsDimension x="180" y="340" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4" />	
+						<Size>
+							<AbsDimension x="128" y="17" />
+						</Size>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="16" />
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="16" />
+					</EdgeSize>
+				</Backdrop>				
+				
+				<Frames>
+					<Frame name="$parentTree" inherits="EarthTreeTemplate">
+						<Size>
+							<AbsDimension x="150" y="320" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="2" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>			
+			<Button name="$parentDifficultyMenuButton" inherits="KhaosPulldownButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentContainer" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormal" text="KHAOS_SET_DIFFICULTY">
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="-2" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						KhaosConfig_DifficultyButton_OnLoad();
+					</OnLoad>
+				</Scripts>				
+			</Button>					
+		</Frames>
+	</Frame>
+	
+	<!-- Configuration Option Pane -->
+	<Frame name="KhaosConfigurationOptionSetupPaneTemplate" virtual="true" inherits="EarthObjectTemplate" >
+		<Size>
+			<AbsDimension x="400" y="390"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="1" g="1" b="0" a="0.0" />
+				</Texture>
+			</Layer>
+		</Layers>		
+		<Frames>
+			<!-- Main Data View -->
+			<Frame name="$parentContainer" >
+				<Size>
+					<AbsDimension x="380" y="340" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4" />	
+						<Size>
+							<AbsDimension x="128" y="17" />
+						</Size>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="16" />
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="16" />
+					</EdgeSize>
+				</Backdrop>				
+				
+				<Frames>
+					<!-- All My Options Here -->
+					<Frame name="$parentConfig1" inherits="KhaosConfigTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOP" >						
+								<Offset>
+									<AbsDimension x="-16" y="-12"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig2" inherits="KhaosConfigTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig1" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig3" inherits="KhaosConfigTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig2" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig4" inherits="KhaosConfigTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig3" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig5" inherits="KhaosConfigTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig4" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig6" inherits="KhaosConfigTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig5" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig7" inherits="KhaosConfigTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig6" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig8" inherits="KhaosConfigTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig7" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig9" inherits="KhaosConfigTemplate" id="9">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig8" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="$parentConfig10" inherits="KhaosConfigTemplate" id="10">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parentConfig9" relativePoint="BOTTOM" >
+								<Offset>
+									<AbsDimension x="0" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<!-- Scroll Bar -->
+					<ScrollFrame name="$parentScrollFrame" inherits="FauxScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="32" y="320"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="-34" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Scripts>
+							<OnVerticalScroll>
+								KhaosConfig_OptionPane_ScrollFrame_OnVerticalScroll();
+							</OnVerticalScroll>
+						</Scripts>
+					</ScrollFrame>
+				</Frames>
+			</Frame>			
+		</Frames>
+	</Frame>
+	
+	<!-- Main Gui -->
+	<Frame name="KhaosFrame" parent="UIParent" inherits="EarthObjectTemplate" hidden="true" movable="true" toplevel="true">
+		<Size>
+			<AbsDimension x="860" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />	
+				<Size>
+					<AbsDimension x="128" y="17" />
+				</Size>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+		</Backdrop>
+		<!-- Header -->
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHeaderText" inherits="GameFontNormal" text="KHAOS_TITLE_TEXT">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentHeader" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCurrentConfigurationText" inherits="GameFontWhite" text="KHAOS_CURRENT_CONFIGURATION_TEXT">
+					<Anchors>
+						<Anchor point="BOTTOM" relativeTo="$parentHeader" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-48" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>		
+		<Frames>
+			<!-- Close Buttons -->
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-8" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentExitButton" inherits="UIPanelButtonTemplate" text="EXIT">
+				<Size>
+					<AbsDimension x="77" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(this:GetParent());
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<!-- Help Icon -->
+			<Frame name="$parentHelpIcon" inherits="EarthHelpIcon">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-40" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						KhaosConfig_HelpIcon_OnLoad()
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			
+			<!-- Config Select Pane -->
+			<Frame name="$parentConfigurationSelectPane" inherits="KhaosConfigurationSelectionPaneTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="40" y="-58"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			
+			<!-- Config Set Select Pane -->
+			<Frame name="$parentSetSelectPane" inherits="KhaosConfigurationSetSelectionPaneTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentConfigurationSelectPane" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<!-- Config Set Select Pane -->
+			<Frame name="$parentOptionSetupPane" inherits="KhaosConfigurationOptionSetupPaneTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentSetSelectPane" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<!-- Config Select Menu Button -->
+			<Button name="$parentConfigurationSelectMenu" inherits="KhaosPulldownButtonGraphicTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentConfigurationSelectPane" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormal" text="KHAOS_SELECT_CONFIGURATION_SETUP">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="4" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						KhaosConfig_SelectMenu_OnLoad();
+					</OnLoad>
+				</Scripts>			
+			</Button>
+
+			<!-- Config Group Tabs -->
+			<Button name="$parentTab1" inherits="KhaosFrameTabButtonTemplate" id="1" text=" ">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentConfigurationSelectPane" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab2" inherits="KhaosFrameTabButtonTemplate" id="2" text=" ">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentTab1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab3" inherits="KhaosFrameTabButtonTemplate" id="3" text=" ">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentTab2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab4" inherits="KhaosFrameTabButtonTemplate" id="4" text=" ">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentTab3" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab5" inherits="KhaosFrameTabButtonTemplate" id="5" text=" ">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentTab4" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<!-- Reset to Default
+			<Button name="$parentResetButton" inherits="UIPanelButtonTemplate" text="KHAOS_SET_MENU_RESET">
+				<Size>
+					<AbsDimension x="120" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentOptionSetupPane" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-120" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						KhaosConfig_Set_ResetCurrentSet();
+					</OnClick>
+				</Scripts>
+			</Button>
+			-->
+			<!-- Table of Contents -->
+			<Button name="$parentTableOfContentsButton" inherits="KhaosPulldownButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentOptionSetupPane" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-130" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormal" text="KHAOS_OPTION_TABLEOFCONTENTS">
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="-2" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						KhaosConfig_TableOfContentsButton_OnLoad();
+					</OnLoad>
+				</Scripts>				
+			</Button>					
+			
+			<!-- Message Box -->
+			<ScrollingMessageFrame name="$parentDescriptionBox" ignoreArrows="true" maxLines="4" historyLines="0" fade="true" displayDuration="3" fadeDuration="3" letters="256" hidden="false">
+				<Size>
+					<AbsDimension x="450" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentBackground" setAllPoints="true">
+							<Color r="0" g="1" b="0" a="0.0" />
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="$parentHeader" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="13" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<FontString inherits="GameFontNormal"></FontString>
+			</ScrollingMessageFrame>
+			
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Khaos_Frame_OnLoad();
+			</OnLoad>
+		</Scripts>	
+	</Frame>
+	
+	<!-- Export/Import Frame -->
+	<Frame name="KhaosImportExportFrame" hidden="true">
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormal" text="KHAOS_EXPORT_MESSAGE">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>		
+		<Size>
+			<AbsDimension x="360" y="270"/>
+		</Size>
+		<Frames>
+			<Button name="$parentImportButton">
+				<Size>
+					<AbsDimension x="128" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="-80" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Khaos_Import_Import_OnClick();
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<NormalText inherits="DialogButtonNormalText" text="KHAOS_IMPORT"/>
+				<HighlightText inherits="DialogButtonHighlightText" text="KHAOS_IMPORT"/>
+			</Button>
+			<Button name="$parentSelectAllButton">
+				<Size>
+					<AbsDimension x="128" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="-80" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Khaos_Import_SelectAll_OnClick();
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<NormalText inherits="DialogButtonNormalText" text="KHAOS_SELECTALL"/>
+				<HighlightText inherits="DialogButtonHighlightText" text="KHAOS_SELECTALL"/>
+			</Button>
+			<Button name="$parentCloseButton">
+				<Size>
+					<AbsDimension x="128" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="80" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						 Khaos_Import_Close_OnClick ()
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<NormalText inherits="DialogButtonNormalText" text="KHAOS_CLOSE"/>
+				<HighlightText inherits="DialogButtonHighlightText" text="KHAOS_CLOSE"/>
+			</Button>
+			<ScrollFrame name="$parentScrollFrame" hidden="false" inherits="ClassTrainerDetailScrollFrameTemplate" toplevel="true">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="305" y="200"/>
+				</Size>
+				<ScrollChild>
+					<EditBox name="$parentText" hidden="false" multiLine="true" autoFocus="true" letters="2500">
+						<Size>
+							<AbsDimension x="300" y="1304"/>
+						</Size>
+						<FontString inherits="ChatFontNormal"/>
+						<Scripts>
+							<OnTextChanged>
+							</OnTextChanged>
+							<OnEscapePressed>
+								this:GetParent():GetParent():Hide();
+							</OnEscapePressed>
+						</Scripts>
+					</EditBox>
+				</ScrollChild>
+			</ScrollFrame>
+		</Frames>
+	</Frame>
+	
+	<!-- Event Frame -->
+	<Frame name="KhaosEventFrame" inherits="EarthObjectTemplate" hidden="false">
+		<Size>
+			<AbsDimension x="-1" y="-1" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" />
+		</Anchors>		
+		<Scripts>
+			<OnLoad>
+				Khaos_EventFrame_OnLoad();
+			</OnLoad>
+		</Scripts>	
+	</Frame>
+	
+	<!-- Mobilize -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="KhaosFrame" id="-70">
+		<Size>
+			<AbsDimension x="180" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" />
+		</Anchors>		
+	</Frame>
+
+
+	<!-- Login Selection Frame -->
+	<Frame name="KhaosLoginSelectionFrame" parent="UIParent" hidden="true" inherits="EarthObjectTemplate">
+		<Size>
+			<AbsDimension x="300" y="150" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="40"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="4" right="4" top="4" bottom="4" />	
+				<Size>
+					<AbsDimension x="128" y="17" />
+				</Size>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="16" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="16" />
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="LOW">
+				<FontString name="$parentText" inherits="GameFontNormal" text="KHAOS_LOGIN_SELECT_MESSAGE" maxLines="12">
+					<Size>
+						<AbsDimension x="0" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-20"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>			
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- All My Options Here -->
+			<Frame name="$parentConfigurationSelect">
+				<Size>
+					<AbsDimension x="220" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+							<Size>
+								<AbsDimension x="25" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="17"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.1953125" top="0" bottom="1"/>
+						</Texture>
+						<Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+							<Size>
+								<AbsDimension x="180" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+							</Anchors>
+						<TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+						<Size>
+							<AbsDimension x="25" y="64"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.8046875" right="1" top="0" bottom="1"/>
+					</Texture>
+					<FontString name="$parentText" inherits="GameFontHighlightSmall" justifyH="RIGHT" text="FOO">
+						<Size>
+							<AbsDimension x="0" y="10"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="$parentRight">
+							<Offset>
+									<AbsDimension x="-43" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					</Layer>
+				</Layers>
+				<Frames>	
+					<Button name="$parentButton">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeft">
+							<Offset>
+								<AbsDimension x="16" y="-19"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>
+							Khaos_Login_ShowConfigurationsMenu();
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						</OnClick>
+					</Scripts>
+					<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+					</NormalTexture>
+					<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+					</PushedTexture>
+					<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+					</DisabledTexture>
+					<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+					</HighlightTexture>
+					</Button>
+				</Frames>
+			</Frame>			
+			<CheckButton name="$parentConfigLock" inherits="EarthCheckButtonTemplate">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="16" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						Khaos_Login_ConfigLock_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parentEdit" inherits="EarthPanelButtonTemplate" text="KHAOS_LOGIN_EDIT">
+				<Size>
+					<AbsDimension x="96" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent" relativePoint="CENTER">
+						<Offset>
+							<AbsDimension x="-64" y="-38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ToggleKhaosFrame();
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentUse" inherits="EarthPanelButtonTemplate" text="KHAOS_LOGIN_USE">
+				<Size>
+					<AbsDimension x="96" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent" relativePoint="CENTER">
+						<Offset>
+							<AbsDimension x="64" y="-38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- Help Icon -->
+			<Frame name="$parentHelpIcon" inherits="EarthHelpIcon">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-12" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						KhaosConfig_Login_HelpIcon_OnLoad()
+					</OnLoad>
+				</Scripts>
+			</Frame>
+						
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Khaos_Login_Frame_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>	
+	
+	<!-- Khaos Menu Button START -->
+	<Button name="GameMenuButtonKhaos" inherits="GameMenuButtonTemplate" text="KHAOS_OPTIONS_TEXT" parent="GameMenuFrame">
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-37"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				if (GameMenuButtonCosmos) then
+					GameMenuFrame:SetHeight(GameMenuFrame:GetHeight()+24);
+					GameMenuButtonCosmos:ClearAllPoints();
+					GameMenuButtonCosmos:SetPoint("TOP", this:GetName(), "BOTTOM", 0, -2);
+				else
+					GameMenuFrame:SetHeight(GameMenuFrame:GetHeight()+24);
+					GameMenuButtonOptions:ClearAllPoints();
+					GameMenuButtonOptions:SetPoint("TOP", this:GetName(), "BOTTOM", 0, -16);
+				end
+			</OnLoad>
+			<OnClick>
+				PlaySound("igMainMenuOption");
+				HideUIPanel(GameMenuFrame);
+				ShowUIPanel(KhaosFrame);
+			</OnClick>
+		</Scripts>
+	</Button>
+	<!-- Khaos Menu Button END -->
+</Ui>

@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: MountGatherer
+## Author: sarf
+## Notes: Will automatically mount/dismount when gathering stuff. Does not work for Paladin/Warlock class specific mounts.
+## DefaultState: enabled
+## OptionalDeps: AutoMount
+## SavedVariables: MountGatherer_Options
+MountGatherer.xml

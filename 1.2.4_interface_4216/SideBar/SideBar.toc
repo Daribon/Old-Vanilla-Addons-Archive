@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: Sidebar
+## Description: 12 extra buttons on the sides
+## OptionalDeps: Cosmos
+SideBar.xml
+

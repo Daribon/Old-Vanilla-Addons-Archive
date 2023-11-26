@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: Social Mods
+## Notes: Adds "Send Message" and "Send Page" buttons and Player notes! (by |cff66ff33geowar|r)
+## OptionalDeps: Khaos, Cosmos, Pager
+## RequiredDeps: Sea, Blizzard_RaidUI
+## SavedVariables: COS_SSM_SEND_MESSAGE_ENABLE, COS_SSM_SEND_PAGE_ENABLE, COS_SN_ENABLE
+SocialNotesEditor.xml
+SocialMods.xml

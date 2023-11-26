@@ -1,0 +1,26 @@
+Wishlist for EnhancedFlightMap
+==============================
+
+This is the wishlist file for EnhancedFlightMap.
+
+Before I start on a new release I look at this file and see what can be done right now, what needs to be done soon, and basically decide what I want to work on next.
+
+Each time I complete a task in the "for next release" section, I generally will do a release at that time, of course it depends on what it is, sometimes I will do two (or more), other times just one.
+
+Also, until I complete all "Future Goals" I do not add anymore wishlist items.  I do however have a rule that anything I think might be interesting, I'll just add automatically, and anything I think will be usefull also gets added.
+
+As this is a hobby, I want to keep this as short a list as possible, as I'm not complete with the addon until this list has no more items in it.
+
+
+For next release (if possible)
+------------------------------
+
+- Korean localization
+
+- Flight path display when not at flight master.
+
+
+Future goals
+------------
+
+- Add option to be able to move the in-flight timer.

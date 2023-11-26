@@ -1,0 +1,8 @@
+## Interface: 1800
+## Version: 1.41 (CTMod 1.843)
+## Title: CT_MailMod
+## Notes: Allows you to send multiple mails to the same person
+## SavedVariables: CT_MMInbox_DisplayMessages
+## OptionalDeps: CT_MasterMod
+CT_MailMod.xml
+CT_MMInbox.xml

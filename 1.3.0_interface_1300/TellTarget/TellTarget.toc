@@ -1,0 +1,5 @@
+## Interface: 1300
+## Title: TellTarget
+## Notes: Allows you to bind a button to automatically fill in the currently targeted persons name, similar to replying.
+## OptionalDeps: Cosmos
+TellTarget.xml

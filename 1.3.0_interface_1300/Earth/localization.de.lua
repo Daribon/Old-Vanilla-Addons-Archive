@@ -1,0 +1,25 @@
+-- Version : German (by StarDust)
+-- Last Update : 03/01/2005
+
+if ( GetLocale() == "deDE" ) then
+
+	EARTH_FEATURES_TITLE		="Eigenschaften von Earth";
+
+	EARTHTREE_KEYWORD_TABLE		="{Tabelle}";
+	EARTHTREE_KEYWORD_BOOL_TRUE	="|Wahr|";
+	EARTHTREE_KEYWORD_BOOL_FALSE	="|Falsch|";
+	EARTHTREE_KEYWORD_FUNCTION	="*Funktion*";
+	EARTHTREE_KEYWORD_NIL		="null";
+	EARTHTREE_KEYWORD_UNKNOWN	="/Unbekannter Typ/";
+
+	EARTHTREE_EXPAND_COLLAPSE	="Aus-/Einklappen";
+	EARTHTREE_EXPAND_INFO		="Kinder: ";
+
+	EARTHTABLE_KEYWORD_TABLE	="{Tabelle}";
+	EARTHTABLE_KEYWORD_FUNCTION	="*Funktion*";
+	EARTHTABLE_KEYWORD_NIL		="null";
+	EARTHTABLE_KEYWORD_UNKNOWN	="/Unbekannt/";
+	EARTHTABLE_KEYWORD_BOOL_TRUE	="Wahr";
+	EARTHTABLE_KEYWORD_BOOL_FALSE	="Falsch";
+
+end

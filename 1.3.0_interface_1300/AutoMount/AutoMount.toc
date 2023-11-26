@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: Auto Mount
+## Notes: Automatically dismounts you at a flight master.
+## Author: Sithy
+## OptionalDeps: 
+## RequiredDeps:
+## SavedVariables: AutoMountVars
+AutoMount.xml

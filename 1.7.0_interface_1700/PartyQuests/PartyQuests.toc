@@ -1,0 +1,9 @@
+## Interface: 1700
+## Title: Party Quests
+## Notes: Shows party member's quests
+## Author: Alexander Brazie
+## Special Thanks To: Marek Gorecki and Ian Gridley
+## RequiredDeps: Sea, Earth, Sky, Chronos, Libram
+## OptionalDeps: Meteorologist
+## SavedVariables: PartyQuests_QuestSettings
+PartyQuests.xml

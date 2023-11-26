@@ -1,0 +1,6 @@
+## Interface: 4150
+## Title: Weapon Stance Sets (Cosmos)
+## Author: sarf
+## Notes: Adapts Weapon Stance Sets for Cosmos (adds a button)
+## RequiredDeps: Cosmos, StanceSets
+StanceSetsCosmos.xml

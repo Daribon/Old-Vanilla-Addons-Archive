@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle XPBarColor On/Off -->
+	<Binding name="XPBARCOLOR" description="Toggle XP Bar Color" header="XPBARCOLORHEADER">
+		XPBarColor_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

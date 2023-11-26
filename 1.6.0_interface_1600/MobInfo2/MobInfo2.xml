@@ -1,0 +1,38 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="localization.lua"/> 
+	<Script file="localization.de.lua"/> 
+	<Script file="localization.fr.lua"/> 
+	<Script file="MI2_ItemData.lua" /> 
+	<Script file="MI2_Health.lua" /> 
+	<Script file="MI2_Slash.lua" /> 
+	<Script file="MobInfo2.lua" /> 
+	
+	<Frame name="MI2_MobInfoFrame">
+		<Scripts>	
+			<OnLoad>
+				MI2_OnLoad()
+			</OnLoad>   
+			<OnEvent>
+				MI2_OnEvent(event);				
+			</OnEvent> 
+		</Scripts>
+	</Frame>
+	
+	<Frame name="MI2_MobHealthFrame" toplevel="true" frameStrata="HIGH" movable="true" enableMouse="true" parent="TargetFrame">
+		<Size> <AbsDimension x="128" y="32"/> </Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TargetFrameHealthBar" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="-2" y="22"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MI2_MobHealthText" inherits="GameFontNormalSmall">
+					<Color r="1.0" g="1.0" b="1.0"/>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

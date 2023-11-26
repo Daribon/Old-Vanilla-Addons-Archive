@@ -1,0 +1,5 @@
+## Interface: 4216
+## Title: AssistPartyMember
+## Author: sarf
+## Notes: Adds Bindings to allow you to assist your team members.
+AssistPartyMember.xml

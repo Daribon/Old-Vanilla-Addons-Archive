@@ -1,0 +1,29 @@
+<Bindings>
+	<Binding name="BLESSINGSHOW" header="DIVINEBLESSING">
+		DivineBlessing_ConfigEdit();
+	</Binding>
+	<Binding name="BLESSINGSET1"> 
+		DivineBlessing_Bless(1);
+	</Binding>
+	<Binding name="BLESSINGSET2"> 
+		DivineBlessing_Bless(2);
+	</Binding>
+	<Binding name="BLESSINGSET3"> 
+		DivineBlessing_Bless(3);
+	</Binding>
+	<Binding name="BLESSINGSET4"> 
+		DivineBlessing_Bless(4);
+	</Binding>
+	<Binding name="BLESSINGSET5"> 
+		DivineBlessing_Bless(5);
+	</Binding>
+	<Binding name="BLESSINGSET6"> 
+		DivineBlessing_Bless(6);
+	</Binding>
+	<Binding name="BLESSINGSETCLASS"> 
+		DivineBlessing_Bless(7);
+	</Binding>
+	<Binding name="BLESSINGSETRAID"> 
+		DivineBlessing_Bless(8);
+	</Binding>
+</Bindings>

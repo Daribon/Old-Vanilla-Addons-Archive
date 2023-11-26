@@ -1,0 +1,22 @@
+<Addon name="Nurfed UI" author="Tivoli" email="" url="http://www.wowguru.com/ui/nurfed-ui">
+	<Description>Nurfed Unit Frames
+No Gaps in hotbars
+Instant Quest Text
+Quest Levels shown
+Lock for Action Bars and Unit Frames
+TimeStamps on chat
+Autobar
+Nurfed Clock
+Debuffs and Buffs shown in Party Window
+CT_MailMod
+CT_Timer
+Gatherer
+ShardTracker
+AF_Tooltip
+TitanBar
+SCT
+Moveable and rotatable hotbars
+Moveable Casting bar</Description>
+	<UpdateFile listed="true" url="http://www.wowguru.com/ui/nurfed-ui/xml/" />
+	<CurrentVersion ver="07.12.2005" />
+</Addon>

@@ -1,0 +1,9 @@
+## Interface: 4216
+## Title: Look Lock
+## Title-deDE: LookLock
+## Notes: This adds a key binding to turn on/off freeloock in a toggle fashion.
+## Notes-deDE: Hiermit kann Freelook per Tastenbelegung an- und ausgeschaltet werden.
+## OptionalDeps: Cosmos
+## RequiredDeps: Sea
+## SavedVariables: LookLockRemapOn, LookLockStrafeOn, LookLockAlwaysLook
+LookLock.xml

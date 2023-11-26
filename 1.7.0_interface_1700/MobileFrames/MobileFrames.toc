@@ -1,0 +1,8 @@
+## Interface: 1700
+## Title: Mobile Frames
+## Notes: A template for making frames movable.
+## Author: AnduinLothar
+## OptionalDeps: Cosmos
+## Dependencies: Sea
+## SavedVariables: MobileFrames_MobileContainers, MobileFrames_ContainerPositionsByID, MobileFrames_MinimapButtonCoords, MobileFrames_RightSide_IsReset, MobileFrames_RollStackDown, MobileFrames_CastingBarFrame_isReset
+MobileFrames.xml

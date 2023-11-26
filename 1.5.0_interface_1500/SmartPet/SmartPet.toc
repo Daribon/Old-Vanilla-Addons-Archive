@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: SmartPet
+## Notes: Makes your pet smarter
+## OptionalDeps:
+## Dependencies: 
+SmartPet.xml

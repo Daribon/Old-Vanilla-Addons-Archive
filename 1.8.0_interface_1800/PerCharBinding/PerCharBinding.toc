@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r PerCharBinding
+## Notes: Saves key bindings per character.
+## Author: Aalny
+## SavedVariables: PCB_Data, PCB_Settings
+PerCharBinding.xml

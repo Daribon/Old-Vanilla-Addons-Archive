@@ -1,0 +1,7 @@
+## Interface: 1800
+## Version: 1.15 (CTMod 1.843)
+## Title: CT_Timer
+## Notes: Shows a timer that counts both up and down.
+## SavedVariables: CT_Timer
+## OptionalDeps: CT_MasterMod
+CT_Timer.xml

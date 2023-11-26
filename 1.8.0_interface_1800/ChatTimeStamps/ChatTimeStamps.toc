@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: ChatTimeStamps
+## Title-deDE: Chat Zeitstempel
+## Notes: This adds time stamps to chat.
+## Notes-deDE: Hiermit werden dem Chat Zeitstempel hinzugefügt.
+## Author: sarf, idea by Ravenfury, recode by Alexander
+## OptionalDeps: Khaos, Cosmos
+ChatTimeStamps.xml

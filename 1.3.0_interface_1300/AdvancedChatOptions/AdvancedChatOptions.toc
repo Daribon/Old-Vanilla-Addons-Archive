@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: AdvancedChatOptions
+## Notes: Configures advanced chat positioning options
+## RequiredDeps: Cosmos, Sea
+## OptionalDeps: SecondBar
+AdvancedChatOptions.xml

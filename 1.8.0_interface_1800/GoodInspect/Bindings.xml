@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="GOODINSPECT" header="GOODINSPECT">
+        	InspectUnit("target");
+	</Binding>
+</Bindings>

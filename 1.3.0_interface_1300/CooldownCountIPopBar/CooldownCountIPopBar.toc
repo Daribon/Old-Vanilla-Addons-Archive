@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (IPopBar)
+## Notes: CooldownCount for IPopBar
+## Author: sarf
+## RequiredDeps: IPopBar, CooldownCount
+CooldownCountIPopBar.xml

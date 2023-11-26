@@ -1,0 +1,71 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Frame name="DiscordActionBarsFrame" hidden="false" parent="UIParent">
+	<Scripts>
+		<OnLoad>
+			DAB_Main_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			DAB_Main_OnEvent(event);
+		</OnEvent>
+		<OnUpdate>
+			if (PetActionButton1AutoCast:GetScale() ~= PetActionButton1AutoCast.scale) then
+				DAB_OtherBar_FixScales();
+			end
+			if (DiscordActionBarsFrame.updatenewactions) then
+				DAB_Update_NewActions(arg1);
+			end
+		</OnUpdate>
+	</Scripts>
+</Frame>
+
+<Frame name="DiscordMacroEventsFrame" hidden="false" parent="UIParent">
+	<Scripts>
+		<OnLoad>
+			DAB_DiscordMacroEventsFrame_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			DAB_DiscordMacroEventsFrame_OnEvent(event);
+		</OnEvent>
+		<OnUpdate>
+			DAB_DiscordMacroEventsFrame_OnUpdate(arg1);
+		</OnUpdate>
+	</Scripts>
+</Frame>
+
+<Button name="DAB_ActionBar_1" inherits="DAB_ActionBarTemplate" parent="UIParent" id="1"/>
+<Button name="DAB_ActionBar_2" inherits="DAB_ActionBarTemplate" parent="UIParent" id="2"/>
+<Button name="DAB_ActionBar_3" inherits="DAB_ActionBarTemplate" parent="UIParent" id="3"/>
+<Button name="DAB_ActionBar_4" inherits="DAB_ActionBarTemplate" parent="UIParent" id="4"/>
+<Button name="DAB_ActionBar_5" inherits="DAB_ActionBarTemplate" parent="UIParent" id="5"/>
+<Button name="DAB_ActionBar_6" inherits="DAB_ActionBarTemplate" parent="UIParent" id="6"/>
+<Button name="DAB_ActionBar_7" inherits="DAB_ActionBarTemplate" parent="UIParent" id="7"/>
+<Button name="DAB_ActionBar_8" inherits="DAB_ActionBarTemplate" parent="UIParent" id="8"/>
+<Button name="DAB_ActionBar_9" inherits="DAB_ActionBarTemplate" parent="UIParent" id="9"/>
+<Button name="DAB_ActionBar_10" inherits="DAB_ActionBarTemplate" parent="UIParent" id="10"/>
+
+<Button name="DAB_OtherBar_Pet" inherits="DAB_ActionBarTemplate" parent="UIParent" id="11"/>
+<Button name="DAB_OtherBar_Form" inherits="DAB_ActionBarTemplate" parent="UIParent" id="12"/>
+<Button name="DAB_OtherBar_Bag" inherits="DAB_ActionBarTemplate" parent="UIParent" id="13"/>
+<Button name="DAB_OtherBar_Menu" inherits="DAB_ActionBarTemplate" parent="UIParent" id="14"/>
+
+<Button name="DAB_ControlBox_1" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="1"/>
+<Button name="DAB_ControlBox_2" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="2"/>
+<Button name="DAB_ControlBox_3" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="3"/>
+<Button name="DAB_ControlBox_4" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="4"/>
+<Button name="DAB_ControlBox_5" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="5"/>
+<Button name="DAB_ControlBox_6" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="6"/>
+<Button name="DAB_ControlBox_7" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="7"/>
+<Button name="DAB_ControlBox_8" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="8"/>
+<Button name="DAB_ControlBox_9" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="9"/>
+<Button name="DAB_ControlBox_10" inherits="DAB_ControlBoxTemplate" parent="UIParent" id="10"/>
+
+<EditBox name="DAB_MacroBox" inherits="ChatFrameEditBoxTemplate" parent="UIParent" letters="2048" hidden="true">
+	<Scripts>
+		<OnLoad>
+			-- Preventing an error message at log-in
+		</OnLoad>
+	</Scripts>
+</EditBox>
+
+</Ui>

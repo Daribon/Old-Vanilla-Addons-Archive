@@ -1,0 +1,349 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+	<Script file="Localization.lua"/>
+	<Script file="Nurfed_UnitLayouts.lua"/>
+	<Include file="Nurfed_UnitFonts.xml"/>
+	<Include file="Nurfed_StatusBar.xml"/>
+	<Include file="Nurfed_UnitOptions.xml"/>
+	<Script file="Nurfed_UnitGlobals.lua"/>
+	<Script file="Nurfed_UnitFrames.lua"/>
+	<Script file="Nurfed_UnitConfig.lua"/>
+	<GameTooltip name="NurfedUnitBuffTooltip" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" inherits="GameTooltipTemplate"/>
+
+	<Frame name="Nurfed_UnitFrames">
+		<Scripts>
+			<OnLoad>
+				Nurfed_UnitConfig_OnLoad();
+				Nurfed_UnitFrames_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_UnitConfig_OnEvent(event);
+				Nurfed_UnitFrames_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				Nurfed_ToT_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+<!-- Nurfed Player -->
+	<Button name="Nurfed_player" inherits="Nurfed_UnitTemplate">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="30" y="-55"/>
+					</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="Nurfed_playerGroupIndicator" hidden="true">
+				<Size>
+					<AbsDimension x="10" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="Nurfed_playerGroupIndicatorLeft" file="Interface\CharacterFrame\UI-CharacterFrame-GroupIndicator">
+							<Size>
+								<AbsDimension x="24" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.1875" top="0" bottom="1"/>
+						</Texture>
+						<Texture name="Nurfed_playerGroupIndicatorRight" file="Interface\CharacterFrame\UI-CharacterFrame-GroupIndicator">
+							<Size>
+								<AbsDimension x="24" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT"/>
+							</Anchors>
+							<TexCoords left="0.53125" right="0.71875" top="0" bottom="1"/>
+						</Texture>
+						<Texture name="Nurfed_playerGroupIndicatorMiddle" file="Interface\CharacterFrame\UI-CharacterFrame-GroupIndicator">
+							<Size>
+								<AbsDimension x="0" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="Nurfed_playerGroupIndicatorLeft" relativePoint="RIGHT"/>
+								<Anchor point="RIGHT" relativeTo="Nurfed_playerGroupIndicatorRight" relativePoint="LEFT"/>
+							</Anchors>
+							<TexCoords left="0.1875" right="0.53125" top="0" bottom="1"/>
+						</Texture>
+						<FontString name="Nurfed_playerGroupIndicatorText" inherits="GameFontHighlightSmall">
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="20" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<!--
+				<Scripts>
+					<OnLoad>
+						Nurfed_playerGroupIndicatorLeft:SetAlpha(0.7);
+						Nurfed_playerGroupIndicatorRight:SetAlpha(0.7);
+						Nurfed_playerGroupIndicatorMiddle:SetAlpha(0.7);
+					</OnLoad>
+				</Scripts>
+				-->
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Nurfed_Player_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_Player_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				Nurfed_Player_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+<!-- Nurfed Pet -->
+	<Button name="Nurfed_pet" inherits="Nurfed_UnitTemplate">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="30" y="-390"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Nurfed_PetFrame_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_PetFrame_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Button>
+	<Button name="Nurfed_pettarget" inherits="Nurfed_MiniUnitTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="Nurfed_pet" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+
+<!-- Nurfed Target -->
+	<Button name="Nurfed_target" inherits="Nurfed_UnitTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="230" y="-55"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="Nurfed_targetBG" file="Interface\TargetingFrame\UI-TargetingFrame-LevelBackground">
+					<Size>
+						<AbsDimension x="140" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="Nurfed_targetInfo" inherits="GameFontNormalSmall" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="67" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-7" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="Nurfed_targetCombo" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="67" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="7" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				NurfedTarget_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				NurfedTarget_OnEvent(event);
+			</OnEvent>
+			<OnShow>
+				Nurfed_TargetOnShow();
+			</OnShow>
+			<OnHide>
+				NurfedTarget_OnHide();
+			</OnHide>
+		</Scripts>
+	</Button>
+	<Button name="Nurfed_targettarget" inherits="Nurfed_MiniUnitTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="Nurfed_target" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+		</Scripts>
+	</Button>
+	<Button name="Nurfed_targettargettarget" inherits="Nurfed_MiniUnitTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativeTo="Nurfed_target" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+
+<!-- Nurfed Party -->
+	<Frame name="Nurfed_party" frameStrata="BACKGROUND" enableMouse="true" toplevel="true" movable="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="150" y="20"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="30" y="-120"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="Nurfed_PartyLoot" inherits="GameFontNormalSmall">
+					<Size>
+						<AbsDimension x="145" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="Nurfed_partyBackdrop" frameStrata="BACKGROUND" setAllPoints="true">
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropColor(0, 0, 0, 0.75);
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+				for id = 1, 4 do
+					table.insert(UnitPopupFrames,"Nurfed_party"..id.."DropDown");
+				end
+			</OnLoad>
+			<OnDragStart>
+				Nurfed_UnitOnDragStart(this);
+			</OnDragStart>
+			<OnDragStop>
+				Nurfed_UnitOnDragStop(this);
+			</OnDragStop>
+		</Scripts>
+	</Frame>
+
+	<Button name="Nurfed_party1" inherits="Nurfed_PartyMemberTemplate" id="1" hidden="true">
+		<Frames>
+			<Button name="Nurfed_partypet1" inherits="Nurfed_PartyPetTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentManaBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+
+	<Button name="Nurfed_party2" inherits="Nurfed_PartyMemberTemplate" id="2" hidden="true">
+		<Frames>
+			<Button name="Nurfed_partypet2" inherits="Nurfed_PartyPetTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentManaBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+
+	<Button name="Nurfed_party3" inherits="Nurfed_PartyMemberTemplate" id="3" hidden="true">
+		<Frames>
+			<Button name="Nurfed_partypet3" inherits="Nurfed_PartyPetTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentManaBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+
+	<Button name="Nurfed_party4" inherits="Nurfed_PartyMemberTemplate" id="4" hidden="true">
+		<Frames>
+			<Button name="Nurfed_partypet4" inherits="Nurfed_PartyPetTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentManaBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+</Ui>

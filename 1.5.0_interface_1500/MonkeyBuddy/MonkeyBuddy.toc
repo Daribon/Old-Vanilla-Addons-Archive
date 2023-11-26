@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: MonkeyBuddy v1.5
+## Notes: Helps you configure your MonkeyMods. (http://wow.visualization.ca/)
+## Author: Trentin (monkeymods@gmail.com)
+## OptionalDeps: MonkeyQuest MonkeySpeed MonkeyClock myAddOns
+## SavedVariables: MonkeyBuddyConfig
+MonkeyBuddy.xml

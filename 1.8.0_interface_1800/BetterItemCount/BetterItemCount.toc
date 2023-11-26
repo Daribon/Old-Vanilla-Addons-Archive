@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: Better Item Count
+## Notes: Displays #.#k instead of * for counts > 999.
+## Author: AnduinLothar
+## OptionalDeps:
+## Dependencies: Sea
+BetterItemCount.xml

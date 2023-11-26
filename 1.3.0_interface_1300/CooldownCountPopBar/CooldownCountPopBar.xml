@@ -1,0 +1,3612 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="CooldownCountPopBar.lua"/> 
+	
+	<Frame name="CooldownCountPopBarFrame" frameStrata="LOW" enableMouse="false" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				CooldownCountPopBar_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="PopBarButton101CooldownCountFrame" parent="PopBarButton101" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton101CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton102CooldownCountFrame" parent="PopBarButton102" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton102CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton103CooldownCountFrame" parent="PopBarButton103" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton103CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton104CooldownCountFrame" parent="PopBarButton104" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton104CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton105CooldownCountFrame" parent="PopBarButton105" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton105CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton106CooldownCountFrame" parent="PopBarButton106" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton106CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton107CooldownCountFrame" parent="PopBarButton107" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton107CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton108CooldownCountFrame" parent="PopBarButton108" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton108CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton109CooldownCountFrame" parent="PopBarButton109" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton109CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton110CooldownCountFrame" parent="PopBarButton110" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton110CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton111CooldownCountFrame" parent="PopBarButton111" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton111CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton112CooldownCountFrame" parent="PopBarButton112" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton112CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton201CooldownCountFrame" parent="PopBarButton201" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton201CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton202CooldownCountFrame" parent="PopBarButton202" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton202CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton203CooldownCountFrame" parent="PopBarButton203" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton203CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton204CooldownCountFrame" parent="PopBarButton204" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton204CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton205CooldownCountFrame" parent="PopBarButton205" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton205CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton206CooldownCountFrame" parent="PopBarButton206" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton206CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton207CooldownCountFrame" parent="PopBarButton207" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton207CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton208CooldownCountFrame" parent="PopBarButton208" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton208CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton209CooldownCountFrame" parent="PopBarButton209" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton209CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton210CooldownCountFrame" parent="PopBarButton210" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton210CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton211CooldownCountFrame" parent="PopBarButton211" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton211CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton212CooldownCountFrame" parent="PopBarButton212" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton212CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton301CooldownCountFrame" parent="PopBarButton301" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton301CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton302CooldownCountFrame" parent="PopBarButton302" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton302CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton303CooldownCountFrame" parent="PopBarButton303" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton303CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton304CooldownCountFrame" parent="PopBarButton304" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton304CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton305CooldownCountFrame" parent="PopBarButton305" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton305CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton306CooldownCountFrame" parent="PopBarButton306" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton306CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton307CooldownCountFrame" parent="PopBarButton307" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton307CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton308CooldownCountFrame" parent="PopBarButton308" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton308CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton309CooldownCountFrame" parent="PopBarButton309" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton309CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton310CooldownCountFrame" parent="PopBarButton310" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton310CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton311CooldownCountFrame" parent="PopBarButton311" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton311CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton312CooldownCountFrame" parent="PopBarButton312" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton312CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton401CooldownCountFrame" parent="PopBarButton401" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton401CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton402CooldownCountFrame" parent="PopBarButton402" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton402CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton403CooldownCountFrame" parent="PopBarButton403" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton403CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton404CooldownCountFrame" parent="PopBarButton404" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton404CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton405CooldownCountFrame" parent="PopBarButton405" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton405CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton406CooldownCountFrame" parent="PopBarButton406" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton406CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton407CooldownCountFrame" parent="PopBarButton407" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton407CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton408CooldownCountFrame" parent="PopBarButton408" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton408CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton409CooldownCountFrame" parent="PopBarButton409" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton409CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton410CooldownCountFrame" parent="PopBarButton410" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton410CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton411CooldownCountFrame" parent="PopBarButton411" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton411CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton412CooldownCountFrame" parent="PopBarButton412" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton412CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton501CooldownCountFrame" parent="PopBarButton501" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton501CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton502CooldownCountFrame" parent="PopBarButton502" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton502CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton503CooldownCountFrame" parent="PopBarButton503" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton503CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton504CooldownCountFrame" parent="PopBarButton504" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton504CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton505CooldownCountFrame" parent="PopBarButton505" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton505CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton506CooldownCountFrame" parent="PopBarButton506" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton506CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton507CooldownCountFrame" parent="PopBarButton507" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton507CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton508CooldownCountFrame" parent="PopBarButton508" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton508CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton509CooldownCountFrame" parent="PopBarButton509" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton509CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton510CooldownCountFrame" parent="PopBarButton510" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton510CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton511CooldownCountFrame" parent="PopBarButton511" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton511CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton512CooldownCountFrame" parent="PopBarButton512" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton512CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton601CooldownCountFrame" parent="PopBarButton601" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton601CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton602CooldownCountFrame" parent="PopBarButton602" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton602CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton603CooldownCountFrame" parent="PopBarButton603" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton603CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton604CooldownCountFrame" parent="PopBarButton604" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton604CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton605CooldownCountFrame" parent="PopBarButton605" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton605CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton606CooldownCountFrame" parent="PopBarButton606" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton606CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton607CooldownCountFrame" parent="PopBarButton607" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton607CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton608CooldownCountFrame" parent="PopBarButton608" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton608CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton609CooldownCountFrame" parent="PopBarButton609" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton609CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton610CooldownCountFrame" parent="PopBarButton610" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton610CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton611CooldownCountFrame" parent="PopBarButton611" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton611CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton612CooldownCountFrame" parent="PopBarButton612" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton612CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton701CooldownCountFrame" parent="PopBarButton701" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton701CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton702CooldownCountFrame" parent="PopBarButton702" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton702CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton703CooldownCountFrame" parent="PopBarButton703" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton703CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton704CooldownCountFrame" parent="PopBarButton704" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton704CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton705CooldownCountFrame" parent="PopBarButton705" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton705CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton706CooldownCountFrame" parent="PopBarButton706" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton706CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton707CooldownCountFrame" parent="PopBarButton707" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton707CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton708CooldownCountFrame" parent="PopBarButton708" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton708CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton709CooldownCountFrame" parent="PopBarButton709" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton709CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton710CooldownCountFrame" parent="PopBarButton710" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton710CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton711CooldownCountFrame" parent="PopBarButton711" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton711CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton712CooldownCountFrame" parent="PopBarButton712" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton712CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton801CooldownCountFrame" parent="PopBarButton801" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton801CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton802CooldownCountFrame" parent="PopBarButton802" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton802CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton803CooldownCountFrame" parent="PopBarButton803" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton803CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton804CooldownCountFrame" parent="PopBarButton804" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton804CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton805CooldownCountFrame" parent="PopBarButton805" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton805CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton806CooldownCountFrame" parent="PopBarButton806" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton806CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton807CooldownCountFrame" parent="PopBarButton807" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton807CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton808CooldownCountFrame" parent="PopBarButton808" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton808CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton809CooldownCountFrame" parent="PopBarButton809" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton809CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton810CooldownCountFrame" parent="PopBarButton810" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton810CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton811CooldownCountFrame" parent="PopBarButton811" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton811CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton812CooldownCountFrame" parent="PopBarButton812" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton812CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton901CooldownCountFrame" parent="PopBarButton901" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton901CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton902CooldownCountFrame" parent="PopBarButton902" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton902CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton903CooldownCountFrame" parent="PopBarButton903" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton903CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton904CooldownCountFrame" parent="PopBarButton904" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton904CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton905CooldownCountFrame" parent="PopBarButton905" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton905CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton906CooldownCountFrame" parent="PopBarButton906" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton906CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton907CooldownCountFrame" parent="PopBarButton907" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton907CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton908CooldownCountFrame" parent="PopBarButton908" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton908CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton909CooldownCountFrame" parent="PopBarButton909" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton909CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton910CooldownCountFrame" parent="PopBarButton910" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton910CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton911CooldownCountFrame" parent="PopBarButton911" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton911CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton912CooldownCountFrame" parent="PopBarButton912" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton912CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1001CooldownCountFrame" parent="PopBarButton1001" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1001CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1002CooldownCountFrame" parent="PopBarButton1002" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1002CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1003CooldownCountFrame" parent="PopBarButton1003" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1003CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1004CooldownCountFrame" parent="PopBarButton1004" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1004CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1005CooldownCountFrame" parent="PopBarButton1005" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1005CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1006CooldownCountFrame" parent="PopBarButton1006" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1006CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1007CooldownCountFrame" parent="PopBarButton1007" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1007CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1008CooldownCountFrame" parent="PopBarButton1008" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1008CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1009CooldownCountFrame" parent="PopBarButton1009" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1009CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1010CooldownCountFrame" parent="PopBarButton1010" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1010CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1011CooldownCountFrame" parent="PopBarButton1011" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1011CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1012CooldownCountFrame" parent="PopBarButton1012" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1012CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1101CooldownCountFrame" parent="PopBarButton1101" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1101CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1102CooldownCountFrame" parent="PopBarButton1102" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1102CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1103CooldownCountFrame" parent="PopBarButton1103" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1103CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1104CooldownCountFrame" parent="PopBarButton1104" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1104CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1105CooldownCountFrame" parent="PopBarButton1105" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1105CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1106CooldownCountFrame" parent="PopBarButton1106" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1106CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1107CooldownCountFrame" parent="PopBarButton1107" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1107CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1108CooldownCountFrame" parent="PopBarButton1108" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1108CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1109CooldownCountFrame" parent="PopBarButton1109" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1109CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1110CooldownCountFrame" parent="PopBarButton1110" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1110CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1111CooldownCountFrame" parent="PopBarButton1111" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1111CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1112CooldownCountFrame" parent="PopBarButton1112" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1112CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1201CooldownCountFrame" parent="PopBarButton1201" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1201CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1202CooldownCountFrame" parent="PopBarButton1202" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1202CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1203CooldownCountFrame" parent="PopBarButton1203" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1203CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1204CooldownCountFrame" parent="PopBarButton1204" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1204CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1205CooldownCountFrame" parent="PopBarButton1205" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1205CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1206CooldownCountFrame" parent="PopBarButton1206" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1206CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1207CooldownCountFrame" parent="PopBarButton1207" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1207CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1208CooldownCountFrame" parent="PopBarButton1208" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1208CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1209CooldownCountFrame" parent="PopBarButton1209" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1209CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1210CooldownCountFrame" parent="PopBarButton1210" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1210CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1211CooldownCountFrame" parent="PopBarButton1211" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1211CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="PopBarButton1212CooldownCountFrame" parent="PopBarButton1212" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PopBarButton1212CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

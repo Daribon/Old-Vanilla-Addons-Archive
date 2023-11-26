@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: OnScreenAlert
+## Author: sarf
+## Notes: Allows the user to get alerts when certain events happen.
+## OptionalDeps: Cosmos
+##SavedVariables: OnScreenAlert_Enabled, OnScreenAlert_PartyHealthNotification
+OnScreenAlert.xml

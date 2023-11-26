@@ -1,0 +1,147 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="AutoBar.lua"/>
+	<Frame name="AutoBar" enableMouse="false" parent="UIParent">
+       		<Scripts>
+        		<OnLoad>
+            			AutoBar_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				AutoBar_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				AutoBar_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+    	</Frame>
+	<CheckButton name="AutoBar_ButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				AutoBar_Button_OnLoad();
+			</OnLoad>
+			<OnShow>
+				AutoBar_Button_Update(1);
+			</OnShow>
+			<OnUpdate>
+				AutoBar_Button_Update(arg1);
+			</OnUpdate>
+			<OnEvent>
+				AutoBar_Button_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				AutoBar_Button_OnClick(arg1);
+				this:SetChecked(0);
+			</OnClick>
+			<OnEnter>
+				AutoBar_Button_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateToolTip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<!--
+	Low needed for under bags
+	high needed for over mainbar
+	-->
+	<Frame name="AutoBar_MainMenu" hidden="true" enableMouse="false" parent="UIParent" frameStrata="HIGH">
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+		<Frames>
+			<CheckButton name="$parent_Button1" inherits="AutoBar_ButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="MainMenuBarArtFrame">
+						<Offset>
+							<AbsDimension x="546" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent_Button2" inherits="AutoBar_ButtonTemplate" id="2"/>
+			<CheckButton name="$parent_Button3" inherits="AutoBar_ButtonTemplate" id="3"/>
+			<CheckButton name="$parent_Button4" inherits="AutoBar_ButtonTemplate" id="4"/>
+			<CheckButton name="$parent_Button5" inherits="AutoBar_ButtonTemplate" id="5"/>
+			<CheckButton name="$parent_Button6" inherits="AutoBar_ButtonTemplate" id="6"/>
+			<CheckButton name="$parent_Button7" inherits="AutoBar_ButtonTemplate" id="7"/>
+			<CheckButton name="$parent_Button8" inherits="AutoBar_ButtonTemplate" id="8"/>
+			<CheckButton name="$parent_Button9" inherits="AutoBar_ButtonTemplate" id="9"/>
+			<CheckButton name="$parent_Button10" inherits="AutoBar_ButtonTemplate" id="10"/>
+			<CheckButton name="$parent_Button11" inherits="AutoBar_ButtonTemplate" id="11"/>
+			<CheckButton name="$parent_Button12" inherits="AutoBar_ButtonTemplate" id="12"/>
+		</Frames>
+    	</Frame>
+	<Frame name="AutoBar_Normal" topLevel="true" hidden="true" movable="true" enableMouse="false" parent="UIParent" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent"/>
+		</Anchors>
+		<Frames>
+			<Frame name="$parent_Backdrop" frameStrata="BACKGROUND" setAllPoints="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel("1");
+						this:SetBackdropBorderColor(
+							TOOLTIP_DEFAULT_COLOR.r,
+							TOOLTIP_DEFAULT_COLOR.g,
+							TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.r,
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.g,
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parent_Move" enableMouse="true" setAllPoints="true" frameStrata="BACKGROUND">
+				<Scripts>
+					<OnLoad>
+						this:RegisterForDrag("LeftButton", "RightButton");
+					</OnLoad>
+					<OnDragStart>
+						AutoBar_Normal:StartMoving();
+					</OnDragStart>
+					<OnDragStop>
+						AutoBar_Normal:StopMovingOrSizing();
+					</OnDragStop>
+				</Scripts>
+			</Frame>
+			<CheckButton name="$parent_Button1" inherits="AutoBar_ButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent_Button2" inherits="AutoBar_ButtonTemplate" id="2"/>
+			<CheckButton name="$parent_Button3" inherits="AutoBar_ButtonTemplate" id="3"/>
+			<CheckButton name="$parent_Button4" inherits="AutoBar_ButtonTemplate" id="4"/>
+			<CheckButton name="$parent_Button5" inherits="AutoBar_ButtonTemplate" id="5"/>
+			<CheckButton name="$parent_Button6" inherits="AutoBar_ButtonTemplate" id="6"/>
+			<CheckButton name="$parent_Button7" inherits="AutoBar_ButtonTemplate" id="7"/>
+			<CheckButton name="$parent_Button8" inherits="AutoBar_ButtonTemplate" id="8"/>
+			<CheckButton name="$parent_Button9" inherits="AutoBar_ButtonTemplate" id="9"/>
+			<CheckButton name="$parent_Button10" inherits="AutoBar_ButtonTemplate" id="10"/>
+			<CheckButton name="$parent_Button11" inherits="AutoBar_ButtonTemplate" id="11"/>
+			<CheckButton name="$parent_Button12" inherits="AutoBar_ButtonTemplate" id="12"/>
+		</Frames>
+    	</Frame>
+</Ui>

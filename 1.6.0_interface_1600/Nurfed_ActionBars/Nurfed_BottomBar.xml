@@ -1,0 +1,257 @@
+<!--
+
+	BottomBar: Adds two twelve button bars to the bottom of the screen
+		copyright 2004 by Telo
+
+	- There are hotkey bindings for each of the added buttons
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Nurfed_BottomBar.lua"/>
+	<FontString name="BottomBarFont" font="Fonts\ARIALN.TTF" outline="THICK" virtual="true" monochrome="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		<Color r="0.6" g="0.6" b="0.6"/>
+	</FontString>
+	<CheckButton name="BottomBarButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentFlash" file="Interface\Buttons\UI-QuickslotRed" hidden="true"/>
+				<FontString name="$parentHotKey" inherits="BottomBarFont" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="32" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCount" inherits="NumberFontNormal" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentName" inherits="GameFontHighlightSmallOutline">
+					<Size>
+						<AbsDimension x="36" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Model name="$parentCooldown" inherits="CooldownFrameTemplate"/>
+		</Frames>
+		<NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
+			<Size>
+				<AbsDimension x="64" y="64"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+		<CheckedTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+	</CheckButton>
+	<Frame name="BottomBar" toplevel="true" frameStrata="LOW" enableMouse="true" parent="MainMenuBar">
+		<Size>
+			<AbsDimension x="1018" y="41"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				BottomBar_OnLoad();
+			</OnLoad>
+			<OnShow>
+				BottomBar_OnShow();
+			</OnShow>
+			<OnHide>
+				BottomBar_OnHide();
+			</OnHide>
+			<OnEvent>
+				BottomBar_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<CheckButton name="BottomBarButton" inherits="BottomBarButtonTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				BottomBarButton_OnLoad();
+			</OnLoad>
+			<OnShow>
+				BottomBarButton_Update();
+			</OnShow>
+			<OnEvent>
+				BottomBarButton_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				if( IsShiftKeyDown() ) then
+					PickupAction(BottomBarButton_GetID(this));
+				else
+					MacroFrame_EditMacro();
+					UseAction(BottomBarButton_GetID(this), 1);
+				end
+				BottomBarButton_UpdateState();
+			</OnClick>
+			<OnDragStart>
+				BottomBarButton_OnDragStart();
+			</OnDragStart>
+			<OnReceiveDrag>
+				PlaceAction(BottomBarButton_GetID(this));
+				BottomBarButton_UpdateState();
+			</OnReceiveDrag>
+			<OnEnter>
+				BottomBarButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateTooltip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnUpdate>
+				BottomBarButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="BottomBarButton1" inherits="BottomBarButton" parent="BottomBar" id="73">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="8" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton2" inherits="BottomBarButton" parent="BottomBar" id="74">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton3" inherits="BottomBarButton" parent="BottomBar" id="75">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton4" inherits="BottomBarButton" parent="BottomBar" id="76">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton5" inherits="BottomBarButton" parent="BottomBar" id="77">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton6" inherits="BottomBarButton" parent="BottomBar" id="78">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton7" inherits="BottomBarButton" parent="BottomBar" id="79">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton8" inherits="BottomBarButton" parent="BottomBar" id="80">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton9" inherits="BottomBarButton" parent="BottomBar" id="81">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton10" inherits="BottomBarButton" parent="BottomBar" id="82">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton11" inherits="BottomBarButton" parent="BottomBar" id="83">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="BottomBarButton12" inherits="BottomBarButton" parent="BottomBar" id="84">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="BottomBarButton11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+</Ui>

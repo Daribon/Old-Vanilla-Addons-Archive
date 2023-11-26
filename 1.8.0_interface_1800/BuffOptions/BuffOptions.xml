@@ -1,0 +1,120 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: BuffOptions.xml 2479 2005-09-18 12:50:44Z mugendai $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- Main Script -->
+	<Script file="BuffOptions.lua"/>
+
+	<!-- Configuration Script -->
+	<Script file="BuffOptionsConfig.lua"/>
+
+	<!--
+		Buff Button Text Template
+	-->
+	<Frame name="BuffButtonBuffOTemplate" enableMouse="false" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="50" y="50"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="2" y="-1"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="$parentText" hidden="true" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPRIGHT"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK" frameStrata="LOW">
+						<FontString name="$parentText" inherits="GameFontNormalSmall">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="$parentBorder" hidden="true" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="100" y="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-37" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4" />	
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="16" />
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="16" />
+					</EdgeSize>
+				</Backdrop>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<!--
+		Main Frame
+	-->
+	<Frame name="BuffOptionsFrame" enableMouse="false" hidden="false" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				BuffOptions.OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!--
+		Buff Text Frames
+	-->
+	<Frame name="BuffButton0BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton0"/>
+	<Frame name="BuffButton1BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton1"/>
+	<Frame name="BuffButton2BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton2"/>
+	<Frame name="BuffButton3BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton3"/>
+	<Frame name="BuffButton4BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton4"/>
+	<Frame name="BuffButton5BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton5"/>
+	<Frame name="BuffButton6BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton6"/>
+	<Frame name="BuffButton7BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton7"/>
+	<Frame name="BuffButton8BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton8"/>
+	<Frame name="BuffButton9BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton9"/>
+	<Frame name="BuffButton10BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton10"/>
+	<Frame name="BuffButton11BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton11"/>
+	<Frame name="BuffButton12BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton12"/>
+	<Frame name="BuffButton13BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton13"/>
+	<Frame name="BuffButton14BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton14"/>
+	<Frame name="BuffButton15BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton15"/>
+	<Frame name="BuffButton16BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton16"/>
+	<Frame name="BuffButton17BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton17"/>
+	<Frame name="BuffButton18BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton18"/>
+	<Frame name="BuffButton19BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton19"/>
+	<Frame name="BuffButton20BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton20"/>
+	<Frame name="BuffButton21BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton21"/>
+	<Frame name="BuffButton22BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton22"/>
+	<Frame name="BuffButton23BuffO" inherits="BuffButtonBuffOTemplate" parent="BuffButton23"/>
+	<Frame name="TempEnchant1BuffO" inherits="BuffButtonBuffOTemplate" parent="TempEnchant1"/>
+	<Frame name="TempEnchant2BuffO" inherits="BuffButtonBuffOTemplate" parent="TempEnchant2"/>
+
+	<!--
+		Tooltip Frame used to gather info on buffs
+	-->
+	<GameTooltip name="BuffOptionsTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

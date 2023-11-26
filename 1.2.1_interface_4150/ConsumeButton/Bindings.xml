@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Consume food and drink -->
+	<Binding name="CONSUMEBUTTON" description="Consume food/drink" header="CONSUMEBUTTONHEADER">
+		ConsumeButton_ConsumeFoodDrink();
+	</Binding>
+</Bindings>

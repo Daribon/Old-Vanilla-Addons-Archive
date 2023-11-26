@@ -1,0 +1,176 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+    <Frame name="KC_EnhancedTrades_Frame_Template" toplevel="true" frameStrata="HIGH" movable="true"
+           enableMouse="true" hidden="true" parent="UIParent" virtual="true">
+        <TitleRegion setAllPoints="true"/>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"  edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+            <EdgeSize>
+                <AbsValue val="16"/>
+            </EdgeSize>
+            <TileSize>
+                <AbsValue val="16"/>
+            </TileSize>
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+            </BackgroundInsets>
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+                    <Size>
+                        <AbsDimension x="350" y="60"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="14"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString name="$parentTitle" inherits="GameFontNormal">
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentHeader">
+                            <Offset>
+                                <AbsDimension x="0" y="-13"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentUICloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="1" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="KC_ITEMS_TEXT_CLOSE">
+                <Size>
+                    <AbsDimension x="80" y="22"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-6" y="6"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        this:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Frame>
+
+	<Frame name="KC_EnhancedTrades_Pane_Template" inherits="OptionFrameBoxTemplate" virtual="true">
+		<Scripts>
+            <OnLoad>
+                this:SetBackdropBorderColor(0.5, 0.5, 0.5)
+                this:SetBackdropColor(0.25, 0.25, 0.25)
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+
+	<Button name="KC_EnhancedTrades_Button_Template" virtual="true">
+        <Size>
+            <AbsDimension x="200" y="20"/>
+        </Size>
+        <NormalText name="$parent_NormalText" inherits="GameFontNormal" justifyH="LEFT">
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="8" y="1"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </NormalText>
+        <HighlightText name="$parent_HighlightText" inherits="GameFontHighlight" justifyH="LEFT">
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="8" y="1"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </HighlightText>
+        <Frames>
+            <Button name="$parentColorSwatch" hidden="true">
+                <Size>
+                    <AbsDimension x="280" y="20"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT">
+                        <Offset>
+                            <AbsDimension x="-6" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture name="$parentSwatchBg">
+                            <Size>
+                                <AbsDimension x="14" y="14"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="CENTER">
+                                    <Offset>
+                                        <AbsDimension x="0" y="0"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <Color r="1.0" g="1.0" b="1.0"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnEnter>
+                        getglobal(this:GetName().."SwatchBg"):SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+                    </OnEnter>
+                    <OnLeave>
+                        getglobal(this:GetName().."SwatchBg"):SetVertexColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b)
+                    </OnLeave>
+                </Scripts>
+                <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\ChatFrameColorSwatch"/>
+            </Button>
+        </Frames>
+    </Button>
+
+	<Button	name="KC_EnhancedTrades_SkillButton_Template" inherits="KC_EnhancedTrades_Button_Template" virtual="true">
+		<Size>
+			<AbsDimension x="170" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString	name="$parent_MakeCount" inherits="GameFontHighlightSmall" text="">
+					<Anchors>
+						<Anchor	point="LEFT" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-35" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				
+			</OnLoad>
+			<OnClick>
+				KC_EnhancedTradesFrame:SkillButton_OnClick(this:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+</Ui>

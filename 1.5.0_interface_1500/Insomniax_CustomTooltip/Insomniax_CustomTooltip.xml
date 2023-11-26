@@ -1,0 +1,1054 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Insomniax_CustomTooltip.lua" />
+	<Script file="Insomniax_CustomTooltip_UI.lua" />
+	<Button name="CustomTooltipButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="32"/>
+		</Size>
+		<NormalTexture file="Interface\Buttons\UI-DialogBox-Button-Up"/>
+		<HighlightTexture file="Interface\Buttons\UI-DialogBox-Button-Highlight" alphaMode="ADD"/>
+		<PushedTexture file="Interface\Buttons\UI-DialogBox-Button-Down" />
+		<Layers>
+			<Layer level="DIALOG">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="A Button" justifyH="CENTER" justifyV="CENTER">
+					<Size>
+						<AbsDimension x="128" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		
+	</Button>
+	
+	<CheckButton name="CustomTooltipNamedCheckButtonTemplate" inherits="OptionsCheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="25" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="DIALOG">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="" justifyH="LEFT" justifyV="TOP">
+					<Size>
+						<AbsDimension x="128" y="32" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+	
+	
+	<!-- derived from cosmos -->
+	<Slider name="CustomTooltipSliderTemplate" orientation="HORIZONTAL" minValue="-1.0" maxvalue="1.0" defaultValue="0.0" valueStep=".01" virtual="true">
+		<Size>
+			<AbsDimension x="180" y="17" />
+		</Size>
+		<!--
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		-->
+		
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border"
+			tile="true">
+			<EdgeSize>
+				<AbsValue val="8" />
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="6" bottom="6" />
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentSliderBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0.0" />
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP" />
+					</Anchors>
+				</FontString>
+				<FontString name="$parentValueText" inherits="GameFontNormalSmall" text="Slider Name">
+					<Color r=".4" g=".6" b="1" a="1" />
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="2" y="-6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLeftText" inherits="GameFontHighlightSmall" text="Left">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="2" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRightText" inherits="GameFontHighlightSmall" text="Right">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<ThumbTexture file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size>
+				<AbsDimension x="32" y="32" />
+			</Size>
+		</ThumbTexture>
+	</Slider>
+	
+	<Slider name="IXCustomTooltipSliderTemplate" orientation="HORIZONTAL" minValue="-100" maxvalue="100" defaultValue="0.0" valueStep="1.0" virtual="true">
+		<Size>
+			<AbsDimension x="180" y="17" />
+		</Size>
+		
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border"
+			tile="true">
+			<EdgeSize>
+				<AbsValue val="8" />
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="6" bottom="6" />
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentSliderBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0.0" />
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP" />
+					</Anchors>
+				</FontString>
+				<FontString name="$parentValueText" inherits="GameFontNormalSmall" text="Slider Name">
+					<Color r=".4" g=".6" b="1" a="1" />
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLeftText" inherits="GameFontHighlightSmall" text="Left">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRightText" inherits="GameFontHighlightSmall" text="Right">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<ThumbTexture file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size>
+				<AbsDimension x="32" y="32" />
+			</Size>
+		</ThumbTexture>
+	</Slider>	
+	
+	<!--
+	***********************
+	MAIN CUSTOMTOOLTIPFRAME
+	***********************
+	-->
+	<Frame name="CustomTooltipFrame" parent="UIParent" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true">
+		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+				CustomTooltipFrameVersion:SetText("Version: "..CustomTooltip_VERSION);
+				CustomTooltip_showFrame(CustomTooltipEntry);
+				
+			</OnLoad>
+			<OnEvent>CustomTooltip_OnEvent(event);</OnEvent>
+			<OnDragStart>this:StartMoving();</OnDragStart>
+			<OnDragStop>this:StopMovingOrSizing();</OnDragStop>
+			<OnEscapePressed>this:Hide();</OnEscapePressed>
+			
+			<OnShow>CustomTooltipEntryEditBox:SetFocus();
+			
+			</OnShow>
+		</Scripts>
+		<Size>
+			<AbsDimension x="400" y="200" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-50" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="DIALOG">
+				<FontString name="CustomTooltipFrameVersion" text="Version:" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="TOP">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="10" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>	
+			</Layer>
+		</Layers>
+		
+		<Frames>
+			<Button name="CustomTooltipCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="CustomTooltipFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CustomTooltipFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Frame name="CustomTooltipSideMenu">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CustomTooltipFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-20"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="CustomTooltipFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="180" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Frames>
+					<Button name="CustomTooltipEditButton" inherits="CustomTooltipButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Edit Tooltip Text");
+							</OnLoad>
+							<OnClick>
+								CustomTooltip_showFrame(CustomTooltipEntry);
+							</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Button name="CustomTooltipMouseButton" inherits="CustomTooltipButtonTemplate">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="CustomTooltipEditButton" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							getglobal(this:GetName().."Text"):SetText("Options");
+						</OnLoad>
+						<OnClick>
+							CustomTooltip_showFrame(CustomTooltipMouse);
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="CustomTooltipSaveButton" inherits="CustomTooltipButtonTemplate">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="CustomTooltipMouseButton" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							getglobal(this:GetName().."Text"):SetText("Save/Load");
+						</OnLoad>
+						<OnClick>
+							CustomTooltip_showFrame(CustomTooltipSave);
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="CustomTooltipColorsButton" inherits="CustomTooltipButtonTemplate">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="CustomTooltipSaveButton" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							getglobal(this:GetName().."Text"):SetText("Colors");
+						</OnLoad>
+						<OnClick>
+							CustomTooltip_showFrame(CustomTooltipColors);
+						</OnClick>
+					</Scripts>
+				</Button>
+				
+				<Button name="CustomTooltipEnableButton" inherits="CustomTooltipButtonTemplate">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="CustomTooltipColorsButton" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>
+							if(CustomTooltip_Enabled == 1) then
+								CustomTooltip_Enabled = 0;
+								getglobal(this:GetName().."Text"):SetText("Enable CustomTooltip");
+							else
+								getglobal(this:GetName().."Text"):SetText("Disable CustomTooltip");
+								CustomTooltip_Enabled = 1;
+							end
+						</OnClick>
+						<OnShow>
+							if(CustomTooltip_Enabled == 1) then
+								getglobal(this:GetName().."Text"):SetText("Disable CustomTooltip");
+							else
+								getglobal(this:GetName().."Text"):SetText("Enable CustomTooltip");
+							end
+						</OnShow>
+					</Scripts>
+				</Button>
+				
+				<!-- LedMirage 3/15/2005 added RESET button -->
+				<Button name="CustomTooltipResetButton" inherits="CustomTooltipButtonTemplate">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="CustomTooltipEnableButton" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							getglobal(this:GetName().."Text"):SetText("Reset Defaults");
+						</OnLoad>
+						<OnClick>
+							CustomTooltip_ResetTooltip();
+						</OnClick>			
+					</Scripts>
+				</Button>
+				
+				</Frames>
+			</Frame>
+			
+			<!--
+			********
+			EDIT PANE
+			********		
+			-->
+			
+			<Frame name="CustomTooltipEntry">
+				<Size>
+					<AbsDimension x="250" y="250"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="CustomTooltipSideMenu">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPLEFT" relativeTo="CustomTooltipEntry">
+						<Offset>
+							<AbsDimension x="150" y="200" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Frames>
+					<EditBox name="CustomTooltipEntryEditBox" letters="4096" multiLine="true" enableMouse="true" autoFocus="true" maxLines="7">
+						<Size>
+							<AbsDimension x="150" y="150"/>
+						</Size>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture>
+									<Size>
+										<AbsDimension x="150" y="150"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="CustomTooltipEntryEditBox">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="0" g="0" b="0" a="0.75" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="CustomTooltipEntry">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT" relativePoint="TOPLEFT" relativeTo="CustomTooltipEntryEditBox">
+								<Offset>
+									<AbsDimension x="150" y="-150" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								this:SetText(CustomTooltip_Text);
+							</OnShow>
+							<OnEscapePressed>CustomTooltipFrame:Hide();</OnEscapePressed>
+							<OnClick>this:SetFocus();</OnClick>
+							<OnTextChanged>CustomTooltip_Text = this:GetText();
+							</OnTextChanged>
+						</Scripts>
+						<FontString inherits="ChatFontNormal" />
+					</EditBox>
+					
+					<!-- this is where the code reference is -->
+					<ScrollFrame name="CustomTooltipEntryScrollFrame" inherits="UIPanelScrollFrameTemplate" hidden="false">
+						<Size>
+							<AbsDimension x="200" y="150"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="CustomTooltipEntryEditBox">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="CustomTooltipBodyBackground">
+									<Color r="0" g="0" b="0" a="0.75" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<ScrollChild>
+							<Frame name="CustomTooltipScrollChildFrame" enableMouse="true">
+								<Layers>
+									<Layer level="BACKGROUND">
+										<Texture name="SCBackground">
+											<Color r="0" g="0.5" b="0" a="1" />
+										</Texture>
+									</Layer>
+									
+									<Layer level="DIALOG">
+										<FontString name="CustomTooltipFrameCodeInfo" inherits="GameFontNormalSmall" text="Codes: " justifyH="LEFT" justifyV="TOP">
+											
+											<Size>
+												<AbsDimension x="200" y="400" />
+											</Size>
+											
+											<Anchors>
+												<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="CustomTooltipEntryScrollFrame">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="CustomTooltipEntryScrollFrame">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="CustomTooltipEntryScrollFrame">
+										<Offset>
+											<AbsDimension x="-25" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Frame>
+						</ScrollChild>
+						<Scripts>
+							<OnVerticalScroll>
+								CustomTooltipFrameCodeInfo:SetPoint("TOPLEFT", "CustomTooltipEntryScrollFrame", "TOPLEFT", 0, arg1);
+							</OnVerticalScroll>
+						</Scripts>
+					</ScrollFrame>
+				</Frames>
+				<Scripts>
+					<OnShow>
+						CustomTooltipFrameCodeInfo:SetText(CustomTooltip_getCodeInfo());
+					</OnShow>
+				</Scripts>
+			</Frame>
+			
+			<!--
+			********
+			MOUSE PANE
+			********		
+			-->
+			
+			<Frame name="CustomTooltipMouse">
+				<Size>
+					<AbsDimension x="200" y="200"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CustomTooltipSideMenu" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="CustomTooltipMouseDisable" inherits="CustomTooltipNamedCheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CustomTooltipMouse" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Disable Relocation");
+							</OnLoad>
+							<OnClick>
+								CustomTooltip_setRelocate(0);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="CustomTooltipMouseMouse" inherits="CustomTooltipNamedCheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CustomTooltipMouse" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-25"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Relocate to Mouse");
+							</OnLoad>
+							<OnClick>
+								CustomTooltip_setRelocate(1);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="CustomTooltipMousePos" inherits="CustomTooltipNamedCheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CustomTooltipMouse" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-50"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Relocate to Position:");
+							</OnLoad>
+							<OnClick>
+								CustomTooltip_setRelocate(2);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					
+					
+					<Frame name="CustomTooltipMousePosDropDown" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="15" y="-77"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString inherits="GameFontNormalSmall" text="">
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="20" y="10"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								CustomTooltip_MouseDropDown_OnLoad();
+							</OnLoad>
+							<OnShow>
+								CustomTooltip_MouseDropDown_OnLoad();
+							</OnShow>
+						</Scripts>
+					</Frame>
+					
+					<Slider name="CustomTooltipMouseXOffset" inherits="IXCustomTooltipSliderTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-120"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."ValueText"):SetText("Horizontal: "..CustomTooltip_Options.relocateX.."%");
+								getglobal(this:GetName().."LeftText"):SetText("Left");
+								getglobal(this:GetName().."RightText"):SetText("Right");
+								this:SetValue(CustomTooltip_Options.relocateX);
+							</OnLoad>
+							<OnShow>
+								getglobal(this:GetName().."ValueText"):SetText("Horizontal: "..CustomTooltip_Options.relocateX.."%");
+								this:SetValue(CustomTooltip_Options.relocateX);
+							</OnShow>
+							<OnValueChanged>
+								CustomTooltip_Options.relocateX = arg1;
+								getglobal(this:GetName().."ValueText"):SetText("Horizontal: "..CustomTooltip_Options.relocateX.."%");
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+					<Slider name="CustomTooltipMouseYOffset" inherits="IXCustomTooltipSliderTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-150"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."ValueText"):SetText("Vertical: "..CustomTooltip_Options.relocateY.."%");
+								getglobal(this:GetName().."LeftText"):SetText("Up");
+								getglobal(this:GetName().."RightText"):SetText("Down");
+								this:SetValue(CustomTooltip_Options.relocateY);
+							</OnLoad>
+							<OnShow>
+								getglobal(this:GetName().."ValueText"):SetText("Vertical: "..CustomTooltip_Options.relocateY.."%");
+								this:SetValue(CustomTooltip_Options.relocateY);
+							</OnShow>
+							<OnValueChanged>
+								CustomTooltip_Options.relocateY = arg1;
+								getglobal(this:GetName().."ValueText"):SetText("Vertical: "..CustomTooltip_Options.relocateY.."%");
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+					
+				</Frames>
+				<Scripts>
+					<OnShow>
+						CustomTooltip_setRelocate(CustomTooltip_Options.relocateTooltip);
+					</OnShow>
+				</Scripts>
+			</Frame>
+					
+			<!--
+			*********
+			SAVE PANE
+			*********
+			-->
+			
+			<Frame name="CustomTooltipSave">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CustomTooltipSideMenu" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="CustomTooltipFrame" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>					
+					<Layer level="DIALOG">
+						<FontString inherits="GameFontNormalSmall" text="Tooltip Preview:" justifyH="LEFT" justifyV="TOP">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="60" y="-60"/>
+									</Offset>
+								</Anchor>
+								
+							</Anchors>
+						</FontString>
+						<FontString name="CustomTooltipSavePreview" inherits="GameFontNormalSmall" text="PreviewText" justifyH="LEFT" justifyV="TOP">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="60" y="-75"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+					
+				</Layers>
+				
+				<Frames>
+					<Frame name="CustomTooltipSaveDropDown" inherits="UIDropDownMenuTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="20" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString inherits="GameFontNormalSmall" text="">
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="20" y="10"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								CustomTooltip_SaveDropDown_OnLoad();
+							</OnLoad>
+							<OnShow>
+								CustomTooltip_SaveDropDown_OnLoad();
+							</OnShow>
+						</Scripts>
+					</Frame>
+					
+					<Button name="CustomTooltipSaveSaveAs" inherits="CustomTooltipButtonTemplate">
+						<Size>
+							<AbsDimension x="50" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="5" y="-35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Save As:");
+							</OnLoad>
+							<OnClick>
+								CustomTooltip_saveTooltip(CustomTooltipSaveName:GetText(), CustomTooltip_Text);
+							</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Button name="CustomTooltipSaveLoad" inherits="CustomTooltipButtonTemplate">
+						<Size>
+							<AbsDimension x="50" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSaveAs">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Load");
+							</OnLoad>
+							<OnClick>
+								CustomTooltip_loadTooltip(UIDropDownMenu_GetText(CustomTooltipSaveDropDown));
+							</OnClick>
+						</Scripts>
+					</Button>
+					
+					<EditBox name="CustomTooltipSaveName" letters="18" multiLine="false" enableMouse="true" autoFocus="true">
+						<Size>
+							<AbsDimension x="130" y="15"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="60" y="-40" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent"/>
+										<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="$parent"/>
+									</Anchors>
+									<Color r="0" g="0" b="0" a="0.75" />
+								</Texture>
+							</Layer>
+						</Layers>
+						
+						<Scripts>
+							<OnShow>
+								this:SetText("18 Chars Max");
+							</OnShow>
+							<OnEscapePressed>CustomTooltipFrame:Hide();</OnEscapePressed>
+							<OnClick>this:SetFocus();</OnClick>
+							<OnTextChanged></OnTextChanged>
+						</Scripts>
+						<FontString inherits="ChatFontNormal" />
+					</EditBox>
+					
+				</Frames>
+			
+			
+				<Scripts>
+				</Scripts>
+			</Frame>
+			<!--
+			**********
+			COLORS PANE
+			**********
+			-->
+			
+			<Frame name="CustomTooltipColors">
+				<Size>
+					<AbsDimension x="200" y="200"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CustomTooltipSideMenu" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="CustomTooltipColorsSample" inherits="GameFontNormalLarge" text="**SAMPLE**">
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="$parent" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+
+						</FontString>
+					</Layer>
+				</Layers>
+
+				<Frames>
+					<Frame name="CustomTooltipColorsDropDown" inherits="UIDropDownMenuTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="20" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString inherits="GameFontNormalSmall" text="">
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="20" y="10"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								CustomTooltip_ColorsDropDown_OnLoad();
+							</OnLoad>
+							<OnShow>
+								CustomTooltip_ColorsDropDown_OnShow();
+							</OnShow>
+						</Scripts>
+					</Frame>
+				
+					<Slider name="CustomTooltipColorsRed" inherits="CustomTooltipSliderTemplate" >
+						
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-70"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Scripts>
+							<OnLoad>
+								this:SetMinMaxValues(0, 1);
+								getglobal(this:GetName().."ValueText"):SetText("Red: ");
+								getglobal(this:GetName().."LeftText"):SetText("0.0");
+								getglobal(this:GetName().."RightText"):SetText("1.0");
+							</OnLoad>
+							<OnShow>
+								getglobal(this:GetName().."ValueText"):SetText("Red: " );
+							</OnShow>
+							<OnValueChanged>
+								getglobal(this:GetName().."ValueText"):SetText("Red: "..(math.floor(arg1*100)/100));
+								CustomTooltip_setColorSample();
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+					
+					<Slider name="CustomTooltipColorsGreen" inherits="CustomTooltipSliderTemplate">
+						
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-100"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Scripts>
+							<OnLoad>
+								
+								this:SetMinMaxValues(0, 1);
+								getglobal(this:GetName().."ValueText"):SetText("Green: ");
+								getglobal(this:GetName().."LeftText"):SetText("0.0");
+								getglobal(this:GetName().."RightText"):SetText("1.0");
+							</OnLoad>
+							<OnShow>
+								getglobal(this:GetName().."ValueText"):SetText("Green: ");
+							</OnShow>
+							<OnValueChanged>
+								getglobal(this:GetName().."ValueText"):SetText("Green: "..(math.floor(arg1*100)/100));
+								CustomTooltip_setColorSample();
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+					
+					<Slider name="CustomTooltipColorsBlue" inherits="CustomTooltipSliderTemplate">
+						
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="-130"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+						<Scripts>
+							<OnLoad>
+							
+								this:SetMinMaxValues(0, 1);
+								getglobal(this:GetName().."ValueText"):SetText("Blue: ");
+								getglobal(this:GetName().."LeftText"):SetText("0.0");
+								getglobal(this:GetName().."RightText"):SetText("1.0");
+							</OnLoad>
+							<OnShow>
+								getglobal(this:GetName().."ValueText"):SetText("Blue: ");
+							</OnShow>
+							<OnValueChanged>
+								getglobal(this:GetName().."ValueText"):SetText("Blue: "..(math.floor(arg1*100)/100));
+								CustomTooltip_setColorSample();
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+					
+				</Frames>
+			</Frame>
+			
+		</Frames>
+	</Frame>
+	
+	
+	
+	<Frame name="CustomTooltipEventFrame" hidden="false" parent="UIParent">
+		<Scripts>
+			<OnEvent>
+				if(event == "VARIABLES_LOADED")	then
+					CustomTooltip_OnVarLoad();
+				elseif(CustomTooltip_Enabled == 1) then
+					if(event == "CLEAR_TOOLTIP") then
+						-- temporary hack to restore border color
+						GameTooltip:SetBackdropBorderColor(1, 1, 1);
+						GameTooltip:ClearLines();
+					else
+						CustomTooltip_OnEvent();
+					end
+				end
+			</OnEvent>
+			<OnLoad>
+				CustomTooltip_OnLoad();
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
+				this:RegisterEvent("TOOLTIP_ANCHOR_DEFAULT");
+				--this:RegisterEvent("CLEAR_TOOLTIP");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX Atlas Shell v1.1
+## Notes: Adds a small icon to the Mini-map to access the Atlas panel.
+## Author: LedMirage
+## RequiredDeps: Atlas, Insomniax_IconMover
+Insomniax_Atlas_Shell.xml

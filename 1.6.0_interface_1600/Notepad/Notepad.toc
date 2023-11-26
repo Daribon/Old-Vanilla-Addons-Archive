@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Notepad
+## Notes: A simple tabbed notepad window.
+## SavedVariables: Notepad_Entries, Notepad_SelectedEntry
+Notepad.xml

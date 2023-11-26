@@ -1,0 +1,102 @@
+QuickMountEquip - by Merrem @ Perenolde - robj@suvangi.com
+
+VERSION
+ 2.12 - 2005/02/26
+
+	Added optional check for Sea.util.hook for the new Cosmos Alpha.
+	Changed .zip to include full Interface\AddOns\QuickMountEquip path.
+	Added Interface\AddOns\QuickMountEquip.nopatch for Cosmos users.
+
+ 2.11 - 2005/02/22
+
+	Changed .toc to 4216
+
+ 2.10 - 2005/02/16
+
+	Changed .toc version number to match latest US servers. (4211)
+	Switched from RegisterForSave to SavedVariables in .toc
+	Made the flight point check a little more efficient.
+           Still requires an attack button somewhere in the first 72 hotkeys, but will only
+           search once. If none is found, the Wind Rider/Griffin check is disabled. Reportedly
+           spurs/carrot/etc don't work on them, but I like switching anyway, so I'm leaving the
+           check in.
+
+ 2.09 - 2005/02/12
+
+	Made it so that it's impossible to destroy items when the configuration frame is open.
+
+ 2.08 - 2005/01/31
+
+	Fixed typo in ReadMe.txt
+	Added check for Tiger's Fury
+	Added check for Polymorph
+	Added fix for Flexbar conflict
+
+ 2.07 - 2005/01/28
+
+	Added check for Kodo Mounts.
+
+ 2.06 - 2005/01/28
+
+	Fixed error that occured on characters other than the first.
+
+ 2.05 - 2005/01/27
+
+	Added new Paladin/Warlock Mount check.
+	Added a check for Hunter "Aspect of the Pack" buff that was triggering the swap.
+	Mounting should no longer interfere with the main tooltip.
+	Equipping multiple trinkets should work now. Items of similar types must "line up" in the config GUI now, however.
+
+ 2.04 - 2005/01/26
+
+	Fixed typo in config loading.
+
+ 2.03 - 2005/01/26
+
+	Added the ability to turn off and on the AddOn using "/mountequip on" or "/mountequip off"
+	Added the ability to turn on/off equip messages.
+	Configuration is now saved on a Realm/Player basis.
+	   (So if you have multiple players each will have their own config.)
+	Misc. Cleanup / Error checking on initial loading...
+	Shortened the messages that show-up when multiple items are equipped at once.
+ 
+ 2.02 - 2005/01/25
+
+	Removed the need for Cosmos.
+
+ 2.00 - 2005/01/24
+
+	Initial public release. Required Cosmos.
+
+
+FEATURES
+
+	Whenever you Mount or Dismount it will automatically switch to the gear you specify. 
+
+	Full GUI to configure which gear to switch to. /mountequip to show GUI. 
+
+	Automatically detects Griffins and switches then also. 
+
+	If you get automatically dismounted due to water, or running into buildings, etc... it will switch gear correctly. 
+
+	If you get dismounted while aggroed by a foe, WoW won't let you switch equipment. But as soon as combat or aggro is clear, it will automatically switch gear correctly.
+
+
+USAGE
+
+/mountequip - This is the main interface to the configuration options.
+
+	There are several options available: on, off, quiet, verbose, config, status
+
+/mountequip config - This will open up the GUI interface to select which items you want equipped when you mount/dismount.
+
+/mountequip on - Turns on the auto-equip functionality (default)
+
+/mountequip off - Turns off the auto-equip functionality
+
+/mountequip verbose - Informs you when it auto-equips items. (default)
+
+/mountequip quiet - Doesn't inform you when it auto-equips items.
+
+/mountequip status - Shows you the status of the settings, and a usage statement.
+

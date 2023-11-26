@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: Look Lock
+## Title-deDE: LookLock
+## Notes: Allows user to switch to a state where moving the mouse rotates the character.
+## Notes-deDE: Hiermit kann Freelook per Tastenbelegung an- und ausgeschaltet werden.
+## OptionalDeps: Sea, Sky, Khaos, Cosmos, myAddOns, VisibilityOptions, LootLink
+## RequiredDeps: MCom
+## SavedVariables: LookLock_Config
+LookLock.xml

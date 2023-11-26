@@ -1,0 +1,301 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: BOBarArtTemplate.xml 1441 2005-05-05 08:41:19Z Sinaloit $ -->
+	
+	<!--
+		Bottom Bar Art Template
+	
+	<Frame name="BOBarArtTemplate" virtual="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="513" y="43"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture0" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+					<Size>
+						<AbsDimension x="256" y="43"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-8" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="1.0" top="0.83203125" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentTexture1" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+					<Size>
+						<AbsDimension x="252" y="43"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTexture0" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.984375" top="0.58203125" bottom="0.74609375"/>
+				</Texture>
+				<Texture name="$parentTexture2" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+					<Size>
+						<AbsDimension x="5" y="43"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTexture1" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.98046875" right="1.0" top="0.08203125" bottom="0.24609375"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>-->
+	
+	<!--
+		Side Bar Art Template
+	
+	<Frame name="BOSideBarArtTemplate" virtual="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="43" y="509"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture0" file="Interface\AddOns\BarOptions\Skin\UI-SideBar-Dwarf">
+					<Size>
+						<AbsDimension x="43" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-2" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.83203125" right="1.0" top="0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentTexture1" file="Interface\AddOns\BarOptions\Skin\UI-SideBar-Dwarf">
+					<Size>
+						<AbsDimension x="43" y="253"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTexture0" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.58203125" right="0.74609375" top="0" bottom="0.98828125"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>-->
+	
+	<!--
+		Bottom Bar Button Art Template
+	-->
+	<Frame name="BOBarButtonArtTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="42" y="43"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBack" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+					<Size>
+						<AbsDimension x="42" y="43"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0.8359375" right="1.0" top="0.83203125" bottom="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<!--
+		Bottom Bar Art Template
+	-->
+	<Frame name="BOBarArtTemplate" virtual="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="504" y="43"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-4" y="1"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="$parentButton1" inherits="BOBarButtonArtTemplate" id="1"/>
+			<Frame name="$parentButton2" inherits="BOBarButtonArtTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton1" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton3" inherits="BOBarButtonArtTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton2" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton4" inherits="BOBarButtonArtTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton3" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton5" inherits="BOBarButtonArtTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton4" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton6" inherits="BOBarButtonArtTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton5" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton7" inherits="BOBarButtonArtTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton6" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton8" inherits="BOBarButtonArtTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton7" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton9" inherits="BOBarButtonArtTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton8" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton10" inherits="BOBarButtonArtTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton9" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton11" inherits="BOBarButtonArtTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton10" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton12" inherits="BOBarButtonArtTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton11" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+	<!--
+		Side Bar Button Art Template
+	-->
+	<Frame name="BOSideBarButtonArtTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="43" y="42"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBack" file="Interface\AddOns\BarOptions\Skin\UI-SideBar-Dwarf">
+					<Size>
+						<AbsDimension x="43" y="42"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0.83203125" right="1.0" top="0.8359375" bottom="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<!--
+		Side Bar Art Template
+	-->
+	<Frame name="BOSideBarArtTemplate" virtual="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="43" y="504"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-1" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="$parentButton1" inherits="BOSideBarButtonArtTemplate" id="1"/>
+			<Frame name="$parentButton2" inherits="BOSideBarButtonArtTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton1" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton3" inherits="BOSideBarButtonArtTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton2" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton4" inherits="BOSideBarButtonArtTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton3" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton5" inherits="BOSideBarButtonArtTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton4" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton6" inherits="BOSideBarButtonArtTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton5" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton7" inherits="BOSideBarButtonArtTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton6" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton8" inherits="BOSideBarButtonArtTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton7" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton9" inherits="BOSideBarButtonArtTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton8" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton10" inherits="BOSideBarButtonArtTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton9" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton11" inherits="BOSideBarButtonArtTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton10" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentButton12" inherits="BOSideBarButtonArtTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentButton11" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+</Ui>

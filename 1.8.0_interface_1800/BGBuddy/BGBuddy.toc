@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: BGBuddy
+## Notes: A battlegrounds aid with statistic reporting and auto-join, auto-res and auto-release features.
+## Author: Conflictus - Illidan
+## SavedVariables: BGBuddy_SavedVars
+## OptionalDeps: myAddOns
+BGBuddy.xml

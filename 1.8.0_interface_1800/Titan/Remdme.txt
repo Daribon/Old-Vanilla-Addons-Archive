@@ -1,0 +1,19 @@
+Update on whats coming in 2.02
+
+Things coming in next release:
+1. Fixed button bar showing (in Auto Hide mode) when turned off
+2. Auto Hide not hiding bars correctly
+3. Separated auto hide so you can now chose which bar you want to auto hide or both
+4. Separated center text so you can center text on each bar on its own.
+5. Made menus context sensative for auto hide/center text
+6. Added ability to scale menu and tooltip fonts for Titan - working on other addons information
+7. Added ability to turn off the screen adjustment on a per bar basis
+8. Added ability to load settings from another character/realm under your account
+9. Added Titan Item Bonuses as a base addon
+10. Added Titan Repair as a base addon
+11. Added Titan Regen as a base addon
+12. Added Titan Honor+ as a base addon
+13. Double bars option added to have double bars at top and bottom of screen
+
+
+I will also be looking into the CT mod issue some more, no promises on this as it is quiet a big issue from my first check

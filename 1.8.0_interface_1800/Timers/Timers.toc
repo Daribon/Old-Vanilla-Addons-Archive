@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: Timers 1.07
+## Notes: Timer utility
+## Dependencies: Timex
+## SavedVariables: TimersState
+..\Blizzard_AuctionUI\Blizzard_AuctionUITemplates.xml
+Timers.xml

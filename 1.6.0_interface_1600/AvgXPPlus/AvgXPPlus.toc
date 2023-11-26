@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Average Exp Calculator Plus
+## Author: Jinx(Modded by Tolin)
+## Notes: Calculates Average Exp Gain - Version 0.420
+## SavedVariables: jx_avgxp_players,jx_avgxp_globalinit
+AvgXPPlus.xml
+

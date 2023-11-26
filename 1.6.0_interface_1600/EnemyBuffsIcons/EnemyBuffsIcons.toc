@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: EnemyBuffsIcons
+## Author: sarf
+## Notes: Adds special icons to EnemyBuffs for buffs. No use without EnemyBuffs.
+## DefaultState: enabled
+## RequiredDeps: 
+## OptionalDeps: 
+EnemyBuffsIcons.xml

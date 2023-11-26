@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: RogueHelper
+## Notes: Allows you to get a small window with your energy and combo points that you can drag around
+## Author: sarf
+## OptionalDeps: Cosmos, WeaponButtons, TransNUI, PopNUI
+##SavedVariables: RogueHelper_Enabled, RogueHelper_Docked, RogueHelper_DockedFrame
+RogueHelper.xml

@@ -1,0 +1,89 @@
+<Bindings>
+	<!-- Sidebar Mod Start -->
+	<Binding name="SIDEBARACTIONBUTTON1" runOnUp="true" header="SIDEBAR">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(1);
+		else
+			SideBarButtonUp(1);
+		end
+	</Binding>
+	<Binding name="SIDEBARACTIONBUTTON2" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(2);
+		else
+			SideBarButtonUp(2);
+		end
+	</Binding>
+	<Binding name="SIDEBARACTIONBUTTON3" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(3);
+		else
+			SideBarButtonUp(3);
+		end
+	</Binding>
+	<Binding name="SIDEBARACTIONBUTTON4" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(4);
+		else
+			SideBarButtonUp(4);
+		end
+	</Binding>
+	<Binding name="SIDEBARACTIONBUTTON5" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(5);
+		else
+			SideBarButtonUp(5);
+		end
+	</Binding>
+	<Binding name="SIDEBARACTIONBUTTON6" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(6);
+		else
+			SideBarButtonUp(6);
+		end
+	</Binding>
+
+	<Binding name="SIDEBAR2ACTIONBUTTON1" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBar2ButtonDown(1);
+		else
+			SideBar2ButtonUp(1);
+		end
+	</Binding>
+	<Binding name="SIDEBAR2ACTIONBUTTON2" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBar2ButtonDown(2);
+		else
+			SideBar2ButtonUp(2);
+		end
+	</Binding>
+	<Binding name="SIDEBAR2ACTIONBUTTON3" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBar2ButtonDown(3);
+		else
+			SideBar2ButtonUp(3);
+		end
+	</Binding>
+	<Binding name="SIDEBAR2ACTIONBUTTON4" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBar2ButtonDown(4);
+		else
+			SideBar2ButtonUp(4);
+		end
+	</Binding>
+	<Binding name="SIDEBAR2ACTIONBUTTON5" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBar2ButtonDown(5);
+		else
+			SideBar2ButtonUp(5);
+		end
+	</Binding>
+	<Binding name="SIDEBAR2ACTIONBUTTON6" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBar2ButtonDown(6);
+		else
+			SideBar2ButtonUp(6);
+		end
+	</Binding>
+	<!-- Sidebar Mod End -->
+</Bindings>

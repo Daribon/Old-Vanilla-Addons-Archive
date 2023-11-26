@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: BuffOptions
+## Author: Mugendai
+## Notes: Provides additional options for buffs display
+## OptionalDeps: Sky, Khaos, Cosmos, myAddOns, MobileFrames, Titan
+## RequiredDeps: Sea, MCom
+## SavedVariables: BuffOptions_Config
+BuffOptions.xml

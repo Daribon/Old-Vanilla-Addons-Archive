@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX LootLink Shell v1.1
+## Notes: Adds a small icon to the Mini-map to access the Loot Link panel.
+## Author: LedMirage
+## RequiredDeps: LootLink, Insomniax_IconMover
+Insomniax_LootLink_Shell.xml

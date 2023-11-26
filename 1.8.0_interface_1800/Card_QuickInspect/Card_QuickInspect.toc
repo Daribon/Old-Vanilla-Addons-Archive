@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: Quick Inspect
+## Notes: Scans target's equipement and shows total bonuses.
+## Notes-frFR: Scanne l'équipement d'une cible et affiche le total de ses bonus.
+## Author: Cardella
+## SavedVariables: CardQIDB
+## Dependencies: Ace
+Card_QuickInspect.xml

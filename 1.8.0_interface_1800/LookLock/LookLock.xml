@@ -1,0 +1,108 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: LookLock.xml 2479 2005-09-18 12:50:44Z mugendai $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- Main Script -->
+	<Script file="LookLock.lua"/> 
+
+	<!-- Configuration Script -->
+	<Script file="LookLockConfig.lua"/>
+
+	<!--
+		Targeting Cursor
+	-->
+	<Frame name="LookLockCursor" frameStrata="LOW" toplevel="false" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="BOTTOMLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBack" file="Interface\AddOns\LookLock\Skin\LookLockCursor">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<!--
+		Lock Area Frame
+	-->
+	<Frame name="LookLockArea" frameStrata="LOW" toplevel="false" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="256" y="256"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTopLeft" file="Interface\AddOns\LookLock\Skin\LookLockTopLeft">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTopRight" file="Interface\AddOns\LookLock\Skin\LookLockTopRight">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBottomLeft" file="Interface\AddOns\LookLock\Skin\LookLockBottomLeft">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBottomRight" file="Interface\AddOns\LookLock\Skin\LookLockBottomRight">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<!--
+		Main Frame
+	-->
+	<Frame name="LookLockFrame" hidden="false" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				LookLock.OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				LookLock.OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

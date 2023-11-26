@@ -1,0 +1,742 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="Archaeologist.lua" />
+	
+	<Frame name="Archaeologist" hidden="true">
+		<Scripts>
+			<OnLoad>
+				Archaeologist_OnLoad();
+            </OnLoad>
+            <OnEvent>
+				Archaeologist_OnEvent(event);
+            </OnEvent>
+		</Scripts>
+	</Frame>
+	
+	<!-- HP/MP Unit Text Templates START -->
+	<Frame name="UnitFrameHPMPTextTemplate" setAllPoints="true" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentString" inherits="TextStatusBarText" setAllPoints="true" />
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<Frame name="TargetFrameHPTextTemplate" inherits="UnitFrameHPMPTextTemplate" virtual="true">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	
+	<Frame name="TargetFrameMPTextTemplate" inherits="UnitFrameHPMPTextTemplate" virtual="true">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	
+	<Frame name="PartyFrameHPTextTemplate" inherits="UnitFrameHPMPTextTemplate" virtual="true">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="3"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	
+	<Frame name="PartyFrameMPTextTemplate" inherits="UnitFrameHPMPTextTemplate" virtual="true">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-3"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<!-- HP/MP Unit Text Templates END -->
+	
+	<!-- HP/MP target Text START -->
+	<Frame name="$parentText" inherits="TargetFrameHPTextTemplate" parent="TargetFrameHealthBar" />
+	<Frame name="$parentText" inherits="TargetFrameMPTextTemplate" parent="TargetFrameManaBar" />
+	<!-- HP/MP target Text END-->
+	
+	<!-- HP/MP party member Text START -->
+	<Frame name="$parentText" inherits="PartyFrameHPTextTemplate" parent="PartyMemberFrame1HealthBar" />
+	<Frame name="$parentText" inherits="PartyFrameHPTextTemplate" parent="PartyMemberFrame2HealthBar" />
+	<Frame name="$parentText" inherits="PartyFrameHPTextTemplate" parent="PartyMemberFrame3HealthBar" />
+	<Frame name="$parentText" inherits="PartyFrameHPTextTemplate" parent="PartyMemberFrame4HealthBar" />
+	
+	<Frame name="$parentText" inherits="PartyFrameMPTextTemplate" parent="PartyMemberFrame1ManaBar" />
+	<Frame name="$parentText" inherits="PartyFrameMPTextTemplate" parent="PartyMemberFrame2ManaBar" />
+	<Frame name="$parentText" inherits="PartyFrameMPTextTemplate" parent="PartyMemberFrame3ManaBar" />
+	<Frame name="$parentText" inherits="PartyFrameMPTextTemplate" parent="PartyMemberFrame4ManaBar" />
+	<!-- HP/MP party member Text END-->
+	
+	<!-- Dead/Offline/Ghost Status Text START-->
+	<Frame name="PartyFrameStatusTextTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="8"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="47" y="-12"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="DEAD" hidden="true">
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:GetParent().statusText = getglobal(this:GetName().."Text");
+				this:SetFrameLevel(this:GetFrameLevel()+1);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="$parentStatus" inherits="PartyFrameStatusTextTemplate" parent="PartyMemberFrame1" />
+	<Frame name="$parentStatus" inherits="PartyFrameStatusTextTemplate" parent="PartyMemberFrame2" />
+	<Frame name="$parentStatus" inherits="PartyFrameStatusTextTemplate" parent="PartyMemberFrame3" />
+	<Frame name="$parentStatus" inherits="PartyFrameStatusTextTemplate" parent="PartyMemberFrame4" />
+	
+	<Frame parent="PlayerFrameHealthBar" setAllPoints="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="PlayerStatusText" inherits="GameFontNormalSmall" text="DEAD" hidden="true">
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<Frame parent="PetFrameHealthBar" setAllPoints="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="PetStatusText" inherits="GameFontNormalSmall" text="DEAD" hidden="true">
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<!-- Dead/Offline/Ghost Status Text START-->
+	
+	<!-- Unit Small Buffs Templates START -->
+	<Button name="UnitDebuffSmallButtonTemplate" inherits="PartyBuffButtonTemplate" virtual="true">
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetUnitDebuff(this:GetParent().unit, this:GetID());
+			</OnEnter>
+		</Scripts>
+	</Button>
+	
+	<Button name="UnitBuffSmallButtonTemplate" inherits="PartyBuffButtonTemplate" virtual="true">
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetUnitBuff(this:GetParent().unit, this:GetID());
+			</OnEnter>
+		</Scripts>
+	</Button>
+	<!-- Unit Small Buffs Templates END -->
+	
+	<!-- Pet Debuffs START -->
+	<Button name="$parentNewDebuff1" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="120" y="-24"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff2" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff3" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff4" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff5" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff6" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff7" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="7">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff8" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="8">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff9" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff10" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff11" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="11">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff12" inherits="UnitDebuffSmallButtonTemplate" parent="PetFrame" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<!-- Pet Debuffs END -->
+	
+	<!-- Pet Buffs START -->
+	<Button name="$parentNewBuff1" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="48" y="-42"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff2" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff3" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff4" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff5" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff6" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff7" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="7">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff8" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="8">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff9" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff10" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff11" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="11">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff12" inherits="UnitBuffSmallButtonTemplate" parent="PetFrame" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<!-- Pet Debuffs END -->
+	
+	
+	<!-- Party Debuffs START -->
+	<Button name="PartyNewDebuff1Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="124" y="-12"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff1" inherits="PartyNewDebuff1Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff1" inherits="PartyNewDebuff1Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff1" inherits="PartyNewDebuff1Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff1" inherits="PartyNewDebuff1Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff2Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff2" inherits="PartyNewDebuff2Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff2" inherits="PartyNewDebuff2Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff2" inherits="PartyNewDebuff2Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff2" inherits="PartyNewDebuff2Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff3Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff3" inherits="PartyNewDebuff3Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff3" inherits="PartyNewDebuff3Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff3" inherits="PartyNewDebuff3Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff3" inherits="PartyNewDebuff3Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff4Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff4" inherits="PartyNewDebuff4Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff4" inherits="PartyNewDebuff4Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff4" inherits="PartyNewDebuff4Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff4" inherits="PartyNewDebuff4Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff5Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff5" inherits="PartyNewDebuff5Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff5" inherits="PartyNewDebuff5Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff5" inherits="PartyNewDebuff5Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff5" inherits="PartyNewDebuff5Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff6Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff6" inherits="PartyNewDebuff6Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff6" inherits="PartyNewDebuff6Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff6" inherits="PartyNewDebuff6Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff6" inherits="PartyNewDebuff6Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff7Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="7">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff7" inherits="PartyNewDebuff7Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff7" inherits="PartyNewDebuff7Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff7" inherits="PartyNewDebuff7Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff7" inherits="PartyNewDebuff7Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff8Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="8">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff8" inherits="PartyNewDebuff8Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff8" inherits="PartyNewDebuff8Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff8" inherits="PartyNewDebuff8Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff8" inherits="PartyNewDebuff8Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff9Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff9" inherits="PartyNewDebuff9Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff9" inherits="PartyNewDebuff9Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff9" inherits="PartyNewDebuff9Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff9" inherits="PartyNewDebuff9Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff10Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff10" inherits="PartyNewDebuff10Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff10" inherits="PartyNewDebuff10Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff10" inherits="PartyNewDebuff10Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff10" inherits="PartyNewDebuff10Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff11Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="11">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff11" inherits="PartyNewDebuff11Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff11" inherits="PartyNewDebuff11Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff11" inherits="PartyNewDebuff11Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff11" inherits="PartyNewDebuff11Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewDebuff12Template" inherits="UnitDebuffSmallButtonTemplate" virtual="true" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewDebuff11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewDebuff12" inherits="PartyNewDebuff12Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewDebuff12" inherits="PartyNewDebuff12Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewDebuff12" inherits="PartyNewDebuff12Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewDebuff12" inherits="PartyNewDebuff12Template" parent="PartyMemberFrame4" />
+	
+	<!-- Party Debuffs END -->
+	
+	<!-- Party Buffs START -->
+	
+	<Button name="PartyNewBuff1Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="48" y="-32"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff1" inherits="PartyNewBuff1Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff1" inherits="PartyNewBuff1Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff1" inherits="PartyNewBuff1Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff1" inherits="PartyNewBuff1Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff2Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff2" inherits="PartyNewBuff2Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff2" inherits="PartyNewBuff2Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff2" inherits="PartyNewBuff2Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff2" inherits="PartyNewBuff2Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff3Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff3" inherits="PartyNewBuff3Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff3" inherits="PartyNewBuff3Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff3" inherits="PartyNewBuff3Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff3" inherits="PartyNewBuff3Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff4Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff4" inherits="PartyNewBuff4Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff4" inherits="PartyNewBuff4Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff4" inherits="PartyNewBuff4Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff4" inherits="PartyNewBuff4Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff5Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff5" inherits="PartyNewBuff5Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff5" inherits="PartyNewBuff5Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff5" inherits="PartyNewBuff5Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff5" inherits="PartyNewBuff5Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff6Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff6" inherits="PartyNewBuff6Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff6" inherits="PartyNewBuff6Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff6" inherits="PartyNewBuff6Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff6" inherits="PartyNewBuff6Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff7Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="7">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff7" inherits="PartyNewBuff7Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff7" inherits="PartyNewBuff7Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff7" inherits="PartyNewBuff7Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff7" inherits="PartyNewBuff7Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff8Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="8">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff8" inherits="PartyNewBuff8Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff8" inherits="PartyNewBuff8Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff8" inherits="PartyNewBuff8Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff8" inherits="PartyNewBuff8Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff9Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff9" inherits="PartyNewBuff9Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff9" inherits="PartyNewBuff9Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff9" inherits="PartyNewBuff9Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff9" inherits="PartyNewBuff9Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff10Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff10" inherits="PartyNewBuff10Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff10" inherits="PartyNewBuff10Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff10" inherits="PartyNewBuff10Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff10" inherits="PartyNewBuff10Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff11Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="11">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff11" inherits="PartyNewBuff11Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff11" inherits="PartyNewBuff11Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff11" inherits="PartyNewBuff11Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff11" inherits="PartyNewBuff11Template" parent="PartyMemberFrame4" />
+	
+	<Button name="PartyNewBuff12Template" inherits="UnitBuffSmallButtonTemplate" virtual="true" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="$parentNewBuff11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentNewBuff12" inherits="PartyNewBuff12Template" parent="PartyMemberFrame1" />
+	<Button name="$parentNewBuff12" inherits="PartyNewBuff12Template" parent="PartyMemberFrame2" />
+	<Button name="$parentNewBuff12" inherits="PartyNewBuff12Template" parent="PartyMemberFrame3" />
+	<Button name="$parentNewBuff12" inherits="PartyNewBuff12Template" parent="PartyMemberFrame4" />
+	
+	<!-- Party Buffs END -->
+	
+	
+	
+	
+	<!-- Hidden tooltip START -->
+	<!-- used for info harvesting -->
+	<GameTooltip name="ArchaeologistTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				--Archaeologist_Tooltip_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+	<!-- Hidden tooltip tooltip END -->
+	
+</Ui>

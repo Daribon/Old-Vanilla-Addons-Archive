@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle Chat TimeStamps On/Off -->
+	<Binding name="CHATTS" description="Toggle chat timestamps" header="CHATTSHEADER">
+				ChatTimeStamps_Enabled_Toggle();
+	</Binding>
+</Bindings>

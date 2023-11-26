@@ -1,0 +1,7 @@
+## Interface:  --Disabled. Vjeux, please finish new version --
+## Title: Quest Minion
+## Notes: None
+## OptionalDeps: Cosmos
+## RequiredDeps: Sea, Chronos
+## SavedVariables: QuestToolTip_List, QMinionConfig
+QuestMinion.xml

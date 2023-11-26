@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: MonkeyQuest v1.3.1
+## Notes: Displays your quests for quick viewing. (http://wow.visualization.ca/)
+## Author: Trentin (monkeymods@gmail.com)
+## SavedVariables: MonkeyQuestConfig
+MonkeyQuest.xml

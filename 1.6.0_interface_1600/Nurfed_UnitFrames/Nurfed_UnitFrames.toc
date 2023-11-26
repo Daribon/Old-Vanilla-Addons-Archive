@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: Nurfed_UnitFrames
+## Notes: Nurfed Unit Frames
+## Author: Tivoli http://www.nurfed.com
+## OptionalDeps: Nurfed_General
+## SavedVariables: Nurfed_UnitFrames
+Nurfed_UnitTemplates.xml
+Nurfed_UnitFrames.xml

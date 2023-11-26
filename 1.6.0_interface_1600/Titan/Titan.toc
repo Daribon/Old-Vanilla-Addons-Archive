@@ -1,0 +1,28 @@
+## Interface: 1600
+## Title: Titan Panel
+## Notes: Adds a control panel / info bar on the top of the screen. Allows users to control time/volume/panel scale/transparency, also displays important information such as money/bag/latency/FPS/Location/XP in real time. 
+## Author: TitanMod@gmail.com
+## SavedVariables: TitanSettings
+## OptionalDeps: 
+## Dependencies:
+Localization.xml
+TitanUtils.xml
+TitanVariables.xml
+TitanMenu.xml
+TitanPanelTemplate.xml
+TitanMovable.xml
+TitanTooltip.xml
+TitanPanel.xml
+TitanAmmo.xml
+TitanAutoHide.xml
+TitanBag.xml
+TitanClock.xml
+TitanCoords.xml
+TitanHonor.xml
+TitanLootType.xml
+TitanMoney.xml
+TitanPerformance.xml
+TitanTrans.xml
+TitanUIScale.xml
+TitanVolume.xml
+TitanXP.xml

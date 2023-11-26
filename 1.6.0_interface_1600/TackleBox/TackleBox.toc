@@ -1,0 +1,10 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Tackle Box
+## Title-deDE: Tackle Box
+## Author: Mugendai
+## Notes: Makes the fishermans life much easer.
+## Notes-deDE: Erleichtert das Fischen enorm.
+## OptionalDeps: MCom, Sky, UltimateUI, Khaos, myAddOns
+## RequiredDeps: Sea
+MCom\MCom.xml
+TackleBox.xml

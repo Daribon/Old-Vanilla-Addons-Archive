@@ -1,0 +1,4 @@
+## Interface: 1500
+## Title: Relinker
+## Notes: Allows the user to relink a link from the chat window.
+Relinker.xml

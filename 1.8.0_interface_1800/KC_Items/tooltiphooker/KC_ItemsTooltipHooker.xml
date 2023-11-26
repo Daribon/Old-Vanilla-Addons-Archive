@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+	<Script file="KC_ItemsTooltipHookerLocals.lua"/>
+	<Script file="KC_ItemsTooltipHooker.lua"/>
+	
+	<GameTooltip name="TTHookerTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+	<GameTooltip name="TTHookerItemRef" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

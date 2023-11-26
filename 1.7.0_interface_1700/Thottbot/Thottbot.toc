@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: Thottbot
+## Notes: Thottbot Profile/Data Module, http://www.thottbot.com/
+## RequiredDeps: Chronos, Sea
+## OptionalDeps: Khaos, Cosmos
+Thottbot.xml

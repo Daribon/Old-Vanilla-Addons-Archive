@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r StunWatch
+## Notes: Displays a progress bar for Rogue stuns
+## Author: Vector-
+## SavedVariables: StunWatch_Save
+## DefaultState: disabled
+## OptionalDeps:
+## Dependencies: 
+StunWatch.xml

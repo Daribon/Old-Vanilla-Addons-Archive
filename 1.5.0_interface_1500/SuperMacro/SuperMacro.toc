@@ -1,0 +1,7 @@
+# Do not delete the following line!
+## Interface: 1500
+## Title: SuperMacro
+## Notes: Unlimited macros. Macro script length to 1023 characters. Run macros with keybindings and through other macros.
+## First created: Mar 2005
+## SavedVariables: SM_VARS
+SuperMacro.xml

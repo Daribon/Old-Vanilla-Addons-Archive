@@ -1,0 +1,12 @@
+## Title: ArmorCalculatorRecorder
+## Description: Records information for ArmorCalculator. Required if you want ArmorCalculator to "learn."
+## Author: sarf
+## Default: enabled
+## Dependent: ArmorCalculator
+## Interface: 1800
+constants.lua
+localization_en.lua
+localization_de.lua
+localization_fr.lua
+ArmorCalculatorRecorder.lua
+ArmorCalculatorRecorder.xml

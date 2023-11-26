@@ -1,0 +1,73 @@
+Current release: R6 [Version 1.0.2.1600]
+
+Changes from R5 to R6:
+
+	Features:
+	-	Updated TOC to indicate 1600 compliance
+	-	Several minor UI adjustments
+	
+	Bugs:
+	-	Fixed a bug involved in the retrieval of player information, used to validate those
+		players who have requested an invitation to the group.
+	-	Changed auto-joining of CTAChannel to occur after first receiving a channel message, 
+		to avoid CTAChannel replacing the General channel as channel 1.
+
+Changes from R4 to R5:
+	
+	Features:
+	-	CTA's communication channel changed from 'ctaqueries' to 'CTAChannel'
+	-	New re-designed (push) communication system.
+	-	Improved group member class distribution.
+	-	Improved public channel LFx monitoring and reporting.
+	-	Automatic group list updates (number shown on minimap icon)
+	-	Several user interface improvements.
+	
+	Bugs:
+	-	N/A
+
+Changes from R3 to R4:
+
+	Features:
+ 	-	New French localization
+	- 	Slightly changed LFx reporting format
+	
+	Bugs:
+	-	CTA now sends messages with correct language for Alliance characters on the German client.
+	-	Paladins can now join a group correctly on the German client.
+
+Changes from R2 to R3:
+
+	Features:
+	-	'/cta toggle' now toggles the window - not the icon.
+	-	New Log frame with chat monitoring (beta)
+	-	New Settings frame
+	-	Improved group search results reporting
+	-	Improved BlackList
+	-	New minimap button
+	-	New German localization
+	-	Improved group hosting process
+	-	Redesigned internal invitation system
+	-	Several minor user interface improvements
+	
+	Bugs:
+	-	Can set max size higher than five when creating raid group
+	-	Group type no longer changes to PVP when selected in results list
+	-	Group max size now changes to 5 when converting from raid to party
+	-	Acid items are correct scale when group type changed
+
+Changes from R1 to R2:
+
+	Features:
+	-	Added support for parties.
+	-	Players can begin hosting a group without having to first start a group themselves.
+	-	More robust invitation system.
+	-	Many other minor enhancements.
+	-	New slash command: '/cta convert raid'
+	
+	Bugs:
+	-	Shamans no longer have trouble when trying to join a raid using CTA.
+	-	Automated messages are sent in orcish language with horde characters.
+	-	The /who display in Social window works properly.
+	-	The movement keys can be used while the CTA window is open.
+
+Initial Release: R1

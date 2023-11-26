@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="MODNAME" description="Toggle mod name" header="MODNAMEHEADER">
+		ModName_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

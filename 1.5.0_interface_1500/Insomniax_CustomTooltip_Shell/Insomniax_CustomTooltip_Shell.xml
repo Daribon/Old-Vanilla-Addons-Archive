@@ -1,0 +1,43 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<Script file="Insomniax_CustomTooltip_Shell.lua"/>
+
+	<Button name="Insomniax_CustomTooltip_Button" parent="Minimap" toplevel="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Insomniax_InitialiseIconMover(this, false, nIX_DEFAULTANGLE);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnClick>
+				Insomniax_CustomTooltip_OptionsFrameToggle (arg1);
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				GameTooltip:SetText("Open Insomniax Custom Tooltip v1.3", 255/255, 209/255, 0/255);
+				GameTooltip:AddLine("Right-click to move", 1.00, 1.00, 1.00);
+				GameTooltip:AddLine("With Custom Tooltips you can place the", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("tooltips window literally anywhere on", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("your screen, this mod also allows you", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("to change the format and colors for many", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("of the different tooltips.", 80/255, 143/255, 148/255);
+				GameTooltip:Show();				
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\Insomniax_CustomTooltip_Shell\Insomniax_CustomTooltip_Button_Up"/>
+		<PushedTexture file="Interface\AddOns\Insomniax_CustomTooltip_Shell\Insomniax_CustomTooltip_Button_Down"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Insomniax_CustomTooltip_Shell\Insomniax_Shell_Button_Glow"/>
+	</Button>
+</Ui>

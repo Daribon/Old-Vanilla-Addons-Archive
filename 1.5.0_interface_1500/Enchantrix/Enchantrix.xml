@@ -1,0 +1,25 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+<!--  <Script file="LootLinkHooks.lua"/> -->
+  <Script file="ItemBreakList.lua"/>
+  <Script file="Enchantrix.lua"/>
+  <Frame name="EnchantrixUpdateFrame" parent="UIParent">
+    <Scripts>
+      <OnUpdate>
+        Enchantrix_OnUpdate(arg1);
+      </OnUpdate>
+    </Scripts>
+  </Frame>
+  <Frame name="Enchantrix" parent="UIParent" hidden="true">
+    <Scripts>
+      <OnLoad>
+        Enchantrix_OnLoad();
+      </OnLoad>
+      <OnEvent>
+        Enchantrix_OnEvent(event);
+      </OnEvent>
+    </Scripts>
+  </Frame>
+</Ui>
+

@@ -1,0 +1,5 @@
+<Bindings>
+  <Binding name="NOTEPADSHOW" header="NOTEPAD">
+    Notepad_Toggle();
+  </Binding>
+</Bindings>

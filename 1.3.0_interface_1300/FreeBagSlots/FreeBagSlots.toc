@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: FreeBagSlots
+## Notes: Will show how many slots are free in each bag.
+## Author: Sarf
+## OptionalDeps: Cosmos, DynamicDataItem, Khaos, Sea
+## DefaultState: disabled
+## SavedVariables: FreeBagSlots_Enabled, FreeBagSlots_ShowEmptySlotsOnShotBags, FreeBagSlots_ShowTotalSlots, FreeBagSlots_ShowTotalFreeSlots
+FreeBagSlots.xml

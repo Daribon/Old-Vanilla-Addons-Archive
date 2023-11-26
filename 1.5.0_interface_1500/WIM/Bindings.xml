@@ -1,0 +1,12 @@
+<Bindings>
+	<Binding name="WIMREPLY" header="WIM">
+		if ( keystate == "down" ) then
+			WIMReply();
+		end
+	</Binding>
+	<Binding name="WIMSAY" header="WIM">
+		if ( keystate == "down" ) then
+			WIMSay();
+		end
+	</Binding>
+</Bindings>

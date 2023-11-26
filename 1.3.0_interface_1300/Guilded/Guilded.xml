@@ -1,0 +1,247 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="ChanComm.lua"/>
+	<Script file="GuildedData.lua"/>
+	<Script file="Guilded.lua"/>
+	<Script file="GuildedTraders.lua"/>
+	<Script file="GuildedGUI.lua"/>
+	<Script file="GuildedListGUI.lua"/>
+	<Script file="GuildedTradersGUI.lua"/>
+	<Script file="GuildedRaidersGUI.lua"/>
+	<Script file="GuildedConfigGUI.lua"/>
+
+	<!-- Tab's template for main Guilded frame -->
+	<Button name="GuildedFrameTabTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				PanelTemplates_Tab_OnClick(GuildedFrame);
+				GuildedGUI.onShow();
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- Main Guilded frame -->
+	<Frame name="GuildedFrame" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="30" top="0" bottom="45"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\BattlefieldFrame\UI-Battlefield-Icon">
+					<Size>
+						<AbsDimension x="60" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="GuildedFrameTopLeft" file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="GuildedFrameTopRight" file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="GuildedFrameBottomLeft" file="Interface\FriendsFrame\WhoFrame-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="GuildedFrameBottomRight" file="Interface\FriendsFrame\WhoFrame-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="GuildedFrameTitleText" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="GuildedFrameCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+        	<!-- Guilded Member List sub-frame tab -->
+			<Button name="GuildedFrameTab1" inherits="GuildedFrameTabTemplate" id="1" text="BINDING_HEADER_GUILDED">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="11" y="45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(nil, nil, nil, nil, NEWBIE_TOOLTIP_GUILDEDTAB, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+        	<!-- Guilded Traders sub-frame tab -->
+			<Button name="GuildedFrameTab2" inherits="GuildedFrameTabTemplate" id="2" text="GUILDED_TRADERS">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="GuildedFrameTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(nil, nil, nil, nil, NEWBIE_TOOLTIP_TRADERSTAB, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+        	<!-- Guilded Raiders sub-frame tab -->
+			<Button name="GuildedFrameTab3" inherits="GuildedFrameTabTemplate" id="3" text="GUILDED_RAIDERS">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="GuildedFrameTab2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(nil, nil, nil, nil, NEWBIE_TOOLTIP_RAIDERSTAB, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+        	<!-- Guilded Configuration sub-frame tab -->
+			<Button name="GuildedFrameTab4" inherits="GuildedFrameTabTemplate" id="4" text="GUILDED_CONFIG">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="GuildedFrameTab3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(nil, nil, nil, nil, NEWBIE_TOOLTIP_GUILDEDCONFIGTAB, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GuildedGUI.onLoad();
+			</OnLoad>
+			<OnShow>
+				GuildedGUI.onShow();
+			</OnShow>
+			<OnHide>
+				GuildedGUI.onHide();
+			</OnHide>
+			<OnMouseWheel>
+				return;
+			</OnMouseWheel>
+            <OnDragStart>
+			    GuildedGUI.onDragStart();
+			</OnDragStart> 
+            <OnDragStop>
+			    GuildedGUI.onDragStop();
+			</OnDragStop> 
+            <OnMouseUp>
+			    GuildedGUI.onDragStop();
+			</OnMouseUp> 
+		</Scripts>
+	</Frame>
+	
+	<!-- Just use the onUpdate event to check for the player name and Guilded channel. -->
+    <!-- This idea and code stolen from the Fetch library and extended for channels. -->
+	<!-- Credit to Rowne for the good design. -->
+	<Frame name="GuildedInitialiserFrame" toplevel="true" hidden="true">
+		<Scripts>
+			<OnLoad>
+			    this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+			<OnEvent>
+			    if ( event == "VARIABLES_LOADED" ) then
+		            this:Show();
+			    end
+			</OnEvent>
+			<OnUpdate>
+			    GuildedInitialiser(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

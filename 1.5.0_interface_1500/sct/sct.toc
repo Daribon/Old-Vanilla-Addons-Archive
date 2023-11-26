@@ -1,0 +1,8 @@
+## Interface: 1500
+## Title: Scrolling Combat Text
+## Notes: Adds Scrolling Combat Text above you character
+## SavedVariables: SCT_CONFIG
+## OptionalDeps: myAddOns
+## Dependencies: 
+sct.xml
+options.xml

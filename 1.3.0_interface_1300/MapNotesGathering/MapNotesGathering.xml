@@ -1,0 +1,464 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="MapNotesGathering.lua"/>
+
+<!-- This is stuff for WorldMapFrame.xml -->
+	<Button name="MapNotesGatheringPOIButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\AddOns\MapNotesGathering\POIIcons\Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				MapNotesGathering_OnEnter(this:GetID());
+			</OnEnter>
+			<OnLeave>
+				MapNotesGathering_OnLeave(this:GetID());
+			</OnLeave>
+			<OnClick>
+				MapNotesGathering_OnClick(arg1, this:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+
+<!-- Here are the buttons, that need to be added to the WorldMapFrame.xml -->
+	<Button name="MapNotesGatheringPOI1" inherits="MapNotesGatheringPOIButtonTemplate" id="1" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI2" inherits="MapNotesGatheringPOIButtonTemplate" id="2" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI3" inherits="MapNotesGatheringPOIButtonTemplate" id="3" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI4" inherits="MapNotesGatheringPOIButtonTemplate" id="4" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI5" inherits="MapNotesGatheringPOIButtonTemplate" id="5" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI6" inherits="MapNotesGatheringPOIButtonTemplate" id="6" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI7" inherits="MapNotesGatheringPOIButtonTemplate" id="7" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI8" inherits="MapNotesGatheringPOIButtonTemplate" id="8" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI9" inherits="MapNotesGatheringPOIButtonTemplate" id="9" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI10" inherits="MapNotesGatheringPOIButtonTemplate" id="10" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI11" inherits="MapNotesGatheringPOIButtonTemplate" id="11" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI12" inherits="MapNotesGatheringPOIButtonTemplate" id="12" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI13" inherits="MapNotesGatheringPOIButtonTemplate" id="13" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI14" inherits="MapNotesGatheringPOIButtonTemplate" id="14" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI15" inherits="MapNotesGatheringPOIButtonTemplate" id="15" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI16" inherits="MapNotesGatheringPOIButtonTemplate" id="16" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI17" inherits="MapNotesGatheringPOIButtonTemplate" id="17" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI18" inherits="MapNotesGatheringPOIButtonTemplate" id="18" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI19" inherits="MapNotesGatheringPOIButtonTemplate" id="19" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI20" inherits="MapNotesGatheringPOIButtonTemplate" id="20" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI21" inherits="MapNotesGatheringPOIButtonTemplate" id="21" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI22" inherits="MapNotesGatheringPOIButtonTemplate" id="22" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI23" inherits="MapNotesGatheringPOIButtonTemplate" id="23" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI24" inherits="MapNotesGatheringPOIButtonTemplate" id="24" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI25" inherits="MapNotesGatheringPOIButtonTemplate" id="25" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI26" inherits="MapNotesGatheringPOIButtonTemplate" id="26" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI27" inherits="MapNotesGatheringPOIButtonTemplate" id="27" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI28" inherits="MapNotesGatheringPOIButtonTemplate" id="28" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI29" inherits="MapNotesGatheringPOIButtonTemplate" id="29" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI30" inherits="MapNotesGatheringPOIButtonTemplate" id="30" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI31" inherits="MapNotesGatheringPOIButtonTemplate" id="31" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI32" inherits="MapNotesGatheringPOIButtonTemplate" id="32" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI33" inherits="MapNotesGatheringPOIButtonTemplate" id="33" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI34" inherits="MapNotesGatheringPOIButtonTemplate" id="34" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI35" inherits="MapNotesGatheringPOIButtonTemplate" id="35" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI36" inherits="MapNotesGatheringPOIButtonTemplate" id="36" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI37" inherits="MapNotesGatheringPOIButtonTemplate" id="37" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI38" inherits="MapNotesGatheringPOIButtonTemplate" id="38" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI39" inherits="MapNotesGatheringPOIButtonTemplate" id="39" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI40" inherits="MapNotesGatheringPOIButtonTemplate" id="40" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI41" inherits="MapNotesGatheringPOIButtonTemplate" id="41" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI42" inherits="MapNotesGatheringPOIButtonTemplate" id="42" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI43" inherits="MapNotesGatheringPOIButtonTemplate" id="43" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI44" inherits="MapNotesGatheringPOIButtonTemplate" id="44" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI45" inherits="MapNotesGatheringPOIButtonTemplate" id="45" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI46" inherits="MapNotesGatheringPOIButtonTemplate" id="46" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI47" inherits="MapNotesGatheringPOIButtonTemplate" id="47" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI48" inherits="MapNotesGatheringPOIButtonTemplate" id="48" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI49" inherits="MapNotesGatheringPOIButtonTemplate" id="49" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI50" inherits="MapNotesGatheringPOIButtonTemplate" id="50" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI51" inherits="MapNotesGatheringPOIButtonTemplate" id="51" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI52" inherits="MapNotesGatheringPOIButtonTemplate" id="52" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI53" inherits="MapNotesGatheringPOIButtonTemplate" id="53" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI54" inherits="MapNotesGatheringPOIButtonTemplate" id="54" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI55" inherits="MapNotesGatheringPOIButtonTemplate" id="55" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI56" inherits="MapNotesGatheringPOIButtonTemplate" id="56" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI57" inherits="MapNotesGatheringPOIButtonTemplate" id="57" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI58" inherits="MapNotesGatheringPOIButtonTemplate" id="58" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI59" inherits="MapNotesGatheringPOIButtonTemplate" id="59" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI60" inherits="MapNotesGatheringPOIButtonTemplate" id="60" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI61" inherits="MapNotesGatheringPOIButtonTemplate" id="61" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI62" inherits="MapNotesGatheringPOIButtonTemplate" id="62" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI63" inherits="MapNotesGatheringPOIButtonTemplate" id="63" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI64" inherits="MapNotesGatheringPOIButtonTemplate" id="64" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI65" inherits="MapNotesGatheringPOIButtonTemplate" id="65" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI66" inherits="MapNotesGatheringPOIButtonTemplate" id="66" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI67" inherits="MapNotesGatheringPOIButtonTemplate" id="67" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI68" inherits="MapNotesGatheringPOIButtonTemplate" id="68" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI69" inherits="MapNotesGatheringPOIButtonTemplate" id="69" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI70" inherits="MapNotesGatheringPOIButtonTemplate" id="70" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI71" inherits="MapNotesGatheringPOIButtonTemplate" id="71" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI72" inherits="MapNotesGatheringPOIButtonTemplate" id="72" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI73" inherits="MapNotesGatheringPOIButtonTemplate" id="73" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI74" inherits="MapNotesGatheringPOIButtonTemplate" id="74" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI75" inherits="MapNotesGatheringPOIButtonTemplate" id="75" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI76" inherits="MapNotesGatheringPOIButtonTemplate" id="76" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI77" inherits="MapNotesGatheringPOIButtonTemplate" id="77" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI78" inherits="MapNotesGatheringPOIButtonTemplate" id="78" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI79" inherits="MapNotesGatheringPOIButtonTemplate" id="79" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI80" inherits="MapNotesGatheringPOIButtonTemplate" id="80" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI81" inherits="MapNotesGatheringPOIButtonTemplate" id="81" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI82" inherits="MapNotesGatheringPOIButtonTemplate" id="82" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI83" inherits="MapNotesGatheringPOIButtonTemplate" id="83" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI84" inherits="MapNotesGatheringPOIButtonTemplate" id="84" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI85" inherits="MapNotesGatheringPOIButtonTemplate" id="85" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI86" inherits="MapNotesGatheringPOIButtonTemplate" id="86" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI87" inherits="MapNotesGatheringPOIButtonTemplate" id="87" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI88" inherits="MapNotesGatheringPOIButtonTemplate" id="88" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI89" inherits="MapNotesGatheringPOIButtonTemplate" id="89" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI90" inherits="MapNotesGatheringPOIButtonTemplate" id="90" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI91" inherits="MapNotesGatheringPOIButtonTemplate" id="91" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI92" inherits="MapNotesGatheringPOIButtonTemplate" id="92" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI93" inherits="MapNotesGatheringPOIButtonTemplate" id="93" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI94" inherits="MapNotesGatheringPOIButtonTemplate" id="94" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI95" inherits="MapNotesGatheringPOIButtonTemplate" id="95" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI96" inherits="MapNotesGatheringPOIButtonTemplate" id="96" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI97" inherits="MapNotesGatheringPOIButtonTemplate" id="97" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI98" inherits="MapNotesGatheringPOIButtonTemplate" id="98" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI99" inherits="MapNotesGatheringPOIButtonTemplate" id="99" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI100" inherits="MapNotesGatheringPOIButtonTemplate" id="100" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI101" inherits="MapNotesGatheringPOIButtonTemplate" id="101" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI102" inherits="MapNotesGatheringPOIButtonTemplate" id="102" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI103" inherits="MapNotesGatheringPOIButtonTemplate" id="103" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI104" inherits="MapNotesGatheringPOIButtonTemplate" id="104" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI105" inherits="MapNotesGatheringPOIButtonTemplate" id="105" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI106" inherits="MapNotesGatheringPOIButtonTemplate" id="106" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI107" inherits="MapNotesGatheringPOIButtonTemplate" id="107" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI108" inherits="MapNotesGatheringPOIButtonTemplate" id="108" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI109" inherits="MapNotesGatheringPOIButtonTemplate" id="109" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI110" inherits="MapNotesGatheringPOIButtonTemplate" id="110" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI111" inherits="MapNotesGatheringPOIButtonTemplate" id="111" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI112" inherits="MapNotesGatheringPOIButtonTemplate" id="112" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI113" inherits="MapNotesGatheringPOIButtonTemplate" id="113" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI114" inherits="MapNotesGatheringPOIButtonTemplate" id="114" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI115" inherits="MapNotesGatheringPOIButtonTemplate" id="115" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI116" inherits="MapNotesGatheringPOIButtonTemplate" id="116" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI117" inherits="MapNotesGatheringPOIButtonTemplate" id="117" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI118" inherits="MapNotesGatheringPOIButtonTemplate" id="118" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI119" inherits="MapNotesGatheringPOIButtonTemplate" id="119" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI120" inherits="MapNotesGatheringPOIButtonTemplate" id="120" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI121" inherits="MapNotesGatheringPOIButtonTemplate" id="121" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI122" inherits="MapNotesGatheringPOIButtonTemplate" id="122" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI123" inherits="MapNotesGatheringPOIButtonTemplate" id="123" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI124" inherits="MapNotesGatheringPOIButtonTemplate" id="124" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI125" inherits="MapNotesGatheringPOIButtonTemplate" id="125" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI126" inherits="MapNotesGatheringPOIButtonTemplate" id="126" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI127" inherits="MapNotesGatheringPOIButtonTemplate" id="127" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI128" inherits="MapNotesGatheringPOIButtonTemplate" id="128" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI129" inherits="MapNotesGatheringPOIButtonTemplate" id="129" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI130" inherits="MapNotesGatheringPOIButtonTemplate" id="130" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI131" inherits="MapNotesGatheringPOIButtonTemplate" id="131" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI132" inherits="MapNotesGatheringPOIButtonTemplate" id="132" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI133" inherits="MapNotesGatheringPOIButtonTemplate" id="133" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI134" inherits="MapNotesGatheringPOIButtonTemplate" id="134" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI135" inherits="MapNotesGatheringPOIButtonTemplate" id="135" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI136" inherits="MapNotesGatheringPOIButtonTemplate" id="136" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI137" inherits="MapNotesGatheringPOIButtonTemplate" id="137" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI138" inherits="MapNotesGatheringPOIButtonTemplate" id="138" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI139" inherits="MapNotesGatheringPOIButtonTemplate" id="139" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI140" inherits="MapNotesGatheringPOIButtonTemplate" id="140" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI141" inherits="MapNotesGatheringPOIButtonTemplate" id="141" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI142" inherits="MapNotesGatheringPOIButtonTemplate" id="142" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI143" inherits="MapNotesGatheringPOIButtonTemplate" id="143" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI144" inherits="MapNotesGatheringPOIButtonTemplate" id="144" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI145" inherits="MapNotesGatheringPOIButtonTemplate" id="145" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI146" inherits="MapNotesGatheringPOIButtonTemplate" id="146" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI147" inherits="MapNotesGatheringPOIButtonTemplate" id="147" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI148" inherits="MapNotesGatheringPOIButtonTemplate" id="148" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI149" inherits="MapNotesGatheringPOIButtonTemplate" id="149" hidden="true" parent="WorldMapButton"/>
+	<Button name="MapNotesGatheringPOI150" inherits="MapNotesGatheringPOIButtonTemplate" id="150" hidden="true" parent="WorldMapButton"/>
+
+	<Frame name="MapNotesGatheringMenuFrame" hidden="true" parent="WorldMapFrame" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="195" y="98"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="MapNotesGatheringMenuHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="MAPNOTESGATHERING_MENU">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="MapNotesGatheringMenuHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="MapNotesGatheringMiniNote" inherits="MapNotesButtonTemplate" text="MAPNOTESGATHERING_MININOTE">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-37"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(10);
+					</OnLoad>
+					<OnClick>
+						PlaySound("igMainMenuOption");
+						MapNotesGathering_SetAsMiniNote(MapNotes_TempData_Id);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MapNotesButtonCancel11" inherits="MapNotesButtonTemplate" text="MAPNOTES_CANCEL">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP" relativeTo="MapNotesGatheringMiniNote">
+						<Offset>
+							<AbsDimension x="0" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(10);
+					</OnLoad>
+					<OnClick>
+						PlaySound("igMainMenuOption");
+						MapNotes_HideFrames();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(9);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+		<CheckButton name="MapNotesGatheringDropDownSubmenuIconTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(10);
+				id = tonumber(this:GetID());
+				getglobal(this:GetName().."Texture"):SetTexture("Interface\\AddOns\\MapNotesGathering\\POIIcons\\Icon"..id);
+				if (id == 1) then
+					this:SetPoint("TOPLEFT", "MapNotesGatheringVeinsDropDownSubMenu", "TOPLEFT", 15, -12);
+				elseif (id == 6) then
+					this:SetPoint("TOP", "MapNotesGatheringDropDownSubMenuIcon1", "BOTTOM", 0, -5);
+				elseif (id == 9) then
+					this:SetPoint("TOPLEFT", "MapNotesGatheringHerbsDropDownSubMenu", "TOPLEFT", 15, -12);
+				elseif (id == 14 or id == 19 or id == 24 or id == 29 or id == 34) then
+					id = id - 5;
+					this:SetPoint("TOP", "MapNotesGatheringDropDownSubMenuIcon"..id, "BOTTOM", 0, -5);
+				else
+					id = id - 1;
+					this:SetPoint("LEFT", "MapNotesGatheringDropDownSubMenuIcon"..id, "RIGHT", 20, 0);
+				end
+			</OnLoad>
+			<OnClick>
+				if ( this:GetChecked() ) then
+					PlaySound("igMainMenuOptionCheckBoxOff");
+					id = tonumber(this:GetID());
+					MapNotes_Options["Gathering"][id] = nil;
+				else
+					PlaySound("igMainMenuOptionCheckBoxOn");
+					id = tonumber(this:GetID());
+					MapNotes_Options["Gathering"][id] = "off";
+				end
+			</OnClick>
+			<OnEnter>
+				id = tonumber(this:GetID());
+				WorldMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				WorldMapTooltip:SetText(MapNotesGathering_Names[id][1]);
+			</OnEnter>
+			<OnLeave>
+				WorldMapTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+	</CheckButton>
+
+
+	<Frame name="MapNotesGatheringVeinsDropDownSubMenu" hidden="true" parent="WorldMapFrame" frameStrata="FULLSCREEN_DIALOG">
+		<Size>
+			<AbsDimension x="225" y="69"/>
+		</Size>
+		<Backdrop bgFile="Interface\AddOns\MapNotes\MiscGFX\DarkerBackground" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Frames>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon1" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="1"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon2" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="2"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon3" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="3"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon4" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="4"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon5" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="5"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon6" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="6"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon7" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="7"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon8" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="8"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(9);
+			</OnLoad>
+			<OnShow>
+				for i=1, 8, 1 do
+					if (MapNotes_Options["Gathering"][i] ~= "off") then
+						getglobal("MapNotesGatheringDropDownSubMenuIcon"..i):SetChecked(1);
+					else
+						getglobal("MapNotesGatheringDropDownSubMenuIcon"..i):SetChecked(0);
+					end
+				end
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MapNotesGatheringHerbsDropDownSubMenu" hidden="true" parent="WorldMapFrame" frameStrata="FULLSCREEN_DIALOG">
+		<Size>
+			<AbsDimension x="225" y="169"/>
+		</Size>
+		<Backdrop bgFile="Interface\AddOns\MapNotes\MiscGFX\DarkerBackground" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Frames>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon9" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="9"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon10" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="10"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon11" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="11"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon12" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="12"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon13" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="13"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon14" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="14"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon15" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="15"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon16" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="16"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon17" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="17"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon18" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="18"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon19" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="19"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon20" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="20"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon21" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="21"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon22" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="22"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon23" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="23"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon24" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="24"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon25" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="25"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon26" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="26"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon27" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="27"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon28" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="28"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon29" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="29"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon30" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="30"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon31" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="31"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon32" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="32"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon33" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="33"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon34" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="34"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon35" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="35"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon36" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="36"/>
+			<CheckButton name="MapNotesGatheringDropDownSubMenuIcon37" inherits="MapNotesGatheringDropDownSubmenuIconTemplate" hidden="false" id="37"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(9);
+			</OnLoad>
+			<OnShow>
+				for i=9, 37, 1 do
+					if (MapNotes_Options["Gathering"][i] ~= "off") then
+						getglobal("MapNotesGatheringDropDownSubMenuIcon"..i):SetChecked(1);
+					else
+						getglobal("MapNotesGatheringDropDownSubMenuIcon"..i):SetChecked(0);
+					end
+				end
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MapNotesGatheringDummyFrame" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("CHAT_MSG_SPELL_SELF_BUFF");
+				this:RegisterEvent("VARIABLES_LOADED");
+				MapNotesGathering_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MapNotesGathering_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

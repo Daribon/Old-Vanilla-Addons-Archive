@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: BarOptions
+## Author: Mugendai
+## Notes: Lets you configure extra options for the Main Bar and Action bars.
+## OptionalDeps: MCom, Sky, Cosmos
+## RequiredDeps: Sea
+MCom\MCom.xml
+BarOptions.xml

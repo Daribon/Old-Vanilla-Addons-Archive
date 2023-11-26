@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Tooltips: Color Target
+## Author: Celandro
+## Notes: Colors the background of the tooltip based on target
+## RequiredDeps: TooltipsBase
+TooltipsColorTarget.xml

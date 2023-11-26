@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: BidHelper
+## Author: sarf
+## Notes: Adds a button to the minimap, which display bid messages. Contains a list of the last bid messages.
+## OptionalDeps: Cosmos
+## SavedVariables: BidHelper_Bids, BidHelper_Enabled, BidHelper_ShowGeneric, BidHelper_ShowSuccessful, BidHelper_ShowUnsuccessful
+BidHelper.xml

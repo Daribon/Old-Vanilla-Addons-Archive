@@ -1,0 +1,7 @@
+<Bindings>
+
+	<Binding name="Toggle BuffWatch" header="BUFFWATCHHEADER">
+		BW_Toggle();
+	</Binding>
+
+</Bindings>

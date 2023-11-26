@@ -1,0 +1,20 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="localization.de.lua"/>
+    <Script file="localization.fr.lua"/>
+    <Script file="MountGatherer.lua"/>
+    <Script file="MountGatherer_AutoMount.lua"/>
+	<Frame name="MountGathererFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+		<Scripts>
+			<OnLoad>
+				MountGatherer_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MountGatherer_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				MountGatherer_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

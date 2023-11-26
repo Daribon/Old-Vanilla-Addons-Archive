@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: Monitor Status
+## Notes: Monitor Status shows party member and target status to help healers and warriors alike.
+## RequiredDeps: Chronos, Khaos
+## OptionalDeps:
+MonitorStatus.xml

@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle LootDestroyer On/Off -->
+	<Binding name="LOOTDESTROYER" description="Toggle loot destroyer" header="LOOTDESTROYERHEADER">
+		LootDestroyer_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

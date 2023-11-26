@@ -1,0 +1,1336 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="QuestShareFrame.lua"/>
+        <Button name="QuestShareTitleButtonTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="300" y="16"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <FontString name="$parentTag" inherits="GameFontNormal">
+                    <Size>
+                        <AbsDimension x="50" y="16"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="5" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                QuestShareTitleButton_OnLoad();
+            </OnLoad>
+            <OnClick>
+                QuestShareTitleButton_OnClick(arg1);
+            </OnClick>
+            <OnEnter>
+                getglobal(this:GetName().."Tag"):SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+            </OnEnter>
+            <OnLeave>
+                if (this:GetID() ~= QuestShareFrame.selectedButtonID) then
+                    getglobal(this:GetName().."Tag"):SetTextColor(this.r, this.g, this.b);
+                end
+            </OnLeave>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-MinusButton-UP">
+            <Size>
+                <AbsDimension x="16" y="16"/>
+            </Size>
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="3" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </NormalTexture>
+        <HighlightTexture name="$parentHighlight" file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD">
+            <Size>
+                <AbsDimension x="16" y="16"/>
+            </Size>
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="3" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </HighlightTexture>
+        <NormalText name="$parentNormalText" inherits="GameFontNormal" justifyH="LEFT">
+            <Size>
+                <AbsDimension x="275" y="12"/>
+            </Size>
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="20" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </NormalText>
+        <HighlightText name="$parentHighlightText" inherits="GameFontHighlight" justifyH="LEFT">
+            <Size>
+                <AbsDimension x="275" y="12"/>
+            </Size>
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="20" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </HighlightText>
+        <DisabledText name="$parentDisabledText" inherits="GameFontHighlight" justifyH="LEFT">
+            <Size>
+                <AbsDimension x="275" y="12"/>
+            </Size>
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="20" y="0"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </DisabledText>
+</Button>
+<Button name="QuestLogFrameShareButton" inherits="UIPanelButtonTemplate" text="QUESTSHARE_BUTTON_TEXT" parent="QuestLogFrame">
+		<Size>
+			<AbsDimension x="84" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="QuestFramePushQuestButton" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this,"ANCHOR_RIGHT");
+				GameTooltip:SetText(TEXT(QUESTLOG_SHARE_QUEST_LEVEL_TIP), 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				ToggleQuestShare();
+			</OnClick>
+		</Scripts>
+    </Button>
+    <Frame name="QuestShareFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+        <Size>
+            <AbsDimension x="384" y="512"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="400" y="-104"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <HitRectInsets>
+            <AbsInset left="0" right="35" top="0" bottom="75"/>
+        </HitRectInsets>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture file="Interface\QuestFrame\UI-QuestLog-BookIcon">
+                    <Size>
+                        <AbsDimension x="64" y="64"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="4" y="-4"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopLeft">
+                    <Size>
+                        <AbsDimension x="256" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                    </Anchors>
+                </Texture>
+                <Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopRight">
+                    <Size>
+                        <AbsDimension x="128" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotLeft">
+                    <Size>
+                        <AbsDimension x="256" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT"/>
+                    </Anchors>
+                </Texture>
+                <Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotRight">
+                    <Size>
+                        <AbsDimension x="128" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="QuestShareTitleText" inherits="GameFontHighlight" text="">
+                    <Size>
+                        <AbsDimension x="300" y="14"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="QuestShareFrame" relativePoint="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-15"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="QuestShareFrameRefreshButton" inherits="UIPanelButtonTemplate" text="GLOBAL_REFRESH_TAG_C">
+                <Size>
+                    <AbsDimension x="77" y="21"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="QuestShareFrame" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-205" y="81"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        QuestShare_Refresh();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Frame name="QuestSharePartyInfoFrame">
+                <Size>
+                    <AbsDimension x="54" y="32"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="120" y="-48"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Frames>
+                    <CheckButton name="QuestShareShowFiltersCheck" inherits="OptionsCheckButtonTemplate">
+                        <Size>
+                            <AbsDimension x="25" y="25"/>
+                        </Size>
+                        <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="120" y="-23"/>
+                                    </Offset>
+                                </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                Cosmos_RegisterCVar("QuestShare_ShowFiltersCheck", 1);
+                                Cosmos_SetCVar("QuestShare_ShowFiltersCheck",this:GetChecked());
+                                QuestShare_SetFilterCheckBox();
+                            </OnClick>
+                            <OnEnter>
+                                CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                                CosmosTooltip:SetText(QUESTSHARE_CB_FILTER_TIP, 1.0, 1.0, 1.0);
+                            </OnEnter>
+                            <OnLeave>
+                                CosmosTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                    </CheckButton>
+                </Frames>
+            </Frame>
+            <Frame name="QuestShareExpandButtonFrame">
+                <Size>
+                    <AbsDimension x="54" y="32"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="70" y="-48"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Frames>
+                    <Button name="QuestShareCollapseAllButton" hidden="false" inherits="QuestShareTitleButtonTemplate" text="ALL">
+                        <Size>
+                            <AbsDimension x="40" y="22"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="-48" y="-24"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture name="QuestShareExpandTabLeft" file="Interface\QuestFrame\UI-QuestLogSortTab-Left">
+                                    <Size>
+                                        <AbsDimension x="8" y="32"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="-6" y="8"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </Texture>
+                                <Texture name="QuestShareExpandTabMiddle" file="Interface\QuestFrame\UI-QuestLogSortTab-Middle">
+                                    <Size>
+                                        <AbsDimension x="38" y="32"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativeTo="QuestShareExpandTabLeft" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="0"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </Texture>
+                                <Texture file="Interface\QuestFrame\UI-QuestLogSortTab-Right">
+                                    <Size>
+                                        <AbsDimension x="8" y="32"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativeTo="QuestShareExpandTabMiddle" relativePoint="RIGHT"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnLoad>
+                                this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+                            </OnLoad>
+                            <OnClick>
+                                QuestShareCollapseAllButton_OnClick(arg1);
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+            <Button name="QuestShareFrameCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="QuestShareFrame" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-29" y="-8"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="QuestShareFrameExitButton" inherits="UIPanelButtonTemplate" text="GLOBAL_EXIT_TAG_C">
+                <Size>
+                    <AbsDimension x="77" y="21"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="QuestShareFrame" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-43" y="81"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        ToggleQuestShare();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareFrameClearButton" inherits="UIPanelButtonTemplate" text="GLOBAL_CLEAR_TAG_C">
+                <Size>
+                    <AbsDimension x="77" y="21"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="QuestShareFrame" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-124" y="81"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CLEAR_TAG_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_ClearGroup();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Frame name="QuestShareVersionFrame">
+                <Size>
+                    <AbsDimension x="70" y="22"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="CENTER" relativeTo="QuestShareFrame" relativePoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="63" y="-420"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <FontString name="QuestShareVersionLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+                        <FontString name="QuestShareVersionText" inherits="GameFontHighlightSmall" justifyH="RIGHT"/>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareVersionLabel:SetText(QUESTLOG_VERSION);
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTLOG_VERSION_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Frame>
+            <Frame name="QuestShareHighlightFrame" hidden="true">
+                <Size>
+                    <AbsDimension x="293" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture name="QuestShareHighlight" file="Interface\Buttons\UI-Listbox-Highlight2" alphaMode="ADD"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+            <Button name="QuestShareTitle1" inherits="QuestShareTitleButtonTemplate" id="1" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareFrame">
+                        <Offset>
+                            <AbsDimension x="22" y="-100"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle2" inherits="QuestShareTitleButtonTemplate" id="2" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle1" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle3" inherits="QuestShareTitleButtonTemplate" id="3" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle2" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle4" inherits="QuestShareTitleButtonTemplate" id="4" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle3" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle5" inherits="QuestShareTitleButtonTemplate" id="5" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle4" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle6" inherits="QuestShareTitleButtonTemplate" id="6" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle5" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle7" inherits="QuestShareTitleButtonTemplate" id="7" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle6" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle8" inherits="QuestShareTitleButtonTemplate" id="8" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle7" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle9" inherits="QuestShareTitleButtonTemplate" id="9" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle8" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle10" inherits="QuestShareTitleButtonTemplate" id="10" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle9" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle11" inherits="QuestShareTitleButtonTemplate" id="11" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle10" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle12" inherits="QuestShareTitleButtonTemplate" id="12" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle11" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle13" inherits="QuestShareTitleButtonTemplate" id="13" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle12" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle14" inherits="QuestShareTitleButtonTemplate" id="14" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle13" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle15" inherits="QuestShareTitleButtonTemplate" id="15" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle14" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle16" inherits="QuestShareTitleButtonTemplate" id="16" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle15" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle17" inherits="QuestShareTitleButtonTemplate" id="17" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle16" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle18" inherits="QuestShareTitleButtonTemplate" id="18" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle17" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle19" inherits="QuestShareTitleButtonTemplate" id="19" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle18" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="QuestShareTitle20" inherits="QuestShareTitleButtonTemplate" id="20" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitle19" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        QuestShare_SetItemToolTip(this);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <CheckButton name="QuestShareTitleCheck1" inherits="OptionsCheckButtonTemplate" id="1" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareFrame">
+                        <Offset>
+                            <AbsDimension x="22" y="-96"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck2" inherits="OptionsCheckButtonTemplate" id="2" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck1" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck3" inherits="OptionsCheckButtonTemplate" id="3" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck2" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck4" inherits="OptionsCheckButtonTemplate" id="4" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck3" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck5" inherits="OptionsCheckButtonTemplate" id="5" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck4" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck6" inherits="OptionsCheckButtonTemplate" id="6" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck5" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck7" inherits="OptionsCheckButtonTemplate" id="7" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck6" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck8" inherits="OptionsCheckButtonTemplate" id="8" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck7" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck9" inherits="OptionsCheckButtonTemplate" id="10" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck8" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck10" inherits="OptionsCheckButtonTemplate" id="10" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck9" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck11" inherits="OptionsCheckButtonTemplate" id="11" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck10" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck12" inherits="OptionsCheckButtonTemplate" id="12" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck11" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck13" inherits="OptionsCheckButtonTemplate" id="13" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck12" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck14" inherits="OptionsCheckButtonTemplate" id="14" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck13" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck15" inherits="OptionsCheckButtonTemplate" id="15" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck14" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck16" inherits="OptionsCheckButtonTemplate" id="16" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck15" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck17" inherits="OptionsCheckButtonTemplate" id="17" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck16" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck18" inherits="OptionsCheckButtonTemplate" id="18" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck17" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck19" inherits="OptionsCheckButtonTemplate" id="19" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck18" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="QuestShareTitleCheck20" inherits="OptionsCheckButtonTemplate" id="20" hidden="true">
+                <Size>
+                    <AbsDimension x="25" y="25"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="QuestShareTitleCheck19" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        QuestShareTitleCheck_OnLoad();
+                    </OnLoad>
+                    <OnEnter>
+                        CosmosTooltip:SetOwner(this,"ANCHOR_RIGHT");
+                        CosmosTooltip:SetText(QUESTSHARE_CB_ITEM_TIP, 1.0, 1.0, 1.0);
+                    </OnEnter>
+                    <OnLeave>
+                        CosmosTooltip:Hide();
+                    </OnLeave>
+                    <OnClick>
+                        QuestShare_FilterClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <ScrollFrame name="QuestShareListScrollFrame" inherits="ClassTrainerListScrollFrameTemplate">
+                <Size>
+                    <AbsDimension x="293" y="310"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="QuestShareFrame">
+                        <Offset>
+                            <AbsDimension x="-67" y="-96"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnVerticalScroll>
+                        FauxScrollFrame_OnVerticalScroll(QUESTSHARE_QUEST_HEIGHT, QuestShare_Update);
+                    </OnVerticalScroll>
+                </Scripts>
+            </ScrollFrame>
+        </Frames>
+        <Scripts>
+            <OnEvent>
+                QuestShare_OnEvent(event, message);
+            </OnEvent>
+            <OnLoad>
+                QuestShare_OnLoad();
+            </OnLoad>
+            <OnShow>
+                --QuestShare_OnShow();
+            </OnShow>
+            <OnHide>
+                --QuestShare_OnHide();
+            </OnHide>
+        </Scripts>
+    </Frame>
+</Ui>

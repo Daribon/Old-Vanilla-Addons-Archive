@@ -1,0 +1,9 @@
+## Interface: 1700
+## Title: Sky
+## Title-frFR: Sky
+## Author: Alexander Brazie, Karl Isenberg
+## Notes: Network Communication Library for Mods
+## Notes-frFR: Librairie de fonctions pour WoW
+## RequiredDeps: Chronos, Sea
+## SavedVariables: SkyUserList, SkyHiddenJoinLeaveAlerts
+Sky.xml

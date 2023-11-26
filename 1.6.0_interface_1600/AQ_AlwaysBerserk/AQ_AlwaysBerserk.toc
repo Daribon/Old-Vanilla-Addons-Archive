@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: [AQ] AlwaysBerserk
+## Author: sarf
+## Notes: Tries to Berserk when possible
+## RequiredDeps: ActionQueue
+## NonSavedVariables: AQ_AlwaysBerserk_Options
+AQ_AlwaysBerserk.xml

@@ -1,0 +1,46 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="BagGauge.lua"/>
+	<Script file="localization.lua"/>
+	<StatusBar name="BagGaugeFrame" toplevel="true" frameStrata="TOOLTIP" enableMouse="true" hidden="false" parent="GBagBar" inherits="TextStatusBar">
+		<Backdrop name="$BagGaugeBackdrop" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="1"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="4"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="8" right="8" top="8" bottom="8"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Size>
+			<AbsDimension y="8"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativeTo="GBackpackButton" relativePoint="BOTTOMRIGHT"/>
+			<Anchor point="BOTTOMLEFT" relativeTo="GBagSlot3" relativePoint="BOTTOMLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="BagGaugeLabel" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				BagGauge_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				BagGauge_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				BagGauge_OnClick();
+			</OnClick>
+		</Scripts>
+		<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+	</StatusBar>
+</Ui>

@@ -1,0 +1,66 @@
+1. Introduction
+2. Howto
+3. Known limitations
+4. Contact info
+
+1. Introduction
+
+EnemySpellDetector makes it easy to detect when the enemy does something 
+you want your addon to respond to. It is the purpose of this addon to be 
+language independent, however, currently only English is supported, as 
+this is a test release.
+
+2. Howto
+
+To use EnemySpellDetector, simply create a function that should be called 
+whenever the enemy does something, and register it with EnemySpellDetector.
+
+
+To register your function, call :
+EnemySpellDetector_AddListener(eventType, functionName)
+
+eventTypes:
+
+EnemySpellDetector_Type_Cast - normal spell being cast
+EnemySpellDetector_Type_Gain - target / performer gains action
+EnemySpellDetector_Type_Perform - performer performs action (against target)
+EnemySpellDetector_Type_BeginCast - performer begins to cast action
+EnemySpellDetector_Type_BeginPerform - performer begins to perform action
+
+
+If you wish to register your function with several event types, you will need 
+to call EnemySpellDetector_AddListener several times or you can use a table 
+in place of eventType.
+
+
+Your function should look like the following (except for name) :
+
+function EnemySpellDetector_ListenerCallback(performer, action, target, ...)
+
+Parameter description:
+
+performer - who performed the action (if available, otherwise null)
+action - what was performed (should never be null)
+target - who was the target of the action (if available, may be null)
+
+Note that there are other functions (EnemySpellDetector_RemoveListener for 
+example) but most of those are actually quite unnecessary for you to use.
+EnemySpellDetector is made to be easy to use and (relatively) lightweight,
+both in deployment and when using/coding for it.
+
+
+3. Known limitations
+
+
+Your function CAN NOT be declared local. 
+You can try using a function pointer instead of a function name. The code 
+for this is experimental at best, though.
+It is not possible to identify a non player character uniquely from the 
+chat messages.
+
+
+
+4. Contact info
+
+Contact me (sarf) via Curse private messages, or by Cosmos UI 
+private messages. I use the nick "sarf" (without the ":s).

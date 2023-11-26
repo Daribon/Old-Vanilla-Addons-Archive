@@ -1,0 +1,8 @@
+## Interface: 4216
+## Title: PopBar
+## Author: Mugendai
+## Notes: PopBar is a highly configurable self hiding action bar.
+## OptionalDeps: Cosmos, Chronos
+## RequiredDeps: Sea
+## SavedVariables: PopBar_Config
+PopBar.xml

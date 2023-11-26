@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: Improved Assist
+## Author: Sanchek
+## SavedVariables:
+ImprovedAssist.xml

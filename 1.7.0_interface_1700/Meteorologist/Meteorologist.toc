@@ -1,0 +1,7 @@
+## Interface: 1700
+## Title: Meteorologist
+## Notes: Tracks Sky users.
+## Author: AnduinLothar
+## SavedVariables: ServerChannelList
+## Dependencies: Sky, Sea, Chronos, Earth
+Meteorologist.xml

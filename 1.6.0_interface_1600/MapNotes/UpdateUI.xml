@@ -1,0 +1,23 @@
+<Addon name="Map Notes (Cont.)" author="Oystein" email="" url="http://www.wowguru.com/ui/map-notes-cont">
+	<Description>From Meog's description of Map Notes:
+-------------------------
+Map Notes is an AddOn that helps you keeping track of interesting locations in WoW and finding them again. For this purpose Map Notes offers two main functions:
+1. Marking notes on the worldmap
+2. Showing one of these notes on the minimap (see MiniNote)
+
+Beside these there are several other options to influence the appearance of the notes on the worldmap (Click on the thumbnail to see how a map could look after placeing several notes).
+--------------------------
+
+Since Meog seems to have abandoned this addon, I decided to put up a new version with some fixed bugs. My intention for now is not to add new features (though who knows), but rather to keep it up to date with Blizzards changes.
+
+Oh, and if Meog ever decides to come back, I'll be more than happy to let him take over again :)
+
+
+Any problems you have with MapNotes (which aren't fixed in the version notes), please post them here! Any patches you'd like to see incorporated, please email me at opium AT geheb DOT com.
+
+For full documentation, see the original Map Notes at http://www.wowwiki.com/Map_Notes
+
+IMPORTANT: There was a bug in the original version of Map Notes included in the European version of UltimateUI, which has been kept there in subsequent versions to be backwards compatible. This means any map notes you created with those versions, will appear in the wrong zone with this one. The solution for this, is to install this version of Map Notes, backup your SavedVariables.lua, and then executing '/script MapNotes_ConvertOldNotes()' in the chat window.</Description>
+	<UpdateFile listed="true" url="http://www.wowguru.com/ui/map-notes-cont/xml/" />
+	<CurrentVersion ver="1.5c" />
+</Addon>

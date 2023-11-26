@@ -1,0 +1,4 @@
+## Interface: 4216
+## SavedVariables: error_message_reportlist
+## Dependencies: Chronos
+ImprovedErrorFrame.xml

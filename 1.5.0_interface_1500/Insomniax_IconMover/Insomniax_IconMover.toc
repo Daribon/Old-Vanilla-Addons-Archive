@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX IconMover v1.0
+## Notes: Allows the Insomniax Shell Buttons to be moved around the minimap.
+## Author: Ramdor
+## SavedVariables: IX_IconPositions
+Insomniax_IconMover.xml

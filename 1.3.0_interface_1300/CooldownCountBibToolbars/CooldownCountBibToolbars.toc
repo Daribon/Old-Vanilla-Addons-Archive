@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (BibToolbars)
+## Notes: CooldownCount for BibToolbars
+## Author: sarf
+## RequiredDeps: BibToolbars, CooldownCount
+CooldownCountBibToolbars.xml

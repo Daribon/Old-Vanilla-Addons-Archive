@@ -1,0 +1,628 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+	..\FrameXML\UI.xsd">
+	<!--
+		Version: 2.0.1
+		Revision: $Id: Gatherer.xml,v 1.2 2005/04/28 02:43:23 norganna Exp $
+	-->
+	<Script file="localization.lua"/>
+	<Script file="GatherRegionData.lua"/>
+	<Script file="GatherIcons.lua"/>
+	<Script file="Gatherer.lua"/>
+	<Script file="GatherBase.lua"/>
+	<Frame name="Gatherer" parent="UIParent">
+		<Size>
+			<AbsDimension x="0" y="0"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				Gatherer_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Gatherer_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				Gatherer_TimeCheck(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Button name="GatherNoteTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="12" y="12"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="MinimapBackdrop" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-51" y="60"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+			</OnLoad>
+			<OnEvent>
+				Gatherer_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				local name, count, dist = Gatherer_MakeName(this:GetID())
+				GameTooltip:SetText(name, 1.0, 0.82, 0.0, 1,1);
+				GameTooltip:AddLine("Count: "..count, 0.82, 1.0, 0.0);
+				GameTooltip:AddLine(dist.." units ("..(dist*4).." secs)", 0.0, 0.82, 1.0);
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseUp>
+				Gatherer_OnClick();
+			</OnMouseUp>
+		</Scripts>
+		<NormalTexture name="$parentTexture" file="Interface\AddOns\Gatherer\IconGatherTest"/>
+	</Button>
+	<Button name="GatherNote1" inherits="GatherNoteTemplate" id="1" hidden="false" parent="Minimap" toplevel="true">
+		<Scripts>
+			<OnUpdate>
+				Gatherer_OnUpdate(arg1);
+			</OnUpdate>
+			<OnLoad>
+				this:RegisterEvent("MINIMAP_UPDATE_ZOOM");
+				this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+		</Scripts>
+	</Button>		
+	<Button name="GatherNote2" inherits="GatherNoteTemplate" id="2" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote3" inherits="GatherNoteTemplate" id="3" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote4" inherits="GatherNoteTemplate" id="4" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote5" inherits="GatherNoteTemplate" id="5" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote6" inherits="GatherNoteTemplate" id="6" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote7" inherits="GatherNoteTemplate" id="7" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote8" inherits="GatherNoteTemplate" id="8" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote9" inherits="GatherNoteTemplate" id="9" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote10" inherits="GatherNoteTemplate" id="10" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote11" inherits="GatherNoteTemplate" id="11" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote12" inherits="GatherNoteTemplate" id="12" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote13" inherits="GatherNoteTemplate" id="13" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote14" inherits="GatherNoteTemplate" id="14" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote15" inherits="GatherNoteTemplate" id="15" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote16" inherits="GatherNoteTemplate" id="16" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote17" inherits="GatherNoteTemplate" id="17" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote18" inherits="GatherNoteTemplate" id="18" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote19" inherits="GatherNoteTemplate" id="19" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote20" inherits="GatherNoteTemplate" id="20" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote21" inherits="GatherNoteTemplate" id="21" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote22" inherits="GatherNoteTemplate" id="22" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote23" inherits="GatherNoteTemplate" id="23" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote24" inherits="GatherNoteTemplate" id="24" hidden="false" parent="Minimap" toplevel="true"/>
+	<Button name="GatherNote25" inherits="GatherNoteTemplate" id="25" hidden="false" parent="Minimap" toplevel="true"/>
+
+	
+	<Button name="GatherMainTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="12" y="12"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				local x, y = this:GetCenter();
+				local parentX, parentY = this:GetParent():GetCenter();
+				if ( x > parentX ) then
+					WorldMapTooltip:SetOwner(this, "ANCHOR_LEFT");
+				else
+					WorldMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				end
+				WorldMapTooltip:SetText(this.toolTip);
+				WorldMapTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				WorldMapTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture name="$parentTexture" file="Interface\AddOns\Gatherer\IconGatherTest"/>
+	</Button>
+
+	<Button name="GatherMain1000" inherits="GatherMainTemplate" id="1000" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1001" inherits="GatherMainTemplate" id="1001" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1002" inherits="GatherMainTemplate" id="1002" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1003" inherits="GatherMainTemplate" id="1003" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1004" inherits="GatherMainTemplate" id="1004" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1005" inherits="GatherMainTemplate" id="1005" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1006" inherits="GatherMainTemplate" id="1006" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1007" inherits="GatherMainTemplate" id="1007" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1008" inherits="GatherMainTemplate" id="1008" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1009" inherits="GatherMainTemplate" id="1009" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1010" inherits="GatherMainTemplate" id="1010" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1011" inherits="GatherMainTemplate" id="1011" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1012" inherits="GatherMainTemplate" id="1012" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1013" inherits="GatherMainTemplate" id="1013" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1014" inherits="GatherMainTemplate" id="1014" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1015" inherits="GatherMainTemplate" id="1015" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1016" inherits="GatherMainTemplate" id="1016" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1017" inherits="GatherMainTemplate" id="1017" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1018" inherits="GatherMainTemplate" id="1018" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1019" inherits="GatherMainTemplate" id="1019" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1020" inherits="GatherMainTemplate" id="1020" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1021" inherits="GatherMainTemplate" id="1021" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1022" inherits="GatherMainTemplate" id="1022" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1023" inherits="GatherMainTemplate" id="1023" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1024" inherits="GatherMainTemplate" id="1024" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1025" inherits="GatherMainTemplate" id="1025" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1026" inherits="GatherMainTemplate" id="1026" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1027" inherits="GatherMainTemplate" id="1027" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1028" inherits="GatherMainTemplate" id="1028" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1029" inherits="GatherMainTemplate" id="1029" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1030" inherits="GatherMainTemplate" id="1030" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1031" inherits="GatherMainTemplate" id="1031" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1032" inherits="GatherMainTemplate" id="1032" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1033" inherits="GatherMainTemplate" id="1033" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1034" inherits="GatherMainTemplate" id="1034" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1035" inherits="GatherMainTemplate" id="1035" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1036" inherits="GatherMainTemplate" id="1036" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1037" inherits="GatherMainTemplate" id="1037" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1038" inherits="GatherMainTemplate" id="1038" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1039" inherits="GatherMainTemplate" id="1039" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1040" inherits="GatherMainTemplate" id="1040" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1041" inherits="GatherMainTemplate" id="1041" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1042" inherits="GatherMainTemplate" id="1042" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1043" inherits="GatherMainTemplate" id="1043" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1044" inherits="GatherMainTemplate" id="1044" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1045" inherits="GatherMainTemplate" id="1045" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1046" inherits="GatherMainTemplate" id="1046" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1047" inherits="GatherMainTemplate" id="1047" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1048" inherits="GatherMainTemplate" id="1048" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1049" inherits="GatherMainTemplate" id="1049" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1050" inherits="GatherMainTemplate" id="1050" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1051" inherits="GatherMainTemplate" id="1051" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1052" inherits="GatherMainTemplate" id="1052" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1053" inherits="GatherMainTemplate" id="1053" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1054" inherits="GatherMainTemplate" id="1054" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1055" inherits="GatherMainTemplate" id="1055" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1056" inherits="GatherMainTemplate" id="1056" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1057" inherits="GatherMainTemplate" id="1057" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1058" inherits="GatherMainTemplate" id="1058" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1059" inherits="GatherMainTemplate" id="1059" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1060" inherits="GatherMainTemplate" id="1060" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1061" inherits="GatherMainTemplate" id="1061" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1062" inherits="GatherMainTemplate" id="1062" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1063" inherits="GatherMainTemplate" id="1063" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1064" inherits="GatherMainTemplate" id="1064" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1065" inherits="GatherMainTemplate" id="1065" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1066" inherits="GatherMainTemplate" id="1066" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1067" inherits="GatherMainTemplate" id="1067" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1068" inherits="GatherMainTemplate" id="1068" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1069" inherits="GatherMainTemplate" id="1069" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1070" inherits="GatherMainTemplate" id="1070" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1071" inherits="GatherMainTemplate" id="1071" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1072" inherits="GatherMainTemplate" id="1072" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1073" inherits="GatherMainTemplate" id="1073" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1074" inherits="GatherMainTemplate" id="1074" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1075" inherits="GatherMainTemplate" id="1075" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1076" inherits="GatherMainTemplate" id="1076" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1077" inherits="GatherMainTemplate" id="1077" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1078" inherits="GatherMainTemplate" id="1078" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1079" inherits="GatherMainTemplate" id="1079" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1080" inherits="GatherMainTemplate" id="1080" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1081" inherits="GatherMainTemplate" id="1081" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1082" inherits="GatherMainTemplate" id="1082" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1083" inherits="GatherMainTemplate" id="1083" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1084" inherits="GatherMainTemplate" id="1084" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1085" inherits="GatherMainTemplate" id="1085" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1086" inherits="GatherMainTemplate" id="1086" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1087" inherits="GatherMainTemplate" id="1087" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1088" inherits="GatherMainTemplate" id="1088" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1089" inherits="GatherMainTemplate" id="1089" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1090" inherits="GatherMainTemplate" id="1090" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1091" inherits="GatherMainTemplate" id="1091" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1092" inherits="GatherMainTemplate" id="1092" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1093" inherits="GatherMainTemplate" id="1093" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1094" inherits="GatherMainTemplate" id="1094" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1095" inherits="GatherMainTemplate" id="1095" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1096" inherits="GatherMainTemplate" id="1096" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1097" inherits="GatherMainTemplate" id="1097" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1098" inherits="GatherMainTemplate" id="1098" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1099" inherits="GatherMainTemplate" id="1099" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1100" inherits="GatherMainTemplate" id="1100" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1101" inherits="GatherMainTemplate" id="1101" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1102" inherits="GatherMainTemplate" id="1102" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1103" inherits="GatherMainTemplate" id="1103" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1104" inherits="GatherMainTemplate" id="1104" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1105" inherits="GatherMainTemplate" id="1105" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1106" inherits="GatherMainTemplate" id="1106" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1107" inherits="GatherMainTemplate" id="1107" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1108" inherits="GatherMainTemplate" id="1108" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1109" inherits="GatherMainTemplate" id="1109" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1110" inherits="GatherMainTemplate" id="1110" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1111" inherits="GatherMainTemplate" id="1111" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1112" inherits="GatherMainTemplate" id="1112" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1113" inherits="GatherMainTemplate" id="1113" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1114" inherits="GatherMainTemplate" id="1114" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1115" inherits="GatherMainTemplate" id="1115" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1116" inherits="GatherMainTemplate" id="1116" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1117" inherits="GatherMainTemplate" id="1117" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1118" inherits="GatherMainTemplate" id="1118" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1119" inherits="GatherMainTemplate" id="1119" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1120" inherits="GatherMainTemplate" id="1120" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1121" inherits="GatherMainTemplate" id="1121" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1122" inherits="GatherMainTemplate" id="1122" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1123" inherits="GatherMainTemplate" id="1123" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1124" inherits="GatherMainTemplate" id="1124" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1125" inherits="GatherMainTemplate" id="1125" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1126" inherits="GatherMainTemplate" id="1126" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1127" inherits="GatherMainTemplate" id="1127" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1128" inherits="GatherMainTemplate" id="1128" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1129" inherits="GatherMainTemplate" id="1129" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1130" inherits="GatherMainTemplate" id="1130" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1131" inherits="GatherMainTemplate" id="1131" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1132" inherits="GatherMainTemplate" id="1132" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1133" inherits="GatherMainTemplate" id="1133" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1134" inherits="GatherMainTemplate" id="1134" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1135" inherits="GatherMainTemplate" id="1135" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1136" inherits="GatherMainTemplate" id="1136" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1137" inherits="GatherMainTemplate" id="1137" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1138" inherits="GatherMainTemplate" id="1138" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1139" inherits="GatherMainTemplate" id="1139" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1140" inherits="GatherMainTemplate" id="1140" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1141" inherits="GatherMainTemplate" id="1141" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1142" inherits="GatherMainTemplate" id="1142" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1143" inherits="GatherMainTemplate" id="1143" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1144" inherits="GatherMainTemplate" id="1144" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1145" inherits="GatherMainTemplate" id="1145" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1146" inherits="GatherMainTemplate" id="1146" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1147" inherits="GatherMainTemplate" id="1147" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1148" inherits="GatherMainTemplate" id="1148" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1149" inherits="GatherMainTemplate" id="1149" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1150" inherits="GatherMainTemplate" id="1150" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1151" inherits="GatherMainTemplate" id="1151" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1152" inherits="GatherMainTemplate" id="1152" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1153" inherits="GatherMainTemplate" id="1153" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1154" inherits="GatherMainTemplate" id="1154" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1155" inherits="GatherMainTemplate" id="1155" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1156" inherits="GatherMainTemplate" id="1156" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1157" inherits="GatherMainTemplate" id="1157" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1158" inherits="GatherMainTemplate" id="1158" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1159" inherits="GatherMainTemplate" id="1159" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1160" inherits="GatherMainTemplate" id="1160" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1161" inherits="GatherMainTemplate" id="1161" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1162" inherits="GatherMainTemplate" id="1162" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1163" inherits="GatherMainTemplate" id="1163" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1164" inherits="GatherMainTemplate" id="1164" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1165" inherits="GatherMainTemplate" id="1165" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1166" inherits="GatherMainTemplate" id="1166" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1167" inherits="GatherMainTemplate" id="1167" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1168" inherits="GatherMainTemplate" id="1168" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1169" inherits="GatherMainTemplate" id="1169" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1170" inherits="GatherMainTemplate" id="1170" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1171" inherits="GatherMainTemplate" id="1171" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1172" inherits="GatherMainTemplate" id="1172" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1173" inherits="GatherMainTemplate" id="1173" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1174" inherits="GatherMainTemplate" id="1174" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1175" inherits="GatherMainTemplate" id="1175" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1176" inherits="GatherMainTemplate" id="1176" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1177" inherits="GatherMainTemplate" id="1177" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1178" inherits="GatherMainTemplate" id="1178" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1179" inherits="GatherMainTemplate" id="1179" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1180" inherits="GatherMainTemplate" id="1180" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1181" inherits="GatherMainTemplate" id="1181" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1182" inherits="GatherMainTemplate" id="1182" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1183" inherits="GatherMainTemplate" id="1183" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1184" inherits="GatherMainTemplate" id="1184" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1185" inherits="GatherMainTemplate" id="1185" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1186" inherits="GatherMainTemplate" id="1186" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1187" inherits="GatherMainTemplate" id="1187" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1188" inherits="GatherMainTemplate" id="1188" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1189" inherits="GatherMainTemplate" id="1189" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1190" inherits="GatherMainTemplate" id="1190" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1191" inherits="GatherMainTemplate" id="1191" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1192" inherits="GatherMainTemplate" id="1192" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1193" inherits="GatherMainTemplate" id="1193" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1194" inherits="GatherMainTemplate" id="1194" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1195" inherits="GatherMainTemplate" id="1195" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1196" inherits="GatherMainTemplate" id="1196" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1197" inherits="GatherMainTemplate" id="1197" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1198" inherits="GatherMainTemplate" id="1198" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1199" inherits="GatherMainTemplate" id="1199" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1200" inherits="GatherMainTemplate" id="1200" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1201" inherits="GatherMainTemplate" id="1201" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1202" inherits="GatherMainTemplate" id="1202" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1203" inherits="GatherMainTemplate" id="1203" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1204" inherits="GatherMainTemplate" id="1204" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1205" inherits="GatherMainTemplate" id="1205" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1206" inherits="GatherMainTemplate" id="1206" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1207" inherits="GatherMainTemplate" id="1207" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1208" inherits="GatherMainTemplate" id="1208" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1209" inherits="GatherMainTemplate" id="1209" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1210" inherits="GatherMainTemplate" id="1210" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1211" inherits="GatherMainTemplate" id="1211" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1212" inherits="GatherMainTemplate" id="1212" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1213" inherits="GatherMainTemplate" id="1213" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1214" inherits="GatherMainTemplate" id="1214" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1215" inherits="GatherMainTemplate" id="1215" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1216" inherits="GatherMainTemplate" id="1216" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1217" inherits="GatherMainTemplate" id="1217" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1218" inherits="GatherMainTemplate" id="1218" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1219" inherits="GatherMainTemplate" id="1219" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1220" inherits="GatherMainTemplate" id="1220" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1221" inherits="GatherMainTemplate" id="1221" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1222" inherits="GatherMainTemplate" id="1222" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1223" inherits="GatherMainTemplate" id="1223" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1224" inherits="GatherMainTemplate" id="1224" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1225" inherits="GatherMainTemplate" id="1225" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1226" inherits="GatherMainTemplate" id="1226" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1227" inherits="GatherMainTemplate" id="1227" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1228" inherits="GatherMainTemplate" id="1228" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1229" inherits="GatherMainTemplate" id="1229" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1230" inherits="GatherMainTemplate" id="1230" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1231" inherits="GatherMainTemplate" id="1231" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1232" inherits="GatherMainTemplate" id="1232" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1233" inherits="GatherMainTemplate" id="1233" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1234" inherits="GatherMainTemplate" id="1234" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1235" inherits="GatherMainTemplate" id="1235" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1236" inherits="GatherMainTemplate" id="1236" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1237" inherits="GatherMainTemplate" id="1237" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1238" inherits="GatherMainTemplate" id="1238" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1239" inherits="GatherMainTemplate" id="1239" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1240" inherits="GatherMainTemplate" id="1240" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1241" inherits="GatherMainTemplate" id="1241" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1242" inherits="GatherMainTemplate" id="1242" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1243" inherits="GatherMainTemplate" id="1243" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1244" inherits="GatherMainTemplate" id="1244" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1245" inherits="GatherMainTemplate" id="1245" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1246" inherits="GatherMainTemplate" id="1246" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1247" inherits="GatherMainTemplate" id="1247" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1248" inherits="GatherMainTemplate" id="1248" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1249" inherits="GatherMainTemplate" id="1249" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1250" inherits="GatherMainTemplate" id="1250" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1251" inherits="GatherMainTemplate" id="1251" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1252" inherits="GatherMainTemplate" id="1252" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1253" inherits="GatherMainTemplate" id="1253" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1254" inherits="GatherMainTemplate" id="1254" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1255" inherits="GatherMainTemplate" id="1255" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1256" inherits="GatherMainTemplate" id="1256" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1257" inherits="GatherMainTemplate" id="1257" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1258" inherits="GatherMainTemplate" id="1258" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1259" inherits="GatherMainTemplate" id="1259" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1260" inherits="GatherMainTemplate" id="1260" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1261" inherits="GatherMainTemplate" id="1261" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1262" inherits="GatherMainTemplate" id="1262" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1263" inherits="GatherMainTemplate" id="1263" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1264" inherits="GatherMainTemplate" id="1264" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1265" inherits="GatherMainTemplate" id="1265" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1266" inherits="GatherMainTemplate" id="1266" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1267" inherits="GatherMainTemplate" id="1267" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1268" inherits="GatherMainTemplate" id="1268" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1269" inherits="GatherMainTemplate" id="1269" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1270" inherits="GatherMainTemplate" id="1270" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1271" inherits="GatherMainTemplate" id="1271" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1272" inherits="GatherMainTemplate" id="1272" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1273" inherits="GatherMainTemplate" id="1273" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1274" inherits="GatherMainTemplate" id="1274" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1275" inherits="GatherMainTemplate" id="1275" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1276" inherits="GatherMainTemplate" id="1276" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1277" inherits="GatherMainTemplate" id="1277" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1278" inherits="GatherMainTemplate" id="1278" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1279" inherits="GatherMainTemplate" id="1279" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1280" inherits="GatherMainTemplate" id="1280" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1281" inherits="GatherMainTemplate" id="1281" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1282" inherits="GatherMainTemplate" id="1282" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1283" inherits="GatherMainTemplate" id="1283" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1284" inherits="GatherMainTemplate" id="1284" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1285" inherits="GatherMainTemplate" id="1285" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1286" inherits="GatherMainTemplate" id="1286" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1287" inherits="GatherMainTemplate" id="1287" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1288" inherits="GatherMainTemplate" id="1288" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1289" inherits="GatherMainTemplate" id="1289" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1290" inherits="GatherMainTemplate" id="1290" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1291" inherits="GatherMainTemplate" id="1291" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1292" inherits="GatherMainTemplate" id="1292" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1293" inherits="GatherMainTemplate" id="1293" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1294" inherits="GatherMainTemplate" id="1294" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1295" inherits="GatherMainTemplate" id="1295" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1296" inherits="GatherMainTemplate" id="1296" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1297" inherits="GatherMainTemplate" id="1297" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1298" inherits="GatherMainTemplate" id="1298" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1299" inherits="GatherMainTemplate" id="1299" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1300" inherits="GatherMainTemplate" id="1300" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1301" inherits="GatherMainTemplate" id="1301" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1302" inherits="GatherMainTemplate" id="1302" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1303" inherits="GatherMainTemplate" id="1303" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1304" inherits="GatherMainTemplate" id="1304" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1305" inherits="GatherMainTemplate" id="1305" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1306" inherits="GatherMainTemplate" id="1306" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1307" inherits="GatherMainTemplate" id="1307" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1308" inherits="GatherMainTemplate" id="1308" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1309" inherits="GatherMainTemplate" id="1309" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1310" inherits="GatherMainTemplate" id="1310" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1311" inherits="GatherMainTemplate" id="1311" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1312" inherits="GatherMainTemplate" id="1312" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1313" inherits="GatherMainTemplate" id="1313" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1314" inherits="GatherMainTemplate" id="1314" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1315" inherits="GatherMainTemplate" id="1315" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1316" inherits="GatherMainTemplate" id="1316" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1317" inherits="GatherMainTemplate" id="1317" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1318" inherits="GatherMainTemplate" id="1318" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1319" inherits="GatherMainTemplate" id="1319" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1320" inherits="GatherMainTemplate" id="1320" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1321" inherits="GatherMainTemplate" id="1321" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1322" inherits="GatherMainTemplate" id="1322" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1323" inherits="GatherMainTemplate" id="1323" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1324" inherits="GatherMainTemplate" id="1324" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1325" inherits="GatherMainTemplate" id="1325" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1326" inherits="GatherMainTemplate" id="1326" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1327" inherits="GatherMainTemplate" id="1327" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1328" inherits="GatherMainTemplate" id="1328" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1329" inherits="GatherMainTemplate" id="1329" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1330" inherits="GatherMainTemplate" id="1330" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1331" inherits="GatherMainTemplate" id="1331" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1332" inherits="GatherMainTemplate" id="1332" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1333" inherits="GatherMainTemplate" id="1333" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1334" inherits="GatherMainTemplate" id="1334" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1335" inherits="GatherMainTemplate" id="1335" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1336" inherits="GatherMainTemplate" id="1336" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1337" inherits="GatherMainTemplate" id="1337" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1338" inherits="GatherMainTemplate" id="1338" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1339" inherits="GatherMainTemplate" id="1339" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1340" inherits="GatherMainTemplate" id="1340" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1341" inherits="GatherMainTemplate" id="1341" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1342" inherits="GatherMainTemplate" id="1342" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1343" inherits="GatherMainTemplate" id="1343" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1344" inherits="GatherMainTemplate" id="1344" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1345" inherits="GatherMainTemplate" id="1345" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1346" inherits="GatherMainTemplate" id="1346" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1347" inherits="GatherMainTemplate" id="1347" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1348" inherits="GatherMainTemplate" id="1348" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1349" inherits="GatherMainTemplate" id="1349" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1350" inherits="GatherMainTemplate" id="1350" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1351" inherits="GatherMainTemplate" id="1351" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1352" inherits="GatherMainTemplate" id="1352" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1353" inherits="GatherMainTemplate" id="1353" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1354" inherits="GatherMainTemplate" id="1354" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1355" inherits="GatherMainTemplate" id="1355" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1356" inherits="GatherMainTemplate" id="1356" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1357" inherits="GatherMainTemplate" id="1357" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1358" inherits="GatherMainTemplate" id="1358" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1359" inherits="GatherMainTemplate" id="1359" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1360" inherits="GatherMainTemplate" id="1360" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1361" inherits="GatherMainTemplate" id="1361" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1362" inherits="GatherMainTemplate" id="1362" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1363" inherits="GatherMainTemplate" id="1363" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1364" inherits="GatherMainTemplate" id="1364" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1365" inherits="GatherMainTemplate" id="1365" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1366" inherits="GatherMainTemplate" id="1366" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1367" inherits="GatherMainTemplate" id="1367" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1368" inherits="GatherMainTemplate" id="1368" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1369" inherits="GatherMainTemplate" id="1369" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1370" inherits="GatherMainTemplate" id="1370" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1371" inherits="GatherMainTemplate" id="1371" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1372" inherits="GatherMainTemplate" id="1372" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1373" inherits="GatherMainTemplate" id="1373" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1374" inherits="GatherMainTemplate" id="1374" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1375" inherits="GatherMainTemplate" id="1375" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1376" inherits="GatherMainTemplate" id="1376" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1377" inherits="GatherMainTemplate" id="1377" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1378" inherits="GatherMainTemplate" id="1378" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1379" inherits="GatherMainTemplate" id="1379" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1380" inherits="GatherMainTemplate" id="1380" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1381" inherits="GatherMainTemplate" id="1381" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1382" inherits="GatherMainTemplate" id="1382" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1383" inherits="GatherMainTemplate" id="1383" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1384" inherits="GatherMainTemplate" id="1384" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1385" inherits="GatherMainTemplate" id="1385" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1386" inherits="GatherMainTemplate" id="1386" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1387" inherits="GatherMainTemplate" id="1387" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1388" inherits="GatherMainTemplate" id="1388" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1389" inherits="GatherMainTemplate" id="1389" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1390" inherits="GatherMainTemplate" id="1390" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1391" inherits="GatherMainTemplate" id="1391" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1392" inherits="GatherMainTemplate" id="1392" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1393" inherits="GatherMainTemplate" id="1393" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1394" inherits="GatherMainTemplate" id="1394" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1395" inherits="GatherMainTemplate" id="1395" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1396" inherits="GatherMainTemplate" id="1396" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1397" inherits="GatherMainTemplate" id="1397" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1398" inherits="GatherMainTemplate" id="1398" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1399" inherits="GatherMainTemplate" id="1399" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1400" inherits="GatherMainTemplate" id="1400" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1401" inherits="GatherMainTemplate" id="1401" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1402" inherits="GatherMainTemplate" id="1402" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1403" inherits="GatherMainTemplate" id="1403" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1404" inherits="GatherMainTemplate" id="1404" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1405" inherits="GatherMainTemplate" id="1405" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1406" inherits="GatherMainTemplate" id="1406" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1407" inherits="GatherMainTemplate" id="1407" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1408" inherits="GatherMainTemplate" id="1408" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1409" inherits="GatherMainTemplate" id="1409" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1410" inherits="GatherMainTemplate" id="1410" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1411" inherits="GatherMainTemplate" id="1411" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1412" inherits="GatherMainTemplate" id="1412" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1413" inherits="GatherMainTemplate" id="1413" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1414" inherits="GatherMainTemplate" id="1414" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1415" inherits="GatherMainTemplate" id="1415" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1416" inherits="GatherMainTemplate" id="1416" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1417" inherits="GatherMainTemplate" id="1417" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1418" inherits="GatherMainTemplate" id="1418" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1419" inherits="GatherMainTemplate" id="1419" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1420" inherits="GatherMainTemplate" id="1420" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1421" inherits="GatherMainTemplate" id="1421" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1422" inherits="GatherMainTemplate" id="1422" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1423" inherits="GatherMainTemplate" id="1423" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1424" inherits="GatherMainTemplate" id="1424" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1425" inherits="GatherMainTemplate" id="1425" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1426" inherits="GatherMainTemplate" id="1426" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1427" inherits="GatherMainTemplate" id="1427" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1428" inherits="GatherMainTemplate" id="1428" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1429" inherits="GatherMainTemplate" id="1429" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1430" inherits="GatherMainTemplate" id="1430" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1431" inherits="GatherMainTemplate" id="1431" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1432" inherits="GatherMainTemplate" id="1432" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1433" inherits="GatherMainTemplate" id="1433" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1434" inherits="GatherMainTemplate" id="1434" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1435" inherits="GatherMainTemplate" id="1435" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1436" inherits="GatherMainTemplate" id="1436" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1437" inherits="GatherMainTemplate" id="1437" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1438" inherits="GatherMainTemplate" id="1438" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1439" inherits="GatherMainTemplate" id="1439" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1440" inherits="GatherMainTemplate" id="1440" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1441" inherits="GatherMainTemplate" id="1441" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1442" inherits="GatherMainTemplate" id="1442" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1443" inherits="GatherMainTemplate" id="1443" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1444" inherits="GatherMainTemplate" id="1444" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1445" inherits="GatherMainTemplate" id="1445" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1446" inherits="GatherMainTemplate" id="1446" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1447" inherits="GatherMainTemplate" id="1447" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1448" inherits="GatherMainTemplate" id="1448" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1449" inherits="GatherMainTemplate" id="1449" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1450" inherits="GatherMainTemplate" id="1450" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1451" inherits="GatherMainTemplate" id="1451" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1452" inherits="GatherMainTemplate" id="1452" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1453" inherits="GatherMainTemplate" id="1453" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1454" inherits="GatherMainTemplate" id="1454" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1455" inherits="GatherMainTemplate" id="1455" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1456" inherits="GatherMainTemplate" id="1456" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1457" inherits="GatherMainTemplate" id="1457" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1458" inherits="GatherMainTemplate" id="1458" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1459" inherits="GatherMainTemplate" id="1459" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1460" inherits="GatherMainTemplate" id="1460" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1461" inherits="GatherMainTemplate" id="1461" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1462" inherits="GatherMainTemplate" id="1462" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1463" inherits="GatherMainTemplate" id="1463" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1464" inherits="GatherMainTemplate" id="1464" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1465" inherits="GatherMainTemplate" id="1465" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1466" inherits="GatherMainTemplate" id="1466" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1467" inherits="GatherMainTemplate" id="1467" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1468" inherits="GatherMainTemplate" id="1468" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1469" inherits="GatherMainTemplate" id="1469" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1470" inherits="GatherMainTemplate" id="1470" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1471" inherits="GatherMainTemplate" id="1471" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1472" inherits="GatherMainTemplate" id="1472" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1473" inherits="GatherMainTemplate" id="1473" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1474" inherits="GatherMainTemplate" id="1474" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1475" inherits="GatherMainTemplate" id="1475" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1476" inherits="GatherMainTemplate" id="1476" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1477" inherits="GatherMainTemplate" id="1477" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1478" inherits="GatherMainTemplate" id="1478" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1479" inherits="GatherMainTemplate" id="1479" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1480" inherits="GatherMainTemplate" id="1480" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1481" inherits="GatherMainTemplate" id="1481" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1482" inherits="GatherMainTemplate" id="1482" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1483" inherits="GatherMainTemplate" id="1483" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1484" inherits="GatherMainTemplate" id="1484" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1485" inherits="GatherMainTemplate" id="1485" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1486" inherits="GatherMainTemplate" id="1486" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1487" inherits="GatherMainTemplate" id="1487" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1488" inherits="GatherMainTemplate" id="1488" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1489" inherits="GatherMainTemplate" id="1489" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1490" inherits="GatherMainTemplate" id="1490" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1491" inherits="GatherMainTemplate" id="1491" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1492" inherits="GatherMainTemplate" id="1492" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1493" inherits="GatherMainTemplate" id="1493" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1494" inherits="GatherMainTemplate" id="1494" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1495" inherits="GatherMainTemplate" id="1495" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1496" inherits="GatherMainTemplate" id="1496" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1497" inherits="GatherMainTemplate" id="1497" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1498" inherits="GatherMainTemplate" id="1498" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1499" inherits="GatherMainTemplate" id="1499" parent="WorldMapDetailFrame" toplevel="true"/>
+	<Button name="GatherMain1500" inherits="GatherMainTemplate" id="1500" parent="WorldMapDetailFrame" toplevel="true"/>
+</Ui>

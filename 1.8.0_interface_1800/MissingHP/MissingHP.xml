@@ -1,0 +1,109 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!--
+	//////////////////////////////////////////////
+	//
+	//		MissingHP.xml
+	//
+	//		This Addon adds a small frame to each
+	//		party bar that displays how much HP
+	//		the group member is missing.
+	//
+	//////////////////////////////////////////////
+	-->
+	<Script file="MissingHP.lua"/>
+-- Template for the "frame", its background, and its text
+	<Button name="MissingHP_template" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentFrame" file="Interface\AddOns\MissingHP\MissingHP_frame">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="29" y="-66"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground">
+					<Size>
+						<AbsDimension x="43" y="17"/>
+					</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentFrame" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					<Color r="0" g="0" b="0" a="0.5"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentBackground" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				MissingHP_setup();
+			</OnLoad>
+			<OnEvent>
+				MissingHP_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Button>
+
+-- "Frames" for all of the group members, anchored next to / in relation to the standard group member "frame".
+	<Button name="MissingHP_1" inherits="MissingHP_template" frameStrata="LOW" parent="PartyMemberFrame1" id="1">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PartyMemberFrame1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-42" y="17"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MissingHP_2" inherits="MissingHP_template" frameStrata="LOW" parent="PartyMemberFrame2" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PartyMemberFrame2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-42" y="17"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MissingHP_3" inherits="MissingHP_template" frameStrata="LOW" parent="PartyMemberFrame3" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PartyMemberFrame3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-42" y="17"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="MissingHP_4" inherits="MissingHP_template" frameStrata="LOW" parent="PartyMemberFrame4" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PartyMemberFrame4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-42" y="17"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+</Ui>

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="DOACTION" description="Execute action(s)" header="ACTIONQUEUE">
+		ActionQueue_OnUpdate();
+	</Binding>
+</Bindings>

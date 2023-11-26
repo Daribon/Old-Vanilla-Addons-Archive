@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: TitanHonor+
+## Author: Frosty
+## Notes: Adds Today, This Week, and Progress info to Titan
+## SavedVariables: TITAN_HONORPLUS, TITAN_HONORPLUS_CHATINFO
+## Dependencies: Titan
+## OptionalDeps: ImprovedErrorFrame
+TitanHonorPlus.xml

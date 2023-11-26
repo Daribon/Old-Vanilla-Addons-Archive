@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: PetMonitor by Arys
+## Notes: Shares Pet Health With Party Members
+## OptionalDeps: Cosmos
+## Dependencies: Sea, Sky, Chronos
+## SavedVariables: PetMonitor_SavedVars
+PetMonitor.xml

@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX BibCore v3.3
+## Notes: Core required by BibToolbars for the Insomniax Recompilation
+## Author: Ian Bibby
+## OptionalDeps:
+BibCore.xml

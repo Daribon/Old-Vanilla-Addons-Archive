@@ -1,0 +1,17 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+  <!-- Localization -->
+  <Script file="localization.lua"/>
+  <Script file="localization.de.lua"/>
+  <Script file="localization.fr.lua"/>
+
+  <Script file="Modifier2Sell.lua" />
+  <Frame name="Modifier2Sell" hidden="true">
+    <Scripts>
+      <OnLoad>
+        Modifier2Sell_OnLoad();
+      </OnLoad>
+    </Scripts>
+  </Frame>
+</Ui>

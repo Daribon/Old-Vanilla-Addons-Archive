@@ -1,0 +1,38 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: CastOptions.xml 2476 2005-09-18 12:43:06Z mugendai $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- Main Script -->
+	<Script file="CastOptions.lua"/>
+
+	<!-- Cast Data Script -->
+	<Script file="CastData.lua"/>
+
+	<!-- Configuration Script -->
+	<Script file="CastOptionsConfig.lua"/>
+
+	<!--
+		Main Frame
+	-->
+	<Frame name="CastOptionsFrame" enableMouse="false" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				CastOptions.OnLoad();
+			</OnLoad>
+			<OnEvent>
+				CastOptions.OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	
+	<!--
+		Tooltip Frame used to gather info on spells
+	-->
+	<GameTooltip name="CastOptionsTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

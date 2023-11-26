@@ -1,0 +1,9 @@
+## Interface: 1500
+## Title: Titan Plugin - Item Bonuses
+## Notes: A Titan Plugin to display your cumulative item bonuses.
+## Notes-deDE: Ein Titan Panel Plugin, dass Gegenstandboni zusammenzählt und anzeigt.
+## Author: crowley@headshot.de
+## SavedVariables: 
+## OptionalDeps: 
+## Dependencies: Titan
+TitanItemBonuses.xml

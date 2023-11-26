@@ -1,0 +1,6 @@
+## Interface: 1500
+## SavedVariables: QuickMount_ConfigMap
+## Title: QuickMountEquip
+## Notes: Allows the user to auto-equip spurs, etc. when mounting/dismounting
+## OptionalDeps: myAddOns, Sea, Cosmos, Fetch
+QuickMountEquip.xml

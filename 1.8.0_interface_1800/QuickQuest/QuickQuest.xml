@@ -1,0 +1,11 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+  <Frame name="QuickQuestFrame" hidden="true">
+    <Scripts>
+      <OnLoad>
+	QUEST_DESCRIPTION_GRADIENT_CPS = 600000;
+	RegisterForSave("QUEST_DESCRIPTION_GRADIENT_CPS");
+	DEFAULT_CHAT_FRAME:AddMessage("QuickQuest v1.0 (1.8.0) Loaded");
+      </OnLoad>
+    </Scripts>
+  </Frame>
+</Ui>

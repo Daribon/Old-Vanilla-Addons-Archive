@@ -1,0 +1,5 @@
+## Interface: 4216
+## Title: MooBuffMod
+## OptionalDeps: DynamicData
+## RequiredDeps: Sea, Cosmos
+MooBuffMod.xml

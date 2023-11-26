@@ -1,0 +1,154 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="TitanPanel.lua"/>
+	<Button name="TitanPanelBarButton" frameStrata="FULLSCREEN" parent="UIParent">	
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+			<Anchor point="BOTTOMRIGHT" relativeTo="UIParent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="-24"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="TitanPanelBackground0">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBarButton" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>								
+				<Texture name="TitanPanelBackground1">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground0" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>
+				<Texture name="TitanPanelBackground2">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground1" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>								
+				<Texture name="TitanPanelBackground3">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground2" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>
+				<Texture name="TitanPanelBackground4">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground3" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>								
+				<Texture name="TitanPanelBackground5">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground4" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>
+				<Texture name="TitanPanelBackground6">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground5" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>								
+				<Texture name="TitanPanelBackground7">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground6" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>
+				<Texture name="TitanPanelBackground8">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground7" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>								
+				<Texture name="TitanPanelBackground9">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground8" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>
+				<Texture name="TitanPanelBackground10">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground9" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>								
+				<Texture name="TitanPanelBackground11">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TitanPanelBackground10" relativePoint="TOPRIGHT" />
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentRightClickMenu" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Scripts>
+					<OnLoad>
+						this:RegisterEvent("VARIABLES_LOADED");
+					</OnLoad>
+					<OnEvent>
+						TitanRightClickMenu_OnLoad();
+					</OnEvent>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				TitanPanelBarButton_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				TitanPanelBarButton_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				TitanPanelBarButton_OnUpdate(arg1);
+			</OnUpdate>
+			<OnClick>
+				TitanPanelBarButton_OnClick(arg1);
+			</OnClick>
+			<OnEnter>
+				TitanPanelBarButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				TitanPanelBarButton_OnLeave();
+			</OnLeave>
+		</Scripts>
+	</Button>
+</Ui>

@@ -1,0 +1,50 @@
+A castingbar replacement mod: by elvendawn (c0elvenn@yahoo.com)
+	-Changed graphics, complete overhaul from blizzards.
+	-Added CastingTime mod into the.
+	-Added moveablity via unlock and lock commands, 
+		uses an outline frame to help move as the bar 
+		when unlocked sense its always hidden unless casting.
+	-Added PerlStatusBar texture to the bar, disablable via toggletexture (toggle).
+	-Can Enable/Disable the mod (defaults enabled) 
+	-Fixed blizzards code.
+		-the bar now correctly shows channeling color,
+		 as in blizzards bar, Spellupdate event forced it 
+		 to yellow (default casting color).
+		-the bar Spark now correctly shows up for channeling
+		 as it didn't work on blizzards (the spark is that small 
+		 yellow glowing end cap on the progressbar).
+
+		 
+Things I wanted to do, but never goto:
+	-Convert to Ace.
+	-Make an options menu
+	-Add the option to change bar colors, size, border type color and alpha, 
+	 background color and alpha, the CastingTime Format.
+	-Add icon support: a little icon to the left, or movable like all 
+	 discord unit frames stuff =P that displayed the spell. 
+	-Make it Reusable (via classes w/ Ace) and cope it to Breathing/fatigue bars.
+	 which would also make avaliable for any other developer to call for a visual timer.
+	
+Slash Commands: /castingbar or /ecb
+enable
+disable
+toggletexture
+lock
+unlock
+
+
+Changes:
+
+1.0.1700
+-Initial Release
+
+1.1.1700
+-Added per character save.
+-Fixed slash commands.
+-EDIT: actually i broked everything =P
+
+1.2.1700
+-Truely fixed the slash commands
+-Added default to center of screen unlocked to help users on first load.
+-Centered the text vertially up by one, by request of K.Rool.
+-Changed the CastingTime Format, thanks to wbb for the Code.

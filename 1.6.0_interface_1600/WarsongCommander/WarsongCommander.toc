@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: Warsong Commander
+## Notes: Know where your teammates are at all time in the Gulch.
+## Author: Vallerius
+## SavedVariables: WSC_Options
+## OptionalDeps:
+WarsongCommander.xml
+WSC_Options.xml

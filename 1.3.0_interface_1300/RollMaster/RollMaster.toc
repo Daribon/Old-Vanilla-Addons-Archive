@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: RollMaster
+## Notes: Allows you to keep track of rolls.
+## Author: sarf
+## SavedVariables: RollMaster_ShouldAutoRoll
+RollMaster.xml

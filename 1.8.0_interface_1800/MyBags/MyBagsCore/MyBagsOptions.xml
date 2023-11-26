@@ -1,0 +1,308 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="localization.de.lua"/> 
+	<Script file="MyBank_Options.lua"/> 
+	<CheckButton name="MB_CheckTemplate" inherits="UICheckButtonTemplate" virtual="true">
+		<HitRectInsets><AbsInset left="0" right="-100" top="0" bottom="0"/></HitRectInsets>
+		<Scripts>
+			<OnLoad>
+--				 MyBank_OptionCheck_OnLoad();
+				this:SetText("CheckBox")
+			 </OnLoad>
+			 <OnClick>
+--				MyBank_OptionCheck_OnClick();
+			</OnClick>
+			<OnEnter>
+--				MB_Check_OnEnter();
+			</OnEnter>
+			<OnLeave>
+--				MB_Check_OnLeave();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<Frame name="MB_OptionsFrame" inherits="OptionFrameBoxTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+				this:SetBackdropColor(0.15, 0.15, 0.15);
+				--getglobal(this:GetName().."Title"):SetText("Help");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MyBagsOptionsFrameTemplate" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+		<Size><AbsDimension x="400" y="500" /></Size>
+		<Anchors><Anchor point="CENTER" /></Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+		tile="true">
+			<BackgroundInsets>
+			<AbsInset left="11" right="12" top="12" bottom="11" />  
+			<Size><AbsDimension x="128" y="17" /></Size>
+			</BackgroundInsets>
+			<TileSize><AbsValue val="32" /></TileSize>
+			<EdgeSize><AbsValue val="32" /></EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size><AbsDimension x="276" y="64" /></Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset><AbsDimension x="0" y="12" /></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleText" inherits="GameFontNormal" text="Options Frame">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset><AbsDimension x="0" y="-2" /></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parent_General" inherits="MB_OptionsFrame">
+				<Size><AbsDimension x="375" y="55"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset><AbsDimension x="12" y="-35"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parent_Replace" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="10" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_Freeze" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="130" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_Lock" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="250" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+			</Frame>
+			<Frame name="$parent_Items" inherits="MB_OptionsFrame">
+				<Size><AbsDimension x="375" y="55"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_General" relativePoint="BOTTOMLEFT">
+						<Offset><AbsDimension x="0" y="-15"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parent_ItemBorder" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" >
+								<Offset><AbsDimension x="10" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_HighlightBags" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="130" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_HighlightItems" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="250" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+			</Frame>
+			<Frame name="$parent_Display" inherits="MB_OptionsFrame">
+				<Size><AbsDimension x="375" y="80"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Items" relativePoint="BOTTOMLEFT">
+						<Offset><AbsDimension x="0" y="-15"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<!-- -LITE{ -->
+					<CheckButton name="$parent_Graphics" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="10" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- }-LITE -->
+					<Slider name="$parent_Cols" inherits="OptionsSliderTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="200" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnValueChanged>
+--								MB_OptionsFrame_Slider_Cols_OnValueChanged();
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+					<CheckButton name="$parent_ScaleEnable" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="10" y="-35" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Slider name="$parent_Scale" inherits="OptionsSliderTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="200" y="-45" /></Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnValueChanged>
+--								MB_OptionsFrame_Slider_Scale_OnValueChanged();
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</Frame>
+			<Frame name="$parent_Elements" inherits="MB_OptionsFrame">
+				<Size><AbsDimension x="375" y="75"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Display" relativePoint="BOTTOMLEFT">
+						<Offset><AbsDimension x="0" y="-15"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parent_Title" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="10" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_Buttons" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="130" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_Player" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="250" y="-10" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_Bag" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="10" y="-35" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_Cash" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="130" y="-35" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parent_CountUsed" inherits="MB_CheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset><AbsDimension x="250" y="-35" /></Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+			<Frame name="$parent_Help" inherits="MB_OptionsFrame">
+				<Size><AbsDimension x="375" y="50"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset><AbsDimension x="12" y="60"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentText" inherits="GameFontNormal" justifyH="LEFT" nonspacewrap="false">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset><AbsDimension x="10" y="-10"/></Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+
+			<Button name="$parentCloseButton" inherits="OptionsButtonTemplate" text="Close">
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset><AbsDimension x="0" y="25" /></Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!--
+			<Button name="MI_OptionsReset" inherits="OptionsButtonTemplate" text="Reset">
+			<Anchors>
+			<Anchor point="BOTTOM" relativeTo="MyBankOptionsFrame" relativePoint="BOTTOM">
+			<Offset><AbsDimension x="0" y="25" /></Offset>
+			</Anchor>
+			</Anchors>
+			<Scripts>
+			<OnClick>
+			PlaySound("igMainMenuOptionCheckBoxOn");
+			MyInventoryProfile[UnitName("player")] = nil;
+			MyInventory_InitializeProfile();
+			</OnClick>
+			<OnEnter>
+			GameTooltip_AddNewbieTip("Clear Settings", 1.0, 1.0, 1.0, "-Warning-\n\nClicking this will reset all of your settings to defaults.  You cannot cancel this action.");
+			</OnEnter>
+			<OnLeave>
+			GameTooltip:Hide();
+			</OnLeave>
+			</Scripts>
+			</Button>
+			-->
+		</Frames>
+		<Scripts>
+			<OnHide>
+				-- Check if the options frame was opened by myAddOns
+				if (MYADDONS_ACTIVE_OPTIONSFRAME == this) then
+					ShowUIPanel(myAddOnsFrame);
+				end
+			</OnHide>
+			<OnLoad>
+--				MyBankOptionsFrame_OnLoad();
+			</OnLoad>
+			<OnShow>
+--				MyBankOptionsFrame_OnShow();
+			</OnShow>
+			<OnMouseDown>
+				this:StartMoving();
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

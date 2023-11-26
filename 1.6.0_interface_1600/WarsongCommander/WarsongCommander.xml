@@ -1,0 +1,473 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="localization.lua"/>
+	<Script file="WarsongCommander.lua"/>
+	
+	<Button name="WSC_PartyTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\WorldMap\WorldMapPartyIcon">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				if ( this:GetID() == 0 ) then
+					this.unit = "player";
+					getglobal(this:GetName().."Icon"):SetTexture("Interface\\WorldMap\\WorldMapPlayerIcon");
+				else
+					this.unit = "partyd"..this:GetID();
+					getglobal(this:GetName().."Icon"):SetTexture("Interface\\WorldMap\\WorldMapPartyIcon");
+				end
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				this:RegisterForClicks("LeftButtonUp");
+			</OnLoad>
+			<OnEnter>
+				WSC_OnEnter(this:GetID());
+			</OnEnter>
+			<OnLeave>
+				WSC_Tooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				WSC_POI_OnClick(arg1, this:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+	
+	<Frame name="WSC_RaidTemplate" inherits="WSC_PartyTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				this.unit = "raid"..this:GetID();
+				this:RegisterForClicks("LeftButtonUp");
+				getglobal(this:GetName().."Icon"):SetTexture("Interface\\WorldMap\\WorldMapPartyIcon");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="WSC_CorpseTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\Minimap\POIIcons" setAllPoints="true">
+					<TexCoords left="0.75" right="1.0" top="0.25" bottom="0.5"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+			</OnLoad>
+			<OnEnter>
+				local x, y = this:GetCenter();
+				local parentX, parentY = this:GetParent():GetCenter();
+				if ( x > parentX ) then
+					WSC_Tooltip:SetOwner(this, "ANCHOR_LEFT");
+				else
+					WSC_Tooltip:SetOwner(this, "ANCHOR_RIGHT");
+				end
+				WSC_Tooltip:SetText(TEXT(CORPSE_RED));
+				WSC_Tooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				WSC_Tooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="WSC_FlagTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 2);
+			</OnLoad>
+			<OnClick>
+				WSC_Flag_OnClick(arg1, this:GetID());
+			</OnClick>
+		</Scripts>
+	</Frame>
+
+	<!-- the main frame -->
+	<Frame name="WSC_Frame" hidden="true" movable="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="260" y="358"/>
+		</Size>
+		
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+ 					<AbsDimension x="0" y="-104"/>
+ 				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<Frames>
+			<Frame name="WSC_BorderFrame">
+				<Size>
+					<AbsDimension x="260" y="358"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="WSC_Frame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="WSC_TopLeft" file="Interface\Addons\WarsongCommander\topleft">
+							<Size>
+								<AbsDimension x="256" y="256" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WSC_Frame" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_TopRight" file="Interface\Addons\WarsongCommander\topright">
+							<Size>
+								<AbsDimension x="256" y="256" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WSC_TopLeft" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_BottomLeft" file="Interface\Addons\WarsongCommander\bottomleft">
+							<Size>
+								<AbsDimension x="256" y="256" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WSC_TopLeft" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_BottomRight" file="Interface\Addons\WarsongCommander\bottomright">
+							<Size>
+								<AbsDimension x="256" y="256" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WSC_TopLeft" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString inherits="GameFontNormal" text="Warsong Commander BETA">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="-11" y="-3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="WSC_CloseButton" inherits="UIPanelCloseButton">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="WSC_Frame" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="5" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								WSC_Frame:Hide();
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+			
+			<!-- the map frame -->
+			<Frame name="WSC_WrapperFrame">
+				<Size>
+					<AbsDimension x="256" y="334"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="WSC_Frame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Layers>
+					<Layer level="ARTWORK">
+						<!-- The map, in pieces -->
+						<Texture name="WSC_Bg1" file="Interface\WorldMap\WarsongGulch\WarsongGulch2">
+							<Size>
+								<AbsDimension x="128" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WSC_WrapperFrame" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_Bg2" file="Interface\WorldMap\WarsongGulch\WarsongGulch3">
+							<Size>
+								<AbsDimension x="128" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="WSC_Bg1" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_Bg3" file="Interface\WorldMap\WarsongGulch\WarsongGulch6">
+							<Size>
+								<AbsDimension x="128" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="WSC_Bg1" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_Bg4" file="Interface\WorldMap\WarsongGulch\WarsongGulch7">
+							<Size>
+								<AbsDimension x="128" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="WSC_Bg3" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_Bg5" file="Interface\WorldMap\WarsongGulch\WarsongGulch10">
+							<Size>
+								<AbsDimension x="128" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="WSC_Bg3" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WSC_Bg6" file="Interface\WorldMap\WarsongGulch\WarsongGulch11">
+							<Size>
+								<AbsDimension x="128" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="WSC_Bg5" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="WSG_AllianceCarrier" inherits="GameFontNormal" text="">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="WSG_HordeCarrier" inherits="GameFontNormal" text="">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(WSC_BorderFrame:GetFrameLevel() + 1);
+						WSC_OnLoad();
+					</OnLoad>
+					<OnUpdate>
+						WSC_OnUpdate(arg1);
+					</OnUpdate>
+					<OnEvent>
+						WSC_OnEvent()
+					</OnEvent>
+					<OnMouseDown>
+						if(arg1 == "RightButton") then
+							WSC_PingMap(arg1);
+						end
+					</OnMouseDown>
+				</Scripts>
+			</Frame>
+			
+			<!-- the blip frame -->
+			<Frame name="WSC_BlipFrame">
+				<Size>
+					<AbsDimension x="256" y="334"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="WSC_Frame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Frames>
+					<Button name="WSC_Player" inherits="WSC_PartyTemplate" id="0"/>
+					<Button name="WSC_Corpse" inherits="WSC_CorpseTemplate" id="1" hidden="true">
+						<Layers>
+							<Layer level="ARTWORK">
+								<Texture file="Interface\Minimap\POIIcons" setAllPoints="true">
+									<TexCoords left="0.75" right="1.0" top="0.25" bottom="0.5"/>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					
+					<Button name="WSC_Flag1" inherits="WSC_FlagTemplate" id="1" hidden="true"/>
+					<Button name="WSC_Flag2" inherits="WSC_FlagTemplate" id="2" hidden="true"/>
+					<Button name="WSC_Party1" inherits="WSC_PartyTemplate" id="1" hidden="true"/>
+					<Button name="WSC_Party2" inherits="WSC_PartyTemplate" id="2" hidden="true"/>
+					<Button name="WSC_Party3" inherits="WSC_PartyTemplate" id="3" hidden="true"/>
+					<Button name="WSC_Party4" inherits="WSC_PartyTemplate" id="4" hidden="true"/>
+					<Button name="WSC_Raid1" inherits="WSC_RaidTemplate" id="1" hidden="true"/>
+					<Button name="WSC_Raid2" inherits="WSC_RaidTemplate" id="2" hidden="true"/>
+					<Button name="WSC_Raid3" inherits="WSC_RaidTemplate" id="3" hidden="true"/>
+					<Button name="WSC_Raid4" inherits="WSC_RaidTemplate" id="4" hidden="true"/>
+					<Button name="WSC_Raid5" inherits="WSC_RaidTemplate" id="5" hidden="true"/>
+					<Button name="WSC_Raid6" inherits="WSC_RaidTemplate" id="6" hidden="true"/>
+					<Button name="WSC_Raid7" inherits="WSC_RaidTemplate" id="7" hidden="true"/>
+					<Button name="WSC_Raid8" inherits="WSC_RaidTemplate" id="8" hidden="true"/>
+					<Button name="WSC_Raid9" inherits="WSC_RaidTemplate" id="9" hidden="true"/>
+					<Button name="WSC_Raid10" inherits="WSC_RaidTemplate" id="10" hidden="true"/>
+					<Button name="WSC_Raid11" inherits="WSC_RaidTemplate" id="11" hidden="true"/>
+					<Button name="WSC_Raid12" inherits="WSC_RaidTemplate" id="12" hidden="true"/>
+					<Button name="WSC_Raid13" inherits="WSC_RaidTemplate" id="13" hidden="true"/>
+					<Button name="WSC_Raid14" inherits="WSC_RaidTemplate" id="14" hidden="true"/>
+					<Button name="WSC_Raid15" inherits="WSC_RaidTemplate" id="15" hidden="true"/>
+					<Button name="WSC_Raid16" inherits="WSC_RaidTemplate" id="16" hidden="true"/>
+					<Button name="WSC_Raid17" inherits="WSC_RaidTemplate" id="17" hidden="true"/>
+					<Button name="WSC_Raid18" inherits="WSC_RaidTemplate" id="18" hidden="true"/>
+					<Button name="WSC_Raid19" inherits="WSC_RaidTemplate" id="19" hidden="true"/>
+					<Button name="WSC_Raid20" inherits="WSC_RaidTemplate" id="20" hidden="true"/>
+					
+					<Model name="WSC_Ping" file="Interface\MiniMap\Ping\MinimapPing.mdx" scale="0.4" hidden="true">
+						<Size>
+							<AbsDimension x="50" y="50"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="WSC_WrapperFrame"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								WSC_Ping_OnLoad();
+							</OnLoad>
+							<OnUpdate>
+								WSC_Ping_OnUpdate(arg1);
+							</OnUpdate>
+						</Scripts>
+					</Model>
+					
+					<!--<Minimap name="WSC_Minimap" minimapPlayerModel="Interface\Minimap\MinimapArrow.mdx" minimapArrowModel="Interface\Minimap\Rotating-MinimapArrow.mdl">
+						<Size>
+							<AbsDimension x="8" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetFrameLevel( this:GetFrameLevel() + 1 );
+							</OnLoad>
+						</Scripts>
+					</Minimap>-->
+				</Frames>
+				
+			</Frame>
+		</Frames>
+		
+		<Scripts>
+			<OnMouseDown>
+				if ( arg1 == "LeftButton" ) then
+					this:StartMoving();
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if ( arg1 == "LeftButton" ) then
+					this:StopMovingOrSizing();
+					WSC_SavePosition();
+				end
+			</OnMouseUp>
+			<OnShow>
+				--WSC_Print("onshow!");
+				WSC_UpdateAlpha();
+				WSC_UpdateScale();
+			</OnShow>
+		</Scripts>
+	</Frame>
+	
+	
+	
+	<GameTooltip name="WSC_Tooltip" frameStrata="TOOLTIP" hidden="true" parent="WSC_Frame" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+</Ui>

@@ -1,0 +1,8 @@
+## Interface: 4216	
+## Title: AlarmClock
+## Title-deDE: AlarmClock
+## Notes: A built-in alarm clock for WoW
+## Notes-deDE: Ein in WoW eingebauter Wecker
+## AlarmClock.xml
+## RequiredDeps: Cosmos
+AlarmClock.xml

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="RangeRecolor Options" header="RANGERECOLOR">
+		RangeRecolorOptions:Show();
+	</Binding>
+</Bindings>

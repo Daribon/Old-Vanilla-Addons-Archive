@@ -1,0 +1,394 @@
+<Ui	xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+	<Script	file="KC_Items_LinkView_Locals.lua"/>
+	<Script	file="KC_Items_LinkView.lua"/>
+	
+
+	<Button	name="KC_LinkView_Button_Template" inherits="KC_Items_Button_Template" virtual="true">
+		<Size>
+			<AbsDimension x="300" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this:Hide();
+				getglobal(this:GetName() ..	"_Key"):Hide();
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnClick>
+				KC_LinkView:ItemClick(arg1);
+			</OnClick>
+			<OnEnter>
+				KC_LinkView:ItemEnter();
+			</OnEnter>
+			<OnLeave>
+				KC_LinkView:ItemLeave();
+			</OnLeave>
+		</Scripts>
+		<Layers>
+			<Layer>
+				<FontString	name="$parent_Key" inherits="GameFontHighlight"	text="">
+					<Size>
+						<AbsDimension x="1"	y="1"/>
+					</Size>
+					<Anchors>
+						<Anchor	point="LEFT">
+							<Offset>
+								<AbsDimension x="0"	y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Frame name="KC_LinkView_Frame"	inherits="KC_Items_Frame_Template">
+		<Size>
+			<AbsDimension x="350" y="437"/>
+		</Size>
+		<Anchors>
+			<Anchor	point="CENTER"	relativeTo="UIParent" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0"	y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				KC_LinkView_FrameHeader:Hide();
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnShow>
+				KC_LinkView:BuildLinkTable();
+				KC_LinkView:UpdateList();
+				KC_LinkView_Frame_SearchText:SetText("");
+			</OnShow>
+			<OnHide>
+				KC_LinkView.sortedLinks = nil;
+			</OnHide>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parent_Header" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="450" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor	point="TOP">
+							<Offset>
+								<AbsDimension x="0"	y="14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_Button1" inherits="KC_LinkView_Button_Template" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="KC_LinkView_Frame">
+						<Offset>
+							<AbsDimension x="18" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button2" inherits="KC_LinkView_Button_Template" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button3" inherits="KC_LinkView_Button_Template" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button4" inherits="KC_LinkView_Button_Template" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button5" inherits="KC_LinkView_Button_Template" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button4" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button6" inherits="KC_LinkView_Button_Template" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button7" inherits="KC_LinkView_Button_Template" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button6" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button8" inherits="KC_LinkView_Button_Template" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button7" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button9" inherits="KC_LinkView_Button_Template" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button8" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button10" inherits="KC_LinkView_Button_Template" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button9" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button11" inherits="KC_LinkView_Button_Template" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button10" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button12" inherits="KC_LinkView_Button_Template" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button11" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button13" inherits="KC_LinkView_Button_Template" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button12" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button14" inherits="KC_LinkView_Button_Template" id="14">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button13" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button15" inherits="KC_LinkView_Button_Template" id="15">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button14" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button16" inherits="KC_LinkView_Button_Template" id="16">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button15" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button17" inherits="KC_LinkView_Button_Template" id="17">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button16" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button18" inherits="KC_LinkView_Button_Template" id="18">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button17" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button19" inherits="KC_LinkView_Button_Template" id="19">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button18" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button20" inherits="KC_LinkView_Button_Template" id="20">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button19" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button21" inherits="KC_LinkView_Button_Template" id="21">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button20" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Button22" inherits="KC_LinkView_Button_Template" id="22">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button21" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<ScrollFrame name="$parent_ScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="296" y="352"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Button1">
+						<Offset>
+							<AbsDimension x="0" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parent_ScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentScrollBarScrollUpButton">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="30" y="106"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentScrollBarScrollDownButton">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(16, function() KC_LinkView:UpdateList() end);
+					</OnVerticalScroll>
+					<OnMouseWheel>
+						ScrollFrameTemplate_OnMouseWheel(arg1)
+					</OnMouseWheel>
+				</Scripts>
+			</ScrollFrame>
+
+			<Button name="$parent_SortDropDown1" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="18" y="-35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						KC_LinkView:PopulateDropDown(this);
+					</OnShow>
+				</Scripts>
+			</Button>
+
+			<EditBox name="$parent_SearchText" autoFocus="false" inherits="InputBoxTemplate">
+				<Size>
+					<AbsDimension x="170" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentCloseButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-250" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnterPressed>
+						KC_LinkView:BuildLinkTable(ace.trim(this:GetText()));
+						KC_LinkView:UpdateList();
+						this:ClearFocus();
+					</OnEnterPressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal" bytes="64"/>
+			</EditBox>
+
+			<Button name="$parent_SearchButton" inherits="UIPanelButtonTemplate" text="KC_ITEMS_TEXT_SEARCH">
+                <Size>
+                    <AbsDimension x="80" y="22"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parent_SearchText" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+						KC_LinkView:BuildLinkTable(ace.trim(KC_LinkView_Frame_SearchText:GetText()));
+						KC_LinkView:UpdateList();
+                    </OnClick>
+                </Scripts>
+            </Button>
+		</Frames>
+	</Frame>
+</Ui>

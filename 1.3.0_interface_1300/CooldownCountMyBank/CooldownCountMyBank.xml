@@ -1,0 +1,3318 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="CooldownCountMyBank.lua"/>
+
+	<Frame name="CooldownCountMyBankFrame" frameStrata="LOW" enableMouse="false" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				CooldownCountMyBank_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="MyBankFrameItem1CooldownCountFrame" parent="MyBankFrameItem1" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem1CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem2CooldownCountFrame" parent="MyBankFrameItem2" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem2CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem3CooldownCountFrame" parent="MyBankFrameItem3" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem3CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem4CooldownCountFrame" parent="MyBankFrameItem4" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem4CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem5CooldownCountFrame" parent="MyBankFrameItem5" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem5CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem6CooldownCountFrame" parent="MyBankFrameItem6" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem6CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem7CooldownCountFrame" parent="MyBankFrameItem7" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem7CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem8CooldownCountFrame" parent="MyBankFrameItem8" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem8CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem9CooldownCountFrame" parent="MyBankFrameItem9" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem9CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MyBankFrameItem10CooldownCountFrame" parent="MyBankFrameItem10" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem10CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem11CooldownCountFrame" parent="MyBankFrameItem11" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem11CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem12CooldownCountFrame" parent="MyBankFrameItem12" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem12CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem13CooldownCountFrame" parent="MyBankFrameItem13" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem13CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem14CooldownCountFrame" parent="MyBankFrameItem14" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem14CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem15CooldownCountFrame" parent="MyBankFrameItem15" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem15CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem16CooldownCountFrame" parent="MyBankFrameItem16" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem16CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem17CooldownCountFrame" parent="MyBankFrameItem17" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem17CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem18CooldownCountFrame" parent="MyBankFrameItem18" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem18CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem19CooldownCountFrame" parent="MyBankFrameItem19" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem19CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MyBankFrameItem20CooldownCountFrame" parent="MyBankFrameItem20" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem20CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem21CooldownCountFrame" parent="MyBankFrameItem21" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem21CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem22CooldownCountFrame" parent="MyBankFrameItem22" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem22CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem23CooldownCountFrame" parent="MyBankFrameItem23" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem23CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem24CooldownCountFrame" parent="MyBankFrameItem24" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem24CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem25CooldownCountFrame" parent="MyBankFrameItem25" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem25CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem26CooldownCountFrame" parent="MyBankFrameItem26" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem26CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem27CooldownCountFrame" parent="MyBankFrameItem27" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem27CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem28CooldownCountFrame" parent="MyBankFrameItem28" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem28CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem29CooldownCountFrame" parent="MyBankFrameItem29" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem29CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MyBankFrameItem30CooldownCountFrame" parent="MyBankFrameItem30" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem30CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem31CooldownCountFrame" parent="MyBankFrameItem31" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem31CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem32CooldownCountFrame" parent="MyBankFrameItem32" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem32CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem33CooldownCountFrame" parent="MyBankFrameItem33" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem33CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem34CooldownCountFrame" parent="MyBankFrameItem34" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem34CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem35CooldownCountFrame" parent="MyBankFrameItem35" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem35CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem36CooldownCountFrame" parent="MyBankFrameItem36" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem36CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem37CooldownCountFrame" parent="MyBankFrameItem37" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem37CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem38CooldownCountFrame" parent="MyBankFrameItem38" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem38CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem39CooldownCountFrame" parent="MyBankFrameItem39" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem39CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MyBankFrameItem40CooldownCountFrame" parent="MyBankFrameItem40" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem40CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem41CooldownCountFrame" parent="MyBankFrameItem41" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem41CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem42CooldownCountFrame" parent="MyBankFrameItem42" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem42CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem43CooldownCountFrame" parent="MyBankFrameItem43" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem43CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem44CooldownCountFrame" parent="MyBankFrameItem44" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem44CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem45CooldownCountFrame" parent="MyBankFrameItem45" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem45CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem46CooldownCountFrame" parent="MyBankFrameItem46" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem46CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem47CooldownCountFrame" parent="MyBankFrameItem47" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem47CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem48CooldownCountFrame" parent="MyBankFrameItem48" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem48CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem49CooldownCountFrame" parent="MyBankFrameItem49" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem49CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MyBankFrameItem50CooldownCountFrame" parent="MyBankFrameItem50" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem50CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem51CooldownCountFrame" parent="MyBankFrameItem51" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem51CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem52CooldownCountFrame" parent="MyBankFrameItem52" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem52CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem53CooldownCountFrame" parent="MyBankFrameItem53" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem53CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem54CooldownCountFrame" parent="MyBankFrameItem54" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem54CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem55CooldownCountFrame" parent="MyBankFrameItem55" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem55CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem56CooldownCountFrame" parent="MyBankFrameItem56" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem56CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem57CooldownCountFrame" parent="MyBankFrameItem57" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem57CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem58CooldownCountFrame" parent="MyBankFrameItem58" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem58CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem59CooldownCountFrame" parent="MyBankFrameItem59" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem59CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MyBankFrameItem60CooldownCountFrame" parent="MyBankFrameItem60" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem60CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem61CooldownCountFrame" parent="MyBankFrameItem61" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem61CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem62CooldownCountFrame" parent="MyBankFrameItem62" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem62CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem63CooldownCountFrame" parent="MyBankFrameItem63" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem63CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem64CooldownCountFrame" parent="MyBankFrameItem64" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem64CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem65CooldownCountFrame" parent="MyBankFrameItem65" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem65CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem66CooldownCountFrame" parent="MyBankFrameItem66" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem66CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem67CooldownCountFrame" parent="MyBankFrameItem67" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem67CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem68CooldownCountFrame" parent="MyBankFrameItem68" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem68CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem69CooldownCountFrame" parent="MyBankFrameItem69" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem69CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem70CooldownCountFrame" parent="MyBankFrameItem70" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem70CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem71CooldownCountFrame" parent="MyBankFrameItem71" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem71CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem72CooldownCountFrame" parent="MyBankFrameItem72" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem72CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem73CooldownCountFrame" parent="MyBankFrameItem73" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem73CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem74CooldownCountFrame" parent="MyBankFrameItem74" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem74CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem75CooldownCountFrame" parent="MyBankFrameItem75" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem75CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem76CooldownCountFrame" parent="MyBankFrameItem76" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem76CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem77CooldownCountFrame" parent="MyBankFrameItem77" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem77CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem78CooldownCountFrame" parent="MyBankFrameItem78" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem78CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem79CooldownCountFrame" parent="MyBankFrameItem79" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem79CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem80CooldownCountFrame" parent="MyBankFrameItem80" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem80CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem81CooldownCountFrame" parent="MyBankFrameItem81" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem81CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem82CooldownCountFrame" parent="MyBankFrameItem82" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem82CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem83CooldownCountFrame" parent="MyBankFrameItem83" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem83CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem84CooldownCountFrame" parent="MyBankFrameItem84" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem84CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem85CooldownCountFrame" parent="MyBankFrameItem85" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem85CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem86CooldownCountFrame" parent="MyBankFrameItem86" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem86CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem87CooldownCountFrame" parent="MyBankFrameItem87" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem87CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem88CooldownCountFrame" parent="MyBankFrameItem88" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem88CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem89CooldownCountFrame" parent="MyBankFrameItem89" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem89CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem90CooldownCountFrame" parent="MyBankFrameItem90" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem90CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem91CooldownCountFrame" parent="MyBankFrameItem91" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem91CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem92CooldownCountFrame" parent="MyBankFrameItem92" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem92CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem93CooldownCountFrame" parent="MyBankFrameItem93" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem93CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem94CooldownCountFrame" parent="MyBankFrameItem94" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem94CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem95CooldownCountFrame" parent="MyBankFrameItem95" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem95CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem96CooldownCountFrame" parent="MyBankFrameItem96" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem96CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem97CooldownCountFrame" parent="MyBankFrameItem97" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem97CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem98CooldownCountFrame" parent="MyBankFrameItem98" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem98CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem99CooldownCountFrame" parent="MyBankFrameItem99" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem99CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem100CooldownCountFrame" parent="MyBankFrameItem100" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem100CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem101CooldownCountFrame" parent="MyBankFrameItem101" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem101CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem102CooldownCountFrame" parent="MyBankFrameItem102" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem102CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem103CooldownCountFrame" parent="MyBankFrameItem103" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem103CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem104CooldownCountFrame" parent="MyBankFrameItem104" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem104CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem105CooldownCountFrame" parent="MyBankFrameItem105" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem105CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem106CooldownCountFrame" parent="MyBankFrameItem106" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem106CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem107CooldownCountFrame" parent="MyBankFrameItem107" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem107CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem108CooldownCountFrame" parent="MyBankFrameItem108" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem108CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem109CooldownCountFrame" parent="MyBankFrameItem109" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem109CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem110CooldownCountFrame" parent="MyBankFrameItem110" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem110CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem111CooldownCountFrame" parent="MyBankFrameItem111" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem111CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem112CooldownCountFrame" parent="MyBankFrameItem112" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem112CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem113CooldownCountFrame" parent="MyBankFrameItem113" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem113CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem114CooldownCountFrame" parent="MyBankFrameItem114" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem114CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem115CooldownCountFrame" parent="MyBankFrameItem115" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem115CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem116CooldownCountFrame" parent="MyBankFrameItem116" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem116CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem117CooldownCountFrame" parent="MyBankFrameItem117" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem117CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem118CooldownCountFrame" parent="MyBankFrameItem118" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem118CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem119CooldownCountFrame" parent="MyBankFrameItem119" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem119CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem120CooldownCountFrame" parent="MyBankFrameItem120" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem120CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem121CooldownCountFrame" parent="MyBankFrameItem121" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem121CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem122CooldownCountFrame" parent="MyBankFrameItem122" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem122CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem123CooldownCountFrame" parent="MyBankFrameItem123" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem123CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem124CooldownCountFrame" parent="MyBankFrameItem124" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem124CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem125CooldownCountFrame" parent="MyBankFrameItem125" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem125CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem126CooldownCountFrame" parent="MyBankFrameItem126" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem126CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem127CooldownCountFrame" parent="MyBankFrameItem127" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem127CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem128CooldownCountFrame" parent="MyBankFrameItem128" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem128CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem129CooldownCountFrame" parent="MyBankFrameItem129" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem129CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem130CooldownCountFrame" parent="MyBankFrameItem130" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem130CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem131CooldownCountFrame" parent="MyBankFrameItem131" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem131CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MyBankFrameItem132CooldownCountFrame" parent="MyBankFrameItem132" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="MyBankFrameItem132CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

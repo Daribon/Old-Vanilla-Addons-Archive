@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (TrinketMenu)
+## Notes: CooldownCount for TrinketMenu
+## Author: sarf
+## RequiredDeps: TrinketMenu, CooldownCount
+CooldownCountTrinketMenu.xml

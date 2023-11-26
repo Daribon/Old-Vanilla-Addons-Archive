@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="TOGGLEBANKSTATEMENT" header="BANKSTATEMENT">
+		BankStatement_Toggle();
+	</Binding>
+	<Binding name="TOGGLEBANKSTATEMENTALL" header="BANKSTATEMENT">
+		BankStatement_ToggleAll();
+	</Binding>
+</Bindings>

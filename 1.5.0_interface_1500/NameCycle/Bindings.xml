@@ -1,0 +1,21 @@
+<Bindings>
+  <Binding name="NAMECYCLE"
+	   description="Cycle Name Display"
+	   header="NAMECYCLE">
+    NameCycle_Cycle()
+  </Binding>
+
+  <Binding name="NAMECYCLE_TOGGLE"
+	   description="Toggle Name Display">
+    NameCycle_Cycle({
+                     NameCycleStates.NC_STATE_NONE,
+		     NameCycleStates.NC_STATE_ALL
+		     });
+  </Binding>
+
+  <Binding name="NAMECYCLE_SHOW"
+	   description="Show Names"
+	   runOnUp="true">
+    NameCycle_Show(keystate == "down");
+  </Binding>
+</Bindings>

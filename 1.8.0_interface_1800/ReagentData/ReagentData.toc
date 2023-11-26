@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r ReagentData (v2.2.1)
+## Version: 2.2.1
+## Notes: A comprehensive set of all reagents and components used by tradeskills
+## Author: Jerigord (reagentwatch -at- tarys -dot- com)
+ReagentData.xml
+

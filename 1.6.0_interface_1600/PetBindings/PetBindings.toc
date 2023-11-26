@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Pet Bindings
+## Notes: Adds several key bindings to the UI that deal with pets.
+## Author: Nathanmx
+PetBindings.xml

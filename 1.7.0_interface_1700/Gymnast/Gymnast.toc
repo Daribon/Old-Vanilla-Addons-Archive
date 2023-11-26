@@ -1,0 +1,8 @@
+## Interface: 1700
+## Title: Gymnast
+## Notes: Make your tooltips as flexible as you are.
+## Author: AnduinLothar
+## OptionalDeps: Khaos, Cosmos
+## Dependencies: Chronos
+## SavedVariables: Gymnast_TooltipPointSettings
+Gymnast.xml

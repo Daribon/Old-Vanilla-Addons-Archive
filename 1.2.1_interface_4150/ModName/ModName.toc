@@ -1,0 +1,6 @@
+## Interface: 4150
+## Title: ModName
+## Notes: Example AddOn used as sarfs base AddOn.
+## OptionalDeps: Cosmos, Sea, DynamicData
+## RequiredDeps: TESTMOD_REMOVEME_WHEN_COPYING
+ModName.xml

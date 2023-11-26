@@ -1,0 +1,10 @@
+## Interface: 1500
+## Author: Turan
+## Title: Ace
+## Notes: A new standard in addon development.
+## Notes_deDE:
+## Notes_frFR:
+## Dependencies:
+## OptionalDeps:
+## SavedVariables: AceDB
+Ace.xml

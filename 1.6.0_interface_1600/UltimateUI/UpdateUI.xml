@@ -1,0 +1,16 @@
+<Addon name="Ultimate UI" author="nathanmx" email="" url="http://ui.wowguru.com/ultimate-ui">
+	<Description>What is Ultimate UI?
+Ultimate UI, often abbreviated as &quot;UUI&quot;, is an addon package for World of Warcraft that extends the functionality of the game, making it easier and more efficient to perform a wide range of tasks.
+
+Ok so what can UUI do for me?
+In other words, UUI gives you a ton of features that are very helpful to WOW players of all types. A few addons include:
+Flexbar - You can add extra rows of button slots to add actions, instead of using the one Blizzard provides.
+Karma - Allows you to keep information about players, take notes about them, and automatically remember what quests you did with them, as well as explored with them.
+Gypsy - Allows you to move your character portrait/target portrait/party frame/and more anywhere you want on the screen. Also allows you to remove the artwork on the default WoW action bar and move it where you like.
+AllInOneInventory - Combines all your bags into one bag, making sorting and bag scanning much easier.
+CooldownCount - Adds visual numbers on the cooldown of your spells, giving you an exact time on when you will be able to use it next.
+
+And Much, Much more! The amount of features in this UI is astonishing, and was carefully crafted to use miminal memory, and allow the user to configure virutally any part of the interface. Each and every feature in this UI can be turned on or off - you aren't stuck with any features you don't like. Further, this UI should work perfectly with other standalone addons, so you won't feel cramped like many users were with other addon packages.</Description>
+	<UpdateFile listed="true" url="http://ui.wowguru.com/ultimate-ui/xml" />
+	<CurrentVersion ver="9.21" />
+</Addon>

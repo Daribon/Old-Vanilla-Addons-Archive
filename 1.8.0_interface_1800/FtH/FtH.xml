@@ -1,0 +1,353 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+<Script file="FtH.lua"/>
+	<!-- Frame -->
+	<Frame name="FtHButtonFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="135" y="100"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+			</Anchor>
+		</Anchors>
+		
+		<TitleRegion/>
+		<Backdrop name="FtHButtonsBackdrop" bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<!--<TileSize>
+				<AbsValue val="24"/>
+			</TileSize>-->
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		
+		<Frames>
+				<Backdrop name="FtHDragBackdrop" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<!--<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>-->
+					<BackgroundInsets>
+						<AbsInset left="2" right="2" top="2" bottom="2"/>
+					</BackgroundInsets>
+				</Backdrop>
+				
+<!-- Button Number One -->
+	<Button name="ButtonOne">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="5" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				SKMap_ToggleUI();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("SKMap", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+    <NormalTexture   file="Interface\AddOns\FtH\Images\SKMapMMButtonUp"/>
+		<PushedTexture   file="Interface\AddOns\FtH\Images\SKMapMMButtonUp"/>
+		<DisabledTexture file="Interface\AddOns\FtH\Images\SKMapMMButtonUp"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- Button Two -->
+	<Button name="ButtonTwo">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="35" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				Atlas_Toggle();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("Atlas", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\FtH\Images\MiniMapButtonAtlas"/>
+		<PushedTexture file="Interface\AddOns\FtH\Images\MiniMapButtonAtlasDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- Button Three -->
+		<Button name="ButtonThree">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="65" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+        KC_ItemsLinkview:show()
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("KCI LinkView", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\FtH\Images\MiniMapButtonLootlink"/>
+		<PushedTexture file="Interface\AddOns\FtH\Images\MiniMapButtonLootlinkDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+	
+<!-- Button Four -->
+	<Button name="ButtonFour">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="95" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				ToggleKillLog();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("KillLog", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\FtH\Images\MiniMapButtonAlphaMap"/>
+		<PushedTexture file="Interface\AddOns\FtH\Images\MiniMapButtonAlphaMapDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- Button Five -->
+	<Button name="ButtonFive">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="5" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				GathererUI_ShowOptions();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("Gatherer", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="GathererUI_IconTexture" file="Interface\Addons\Gatherer\Skin\GatherOrb">
+					<Size>
+						<AbsDimension x="17" y="17"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size>
+						<AbsDimension x="52" y="52"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Button>
+	
+<!-- Button Six -->
+<Button name="ButtonSix">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="35" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+			  MyBank:Toggle();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("MyBank", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\FtH\Images\MiniMapButtonBoxOne"/>
+		<PushedTexture file="Interface\AddOns\FtH\Images\MiniMapButtonBoxOneDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+	
+<!-- Button Seven -->
+	<Button name="ButtonSeven">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="65" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				TimersFrame_SetVisible(true);
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("Timers", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\FtH\Images\MiniMapButtonClockOne"/>
+		<PushedTexture file="Interface\AddOns\FtH\Images\MiniMapButtonClockOneDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+	
+
+	<Frame name="FtHDragPart">
+		<Size>
+			<AbsDimension x="130" y="23"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop name="FtHDragBackdrop" bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="24"/>
+			</TileSize>-
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnLoad>
+			</OnLoad>
+		</Scripts>
+		<Layers>
+            <Layer level="ARTWORK" parent="FtHDragPart">
+                <FontString name="ForTheHordeText" inherits="GameFontHighlight" text="FtH UI v1.02">
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="27" y="-5" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	</Frames>
+		<Scripts>
+			<OnLoad>
+        FtH_OnLoad();
+			</OnLoad>
+
+			<OnMouseDown>
+				if(arg1 == "LeftButton") then
+					this:StartMoving();
+				end
+			</OnMouseDown>
+			
+			<OnMouseUp>
+				if(arg1 == "LeftButton") then
+					this:StopMovingOrSizing();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+	
+	<Frame parent="UIParent">
+		<Frames>
+			<Button name="TitanPanelFtHButton" inherits="TitanPanelIconTemplate" frameStrata="FULLSCREEN" toplevel="true">
+				<Scripts>
+					<OnLoad>
+						TitanPanelFtHRightButton_OnLoad();
+						TitanPanelButton_OnLoad();
+					</OnLoad>
+					<OnShow>
+						TitanPanelFtHRightButton_OnShow();
+					</OnShow>
+					<OnClick>
+						TitanPanelFtHRightButton_OnClick(arg1);
+						TitanPanelButton_OnClick(arg1);
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>	
+</Ui>
+

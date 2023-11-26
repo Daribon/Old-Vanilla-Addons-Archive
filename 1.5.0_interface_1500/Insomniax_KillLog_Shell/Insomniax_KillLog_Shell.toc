@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX Kill Log Shell v1.1
+## Notes: Adds a small icon to the Mini-map to access the options panel for Kill Log.
+## Author: LedMirage
+## RequiredDeps: KillLog, Insomniax_IconMover
+Insomniax_KillLog_Shell.xml

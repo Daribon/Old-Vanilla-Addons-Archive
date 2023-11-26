@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: Talisman's Bag Gauge
+## Notes: Displays a status bar indicating how many free slots you have left in your bags.
+## Dependencies: GBars
+BagGauge.xml

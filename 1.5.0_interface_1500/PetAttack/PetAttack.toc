@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: PetAttack v1.6
+## Author: Rauen
+## Notes: Version 1.6
+## SavedVariables: PetAttack_Config
+PetAttack.xml

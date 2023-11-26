@@ -1,0 +1,7 @@
+## Interface: 1800
+## Version: 1.2 (CTMod 1.843)
+## Title: CT_BagMod
+## Notes: Allows you to rename your bags for easier storage.
+## Dependencies: CT_MasterMod
+## SavedVariables: CT_BagNames
+CT_BagMod.xml

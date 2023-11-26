@@ -1,0 +1,164 @@
+<Bindings>
+	<Binding name="GACTIONBUTTON13" runOnUp="true" header="GBARS">
+		if ( keystate == "down" ) then
+			ActionButtonDown(13);
+		else
+			ActionButtonUp(13);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON14" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(14);
+		else
+			ActionButtonUp(14);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON15" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(15);
+		else
+			ActionButtonUp(15);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON16" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(16);
+		else
+			ActionButtonUp(16);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON17" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(17);
+		else
+			ActionButtonUp(17);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON18" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(18);
+		else
+			ActionButtonUp(18);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON19" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(19);
+		else
+			ActionButtonUp(19);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON20" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(20);
+		else
+			ActionButtonUp(20);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON21" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(21);
+		else
+			ActionButtonUp(21);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON22" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(22);
+		else
+			ActionButtonUp(22);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON23" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(23);
+		else
+			ActionButtonUp(23);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON24" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(24);
+		else
+			ActionButtonUp(24);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON25" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(25);
+		else
+			ActionButtonUp(25);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON26" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(26);
+		else
+			ActionButtonUp(26);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON27" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(27);
+		else
+			ActionButtonUp(27);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON28" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(28);
+		else
+			ActionButtonUp(28);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON29" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(29);
+		else
+			ActionButtonUp(29);
+		end
+	</Binding>
+	<Binding name="GACTIONBUTTON30" runOnUp="true">
+		if ( keystate == "down" ) then
+			ActionButtonDown(30);
+		else
+			ActionButtonUp(30);
+		end
+	</Binding>
+
+	<Binding name="GAUTOBARBUTTON1" runOnUp="true" header="GAUTOBAR">
+		if (keystate == "down") then
+			GAutoBar_ButtonDown(1)
+		else
+			GAutoBar_ButtonUp(1)
+		end
+	</Binding>
+	<Binding name="GAUTOBARBUTTON2" runOnUp="true">
+		if (keystate == "down") then
+			GAutoBar_ButtonDown(2)
+		else
+			GAutoBar_ButtonUp(2)
+		end
+	</Binding>
+	<Binding name="GAUTOBARBUTTON3" runOnUp="true">
+		if (keystate == "down") then
+			GAutoBar_ButtonDown(3)
+		else
+			GAutoBar_ButtonUp(3)
+		end
+	</Binding>
+	<Binding name="GAUTOBARBUTTON4" runOnUp="true">
+		if (keystate == "down") then
+			GAutoBar_ButtonDown(4)
+		else
+			GAutoBar_ButtonUp(4)
+		end
+	</Binding>
+	<Binding name="GAUTOBARBUTTON5" runOnUp="true">
+		if (keystate == "down") then
+			GAutoBar_ButtonDown(5)
+		else
+			GAutoBar_ButtonUp(5)
+		end
+	</Binding>
+</Bindings>

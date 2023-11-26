@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: Tooltips: Elite Target
+## Author: Celandro
+## Notes: Designates elite mobs with a plus sign.
+## RequiredDeps: TooltipsBase
+TooltipsEliteTarget.xml

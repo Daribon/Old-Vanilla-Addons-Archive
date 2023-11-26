@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (AutoTrinketBar)
+## Notes: CooldownCount for AutoTrinketBar
+## Author: sarf
+## RequiredDeps: AutoTrinketBar, CooldownCount
+CooldownCountAutoTrinketBar.xml

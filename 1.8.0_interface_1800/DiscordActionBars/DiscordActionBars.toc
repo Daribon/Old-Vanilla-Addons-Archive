@@ -1,0 +1,19 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r Discord Action Bars v2.36
+## Notes: Spreads your base 120 action buttons across 10 configurable bars.
+## OptionalDeps: myAddOns, CT_BarMod
+## Dependencies:
+## SavedVariables: DAB_Settings
+DAB_Fonts.xml
+DAB_Templates.xml
+DAB_Main.xml
+DAB_ActionButton.xml
+DAB_Options_Templates.xml
+DAB_Options_Main.xml
+DAB_Options_Bar.xml
+DAB_Options_OtherBars.xml
+DAB_Options_Menu.xml
+DAB_Options_Misc.xml
+DAB_Options_NumButtons.xml
+DAB_Options_Floaters.xml
+DAB_Options_EventMacros.xml

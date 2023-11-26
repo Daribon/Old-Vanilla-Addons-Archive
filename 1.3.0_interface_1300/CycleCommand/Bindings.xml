@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="CYCLECOMMAND" description="Toggle CycleCommand" header="CYCLECOMMANDHEADER">
+		CycleCommand_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

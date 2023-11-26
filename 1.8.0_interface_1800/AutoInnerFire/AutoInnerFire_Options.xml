@@ -1,0 +1,236 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="AutoInnerFire_Options.lua"/>
+	<CheckButton name="AutoInnerFireOptionsCheckButtonTemplate" inherits="OptionsCheckButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				AutoInnerFireOptionsCheckButton_OnClick();
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	
+	<!-- MiniMap Frame -->
+	<Frame name="AutoInnerFireButtonFrame" parent="Minimap" enableMouse="true" hidden="false" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="AutoInnerFireButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\AutoInnerFire\Images\AIF-Button"/>
+				<PushedTexture file="Interface\AddOns\AutoInnerFire\Images\AIF-ButtonDown"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+				<Scripts>
+					<OnClick>
+						AutoInnerFireButton_OnClick();
+					</OnClick>
+					<OnEnter>
+						GameTooltip_SetDefaultAnchor(GameTooltip, UIParent);
+						GameTooltip:SetText(AIF_BUTTON_TOOLTIP);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+			<OnEvent>
+				AutoInnerFireButton_Init();
+				AutoInnerFireButton_UpdatePosition();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	
+	<!-- Options Frame -->	
+	<Frame name="AutoInnerFireOptionsFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="300" y="210"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="AutoInnerFireOptionsFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="275" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="AIF_OPTIONS_TITLE">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="AutoInnerFireOptionsFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- On/Off Button -->
+			<CheckButton name="AutoInnerFireOptionsFrameCheckButton1" inherits="AutoInnerFireOptionsCheckButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="22" y="-44"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<!-- Threshold DropDown -->
+			<Frame name="AutoInnerFireOptionsFrameThresholdDropDown" inherits="UIDropDownMenuTemplate" enableMouse="true">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-22" y="-48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentText" inherits="GameFontNormalSmall" text="AIF_OPTIONS_THRESHOLD">
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="21" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<!-- MiniMap On/Off Button -->
+			<CheckButton name="AutoInnerFireOptionsFrameCheckButton2" inherits="AutoInnerFireOptionsCheckButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AutoInnerFireOptionsFrameCheckButton1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<!-- BuffInCombat On/Off Button -->
+			<CheckButton name="AutoInnerFireOptionsFrameCheckButton3" inherits="AutoInnerFireOptionsCheckButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="AutoInnerFireOptionsFrameCheckButton2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="108" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<!-- Button Position -->
+			<Slider name="AutoInnerFireSliderButtonPos" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="220" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-140" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText(AIF_OPTIONS_BUTPOS.."["..AutoInnerFireButtonPosition.."\194\176]");
+						getglobal(this:GetName().."High"):SetText();
+						getglobal(this:GetName().."Low"):SetText();
+						AutoInnerFireSliderButtonPos:SetMinMaxValues(0,360);
+						AutoInnerFireSliderButtonPos:SetValueStep(1);
+					</OnLoad>
+					<OnValueChanged>
+						AutoInnerFireButtonPosition = AutoInnerFireSliderButtonPos:GetValue();
+						AutoInnerFireButton_UpdatePosition();
+						getglobal(this:GetName().."Text"):SetText(AIF_OPTIONS_BUTPOS.."["..this:GetValue().."\194\176]");
+					</OnValueChanged>
+				</Scripts>
+			</Slider>			
+			<!-- Default Button -->
+			<Button name="AutoInnerFireOptionsFrameDefaults" inherits="OptionsButtonTemplate" text="AIF_OPTIONS_DEFAULTS">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="13" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						AutoInnerFireOptionsFrame_SetDefaults();
+					</OnClick>
+				</Scripts>
+			</Button>			
+			<!-- Okay Button -->			
+			<Button name="AutoInnerFireOptionsFrameOkay" inherits="OptionsButtonTemplate" text="Okay">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-12" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionOK");
+						HideUIPanel(AutoInnerFireOptionsFrame);
+					</OnClick>
+				</Scripts>
+			</Button>			
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				AutoInnerFireOptionsFrame_OnLoad();
+			</OnLoad>
+			<OnShow>
+				AutoInnerFireOptionsFrame_OnShow();
+			</OnShow>
+			<OnHide>
+				AutoInnerFireOptionsFrame_Update();
+				AutoInnerFireOptionsFrame_OnHide();
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>
+<!-- End of File -->

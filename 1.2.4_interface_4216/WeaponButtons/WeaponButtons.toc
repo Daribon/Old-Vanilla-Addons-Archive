@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: WeaponButtons
+## Notes: Gives you a little window that contains your main hand weapon and your off hand weapon for easy weapon switching.
+## Author: sarf
+## OptionalDeps: Cosmos, PopNUI, TransNUI
+##SavedVariables: WeaponButtons_Enabled, WeaponButtons_DisplayTooltips, WeaponButtons_LockPosition, WeaponButtons_DefaultModeRanged
+WeaponButtons.xml

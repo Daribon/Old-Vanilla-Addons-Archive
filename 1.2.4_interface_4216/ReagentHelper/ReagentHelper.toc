@@ -1,0 +1,8 @@
+## Interface: 4216
+## Title: ReagentHelper
+## Notes: Adds the professions that a reagent is used by, to the game tooltip
+## Author: Tuatara
+## Dependencies: Sea
+## OptionalDeps: Cosmos
+##SavedVariables: RH_TOOLTIP_ENABLE
+ReagentHelper.xml

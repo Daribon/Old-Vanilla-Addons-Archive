@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: CooldownCount (PopBar)
+## Notes: CooldownCount for PopBar
+## Author: sarf
+## RequiredDeps: PopBar, CooldownCount
+## OptionalDeps: CooldownCountCosmos
+CooldownCountPopBar.xml

@@ -1,0 +1,11 @@
+## Interface: 1800
+## Title: ChannelManager
+## Title-frFR: ChannelManager
+## Author: Karl Isenberg
+## Notes: Manages Channels... Duh!
+## Notes-frFR: 
+## Notes-deDE: 
+## RequiredDeps: Chronos, Sea, Sky, Earth
+## OptionalDeps: 
+## SavedVariables: ChannelVisibility, ChannelManager_SavedZoneChannels, ChannelManager_StickyChannels, ChannelManager_DrawerState, ChannelManager_SavedStickyTypes, ChannelManager_CustomChannels, ChannelManager_CustomChannelPasswords, ChannelManager_FavoriteEmotes
+ChannelManager.xml

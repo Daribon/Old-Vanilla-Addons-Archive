@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: Earth
+## Notes: An XML Template Library
+## Author: Alexander Brazie
+## Dependencies: Sea
+Earth.xml

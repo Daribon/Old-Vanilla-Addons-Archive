@@ -1,0 +1,9 @@
+## Interface: 1500
+## Title: SimpleMail
+## Version: 1.1
+## Notes: Preserve recipient's name and autofill subject line.
+## Author: Charettejc
+## Dependencies:
+## OptionalDeps:
+## SavedVariables:
+SimpleMail.xml

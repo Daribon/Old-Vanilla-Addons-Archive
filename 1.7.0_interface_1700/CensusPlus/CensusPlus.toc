@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: CensusPlus
+## Original Author: Ian Pieragostini
+## Modified By: Cooper Sellers - www.warcraftrealms.com 
+## SavedVariables: CensusPlus_Database 
+CensusPlus.xml

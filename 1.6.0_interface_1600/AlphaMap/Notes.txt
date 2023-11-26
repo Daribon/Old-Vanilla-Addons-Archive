@@ -1,0 +1,36 @@
+
+This is v1.3.1 of the AlphaMap add-on for World of Warcraft.  
+If you have additional suggestion, please feel free to send them on to DragonWalsh@yahoo.com
+
+Known Issues:  Currently the only known issues are that there is an "extra" icon on the map, which is a result of the minimap inheritance.  This "extra" icon is the icon designating which direction your team members are from you, and appears whenever they are more than the minimap's radius away from you.
+
+Additionally, there seems to be some conflicts with layering and UltimateUI.  If something is under the AlphaMap and shouldn't be, its likely that UltimateUI or something else has moved the frame behind the AlphaMap.  Just click that frame to bring it to
+the front.
+
+Enjoy!
+
+Jeromy Walsh
+aka Caspian
+Paladin (Daggerspine)
+
+
+Slash Commands are as follows:
+
+/alphamap or /am: 
+
+/am raid 		- show Raid Pins
+/am ptips 		- show party tooltips
+/am mntips 		- show MapNotes tips
+/am gtips  		- show Gatherer tips
+/am mngtips 		- show MapNotes Gathering tips
+/am moveslider 		- toggle movement of the slider
+/am slider  		- toggle display of slider
+/am gatherer		- toggle support for Gatherer
+/am mapnotes		- toggle support for MapNotes
+/am gathering		- toggle support for MapNotes Gathering
+/am combat		- toggle "Autoclose on Combat"
+/am wmclose		- toggle "Autoclose on WorldMap close"
+/am lock		- toggle movement of the AlphaMap
+/am scale <value>	- set the alphamap window scale
+/am tog			- toggle display of alphamap
+/am alpha <value>	- set the transparency of alphamap in a range from 0.0 - 1.0

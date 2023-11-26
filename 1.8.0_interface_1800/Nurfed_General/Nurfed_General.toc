@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: Nurfed_General
+## Notes: Nurfed General AddOn
+## Author: Tivoli http://www.nurfed.com
+## OptionalDeps: AutoBar, sct, TipBuddy
+## SavedVariables: NURFED_LOCKALL, Nurfed_GeneralConfig
+Nurfed_General.xml

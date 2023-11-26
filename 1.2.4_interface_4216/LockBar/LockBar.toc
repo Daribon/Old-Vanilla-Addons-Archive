@@ -1,0 +1,4 @@
+## Interface: 4216
+## Title: LockBar
+## SavedVariables: LockBar_IsLocked, LockBar_IsEnabled
+LockBar.xml

@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: TransNUI
+## Notes: TransNUI lets you set the transparency of many UI elements
+## OptionalDeps: Cosmos, MooBuffMod
+## RequiredDeps: Sea
+## SavedVariables: TransNUI_Config
+TransNUI.xml

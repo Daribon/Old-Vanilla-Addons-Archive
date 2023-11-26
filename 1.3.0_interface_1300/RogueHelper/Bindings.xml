@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="ROGUEHELPER" description="Toggle mod name" header="ROGUEHELPERHEADER">
+		RogueHelper_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

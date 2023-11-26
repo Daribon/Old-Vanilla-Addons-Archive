@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (Gypsy)
+## Notes: CooldownCount for Gypsy
+## Author: sarf
+## RequiredDeps: Gypsy_HotBar, CooldownCount
+CooldownCountGypsy.xml

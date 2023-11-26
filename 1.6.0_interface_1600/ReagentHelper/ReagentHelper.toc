@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r ReagentHelper
+## Notes: Adds the professions that a reagent is used by, to the game tooltip
+## Author: Tuatara
+## Dependencies: Sea
+## OptionalDeps: UltimateUI
+##SavedVariables: RH_TOOLTIP_ENABLE
+ReagentHelper.xml

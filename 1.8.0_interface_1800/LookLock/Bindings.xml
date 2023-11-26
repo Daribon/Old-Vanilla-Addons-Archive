@@ -1,0 +1,37 @@
+<Bindings>
+	<!-- Toggle LookLock On/Off -->
+	<Binding name="LOOKLOCK" description="Toggle character freelook" header="LOOKLOCKHEADER">
+		LookLock.Toggle(arg1);
+	</Binding>
+	
+	<Binding name="LOOKLOCKPUSH" description="Hold down for character freelook" runOnUp="true">		
+		LookLock.Toggle(arg1);
+	</Binding>
+
+	<!-- Toggle CameraLock On/Off -->
+	<Binding name="CAMERALOCK" description="Toggle camera freelook">
+		LookLock.ToggleCamera(arg1);
+	</Binding>
+	
+	<Binding name="CAMERALOCKPUSH" description="Hold down for camera freelook" runOnUp="true">		
+		LookLock.ToggleCamera(arg1);
+	</Binding>
+
+	<!-- Action for Look Lock -->
+	<Binding name="LOOKLOCKACTION" description="Action/Turn in normal mode, Action in Look Lock mode." runOnUp="true" hidden="false">
+		if ( keystate == "down" ) then
+			LookLock.TurnOrActionStart(arg1);
+		else
+			LookLock.TurnOrActionStop(arg1);
+		end
+	</Binding>	
+        
+    <!-- Camera for Look Lock -->
+	<Binding name="LOOKLOCKCAMERA" description="Camera/Select/Move in normal mode, Camera in Look Lock mode." runOnUp="true" hidden="false">
+		if ( keystate == "down" ) then
+			LookLock.CameraOrSelectOrMoveStart(arg1);
+		else
+			LookLock.CameraOrSelectOrMoveStop(arg1);
+		end
+	</Binding>	
+</Bindings>

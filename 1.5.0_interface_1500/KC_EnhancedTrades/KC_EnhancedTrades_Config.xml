@@ -1,0 +1,484 @@
+<Ui	xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+	<!-- Templates -->
+	<Frame name="KC_EnhancedTrades_Config_BoxTemplate" inherits="OptionFrameBoxTemplate" virtual="true">
+		<Scripts>
+            <OnLoad>
+                this:SetBackdropBorderColor(0.4, 0.4, 0.4)
+                this:SetBackdropColor(0.15, 0.15, 0.15)
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+	<Frame name="KC_EnhancedTrades_Config_Template" toplevel="true" frameStrata="HIGH" enableMouse="true" hidden="true" parent="UIParent" virtual="true">
+		<TitleRegion setAllPoints="true"/>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+				  edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="276" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor	point="TOP">
+							<Offset>
+								<AbsDimension x="0"	y="14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString	name="$parentTitle"	inherits="GameFontNormal">
+					<Anchors>
+						<Anchor	point="TOP"	relativeTo="$parentHeader">
+							<Offset>
+								<AbsDimension x="0"	y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button	name="$parentUICloseButton"	inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor	point="TOPRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1"	y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+
+	
+	<Frame name="KC_EnhancedTrades_Config" inherits="KC_EnhancedTrades_Config_Template"
+		   parent="UIParent">
+		<Size>
+			<AbsDimension x="325" y="410"/>
+		</Size>
+		<Anchors>
+			<Anchor	point="TOPLEFT"	relativeTo="UIParent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="0"	y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="$parent_DisplayBox" inherits="KC_EnhancedTrades_Config_BoxTemplate">
+				<Size>
+					<AbsDimension x="305" y="128"/>
+				</Size>
+				<Anchors>
+					<Anchor	point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-41"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString	name="$parentTitle"	inherits="GameFontNormal">
+							<Anchors>
+								<Anchor	point="TOPLEFT"	relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="4"	y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<CheckButton name="$parent_iv"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("i+v")
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getDisplayState("i+v"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleDisplay("i+v");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_ib"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-25"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("i+b")
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getDisplayState("i+b"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleDisplay("i+b");
+							</OnClick>
+						</Scripts>
+					</CheckButton>	
+					<CheckButton name="$parent_ivb"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-48"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("i+v+b")
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getDisplayState("i+v+b"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleDisplay("i+v+b");
+							</OnClick>
+						</Scripts>
+					</CheckButton>	
+					<CheckButton name="$parent_ivba"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-71"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("i+v+b+alts")
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getDisplayState("i+v+b+alts"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleDisplay("i+v+b+alts");
+							</OnClick>
+						</Scripts>
+					</CheckButton>	
+					<CheckButton name="$parent_smart"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-94"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("smart")
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getDisplayState("smart"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleDisplay("smart");
+							</OnClick>
+						</Scripts>
+					</CheckButton>	
+				</Frames>
+			</Frame>
+
+			<Frame name="$parent_FilterBox" inherits="KC_EnhancedTrades_Config_BoxTemplate">
+				<Size>
+					<AbsDimension x="305" y="219"/>
+				</Size>
+				<Anchors>
+					<Anchor	point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-185"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString	name="$parentTitle"	inherits="GameFontNormal">
+							<Anchors>
+								<Anchor	point="TOPLEFT"	relativeTo="$parent_FilterBox" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="4"	y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>	
+					<CheckButton name="$parent_i"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Items That Can't Be Made With: i");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("i"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("i");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_iv"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-25"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Items That Can't Be Made With: i+v");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("i+v"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("i+v");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_ib"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-48"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Items That Can't Be Made With: i+b");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("i+b"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("i+b");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_ivb"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-71"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Items That Can't Be Made With: i+v+b");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("i+v+b"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("i+v+b");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_ivba"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-94"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Items That Can't Be Made With: i+v+b+alts");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("i+v+b+alts"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("i+v+b+alts");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_optimal"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-117"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Optimal Items");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("optimal"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("optimal");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_medium"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-140"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Medium Items");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("medium"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("medium");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_easy"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-163"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Easy Items");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("easy"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("easy");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parent_trivial"	inherits="UICheckButtonTemplate">
+						<Anchors>
+							<Anchor	point="TOPLEFT"	relativeTo="$parent"	relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4"	y="-186"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<HitRectInsets>
+							<AbsInset left="0" right="-100"	top="0"	bottom="0"/>
+						</HitRectInsets>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show Trivial Items");
+							</OnLoad>
+							<OnShow>
+								this:SetChecked(KC_EnhancedTrades:_getFilterState("trivial"));
+							</OnShow>
+							<OnClick>
+								KC_EnhancedTrades:ToggleFilter("trivial");
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
+				</Frames>
+			</Frame>
+
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				getglobal(this:GetName().."Title"):SetText("KCET v"	.. KC_EnhancedTrades.version);
+				getglobal(this:GetName() .. "_DisplayBoxTitle"):SetText("Column Display Options");
+				getglobal(this:GetName() .. "_FilterBoxTitle"):SetText("Filter Options");
+				tinsert(UISpecialFrames,this:GetName());
+			</OnLoad>
+			<OnShow>
+				if (CraftFrame:IsVisible()) then
+					this:SetPoint("TOPLEFT", "CraftFrame",	"TOPRIGHT",	-33, -30);
+				elseif(TradeSkillFrame:IsVisible()) then
+					this:SetPoint("TOPLEFT", "TradeSkillFrame",	"TOPRIGHT",	-33, -30);
+				end		
+
+				KC_EnhancedTrades._silent = TRUE;
+			</OnShow>
+			<OnHide>
+				KC_EnhancedTrades._silent = FALSE;
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

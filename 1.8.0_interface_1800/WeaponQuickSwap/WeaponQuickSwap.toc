@@ -1,0 +1,4 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r Weapon Quick Swap
+## Notes: Function for quickly swapping between 2 weapon sets
+WeaponQuickSwap.xml

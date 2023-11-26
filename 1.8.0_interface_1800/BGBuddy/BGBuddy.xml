@@ -1,0 +1,3349 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Script file="BGBuddy.lua"/> 
+
+<!-- START: Main Frame -->
+<Frame name="BGBuddy_MainFrame">
+	<Scripts>
+		<OnLoad>BGBuddy_OnLoad();</OnLoad>
+		<OnEvent>BGBuddy_OnEvent();</OnEvent>
+		<OnUpdate>BGBuddy_OnUpdate();</OnUpdate>
+	</Scripts>
+</Frame>
+<!-- END: Main Frame -->
+
+<!-- START: Standard Frame -->
+<Frame name="BGBuddy_StandardFrame" parent="UIParent" movable="true" enableMouse="true" hidden="true"> 
+	<Backdrop bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+		<EdgeSize>
+			<AbsValue val="16"/>
+		</EdgeSize>
+		<BackgroundInsets>
+			<AbsInset left="5" right="5" top="5" bottom="5"/>
+		</BackgroundInsets>
+	</Backdrop>
+
+	<Scripts>
+		<OnMouseDown>
+			BGBuddy_OnMouseDown(arg1);
+		</OnMouseDown>
+		<OnMouseUp>
+			BGBuddy_OnMouseUp(arg1);
+		</OnMouseUp>
+		<OnEnter>
+			BGBuddy_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+	</Scripts> 
+
+	<Size>
+		<AbsDimension x="200" y="57"/>
+	</Size>
+     
+	<Anchors>
+		<Anchor point="TOP">
+			<Offset>
+				<AbsDimension x="100" y="-100"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+</Frame>
+
+<Frame name="BGBuddy_RankFrame" hidden="false" parent="BGBuddy_StandardFrame">
+	<Size>
+		<AbsDimension x="16" y="16"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="BGBuddy_StandardFrame">
+			<Offset>
+				<AbsDimension x="7" y="-7"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Layers>
+		<Layer level="BACKGROUND">
+			<Texture name="$parentIcon">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+			</Texture>
+		</Layer>
+		<Layer level="BACKGROUND">
+			<FontString name="BGBuddy_RankName" font="Fonts\skurri.ttf" text="Current Rank" virtual="true">
+				<FontHeight>
+					<AbsValue val="14"/>
+				</FontHeight>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_RankFrame">
+						<Offset>
+							<AbsDimension x="18" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="1.0" b="1.0"/>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnMouseDown>
+			BGBuddy_OnMouseDown(arg1);
+		</OnMouseDown>
+		<OnMouseUp>
+			BGBuddy_OnMouseUp(arg1);
+		</OnMouseUp>
+		<OnEnter>
+			BGBuddy_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+	</Scripts> 
+</Frame>
+
+<Frame name="BGBuddy_KillFrame" hidden="false" parent="BGBuddy_StandardFrame">
+	<Size>
+		<AbsDimension x="200" y="20"/>
+	</Size>
+	<Anchors>
+		<Anchor point="BOTTOMLEFT" relativeTo="BGBuddy_RankFrame">
+			<Offset>
+				<AbsDimension x="0" y="-10"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Layers>
+		<Layer level="BACKGROUND">
+			<FontString name="BGBuddy_Line1" inherits="GameFontNormalSmall" text="Line1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_KillFrame">
+						<Offset>
+							<AbsDimension x="0" y="-11"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1.0" g="1.0" b="1.0"/>
+			</FontString>
+
+			<FontString name="BGBuddy_Line2" inherits="GameFontNormalSmall" text="Line2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_Line1">
+						<Offset>
+							<AbsDimension x="0" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1.0" g="1.0" b="1.0"/>
+			</FontString>
+			<FontString name="BGBuddy_Line3" inherits="GameFontNormalSmall" text="Line3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_Line2">
+						<Offset>
+							<AbsDimension x="0" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1.0" g="1.0" b="1.0"/>
+			</FontString>
+
+			<FontString name="BGBuddy_Line4" inherits="GameFontNormalSmall" text="Line4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_Line3">
+						<Offset>
+							<AbsDimension x="0" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1.0" g="1.0" b="1.0"/>
+			</FontString>
+			<FontString name="BGBuddy_Line5" inherits="GameFontNormalSmall" text="Line5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_Line4">
+						<Offset>
+							<AbsDimension x="0" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1.0" g="1.0" b="1.0"/>
+			</FontString>
+			<FontString name="BGBuddy_Line6" inherits="GameFontNormalSmall" text="Line6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_Line5">
+						<Offset>
+							<AbsDimension x="0" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1.0" g="1.0" b="1.0"/>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnMouseDown>
+			BGBuddy_OnMouseDown(arg1);
+		</OnMouseDown>
+		<OnMouseUp>
+			BGBuddy_OnMouseUp(arg1);
+		</OnMouseUp>
+		<OnEnter>
+			BGBuddy_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+	</Scripts> 
+</Frame>
+
+<Frame name="BGBuddy_EnterFrame" parent="BGBuddy_StandardFrame" movable="true" enableMouse="true" hidden="true"> 
+	<Size>
+		<AbsDimension x="1" y="1"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="BGBuddy_StandardFrame" relativePoint="BOTTOMLEFT">
+			<Offset>
+				<AbsDimension x="0" y="8"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+
+	<Frames>
+		<Button name="BGBuddy_EnterButton" inherits="OptionsButtonTemplate" text="Enter Battle">
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="BOTTOM" relitiveTo="BGBuddy_StandardFrame">
+					<Offset>
+						<AbsDimension x="0" y="13" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="115" y="20"/>
+			</Size>
+			<Scripts>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					BGBuddy_UnAFK();
+					BattlefieldFrame_EnterBattlefield();
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+</Frame>
+
+<Frame name="BGBuddy_LeaveFrame" parent="BGBuddy_StandardFrame" movable="true" enableMouse="true" hidden="true"> 
+	<Size>
+		<AbsDimension x="200" y="25"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPRIGHT" relativeTo="BGBuddy_StandardFrame">
+			<Offset>
+				<AbsDimension x="-4" y="-10"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+
+	<Frames>
+		<Button name="BGBuddy_LeaveButton" inherits="OptionsButtonTemplate" text="X">
+			<Anchors>
+				<Anchor point="RIGHT" relativePoint="TOPRIGHT" relitiveTo="BGBuddy_StandardFrame">
+					<Offset>
+						<AbsDimension x="-3" y="-3" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="14" y="14"/>
+			</Size>
+			<Scripts>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					AcceptBattlefieldPort();
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+</Frame>
+
+<Frame name="BGBuddy_SwitchFrame" parent="BGBuddy_StandardFrame" movable="true" enableMouse="true" hidden="true"> 
+	<Size>
+		<AbsDimension x="200" y="25"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="BGBuddy_StandardFrame" relativePoint="BOTTOMLEFT">
+			<Offset>
+				<AbsDimension x="0" y="8"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+
+	<Frames>
+		<Button name="BGBuddy_SwitchButton" inherits="OptionsButtonTemplate" text="Change Instance">
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="BOTTOM" relitiveTo="BGBuddy_SwitchFrame">
+					<Offset>
+						<AbsDimension x="0" y="13" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="145" y="20"/>
+			</Size>
+			<Scripts>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					ShowBattlefieldList();
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+</Frame>
+
+<Frame name="BGBuddy_ScoreFrame" parent="BGBuddy_StandardFrame" movable="true" enableMouse="true" hidden="true"> 
+	<Size>
+		<AbsDimension x="200" y="25"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPRIGHT" relativeTo="BGBuddy_StandardFrame">
+			<Offset>
+				<AbsDimension x="-5" y="-7"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+
+	<Frames>
+		<Button name="BGBuddy_ScoreIcon">
+			<Size>
+				<AbsDimension x="18" y="18"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relitiveTo="BGBuddy_ScoreFrame">
+					<Offset>
+						<AbsDimension x="0" y="0" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="MiniMapBattlefieldIcon" file="Interface\Minimap\UI-Minimap-ZoomInButton-Up">
+						<Size>
+							<AbsDimension x="18" y="18"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER">
+								<Offset>
+									<AbsDimension x="-1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Frames>
+				<Frame name="BGBuddy_DropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+					<Anchor point="TOPLEFT" relativeTo="BGBuddy_StandardFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-5" y="-7"/>
+						</Offset>
+					</Anchor>
+					<Scripts>
+						<OnLoad>
+							BGBuddy_DropDown_OnLoad();
+						</OnLoad>
+					</Scripts>
+				</Frame>
+			</Frames>
+			<Scripts>
+				<OnLoad>
+					this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				</OnLoad>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					if ( BGBuddy_StandardFrame.status == "active") then
+						ToggleWorldStateScoreFrame();
+					elseif ( BGBuddy_StandardFrame.status == "confirm") then
+						ToggleDropDownMenu(1, nil, BGBuddy_DropDown, "BGBuddy_ScoreIcon", -113, 27);
+					else
+						ToggleDropDownMenu(1, nil, BGBuddy_DropDown, "BGBuddy_ScoreIcon", -129, 27);
+					end
+				</OnClick>
+				<OnEnter>
+					BGBuddy_OnEnterScoreFrame();
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+			<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+		</Button>
+	</Frames>
+</Frame>
+
+<Frame name="BGBuddy_ConfigPanel_CustomizeDisplay" toplevel="true" movable="false" enableMouse="true" hidden="true" parent="UIParent">
+	<Scripts>
+		<OnShow>
+			BGBuddy_ConfigPanel_CustomizeDisplay.open = 1;
+		</OnShow>
+	</Scripts>
+	<Size>
+		<AbsDimension x="700" y="350" />
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" />
+	</Anchors>
+	<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+		tile="true">
+		<BackgroundInsets>
+			<AbsInset left="11" right="12" top="12" bottom="11" />	
+			<Size>
+				<AbsDimension x="128" y="17" />
+			</Size>
+		</BackgroundInsets>
+		<TileSize>
+			<AbsValue val="32" />
+		</TileSize>
+		<EdgeSize>
+			<AbsValue val="32" />
+		</EdgeSize>
+	</Backdrop>
+	<Layers>
+		<Layer level="ARTWORK">
+			<Texture name="BGBuddy_ConfigPanelCustomizeDisplayTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
+				<Size>
+					<AbsDimension x="350" y="64" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+			<FontString inherits="GameFontNormal" text="Customize Display">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+
+			<FontString inherits="GameFontNormal" text="Alterac Valley Settings">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="20" y="-38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormal" text="Warsong Gulch Settings">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="355" y="-38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormal" text="Variable Reference">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="20" y="-188" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormal" text="Additional Display Settings">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="355" y="-188" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			
+			<FontString inherits="GameFontNormalSmall" text="Display Rank Name and Icon">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="392" y="-214" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="Hide the BGBuddy display">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="392" y="-234" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="Line 1">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 2">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 3">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-100" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 4">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 5">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-140" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 6">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-160" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="Line 1">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="365" y="-60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 2">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="365" y="-80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 3">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="365" y="-100" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 4">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="365" y="-120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 5">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="365" y="-140" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Line 6">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="365" y="-160" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+
+
+			<FontString inherits="GameFontNormalSmall" text="~S">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Standing">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~K">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-225" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-225" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Kills">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-225" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~KB">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Killing Blows">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~LK">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Lifetime Kills">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~D">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Deaths">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~SH">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Session Honor">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~LKH">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-300" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-300" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Last-Kill Honor">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-300" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~BH">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="24" y="-315" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="59" y="-315" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Bonus Honor">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="69" y="-315" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<!-- ROW 2 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+
+			<FontString inherits="GameFontNormalSmall" text="~GYA">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Graveyards Assaulted">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~GYD">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-225" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-225" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Graveyards Defended">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-225" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~TA">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Towers Assaulted">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-240" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~TD">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Towers Defended">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~MC">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Mines Captured">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~LDK">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Leaders Killed">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+
+			<FontString inherits="GameFontNormalSmall" text="~SO">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="169" y="-300" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="=">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="204" y="-300" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="Secondary Objectives">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+						<Offset>
+							<AbsDimension x="214" y="-300" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1"/>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+
+		<Frame name="BGBuddy_ConfigPanel_Customize_BG1" parent="BGBuddy_ConfigPanel_CustomizeDisplay">
+			<Size>
+				<AbsDimension x="330" y="129"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="15" y="-45" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="8"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="8"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="2" right="2" top="2" bottom="2"/>
+				</BackgroundInsets>
+			</Backdrop>
+			<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(2);
+					this:SetBackdropColor(0.3,0.3,0.3,0.8);
+					this:SetBackdropBorderColor(1,1,1,0.5);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+
+		<Frame name="BGBuddy_ConfigPanel_Customize_BG2" parent="BGBuddy_ConfigPanel_CustomizeDisplay">
+			<Size>
+				<AbsDimension x="330" y="129"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="355" y="-45" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="8"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="8"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="2" right="2" top="2" bottom="2"/>
+				</BackgroundInsets>
+			</Backdrop>
+			<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(2);
+					this:SetBackdropColor(0.3,0.3,0.3,0.8);
+					this:SetBackdropBorderColor(1,1,1,0.5);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+
+		<Frame name="BGBuddy_ConfigPanel_Customize_BG3" parent="BGBuddy_ConfigPanel_CustomizeDisplay">
+			<Size>
+				<AbsDimension x="330" y="140"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="15" y="-195" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="8"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="8"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="2" right="2" top="2" bottom="2"/>
+				</BackgroundInsets>
+			</Backdrop>
+			<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(2);
+					this:SetBackdropColor(0.3,0.3,0.3,0.8);
+					this:SetBackdropBorderColor(1,1,1,0.5);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+
+		<Frame name="BGBuddy_ConfigPanel_Customize_BG4" parent="BGBuddy_ConfigPanel_CustomizeDisplay">
+			<Size>
+				<AbsDimension x="330" y="105"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="355" y="-195" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="8"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="8"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="2" right="2" top="2" bottom="2"/>
+				</BackgroundInsets>
+			</Backdrop>
+			<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(2);
+					this:SetBackdropColor(0.3,0.3,0.3,0.8);
+					this:SetBackdropBorderColor(1,1,1,0.5);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_DisplayRank" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="365" y="-215" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["displayRank"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetDisplayRank();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Displays your current honor rank name and icon in the BGBuddy window.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_HideDisplay" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="365" y="-235" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["hideDisplay"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetVisibility();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Hide the BGBuddy window.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line1" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="64" y="-60" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine1"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line2" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="64" y="-80" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine2"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line3" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="64" y="-100" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine3"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line4" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="64" y="-120" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine4"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line5" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="64" y="-140" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine5"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line6" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="64" y="-160" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine6"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box1" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="104" y="-59" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box2:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText1"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText1"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box2" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="104" y="-79" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box3:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText2"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText2"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box3" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="104" y="-99" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box4:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText3"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText3"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box4" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="104" y="-119" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box1:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText4"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText4"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box5" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="104" y="-139" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box6:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText5"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText5"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box6" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="104" y="-159" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box1:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText6"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText6"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+
+
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line1ws" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="405" y="-60" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine1ws"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line2ws" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="405" y="-80" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine2ws"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line3ws" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="405" y="-100" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine3ws"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line4ws" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="405" y="-120" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine4ws"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line5ws" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="405" y="-140" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine5ws"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Customize_Line6ws" inherits="UICheckButtonTemplate" virtual="true">
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="405" y="-160" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeLine6ws"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Activate the contents of this line when checked.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box1ws" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="445" y="-59" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box2ws:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText1ws"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText1ws"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box2ws" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="445" y="-79" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box3ws:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText2ws"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText2ws"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box3ws" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="445" y="-99" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box4ws:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText3ws"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText3ws"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box4ws" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="445" y="-119" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box1ws:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText4ws"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText4ws"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box5ws" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="445" y="-139" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box6ws:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText5ws"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText5ws"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<EditBox name="BGBuddy_ConfigPanel_Customize_Box6ws" letters="50" historyLines="0" autoFocus="false">
+			<Size>
+				<AbsDimension x="220" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="445" y="-159" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="220" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+					</Texture>
+					<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+						<Size>
+							<AbsDimension x="8" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+						</Anchors>
+						<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+					</Texture>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnTabPressed>
+					BGBuddy_ConfigPanel_Customize_Box1ws:SetFocus();
+				</OnTabPressed>
+				<OnEditFocusLost>
+					this:HighlightText(0, 0);
+				</OnEditFocusLost>
+				<OnShow>
+					if ( BGBuddy_SavedVars["customizeText6ws"] ~= 0 ) then
+						this:SetText(BGBuddy_SavedVars["customizeText6ws"]);
+					end
+				</OnShow>
+			</Scripts>
+			<FontString inherits="ChatFontNormal"/>
+		</EditBox>
+
+		<Button name="BGBuddy_ConfigPanel_CustomizeButtonOK" inherits="OptionsButtonTemplate" text="OK">
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="BOTTOMRIGHT" relitiveTo="BGBuddy_ConfigPanel_CustomizeDisplay">
+					<Offset>
+						<AbsDimension x="-70" y="30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					BGBuddy_ConfigPanel_CustomizeDisplay:Hide();
+					BGBuddy_Config_SetCustomDisplay();
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+</Frame>
+
+<Frame name="BGBuddy_ConfigPanel" toplevel="true" movable="false" enableMouse="true" hidden="true" parent="UIParent">
+	<Scripts>
+		<OnLoad>
+			UIPanelWindows['BGBuddy_ConfigPanel'] = {area = 'center', pushable = 0};
+		</OnLoad>
+	</Scripts>
+	<Size>
+		<AbsDimension x="230" y="400" />
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" />
+	</Anchors>
+	<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+		tile="true">
+		<BackgroundInsets>
+			<AbsInset left="11" right="12" top="12" bottom="11" />	
+			<Size>
+				<AbsDimension x="128" y="17" />
+			</Size>
+		</BackgroundInsets>
+		<TileSize>
+			<AbsValue val="32" />
+		</TileSize>
+		<EdgeSize>
+			<AbsValue val="32" />
+		</EdgeSize>
+	</Backdrop>
+	
+	<Layers>
+		<Layer level="ARTWORK">
+			<Texture name="BGBuddy_ConfigPanelTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
+				<Size>
+					<AbsDimension x="290" y="64" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+			<FontString inherits="GameFontNormal" text="BGBuddy Options">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="BGBuddy_ConfigPanel">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="...................................................................">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="BGBuddy_ConfigPanel">
+						<Offset>
+							<AbsDimension x="0" y="-106" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="...................................................................">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="BGBuddy_ConfigPanel">
+						<Offset>
+							<AbsDimension x="0" y="-196" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="...................................................................">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="BGBuddy_ConfigPanel">
+						<Offset>
+							<AbsDimension x="0" y="-236" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.5" g="0.5" b="0.5"/>
+			</FontString>
+			<FontString inherits="GameFontNormalSmall" text="BGBuddy by Conflictus">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.7" g="0.7" b="0.7"/>
+			</FontString>
+			<FontString inherits="GameFontNormal" text="BGBUDDY_VERSION">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BGBuddy_ConfigPanel" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="0.7" g="0.7" b="0.7"/>
+			</FontString>
+		</Layer>
+	</Layers>
+	
+
+	<Frames>
+		
+		<CheckButton name="BGBuddy_ConfigPanel_EnableBGBuddy" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-40" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["isEnabled"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetEnabled();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Enable or disable BGBuddy. The options menu is always available by typing '/bgbuddy'.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame0" parent="BGBuddy_ConfigPanel_EnableBGBuddy"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_EnableBGBuddy" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText0" inherits="GameFontNormalSmall" text="Enable BGBuddy">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_EnableBGBuddy">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_HideBGIcon" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-170" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["hideBGIcon"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetBGIcon();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Hide the standard battleground icon that pops-up on the minimap.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame7" parent="BGBuddy_ConfigPanel_HideBGIcon"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_HideBGIcon" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText7" inherits="GameFontNormalSmall" text="Hide Minimap BG Icon">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_HideBGIcon">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_Lock" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-130" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["isLocked"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetLockStatus();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Lock the BGBuddy window so it cannot be moved.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame1" parent="BGBuddy_ConfigPanel_Lock"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_Lock" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText1" inherits="GameFontNormalSmall" text="Lock BGBuddy Window">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_Lock">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_AlwaysShow" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-150" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["isAlwaysVisible"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetVisibilityStatus();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Show BGBuddy when you are outside of Battlegrounds.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame2" parent="BGBuddy_ConfigPanel_AlwaysShow"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_AlwaysShow" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText2" inherits="GameFontNormalSmall" text="Always Show BGBuddy">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_AlwaysShow">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+				
+		<CheckButton name="BGBuddy_ConfigPanel_PlaySound" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-190" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["playSound"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_Config_SetSound();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Play a sound once the Battleground becomes available.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame3" parent="BGBuddy_ConfigPanel_PlaySound"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_PlaySound" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText3" inherits="GameFontNormalSmall" text="Play Sound When Ready">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_PlaySound">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_AutoJoin" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-60" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["AutoJoin"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_AutoJoin();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Automatically enter the Battleground as soon as it becomes available.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame4" parent="BGBuddy_ConfigPanel_AutoJoin"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_AutoJoin" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText4" inherits="GameFontNormalSmall" text="Enable Auto-Join">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_AutoJoin">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_AutoRes" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-120" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-100" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["AutoRes"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_AutoRes();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Automatically accept resurrection at the nearest spirit healer.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame5" parent="BGBuddy_ConfigPanel_AutoRes"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_AutoRes" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText5" inherits="GameFontNormalSmall" text="Enable Auto-Resurrect">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_AutoRes">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<CheckButton name="BGBuddy_ConfigPanel_AutoRelease" inherits="UICheckButtonTemplate" virtual="true">
+			<HitRectInsets>
+				<AbsInset left="0" right="-160" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-80" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Scripts>
+				<OnShow>
+					if ( BGBuddy_SavedVars["AutoRelease"] == 1 ) then
+						this:SetChecked(1);
+					else
+						this:SetChecked(0);
+					end
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					BGBuddy_AutoRelease();
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Automatically release from your corpse when you die.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+
+		<Frame name="BGBuddy_ConfigPanel_Frame6" parent="BGBuddy_ConfigPanel_AutoRelease"> 
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="BGBuddy_ConfigPanel_AutoRelease" relativePoint="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="-30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<FontString name="BGBuddy_ConfigPanel_FrameText6" inherits="GameFontNormalSmall" text="Enable Auto-Release">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="BGBuddy_ConfigPanel_AutoRelease">
+								<Offset>
+									<AbsDimension x="25" y="-6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1.0" g="0.82" b="0"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+
+		<Slider name="BGBuddy_ConfigPanel_Slider1" orientation="HORIZONTAL" minValue="0" maxvalue="100" valueStep="1" virtual="true">
+			<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="8" />
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="8" />
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="3" right="3" top="6" bottom="6" />
+				</BackgroundInsets>
+			</Backdrop>
+			<Size>
+				<AbsDimension x="180" y="17" />
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-275" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="BGBuddy_ConfigPanel_SliderBackground1" setAllPoints="true">
+						<Color r="0" g="1" b="0" a="0.0" />
+					</Texture>
+				</Layer>
+				<Layer level="ARTWORK">
+					<FontString name="$parentHeading" inherits="GameFontNormalSmall" text="Heading">
+						<Anchors>
+							<Anchor point="BOTTOM" relativePoint="TOP">
+								<Offset>
+									<AbsDimension x="2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentValueText" inherits="GameFontNormalSmall" text="Value">
+						<Color r=".4" g=".6" b="1" a="1" />
+						<Anchors>
+							<Anchor point="BOTTOM" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="2" y="-11" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentLeftText" inherits="GameFontHighlightSmall" text="0%">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="2" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentRightText" inherits="GameFontHighlightSmall" text="100%">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-2" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					getglobal(this:GetName().."Heading"):SetText("Background Transparency");
+					getglobal(this:GetName().."LeftText"):SetText("0%");
+					getglobal(this:GetName().."RightText"):SetText("100%");
+				</OnLoad>
+				<OnShow>
+					getglobal(this:GetName().."ValueText"):SetText(BGBuddy_SavedVars["backgroundAlpha"].."%");
+					getglobal(this:GetName()):SetValue(BGBuddy_SavedVars["backgroundAlpha"]);
+				</OnShow>
+				<OnValueChanged>
+					BGBuddy_Config_SetBackgroundAlpha();
+				</OnValueChanged>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Adjust transparency of the BGBuddy background.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+			<ThumbTexture file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+			</ThumbTexture>
+		</Slider>
+
+		<Slider name="BGBuddy_ConfigPanel_Slider2" orientation="HORIZONTAL" minValue="0" maxvalue="100" valueStep="1" virtual="true">
+			<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="8" />
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="8" />
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="3" right="3" top="6" bottom="6" />
+				</BackgroundInsets>
+			</Backdrop>
+			<Size>
+				<AbsDimension x="180" y="17" />
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="TOPLEFT" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="20" y="-320" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="BGBuddy_ConfigPanel_SliderBackground2" setAllPoints="true">
+						<Color r="0" g="1" b="0" a="0.0" />
+					</Texture>
+				</Layer>
+				<Layer level="ARTWORK">
+					<FontString name="$parentHeading" inherits="GameFontNormalSmall" text="Heading">
+						<Anchors>
+							<Anchor point="BOTTOM" relativePoint="TOP">
+								<Offset>
+									<AbsDimension x="2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentValueText" inherits="GameFontNormalSmall" text="Value">
+						<Color r=".4" g=".6" b="1" a="1" />
+						<Anchors>
+							<Anchor point="BOTTOM" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="2" y="-11" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentLeftText" inherits="GameFontHighlightSmall" text="0%">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="2" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentRightText" inherits="GameFontHighlightSmall" text="100%">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-2" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					getglobal(this:GetName().."Heading"):SetText("Border Transparency");
+					getglobal(this:GetName().."LeftText"):SetText("0%");
+					getglobal(this:GetName().."RightText"):SetText("100%");
+				</OnLoad>
+				<OnShow>
+					getglobal(this:GetName().."ValueText"):SetText(BGBuddy_SavedVars["borderAlpha"].."%");
+					getglobal(this:GetName()):SetValue(BGBuddy_SavedVars["borderAlpha"]);
+				</OnShow>
+				<OnValueChanged>
+					BGBuddy_Config_SetBorderAlpha();
+				</OnValueChanged>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.5);
+					GameTooltip:SetText("Adjust transparency of the BGBuddy border.", 1.0, 1.0, 1.0, 1.0, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+			<ThumbTexture file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+			</ThumbTexture>
+		</Slider>
+
+		<Button name="BGBuddy_ConfigPanel_ButtonClose" inherits="OptionsButtonTemplate" text="CLOSE">
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="BOTTOM" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="0" y="30" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					HideUIPanel(BGBuddy_ConfigPanel);
+					if (MYADDONS_ACTIVE_OPTIONSFRAME == getglobal("BGBuddy_ConfigPanel")) then
+						ShowUIPanel(myAddOnsFrame);
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+
+		<Button name="BGBuddy_ConfigPanel_ButtonCustomize" inherits="OptionsButtonTemplate" text="Customize Display">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="0" y="-215" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Size>
+				<AbsDimension x="190" y="20" />
+			</Size>
+			<Scripts>
+				<OnClick>
+					PlaySound("gsTitleOptionOK");
+					BGBuddy_ConfigPanel_CustomizeDisplay:Show();
+				</OnClick>
+			</Scripts>
+		</Button>
+		
+		<Button name="BGBuddy_ConfigPanel_ButtonReset" inherits="OptionsButtonTemplate" text="RESET" hidden="true">
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="TOP" relitiveTo="BGBuddy_ConfigPanel">
+					<Offset>
+						<AbsDimension x="0" y="-30"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				</OnClick>
+				<OnEnter>
+					GameTooltip_AddNewbieTip("Restore Defaults", 1.0, 1.0, 1.0, "-Warning-\n\nClicking this will reset all of your settings to default.  You cannot cancel this action.");
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</Button>
+		
+	</Frames>
+</Frame>
+
+
+</Ui>

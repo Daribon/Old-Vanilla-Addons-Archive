@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title:	BuffStatus UI Plugin
+## Notes:	BuffStatus UI Plugin
+## © 2004, 2005 Miron
+## Version:
+##			1.0	Initial Version
+BuffStatus.xml

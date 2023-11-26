@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: LSTracker 1.0
+## Notes: Light Shield Tracker [shaman]
+## Author: Znagge
+## SavedVariables: LSTracker_Options
+LSTracker.xml

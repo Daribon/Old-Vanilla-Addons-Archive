@@ -1,0 +1,47 @@
+Open up UUIButtons.xml in any normal text editor (I use notepad).
+
+Look for the individual button sections, they start with 
+
+<!-- "some button name" -->
+
+The above code is called a comment, it does nothing but allows you to leave notes in the code.
+So lets change the BetterKeyBinding button so that it toggles MonkeySpeed on/off instead. We scroll down the UUIButtons.xml file until we find 
+
+<!-- BetterKeyBinding Button -->
+
+Now, there's only 3 things max that you want to change. The first is the button name. Where it says:
+
+<Button name="BetterKeyBindingMapMinimapButton">
+
+Change that to a name that would better suit the addon feature you are trying to use. It has to be a unique name. So in this case, something like:
+
+<Button name="MonkeySpeedMinimapButton">
+
+The next part that needs to be changes is what function is called when a user clicks the button. Scroll down a little till you come to the part that says:
+
+			<OnClick>
+				ToggleBetterKeyBinding();
+			</OnClick>
+			
+You will want to change that so it calls the correct function. If you dont know what function you want it to call, then you'll have to search for it. With a quick search through the MonkeySpeed files I found the "Toggle" functions for the addon. It's "MonkeySpeed_ToggleDisplay()". So I change the above to:
+
+			<OnClick>
+				MonkeySpeed_ToggleDisplay();
+			</OnClick>
+			
+			
+And that should work. The last thing you want to change is the Tooltip that appears when you mouseover the button. Find the line:
+
+				GameTooltip:SetText("BetterKeyBinding", 1.0, 1.0, 1.0);
+				
+Change that to something like:
+
+				GameTooltip:SetText("MonkeySpeed", 1.0, 1.0, 1.0);
+
+The numbers following the "MonkeySpeed" part indicate the color the text is, in RGB values.  Change any of the numbers to values from 0-1 to see the text color change.
+
+
+And that's pretty much it. Have fun changing the menu around as you like. :)  Perhaps later on I may make it more dynamic, so that users may add additional buttons to the menu and make the changing of what each button does a lot more user friendly.
+
+Regards,
+Nathanmx

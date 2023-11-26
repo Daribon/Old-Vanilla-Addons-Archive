@@ -1,0 +1,34 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r Titan Panel
+## Notes: Adds a control panel/info bar on the top and bottom of the screen. Allows users to control time/volume/panel scale/transparency, also displays important information such as money/bag/latency/FPS/Location/XP in real time. 
+## Author: TitanMod@gmail.com / Adsertor
+## SavedVariables: TitanSettings, TITAN_HONORPLUS, TITAN_HONORPLUS_CHATINFO
+## OptionalDeps: myAddOns, ImprovedErrorFrame, TipBuddy, Opium
+## Dependencies:
+## Version: 2.02.1800
+Localization.xml
+TitanUtils.xml
+TitanVariables.xml
+TitanMenu.xml
+TitanPanelTemplate.xml
+TitanMovable.xml
+TitanTooltip.xml
+TitanPanel.xml
+TitanAmmo.xml
+TitanAutoHide.xml
+TitanAuxAutoHide.xml
+TitanBag.xml
+TitanClock.xml
+TitanCoords.xml
+TitanLootType.xml
+TitanMoney.xml
+TitanPerformance.xml
+TitanTrans.xml
+TitanUIScale.xml
+TitanVolume.xml
+TitanXP.xml
+TitanRegen.xml
+TitanItemBonuses.xml
+TitanRepair.xml
+TitanHonorPlus.xml
+

@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: CycleCommand
+## Notes: Allows you to create a command which "cycles" to other commands when used.
+## Author: sarf
+## OptionalDeps: Cosmos
+##SavedVariables: CycleCommand_Enabled, CycleCommand_CommandsArray
+CycleCommand.xml

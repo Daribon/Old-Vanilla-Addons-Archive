@@ -1,0 +1,3021 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="CooldownCountAllInOneInventory.lua"/> 
+	
+	<Frame name="CooldownCountAllInOneInventoryFrame" frameStrata="LOW" enableMouse="false" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				CooldownCountAllInOneInventory_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				CooldownCountAllInOneInventory_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem1CooldownCountFrame" parent="AllInOneInventoryFrameItem1" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem1CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem2CooldownCountFrame" parent="AllInOneInventoryFrameItem2" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem2CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem3CooldownCountFrame" parent="AllInOneInventoryFrameItem3" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem3CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem4CooldownCountFrame" parent="AllInOneInventoryFrameItem4" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem4CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem5CooldownCountFrame" parent="AllInOneInventoryFrameItem5" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem5CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem6CooldownCountFrame" parent="AllInOneInventoryFrameItem6" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem6CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem7CooldownCountFrame" parent="AllInOneInventoryFrameItem7" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem7CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem8CooldownCountFrame" parent="AllInOneInventoryFrameItem8" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem8CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem9CooldownCountFrame" parent="AllInOneInventoryFrameItem9" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem9CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="AllInOneInventoryFrameItem10CooldownCountFrame" parent="AllInOneInventoryFrameItem10" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem10CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem11CooldownCountFrame" parent="AllInOneInventoryFrameItem11" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem11CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem12CooldownCountFrame" parent="AllInOneInventoryFrameItem12" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem12CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem13CooldownCountFrame" parent="AllInOneInventoryFrameItem13" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem13CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem14CooldownCountFrame" parent="AllInOneInventoryFrameItem14" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem14CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem15CooldownCountFrame" parent="AllInOneInventoryFrameItem15" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem15CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem16CooldownCountFrame" parent="AllInOneInventoryFrameItem16" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem16CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem17CooldownCountFrame" parent="AllInOneInventoryFrameItem17" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem17CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem18CooldownCountFrame" parent="AllInOneInventoryFrameItem18" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem18CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem19CooldownCountFrame" parent="AllInOneInventoryFrameItem19" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem19CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="AllInOneInventoryFrameItem20CooldownCountFrame" parent="AllInOneInventoryFrameItem20" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem20CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem21CooldownCountFrame" parent="AllInOneInventoryFrameItem21" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem21CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem22CooldownCountFrame" parent="AllInOneInventoryFrameItem22" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem22CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem23CooldownCountFrame" parent="AllInOneInventoryFrameItem23" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem23CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem24CooldownCountFrame" parent="AllInOneInventoryFrameItem24" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem24CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem25CooldownCountFrame" parent="AllInOneInventoryFrameItem25" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem25CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem26CooldownCountFrame" parent="AllInOneInventoryFrameItem26" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem26CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem27CooldownCountFrame" parent="AllInOneInventoryFrameItem27" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem27CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem28CooldownCountFrame" parent="AllInOneInventoryFrameItem28" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem28CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem29CooldownCountFrame" parent="AllInOneInventoryFrameItem29" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem29CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="AllInOneInventoryFrameItem30CooldownCountFrame" parent="AllInOneInventoryFrameItem30" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem30CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem31CooldownCountFrame" parent="AllInOneInventoryFrameItem31" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem31CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem32CooldownCountFrame" parent="AllInOneInventoryFrameItem32" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem32CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem33CooldownCountFrame" parent="AllInOneInventoryFrameItem33" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem33CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem34CooldownCountFrame" parent="AllInOneInventoryFrameItem34" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem34CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem35CooldownCountFrame" parent="AllInOneInventoryFrameItem35" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem35CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem36CooldownCountFrame" parent="AllInOneInventoryFrameItem36" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem36CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem37CooldownCountFrame" parent="AllInOneInventoryFrameItem37" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem37CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem38CooldownCountFrame" parent="AllInOneInventoryFrameItem38" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem38CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem39CooldownCountFrame" parent="AllInOneInventoryFrameItem39" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem39CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="AllInOneInventoryFrameItem40CooldownCountFrame" parent="AllInOneInventoryFrameItem40" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem40CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem41CooldownCountFrame" parent="AllInOneInventoryFrameItem41" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem41CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem42CooldownCountFrame" parent="AllInOneInventoryFrameItem42" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem42CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem43CooldownCountFrame" parent="AllInOneInventoryFrameItem43" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem43CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem44CooldownCountFrame" parent="AllInOneInventoryFrameItem44" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem44CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem45CooldownCountFrame" parent="AllInOneInventoryFrameItem45" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem45CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem46CooldownCountFrame" parent="AllInOneInventoryFrameItem46" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem46CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem47CooldownCountFrame" parent="AllInOneInventoryFrameItem47" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem47CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem48CooldownCountFrame" parent="AllInOneInventoryFrameItem48" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem48CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem49CooldownCountFrame" parent="AllInOneInventoryFrameItem49" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem49CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="AllInOneInventoryFrameItem50CooldownCountFrame" parent="AllInOneInventoryFrameItem50" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem50CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem51CooldownCountFrame" parent="AllInOneInventoryFrameItem51" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem51CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem52CooldownCountFrame" parent="AllInOneInventoryFrameItem52" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem52CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem53CooldownCountFrame" parent="AllInOneInventoryFrameItem53" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem53CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem54CooldownCountFrame" parent="AllInOneInventoryFrameItem54" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem54CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem55CooldownCountFrame" parent="AllInOneInventoryFrameItem55" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem55CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem56CooldownCountFrame" parent="AllInOneInventoryFrameItem56" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem56CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem57CooldownCountFrame" parent="AllInOneInventoryFrameItem57" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem57CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem58CooldownCountFrame" parent="AllInOneInventoryFrameItem58" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem58CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem59CooldownCountFrame" parent="AllInOneInventoryFrameItem59" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem59CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="AllInOneInventoryFrameItem60CooldownCountFrame" parent="AllInOneInventoryFrameItem60" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem60CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem61CooldownCountFrame" parent="AllInOneInventoryFrameItem61" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem61CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem62CooldownCountFrame" parent="AllInOneInventoryFrameItem62" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem62CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem63CooldownCountFrame" parent="AllInOneInventoryFrameItem63" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem63CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem64CooldownCountFrame" parent="AllInOneInventoryFrameItem64" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem64CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem65CooldownCountFrame" parent="AllInOneInventoryFrameItem65" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem65CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem66CooldownCountFrame" parent="AllInOneInventoryFrameItem66" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem66CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem67CooldownCountFrame" parent="AllInOneInventoryFrameItem67" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem67CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem68CooldownCountFrame" parent="AllInOneInventoryFrameItem68" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem68CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem69CooldownCountFrame" parent="AllInOneInventoryFrameItem69" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem69CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem70CooldownCountFrame" parent="AllInOneInventoryFrameItem70" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem70CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem71CooldownCountFrame" parent="AllInOneInventoryFrameItem71" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem71CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem72CooldownCountFrame" parent="AllInOneInventoryFrameItem72" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem72CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem73CooldownCountFrame" parent="AllInOneInventoryFrameItem73" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem73CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem74CooldownCountFrame" parent="AllInOneInventoryFrameItem74" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem74CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem75CooldownCountFrame" parent="AllInOneInventoryFrameItem75" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem75CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem76CooldownCountFrame" parent="AllInOneInventoryFrameItem76" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem76CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem77CooldownCountFrame" parent="AllInOneInventoryFrameItem77" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem77CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem78CooldownCountFrame" parent="AllInOneInventoryFrameItem78" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem78CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem79CooldownCountFrame" parent="AllInOneInventoryFrameItem79" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem79CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem80CooldownCountFrame" parent="AllInOneInventoryFrameItem80" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem80CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem81CooldownCountFrame" parent="AllInOneInventoryFrameItem81" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem81CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem82CooldownCountFrame" parent="AllInOneInventoryFrameItem82" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem82CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem83CooldownCountFrame" parent="AllInOneInventoryFrameItem83" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem83CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem84CooldownCountFrame" parent="AllInOneInventoryFrameItem84" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem84CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem85CooldownCountFrame" parent="AllInOneInventoryFrameItem85" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem85CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem86CooldownCountFrame" parent="AllInOneInventoryFrameItem86" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem86CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem87CooldownCountFrame" parent="AllInOneInventoryFrameItem87" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem87CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem88CooldownCountFrame" parent="AllInOneInventoryFrameItem88" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem88CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem89CooldownCountFrame" parent="AllInOneInventoryFrameItem89" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem89CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem90CooldownCountFrame" parent="AllInOneInventoryFrameItem90" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem90CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem91CooldownCountFrame" parent="AllInOneInventoryFrameItem91" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem91CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem92CooldownCountFrame" parent="AllInOneInventoryFrameItem92" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem92CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem93CooldownCountFrame" parent="AllInOneInventoryFrameItem93" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem93CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem94CooldownCountFrame" parent="AllInOneInventoryFrameItem94" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem94CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem95CooldownCountFrame" parent="AllInOneInventoryFrameItem95" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem95CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem96CooldownCountFrame" parent="AllInOneInventoryFrameItem96" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem96CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem97CooldownCountFrame" parent="AllInOneInventoryFrameItem97" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem97CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem98CooldownCountFrame" parent="AllInOneInventoryFrameItem98" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem98CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem99CooldownCountFrame" parent="AllInOneInventoryFrameItem99" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem99CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem100CooldownCountFrame" parent="AllInOneInventoryFrameItem100" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem100CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem101CooldownCountFrame" parent="AllInOneInventoryFrameItem101" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem101CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem102CooldownCountFrame" parent="AllInOneInventoryFrameItem102" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem102CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem103CooldownCountFrame" parent="AllInOneInventoryFrameItem103" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem103CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem104CooldownCountFrame" parent="AllInOneInventoryFrameItem104" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem104CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem105CooldownCountFrame" parent="AllInOneInventoryFrameItem105" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem105CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem106CooldownCountFrame" parent="AllInOneInventoryFrameItem106" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem106CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem107CooldownCountFrame" parent="AllInOneInventoryFrameItem107" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem107CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem108CooldownCountFrame" parent="AllInOneInventoryFrameItem108" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem108CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem109CooldownCountFrame" parent="AllInOneInventoryFrameItem109" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem109CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem110CooldownCountFrame" parent="AllInOneInventoryFrameItem110" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem110CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem111CooldownCountFrame" parent="AllInOneInventoryFrameItem111" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem111CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem112CooldownCountFrame" parent="AllInOneInventoryFrameItem112" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem112CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem113CooldownCountFrame" parent="AllInOneInventoryFrameItem113" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem113CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem114CooldownCountFrame" parent="AllInOneInventoryFrameItem114" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem114CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem115CooldownCountFrame" parent="AllInOneInventoryFrameItem115" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem115CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem116CooldownCountFrame" parent="AllInOneInventoryFrameItem116" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem116CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem117CooldownCountFrame" parent="AllInOneInventoryFrameItem117" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem117CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem118CooldownCountFrame" parent="AllInOneInventoryFrameItem118" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem118CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem119CooldownCountFrame" parent="AllInOneInventoryFrameItem119" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem119CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="AllInOneInventoryFrameItem120CooldownCountFrame" parent="AllInOneInventoryFrameItem120" hidden="true">
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="AllInOneInventoryFrameItem120CooldownCount" inherits="GameFontNormalLarge" hidden="true" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

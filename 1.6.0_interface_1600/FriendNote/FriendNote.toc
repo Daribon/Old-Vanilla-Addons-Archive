@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: FriendNote
+## Author: sarf
+## Notes: Allows you to set notes on friends.
+## OptionalDeps: Cosmos, FriendsFacts
+FriendNote.xml

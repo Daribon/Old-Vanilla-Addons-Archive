@@ -1,0 +1,56 @@
+<Bindings>
+	<Binding name="RUNMACRO1" header="RUNMACRO">
+        ImprovedMacro_RunMacro(1);
+	</Binding>
+	<Binding name="RUNMACRO2">
+        ImprovedMacro_RunMacro(2);
+	</Binding>
+	<Binding name="RUNMACRO3">
+        ImprovedMacro_RunMacro(3);
+	</Binding>
+	<Binding name="RUNMACRO4">
+        ImprovedMacro_RunMacro(4);
+	</Binding>
+	<Binding name="RUNMACRO5">
+        ImprovedMacro_RunMacro(5);
+	</Binding>
+	<Binding name="RUNMACRO6">
+        ImprovedMacro_RunMacro(6);
+	</Binding>
+	<Binding name="RUNMACRO7">
+        ImprovedMacro_RunMacro(7);
+	</Binding>
+	<Binding name="RUNMACRO8">
+        ImprovedMacro_RunMacro(8);
+	</Binding>
+	<Binding name="RUNMACRO9">
+        ImprovedMacro_RunMacro(9);
+	</Binding>
+	<Binding name="RUNMACRO10">
+        ImprovedMacro_RunMacro(10);
+	</Binding>
+	<Binding name="RUNMACRO11">
+        ImprovedMacro_RunMacro(11);
+	</Binding>
+	<Binding name="RUNMACRO12">
+        ImprovedMacro_RunMacro(12);
+	</Binding>
+	<Binding name="RUNMACRO13">
+        ImprovedMacro_RunMacro(13);
+	</Binding>
+	<Binding name="RUNMACRO14">
+        ImprovedMacro_RunMacro(14);
+	</Binding>
+	<Binding name="RUNMACRO15">
+        ImprovedMacro_RunMacro(15);
+	</Binding>
+	<Binding name="RUNMACRO16">
+        ImprovedMacro_RunMacro(16);
+	</Binding>
+	<Binding name="RUNMACRO17">
+        ImprovedMacro_RunMacro(17);
+	</Binding>
+	<Binding name="RUNMACRO18">
+        ImprovedMacro_RunMacro(18);
+	</Binding>
+</Bindings>

@@ -1,0 +1,157 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="ImprovedErrorFrame.lua"/>
+	<Frame name="ImprovedErrorFrame" inherits="DialogBoxFrame">
+		<Size>
+			<AbsDimension x="360" y="270"/>
+		</Size>
+		<Frames>
+			<!--
+			<Button name="ImprovedErrorFrameReportButton">
+				<Size>
+					<AbsDimension x="128" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="80" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ImprovedError_Report_OnClick();
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<NormalText inherits="DialogButtonNormalText" text="IEF_REPORT"/>
+				<HighlightText inherits="DialogButtonHighlightText" text="IEF_REPORT"/>
+			</Button>
+			-->
+			<Button name="ImprovedErrorFrameCloseButton">
+				<Size>
+					<AbsDimension x="128" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="-80" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<NormalText inherits="DialogButtonNormalText" text="IEF_CLOSE"/>
+				<HighlightText inherits="DialogButtonHighlightText" text="IEF_CLOSE"/>
+			</Button>
+			<Button name="ImprovedErrorFrameCancelButton" hidden="true">
+				<Size>
+					<AbsDimension x="128" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="-80" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+				<NormalTexture inherits="DialogButtonNormalTexture"/>
+				<PushedTexture inherits="DialogButtonPushedTexture"/>
+				<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+				<NormalText inherits="DialogButtonNormalText" text="IEF_CANCEL"/>
+				<HighlightText inherits="DialogButtonHighlightText" text="IEF_CANCEL"/>
+			</Button>
+			<ScrollFrame name="ScriptErrorsScrollFrameOne" hidden="true" inherits="ClassTrainerDetailScrollFrameTemplate" toplevel="true">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="305" y="200"/>
+				</Size>
+				<ScrollChild>
+					<EditBox name="ScriptErrorsScrollFrameOneText" multiLine="true" autoFocus="false">
+						<Size>
+							<AbsDimension x="300" y="304"/>
+						</Size>
+						<FontString inherits="ChatFontNormal"/>
+						<Scripts>
+							<OnTextChanged>
+								if (ScriptErrorsScrollFrameOneText:GetText() ~= message_print) then
+										ScriptErrorsScrollFrameOneText:SetText(message_print);
+										ScriptErrorsScrollFrameOneText:ClearFocus();
+								end
+								
+								local scrollBar = getglobal(this:GetParent():GetName().."ScrollBar")
+								this:GetParent():UpdateScrollChildRect();
+								local min;
+								local max;
+								min, max = scrollBar:GetMinMaxValues();
+								if ( max > 0 and (this.max ~= max) ) then
+									this.max = max;
+									scrollBar:SetValue(max);
+								end
+							</OnTextChanged>
+							<OnEscapePressed>
+								ImprovedErrorFrame:Hide();
+							</OnEscapePressed>
+						</Scripts>
+					</EditBox>
+				</ScrollChild>
+			</ScrollFrame>
+			<ScrollFrame name="ScriptErrorsScrollFrameAsk" hidden="true" inherits="ClassTrainerDetailScrollFrameTemplate" toplevel="true">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="305" y="200"/>
+				</Size>
+				<ScrollChild>
+					<EditBox name="ScriptErrorsScrollFrameAskText" letters="512" multiLine="true">
+						<Size>
+							<AbsDimension x="300" y="304"/>
+						</Size>
+						<FontString inherits="ChatFontNormal"/>
+						<Scripts>
+							<OnEscapePressed>
+								ImprovedErrorFrame:Hide();
+							</OnEscapePressed>
+						</Scripts>
+					</EditBox>
+				</ScrollChild>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnHide>
+				for i = 1, table.getn(error_message_list), 1 do
+					local curMes = error_message_list[i];
+					if (curMes[3] == 1) then
+						curMes[3] = 2;
+					end
+				end
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

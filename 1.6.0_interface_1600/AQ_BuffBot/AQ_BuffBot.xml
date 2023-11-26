@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="localization.de.lua"/>
+    <Script file="localization.fr.lua"/>
+    <Script file="AQ_BuffBot.lua"/>
+    <Script file="AQ_BuffBut_BuffBotAddOn.lua"/>
+
+	<Frame name="AQ_BuffBotFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+      <Scripts>
+      	<OnLoad>
+       		AQ_BuffBot_OnLoad();
+        </OnLoad>
+        <OnEvent>
+      	 	AQ_BuffBot_OnEvent(event);
+        </OnEvent>
+      </Scripts>
+	</Frame>
+</Ui>

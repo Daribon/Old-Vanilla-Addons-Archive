@@ -1,0 +1,190 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+<Frame name="DAB_ButtonBGTemplate" inherits="DAB_TooltipBGTemplate" virtual="true">
+	<Size><AbsDimension x="160" y="10"/></Size>
+</Frame>
+
+<Button name="DAB_ButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true" hidden="false">
+	<Size><AbsDimension x="140" y="23"/></Size>
+</Button>
+
+<Button name="DAB_ButtonTemplate2" inherits="UIPanelButtonTemplate" virtual="true" hidden="false">
+	<Size><AbsDimension x="90" y="23"/></Size>
+</Button>
+
+<CheckButton name="DAB_CheckBoxTemplate" inherits="UICheckButtonTemplate" virtual="true">
+	<Size><AbsDimension x="24" y="24"/></Size>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString name="$parent_Label" inherits="GameFontNormal">
+				<Color r="1.0" g="1.0" b="1.0"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+						<Offset><AbsDimension x="5" y="1"/></Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnClick>
+			DAB_Checkbox_OnClick(this.index, this.subindex, this.subindex2, this.func);
+		</OnClick>
+	</Scripts>
+</CheckButton>
+
+<Slider name="DAB_BarSliderTemplate" inherits="OptionsSliderTemplate" virtual="true">
+	<Size><AbsDimension x="130" y="20"/></Size>
+	<Frames>
+		<EditBox name="$parent_Display" letters="4" autoFocus="false" inherits="InputBoxTemplate" justifyH="CENTER">
+			<Size><AbsDimension x="42" y="20"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="RIGHT">
+					<Offset><AbsDimension x="5" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetTextColor(1,1,0);
+				</OnLoad>
+				<OnEnterPressed>
+					DAB_Slider_UpdateFromEditBox(this:GetParent().minlock, this:GetParent().maxlock,  this:GetParent().index, this:GetParent().subindex, this:GetParent().subindex2, this:GetParent().func);
+				</OnEnterPressed>
+				<OnEscapePressed>
+					this:SetText(this:GetParent():GetValue());
+					this:ClearFocus();
+				</OnEscapePressed>
+			</Scripts>
+		</EditBox>
+	</Frames>
+	<Scripts>
+		<OnUpdate>
+			if (not this.minmaxset) then
+				this.minmaxset = 1;
+				local min, max = this:GetMinMaxValues();
+				getglobal(this:GetName().."Low"):SetText(min);
+				getglobal(this:GetName().."High"):SetText(max);
+			end
+		</OnUpdate>
+		<OnValueChanged>
+			DAB_Slider_OnValueChanged(this.index, this.subindex, this.subindex2, this.func);
+		</OnValueChanged>
+	</Scripts>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString name="$parent_Label" inherits="GameFontNormal">
+				<Color r="1.0" g="1.0" b="1.0"/>
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="TOP"/>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+</Slider>
+
+<EditBox name="DAB_EditBoxTemplate" letters="1000" autoFocus="false" inherits="InputBoxTemplate" virtual="true">
+	<Scripts>
+		<OnEnterPressed>
+			DAB_EditBox_OnEnterPressed(this.index, this.subindex, this.subindex2, this.func);
+		</OnEnterPressed>
+		<OnFocusLost>
+			DAB_EditBox_OnEnterPressed(this.index, this.subindex, this.subindex2, this.func);
+		</OnFocusLost>
+		<OnEscapePressed>
+			if (this.prevvalue) then
+				this:SetText(this.prevvalue);
+			else
+				this:SetText("");
+			end
+			this:ClearFocus();
+		</OnEscapePressed>
+	</Scripts>
+	<Layers>
+		<Layer level="BACKGROUND">
+			<FontString name="$parent_Label" inherits="GameFontNormal">
+				<Color r="1.0" g="1.0" b="1.0"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="LEFT">
+						<Offset><AbsDimension x="-5" y="0"/></Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+</EditBox>
+
+<Button name="DAB_MenuControlTemplate" inherits="DAB_TooltipBGTemplate" virtual="true">
+	<Frames>
+		<Button name="$parent_Button">
+			<Size><AbsDimension x="32" y="32"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="RIGHT">
+					<Offset><AbsDimension x="-29" y="-1"/></Offset>
+				</Anchor>
+			</Anchors>
+			<HitRectInsets>
+				<AbsInset left="6" right="6" top="7" bottom="7"/>
+			</HitRectInsets>
+			<Scripts>
+				<OnClick>
+					DAB_Menu_Show(this:GetParent().menu, this:GetParent().index, this:GetParent().subindex, this:GetParent().subindex2, this:GetParent().func, this:GetParent():GetName());
+				</OnClick>
+			</Scripts>
+			<NormalTexture file="Interface\MainMenuBar\UI-MainMenu-ScrollDownButton-Up"/>
+			<PushedTexture file="Interface\MainMenuBar\UI-MainMenu-ScrollDownButton-Down"/>
+			<DisabledTexture file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Disabled"/>
+			<HighlightTexture alphaMode="ADD" file="Interface\MainMenuBar\UI-MainMenu-ScrollDownButton-Highlight"/>
+		</Button>		
+	</Frames>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString name="$parent_Label" inherits="GameFontNormal">
+				<Color r="1.0" g="1.0" b="1.0"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="LEFT">
+						<Offset><AbsDimension x="-5" y="0"/></Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString name="$parent_Setting" inherits="GameFontNormal">
+				<Color r="1.0" g="1.0" b="0.0"/>
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset><AbsDimension x="3" y="0"/></Offset>
+					</Anchor>
+					<Anchor point="RIGHT">
+						<Offset><AbsDimension x="-20" y="0"/></Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnClick>
+			DAB_Menu_Show(this.menu, this.index, this.subindex, this.subindex2, this.func, this:GetName());
+		</OnClick>
+	</Scripts>
+</Button>
+
+<Button name="DAB_ColorPickerTemplate" inherits="DAB_TooltipBGTemplate" virtual="true">
+	<Size><AbsDimension x="25" y="25"/></Size>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString name="$parent_Label" inherits="GameFontNormal">
+				<Color r="1.0" g="1.0" b="1.0"/>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT">
+						<Offset><AbsDimension x="5" y="0"/></Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnClick>
+			DAB_ColorPicker_Show(this.index, this.subindex, this.subindex2, this.func);
+		</OnClick>
+	</Scripts>
+</Button>
+
+</Ui>

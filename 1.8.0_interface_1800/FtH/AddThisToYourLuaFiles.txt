@@ -1,0 +1,8 @@
+-- Places a mini button on the "Toggle Me" dock
+function AddOn_Toggle()
+   if (AddOnFrame:IsVisible()) then
+      AddOnFrame:Hide();
+   else
+     AddOnFrame:Show();
+   end
+end

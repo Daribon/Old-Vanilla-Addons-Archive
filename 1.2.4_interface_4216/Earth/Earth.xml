@@ -1,0 +1,28 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: Earth.xml 999 2005-03-11 02:07:10Z AlexYoshi $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- The Earth Libraries -->
+	<Include file="EarthObjectTemplate.xml"/>
+	<Include file="EarthPanelTemplates.xml"/>
+	<Include file="EarthMenuTemplate.xml"/>	
+	<Include file="EarthBookTemplate.xml"/>
+	<Include file="EarthFrameTemplate.xml"/>
+	<Include file="EarthEditBoxTemplate.xml"/>
+	<Include file="EarthTooltipTemplate.xml"/>
+	<Include file="EarthFeatureTemplate.xml"/>
+	<!--
+		I'm not happy with this file yet...
+	-->
+	<Include file="EarthScrollFrameTemplate.xml"/>
+	<Include file="EarthItemButtonTemplate.xml"/>
+	<Include file="EarthActionButtonTemplate.xml"/>
+	<Include file="EarthTreeTemplate.xml"/>
+	<Include file="EarthTableTemplate.xml"/>
+	<Include file="EarthQuestLogTemplate.xml"/>
+
+</Ui>

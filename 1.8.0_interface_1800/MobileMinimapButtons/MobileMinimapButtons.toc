@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: Mobile Minimap Buttons
+## Notes: Makes the Minimap Buttons Draggable around the Minimap, adjustable radius and angle.
+## Author: AnduinLothar
+## OptionalDeps: Khaos
+## Dependencies: Sea
+## SavedVariables: MobileMinimapButtons_Coords
+MobileMinimapButtons.xml

@@ -1,0 +1,66 @@
+<Bindings>
+	<Binding name="CT_CUREDEBUFF" header="CT_RAIDASSIST" runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_CureLastDebuff();
+		end
+	</Binding>
+	<Binding name="CT_RECASTRAIDBUFF"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_RecastLastBuff();
+		end
+	</Binding>
+	<Binding name="CT_SHOWHIDE"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_ShowHideWindows();
+		end
+	</Binding>
+	<Binding name="CT_RESMON"  runOnUp="true">
+		if ( keystate == "down" ) then
+			if ( CT_RA_ResFrame:IsVisible() ) then
+				CT_RA_ResFrame:Hide();
+			else
+				CT_RA_ResFrame:Show();
+			end
+		end
+	</Binding>
+	<Binding name="CT_TOGGLEDEBUFFS"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_ShowHideDebuffs();
+		end
+	</Binding>
+	<Binding name="CT_ASSISTMT1"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_AssistMT(1);
+		end
+	</Binding>
+	<Binding name="CT_ASSISTMT2"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_AssistMT(2);
+		end
+	</Binding>
+	<Binding name="CT_ASSISTMT3"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_AssistMT(3);
+		end
+	</Binding>
+	<Binding name="CT_ASSISTMT4"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_AssistMT(4);
+		end
+	</Binding>
+	<Binding name="CT_ASSISTMT5"  runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_AssistMT(5);
+		end
+	</Binding>
+	<Binding name="CT_TOGGLESORTTYPE" runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_ToggleGroupSort();
+		end
+	</Binding>
+	<Binding name="CT_TOGGLESORTTYPE2" runOnUp="true">
+		if ( keystate == "down" ) then
+			CT_RA_ToggleGroupSort(1);
+		end
+	</Binding>
+</Bindings>

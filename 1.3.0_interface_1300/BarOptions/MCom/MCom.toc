@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: MCom
+## Notes: Set of utility functions to simplify addon creation
+## OptionalDeps: Sky, Cosmos
+## RequiredDeps: Sea
+MCom.xml

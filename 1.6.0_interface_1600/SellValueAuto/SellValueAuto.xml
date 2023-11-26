@@ -1,0 +1,58 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.kr.lua"/>
+ 	<Script file="SellValueAuto.lua"/>
+
+    <Button name="SellValueAutoButton" inherits="UIPanelButtonTemplate" parent="InvListFrame">
+        <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="InvListFrameCloseButton" relativePoint="TOPRIGHT">
+                <Offset>
+                    <AbsDimension x="-2" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Frames>
+			<Frame name="SellValueAutoDropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SellValueAutoDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+        </Frames>
+		<Scripts>
+			<OnLoad>
+				SellValueAutoButton_OnLoad();
+			</OnLoad>
+			<OnClick>
+				SellValueAutoButton_OnClick();
+			</OnClick>
+		</Scripts>
+    </Button>
+
+
+
+	<Frame name="SellValueAutoFrame" hidden="true"> 
+ 		<Scripts> 
+ 			<OnLoad> 
+ 				SellValueAuto_OnLoad(); 
+ 			</OnLoad> 
+ 			<OnEvent> 
+ 				SellValueAuto_OnEvent(); 
+ 			</OnEvent> 
+ 		</Scripts> 
+ 	</Frame> 
+
+</Ui>

@@ -1,0 +1,269 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.ge.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="CT_PartyHealth.lua"/>
+	<FontString name="CT_PartyHealthTextTemplate" virtual="true" outline="THIN" font="Fonts\FRIZQT__.TTF">
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+		<Shadow/>
+	</FontString>
+	<Button name="CT_PartyHealthFrameTemplate" virtual="true">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="$parentHealthBar"/>
+		</Anchors>
+		<Size>
+			<AbsDimension x="86" y="19"/>
+		</Size>
+		<Frames>
+			<Frame setAllPoints="true">
+				<Frames>
+					<Frame setAllPoints="true">
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="$parentHealthText" inherits="CT_PartyHealthTextTemplate" text="">
+									<FontHeight>
+										<AbsValue val="9"/>
+									</FontHeight>
+									<Color r="1.0" g="1.0" b="1.0"/>
+									<Shadow/>
+									<Anchors>
+										<Anchor point="CENTER"/>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentManaText" inherits="CT_PartyHealthTextTemplate" text="">
+									<FontHeight>
+										<AbsValue val="9"/>
+									</FontHeight>
+									<Color r="1.0" g="1.0" b="1.0"/>
+									<Shadow/>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="0" y="-8"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentHealthPercent" inherits="CT_PartyHealthTextTemplate" text="">
+									<FontHeight>
+										<AbsValue val="9"/>
+									</FontHeight>
+									<Color r="1.0" g="1.0" b="1.0"/>
+									<Shadow/>
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="3" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentManaPercent" inherits="CT_PartyHealthTextTemplate" text="">
+									<FontHeight>
+										<AbsValue val="9"/>
+									</FontHeight>
+									<Color r="1.0" g="1.0" b="1.0"/>
+									<Shadow/>
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="3" y="-8"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CT_PartyHealthFrame_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				CT_PartyHealthFrame_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Button>
+	<Button name="CT_PartyHealthFrame1" inherits="CT_PartyHealthFrameTemplate" parent="PartyMemberFrame1" toplevel="true" id="1"/>
+	<Button name="CT_PartyHealthFrame2" inherits="CT_PartyHealthFrameTemplate" parent="PartyMemberFrame2" toplevel="true" id="2"/>
+	<Button name="CT_PartyHealthFrame3" inherits="CT_PartyHealthFrameTemplate" parent="PartyMemberFrame3" toplevel="true" id="3"/>
+	<Button name="CT_PartyHealthFrame4" inherits="CT_PartyHealthFrameTemplate" parent="PartyMemberFrame4" toplevel="true" id="4"/>
+
+	<Frame name="CT_PartyHealthGlobalFrame" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("PARTY_MEMBERS_CHANGED");
+				this:RegisterEvent("VARIABLES_LOADED");
+
+				this:RegisterEvent("UNIT_HEALTH");
+				this:RegisterEvent("UNIT_MAXHEALTH");
+
+				this:RegisterEvent("UNIT_MANA");
+				this:RegisterEvent("UNIT_MAXMANA");
+
+				this:RegisterEvent("UNIT_ENERGY");
+				this:RegisterEvent("UNIT_MAXENERGY");
+
+				this:RegisterEvent("UNIT_RAGE");
+				this:RegisterEvent("UNIT_MAXRAGE");
+			</OnLoad>
+			<OnEvent>
+				CT_PartyHealth_Update(arg1, event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CT_PartyHealthOptionsFrame" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="190" y="150"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeaderTexture" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Customize Text">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeaderTexture">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="$parentSetColor" justifyV="top" justifyH="left" inherits="GameFontNormal" text="CT_PARTYHEALTH_SETCOLOR">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- Thanks to Mondiga for some of this color swatch code -->
+			<Button name="$parentEditColorButton">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentBG">
+							<Size>
+								<AbsDimension x="14" y="14"/>
+							</Size>
+							<Color r="1.0" g="1.0" b="1.0"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						CloseMenus();
+						CT_PartyHealthFrame_ShowColorPicker(CT_PartyHealthGlobalFrame);
+					</OnClick>
+					<OnEnter>
+						getglobal(this:GetName().."BG"):SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+					</OnEnter>
+					<OnLeave>
+						getglobal(this:GetName().."BG"):SetVertexColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					</OnLeave>
+				</Scripts>
+				<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\ChatFrameColorSwatch"/>
+			</Button>
+			<Slider name="$parentSizeSlider" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="150" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						CT_PartyHealthSlider_OnLoad();
+					</OnLoad>
+					<OnShow>
+						this:SetValue(CT_PartyColors["s"]);
+					</OnShow>
+					<OnValueChanged>
+						CT_PartyColors["s"] = this:GetValue();
+						getglobal(this:GetName().."Text"):SetText(CT_PARTYHEALTH_TEXTSIZE .. " - "..this:GetValue());
+						CT_PartyHealthFrame_SetSize(this:GetValue());
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+
+			<Button name="$parentCloseButton" hidden="false" inherits="GameMenuButtonTemplate" text="Okay">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				PlaySound("UChatScrollButton");
+			</OnShow>
+			<OnHide>
+				PlaySound("UChatScrollButton");
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

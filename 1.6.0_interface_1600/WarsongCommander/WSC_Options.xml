@@ -1,0 +1,175 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="WSC_Options.lua"/>
+	<Frame name="WSC_OptionsFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="300" y="300"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="WSC_OptionsFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="350" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Warsong Cmdr. Options">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="WSC_OptionsFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="WSC_BorderToggle" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="40" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText("Show Borders");
+					</OnLoad>
+					<OnClick>
+						WSC_ToggleBorders();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			<CheckButton name="WSC_AutoShowToggle" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="40" y="-80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText("Auto Show");
+					</OnLoad>
+					<OnClick>
+						WSC_ToggleAutoShow();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			<CheckButton name="WSC_PingToggle" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="40" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText("Enable Pings (experimental)");
+					</OnLoad>
+					<OnClick>
+						WSC_TogglePing();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			<Slider name="WSC_SliderAlpha" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="220" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-180" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText("Transparency");
+						getglobal(this:GetName().."High"):SetText();
+						getglobal(this:GetName().."Low"):SetText();
+						WSC_SliderAlpha:SetMinMaxValues(0.0,1.0);
+						WSC_SliderAlpha:SetValueStep(0.01);
+					</OnLoad>
+					<OnValueChanged>
+						WSC_Options.Alpha = WSC_SliderAlpha:GetValue();
+						WSC_UpdateAlpha();
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Slider name="WSC_SliderScale" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="220" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-220" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Text"):SetText("Scale");
+						getglobal(this:GetName().."High"):SetText();
+						getglobal(this:GetName().."Low"):SetText();
+						WSC_SliderScale:SetMinMaxValues(0.0,1.0);
+						WSC_SliderScale:SetValueStep(0.01);
+					</OnLoad>
+					<OnValueChanged>
+						WSC_Options.Scale = WSC_SliderScale:GetValue();
+						WSC_UpdateScale();
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Button name="WSC_OptionsFrameDone" inherits="OptionsButtonTemplate" text="Done">
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						WSC_Options_Toggle();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				WSC_Options_OnLoad();
+			</OnLoad>
+			<OnHide>
+				WSC_Options_OnHide();
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

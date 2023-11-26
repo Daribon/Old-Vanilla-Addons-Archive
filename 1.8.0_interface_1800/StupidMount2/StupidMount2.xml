@@ -1,0 +1,14 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<GameTooltip name="StupidMount2Tooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate"/>
+
+	<Frame name="StupidMount2Frame" frameStrata="LOW" parent="UIParent" hidden="true" movable="true">
+		<Scripts>
+			<OnLoad>
+				StupidMount2_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				StupidMount2_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

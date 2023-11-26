@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: PopupHandler
+## Author: sarf
+## Notes: Allows you to handle popups automatically. Optionally dependent on Chronos/CosmosSchedule for autolooting auto-bind-on-pickup items.
+## OptionalDeps: Chronos, CosmosSchedule
+PopupHandler.xml

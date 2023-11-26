@@ -1,0 +1,7 @@
+## Interface: 1700
+## Title: BetterKeyBinding
+## Author: <geowar@apple.com>
+## Notes: a better key binding interface by |cff66ff33geowar|r
+## OptionalDeps: Cosmos, Khaos, Sea
+## Dependencies: 
+BetterKeyBinding.xml

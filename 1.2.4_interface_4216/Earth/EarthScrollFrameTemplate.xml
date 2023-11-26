@@ -1,0 +1,227 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="EarthScrollFrame.lua"/>
+	<Texture name="EarthPanelScrollBarButton" virtual="true">
+		<TexCoords left="0.25" right="0.75" top="0.25" bottom="0.75"/>
+	</Texture>
+	<Button name="EarthPanelScrollUpButtonTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Up"/>
+		<PushedTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Down"/>
+		<DisabledTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Disabled"/>
+		<HighlightTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Highlight" alphaMode="ADD"/>
+	</Button>
+	<Button name="EarthPanelScrollDownButtonTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Up"/>
+		<PushedTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Down"/>
+		<DisabledTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Disabled"/>
+		<HighlightTexture inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Highlight" alphaMode="ADD"/>
+	</Button>
+	<Button name="EarthPanelScrollLeftButtonTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollLeftButton-Up"/>
+		<PushedTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollLeftButton-Down"/>
+		<DisabledTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollLeftButton-Disabled"/>
+		<HighlightTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollLeftButton-Highlight" alphaMode="ADD"/>
+	</Button>
+	<Button name="EarthPanelScrollRightButtonTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollRightButton-Up"/>
+		<PushedTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollRightButton-Down"/>
+		<DisabledTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollRightButton-Disabled"/>
+		<HighlightTexture inherits="EarthPanelScrollBarButton" file="Interface\AddOns\Earth\Skin\Buttons\UI-ScrollBar-ScrollRightButton-Highlight" alphaMode="ADD"/>
+	</Button>
+	<Slider name="EarthPanelVScrollBarTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="0"/>
+		</Size>
+		<Frames>
+			<Button name="$parentScrollUpButton" inherits="UIPanelScrollUpButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="TOP"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.onClick = function()
+							local parent = this:GetParent();
+							parent:SetValue(parent:GetValue() - (parent:GetHeight() / 2));
+							PlaySound("UChatScrollButton");
+						end
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollDownButton" inherits="UIPanelScrollDownButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.onClick = function()
+							local parent = this:GetParent();
+							parent:SetValue(parent:GetValue() + (parent:GetHeight() / 2));
+							PlaySound("UChatScrollButton");
+						end;
+					</OnLoad>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnValueChanged>
+					this:GetParent():SetVerticalScroll(arg1);
+			</OnValueChanged>
+		</Scripts>
+		<ThumbTexture name="$parentThumbTexture" inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-Knob">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+		</ThumbTexture>
+	</Slider>
+	<Slider name="EarthPanelHSliderBarTemplate" inherits="EarthObjectTemplate" virtual="true" orientation="HORIZONTAL">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Frames>
+			<Button name="$parentScrollRightButton" inherits="EarthPanelScrollRightButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.onClick = EarthSlider_Button_Right;
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollLeftButton" inherits="EarthPanelScrollLeftButtonTemplate">
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="LEFT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.onClick = EarthSlider_Button_Left;
+					</OnLoad>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnValueChanged>
+				EarthSlider_CheckButton_Horizontal(this);
+				this:GetParent():SetHorizontalScroll(arg1);
+			</OnValueChanged>
+		</Scripts>
+		<ThumbTexture name="$parentThumbTexture" inherits="EarthPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-Knob">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+		</ThumbTexture>
+	</Slider>
+	<ScrollFrame name="EarthPanelVScrollFrameTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Frames>
+			<Slider name="$parentScrollBar" inherits="EarthPanelVScrollBarTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-16"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				ScrollFrame_OnLoad();
+				this.onScrollRangeChanged = function () ScrollFrame_OnScrollRangeChanged(arg2); end;
+
+				<!--  The code to disable the ScrollDownButton is pretty hacked, but it works -->
+				this.onMouseWheel = function()
+					ScrollFrameTemplate_OnMouseWheel(arg1);	
+				end;
+			</OnLoad>
+			<OnVerticalScroll>
+				
+					local scrollbar = getglobal(this:GetName().."ScrollBar");
+					scrollbar:SetValue(arg1);
+					local min;
+					local max;
+					min, max = scrollbar:GetMinMaxValues();
+					if ( arg1 == 0 ) then
+						getglobal(scrollbar:GetName().."ScrollUpButton"):Disable();
+					else
+						getglobal(scrollbar:GetName().."ScrollUpButton"):Enable();
+					end
+					if ((scrollbar:GetValue() - max) == 0) then
+						getglobal(scrollbar:GetName().."ScrollDownButton"):Disable();
+					else
+						getglobal(scrollbar:GetName().."ScrollDownButton"):Enable();
+					end
+					end;
+			</OnVerticalScroll>
+		</Scripts>
+	</ScrollFrame>
+	<ScrollFrame name="EarthPanelHSliderFrameTemplate" inherits="EarthObjectTemplate" virtual="true">
+		<Frames>
+			<Slider name="$parentScrollBar" inherits="EarthPanelHSliderBarTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				ScrollFrame_H_OnLoad();
+				this.onScrollRangeChanged = function () ScrollFrame_H_OnScrollRangeChanged(arg2); end;
+
+				<!--  The code to disable the ScrollDownButton is pretty hacked, but it works -->
+				this.onHorizontalScroll = function()
+					local scrollbar = getglobal(this:GetName().."ScrollBar");
+					scrollbar:SetValue(arg1);
+
+					EarthSlider_CheckButton_Horizontal(scrollbar);
+				end;
+				this.onMouseWheel = function()
+					ScrollFrame_H_Template_OnMouseWheel(arg1);	
+				end;
+			</OnLoad>
+		</Scripts>
+	</ScrollFrame>
+	<ScrollFrame name="EarthFauxVScrollFrameTemplate" inherits="EarthPanelVScrollFrameTemplate" virtual="true">
+		<ScrollChild>
+			<Frame name="$parentScrollChildFrame">
+				<Size>
+					<AbsDimension x="300" y="334"/>
+				</Size>
+			</Frame>
+		</ScrollChild>
+	</ScrollFrame>
+	<ScrollFrame name="EarthFauxHScrollFrameTemplate" inherits="EarthPanelHSliderFrameTemplate" virtual="true">
+		<ScrollChild>
+			<Frame name="$parentScrollChildFrame">
+				<Size>
+					<AbsDimension x="334" y="300"/>
+				</Size>
+			</Frame>
+		</ScrollChild>
+	</ScrollFrame>
+
+</Ui>

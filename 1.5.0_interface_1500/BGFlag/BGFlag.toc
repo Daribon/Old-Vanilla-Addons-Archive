@@ -1,0 +1,8 @@
+## Interface: 1500
+## Title: BGFlag
+## Notes: Small text display of the status of the Alliance and Horde flags
+## Author: Thamos and Lavaguy
+## SavedVariables: BGFlagConfig 
+## Dependencies:
+## OptionalDeps: N/A
+BGFlag.xml

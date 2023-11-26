@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="CARDQISCANTARGET" description="Scan target" header="CARDQIBINDINGS">
+		CardQI:ScanInventory()
+	</Binding>
+	<Binding name="CARDQIINSPECT" description="Inspect target">
+		InspectUnit("target")
+	</Binding>
+</Bindings>

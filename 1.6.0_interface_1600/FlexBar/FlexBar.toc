@@ -1,0 +1,8 @@
+## Interface: 1600
+## SavedVariables: FBSavedProfile, FBFirstUse, FBScripts, FBTextChunks, FBToggles, FBBuffs, FBCombatTypes, FBPetTypes
+## Title: |cFF006699UUI -|r FlexBar
+## Notes: 120 incredibly versatile buttons
+## Version: 1.404
+## OptionalDeps: TitanModMenu
+FlexBar.xml
+FlexBar_GUI.xml

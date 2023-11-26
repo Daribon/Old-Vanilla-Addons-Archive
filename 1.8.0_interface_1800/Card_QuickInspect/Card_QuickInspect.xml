@@ -1,0 +1,178 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="Card_QuickInspectLocals_frFR.lua"/>
+	<Script file="Card_QuickInspectLocals_deDE.lua"/>
+	<Script file="Card_QuickInspectLocals.lua"/>
+	<Script file="Card_QuickInspect.lua"/>
+
+	<GameTooltip name="CardQITooltipTemplate" frameStrata="TOOLTIP" hidden="true" virtual="true">
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize> <AbsValue val="16"/> </EdgeSize>
+			<TileSize> <AbsValue val="16"/> </TileSize>
+			<BackgroundInsets> <AbsInset left="5" right="5" top="5" bottom="5"/> </BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTextLeft1" inherits="GameFontNormal" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset> <AbsDimension x="10" y="-10"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight1" inherits="GameFontNormal" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft1" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft2" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft1" relativePoint="BOTTOMLEFT">
+							<Offset> <AbsDimension x="0" y="-2"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight2" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft2" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft3" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft2" relativePoint="BOTTOMLEFT">
+							<Offset> <AbsDimension x="0" y="-2"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight3" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft3" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft4" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft3" relativePoint="BOTTOMLEFT">
+							<Offset> <AbsDimension x="0" y="-2"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight4" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft4" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft5" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft4" relativePoint="BOTTOMLEFT">
+							<Offset> <AbsDimension x="0" y="-2"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight5" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft5" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft6" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft5" relativePoint="BOTTOMLEFT">
+							<Offset> <AbsDimension x="0" y="-2"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight6" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft6" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft7" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft6" relativePoint="BOTTOMLEFT">
+							<Offset> <AbsDimension x="0" y="-2"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight7" inherits="GameTooltipTextSmall" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft7" relativePoint="LEFT">
+							<Offset> <AbsDimension x="40" y="0"/> </Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad> GameTooltip_OnLoad() </OnLoad>
+			<OnEvent> GameTooltip_OnEvent() </OnEvent>
+			<OnHide> GameTooltip_OnHide() </OnHide>
+		</Scripts>
+	</GameTooltip>
+
+	<GameTooltip name="CardQIHiddenTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate"/>
+	<GameTooltip name="CardQITooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="CardQITooltipTemplate"/>
+	<GameTooltip name="CardQIFrame" inherits="GameTooltipTemplate" parent="UIParent" enableMouse="true" toplevel="true" movable="true" frameStrata="HIGH" hidden="true">
+		<Size> <AbsDimension x="128" y="64"/> </Size>
+		<Anchors> <Anchor point="CENTER"/> </Anchors>
+		<Frames>
+			<Button name="CardQICloseButton">
+				<Size> <AbsDimension x="32" y="32"/> </Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset> <AbsDimension x="1" y="0"/> </Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CardQIFrame:Hide()
+						CardQITooltip:Hide()
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="CardQICompareButton">
+				<Size> <AbsDimension x="32" y="32"/> </Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="CardQICloseButton" relativePoint="BOTTOM">
+						<Offset> <AbsDimension x="0" y="12"/> </Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick> CardQI:ScanInventory(nil,1) </OnClick>
+					<OnEnter>
+						GameTooltip:SetOwner(this,"ANCHOR_TOPLEFT")
+						GameTooltip:SetText(CARDQI_STRINGS.COMPAREBUTTON)
+					</OnEnter>
+					<OnLeave> GameTooltip:Hide() </OnLeave>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\Card_QuickInspect\Images\CompareUp"/>
+				<PushedTexture file="Interface\AddOns\Card_QuickInspect\Images\CompareDown"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				GameTooltip_OnLoad()
+				this:SetPadding(16)
+				this:RegisterForDrag("LeftButton")
+			</OnLoad>
+			<OnDragStart> this:StartMoving() </OnDragStart>
+			<OnDragStop>
+				this:StopMovingOrSizing()
+				ValidateFramePosition(this)
+			</OnDragStop> 
+		</Scripts>
+	</GameTooltip>
+</Ui>

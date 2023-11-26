@@ -1,0 +1,74 @@
+IMPORTANT NOTICE - please read
+------------------------------
+
+
+If :
+
+- you are using the french or german client of World of Warcraft
+AND
+- you are upgrading SKMap from a version prior to 1.4
+
+Then read the following carefully before installing.
+
+If it's not the case (if it is the first time you use SKMap, or if you are using the english version), proceed as usual.
+
+
+
+1. Map data migration procedure
+-------------------------------
+
+When Blizzard released WoW client version 1.6.0, they changed the zone orders that this add-on is using to store world map events. Thus, you may have noticed erroneous data location on your world map.
+
+Note that a change also happened with WoW client version 1.5.0.
+
+This problem will automatically be corrected by the version of SKMap you're installing. The first time you launch WoW afterwards, SKMap will detect that one or several zone migration need to be performed.
+
+In order to ensure data integrity, you have to save your current data BEFORE launching the game. That way, if something wrong happens (WoW crash, for instance) during the migration, you can restore your old data.
+
+
+To do so :
+- go to your World of Warcraft folder, then in sub-directory "..."
+- back up the file "SavedVariable.lua", for instance to "SavedVariable.lua.old"
+
+Then, install SKMap 1.4 as usual, launch the game and log in one of your characters (note that if you have several accounts, you will have to repeat this for each account).
+
+Then, log out of the game to force a physical update of the data file.
+
+If a problem occurs during the migration, simply restore your backed up "SavedVariable.lua" file.
+
+
+
+2. Map data reinitialization
+----------------------------
+
+If you've been using SKMap before 1.4, and you switched from two different languages of the World of Warcraft client, then your map records are completely messed up and cannot be recovered. If this happened to you, I apologize deeply for not foreseeing this problem :(
+
+(Very few users should be in this case, hopefully none at all !)
+
+In this case, the best you can do is clean up all the world map records by typing the following :
+
+
+/script SkM_ResetAccountMapData();
+
+
+WARNING : use with caution ! this will erase all your SKMap world map data, for ALL players on ALL realms of your current account ! (this includes statistics linked to map records : statistics by zone and by date).
+
+Note that you will not loose enemy data, enemy statistics or battleground statistics.
+
+
+
+3. Future eventual zone order shifts
+------------------------------------
+
+In the future, Blizzard may change again their zone order. In this case, I'll provide a fix as soon as possible. In the meantime, you can continue to use SKMap. You may see erroneous record locations on the world map, but this does not matter, as they will automatically be corrected when you will install the next version of SKMap.
+
+There is a restriction, however : you may not switch from two different languages in this time frame, because if you do so SKMap will have no way to correct the erroneous locations.
+
+If, after a patch that changes the zone orders, you want to change your client language, you must first install the latest version of SKMap that handles the new zone shift.
+
+Note that SKMap in version 1.4 (and future versions) now allows you to switch from different client languages seamlessly, without messing up your records location. The only restriction lies as described above.
+
+
+
+
+Thank you for your attention :)

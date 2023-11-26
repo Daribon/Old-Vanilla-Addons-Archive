@@ -1,0 +1,55 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="PopBarButton.lua"/>
+	<Button name="PopBarKnob" frameStrata="LOW" toplevel="false" enableMouse="true" movable="true" parent="UIParent">
+        <Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="MainMenuBarArtFrame" relativePoint="TOPLEFT">
+            	<Offset>
+					<AbsDimension x="522" y="4"/>
+				</Offset>
+            </Anchor>
+        </Anchors>
+        <Scripts>
+        	<OnLoad>
+            	this:RegisterForClicks("LeftButtonDown", "LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnMouseDown>
+				if ( arg1 == "LeftButton" ) then
+					if ((not ActionLockButton) or (ActionLockButton and (not ActionLockButton.isLocked))) then
+						this:StartMoving();
+					end
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if ( arg1 == "LeftButton" ) then
+					this:StopMovingOrSizing();
+				else
+					PopBar_ResetPos();
+				end
+			</OnMouseUp>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\PopBar\Skin\PopBarKnob"/>
+    </Button>
+	
+    <Frame name="PopBar" enableMouse="false" frameStrata="LOW" parent="UIParent" >
+        <Size>
+            <AbsDimension x="498" y="498"/>
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeTo="PopBarKnob" relativePoint="CENTER" />
+        </Anchors>
+        <Scripts>
+        	<OnLoad>
+            	PopBar_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				PopBar_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+    </Frame>
+    <Include file="PopBarFrame.xml"/>
+</Ui>

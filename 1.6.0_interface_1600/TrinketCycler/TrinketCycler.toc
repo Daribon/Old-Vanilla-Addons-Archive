@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: TrinketCycler
+## Notes: Allows you to put another Trinket in a Trinket slot once the ability of the Trinket has been used.
+## OptionalDeps: Cosmos, Sea, 
+## RequiredDeps: AddOnHelper, DynamicData, DynamicDataItem
+TrinketCycler.xml
+TrinketCyclerSetup.xml

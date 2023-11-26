@@ -1,0 +1,6 @@
+## Interface: 1800
+## Version: 1.392 (CTMod 1.843)
+## Notes: Allows you to break up the main bar into several pieces
+## Dependencies: CT_MasterMod, CT_BarMod
+## SavedVariables: CT_BottomBar_Enabled, CT_BottomBar_HiddenFrames, CT_BottomBar_RotatedFrames
+CT_BottomBar.xml

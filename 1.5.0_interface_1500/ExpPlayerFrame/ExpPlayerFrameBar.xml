@@ -1,0 +1,54 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<StatusBar name="ExpPlayerFrameBarTemplate" virtual="true" inherits="TextStatusBar" parent="PlayerFrame">
+			<Size>
+				<AbsDimension x="140" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="XPBarFrame" relativePoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="10" y="-5"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnMouseUp>
+					ExpPlayerFrameBar_OnClick(arg1);
+				</OnMouseUp>
+					<OnEnter>
+						ExpPlayerFrameBarTemp = 1;
+						ExpPlayerFrameBar_UpdateIt();
+						--The line below conflicts with PlayerFrameXPBar addon.
+						--ExhaustionTick.timer = 1;
+						GameTooltip_AddNewbieTip(XPBAR_LABEL, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_XPBAR, 1);
+						GameTooltip.canAddRestStateLine = 1;
+					</OnEnter>
+					<OnLeave>
+						ExpPlayerFrameBarTemp = 0;
+						ExpPlayerFrameBar_UpdateIt();
+						HideTextStatusBarText(this);
+						GameTooltip:Hide();
+						--The line below conflicts with PlayerFrameXPBar addon.
+						--ExhaustionTick.timer = nil;
+					</OnLeave>
+					<OnUpdate>
+						ExpPlayerFrame_OnUpdate(arg1);
+					</OnUpdate>
+			</Scripts>
+			<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+	</StatusBar>
+	<StatusBar name="ExpPlayerFrameBar" inherits="ExpPlayerFrameBarTemplate" parent="PlayerFrame">
+		<Scripts>
+			<OnLoad>
+			    this:SetFrameLevel("1");
+			</OnLoad>
+		</Scripts>
+    </StatusBar>
+	<StatusBar name="ExpPlayerFrameBarExhaust" inherits="ExpPlayerFrameBarTemplate" parent="PlayerFrame">
+		<Scripts>
+			<OnLoad>
+				ExpPlayerFrameBarExhaust:SetFrameLevel(ExpPlayerFrameBar:GetFrameLevel() - 1)
+			</OnLoad>
+		</Scripts>
+	</StatusBar>
+</Ui>

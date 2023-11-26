@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: AutomaticItemUser
+## Author: sarf
+## Notes: Will automatically use items at certain conditions. To auto-dismount, download AutoMount.
+## DefaultState: enabled
+## SavedVariables: AutomaticItemUser_Options
+## OptionalDeps: AutoMount
+AutomaticItemUser.xml

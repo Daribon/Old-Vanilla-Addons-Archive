@@ -1,0 +1,897 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="BetterKeyBinding.lua"/>
+	<Button name="BetterKeyBindingFrameBindingButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				BetterKeyBindingButton_OnClick(arg1);
+			</OnClick>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonUp", "Button4Up", "Button5Up");
+			</OnLoad>
+		</Scripts>
+		<NormalTexture name="$parentNormalTexture" inherits="UIPanelButtonUpTexture"/>
+		<PushedTexture name="$parentPushedTexture" inherits="UIPanelButtonDownTexture"/>
+		<DisabledTexture inherits="UIPanelButtonDisabledTexture"/>
+		<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+	</Button>
+	<Frame name="BetterKeyBindingFrameBindingTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="560" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentDescription" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHeader" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentKey1Button" inherits="BetterKeyBindingFrameBindingButtonTemplate" id="1">
+				<Size>
+					<AbsDimension x="180" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset>
+							<AbsDimension x="175" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalText inherits="GameFontHighlightSmall"/>
+				<DisabledText inherits="GameFontDisable"/>
+				<HighlightText inherits="GameFontHighlightSmall"/>
+			</Button>
+			<Button name="$parentKey2Button" inherits="BetterKeyBindingFrameBindingButtonTemplate" id="2">
+				<Size>
+					<AbsDimension x="180" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentKey1Button" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalText inherits="GameFontHighlightSmall"/>
+				<DisabledText inherits="GameFontDisable"/>
+				<HighlightText inherits="GameFontHighlightSmall"/>
+			</Button>
+		</Frames>
+	</Frame>
+	<Button name="BetterKeyBindingSectionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="132" y="20"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				BetterKeyBindingSectionButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				BetterKeyBindingSection_OnEnter(this:GetID());
+			</OnEnter>
+		</Scripts>
+		<NormalTexture name="$parentNormalTexture" file="Interface\AuctionFrame\UI-AuctionFrame-FilterBg">
+			<TexCoords left="0" right="0.53125" top="0" bottom="0.625"/>
+		</NormalTexture>
+		<HighlightTexture file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD"/>
+		<NormalText name="$parentNormalText" inherits="GameFontNormalSmall" justifyH="LEFT">
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="4" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalText>
+		<HighlightText name="$parentHighlightText" inherits="GameFontHighlightSmall" justifyH="LEFT">
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="4" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightText>
+	</Button>
+	<Frame name="BetterKeyBindingFrame" toplevel="true" parent="UIParent" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="800" y="512"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\KeyBindingFrame\UI-KeyBindingFrame-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\KeyBindingFrame\UI-KeyBindingFrame-Top">
+					<Size>
+						<AbsDimension x="420" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\KeyBindingFrame\UI-KeyBindingFrame-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\KeyBindingFrame\UI-KeyBindingFrame-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\KeyBindingFrame\UI-KeyBindingFrame-Bot">
+					<Size>
+						<AbsDimension x="420" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\KeyBindingFrame\UI-KeyBindingFrame-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+				<FontString name="BetterKeyBindingFrameNote1Label" inherits="GameFontNormal" text="BKB_SECTIONS_WOW">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			        <Color r="1.0" g="1.0" b="1.0"/>
+				</FontString>
+				<FontString name="BetterKeyBindingFrameNote2Label" inherits="GameFontNormal" text="BKB_SECTIONS_ADDONS">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameNote1Label" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			        <Color r="0.0" g="0.6" b="1.0"/>
+				</FontString>
+				<FontString name="BetterKeyBindingFrameCommandLabel" inherits="GameFontNormal" text="COMMAND">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="178" y="-32"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="BetterKeyBindingFrameKey1Label" inherits="GameFontNormal" text="KEY1">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="BetterKeyBindingFrameCommandLabel" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="185" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="BetterKeyBindingFrameKey2Label" inherits="GameFontNormal" text="KEY2">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="BetterKeyBindingFrameKey1Label" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="145" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="BetterKeyBindingFrameOutputText" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="52"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="BetterKeyBindingFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="300" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="BETTER_KEY_BINDINGS">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="BetterKeyBindingFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="BBKFSortCheckButton" enableMouse="true" text="GLOBAL_SORT_TAG_C">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameNote2Label" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<NormalText inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT"/>
+					</Anchors>
+				</NormalText>
+				<HighlightText inherits="GameFontHighlight" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT"/>
+					</Anchors>
+				</HighlightText>
+				<DisabledText inherits="GameFontDisable" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT"/>
+					</Anchors>
+				</DisabledText>
+				<PushedTextOffset>
+					<AbsDimension x="2" y="-2"/>
+				</PushedTextOffset>
+				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+				<Scripts>
+					<OnLoad>
+						BetterKeyBinding_IsSorted = false;
+						this:SetChecked(0);
+						this:RegisterEvent("VARIABLES_LOADED");	
+					</OnLoad>
+					<OnEvent>
+						if (event == "VARIABLES_LOADED") then
+							if (BetterKeyBinding_IsSorted) then
+								this:SetChecked(1);
+								BetterKeyBinding_Update();
+							end
+							RegisterForSave("BetterKeyBinding_IsSorted");
+						end
+					</OnEvent>
+					<OnClick>
+						if (BetterKeyBinding_IsSorted) then
+							BetterKeyBinding_IsSorted = false;
+							this:SetChecked(0);
+						else
+							BetterKeyBinding_IsSorted = true;
+							this:SetChecked(1);
+						end
+						-- Print(format("BKBFSortCheckButton_OnClick(%s)", asText(BetterKeyBinding_IsSorted)));
+						BetterKeyBinding_Update();
+						RegisterForSave("BetterKeyBinding_IsSorted");
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="BBKFMixCheckButton" enableMouse="true" text="BKB_MIX">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BBKFSortCheckButton" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="48" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<NormalText inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT"/>
+					</Anchors>
+				</NormalText>
+				<HighlightText inherits="GameFontHighlight" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT"/>
+					</Anchors>
+				</HighlightText>
+				<DisabledText inherits="GameFontDisable" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT"/>
+					</Anchors>
+				</DisabledText>
+				<PushedTextOffset>
+					<AbsDimension x="2" y="-2"/>
+				</PushedTextOffset>
+				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+				<Scripts>
+					<OnLoad>
+						BetterKeyBinding_IsMixed = false;
+						this:SetChecked(0);
+						this:RegisterEvent("VARIABLES_LOADED");	
+					</OnLoad>
+					<OnEvent>
+						if (event == "VARIABLES_LOADED") then
+							if (BetterKeyBinding_IsMixed) then
+								this:SetChecked(1);
+								BetterKeyBinding_Update();
+							end
+							RegisterForSave("BetterKeyBinding_IsMixed");
+						end
+					</OnEvent>
+					<OnClick>
+						if (BetterKeyBinding_IsMixed) then
+							BetterKeyBinding_IsMixed = false;
+							this:SetChecked(0);
+						else
+							BetterKeyBinding_IsMixed = true;
+							this:SetChecked(1);
+						end
+						-- Print(format("BKBFSortCheckButton_OnClick(%s)", asText(BetterKeyBinding_IsMixed)));
+						BetterKeyBinding_Update();
+						RegisterForSave("BetterKeyBinding_IsMixed");
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<ScrollFrame name="BetterKeyBindingSectionScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="125" y="390"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-53"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="288" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentScrollBarScrollUpButton">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0" />
+						</Texture>
+						<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentScrollBarScrollDownButton">
+									<Offset>
+										<AbsDimension x="0" y="-2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnVerticalScroll>
+							FauxScrollFrame_OnVerticalScroll(KEY_BINDING_HEIGHT, BetterKeyBinding_Update);
+					</OnVerticalScroll>
+					<OnMouseWheel>
+							ScrollFrameTemplate_OnMouseWheel(arg1);
+					</OnMouseWheel>
+				</Scripts>
+			</ScrollFrame>
+			<Button name="BetterKeyBindingSectionButton1" inherits="BetterKeyBindingSectionButtonTemplate" id="1" text="one">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="BetterKeyBindingSectionScrollFrame">
+						<Offset>
+							<AbsDimension x="-9" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton2" inherits="BetterKeyBindingSectionButtonTemplate" id="2" text="two">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton1">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton3" inherits="BetterKeyBindingSectionButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton2">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton4" inherits="BetterKeyBindingSectionButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton3">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton5" inherits="BetterKeyBindingSectionButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton4">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton6" inherits="BetterKeyBindingSectionButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton5">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton7" inherits="BetterKeyBindingSectionButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton6">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton8" inherits="BetterKeyBindingSectionButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton7">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton9" inherits="BetterKeyBindingSectionButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton8">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton10" inherits="BetterKeyBindingSectionButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton9">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton11" inherits="BetterKeyBindingSectionButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton10">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton12" inherits="BetterKeyBindingSectionButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton11">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton13" inherits="BetterKeyBindingSectionButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton12">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton14" inherits="BetterKeyBindingSectionButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton13">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton15" inherits="BetterKeyBindingSectionButtonTemplate" id="15">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton14">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton16" inherits="BetterKeyBindingSectionButtonTemplate" id="16">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton15">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BetterKeyBindingSectionButton17" inherits="BetterKeyBindingSectionButtonTemplate" id="17">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="BetterKeyBindingSectionButton16">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<ScrollFrame name="BetterKeyBindingFrameScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="560" y="390"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-78" y="-53"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(KEY_BINDING_HEIGHT, BetterKeyBinding_Update);
+					</OnVerticalScroll>
+					<OnMouseWheel>
+						if ( BetterKeyBindingFrame.selected ) then
+							if ( arg1 > 0 ) then
+								BetterKeyBinding_OnKeyDown("MOUSEWHEELUP");
+							else
+								BetterKeyBinding_OnKeyDown("MOUSEWHEELDOWN");
+							end
+						else
+							ScrollFrameTemplate_OnMouseWheel(arg1);
+						end
+					</OnMouseWheel>
+				</Scripts>
+			</ScrollFrame>
+			<Frame name="BetterKeyBindingFrameBinding1" inherits="BetterKeyBindingFrameBindingTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameScrollFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="28" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding2" inherits="BetterKeyBindingFrameBindingTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding3" inherits="BetterKeyBindingFrameBindingTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding4" inherits="BetterKeyBindingFrameBindingTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding5" inherits="BetterKeyBindingFrameBindingTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding4" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding6" inherits="BetterKeyBindingFrameBindingTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding7" inherits="BetterKeyBindingFrameBindingTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding6" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding8" inherits="BetterKeyBindingFrameBindingTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding7" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding9" inherits="BetterKeyBindingFrameBindingTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding8" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding10" inherits="BetterKeyBindingFrameBindingTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding9" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding11" inherits="BetterKeyBindingFrameBindingTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding10" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding12" inherits="BetterKeyBindingFrameBindingTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding11" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding13" inherits="BetterKeyBindingFrameBindingTemplate" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding12" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding14" inherits="BetterKeyBindingFrameBindingTemplate" id="14">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding13" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding15" inherits="BetterKeyBindingFrameBindingTemplate" id="15">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding14" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding16" inherits="BetterKeyBindingFrameBindingTemplate" id="16">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding15" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="BetterKeyBindingFrameBinding17" inherits="BetterKeyBindingFrameBindingTemplate" id="17">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BetterKeyBindingFrameBinding16" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Button name="BetterKeyBindingFrameDefaultButton" inherits="UIPanelButtonGrayTemplate" text="RESET_TO_DEFAULT">
+				<Size>
+					<AbsDimension x="130" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="10" y="21"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						DefaultBindings();
+						BetterKeyBinding_Update();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BetterKeyBindingFrameCancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="130" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-50" y="21"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ResetBindings();
+						BetterKeyBindingFrame.selected = nil;
+						HideUIPanel(BetterKeyBindingFrame);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BetterKeyBindingFrameOkayButton" inherits="UIPanelButtonTemplate" text="OKAY">
+				<Size>
+					<AbsDimension x="130" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BetterKeyBindingFrameCancelButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						SaveBindings();
+						BetterKeyBindingFrame.selected = nil;
+						HideUIPanel(BetterKeyBindingFrame);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BetterKeyBindingFrameRevertButton" inherits="UIPanelButtonTemplate" text="BKB_REVERT">
+				<Size>
+					<AbsDimension x="130" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BetterKeyBindingFrameOkayButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BetterKeyBinding_Revert_OnClick();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BetterKeyBindingFrameConfirmButton" inherits="UIPanelButtonTemplate" text="BKB_CONFIRM">
+				<Size>
+					<AbsDimension x="130" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BetterKeyBindingFrameRevertButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BetterKeyBinding_Confirm_OnClick();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				BetterKeyBinding_OnKeyDown(arg1);
+			</OnClick>
+			<OnKeyDown>
+				BetterKeyBinding_OnKeyDown();
+			</OnKeyDown> 
+			<OnLoad>
+				BetterKeyBinding_OnLoad();
+			</OnLoad>
+			<OnShow>
+				BetterKeyBinding_OnShow();
+			</OnShow>
+			<OnUpdate>
+				BetterKeyBinding_OnUpdate();
+			</OnUpdate>
+			<OnHide>
+				BetterKeyBindingFrameOutputText:SetText("");
+				--ShowUIPanel(GameMenuFrame);
+			</OnHide>
+			<OnMouseWheel>
+				return;
+			</OnMouseWheel>
+		</Scripts>
+	</Frame>
+</Ui>

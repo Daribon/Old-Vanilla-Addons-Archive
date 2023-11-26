@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (MyInventory)
+## Notes: CooldownCount for MyInventory
+## Author: sarf
+## RequiredDeps: MyInventory, CooldownCount
+CooldownCountMyInventory.xml

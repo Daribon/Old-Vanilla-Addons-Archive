@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: Sarf SmartPet
+## Notes: Patches SmartPet to be even smarter. Spell Attack mostly.
+## Author: Sarf
+## SavedVariables: SarfSmartPet_Options
+## Dependencies: SmartPet
+SarfSmartPet.xml

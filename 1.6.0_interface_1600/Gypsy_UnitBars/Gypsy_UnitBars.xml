@@ -1,0 +1,8 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<!-- Player, Target, and Party frame specific files -->
+	<Include file="Gypsy_PlayerFrame.xml"/>
+	<Include file="Gypsy_TargetFrame.xml"/>
+	<Include file="Gypsy_PartyFrame.xml"/>
+</Ui>

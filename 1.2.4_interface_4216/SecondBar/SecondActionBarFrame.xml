@@ -1,0 +1,157 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<CheckButton name="SecondActionBarButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				SecondActionButton_OnLoad();
+            SecondBar_OnLoad();
+			</OnLoad>
+			<OnShow>
+				SecondActionButton_Update();
+			</OnShow>
+			<OnEvent>
+				SecondActionButton_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				if ( IsShiftKeyDown() ) then
+					PickupAction(SecondActionButton_GetPagedID(this));
+				else
+					MacroFrame_EditMacro();
+					UseAction(SecondActionButton_GetPagedID(this), 1);
+				end
+				SecondActionButton_UpdateState();
+			</OnClick>
+			<OnDragStart>
+				if ( (not ActionLockButton) or (ActionLockButton and (not ActionLockButton.isLocked)) ) then
+					PickupAction(SecondActionButton_GetPagedID(this));
+				end
+				SecondActionButton_UpdateState();
+			</OnDragStart>
+			<OnReceiveDrag>
+				PlaceAction(SecondActionButton_GetPagedID(this));
+				SecondActionButton_UpdateState();
+			</OnReceiveDrag>
+			<OnEnter>
+				SecondActionButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateTooltip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnUpdate>
+				SecondActionButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="SecondActionButton1" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="1">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="8" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton2" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton3" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton4" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton5" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton6" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton7" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="7">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton8" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="8">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton9" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton10" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton11" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="11">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="SecondActionButton12" inherits="SecondActionBarButtonTemplate" parent="SecondBarArtFrame" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="SecondActionButton11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+</Ui>

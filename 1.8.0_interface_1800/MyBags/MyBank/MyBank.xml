@@ -1,0 +1,34 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+	<Script file="locals.lua"/>
+	<Script file="MyBank.lua"/>
+	<Frame name="MyBagsBankContainerTemplate" inherits="MyBagsContainerTemplate" ID="BANK_CONTAINER" virtual="true">
+		<Frames>
+			<Button name="$parentItem21" inherits="MyBagsItemButtonTemplate" id="21"/>
+			<Button name="$parentItem22" inherits="MyBagsItemButtonTemplate" id="22"/>
+			<Button name="$parentItem23" inherits="MyBagsItemButtonTemplate" id="23"/>
+			<Button name="$parentItem24" inherits="MyBagsItemButtonTemplate" id="24"/>
+		</Frames>
+	</Frame>
+	<Frame name="MyBankAnchorFrame" hidden="false" movable="true" parent="UIParent">
+		<Size><AbsDimension x="10" y="10"/></Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" >
+				<Offset><AbsDimension x="5" y="100"/></Offset>
+			</Anchor>
+		</Anchors>
+
+		<Frames>
+			<Frame name="MyBankFrame" inherits="MyBagsFrameTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" />
+				</Anchors>
+				<Frames>
+					<Frame name="$parentBank" inherits="MyBagsBankContainerTemplate" ID="BANK_CONTAINER"/> 
+					<Frame name="$parentBag5" inherits="MyBagsContainerTemplate"/>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+</Ui>

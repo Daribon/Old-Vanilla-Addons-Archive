@@ -1,0 +1,11 @@
+## Interface: 1700
+## Author: Kael		
+## Title: KC_EnhancedTrades 1.1
+## Notes: Displays additional information in your tradeskill/craft frames.
+## Dependencies: Ace, KC_Items
+## SavedVariables: KC_EnhancedTradesDB
+KC_EnhancedTrades.xml
+KC_EnhancedTrades_Buttons.xml
+KC_EnhancedTrades_Config.xml
+KC_EnhancedTrades_Templates.xml
+KC_TradeSkillFrame.xml

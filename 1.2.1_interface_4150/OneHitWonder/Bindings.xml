@@ -1,0 +1,40 @@
+<Bindings>
+	<!-- Do Rogue OneHitWonder -->
+	<Binding name="ONEHITWONDER" description="Do OneHitWonder" header="ONEHITWONDERHEADER">
+		local ohwRemoveDefense = getglobal("ONEHITWONDER_REMOVEDEFENSE");
+		OneHitWonder_GiveMeWonder(ohwRemoveDefense);
+	</Binding>
+	<Binding name="ONEHITWONDER_TOGGLE_REMOVEDEFENSE" description="Toggle remove defense">
+		local ohwRemoveDefense = getglobal("ONEHITWONDER_REMOVEDEFENSE");
+		if (ohwRemoveDefense) then
+			ohwRemoveDefense = false;
+			OneHitWonder_Print(ONEHITWONDER_CHAT_REMOVEDEFENSE_DISABLED);
+		else
+			ohwRemoveDefense = true;
+			OneHitWonder_Print(ONEHITWONDER_CHAT_REMOVEDEFENSE_ENABLED);
+		end
+		setglobal("ONEHITWONDER_REMOVEDEFENSE", ohwRemoveDefense);
+	</Binding>
+	<Binding name="ONEHITWONDER_TOGGLE_INNERFIRE" description="(Priest) Toggle Inner Fire" hidden="true">
+		local value = 0;
+		if ( OneHitWonder_Priest_AutoBuffInnerFire == 0 ) then
+			value = 1;
+		end
+		OneHitWonder_SetAutoBuffInnerFire(value);
+		local mode = ONEHITWONDER_TOGGLE_DISABLED_CHAT;
+		if ( value == 1 ) then
+			mode = ONEHITWONDER_TOGGLE_ENABLED_CHAT;
+		end
+		OneHitWonder_Print(format(ONEHITWONDER_TOGGLE_INNERFIRE_CHAT, mode));
+	</Binding>
+	<Binding name="ONEHITWONDER_BUFF_BUTTON" description="Its Buff Time!">
+		OneHitWonder_ExecuteBuffButton();
+	</Binding>
+	<Binding name="ONEHITWONDER_CLEAN_BUTTON" description="Its Cleaning Time!">
+		OneHitWonder_ExecuteCleanButton();
+	</Binding>
+	<Binding name="ONEHITWONDER_COUNTERMEASURES" description="Use reactive countermeasures, if any are pending.">
+		OneHitWonder_UseCountermeasures();
+	</Binding>
+	
+</Bindings>

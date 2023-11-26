@@ -1,0 +1,19 @@
+<!--
+
+	Props: Giving a little extra credit to my friends
+	- by Alexander Yoshi October 2nd, 2004
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="TooltipsPropsTarget.lua"/>
+	<Frame name="TooltipsPropsTargetFrame" hidden="false" parent="UIParent">
+
+		<Scripts>
+			<OnLoad>
+				TooltipsPropsTarget_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

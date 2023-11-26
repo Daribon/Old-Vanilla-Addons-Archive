@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: AddOnHelper
+## Notes: Helps other AddOns do stuff
+## OptionalDeps: Cosmos, Sea, DynamicData
+## RequiredDeps: 
+AddOnHelper.xml

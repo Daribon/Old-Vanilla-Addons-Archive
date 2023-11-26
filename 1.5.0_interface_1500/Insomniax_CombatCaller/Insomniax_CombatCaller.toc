@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX CombatCaller v2.2 by Ascendant
+## Notes: Automatically alerts others when you are low on health and mana.
+## Author: Alex Brazie, modified by LedMirage, further modified by Ascendant
+## SavedVariables: IX_CombatCaller_Config
+Insomniax_CombatCaller.xml

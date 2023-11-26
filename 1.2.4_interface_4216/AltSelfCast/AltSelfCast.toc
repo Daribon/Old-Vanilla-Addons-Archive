@@ -1,0 +1,9 @@
+## Interface: 4216
+## Title: AltSelfCast
+## Title-deDE: AltSelfCast 
+## Notes: Allows the user to toggle on alt-self casting, which means that when the user holds alt, any actions taken are attempted to be done on the user him/herself.
+## Notes-deDE: Ermöglicht es durch Drücken von z.B. ALT alle Handlungen mit dem Spieler als Ziel auszuführen
+## RequiredDeps: Sea
+## OptionalDeps: Cosmos
+## SavedVariables: AltSelfCast_Enabled, AltSelfCast_Alt, AltSelfCast_Shift, AltSelfCast_Ctrl, AltSelfCast_Override, AltSelfCast_Smart, AltSelfCast_NoDispel, AltSelfCast_Smart_NoGroup
+AltSelfCast.xml

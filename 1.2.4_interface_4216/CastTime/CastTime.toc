@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: Cast Timer
+## Author: Moof (Jim Drey, moof@videogamemaps.net) - www.videogamemaps.net
+## Notes: Adds a timer (in seconds) to the casting bar.
+## Dependencies: Chronos, Sea
+CastTime.xml

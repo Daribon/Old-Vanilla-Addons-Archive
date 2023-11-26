@@ -1,0 +1,179 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+<!--
+	Version: 3.0.4
+	Revision: $Id: Auctioneer.xml,v 1.11 2005/06/13 15:19:03 norganna Exp $
+-->
+	<Script file="localization.lua"/>
+	<Script file="ItemData.lua"/>
+	<Script file="MeshData.lua"/>
+	<Script file="DisplayInfo.lua"/>
+	<Script file="AHScanning.lua"/>
+	<Script file="BalancedList.lua"/>
+	<Script file="Auctioneer.lua"/>
+	<Frame name="Auctioneer" parent="UIParent" hidden="true">
+		<Scripts>
+			<OnLoad>
+				Auctioneer_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Auctioneer_OnEvent(event);
+			</OnEvent>      
+		</Scripts>
+		<Frames>
+			<Button name="BrowseScanButton" parent="AuctionFrameBrowse" inherits="UIPanelButtonTemplate" text="AUCT_TEXT_SCAN">
+				<Size>
+					<AbsDimension x="80" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="AuctionFrameMoneyFrame" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Auctioneer_RequestAuctionScan();
+					</OnClick>
+					<OnUpdate>
+						if (Auctioneer_CanScan()) then
+							this:Enable();
+						else
+							this:Disable();
+						end
+					</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="AuctionInfo" parent="AuctionFrameAuctions">
+		<Size>
+			<AbsDimension x="160" y="80"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="AuctionDepositText" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-4" y="-36"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="INFO">
+				<FontString name="$parentText1" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText2" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText1" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText3" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText2" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText4" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText3" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText5" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText4" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentWarnText" inherits="GameFontNormal" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-76"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentMoney1" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText1" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney2" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText2" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney3" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText3" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney4" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText4" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney5" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText5" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+</Ui>
+

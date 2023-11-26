@@ -1,0 +1,147 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="RogueHelper.lua"/> 
+
+	<Button name="RogueHelperFrame" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="100" y="82"/>
+		</Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="PlayerFrame" relativePoint="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="60" y="-60"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentTextHealth" inherits="GameFontNormal" justifyH="TOP">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextEnergy" inherits="GameFontNormal" justifyH="TOP">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentTextHealth">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextCombo" inherits="GameFontNormal" justifyH="TOP">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentTextEnergy">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextTargetHealth" inherits="GameFontNormal" justifyH="TOP">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentTextCombo">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+        </Layers>
+        <Frames>
+			<StatusBar name="RogueHelperFrameStatusBarHealth" hidden="false">
+				<Size>
+					<AbsDimension x="0" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-14"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="-14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+			</StatusBar>
+			<StatusBar name="$parentStatusBarTargetHealth" hidden="false">
+				<Size>
+					<AbsDimension x="0" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-56"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="-56"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+			</StatusBar>
+        </Frames>
+        <Scripts>
+			<OnLoad>
+				RogueHelper_UpdateWindow_OnLoad();
+			</OnLoad>
+			<OnClick>
+				RogueHelper_UpdateWindow_OnClick(arg1);
+			</OnClick>
+			<OnEvent>
+				RogueHelper_UpdateWindow_OnEvent(event);
+			</OnEvent>
+			<OnMouseUp>
+				if ( this.isMoving ) then
+					RogueHelper_UpdateWindow_OnDragStop();
+				end
+			</OnMouseUp>
+			<OnDragStart>
+				RogueHelper_UpdateWindow_OnDragStart();
+			</OnDragStart>
+			<OnDragStop>
+				RogueHelper_UpdateWindow_OnDragStop();
+			</OnDragStop>
+		</Scripts>
+	</Button>
+
+	<Frame name="RogueHelperScriptFrame" hidden="true">
+		<Scripts>
+			<OnLoad>
+				RogueHelper_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				RogueHelper_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<GameTooltip name="RogueHelperTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+			this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+		</OnLoad>
+	</Scripts>
+	</GameTooltip>
+</Ui>

@@ -1,0 +1,173 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="CT_Timer.lua"/>
+	<Frame name="CT_TimerFrame" movable="true" hidden="true" parent="MinimapCluster">
+		<Size>
+			<AbsDimension x="128" y="36"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="UIParent" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeaderTexture" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP"/>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTime" inherits="GameFontNormal" text="00:00:00">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeaderTexture">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentScrollDownHour" inherits="UIPanelScrollDownButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-18" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CT_Timer_ModTime(-3600);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollUpHour" inherits="UIPanelScrollUpButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-18" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CT_Timer_ModTime(3600);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollDownMin" inherits="UIPanelScrollDownButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="18" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CT_Timer_ModTime(-60);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollUpMin" inherits="UIPanelScrollUpButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="18" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CT_Timer_ModTime(60);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentReset" hidden="false" inherits="GameMenuButtonTemplate">
+				<Size>
+					<AbsDimension x="50" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM"/>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						CT_Timer_OnMouseOver();
+					</OnEnter>
+					<OnLeave>
+						CT_Timer_OnMouseOut();
+					</OnLeave>
+					<OnUpdate>
+						CT_Timer_OnUpdate(arg1);
+					</OnUpdate>
+					<OnLoad>
+						this:SetAlpha(0.35);
+						this.onbutton = 0;
+						this.updatetime = 0.01;
+						this.alpha = 0.35;
+					</OnLoad>
+					<OnClick>
+						CT_Timer_Reset();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame toplevel="true" name="$parentDragClickFrame" hidden="false">
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Size>
+					<AbsDimension x="80" y="30"/>
+				</Size>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(CT_TIMER_DRAG1 .. "\n" .. CT_TIMER_DRAG2);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnMouseDown>
+						if ( arg1 == "RightButton" ) then
+							this:GetParent():StartMoving();
+						end
+					</OnMouseDown>
+					<OnMouseUp>
+						if ( arg1 == "RightButton" ) then
+							this:GetParent():StopMovingOrSizing();
+						else
+							CT_Timer_Toggle();
+						end
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				this.step = 1;
+				this.showsecs = 1;
+				this.time = 0;
+				getglobal(this:GetName() .. "Time"):SetTextColor(1, 0, 0);
+				getglobal(this:GetName() .. "Reset"):SetText(CT_TIMER_RESET);
+			</OnLoad>
+			<OnEvent>
+				CT_Timer_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<Frame name="CT_TimerGlobalFrame" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnUpdate>
+				CT_Timer_UpdateTime(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

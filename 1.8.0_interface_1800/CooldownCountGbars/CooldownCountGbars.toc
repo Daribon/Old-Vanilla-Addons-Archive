@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: CooldownCount (Gbars)
+## Notes: CooldownCount for Gypsy
+## Author: sarf
+## RequiredDeps: GBars
+CooldownCountGbars.xml

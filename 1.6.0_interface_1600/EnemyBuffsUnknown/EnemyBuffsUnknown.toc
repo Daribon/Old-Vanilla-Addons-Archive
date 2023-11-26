@@ -1,0 +1,9 @@
+## Interface: 1600
+## Title: EnemyBuffsUnknown
+## Author: sarf
+## Notes: Basically a developer tool, this AddOn keeps track of EnemyBuffs which has not been assigned textures yet (and hence which are not displayed in EnemyBuffs).
+## DefaultState: disabled
+## RequiredDeps: EnemyBuffs
+## OptionalDeps: 
+## SavedVariables: EnemyBuffsUnknown_Buffs
+EnemyBuffsUnknown.xml

@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r BetterKeyBinding
+## Author: <geowar@apple.com>
+## Notes: a better key binding interface
+## RequiredDeps: UltimateUI
+BetterKeyBinding.xml

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="BUGSACK_SHOW" header="BUGSACK">
+		BugSack:ShowFrame()
+	</Binding>
+</Bindings>

@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="IASET" header="IMPROVEDASSIST">
+			SetAssist();
+	</Binding>
+	<Binding name="IAASSIST">
+			DoAssist();
+	</Binding>
+</Bindings>

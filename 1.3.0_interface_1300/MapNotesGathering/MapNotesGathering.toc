@@ -1,0 +1,14 @@
+## Interface: 1300
+## Title: Map Notes Gathering v0.5.2
+## Title-deDE: Map Notes Gathering v0.5.2
+## Title-enUS: Map Notes Gathering v0.5.2
+## Title-frFR: Map Notes Gathering v0.5.2
+## Title-koKR: Map Notes Gathering v0.5.2
+## Notes: Automatically marks herbs, ores and chests on the Worldmap.
+## Notes-deDE: 
+## Notes-enUS: Automatically marks herbs, ores and chests on the Worldmap.
+## Notes-frFR: 
+## SavedVariables: MapNotesGathering_Data
+## OptionalDeps: Sea
+## RequiredDeps: MapNotes
+MapNotesGathering.xml

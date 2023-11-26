@@ -1,0 +1,195 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+    <Include file="QuestToolTip.xml"/>
+	<CheckButton name="MinionCheckButtonTemplate" virtual="true" hidden="true" inherits="OptionsCheckButtonTemplate">
+		<HitRectInsets>
+			<AbsInset left="0" right="0" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Size>
+			<AbsDimension x="15" y="15"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				QuestToolTip_MinionCheckButton_OnClick();
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<Frame name="QuestMinionFrame" toplevel="true" movable="true" parent="QuestLogFrame" enableMouse="true" hidden="false">
+		<Size>
+			<AbsDimension x="5" y="5"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="QuestLogFrame" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<CheckButton name="QuestLogTitle1MinionCheckButton" inherits="MinionCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-77"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="QuestLogTitle2MinionCheckButton" inherits="MinionCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-92"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="QuestLogTitle3MinionCheckButton" inherits="MinionCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-107"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="QuestLogTitle4MinionCheckButton" inherits="MinionCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-122"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="QuestLogTitle5MinionCheckButton" inherits="MinionCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-137"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="QuestLogTitle6MinionCheckButton" inherits="MinionCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-152"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Frame name="QuestCompanionCheckFrame">
+				<Size>
+					<AbsDimension x="54" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="190" y="-48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="QuestCompanionLabel" inherits="GameFontNormalSmall" justifyH="LEFT" text="QMINION_TITLE">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-47" y="-12"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ShowLevelLabel" inherits="GameFontNormalSmall" justifyH="LEFT" text="QMINION_SHOWLEVEL">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="53" y="-12"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					 <CheckButton name="QuestCompanionCheckButton" hidden="false" inherits="OptionsCheckButtonTemplate">
+						<HitRectInsets>
+							<AbsInset left="0" right="-70" top="0" bottom="0"/>
+						</HitRectInsets>
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-70" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								QuestToolTip_Button_OnClick();
+							</OnClick>
+							<OnEnter>
+								local tooltip = QuestToolTip_GetTooltip();
+								tooltip:SetOwner(this,"ANCHOR_RIGHT");
+								tooltip:SetText(QMINION_BUTTON_TTIP, 1.0, 1.0, 1.0);
+							</OnEnter>
+							<OnLeave>
+								local tooltip = QuestToolTip_GetTooltip();
+								tooltip:Hide();
+							</OnLeave>
+							<OnShow>
+								this:SetChecked(QMinionConfig.Enabled);
+								QuestToolTip_QuestSearch();
+							</OnShow>
+						</Scripts>
+					</CheckButton>
+					 <CheckButton name="ShowLevelCheckButton" hidden="false" inherits="OptionsCheckButtonTemplate">
+						<Size>
+							<AbsDimension x="25" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="30" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								QMinionConfig.ShowLevel = this:GetChecked();
+								QuestLog_Update();
+								QuestToolTip_Show(3);
+							</OnClick>
+							<OnEnter>
+								local tooltip = QuestToolTip_GetTooltip();
+								tooltip:SetOwner(this,"ANCHOR_RIGHT");
+								tooltip:SetText(QMINION_SHOWLEVEL_INFO, 1.0, 1.0, 1.0);
+							</OnEnter>
+							<OnLeave>
+								local tooltip = QuestToolTip_GetTooltip();
+								tooltip:Hide();
+							</OnLeave>
+							<OnShow>
+								this:SetChecked(QMinionConfig.ShowLevel);
+								QuestToolTip_QuestSearch();
+							</OnShow>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="QTTFrame" frameStrata="LOW" enableMouse="false" hidden="false" parent="UIParent">
+		<Scripts>
+			<OnShow>
+				if (QMinionConfig.Enabled == 1) then QuestToolTip_Show(QMinionConfig.Minimized); end
+			</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

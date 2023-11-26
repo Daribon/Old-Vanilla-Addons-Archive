@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: CT_BarMod
+## Notes: Adds four additional hotkey bars.
+## Dependencies: CT_MasterMod
+## OptionalDeps: CT_MovableParty, CT_BuffMod
+## SavedVariables: CT_ActionBar_LockedPage, CT_PetBar_DragFrame_Orientation, CT_BABar_DragFrame_Orientation, CT_BarMod_SidebarMoved, CT_BarModOptions_Options, CT_SidebarAxis
+CT_BarMod.xml
+CT_BarModOptions.xml

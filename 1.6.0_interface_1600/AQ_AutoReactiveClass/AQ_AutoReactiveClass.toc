@@ -1,0 +1,9 @@
+## Interface: 1600
+## Title: [AQ] Auto Reactive Class
+## Notes: Tries to automatically use any reactive moves you possess (Overpower/Revenge, Mongoose Bite, Riposte and so on). Will display spells being cast by enemies (queue up Shield Bash/Kick) if EnemySpellDetector is present.
+## Author: sarf
+## DefaultState: enabled
+## RequiredDeps: ActionQueue
+## OptionalDeps: Cosmos, Khaos, EnemySpellDetector
+## SavedVariables: AQ_AutoReactiveClass_Options
+AQ_AutoReactiveClass.xml

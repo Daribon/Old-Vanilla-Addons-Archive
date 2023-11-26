@@ -1,0 +1,599 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<!-- Unit Template -->
+	<Button name="Nurfed_UnitTemplate" frameStrata="BACKGROUND" toplevel="true" movable="true" parent="UIParent" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="53"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentHealthPerc" inherits="GameFontNormalSmall">
+					<Size>
+						<AbsDimension x="35" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentName" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="110" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="9" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1"/>
+				</FontString>
+				<FontString name="$parentHealthText" inherits="Nurfed_StatusText">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-19"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentManaText" inherits="Nurfed_StatusText">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentHealthText" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentStatusIcon" file="Interface\CharacterFrame\UI-StateIcon" hidden="true">
+					<Size>
+						<AbsDimension x="15" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentHealthPerc" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRankIcon" hidden="true">
+					<Size>
+						<AbsDimension x="13" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentHealthPerc" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHappinessIcon" file="Interface\PetPaperDollFrame\UI-PetHappiness" setAllPoints="true" hidden="true">
+					<Size>
+						<AbsDimension x="13" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentHealthPerc" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.1875" top="0" bottom="0.359375"/>
+				</Texture>
+				<Texture name="$parentPVPIcon" hidden="true">
+					<Size>
+						<AbsDimension x="21" y="21"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-5" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeaderIcon" file="Interface\GroupFrame\UI-Group-LeaderIcon" hidden="true">
+					<Size>
+						<AbsDimension x="14" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentPVPIcon" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMasterIcon" file="Interface\GroupFrame\UI-Group-MasterLooter" hidden="true">
+					<Size>
+						<AbsDimension x="14" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentLeaderIcon" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentDropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						Nurfed_UnitDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentBackdrop" frameStrata="BACKGROUND" setAllPoints="true">
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+			</Frame>
+			<StatusBar name="$parentHealthBar" inherits="Nurfed_UnitStatusBar" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="100" y="8"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="9" y="-19"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnValueChanged>
+						HealthBar_OnValueChanged(arg1, 1);
+					</OnValueChanged>
+				</Scripts>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentCombatText" inherits="Nurfed_CombatFont" hidden="true">
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="$parentHealthBar" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="$parentManaBar" inherits="Nurfed_UnitStatusBar" frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="100" y="8"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentHealthBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</StatusBar>
+			<StatusBar name="$parentXPBar" inherits="Nurfed_UnitStatusBar" frameStrata="BACKGROUND" hidden="true">
+				<Size>
+					<AbsDimension x="135" y="7"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Nurfed_playerManaBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</StatusBar>
+			<Button name="$parentDebuff1" inherits="Nurfed_AuraTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff2" inherits="Nurfed_AuraTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff3" inherits="Nurfed_AuraTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff4" inherits="Nurfed_AuraTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff5" inherits="Nurfed_AuraTemplate" id="5" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff6" inherits="Nurfed_AuraTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff7" inherits="Nurfed_AuraTemplate" id="7" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff8" inherits="Nurfed_AuraTemplate" id="8" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentBuff1" inherits="Nurfed_AuraTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentDebuff1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff2" inherits="Nurfed_AuraTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff3" inherits="Nurfed_AuraTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff4" inherits="Nurfed_AuraTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff5" inherits="Nurfed_AuraTemplate" id="5" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff6" inherits="Nurfed_AuraTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff7" inherits="Nurfed_AuraTemplate" id="7" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff8" inherits="Nurfed_AuraTemplate" id="8" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentBuff7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnDragStart>
+				Nurfed_UnitOnDragStart(this);
+			</OnDragStart>
+			<OnDragStop>
+				Nurfed_UnitOnDragStop(this);
+			</OnDragStop>
+			<OnClick>
+				Nurfed_UnitOnClick(arg1, Nurfed_Units[this:GetName()]);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- Mini Unit Template -->
+	<Button name="Nurfed_MiniUnitTemplate" frameStrata="BACKGROUND" toplevel="true" movable="true" parent="UIParent" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="26"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentName" inherits="Nurfed_StatusText" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="65" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="2" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBG" file="Interface\TargetingFrame\UI-TargetingFrame-LevelBackground">
+					<Size>
+						<AbsDimension x="67" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHealthText" inherits="Nurfed_StatusText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentManaText" inherits="Nurfed_StatusText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentHealthText" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentBackdrop" frameStrata="BACKGROUND" setAllPoints="true">
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="4"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="0" right="0" top="0" bottom="0"/>
+					</BackgroundInsets>
+				</Backdrop>
+			</Frame>
+			<StatusBar name="$parentHealthBar" inherits="Nurfed_UnitStatusBar">
+				<Size>
+					<AbsDimension x="65" y="5"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnValueChanged>
+						HealthBar_OnValueChanged(arg1, 1);
+					</OnValueChanged>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentManaBar" inherits="Nurfed_UnitStatusBar">
+				<Size>
+					<AbsDimension x="65" y="5"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentHealthBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</StatusBar>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				Nurfed_UnitOnClick(arg1, Nurfed_Units[this:GetName()]);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- Party Member Template -->
+	<Button name="Nurfed_PartyMemberTemplate" inherits="Nurfed_UnitTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="43"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD" setAllPoints="true" hidden="true">
+					<Size>
+						<AbsDimension x="143" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				Nurfed_PartyMember_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_PartyMember_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				Nurfed_UnitFrame_OnEnter("party"..this:GetID());
+			</OnEnter>
+			<OnLeave>
+				Nurfed_UnitFrame_OnLeave();
+			</OnLeave>
+			<OnUpdate>
+				Nurfed_PartyMember_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+	<!-- Party Pets -->
+	<Button name="Nurfed_PartyPetTemplate" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="10"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentHealthText" inherits="Nurfed_StatusText">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<StatusBar name="$parentHealthBar" inherits="Nurfed_UnitStatusBar">
+				<Size>
+					<AbsDimension x="100" y="8"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="9" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnValueChanged>
+						HealthBar_OnValueChanged(arg1, 1);
+					</OnValueChanged>
+				</Scripts>
+			</StatusBar>
+			<Button name="$parentDebuff1" inherits="Nurfed_AuraTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff2" inherits="Nurfed_AuraTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff3" inherits="Nurfed_AuraTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff4" inherits="Nurfed_AuraTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentDebuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+</Ui>

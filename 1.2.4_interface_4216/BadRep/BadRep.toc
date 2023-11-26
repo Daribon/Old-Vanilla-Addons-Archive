@@ -1,0 +1,5 @@
+## Interface: 4216
+## Title: BadRep
+## Notes: Shows detailed reputation numbers
+## SavedVariables: BadRep_SavedReputation
+BadRep.xml

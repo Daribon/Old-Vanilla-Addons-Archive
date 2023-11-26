@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: GeoWar's BetterKeyBinding
+## Author: <geowar@apple.com>
+## Notes: a better key binding interface
+## RequiredDeps: Cosmos
+BetterKeyBinding.xml

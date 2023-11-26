@@ -1,0 +1,230 @@
+2005-10-14  Version 1.2.5
+--------------------------
+- Patch 1.8 updates
+- Alliance data for enUS submitted by jgleigh from curse-gaming.com.
+- Horde data for silithus flight path updated.
+- Remove unneeded section from xml file.
+
+
+2005-09-27  Version 1.2.4b
+--------------------------
+- Correct LYS_LOADED library issue
+
+
+2005-09-27  Version 1.2.4
+-------------------------
+- Update base library code.  The new library code should resolve the issue with the latest release of myAddOns, and also allow the options screen to be available once more.
+- Include French flight-data supplied by Corwin.  At this time not all flight paths are in the default load for french, nor do all paths have times/costs, this will be corrected as I have time.
+- Correct slashcommand issue.  Only one of the two slash commands was active.
+- Cleanup of localization files.  All translators who have assisted with this, the new format should make translations easier, please look over this and re-do any translations that are wrong.
+- Remove loading message enable/disable.  This feature is now handled in the library code.
+
+
+2005-09-17  Version 1.2.3
+-------------------------
+- Update french translations
+- Move translations off to seperate files for each locale.  enUS is the "default" locale as that is the locale I code with.
+- Move localizations off to their own segments in the toc, this moves all static definitions out of the xml file.
+
+
+2005-09-16  Version 1.2.2
+-------------------------
+- Modified taxiframe handling to operate via event handler and not hook the event function.
+- Changed the logic behind the function that adds flight node information.
+- Generate max POI numbers on the fly.  This allows for just updating the xml, or for blizzard to modify the max POI's in the main taxiframe xml.
+- Using some blizzard defined strings for output rather than my own.  This allows for easier translation efforts.
+- Modify known paths code to not require initialising.
+- Cleanup of the FlightMapData.lua file.  Data will need to be erased on the client-side to cover for the update.
+- Modification of init functions to be more localised for the various program segments.
+
+
+2005-09-14  Version 1.2.1
+-------------------------
+- Correct issue with unknown flight times and the new remote flight timer code (Error in timer.lua).
+- Correct issue where a route might be known, but not the flight time.  This removes unknown flight routes from the remote flight path code until the user learns the route.
+
+
+2005-09-12  Version 1.2
+-----------------------
+- When a flight node is "reachable" add to known flightpaths... this might break things, I haven't tested this extensively.
+- Position change of the in-flight timer to not obscure the zone name displays.
+- Initial test setup for allowing for size change of the in-flight progress bar.
+- Add option to display remote flight path times and costs.  Also display the path needed to fly there for that cost and time.
+- Add size toggle for in-flight status bar large or a smaller bar.
+- Update toc to 1700.
+
+
+2005-09-09  Version 1.1
+-------------------------
+- Minor update to Localisations.
+- Add myAddons to the optional dependancy list, just in case it was not loading after it, or the details where not working for it.
+- Add status bar for in-flight timer, can be toggled off and on from the config menu.
+- Modify zone map routine to write only when the zone map is opened, this should reduce the amount of processing the addon does.
+- Random code-cleanup.
+- Set load message to being active/not active by a variable... will add config option to modify variable in later releases.
+- Translations cleanup - removed large chunks of the help message now the GUI config screen is here.
+
+
+2005-09-05  Version 1.0
+-----------------------
+- Add in the missing data for Chillwind Camp and Light's Hope Chapel for the map translation data.
+- Add in the GUI options screen.  Access via /efm config.
+- Add per-character flight map display.
+- Split flightmaster display functions off to FlightMaster.lua to finalise segmentation effort for program.
+- French and German translations lacking at this time.  Hopefully the data can be brought up to date before the next release.
+
+
+2005-09-05  Version 0.9.8
+-------------------------
+- Data definitions now locale-specific.  Until naming data and the EFM_MapTranslation data are provided to me, those on locales other than enUS will not be able to load any base data.
+- Update zone map tooltip so the timers align under each other (approximately, the proportional font makes that a touch difficult).
+- Alliance data for Kalimdor on enUS completed.
+- Horde data for Azeroth on enUS completed.
+- Horde data for Kalimdor on enUS completed.
+- Alliance data for Azeroth on enUS completed.
+- Alliance data for Kalimdor on enUS completed.
+- Druid data on enUS completed.
+- Add MapNotes to optional dependancy to attempt to force EFM to load after MapNotes so the worldmapbutton_onupdate routine is not overwritten.
+- Added option to force data clearing on load.  This is to allow me to correct for bad data in the base data store.
+- Corrected Data handling routine definition issue.
+
+
+2005-09-04  Version 0.9.7
+-------------------------
+- German translation updated by Elkano at curse-gaming.
+- Additional data for US horde data set.
+- Discovered issue with duration and cost not aligning correctly.  Blizzard uses a proportional font for the tooltip text, so alignment of multiple lines of differents chars is difficult.  Text alignment is now as close as can be done without modifying the tooltip font.
+- Modified layer alignment for the zone marker buttons.  This appears to have resolved the mapnotes gathering issue.
+- Moved the data handling routines (clearing/loading/validating/definining) off to a seperate file for tracking ease.
+
+
+2005-09-01  Version 0.9.6
+-------------------------
+- Correct init routine to call "define" for options, not defaults.
+- Hide timer display if disabled in flight.
+- Corrected german slash commands (maybe...), replaced uppercase characters with lowercase characters.
+- Move to newer library standard.
+- Correct issue with ui reload causing zone marker to disappear.
+
+
+2005-08-31  Version 0.9.5
+-------------------------
+- Configuration variables are now saved between sessions.  Variables are global, not per-character.
+- Add option to hide the druid flight paths if not desired to be shown.
+
+
+2005-08-30  Version 0.9.4
+-------------------------
+- Correct Data loading issue.
+- Add option to enable/disable flight master positions on zone map.
+- Add option to enable/disable in-flight timers.
+- Moved options handling to a seperate lua file.
+- Convert colour codes in help to use the library defined codes.
+
+
+2005-08-28  Version 0.9.3
+-------------------------
+- Correct correction for flight master mouse-over bug... next time I should check what was working previously...
+
+
+2005-08-28  Version 0.9.2
+-------------------------
+- Correct issue with visiting a flight master but not "mousing over" any of the flight paths.
+- Clean up issues with localisation.
+
+
+2005-08-28  Version 0.9.1
+-------------------------
+- Add German translations, thanks to Gazzis from curse-gaming.
+- Clean up money->text function.
+- Added some default data for various functions - not used at present though.
+- Updated data load routine to add all available data.
+
+
+2005-08-27  Version 0.9
+-----------------------
+- Correct code issue with addon under 1.7.
+- Remove deprecated RegisterForSave command.
+- Move to new library system.
+
+
+2005-08-27  Version 0.9 Beta 5
+------------------------------
+- Clean up some function calls, removal of old code.
+
+
+2005-08-26  Version 0.9 Beta 4
+------------------------------
+- Undid change to data generation system that was put in place by previous betas.  All variables are now checked and pre-built in their respective init routines.
+
+
+2005-08-26  Version 0.9 Beta 3
+------------------------------
+- Add available flight paths, with duration and cost to the map tooltip.
+- Correct clearing issue with new variables.
+
+
+2005-08-26  Version 0.9 Beta 2
+------------------------------
+- Correct incorrect naming of icon for grey flight master image.
+- Correct issue with logging in in the middle of a flight.
+
+
+2005-08-25  Version 0.9 Beta
+----------------------------
+- Add flight path timers.  Due to the change to the blizzard code in 1.7, split timers from base path to make the code simpler and the data easier to update.
+- Added recording of flight costs.
+- Added recording of flight master positions.
+- Added zone to flight master translations (Yellow = Known by player, Grey = not known by player. Addon collect this data after install, so you need to visit for it to show yellow). 
+- Added display of the flight master location to the map screen.
+- Added some french translation data, thanks to corwin from curse-gaming.
+- Added recording of known flight masters on a per-player basis.
+
+
+2005-08-22  Version 0.8
+-----------------------
+- Correct issue with data update routines.
+- Update alliance flight paths with additional data, thanks to those that supplied the additional data.
+
+
+2005-08-11  Version 0.7
+-----------------------
+- Correct line drawing when the line was less than a pixel wide, this was evident from the splintertree to crossroads flightpath and others.
+- Increase number of possible flightpath lines to 100, this should never need to get changed as the maximum number I have seen so far is 28.
+- Correct data loading issue for horde/alliance/druid flightpath data.
+
+
+2005-07-29  Version 0.6
+-----------------------
+- Code cleanup
+- Correct line drawing display.  Blizzard appears to have changed the texture levels of various frames between 1.5 and 1.6...
+
+
+2005-07-12  Version 0.5
+-----------------------
+- Update to new Blizzard LUA revision
+- Add "easter-egg"... If you have the right things, you'll see it :-)
+
+
+2005-06-29  Version 0.4
+-----------------------
+- Correct oops with data load names and variable naming.
+
+
+2005-06-29  Version 0.3
+-----------------------
+- Corrected issue with new flight nodes not showing that you have found new routes.
+- Modified data import routines to only import the data segments you desires, eg. horde/alliance/druid.
+
+
+2005-06-28  Version 0.2
+-----------------------
+- Added the "learning" features for flight paths.
+- Made the dataset be a loadable set, and not force loading of the data.
+- Data loading from the provided data is a merge process (thanks Iriel).
+
+
+2005-06-27  Version 0.1
+-----------------------
+- Initial Public Release
+- Addon has most of the features I hope to include, hopefully only bug fixes will need to be done in the future

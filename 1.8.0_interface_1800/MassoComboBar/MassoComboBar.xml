@@ -1,0 +1,417 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="MassoComboBar.lua"/>
+	<FontString name="MassoFont" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<Frame name="MassoComboBarFrame" frameStrata="LOW" toplevel="true" enableMouse="true" movable="true" parent="UIParent">
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Size>
+			<AbsDimension x="110" y="48"/>
+		</Size>
+		<TitleRegion setAllPoints="true"/>
+		<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+		</Backdrop>
+		<Frames>
+			<Button name="MassoBorder1">
+				<Size>
+					<AbsDimension x="20" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorder1Texture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="20" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoCombo1" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="16" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+			<Button name="MassoBorder2">
+				<Size>
+					<AbsDimension x="20" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="13" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorder2Texture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="20" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="13" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoCombo2" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="16" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="15" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+			<Button name="MassoBorder3">
+				<Size>
+					<AbsDimension x="20" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="23" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorder3Texture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="20" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="23" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoCombo3" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="16" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="25" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+			<Button name="MassoBorder4">
+				<Size>
+					<AbsDimension x="20" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="33" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorder4Texture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="20" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="33" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoCombo4" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="16" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="35" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+			<Button name="MassoBorder5">
+				<Size>
+					<AbsDimension x="20" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="43" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorder5Texture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="20" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="43" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoCombo5" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="16" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="45" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+	
+			<Button name="MassoBorderTargetHealth">
+				<Size>
+					<AbsDimension x="103" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorderTargetHealthTexture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="103" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="-6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="MassoTargetHealthText" inherits="MassoFont">
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="2" y="-6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoTargetHealthBar" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="99" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="-8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+	
+			<Button name="MassoBorderHealth">
+				<Size>
+					<AbsDimension x="103" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-11"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorderHealthTexture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="103" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="MassoHealthText" inherits="MassoFont">
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="2" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoHealthBar" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="99" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="-13"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+	
+		<Button name="MassoBorderEnergy">
+				<Size>
+					<AbsDimension x="103" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="MassoBorderEnergyTexture" file="Interface\Tooltips\UI-StatusBar-Border">
+							<Size>
+								<AbsDimension x="103" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="-16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="MassoEnergyText" inherits="MassoFont">
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="2" y="-16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<StatusBar name="MassoEnergyBar" inherits="TextStatusBar" framestrata="BACKGROUND">
+						<Size>
+							<AbsDimension x="99" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="-18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(0.7, 0.7, 0.7);
+				MassoComboBar_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MassoComboBar_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

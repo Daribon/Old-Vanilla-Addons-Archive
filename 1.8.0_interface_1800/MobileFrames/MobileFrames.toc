@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: Mobile Frames
+## Notes: A template for making frames movable.
+## Author: AnduinLothar
+## OptionalDeps: Cosmos
+## Dependencies: Sea, Blizzard_AuctionUI, Blizzard_BindingUI, Blizzard_CraftUI, Blizzard_InspectUI, Blizzard_MacroUI, Blizzard_TalentUI, Blizzard_TradeSkillUI, Blizzard_TrainerUI
+## SavedVariables: MobileFrames_MobileContainers, MobileFrames_ContainerPositionsByID, MobileFrames_RightSide_IsReset, MobileFrames_RollStackDown, MobileFrames_CastingBarFrame_isReset, MobileFrames_Tooltip_Enabled
+MobileFrames.xml

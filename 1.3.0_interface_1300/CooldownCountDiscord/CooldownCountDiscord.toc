@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (Discord)
+## Notes: CooldownCount for Discord
+## Author: sarf
+## RequiredDeps: DiscordActionBars, CooldownCount
+CooldownCountDiscord.xml

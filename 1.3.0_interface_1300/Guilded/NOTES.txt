@@ -1,0 +1,12 @@
+For Trader, still need to possibly hook
+ - SpellButton_OnClick
+ - TradeSkillSkillButton_OnClick
+ - CraftButton_OnClick
+ - QuestItem_OnClick
+ - QuestRewardItem_OnClick
+ - QuestLogRewardItem_OnClick
+ - AuctionsButton_OnClick
+ - BrowseButton_OnClick
+ - BidButton_OnClick
+ - LootFrameItem_OnClick
+ - SendMailPackageButton_OnClick

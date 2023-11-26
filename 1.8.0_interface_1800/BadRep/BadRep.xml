@@ -1,0 +1,49 @@
+<!-- BadRep.xml; see BadRep.lua for more info -->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+  <Script file="constants.lua"/>
+  <Script file="localization.lua"/>
+  <Script file="localization.de.lua"/>
+  <Script file="localization.fr.lua"/>
+  <Script file="BadRep_Options.lua"/>
+  <Script file="BadRep.lua"/>
+
+  <Frame name="BadRepFrame" parent="ReputationFrame">
+    <Frames>
+      <Button name="BadRep_ToggleButton" inherits="GameMenuButtonTemplate" text="BADREP_SHOWCHANGE" drawLayer="OVERLAY">
+	<Size>
+	  <AbsDimension x="130" y="22"/>
+	</Size>
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativeTo="ReputationFrame" relativePoint="TOPLEFT">
+	    <Offset>
+	      <AbsDimension x="80" y="-50"/>
+	    </Offset>
+	  </Anchor>
+	</Anchors>
+	<Scripts>
+	  <OnClick>BadRep_OnToggleDeltaClick();</OnClick>
+	</Scripts>
+      </Button>
+      <Button name="BadRep_Reset" inherits="GameMenuButtonTemplate" text="BADREP_RESET" drawLayer="OVERLAY" hidden="true">
+	<Size>
+	  <AbsDimension x="80" y="22"/>
+	</Size>
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativeTo="BadRep_ToggleButton" relativePoint="TOPRIGHT">
+	    <Offset>
+	      <AbsDimension x="10" y="0"/>
+	    </Offset>
+	  </Anchor>
+	</Anchors>
+	<Scripts>
+	  <OnClick>BadRep_OnSaveRepClick();</OnClick>
+	</Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnLoad>BadRep_OnLoad();</OnLoad>
+      <OnEvent>BadRep_OnEvent();</OnEvent>
+    </Scripts>
+  </Frame>
+</Ui>

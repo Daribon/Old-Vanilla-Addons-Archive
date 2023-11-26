@@ -1,0 +1,364 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Frame name="DAB_MiscOptions" parent="DAB_Options" inherits="DAB_TooltipBGTemplate" hidden="true">
+	<Size><AbsDimension x="397" y="605"/></Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="DAB_OptionsTitle" relativePoint="BOTTOMLEFT"/>
+	</Anchors>
+	<Frames>
+		<CheckButton name="$parent_DisableTooltips" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset><AbsDimension x="10" y="-10"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "DisableTooltips";
+					DAB_Set_Label(DAB_TEXT.DisableTooltips);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_HideKeybindings" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_DisableTooltips" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "HideKeybindings";
+					this.func = DAB_UpdateKeybindings;
+					DAB_Set_Label(DAB_TEXT.HideKeybindings);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_HideDynamicKeybindings" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_HideKeybindings" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "HideDynamicKeybindings";
+					this.func = DAB_UpdateKeybindings;
+					DAB_Set_Label(DAB_TEXT.HideDynamicKeybindings);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_UseOnDown" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_HideDynamicKeybindings" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "useondown";
+					DAB_Set_Label(DAB_TEXT.UseOnDown);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_ShowDefaultArt" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_UseOnDown" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "ShowDefaultArt";
+					DAB_Set_Label(DAB_TEXT.ShowDefaultArt);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_ShowXPBar" inherits="DAB_CheckboxTemplate" hidden="true">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_ShowDefaultArt" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "ShowXPBar";
+					this.func = DAB_Initialize_XPBar;
+					DAB_Set_Label(DAB_TEXT.ShowXPBar);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_RecolorButtonBorder" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_ShowDefaultArt" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "RecolorBorder";
+					DAB_Set_Label(DAB_TEXT.RecolorBorder);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_ModifyCooldownScale" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_RecolorButtonBorder" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "ModifyCooldownByUIScale";
+					this.func = DAB_Options_ModifyCooldownScales;
+					DAB_Set_Label(DAB_TEXT.ModifyCooldownByUIScale);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_ShowCooldownCount" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_ModifyCooldownScale" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "ShowCooldownCount";
+					DAB_Set_Label(DAB_TEXT.ShowCooldownCount);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_DoNotShowCooldownCountSec" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_ShowCooldownCount" relativePoint="BOTTOMLEFT">
+					<Offset><AbsDimension x="15" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "DoNotShowS";
+					DAB_Set_Label(DAB_TEXT.DoNotShowCooldownCountSec);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<CheckButton name="$parent_OnlyClickedButtons" inherits="DAB_CheckboxTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_DoNotShowCooldownCountSec" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "OnlyClickedButtons";
+					DAB_Set_Label(DAB_TEXT.OnlyClickedButtons);
+				</OnLoad>
+			</Scripts>
+		</CheckButton>
+		<Button name="$parent_OutOfRangeColor" inherits="DAB_ColorPickerTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_OnlyClickedButtons" relativePoint="BOTTOMLEFT">
+					<Offset><AbsDimension x="-15" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "OutOfRangeColor";
+					DAB_Set_Label(DAB_TEXT.OutOfRangeColor);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parent_OutOfManaColor" inherits="DAB_ColorPickerTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_OutOfRangeColor" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "OutOfManaColor";
+					DAB_Set_Label(DAB_TEXT.OutOfManaColor);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parent_UnusableColor" inherits="DAB_ColorPickerTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_OutOfManaColor" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "UnusableColor";
+					DAB_Set_Label(DAB_TEXT.UnusableColor);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parent_MainBar" inherits="DAB_MenuControlTemplate">
+			<Size><AbsDimension x="50" y="24"/></Size>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0.0, 0.0, 0.0);
+					this.menu = DAB_MENU_BARNUMS;
+					this.index = "MainBar";
+					DAB_Set_Label(DAB_TEXT.MainBar);
+					DAB_Set_Anchor("_UnusableColor", 0, -5);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parent_GhostBar" inherits="DAB_MenuControlTemplate">
+			<Size><AbsDimension x="50" y="24"/></Size>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0.0, 0.0, 0.0);
+					this.menu = DAB_MENU_BARNUMS;
+					this.index = "GhostBar";
+					DAB_Set_Label(DAB_TEXT.GhostBar);
+					DAB_Set_Anchor("_UnusableColor", 0, -30);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parent_OptionsScale" inherits="DAB_MenuControlTemplate">
+			<Size><AbsDimension x="50" y="24"/></Size>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0.0, 0.0, 0.0);
+					this.menu = DAB_MENU_OPTIONSSCALE;
+					this.index = "OptionsScale";
+					this.func = DAB_Options_SetScale;
+					DAB_Set_Label(DAB_TEXT.OptionsScale);
+					DAB_Set_Anchor("_UnusableColor", 0, -55);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Slider name="$parent_Timeout" inherits="DAB_BarSliderTemplate" minValue="0" maxValue="1"  valueStep=".1">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_UnusableColor" relativePoint="BOTTOMLEFT">
+					<Offset><AbsDimension x="20" y="-95"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "Timeout";
+					this.minlocked = true;
+					DAB_Set_Label(DAB_TEXT.Timeout);
+				</OnLoad>
+			</Scripts>
+		</Slider>
+		<Slider name="$parent_BagOffsetX" inherits="DAB_BarSliderTemplate" minValue="-200" maxValue="200"  valueStep="1" hidden="true">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_Timeout" relativePoint="RIGHT">
+					<Offset><AbsDimension x="50" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "BagOffsetX";
+					this.func = DAB_updateContainerFrameAnchors;
+					DAB_Set_Label(DAB_TEXT.BagOffsetX);
+				</OnLoad>
+			</Scripts>
+		</Slider>
+		<Slider name="$parent_CCThreshold" inherits="DAB_BarSliderTemplate" minValue="0" maxValue="60"  valueStep="1">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Timeout" relativePoint="BOTTOMLEFT">
+					<Offset><AbsDimension x="0" y="-20"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "MinCooldownCount";
+					this.minlocked = true;
+					DAB_Set_Label(DAB_TEXT.CooldownCountThreshold);
+				</OnLoad>
+			</Scripts>
+		</Slider>
+		<Slider name="$parent_BagOffsetY" inherits="DAB_BarSliderTemplate" minValue="-200" maxValue="200"  valueStep="1" hidden="true">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_CCThreshold" relativePoint="RIGHT">
+					<Offset><AbsDimension x="50" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.index = "BagOffsetY";
+					this.func = DAB_updateContainerFrameAnchors;
+					DAB_Set_Label(DAB_TEXT.BagOffsetY);
+				</OnLoad>
+			</Scripts>
+		</Slider>
+		<Button name="$parent_LoadDefaultSettings" inherits="DAB_ButtonTemplate">
+			<Size><AbsDimension x="190" y="26"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_CCThreshold" relativePoint="BOTTOMLEFT">
+					<Offset><AbsDimension x="-20" y="-30"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.LoadDefaultSettings);
+				</OnLoad>
+				<OnClick>
+					DAB_Options_LoadDefaultSettings();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parent_LoadCustomSettings" inherits="DAB_ButtonTemplate">
+			<Size><AbsDimension x="190" y="26"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_LoadDefaultSettings" relativePoint="RIGHT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.LoadCustomSettings);
+				</OnLoad>
+				<OnClick>
+					DAB_Options_LoadCustomSettings();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<EditBox name="$parent_SettingsName" inherits="DAB_EditBoxTemplate" letters="1000" autoFocus="false" id="1">
+			<Size><AbsDimension x="150" y="16"/></Size>
+			<Scripts>
+				<OnLoad>
+					DAB_Set_Label(DAB_TEXT.SaveSettings);
+					DAB_Set_Anchor("_LoadDefaultSettings", 0, -10);
+				</OnLoad>
+			</Scripts>
+		</EditBox>
+		<Button name="$parent_SaveSettingsButton" inherits="DAB_ButtonTemplate" text="DAB_SAVE">
+			<Size><AbsDimension x="75" y="26"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_SettingsName" relativePoint="RIGHT">
+					<Offset><AbsDimension x="5" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					DAB_Options_SaveSettings();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parent_SettingsMenu" inherits="DAB_MenuControlTemplate">
+			<Size><AbsDimension x="100" y="24"/></Size>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0.0, 0.0, 0.0);
+					this.menu = "SavedSettings";
+					this.index = "SavedSettings";
+					DAB_Set_Label(DAB_TEXT.LoadSettings);
+					DAB_Set_Anchor("_LoadDefaultSettings", 0, -40);
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parent_LoadSettingsButton" inherits="DAB_ButtonTemplate" text="DAB_LOAD">
+			<Size><AbsDimension x="75" y="26"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_SettingsMenu" relativePoint="RIGHT">
+					<Offset><AbsDimension x="5" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					DAB_Options_LoadSettings();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parent_DeleteSettingsButton" inherits="DAB_ButtonTemplate" text="DAB_DELETE">
+			<Size><AbsDimension x="75" y="26"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_LoadSettingsButton" relativePoint="RIGHT">
+					<Offset><AbsDimension x="0" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					DAB_Options_DeleteSettings();
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropColor(.2, .2, .2);			
+		</OnLoad>
+	</Scripts>
+</Frame>
+
+</Ui>

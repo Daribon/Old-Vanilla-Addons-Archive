@@ -1,0 +1,47 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Nurfed_Auras.lua"/>
+	<Frame name="Nurfed_Auras">
+		<Scripts>
+			<OnLoad>
+				Nurfed_Auras_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_Auras_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<!-- Aura Template -->
+	<Button name="Nurfed_AuraTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="17" y="17"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" setAllPoints="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBorder" file="Interface\Buttons\UI-Debuff-Border" hidden="true">
+					<Size>
+						<AbsDimension x="17" y="17"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				Nurfed_SetAuraTooltip();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+</Ui>

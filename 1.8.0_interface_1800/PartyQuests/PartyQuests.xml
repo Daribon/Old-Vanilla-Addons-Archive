@@ -1,0 +1,307 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- Source -->
+	<Script file="PartyQuests.lua"/>
+
+	<!-- QuestLog Buttons -->
+	<Button name="QuestLogFramePartyButton" inherits="EarthPanelButtonTemplate" text="PARTYQUESTS_BUTTON_TEXT" parent="QuestLogFrame" hidden="true">
+		<Size>
+			<AbsDimension x="84" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="QuestFramePushQuestButton" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				PartyQuests_QuestLogFramePartyButton_OnLoad()
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<!-- Party Quests Frame -->
+
+	<Frame name="PartyQuestsFrame" parent="UIParent" inherits="EarthFrameTemplate" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="490"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="20" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentCountRight" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="8" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-47" y="-41"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentCountMiddle" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="100" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentCountRight" relativePoint="LEFT"/>
+					</Anchors>
+					<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentCountLeft" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="8" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentCountMiddle" relativePoint="LEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+				</Texture>
+				<FontString name="$parentQuestCount" inherits="GameFontNormalSmall">
+					<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentCountRight">
+							<Offset>
+								<AbsDimension x="-6" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>	
+		<Frames>
+			<!-- Main Data View -->
+			<Frame name="$parentTree" inherits="EarthTreeTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="PartyQuestsFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<!-- Party/Self Tabs -->
+			<Button name="$parentToggleTab1" inherits="TabButtonTemplate" text="PARTYQUESTS_TAB_SELF" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="PartyQuestsFrame">
+						<Offset>
+							<AbsDimension x="130" y="-39"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PanelTemplates_TabResize(0);
+						getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 31);
+					</OnLoad>
+					<OnShow>
+						if ( not PartyQuestsFrame.display or PartyQuestsFrame.display == "self" ) then 
+							PanelTemplates_SelectTab(this);						
+						else
+							PanelTemplates_DeselectTab(this);
+						end
+					</OnShow>
+					<OnClick>						
+						PanelTemplates_SelectTab(this);
+						PanelTemplates_DeselectTab(getglobal(this:GetParent():GetName().."ToggleTab2"));
+						PartyQuests_SelectTab(this:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentToggleTab2" inherits="TabButtonTemplate" text="PARTYQUESTS_TAB_PARTY" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentToggleTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PanelTemplates_TabResize(0);
+						getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 31);
+					</OnLoad>
+					<OnShow>
+						if ( PartyQuestsFrame.display and PartyQuestsFrame.display == "party" ) then 
+							PanelTemplates_SelectTab(this);						
+						else
+							PanelTemplates_DeselectTab(this);
+						end
+					</OnShow>
+					<OnClick>
+						PanelTemplates_SelectTab(this);
+						PanelTemplates_DeselectTab(getglobal(this:GetParent():GetName().."ToggleTab1"));
+						PartyQuests_SelectTab(this:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- Help Icon -->
+			<Frame name="$parentHelpIcon" inherits="EarthHelpIcon" frameStrata="DIALOG">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="84"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PartyQuests_HelpIcon_OnLoad()
+					</OnLoad>
+				</Scripts>
+			</Frame>			
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				PartyQuests_Frame_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- Mobilize -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="PartyQuestsFrame" id="-70">
+	</Frame>
+	
+	<Frame name="PartyQuestsLogFrame" parent="UIParent" inherits="EarthBookTemplate" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="492"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="320" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentCountRight" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="8" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-47" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentCountMiddle" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="80" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentCountRight" relativePoint="LEFT"/>
+					</Anchors>
+					<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentCountLeft" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="8" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentCountMiddle" relativePoint="LEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+				</Texture>
+				<FontString name="$parentQuestCount" inherits="GameFontNormalSmall">
+					<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentCountRight">
+							<Offset>
+								<AbsDimension x="-6" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentAbandonButton" inherits="EarthPanelButtonTemplate" text="PARTYQUESTS_BUTTON_ABANDON_TEXT">
+				<Size>
+					<AbsDimension x="80" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="17" y="74"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PartyQuests_LogFrame_Abandon_OnLoad()
+					</OnLoad>
+				</Scripts>
+			</Button>			
+			<Button name="$parentShareButton" inherits="EarthPanelButtonTemplate" text="PARTYQUESTS_BUTTON_SHARE_TEXT">
+				<Size>
+					<AbsDimension x="80" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="97" y="74"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						PartyQuests_LogFrame_Share_OnLoad()
+					</OnLoad>
+				</Scripts>
+			</Button>			
+			<ScrollFrame name="PartyQuestsLogDetailScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="27" y="-80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Size>
+					<AbsDimension x="296" y="316"/>
+				</Size>
+				
+				<ScrollChild>
+					<Frame name="PartyQuestsLog" inherits="EarthQuestLogTemplate"/>
+				</ScrollChild>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				PartyQuests_LogFrame_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- Mobilize -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="PartyQuestsLogFrame" id="70">
+		<Scripts>
+			<OnLoad>
+				if (MobileFrames_BarOnLoad) then
+					MobileFrames_BarOnLoad(this);
+				end
+				this:SetFrameLevel(this:GetFrameLevel() + 4);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,14 @@
+<Bindings>
+	<Binding name="DOSHARDTRACKERSORT" header="SHARDTRACKER">
+		ShardTracker_SortShards();
+	</Binding>
+	<Binding name="DOSHARDTRACKERHEALTH" header="SHARDTRACKER">
+		ShardTracker_OnHealthButtonClick();
+	</Binding>
+	<Binding name="DOSHARDTRACKERSOUL" header="SHARDTRACKER">
+		ShardTracker_OnSoulButtonClick();
+	</Binding>
+	<Binding name="DOSHARDTRACKERSPELL" header="SHARDTRACKER">
+		ShardTracker_OnSpellButtonClick();
+	</Binding>
+</Bindings>

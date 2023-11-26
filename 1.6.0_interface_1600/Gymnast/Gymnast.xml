@@ -1,0 +1,44 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.fr.lua" /> 
+	<Script file="localization.de.lua" /> 
+	<Script file="Gymnast.lua"/>
+	
+	<GameTooltip name="MobileGameTooltip" hidden="true" frameStrata="DIALOG" parent="UIParent" inherits="GameTooltipTemplate" movable="true" enableMouse="true">
+		<Scripts>
+            <OnMouseUp>
+				if ( this.isMoving ) then
+					this:StopMovingOrSizing();
+					this.isMoving = false;
+				end
+				Gymnast_MarkTootipCoords();
+				Chronos.scheduleByName("MobileGameTooltipFade", 1, Gymnast_GameTooltip_FadeOut);
+            </OnMouseUp>
+            <OnMouseDown>
+				if ( ( ( not this.isLocked ) or ( this.isLocked == 0 ) ) and ( arg1 == "LeftButton" ) ) then
+					this:StartMoving();
+					this.isMoving = true;
+				end
+            </OnMouseDown>
+			<OnHide>
+				if ( this.isMoving ) then
+					this:StopMovingOrSizing();
+					this.isMoving = false;
+				end
+			</OnHide>
+		</Scripts>
+	</GameTooltip>
+	
+	<Frame name="Gymnast" hidden="true">
+		<Scripts>
+			<OnLoad>
+				Gymnast_OnLoad();
+				this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+			<OnEvent>
+				Gymnast_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,8 @@
+## Interface: 4150
+## Title: ChatTraffic
+## Notes: Allows the user to restrain the amount of chat traffic that his or her client sends.
+## Author: sarf
+## OptionalDeps: Cosmos
+## RequiredDeps: CosmosSchedule
+##SavedVariables: ChatTraffic_Enabled, ChatTraffic_CharactersPerSecond
+ChatTraffic.xml

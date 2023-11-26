@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: OneHitWonder
+## Notes: Allows you to use one button / small script macro to do all the stuff you need. Some classes supported all-out.
+## Author: sarf (thez on Warlocks, max on Warriors)
+## OptionalDeps: Cosmos, MobHealth, AuraAspects, DynamicDataItem
+## RequiredDeps: DynamicDataAction, DynamicDataEffect, DynamicDataSpell
+## SavedVariables: OneHitWonder_Options, OneHitWonder_AbilityImmunityTable, OneHitWonder_CreatureInfoTable, OneHitWonder_AbilityNames, OneHitWonder_ChatEffectNamesGained, OneHitWonder_ChatEffectNamesAfflicted, OneHitWonder_ChatEffectNamesStartsToCast
+OneHitWonder.xml

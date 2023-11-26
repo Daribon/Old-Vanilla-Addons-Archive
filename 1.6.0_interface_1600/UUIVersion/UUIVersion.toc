@@ -1,0 +1,3 @@
+## Interface: 1600
+## Title: - |cFF00CC00Ultimate UI v9.7.0|r -
+## Notes: You are using Ultimate UI v9.7.0

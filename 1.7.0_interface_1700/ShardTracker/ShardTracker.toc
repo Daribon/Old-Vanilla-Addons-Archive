@@ -1,0 +1,10 @@
+## Interface: 1700
+## Title: ShardTracker
+## Title-frFR: ShardTracker
+## Title-deDE: ShardTracker
+## Author: Cragganmore
+## Notes: A Warlock Shard Management Tool.
+## RequiredDeps: 
+## OptionalDeps: Sea, Cosmos, Chronos, Sky, ColorCycle
+## SavedVariables: SHARDTRACKER_CONFIG
+ShardTracker.xml

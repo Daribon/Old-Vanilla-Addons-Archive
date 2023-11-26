@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: Tooltips: Guild Target
+## Author: Celandro
+## Notes: Adds a guild tag to the target
+## RequiredDeps: TooltipsBase
+TooltipsGuildTarget.xml

@@ -1,0 +1,5 @@
+## Interface: 1700
+## Title: Reputation Tracker
+## Notes: Shows detailed reputation numbers
+## SavedVariables: BadRep_SavedReputation
+BadRep.xml

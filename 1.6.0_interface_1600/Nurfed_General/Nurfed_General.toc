@@ -1,0 +1,9 @@
+## Interface: 1600
+## Title: Nurfed_General
+## Notes: Nurfed General AddOn
+## Author: Tivoli http://www.nurfed.com
+## OptionalDeps: AutoBar, sct
+## SavedVariables: NURFED_LOCKALL, Nurfed_General
+Nurfed_Options.xml
+Nurfed_General.xml
+Nurfed_Buttons.xml

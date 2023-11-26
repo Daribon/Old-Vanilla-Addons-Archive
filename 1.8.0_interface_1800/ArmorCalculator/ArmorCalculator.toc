@@ -1,0 +1,13 @@
+## Title: ArmorCalculator
+## Version: 0.1 alpha
+## Description: Contains and handles information about the armor-value of enemies.
+## Author: sarf
+## Default: enabled
+## SavedVariables: ArmorCalculator_Database_User, ArmorCalculator_Options
+## Interface: 1800
+constants.lua
+localization_en.lua
+localization_de.lua
+localization_fr.lua
+ArmorCalculator.lua
+ArmorCalculator.xml

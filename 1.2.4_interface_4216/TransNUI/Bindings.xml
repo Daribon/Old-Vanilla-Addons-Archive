@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLETRANSNUI" description="Toggle on/off transparentizing of UI elements" header="TRANSNUIHEADER">
+		TransNUI_Toggle();
+	</Binding>
+</Bindings>

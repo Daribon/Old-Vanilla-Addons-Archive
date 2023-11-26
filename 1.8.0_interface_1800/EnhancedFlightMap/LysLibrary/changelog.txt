@@ -1,0 +1,9 @@
+2005-09-27  Version 1.2
+-----------------------
+- Moved colour codes to default LYS_Globals.lua.
+
+
+2005-09-27  Version 1.1
+-----------------------
+- Now using seperate Changelog for the library.
+- Update program register code for myAddOns update.

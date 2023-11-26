@@ -1,0 +1,410 @@
+T i m e x   M a n u a l
+
+---------------------------------------------------------
+
+~ Developers Section ~
+
+          <<--------------------------------->>
+
+	Timex:AddStartupFunctions(f, a)
+
+This will allow one to add functions which will run when
+the game truly starts.  This will be once all variables
+have been acquired and verified, it's akin to a true
+VARIABLES_LOADED and far better than the Blizzard event.
+
+Key:
+
+f
+	The function name, this is not a string.
+
+a
+	The function arguments.
+	
+Example:
+
+Timex:AddStartupFunctions(
+	ace["print"],
+	ace,
+	"Hello World"
+)
+
+	This would print "Hello World!" once after the game
+has truly finished setting itself up.
+
+          <<--------------------------------->>
+
+	Timex:NamedScheduleCheck("n", r)
+	
+You use this to check whether the named scheulde is
+still being cycled.
+
+Key:
+
+n
+	The name of the schedule, this is a string.
+	
+Example:
+
+Timex:NamedScheduleCheck("MyAddOnSchedNameOne")
+
+	This is if you'd like to know whether your schedule
+is still activated (so you don't try to add it twice),
+it will either return TRUE or nil.
+
+Timex:NamedScheduleCheck("MyAddOnSchedNameTwo", TRUE)
+
+	This -- instead of simply returning TRUE -- will
+return the time that's elapsed for this particular
+scheduled event.  This is designed to best work with
+the example in AddNamedSchedule below where one only
+adds the name of the schedule.
+
+          <<--------------------------------->>
+
+	Timex:AddNamedSchedule(n, t, r, c, f, a)
+	
+This is used to add a named schedule to Timex's DB.
+This schedule will then operate according to the
+supplied function values.
+
+Key:
+
+n
+	The name of the schedule, this is a string.
+	
+t
+	The delay before it fires, this is a number.
+	
+r
+	Whether it constantly repeats, this is a boolean.
+	
+c
+	The amount of times to run, this is a number.
+	
+f
+	The function name, this is not a string.
+	
+a
+	The function arguments.
+	
+Example:
+
+Timex:AddNamedSchedule(
+	"MyAddOnSchedNameOne",
+	5,
+	nil,
+	5,
+	ace["print"],
+	ace,
+	"Hello World!"
+)
+
+	This would print "Hello World!" five times, each
+after a period of five seconds at which point it
+would stop and remove the entry from the DB.
+
+Timex:AddNamedSchedule(
+	"MyAddOnSchedNameTwo",
+	5,
+	TRUE,
+	nil,
+	ace["print"],
+	ace,
+	"Hello World!"
+)
+
+	This would print "Hello World!" continuously
+(with a five second interval) until it was removed
+from the DB with the deletion command explained
+later in the manual.
+
+Timex:AddNamedSchedule(
+	nil,
+	2,
+	nil,
+	nil,
+	ace["print"],
+	ace,
+	"Hello World!"
+)
+
+	This would print "Hello World!" once after a
+delay of two seconds, then it would remove itself.
+If you wished to perhaps delete this schedule
+before it hits for some reason then you should
+supply a name, otherwise you can just use nil.
+
+Timex:AddNamedSchedule("MyScheduleNameThree")
+
+	This would add a constantly up-ticking number
+that won't remove itself until it's removed with
+DeleteNamedSchedule.  The reason for this is that
+now an AddOn can add a ticker to check without it
+actually requiring any functions or delays if
+they desire to do so.
+
+          <<--------------------------------->>
+
+	Timex:DeleteNamedSchedule("n", r, g)
+	
+This deletes a named schedule, this might be because
+you wish to delete a schedule that's no longer
+needed before it's triggered (in which case you
+must supply the added schedule with a name) or if
+you're using a repeater that no longer needs to
+repeat.
+
+key
+
+n
+	The name of the schedule, this is a string.
+	
+r
+	Returns the elapsed time, this is a boolean.
+	
+g
+	Returns without deletion, this is a boolean.
+
+Example:
+
+Timex:DeleteNamedSchedule("MyAddOnSchedNameOne")
+
+	This would simply delete the named schedule from
+the Timex DB, silently.
+
+          <<--------------------------------->>
+
+	Timex:ChangeDuration("n", t)
+	
+If you've already added a schedule that has a name
+then you can change the duration time, you can do
+this to a normal timer but it's most useful for
+count and repeat.  Let's say you added a timer at
+5 seconds, it's just fired but now you wanted it
+to wait ten seconds before firing again?  This will
+let you do precisely that!  Thus handing the power
+of your scheduling back to you; no more static
+timers.
+
+key
+
+n
+	The name of the schedule, this is a string.
+	
+t
+	Change to this duration, this is a number.
+	
+Example:
+
+Timex:ChangeDuration("MyAddOnSchedNameOne", 10)
+
+	This would simply change the duration of your
+MyAddOnScheduleOne schedule from whatever it was
+previously to ten seconds.
+
+          <<--------------------------------->>
+
+	TimexBar:StartBar("n", t, r, g, b, x, y, pr, a1, a2)
+	
+This will show a bar and it will start counting
+down the amount of seconds given.  It will convert
+(automatically) any numbers over 60 into minutes
+when displayed visually on the bar, you can supply
+a name (such as a spell-name) to be displayed on
+the bar, once the bar has finished ticking down
+it will hide itself and reset all of its variables
+and databases cleanly.
+
+key
+
+n
+	The text on the bar, this is a string.
+	
+t
+	The bar's duration, this is a number.
+
+r
+	The bar's red colour, this is a number.
+
+g
+	The bar's green colour, this is a number.
+
+b
+	The bar's blue colour, this is a number.
+
+x
+	The bar's x-position, this is a number.
+
+y
+	The bar's y-position, this is a number.
+
+pr
+	The bar's relative-parent, this is a string.
+
+a1
+	The bar's anchor one, this is a string.
+
+a2
+	The bar's anchor two, this is a string.
+	
+Example:
+
+TimexBar:StartBar(
+	"Herdy, Gerdy, Schmerdy",
+	10,
+	1.0,
+	1.0,
+	0.0,
+	200,
+	200,
+	"PlayerFrame",
+	"BOTTOM",
+	"BOTTOM"
+)
+
+	This would show the bar at 200/400 on the screen
+with a purple bar ticking down, on the bar would be
+'Some Spell Name time(s/m)' and it would disappear
+after that time has passed.
+
+Note: Bars can now be refreshed by entering in the
+same command again, this won't spawn two bars of the
+same type.
+
+          <<--------------------------------->>
+
+	TimexBar:StopBar("n")
+	
+This will stop a bar with the on-bar-text of n, so
+if you started a bar where the n was; "Herdy, Gerdy,
+Schmerdy", then you'd simply supply the same string
+to stop it again.
+
+key
+
+n
+	The text on the bar, this is a string.
+	
+Example:
+
+TimexBar:StopBar("Herdy, Gerdy, Schmerdy")
+
+This would stop the bar with the text "Herdy, Gerdy,
+Schmerdy" on it.
+
+          <<--------------------------------->>
+
+	Timex Events
+	
+Now you can call events from Timex!  If you set your
+function to "doTimexEvent" then instead of running
+a function, it'll fire an event.  You must use this
+however with either count or repeat.
+
+The event layout looks like this;
+
+event : TIMEX_UPDATE
+args  : Args.
+count : Count (if applicable).
+
+So what's this args stuff about?  If you supply any
+args after the "doTimexEvent", those args, instead
+of being passed to a function, will be passed
+through the event.  Thusly, any args you wish to
+constantly have access to as a local (as opposed
+to setting them as globals) can be accessed this
+way.
+
+In your AddOn, simply setup a timer as you normally
+would, adhering the above information, then you
+register the event as you would with any other;
+
+self:RegisterEvent("TIMEX_UPDATE")
+
+How would this look in your AddOn?
+
+function MyAddonName:TIMEX_UPDATE(count, args)
+	if count == 1 then
+		self:doFunc1(args)
+	elseif count == 2 then
+		self:doFunc2(args)
+	elseif count == 3 then
+		self:doFunc3(args)
+	elseif count == 4 then
+		self:doFunc4(args)
+	elseif count == 5 then
+		self:doFunc5(args)
+	... right the way up to however many counts you set.
+end
+
+function MyAddonName:TIMEX_UPDATE()
+	... let's say you're using a repeat of 1 second.
+	self.seconds = (self.seconds or 0) + 1
+	ace:print(self.seconds.." have passed.")
+end
+
+          <<--------------------------------->>
+
+	Ace & ':' Separated Functions
+
+These can't be passed normally thanks to Blizzard's
+use of ':' as a special character.  Instead what you
+must do is pass it as the function table and then
+pass the self value.  Basically ace:print("Test") in
+that way is transformed into;
+
+ace["print"](ace, "Test.")
+	
+You can blame Blizzard for that travesty.
+
+Anyway, if you were wondering what the 'ace' arg was
+directly before the arg2 of "Hello World!", now you
+know.  I gather many of you might wish to use ace
+functions (or functions from ace(D) AddOns) in the
+future in your own AddOns and works, that's the way
+to do it.
+
+---------------------------------------------------------
+
+~ Players section ~
+
+Note: There is now a Chronos Placeholder available on
+the Timex page, I don't personally approve of it
+because it's just wasted space but if you don't feel
+like editing your .toc files, you can just drop in the
+placeholder and it'll run even with Chronos still
+listed as the dependency.  This solution feels like
+empty digi-carbs to me but it's really up to the user
+to choose their own way of doing things.
+
+To use Timex instead of other timer AddOns you'll need
+to replace the line in the .toc that points to the
+supported AddOn.  These examples use AddOn to refer to
+the AddOn whose support you're changing, such as
+Chronos.
+
+Find ...
+
+## RequiredDeps: AddOn
+
+or ...
+
+## OptionalDeps: AddOn
+
+and replace it with ...
+
+## RequiredDeps: Timex
+
+If there is an OptionalDeps line which has more than
+just AddOn in it, simply delete AddOn (and the comma)
+from that OptionalDeps line and add the new line
+shown above (## RequireDeps: Timex) instead.
+
+The reason Timex uses a RequiredDeps system is to
+allow Timex to load before other AddOns without the
+need to resort to cheap pre-loading-state tricks to
+get around the loading order.  I'd prefer to do
+things that likely won't break in upcoming patches.
+
+---------------------------------------------------------

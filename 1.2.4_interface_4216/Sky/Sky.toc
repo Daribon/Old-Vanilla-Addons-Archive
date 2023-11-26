@@ -1,0 +1,9 @@
+## Interface: 4216
+## Title: Sky
+## Title-frFR: Sky
+## Author: Alexander Brazie
+## Notes: Network Communication Library for Mods
+## Notes-frFR: Librairie de fonctions pour WoW
+## RequiredDeps: Chronos, Sea
+## SavedVariables: SkyChannels, SkyChannelShortcuts, SkyUserList, SkyNotices
+Sky.xml

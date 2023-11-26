@@ -1,0 +1,3 @@
+## Interface: 4150
+## OptionalDeps: Cosmos
+CosmosSchedule.xml

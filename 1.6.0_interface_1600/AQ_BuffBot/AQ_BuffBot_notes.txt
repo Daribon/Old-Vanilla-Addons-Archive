@@ -1,0 +1,55 @@
+AQ_BuffBot - a sarf addon
+
+Credits:
+
+Many thanks to the people on the #cosmostesters channel on irc.datavertex.com
+especially Legorol (massive debugging and well thought out corrections on my 
+numerous lapses), Miravlix, dreamss and dreamzzzz!
+Also, credits to Trimble for creating such an awesome AddOn!
+
+
+1. What is it?
+2. What is it not?
+3. Known limitations
+4. Supported buff-addons
+
+
+1. What is it?
+--------------
+
+It is an interface between buff addons (such as BuffBot) and ActionQueue. 
+This allows for "background" buffing, without the user needing to concern 
+themselves much about it.
+
+
+
+2. What is it not?
+------------------
+
+It is not a bot, exploit or hack. It simply allows the buff addon to use 
+"leftover" keypresses to trigger the casting of buffs.
+
+
+
+3. Known limitations
+--------------------
+
+It does not work well when one of your party members duel another party member. 
+
+Also, it does not concern itself with PvP - if it wants to trigger, it WILL 
+auto-buff a player that is in PvP when you are not. This may be fixed.
+
+
+4. Supported buff-addons
+------------------------
+
+BuffBot by Trimble
+Curse URL: http://www.curse-gaming.com/mod.php?addid=471
+
+
+Your AddOn?
+Contact sarf using the Curse private message service:
+http://forums.curse-gaming.com/private.php?do=newpm
+
+or CosmosUI private message service:
+http://www.cosmosui.org/forums/privmsg.php?mode=post

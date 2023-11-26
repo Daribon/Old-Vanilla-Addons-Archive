@@ -1,0 +1,17 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="DefendYourself_Turn.lua"/>
+	<Frame name="DefendYourself_Turn">
+		<Scripts>
+			<OnLoad>
+				DefendYourself_Turn_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				DefendYourself_Turn_OnEvent(event, arg1, arg2, arg3);
+			</OnEvent>
+			<OnUpdate>
+				DefendYourself_Turn_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

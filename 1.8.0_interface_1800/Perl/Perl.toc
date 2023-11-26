@@ -1,0 +1,18 @@
+## Interface: 1800
+## Title: |cFFCC3300B. Perl UUI -|r Perl
+## Notes: Replaces the normal unit, party, target, and pet frames, adds target-of-target and raid member frames.  Menu by illiath.
+## Author: Nymbia, illiath, Perl
+## OptionalDeps: MapLibrary, MobHealth, CastParty
+## DefaultState: disabled
+## SavedVariables: Perl_Config
+Perl_Globals.xml
+Perl_Party.xml
+Perl_Party_Pet.xml
+Perl_Player_Pet.xml
+Perl_Player.xml
+Perl_Target.xml
+Perl_TargetTarget.xml
+Perl_Raid.xml
+Perl_ArcaneBar.xml
+Perl_OptionsMenu.xml
+Perl.xml

@@ -1,0 +1,8 @@
+## Interface: 1700
+## Title: Atlas v1.0
+## Notes: Atlas is an instance map browser.
+## OptionalDeps: Cosmos, Earth
+## SavedVariables: AtlasOptions
+Atlas.xml
+AtlasButton.xml
+AtlasOptions.xml

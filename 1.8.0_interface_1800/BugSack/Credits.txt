@@ -1,0 +1,3 @@
+--= Credits =--
+
+AceGUI and LuaPad: I learned much of the nature of scrollbars from them.

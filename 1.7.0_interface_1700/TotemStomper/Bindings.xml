@@ -1,0 +1,20 @@
+<Bindings>
+	<Binding name="TOTEMSHOW" header="TOTEMSTOMPER"> <!-- Toggle the Totem Stomper Window -->
+		TotemStomper_Toggle();
+	</Binding>
+	<Binding name="TOTEMSET1"> 
+		TotemStomper_Stomp(1);
+	</Binding>
+	<Binding name="TOTEMSET2"> 
+		TotemStomper_Stomp(2);
+	</Binding>
+	<Binding name="TOTEMSET3"> 
+		TotemStomper_Stomp(3);
+	</Binding>
+	<Binding name="TOTEMSET4"> 
+		TotemStomper_Stomp(4);
+	</Binding>
+	<Binding name="TOTEMSET5"> 
+		TotemStomper_Stomp(5);
+	</Binding>
+</Bindings>

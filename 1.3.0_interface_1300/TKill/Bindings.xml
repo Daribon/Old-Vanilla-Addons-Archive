@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="Totem Killer" header="Totem Killer">
+		TKill_Kill();
+	</Binding>
+</Bindings>

@@ -1,0 +1,14 @@
+## Interface: 1800
+## Title: EquipCompare
+## Title-frFR: EquipCompare
+## Title-deDE: EquipCompare
+## Title-koKR: EquipCompare
+## Author: Legorol
+## Version: 2.9.4
+## Notes: Compare items easily with ones you have equipped (2.9.4)
+## Notes-frFR: Permet de comparer facilement les items avec ceux que vous equipez (2.9.4)
+## Notes-deDE: Vergleiche Gegenstande ganz einfach mit deiner Ausrustung (2.9.4)
+## Notes-koKR: 아이템을 비교하기 쉽게 착용중인 아이템을 보여줍니다. (2.9.4)
+## SavedVariables: EquipCompare_Enabled, EquipCompare_ControlMode, EquipCompare_UseCV, EquipCompare_AltMode, EquipCompare_Shiftup
+## OptionalDeps: Khaos, Cosmos, Sky, CharactersViewer, LootLink
+EquipCompare.xml

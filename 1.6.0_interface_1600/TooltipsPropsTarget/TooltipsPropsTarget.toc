@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Tooltips: Props Target
+## Notes: Player labeling. Some labels for UltimateUI developers included
+## Author: AlexanderYoshi, Celandro
+## RequiredDeps: TooltipsBase
+## SavedVariables: PropsTooltips
+TooltipsPropsTarget.xml

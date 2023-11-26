@@ -1,0 +1,160 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+	..\FrameXML\UI.xsd">
+    <Script file="Insomniax_PlayerFramePlus.lua"/>
+
+    	<Frame name="IX_PlayerFrame" parent="PlayerFrame">
+    		<Scripts>
+    			<OnLoad>
+    				IX_PlayerFrameOnLoad();
+    				IX_UpdatePetFrame();
+    			</OnLoad>
+    			<OnEvent>
+    				IX_PlayerFrameOnEvent(event);
+    				IX_UpdatePetFrame();
+    			</OnEvent>
+		</Scripts>
+		<Layers>
+
+		</Layers>	
+		<Frames>
+			<Frame>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="IX_PlayerFramePlus" file="Interface\AddOns\Insomniax_PlayerFramePlus\Insomniax_PlayerFramePlus">
+							<Size>
+								<AbsDimension x="256" y="128"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="PlayerFrame" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="77" y="-37"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<!-- Player experience, CurrentXP / MaxXP (+RestedXPBonus) -->
+						<FontString name="IX_ExpAmount" inherits="GameFontNormalSmall" virtual="true" text="Loading...">
+							<Size>
+								<AbsDimension x="204" y="12"/>
+							</Size>							
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="IX_PlayerFramePlus" relativePoint="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<!-- XP Bar font color -->
+							<Color r="0.90" g="0.70" b="1.0"/>
+						</FontString>				
+					</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="IX_PlayerFrameStatsBackground">
+					<Size>
+						<AbsDimension x="79" y="21"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="IX_PlayerFramePlus" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="151" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0" g="0" b="0" a="0.5"/>
+				</Texture>
+			</Layer>					
+				</Layers>
+			</Frame>	
+		
+			<StatusBar name="IX_PlayerFrameExpBar" inherits="TextStatusBar">
+				<Size>
+					<AbsDimension x="218" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="IX_PlayerFramePlus" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="12" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						IX_PlayerFrameExpBarOnLoad();
+					</OnLoad>
+					<OnEvent>
+						IX_PlayerFrameExpBarOnEvent(event);
+					</OnEvent>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<!-- XP Bar color -->
+				<BarColor r="0.5" g="0.0" b="0.75"/>
+				<Frames>
+					<Frame name="IX_PlayerFrameExpBarBackground">
+						<Scripts>
+							<OnLoad>
+								this:SetFrameLevel("1");
+							</OnLoad>
+						</Scripts>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<!-- Dark shading for the bottom graphic, under experince -->
+								<Texture name="IX_PlayerFrameXPBackgroundRight">
+									<Size>
+										<AbsDimension x="214" y="12"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOM" relativeTo="PlayerFrame">
+											<Offset>
+												<AbsDimension x="84" y="22"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="0" g="0" b="0" a="0.5"/>
+								</Texture>
+								<Texture name="IX_PlayerFrameXPBackgroundLeft">
+									<Size>
+										<AbsDimension x="10" y="6"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOM" relativeTo="PlayerFrame">
+											<Offset>
+												<AbsDimension x="-28" y="22"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="0" g="0" b="0" a="0.5"/>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>				
+			</StatusBar>
+		</Frames>
+		<!--
+		<Button name="IX_PlayerFrameRestedTooltip" parent="PlayerFrame">
+			<Size>
+				<AbsDimension x="50" y="10"/>
+			</Size>
+			<Anchors>
+				<Anchor point="RIGHT" relativeTo="IX_ExpAmount" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetFrameLevel("10");
+				</OnLoad>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetText("Total experience to be\ngained from rested state.", 1.0, 1.0, 1.0);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</Button>
+		-->
+    	</Frame>
+</Ui>

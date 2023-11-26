@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (Insomniax BibToolbars)
+## Notes: CooldownCount for Insomniax BibToolbars
+## Author: sarf
+## RequiredDeps: Insomniax_BibToolbars, CooldownCount
+CooldownCountInsomniax_BibToolbars.xml

@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="TOGGLEQUESTMINION" header="QUESTMINION"> <!-- Toggle show/hide the QUESTMINION window -->
+		QuestToolTip_Toggle();
+	</Binding>
+	<Binding name="MINIMIZEQUESTMINION"> <!-- Toggle Minimize the QUESTMINION window -->
+		QuestToolTip_Minimize();
+	</Binding>
+</Bindings>

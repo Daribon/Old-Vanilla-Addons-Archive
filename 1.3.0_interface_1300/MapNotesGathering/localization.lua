@@ -1,0 +1,55 @@
+MapNotesGathering_Names = {};
+MapNotesGathering_Names[1] = { "Copper Vein" };
+MapNotesGathering_Names[2] = { "Tin Vein" };
+MapNotesGathering_Names[3] = { "Iron Deposit" };
+MapNotesGathering_Names[4] = { "Silver Vein" };
+MapNotesGathering_Names[5] = { "Truesilver Deposit" };
+MapNotesGathering_Names[6] = { "Gold Vein", "Ooze Covered Gold Vein" };
+MapNotesGathering_Names[7] = { "Mithril Deposit", "Ooze Covered Mithril Deposit" };
+MapNotesGathering_Names[8] = { "Small Thorium Vein", "Rich Thorium Vein", "Ooze Covered Thorium Vein", "Ooze Covered Rich Thorium Vein" };
+MapNotesGathering_Names[9] = { "Silverleaf" };
+MapNotesGathering_Names[10] = { "Peacebloom" };
+MapNotesGathering_Names[11] = { "Earthroot" };
+MapNotesGathering_Names[12] = { "Mageroyal" };
+MapNotesGathering_Names[13] = { "Briarthorn" };
+MapNotesGathering_Names[14] = { "Stranglekelp" };
+MapNotesGathering_Names[15] = { "Bruiseweed" };
+MapNotesGathering_Names[16] = { "Wild Steelbloom" };
+MapNotesGathering_Names[17] = { "Grave Moss" };
+MapNotesGathering_Names[18] = { "Kingsblood" };
+MapNotesGathering_Names[19] = { "Liferoot" };
+MapNotesGathering_Names[20] = { "Fadeleaf" };
+MapNotesGathering_Names[21] = { "Goldthorn" };
+MapNotesGathering_Names[22] = { "Khadgar's Whisker" };
+MapNotesGathering_Names[23] = { "Wintersbite" };
+MapNotesGathering_Names[24] = { "Firebloom" };
+MapNotesGathering_Names[25] = { "Purple Lotus" };
+MapNotesGathering_Names[26] = { "Sungrass" };
+MapNotesGathering_Names[27] = { "Wildvine" };
+MapNotesGathering_Names[28] = { "Arthas' Tears" };
+MapNotesGathering_Names[29] = { "Blindweed" };
+MapNotesGathering_Names[30] = { "Ghost Mushroom" };
+MapNotesGathering_Names[31] = { "Gromsblood" };
+MapNotesGathering_Names[32] = { "Golden Sansam" };
+MapNotesGathering_Names[33] = { "Mountain Silversage" };
+MapNotesGathering_Names[34] = { "Plaguebloom" };
+MapNotesGathering_Names[35] = { "Dreamfoil" };
+MapNotesGathering_Names[36] = { "Icecap" };
+MapNotesGathering_Names[37] = { "Black Lotus" };
+MapNotesGathering_Names[38] = { "Alliance Chest", "Battered Chest", "Large Battered Chest", "Large Battered Chest", "Large Iron Bound Chest", "Large Solid Chest", "Solid Chest" };
+
+MapNotesGathering_SearchHerb = "You perform Herb Gathering on +([^>]*).";
+MapNotesGathering_SearchOre = "You perform Mining on +([^>]*).";
+MapNotesGathering_SearchChest = "You perform Opening on +([^>]*).";
+MapNotesGathering_SearchHerb2 = "Herb Gathering";
+MapNotesGathering_SearchOre2 = "Mining";
+MapNotesGathering_SearchChest2 = "Opening";
+
+MAPNOTESGATHERING_SHOWHERBS = "Show Herbs";
+MAPNOTESGATHERING_SHOWVEINS = "Show Veins";
+MAPNOTESGATHERING_SHOWCHESTS = "Show Chests";
+
+MAPNOTESGATHERING_MENU = "Map Notes";
+MAPNOTESGATHERING_MININOTE = "Set As MiniNote";
+
+MAPNOTESGATHERING_NOTINLIST = "The herb/ore is not in the list, could not add it automatically. Please report what you tried to gather/mine in the forums (exact name).";

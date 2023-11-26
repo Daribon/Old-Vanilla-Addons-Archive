@@ -1,0 +1,303 @@
+<!-- MonitorStatus v0.4 -->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+  <Script file="localization.lua"/>
+  <Script file="localization.de.lua"/>
+  <Script file="localization.fr.lua"/>
+  <Script file="MonitorStatus.lua"/>
+  <Frame name="MonitorStatus" toplevel="true" enableMouse="false" movable="true" parent="UIParent" hidden="true">
+    <Size>
+      <AbsDimension x="384" y="512"/>
+    </Size>
+    <Anchors>
+      <Anchor point="CENTER">
+        <Offset>
+          <AbsDimension x="0" y="-1"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString name="TargetStatusNameText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="RIGHT" relativePoint="CENTER">
+              <Offset>
+                <AbsDimension x="0" y="-60"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="TargetStatusHealthText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="TargetStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="TargetStatusManaText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="TargetStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="TargetStatusConditionText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="TargetStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+        <FontString name="PlayerStatusNameText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="TargetStatusNameText" relativePoint="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="0" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PlayerStatusHealthText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PlayerStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PlayerStatusManaText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PlayerStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PlayerStatusConditionText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PlayerStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+		<FontString name="PetStatusNameText" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true" text="0" justifyH="RIGHT">
+		<FontHeight>
+			<AbsValue val="18"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="PlayerStatusNameText" relativePoint="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="0" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PetStatusHealthText" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true" text="0" justifyH="CENTER">
+		<FontHeight>
+			<AbsValue val="18"/>
+		</FontHeight>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PetStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PetStatusManaText" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true" text="0" justifyH="CENTER">
+		<FontHeight>
+			<AbsValue val="18"/>
+		</FontHeight>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PetStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PetStatusConditionText" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true" text="0" justifyH="RIGHT">
+		<FontHeight>
+			<AbsValue val="18"/>
+		</FontHeight>
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PetStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+        <FontString name="PartyOneStatusNameText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="PetStatusNameText" relativePoint="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="0" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyOneStatusHealthText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyOneStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyOneStatusManaText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyOneStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyOneStatusConditionText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyOneStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+        <FontString name="PartyTwoStatusNameText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="PartyOneStatusNameText" relativePoint="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="0" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyTwoStatusHealthText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyTwoStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyTwoStatusManaText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyTwoStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyTwoStatusConditionText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyTwoStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+        <FontString name="PartyThreeStatusNameText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="PartyTwoStatusNameText" relativePoint="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="0" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyThreeStatusHealthText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyThreeStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyThreeStatusManaText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyThreeStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyThreeStatusConditionText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyThreeStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        
+        <FontString name="PartyFourStatusNameText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="TOPRIGHT" relativeTo="PartyThreeStatusNameText" relativePoint="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="0" y="-1"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyFourStatusHealthText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyFourStatusNameText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="6" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyFourStatusManaText" inherits="GameFontNormalLarge" text="0" justifyH="CENTER">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyFourStatusHealthText" relativePoint="RIGHT">
+              <OffSet>
+                <AbsDimension x="3" y="0"/>
+              </OffSet>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="PartyFourStatusConditionText" inherits="GameFontNormalLarge" text="0" justifyH="RIGHT">
+          <Anchors>
+            <Anchor point="LEFT" relativeTo="PartyFourStatusManaText" relativePoint="RIGHT">
+              <Offset>
+                <AbsDimension x="3" y="0"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnLoad>
+        MonitorStatus_OnLoad();
+      </OnLoad>
+      <OnEvent>
+        MonitorStatus_OnEvent(event, arg1, arg2, arg3);
+      </OnEvent>
+    </Scripts>
+  </Frame>
+</Ui>

@@ -1,0 +1,239 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+<!-- Templates -->
+	<CheckButton name="NurfedGeneralOptionsCheckTemplate" inherits="OptionsCheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Scripts>
+			<OnShow>
+				Nurfed_GeneralCheckBoxOnShow();
+			</OnShow>
+			<OnClick>
+				Nurfed_GeneralCheckBoxOnClick();
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+
+	<Slider name="Nurfed_GeneralOptionsSliderTemplate" inherits="OptionsSliderTemplate" virtual="true">
+		<Scripts>
+			<OnShow>
+				Nurfed_GeneralSliderOnShow();
+			</OnShow>
+			<OnValueChanged>
+				Nurfed_GeneralSliderOnValueChanged();
+			</OnValueChanged>
+			<OnEnter>
+				this.tip = 1;
+			</OnEnter>
+			<OnLeave>
+				this.tip = 0;
+			</OnLeave>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentSliderValue" inherits="GameFontNormalSmall" text="" virtual="true">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset><AbsDimension x="0" y="-10"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Slider>
+
+	<Frame name="Nurfed_GeneralOptionsFrame" toplevel="true" frameStrata="LOW" hidden="true" parent="UIParent" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="420" y="290"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="UIParent" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<TitleRegion setAllPoints="true"/>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="375" y="85"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="1" y="18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" inherits="GameFontNormal" nonspacewrap="true">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeader">
+							<Offset>
+								<AbsDimension x="0" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="Nurfed_GeneralOptionPage1" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentSubFrame1" inherits="OptionFrameBoxTemplate">
+						<Size>
+							<AbsDimension x="395" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="12" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Slider name="Nurfed_GeneralSlider1" inherits="Nurfed_GeneralOptionsSliderTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentSubFrame1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-8" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Slider name="Nurfed_GeneralSlider2" inherits="Nurfed_GeneralOptionsSliderTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_GeneralSlider1" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Slider name="Nurfed_GeneralSlider3" inherits="Nurfed_GeneralOptionsSliderTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_GeneralSlider2" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<CheckButton name="Nurfed_GeneralOptionCheck7" inherits="NurfedGeneralOptionsCheckTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_GeneralSlider3" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck8" inherits="NurfedGeneralOptionsCheckTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_GeneralOptionCheck7" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck1" inherits="NurfedGeneralOptionsCheckTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck2" inherits="NurfedGeneralOptionsCheckTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_GeneralOptionCheck1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck3" inherits="NurfedGeneralOptionsCheckTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_GeneralOptionCheck2" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck4" inherits="NurfedGeneralOptionsCheckTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_GeneralOptionCheck3" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck5" inherits="NurfedGeneralOptionsCheckTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_GeneralOptionCheck4" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_GeneralOptionCheck6" inherits="NurfedGeneralOptionsCheckTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_GeneralOptionCheck5" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+			</Frame>
+
+		<!-- Frame handling buttons -->
+			<Button name="Nurfed_GeneralFramesCloseButton" text="CLOSE" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Nurfed_GeneralOptionsMenu();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				PlaySound("igMainMenuOption");
+			</OnShow>
+			<OnHide>
+				PlaySound("igMainMenuQuit");
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

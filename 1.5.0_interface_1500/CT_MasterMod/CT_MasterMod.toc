@@ -1,0 +1,11 @@
+## Interface: 1500
+## Version: 1.67 (CTMod 1.782)
+## Title: CT_MasterMod
+## Notes: Global functions for all CT mods.
+## OptionalDeps: DB_Master
+## SavedVariables: CT_Options, CT_CPBPosition, CT_CPMovable
+CT_Master.xml
+CT_ModOptions.xml
+CT_ControlPanel.xml
+CT_MoveFrames.xml
+CT_ResetFrame.xml

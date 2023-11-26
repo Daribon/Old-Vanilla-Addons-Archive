@@ -1,0 +1,575 @@
+<!--
+
+	SideBar: Adds two twelve button sidebars that can be separated, moved, and resized
+		copyright 2004 by Telo
+
+	- There are hotkey bindings for each of the added buttons
+	- Use << /sidebar help >> or just << /sb >> for a list of commands
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Nurfed_SideBar.lua"/>
+	<FontString name="SideBarFont" font="Fonts\ARIALN.TTF" outline="THICK" virtual="true" monochrome="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		<Color r="0.6" g="0.6" b="0.6"/>
+	</FontString>
+<!-- Telo: this looks somewhat worse, but at least has the * character
+	<FontString name="SideBarFont" font="Fonts\FRIZQT__.TTF" outline="THICK" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		<Color r="0.6" g="0.6" b="0.6"/>
+	</FontString>
+-->
+	<Button name="SideBarAddTemplate" frameStrata="LOW" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture file="Interface\Buttons\UI-PlusButton-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-PlusButton-Down"/>
+		<DisabledTexture file="Interface\Buttons\UI-PlusButton-Disabled"/>
+		<HighlightTexture file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD"/>
+		<Scripts>
+			<OnClick>
+				SideBar_Add(this:GetParent());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="SideBarSubTemplate" frameStrata="LOW" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<NormalTexture file="Interface\Buttons\UI-MinusButton-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-MinusButton-Down"/>
+		<DisabledTexture file="Interface\Buttons\UI-MinusButton-Disabled"/>
+		<HighlightTexture file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD"/>
+		<Scripts>
+			<OnClick>
+				SideBar_Sub(this:GetParent());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<CheckButton name="SideBarButtonTemplate" frameStrata="LOW" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentFlash" file="Interface\Buttons\UI-QuickslotRed" hidden="true"/>
+				<FontString name="$parentHotKey" inherits="SideBarFont" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="32" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCount" inherits="NumberFontNormal" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentName" inherits="GameFontHighlightSmallOutline">
+					<Size>
+						<AbsDimension x="36" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Model name="$parentCooldown" inherits="CooldownFrameTemplate"/>
+		</Frames>
+		<NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
+			<Size>
+				<AbsDimension x="64" y="64"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="1" y="-1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+		<CheckedTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+		<Scripts>
+			<OnLoad>
+				SideBarButton_OnLoad();
+			</OnLoad>
+			<OnShow>
+				SideBarButton_Update();
+			</OnShow>
+			<OnEvent>
+				SideBarButton_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				if ( IsShiftKeyDown() ) then
+					PickupAction(SideBarButton_GetID(this));
+				else
+					MacroFrame_EditMacro();
+					UseAction(SideBarButton_GetID(this), 1);
+				end
+				SideBarButton_UpdateState();
+			</OnClick>
+			<OnDragStart>
+				SideBarButton_OnDragStart();
+			</OnDragStart>
+			<OnReceiveDrag>
+				PlaceAction(SideBarButton_GetID(this));
+				SideBarButton_UpdateState();
+			</OnReceiveDrag>
+			<OnEnter>
+				SideBarButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateTooltip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnUpdate>
+				SideBarButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	<Frame name="SideBar" toplevel="true" frameStrata="BACKGROUND" enableMouse="true" parent="UIParent" movable="true">
+		<Size>
+			<AbsDimension x="98" y="510"/>
+		</Size>
+		<Anchors>
+			<Anchor point="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="64"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="SideBarSub" inherits="SideBarSubTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-9" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SideBarAdd" inherits="SideBarAddTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-31" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Frame name="SideBarBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="4"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="SideBar1" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="38" y="500"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="SideBar" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="9" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="SideBar1Sub" inherits="SideBarSubTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-9" y="8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SideBar1Add" inherits="SideBarAddTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-31" y="8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Frame name="SideBar1Backdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<CheckButton name="SideBarButton1" inherits="SideBarButtonTemplate" id="97">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton2" inherits="SideBarButtonTemplate" id="98">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton1" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton3" inherits="SideBarButtonTemplate" id="99">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton2" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton4" inherits="SideBarButtonTemplate" id="100">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton3" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton5" inherits="SideBarButtonTemplate" id="101">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton4" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton6" inherits="SideBarButtonTemplate" id="102">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton5" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton7" inherits="SideBarButtonTemplate" id="103">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton6" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton8" inherits="SideBarButtonTemplate" id="104">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton7" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton9" inherits="SideBarButtonTemplate" id="105">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton8" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton10" inherits="SideBarButtonTemplate" id="106">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton9" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton11" inherits="SideBarButtonTemplate" id="107">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton10" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton12" inherits="SideBarButtonTemplate" id="108">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton11" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						SideBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						SideBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						SideBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="SideBar2" frameStrata="BACKGROUND" movable="true">
+				<Size>
+					<AbsDimension x="38" y="500"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="51" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="SideBar2Sub" inherits="SideBarSubTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-9" y="8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SideBar2Add" inherits="SideBarAddTemplate">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-31" y="8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Frame name="SideBar2Backdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+					<CheckButton name="SideBarButton13" inherits="SideBarButtonTemplate" id="109">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton14" inherits="SideBarButtonTemplate" id="110">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton13" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton15" inherits="SideBarButtonTemplate" id="111">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton14" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton16" inherits="SideBarButtonTemplate" id="112">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton15" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton17" inherits="SideBarButtonTemplate" id="113">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton16" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton18" inherits="SideBarButtonTemplate" id="114">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton17" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton19" inherits="SideBarButtonTemplate" id="115">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton18" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton20" inherits="SideBarButtonTemplate" id="116">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton19" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton21" inherits="SideBarButtonTemplate" id="117">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton20" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton22" inherits="SideBarButtonTemplate" id="118">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton21" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton23" inherits="SideBarButtonTemplate" id="119">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton22" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="SideBarButton24" inherits="SideBarButtonTemplate" id="120">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="SideBarButton23" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						SideBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						SideBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						SideBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				SideBar_OnLoad();
+			</OnLoad>
+			<OnShow>
+				SideBar_OnShow();
+			</OnShow>
+			<OnEvent>
+				SideBar_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				SideBar_OnUpdate(arg1);
+			</OnUpdate>
+			<OnDragStart>
+				SideBar_OnDragStart(this);
+			</OnDragStart>
+			<OnDragStop>
+				SideBar_OnDragStop(this);
+			</OnDragStop>
+			<OnMouseUp>
+				SideBar_OnDragStop(this);
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r MoveAnything
+## Notes: Lets you move or hide any frame that you know the name of
+## Author: Skrag
+## SavedVariables: MoveAnything_CustomFrames, MoveAnything_CharacterSettings, MoveAnything_UseCharacterSettings
+## OptionalDeps: myAddOns
+MoveAnything.xml

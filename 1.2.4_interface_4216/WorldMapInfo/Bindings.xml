@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle the World Map Info -->
+	<Binding name="TOGGLEWORLDMAPINFO" header="WORLDMAPINFO">
+		CWMI_Toggle();
+	</Binding>
+</Bindings>

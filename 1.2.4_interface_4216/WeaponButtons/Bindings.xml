@@ -1,0 +1,9 @@
+<Bindings>
+	<!-- Toggle WeaponButtons On/Off -->
+	<Binding name="WEAPONBUTTONS" description="Toggle weapon buttons" header="WEAPONBUTTONSHEADER">
+		WeaponButtons_Toggle_Enabled(-1);
+	</Binding>
+	<Binding name="WEAPONBUTTONS_CYCLE" description="Cycle WeaponButtons mode">
+		WeaponButtons_ToggleMode();
+	</Binding>
+</Bindings>

@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: WoW Instant Messenger
+## Notes: Sorts whisper conversations into tabs based on who is being whispered/is whispering
+## SavedVariables: WIMOptions
+WIM.xml

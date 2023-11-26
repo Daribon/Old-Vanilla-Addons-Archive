@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r MoveAnything
+## Notes: Lets you move or hide virtually any and every frame in the UI
+## Author: Skrag
+## SavedVariables: MoveAnything_CustomFrames, MoveAnything_CharacterSettings, MoveAnything_UseCharacterSettings, MoveAnything_UseDefaultPositions
+## OptionalDeps: myAddOns
+MoveAnything.xml

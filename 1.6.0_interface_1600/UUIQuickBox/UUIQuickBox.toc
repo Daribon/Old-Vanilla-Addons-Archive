@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r UUIQuickBox
+## Notes: A quick box for the major UUI features.
+## SavedVariables: UUI_HideQuickBox
+UUIButtons.xml
+UUIInfo.xml
+UUIDockButton.xml

@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r BGassist
+## Notes: Handy stuff Battlegrounds
+## Author: Marc aka Saien on Hyjal
+## SavedVariables: BGAssist_Config
+BGAssist.xml

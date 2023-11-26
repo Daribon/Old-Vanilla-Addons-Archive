@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLEBETTERKEYBINDING" header="BETTERKEYBINDING"> <!-- Toggle the BetterKeyBinding window -->
+		ToggleBetterKeyBinding();
+	</Binding>
+</Bindings>

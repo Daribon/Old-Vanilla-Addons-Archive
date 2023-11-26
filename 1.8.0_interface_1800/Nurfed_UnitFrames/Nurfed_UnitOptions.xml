@@ -1,0 +1,820 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+<!-- Templates -->
+	<CheckButton name="NurfedUnitOptionsCheckTemplate" inherits="OptionsCheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Scripts>
+			<OnShow>
+				Nurfed_UnitCheckBoxOnShow();
+			</OnShow>
+			<OnClick>
+				Nurfed_UnitCheckBoxOnClick();
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<Frame name="NurfedUnitOptionsDropDownTemplate" inherits="UIDropDownMenuTemplate" virtual="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentOptionText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="10" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				UIDropDownMenu_Initialize(this,getglobal(this:GetName().."_Init"));
+				UIDropDownMenu_SetWidth(70);
+				UIDropDownMenu_SetButtonWidth("TEXT");
+				UIDropDownMenu_JustifyText("LEFT",this);
+			</OnLoad>
+			<OnShow>
+				UIDropDownMenu_Initialize(this,getglobal(this:GetName().."_Init"));
+				UIDropDownMenu_SetSelectedID(this,Nurfed_UnitDropDown1Idx);
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Slider name="Nurfed_UnitOptionsSliderTemplate" inherits="OptionsSliderTemplate" virtual="true">
+		<Scripts>
+			<OnShow>
+				Nurfed_UnitSliderOnShow();
+			</OnShow>
+			<OnValueChanged>
+				Nurfed_UnitSliderOnValueChanged();
+			</OnValueChanged>
+			<OnEnter>
+				this.tip = 1;
+			</OnEnter>
+			<OnLeave>
+				this.tip = 0;
+			</OnLeave>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentSliderValue" inherits="GameFontNormalSmall" text="" virtual="true">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset><AbsDimension x="0" y="-10"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Slider>
+
+	<Button name="NurfedUnitColorSwatchTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parent_SwatchBg">
+					<Size>
+						<AbsDimension x="14" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1.0" g="1.0" b="1.0"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow>
+				Nurfed_UnitColorSwatchOnShow();
+			</OnShow>
+			<OnClick>
+				Nurfed_UnitOpenColorPicker();
+			</OnClick>
+			<OnEnter>
+				getglobal(this:GetName().."_SwatchBg"):SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+			</OnEnter>
+			<OnLeave>
+				getglobal(this:GetName().."_SwatchBg"):SetVertexColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+			</OnLeave>
+		</Scripts>
+		<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\ChatFrameColorSwatch"/>
+	</Button>
+
+	<Button name="NurfedUnitOptionsBottomTabTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="100" y="50"/>
+		</Size>
+		<HitRectInsets>
+			<AbsInset left="15" right="14" top="13" bottom="15"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnClick>
+				Nurfed_UnitOptionTabSelect(this:GetID());
+			</OnClick>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall">
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="3"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalText>
+		<HighlightText inherits="GameFontHighlightSmall">
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="3"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightText>
+		<DisabledText inherits="GameFontHighlightSmall">
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</DisabledText>
+		<DisabledTexture file="Interface\AddOns\Nurfed_UnitFrames\images\UI-SpellBook-Tab-Selected"/>
+		<NormalTexture file="Interface\SpellBook\UI-SpellBook-Tab-Unselected"/>
+		<HighlightTexture file="Interface\SpellBook\UI-SpellbookPanel-Tab-Highlight"/>
+	</Button>
+
+	<Frame name="Nurfed_UnitOptionsFrame" toplevel="true" frameStrata="LOW" hidden="true" parent="UIParent" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="420" y="290"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="UIParent" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<TitleRegion setAllPoints="true"/>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="375" y="85"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="1" y="18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" inherits="GameFontNormal" nonspacewrap="true">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeader">
+							<Offset>
+								<AbsDimension x="0" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="Nurfed_UnitOptionPage1" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentSubFrame1" inherits="OptionFrameBoxTemplate">
+						<Size>
+							<AbsDimension x="395" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="12" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="Nurfed_UnitOptionCheck1" inherits="NurfedUnitOptionsCheckTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck2" inherits="NurfedUnitOptionsCheckTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck3" inherits="NurfedUnitOptionsCheckTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck2" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck4" inherits="NurfedUnitOptionsCheckTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck3" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck18" inherits="NurfedUnitOptionsCheckTemplate" id="18">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck4" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck20" inherits="NurfedUnitOptionsCheckTemplate" id="20">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck18" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck21" inherits="NurfedUnitOptionsCheckTemplate" id="21">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck20" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Frame name="Nurfed_UnitDropDown5" inherits="NurfedUnitOptionsDropDownTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentSubFrame1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-8" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="Nurfed_UnitDropDown6" inherits="NurfedUnitOptionsDropDownTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitDropDown5" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="Nurfed_UnitDropDown7" inherits="NurfedUnitOptionsDropDownTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitDropDown6" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Frame name="Nurfed_UnitDropDown8" inherits="NurfedUnitOptionsDropDownTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitDropDown7" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+
+			<Frame name="Nurfed_UnitOptionPage2" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentSubFrame1" inherits="OptionFrameBoxTemplate">
+						<Size>
+							<AbsDimension x="395" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="12" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="Nurfed_UnitOptionCheck5" inherits="NurfedUnitOptionsCheckTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck19" inherits="NurfedUnitOptionsCheckTemplate" id="19">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck5" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Slider name="Nurfed_UnitSlider1" inherits="Nurfed_UnitOptionsSliderTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentSubFrame1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-8" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Button name="Nurfed_UnitColor1" inherits="NurfedUnitColorSwatchTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitSlider1" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="Nurfed_UnitColor2" inherits="NurfedUnitColorSwatchTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor1" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Frame name="Nurfed_UnitDropDown1" inherits="NurfedUnitOptionsDropDownTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor2" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="17" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Button name="Nurfed_UnitResetButton2" text="RESET" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="80" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Nurfed_UnitResetPos("player");
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="Nurfed_UnitOptionPage3" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentSubFrame1" inherits="OptionFrameBoxTemplate">
+						<Size>
+							<AbsDimension x="395" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="12" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="Nurfed_UnitOptionCheck6" inherits="NurfedUnitOptionsCheckTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck7" inherits="NurfedUnitOptionsCheckTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck6" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck8" inherits="NurfedUnitOptionsCheckTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck7" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck9" inherits="NurfedUnitOptionsCheckTemplate" id="9">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck8" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck10" inherits="NurfedUnitOptionsCheckTemplate" id="10">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck9" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck12" inherits="NurfedUnitOptionsCheckTemplate" id="12">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck10" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck13" inherits="NurfedUnitOptionsCheckTemplate" id="13">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck12" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Slider name="Nurfed_UnitSlider2" inherits="Nurfed_UnitOptionsSliderTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentSubFrame1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-8" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Button name="Nurfed_UnitColor3" inherits="NurfedUnitColorSwatchTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitSlider2" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="Nurfed_UnitColor4" inherits="NurfedUnitColorSwatchTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor3" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Frame name="Nurfed_UnitDropDown2" inherits="NurfedUnitOptionsDropDownTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor4" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="17" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="Nurfed_UnitOptionCheck11" inherits="NurfedUnitOptionsCheckTemplate" id="11">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitDropDown2" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-17" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Slider name="Nurfed_UnitSlider3" inherits="Nurfed_UnitOptionsSliderTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitOptionCheck11" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Button name="Nurfed_UnitResetButton3" text="RESET" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="80" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Nurfed_UnitResetPos("party");
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="Nurfed_UnitOptionPage4" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentSubFrame1" inherits="OptionFrameBoxTemplate">
+						<Size>
+							<AbsDimension x="395" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="12" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="Nurfed_UnitOptionCheck14" inherits="NurfedUnitOptionsCheckTemplate" id="14">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Slider name="Nurfed_UnitSlider4" inherits="Nurfed_UnitOptionsSliderTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentSubFrame1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-8" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Button name="Nurfed_UnitColor5" inherits="NurfedUnitColorSwatchTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitSlider4" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="Nurfed_UnitColor6" inherits="NurfedUnitColorSwatchTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor5" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Frame name="Nurfed_UnitDropDown3" inherits="NurfedUnitOptionsDropDownTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor6" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="17" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Button name="Nurfed_UnitResetButton4" text="RESET" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="80" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Nurfed_UnitResetPos("pet");
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+			<Frame name="Nurfed_UnitOptionPage5" setAllPoints="true">
+				<Frames>
+					<Frame name="$parentSubFrame1" inherits="OptionFrameBoxTemplate">
+						<Size>
+							<AbsDimension x="395" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="12" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<CheckButton name="Nurfed_UnitOptionCheck15" inherits="NurfedUnitOptionsCheckTemplate" id="15">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck16" inherits="NurfedUnitOptionsCheckTemplate" id="16">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck15" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_UnitOptionCheck17" inherits="NurfedUnitOptionsCheckTemplate" id="17">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionCheck16" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Slider name="Nurfed_UnitSlider5" inherits="Nurfed_UnitOptionsSliderTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentSubFrame1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-8" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Button name="Nurfed_UnitColor7" inherits="NurfedUnitColorSwatchTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitSlider5" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="Nurfed_UnitColor8" inherits="NurfedUnitColorSwatchTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor7" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Frame name="Nurfed_UnitDropDown4" inherits="NurfedUnitOptionsDropDownTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_UnitColor8" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="17" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<Button name="Nurfed_UnitResetButton5" text="RESET" inherits="UIPanelButtonTemplate">
+						<Size>
+							<AbsDimension x="80" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentSubFrame1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								Nurfed_UnitResetPos("target");
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+		<!-- Frame handling buttons -->
+			<Button name="Nurfed_UnitFramesCloseButton" text="CLOSE" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Nurfed_UnitFramesMenu();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="Nurfed_UnitOptionTab1" inherits="NurfedUnitOptionsBottomTabTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Nurfed_UnitOptionsFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="24"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="Nurfed_UnitOptionTab2" inherits="NurfedUnitOptionsBottomTabTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_UnitOptionTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="Nurfed_UnitOptionTab3" inherits="NurfedUnitOptionsBottomTabTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_UnitOptionTab2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="Nurfed_UnitOptionTab4" inherits="NurfedUnitOptionsBottomTabTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_UnitOptionTab3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="Nurfed_UnitOptionTab5" inherits="NurfedUnitOptionsBottomTabTemplate" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_UnitOptionTab4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				Nurfed_UnitOptionTabsInit();
+				PlaySound("igMainMenuOption");
+			</OnShow>
+			<OnHide>
+				PlaySound("igMainMenuQuit");
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

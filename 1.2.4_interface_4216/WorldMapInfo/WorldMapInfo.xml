@@ -1,0 +1,77 @@
+<!--
+
+	WorldMapInfo: Add info to world map frame
+	- by geowar 14 Sep, 2004.
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="WorldMapInfo.lua"/>
+	<Frame name="WorldMapInfoGlobalFrame" parent="UIParent" hidden="true">
+		<Frames>
+			<Frame name="WorldMapInfoFrame" setAllPoints="true" frameStrata="TOOLTIP" parent="WorldMapFrame" hidden="true">
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="WorldMapInfoPlayerText" inherits="SystemFont" text="Player">
+                            <Color r="0.5" g="1.0" b="0.4"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="WorldMapFrame" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="64" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="WorldMapInfoCursorText" inherits="SystemFont" text="Cursor">
+                            <Color r="1.0" g="1.0" b="1.0"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="WorldMapFrame" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="-64" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!--
+						<FontString name="WorldMapInfoRawCursorText" inherits="SystemFont" text="">
+                            <Color r="1.0" g="0.0" b="0.0"/>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="WorldMapFrame" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="32" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						-->
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEvent>
+						CWMI_OnEvent();
+					</OnEvent>
+					<OnEnter>
+						CWMI_OnEnter();
+					</OnEnter>
+					<OnExit>
+						CWMI_OnExit();
+					</OnExit>
+					<OnUpdate>
+						CWMI_OnUpdate(arg1);
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CWMI_OnLoad();
+			</OnLoad>
+			<OnKeyDown>
+				--CWMI_OnKeyDown();
+			</OnKeyDown> 
+		</Scripts>
+	</Frame>
+</Ui>

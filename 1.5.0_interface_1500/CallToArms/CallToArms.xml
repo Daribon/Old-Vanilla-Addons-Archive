@@ -1,0 +1,2005 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+
+
+	<Script file="CallToArms.lua"/>
+	<Script file="CTALocalization.lua"/>
+
+	<FontString name="CTA_TitleFont" inherits="GameFontNormal" virtual="true">
+		<Color r="0.9" g="0.9" b="0.9"/>
+	</FontString>
+	<FontString name="CTA_Heading1Font" inherits="GameFontNormalLarge" virtual="true">
+		<!--Color r="1.0" g="1.0" b="1.0"/-->
+	</FontString>
+	<FontString name="CTA_Heading2Font" inherits="GameFontNormal" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>	
+	<FontString name="CTA_NormalFont" inherits="GameFontNormal" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<FontString name="CTA_NormalFontSmall" inherits="GameFontNormal" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>		
+
+	<FontString name="CTA_ListItemFont" font="Fonts\ARIALN.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+	</FontString>
+
+	
+	<Frame name="CTA_AbstractWindow" virtual="true">	
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>	
+	</Frame>
+	<Frame name="CTA_AbstractFrame" virtual="true">	
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="3" right="4" top="4" bottom="3"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+		</Backdrop>	
+		<Layers>
+			<Layer level="BACKGROUND">	
+			</Layer>
+
+		</Layers>	
+		<Frames>
+
+		</Frames>			
+	</Frame>		
+	<EditBox name="CTA_AbstractEditBox" virtual="true">		
+		<Layers>
+			<Layer level="BACKGROUND">	
+				<Texture>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>					
+					<Color r="0.0" g="0.0" b="0.0" a="0.75"/>
+				</Texture>				
+			</Layer>
+		</Layers>	
+		<FontString inherits="ChatFontNormal"/>
+	</EditBox>	
+	<Button name="CTA_AbstractButton" inherits="UIPanelButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="80" y="22"/>
+		</Size>
+		<NormalText inherits="GameFontNormal"/>
+		<DisabledText inherits="GameFontDisable"/>
+		<HighlightText inherits="GameFontHighlight"/>
+	</Button>
+	<CheckButton name="CTA_AbstractCheckButton" virtual="true" inherits="UICheckButtonTemplate">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				CTA_ShowTooltip(this);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>			
+		</Scripts>	
+	</CheckButton>
+						
+	<Frame name="CTA_NewItemTemplate1" virtual="true">
+		<Size>
+			<AbsDimension x="600" y="22"/>
+		</Size>	
+		<Layers>			
+			<Layer level="OVERLAY">
+				<FontString inherits="ChatFontNormal" name="$parentNameLabel" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="436" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>							
+				<FontString inherits="CTA_ListItemFont" name="$parentTypeLabel">
+					<Size>
+						<AbsDimension x="40" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="440" y="0"/>
+							</Offset>
+						</Anchor>					
+					</Anchors>
+				</FontString>		
+				<FontString inherits="CTA_ListItemFont" name="$parentSizeLabel">
+					<Size>
+						<AbsDimension x="40" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="480" y="0"/>
+							</Offset>
+						</Anchor>					
+					</Anchors>
+				</FontString>
+				<FontString inherits="CTA_ListItemFont" name="$parentMinLevelLabel">
+					<Size>
+						<AbsDimension x="60" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="520" y="0"/>
+							</Offset>
+						</Anchor>					
+					</Anchors>
+				</FontString>	
+				<FontString inherits="CTA_ListItemFont" name="$parentPasswordLabel">
+					<Size>
+						<AbsDimension x="24" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="576" y="0"/>
+							</Offset>
+						</Anchor>					
+					</Anchors>
+				</FontString>	
+				<FontString inherits="CTA_ListItemFont" name="$parentTimeLabel" hidden="true">
+					<Size>
+						<AbsDimension x="30" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="570" y="0"/>
+							</Offset>
+						</Anchor>					
+					</Anchors>
+				</FontString>																											
+			</Layer>
+		</Layers>
+			
+	</Frame>		
+	<Frame name="CTA_NewItemTemplate" inherits="CTA_NewItemTemplate1" virtual="true">						
+		<Layers>	
+			<Layer level="BACKGROUND">	
+			</Layer>				
+			<Layer level="ARTWORK">	
+				<Texture name ="$parentTexture" >
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>						
+					</Anchors>
+					<Color r="0.3" g="0.25" b="0.1" a="0.5"/>
+				</Texture>
+				<Texture name ="$parentTextureRed" >
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>						
+					</Anchors>
+					<Color r="0.25" g="0.1" b="0.1" a="0.5"/>
+				</Texture>
+				<Texture name ="$parentTextureGreen" >
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>						
+					</Anchors>
+					<Color r="0.1" g="0.25" b="0.1" a="0.5"/>
+				</Texture>	
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name ="$parentTextureSelected" alphaMode="ADD">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>						
+					</Anchors>
+					<Color r="1" g="1" b="1" a="0.25"/>
+				</Texture>											
+			</Layer>
+		</Layers>
+		<Scripts>
+		    <OnMouseUp>
+				CTA_ListItemClicked(this);
+		    </OnMouseUp>
+			<OnEnter>
+				CTA_ShowListItemTooltip(this);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>		
+		</Scripts>					
+	</Frame>					
+	<Frame name="CTA_NewItemTemplate2" inherits="CTA_NewItemTemplate1" virtual="true">						
+		<Layers>			
+			<Layer level="BACKGROUND">	
+			</Layer>
+			<Layer level="ARTWORK">	
+				<Texture>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>						
+					</Anchors>
+					<Color r="0.0" g="0.0" b="0.0" a="0.5"/>
+				</Texture>
+			</Layer>			
+			<Layer level="OVERLAY">
+				<Texture name ="$parentTextureLock" file="Interface\Addons\CallToArms\lock">
+					<Size>
+						<AbsDimension x="22" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="580" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+			</Layer>
+		</Layers>
+	</Frame>	
+
+	<Frame name="CTA_AcidItemTemplate0" virtual = "true" >
+		<Size>
+			<AbsDimension x="60" y="140"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">	
+				<Texture>
+					<Size>
+						<AbsDimension x="20" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="60"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0.0" g="0.0" b="0.0" a="0.25"/>
+				</Texture>						
+			</Layer>
+			<Layer level="ARTWORK">				
+				<Texture name="$parentCurrentTexture" alphaMode="ADD">
+					<Size>
+						<AbsDimension x="20" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="60"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0.9" g="0.9" b="0.9" a="0.5"/>
+				</Texture>	
+				<FontString inherits="GameFontNormalSmall" name="$parentClassNameLabel">
+					<Size>
+						<AbsDimension x="60" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-100"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>							
+				<FontString inherits="GameFontNormalSmall" hidden="true" name="$parentClassPercentLabel">
+					<Size>
+						<AbsDimension x="60" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>	
+				<FontString inherits="GameFontNormalLarge" name="$parentClassAbsoluteLabel">
+					<Size>
+						<AbsDimension x="60" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-82"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>	
+				<FontString inherits="GameFontNormalSmall" name="$parentClassCurrentLabel">
+					<Size>
+						<AbsDimension x="60" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="15" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>																																			
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentLessButton">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>	
+					<OnClick>
+						CTA_AcidItemClick( this );
+					</OnClick>												
+				</Scripts>
+				<NormalTexture file="Interface\MainMenuBar\UI-MainMenu-ScrollDownButton-Up"/>
+				<PushedTexture file="Interface\MainMenuBar\UI-MainMenu-ScrollDownButton-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Disabled"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\MainMenuBar\UI-MainMenu-ScrollDownButton-Highlight"/>
+			</Button>	
+			<Button name="$parentMoreButton">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CTA_AcidItemClick( this );
+					</OnClick>																									
+				</Scripts>
+				<NormalTexture file="Interface\MainMenuBar\UI-MainMenu-ScrollUpButton-Up"/>
+				<PushedTexture file="Interface\MainMenuBar\UI-MainMenu-ScrollUpButton-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Disabled"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\MainMenuBar\UI-MainMenu-ScrollUpButton-Highlight"/>
+			</Button>			
+			
+		</Frames>
+		<Scripts>
+			<OnEnter>
+				CTA_ShowAcidItemTooltip(this);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>		
+		</Scripts>			
+	</Frame>	
+	<Frame name="CTA_AcidItemTemplate" inherits="CTA_AcidItemTemplate0" virtual = "true" >
+		<Layers>
+			<Layer level="BACKGROUND">	
+				<Texture name="$parentPercentTexture" file="Interface\Addons\CallToArms\vertbar">
+					<Size>
+						<AbsDimension x="20" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="60"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<!--Color r="0.6" g="0.4" b="0.1" a="0.75"/-->
+				</Texture>					
+			</Layer>
+		</Layers>
+	</Frame>	
+	<Frame name="CTA_AcidItemTemplateAnyClass" inherits="CTA_AcidItemTemplate0" virtual = "true" >
+		<Layers>
+			<Layer level="BACKGROUND">	
+				<Texture name="$parentPercentTexture" file="Interface\Addons\CallToArms\ggrad">
+					<Size>
+						<AbsDimension x="20" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="60"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<!--Color r="0.1" g="0.6" b="0.1" a="0.75"/-->
+				</Texture>					
+			</Layer>
+		</Layers>
+	</Frame>	
+	
+	<Frame name = "CTA_ErrorWindow" inherits="CTA_AbstractWindow" toplevel="true" enableMouse="true" frameStrata="DIALOG" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="320" y="240"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-256"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">	
+				<FontString inherits="GameFontNormalLarge" name="$parentTitleLabel" nonspacewrap="false">
+					<Size>
+						<AbsDimension x="300" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-20"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>	
+				<FontString inherits="GameFontNormalLarge" name="$parentErrorLabel" justifyV="TOP" nonspacewrap="false">
+					<Size>
+						<AbsDimension x="280" y="160"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>										
+			</Layer>
+		</Layers>		
+		<Frames>
+			<Button name="$parentCloseButton" inherits="CTA_AbstractButton">
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CTA_ErrorWindow:Hide();
+					</OnClick>				
+				</Scripts>
+			</Button>	
+		</Frames>		
+	</Frame>
+					
+	<Button name="CTA_MyMainFrame" movable="true" toplevel="true" enableMouse="true" frameStrata="DIALOG" parent="UIParent">	
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-128"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">	
+				<FontString inherits="GameFontNormal" name="CTA_InfoLabel" hidden="true" nonspacewrap="false" justifyH="LEFT"  text="CTA_CALL_TO_ARMS">
+					<Size>
+						<AbsDimension x="128" y="34"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="36" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>						
+			</Layer>
+		</Layers>
+		<Frames>
+			<MessageFrame name="CTA_MessageFrame" frameStrata="BACKGROUND" toplevel="true" displayDuration="5.0" maxLines="1">
+				<Size>
+					<AbsDimension x="256" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="36" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="CTA_MessageFrameTextLabel" inherits="GameFontNormal"  nonspacewrap="false" justifyH="LEFT">
+				<Size>
+					<AbsDimension x="256" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				</FontString>			
+			</MessageFrame>			
+			
+			<Frame name="CTA_MySubFrame" hidden="true">
+				<Size>
+					<AbsDimension x="32" y="64"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-34"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="CTA_MyShowSearchFrameButton">
+						<Size>
+							<AbsDimension x="32" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_ShowSearchFrame();
+							</OnClick>	
+							<OnEnter>
+								CTA_MessageFrame:Hide();
+								CTA_InfoLabel:Show();
+								CTA_InfoLabel:SetText( CTA_SEARCH_FOR_RAIDS );
+							</OnEnter>
+							<OnLeave>
+								CTA_InfoLabel:SetText( CTA_CALL_TO_ARMS );
+							</OnLeave>											
+						</Scripts>						
+						<NormalTexture file="Interface\Addons\CallToArms\ctaicon4"/>
+						<PushedTexture file="Interface\Addons\CallToArms\ctaicon4"/>
+						<DisabledTexture file="Interface\Addons\CallToArms\ctaicon4"/>
+						<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>			
+					</Button>				
+					<Button name="CTA_MyShowMyRaidFrameButton">
+						<Size>
+							<AbsDimension x="32" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-32"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								--CTA_ShowMyRaidFrame();
+								CTA_ShowStartRaidFrame();
+							</OnClick>		
+							<OnEnter>
+								CTA_MessageFrame:Hide();
+								CTA_InfoLabel:Show();
+								CTA_InfoLabel:SetText( CTA_HOST_A_RAID );
+							</OnEnter>
+							<OnLeave>
+								CTA_InfoLabel:SetText( CTA_CALL_TO_ARMS );
+							</OnLeave>																				
+						</Scripts>						
+						<NormalTexture file="Interface\Addons\CallToArms\ctaicon4c"/>
+						<PushedTexture file="Interface\Addons\CallToArms\ctaicon4c"/>
+						<DisabledTexture file="Interface\Addons\CallToArms\ctaicon4c"/>
+						<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>			
+					</Button>							
+				</Frames>
+				<Scripts>			
+				</Scripts>																
+			</Frame>			
+		</Frames>
+		<Scripts>
+			<OnClick>
+				if( CTA_MainFrame:IsVisible() ) then
+					CTA_MainFrame:Hide();
+					CTA_MySubFrame:Hide();	
+					CTA_InfoLabel:Hide();
+				else							
+					CTA_UpdateResults();
+					CTA_MainFrame:Show();
+					CTA_MySubFrame:Show();							
+				end
+				CTA_Channel();						
+			</OnClick>	
+			<OnEnter>
+				--CTA_PositionIcon();
+				CTA_InfoLabel:Show();
+				CTA_MessageFrame:Hide();
+			</OnEnter>
+		    <OnMouseUp>
+				--CTA_PositionIcon();
+		    </OnMouseUp>
+			
+			<OnLeave>
+				GameTooltip:Hide();
+				if( not CTA_MainFrame:IsVisible() ) then
+					CTA_InfoLabel:Hide();	
+					CTA_MessageFrame:Show();					
+				end				
+			</OnLeave>	
+			<OnLoad>
+				CTA_OnLoad();
+				this:Show();
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnEvent>
+				CTA_OnEvent();
+			</OnEvent>	
+			<OnUpdate>
+				CTA_OnUpdate(arg1);
+			</OnUpdate>	
+		    <OnDragStart>
+		      	this:StartMoving();
+		    </OnDragStart>
+		    <OnDragStop>
+		      	this:StopMovingOrSizing();
+		    </OnDragStop>								
+		</Scripts>
+		<NormalTexture file="Interface\Addons\CallToArms\ctaicon4b"/>
+		<PushedTexture file="Interface\Addons\CallToArms\ctaicon4b"/>
+		<DisabledTexture file="Interface\Addons\CallToArms\ctaicon4b"/>
+	</Button>
+	
+	<Frame name="CTA_MainFrame" inherits="CTA_AbstractFrame" movable="true" toplevel="true" enableMouse="true" hidden="true" frameStrata="DIALOG" parent="UIParent">	
+		<Size>
+			<AbsDimension x="640" y="480"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-128"/>
+				</Offset>
+			</Anchor>
+		</Anchors>	
+
+		<Frames>				
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-2" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CTA_InfoLabel:Hide();
+						CTA_MainFrame:Hide();
+						CTA_MySubFrame:Hide();
+						CTA_Channel();						
+					</OnClick>
+				</Scripts>
+				
+			</Button>
+			<Button name="CTA_ListButton" hidden="true" inherits="CTA_AbstractButton" text="CTA_LIST_RAIDS">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="32" y="14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CTA_SearchFrame:Show();
+						CTA_MyRaidFrame:Hide();
+						CTA_StartRaidFrame:Hide();
+					</OnClick>				
+				</Scripts>
+			</Button>			
+			<Button name="CTA_MyRaidButton" hidden="true"  inherits="CTA_AbstractButton" text="CTA_MY_RAID">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="120" y="14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CTA_ShowMyRaidFrame();
+					</OnClick>				
+				</Scripts>
+			</Button>					
+
+			<Frame name="CTA_SearchFrame">		
+				<Size>
+					<AbsDimension x="640" y="480"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="ARTWORK">					
+						<FontString inherits="CTA_TitleFont" name="$parentTitleLabel" nonspacewrap="false" maxLines="1">
+							<Size>
+								<AbsDimension x="300" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>				
+						<FontString inherits="GameFontNormal" name="CTA_OptionsLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SEARCH_OPTIONS">
+							<Size>
+								<AbsDimension x="200" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-32"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+						<FontString inherits="GameFontNormalSmall" name="$parentShowClassLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_ALL_CLASSES">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="50" y="-64"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>				
+					
+			
+						<FontString inherits="GameFontNormalSmall" name="$parentShowPVELabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_PVE_RAIDS">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="200" y="-64"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>					
+		
+		
+						<FontString inherits="GameFontNormalSmall" name="$parentShowPVPLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_PVP_RAIDS">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="350" y="-64"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>	
+		
+						<FontString inherits="GameFontNormalSmall" name="$parentDescriptionLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SEARCH_RAID_DESCRIPTIONS">
+							<Size>
+								<AbsDimension x="150" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="470" y="-48"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>	
+										
+						<FontString inherits="GameFontNormalSmall" name="$parentShowFullLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_FULL_RAIDS">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="50" y="-96"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" name="$parentShowEmptyLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_EMPTY_RAIDS">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="200" y="-96"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>				
+						<FontString inherits="GameFontNormalSmall" name="$parentShowPasswordLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_PASSWORD_PROTECTED_RAIDS">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="350" y="-96"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" name="$parentShowLevelLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_SHOW_RAIDS_ABOVE_MY_LEVEL">
+							<Size>
+								<AbsDimension x="120" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="500" y="-96"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+														
+						<FontString inherits="GameFontNormal" name="CTA_ResultsLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_RESULTS">
+							<Size>
+								<AbsDimension x="600" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-150"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>	
+						
+						<FontString inherits="GameFontNormalSmall" name="CTA_PageLabel" nonspacewrap="false">
+							<Size>
+								<AbsDimension x="300" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>								
+					</Layer>
+				</Layers>		
+				<Frames>									
+					<EditBox name="$parentDescriptionEditBox" inherits="CTA_AbstractEditBox" letters="32">
+						<Size>
+							<AbsDimension x="140" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentDescriptionLabel">
+								<Offset>
+									<AbsDimension x="0" y="-18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString inherits="ChatFontNormal"/>
+						<Scripts>
+							<OnEnter>
+								CTA_ShowTooltip(this);
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>			
+							
+							<OnLoad>
+								this:SetTextInsets(4,0,0,0);
+							</OnLoad>
+							<OnTabPressed>
+								this:ClearFocus();
+								if ( ChatFrameEditBox ) then
+									ChatFrameEditBox:Show();
+									ChatFrameEditBox:SetFocus();
+								end																
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+								if ( ChatFrameEditBox ) then
+									ChatFrameEditBox:Show();
+									ChatFrameEditBox:SetFocus();
+								end								
+							</OnEnterPressed>
+						
+						</Scripts>				
+					</EditBox>			
+		
+					<CheckButton name="$parentShowClassCheckButton" inherits="CTA_AbstractCheckButton">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowClassLabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>			
+					</CheckButton>	
+		
+					<CheckButton name="$parentShowPVPCheckButton" inherits="CTA_AbstractCheckButton">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowPVPLabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if( not CTA_SearchFrameShowPVPCheckButton:GetChecked() and not CTA_SearchFrameShowPVECheckButton:GetChecked() ) then
+									CTA_SearchFrameShowPVECheckButton:SetChecked(1);
+								end
+							</OnClick>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>			
+					</CheckButton>						
+					<CheckButton name="$parentShowPVECheckButton" inherits="CTA_AbstractCheckButton">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowPVELabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if( not CTA_SearchFrameShowPVPCheckButton:GetChecked() and not CTA_SearchFrameShowPVECheckButton:GetChecked() ) then
+									CTA_SearchFrameShowPVPCheckButton:SetChecked(1);
+								end
+							</OnClick>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>					
+					</CheckButton>
+										
+					<CheckButton name="$parentShowFullCheckButton" inherits="CTA_AbstractCheckButton">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowFullLabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>			
+					</CheckButton>						
+					<CheckButton name="$parentShowEmptyCheckButton" inherits="CTA_AbstractCheckButton">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowEmptyLabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>			
+					</CheckButton>
+					<CheckButton name="$parentShowPasswordCheckButton" inherits="CTA_AbstractCheckButton">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowPasswordLabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>			
+					</CheckButton>
+					<CheckButton name="$parentShowLevelCheckButton" inherits="CTA_AbstractCheckButton">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parentShowLevelLabel">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetChecked(1);
+							</OnLoad>
+						</Scripts>			
+					</CheckButton>
+																
+					<Button name="CTA_SearchButton" inherits="CTA_AbstractButton" text="CTA_UPDATE_LIST">
+						<Anchors>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-20" y="-150"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_StartRaidSearch();
+							</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Frame name="CTA_Header" inherits="CTA_NewItemTemplate2">	
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="CTA_SearchButton">
+								<Offset>
+									<AbsDimension x="0" y="-32"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>				
+					<Frame name="CTA_NewItem1" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_Header">
+								<Offset>
+									<AbsDimension x="0" y="-24"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>			
+					<Frame name="CTA_NewItem2" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem1">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>						
+					<Frame name="CTA_NewItem3" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem2">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>					
+					<Frame name="CTA_NewItem4" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem3">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>					
+					<Frame name="CTA_NewItem5" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem4">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>					
+					<Frame name="CTA_NewItem6" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem5">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>		
+					<Frame name="CTA_NewItem7" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem6">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>	
+					<Frame name="CTA_NewItem8" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem7">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>	
+					<Frame name="CTA_NewItem9" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem8">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>	
+					<Frame name="CTA_NewItem10" inherits="CTA_NewItemTemplate">	
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CTA_NewItem9">
+								<Offset>
+									<AbsDimension x="0" y="-22"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>	
+					
+					<Button name="$parentPrev">
+						<Size>
+							<AbsDimension x="32" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOM">
+								<Offset>
+									<AbsDimension x="-64" y="9"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>	
+							<OnClick>
+								if( CTA_ResultsListOffset > 0 ) then
+									CTA_ResultsListOffset = CTA_ResultsListOffset - 10;
+									CTA_UpdateResults();
+								end
+							</OnClick>							
+						</Scripts>
+						<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+						<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+						<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+						<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>			
+					</Button>	
+					<Button name="$parentNext">
+						<Size>
+							<AbsDimension x="32" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOM">
+								<Offset>
+									<AbsDimension x="64" y="9"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>								
+							<OnClick>
+								if( CTA_RaidListLength > CTA_ResultsListOffset + 10 ) then
+									CTA_ResultsListOffset = CTA_ResultsListOffset + 10;
+									CTA_UpdateResults();
+								end
+							</OnClick>							
+						</Scripts>
+						<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+						<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+						<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+						<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>			
+					</Button>	
+																
+					<Button name="CTA_RequestInviteButton" inherits="CTA_AbstractButton" text="CTA_JOIN_RAID">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-32" y="14"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_SendRaidInvitationRequest();
+							</OnClick>
+						</Scripts>
+					</Button>																
+				</Frames>		
+			    <Scripts>
+			    <OnLoad>		    	
+					CTA_SearchFrameTitleLabel:SetText( CTA_CALL_TO_ARMS.." - "..CTA_SEARCH_FOR_RAIDS );
+					CTA_RequestInviteButton:Disable();
+			    </OnLoad>
+			  </Scripts>		
+			</Frame>
+			
+		
+			<Frame name="CTA_MyRaidFrame" hidden="true">	
+				<Size>
+					<AbsDimension x="640" y="480"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="ARTWORK">	
+						<FontString inherits="CTA_TitleFont" name="$parentTitleLabel" nonspacewrap="false" maxLines="1">
+							<Size>
+								<AbsDimension x="300" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>			
+						
+						<FontString inherits="GameFontNormal" name="$parentDescriptionLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_RAID_DESCRIPTION">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-52"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString inherits="GameFontNormalSmall" name="$parentDesctiptionPromptLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_RAID_DESCRIPTION_HELP">
+							<Size>
+								<AbsDimension x="400" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="170" y="-36"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>			
+									
+						<FontString inherits="GameFontNormal" name="$parentTypeLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_RAID_TYPE">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-84"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>		
+												
+						<FontString inherits="GameFontNormalSmall" name="$parentPVPLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_PLAYER_VS_PLAYER">
+							<Size>
+								<AbsDimension x="150" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="200" y="-84"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" name="$parentPVELabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_PLAYER_VS_ENVIRONMENT">
+							<Size>
+								<AbsDimension x="200" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="330" y="-84"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>				
+		
+						<FontString inherits="GameFontNormal" name="$parentMaxSizeLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_MAXIMUM_PLAYERS">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-116"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+						<FontString inherits="GameFontNormalSmall" nonspacewrap="false" justifyH="LEFT"  text="CTA_MAXIMUM_PLAYERS_HELP">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="240" y="-116"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+						
+						<FontString inherits="GameFontNormal" name="$parentMinLevelLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_MINIMUM_LEVEL">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-148"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+						<FontString inherits="GameFontNormalSmall" nonspacewrap="false" justifyH="LEFT"  text="CTA_MINIMUM_LEVEL_HELP">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="240" y="-148"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+					
+						<FontString inherits="GameFontNormal" name="$parentPasswordLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_PASSWORD">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-180"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+				
+						<FontString inherits="GameFontNormalSmall" name="$parentUsePasswordLabel" nonspacewrap="false" justifyH="LEFT"  text="CTA_PASSWORD_HELP">
+							<Size>
+								<AbsDimension x="240" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="340" y="-180"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+		
+						<FontString inherits="GameFontNormal" name="$parentClassesLabel" nonspacewrap="false" justifyH="RIGHT"  text="CTA_CLASS_DISTRIBUTION">
+							<Size>
+								<AbsDimension x="140" y="32"/>
+							</Size>
+							
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-212"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+												
+						<FontString inherits="GameFontNormalSmall" name="CTA_AcidNote" hidden="true">
+							<Size>
+								<AbsDimension x="480" y="40"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>	
+												
+						<FontString name="CTA_PublicStatusLabel" inherits="GameFontNormalSmall" nonspacewrap="false">
+							<Size>
+								<AbsDimension x="600" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+					</Layer>
+				</Layers>
+				<Frames>										
+					<EditBox name="CTA_MyRaidFrameDescriptionEditBox" letters="128" inherits="CTA_AbstractEditBox">
+						<Size>
+							<AbsDimension x="400" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="170" y="-60"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetTextInsets(4,0,0,0);
+							</OnLoad>
+							<OnEditFocusLost>
+								CTA_MyRaidInstantUpdate();
+							</OnEditFocusLost>	
+							<OnTabPressed>
+								this:ClearFocus();
+								CTA_MyRaidFrameMaxSizeEditBox:SetFocus();
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+								--CTA_MyRaidFrameMaxSizeEditBox:SetFocus();
+								if ( ChatFrameEditBox ) then
+									ChatFrameEditBox:Show();
+									ChatFrameEditBox:SetFocus();
+								end								
+							</OnEnterPressed>													
+						</Scripts>				
+					</EditBox>
+					
+					<CheckButton name="$parentPVPCheckButton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_MyRaidFramePVPLabel" >
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>								
+								CTA_MyRaidFramePVPCheckButton:SetChecked(1);
+								CTA_MyRaidFramePVECheckButton:SetChecked(0);	
+								CTA_MyRaidInstantUpdate();							
+							</OnClick>
+							<OnLoad>
+									CTA_MyRaidFramePVPCheckButton:SetChecked(1);
+							</OnLoad>
+						</Scripts>							
+					</CheckButton>
+					<CheckButton name="$parentPVECheckButton" inherits="UICheckButtonTemplate">
+						<Size>
+							<AbsDimension x="24" y="24"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_MyRaidFramePVELabel" >
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_MyRaidFramePVPCheckButton:SetChecked(0);
+								CTA_MyRaidFramePVECheckButton:SetChecked(1);
+								CTA_MyRaidInstantUpdate();									
+							</OnClick>
+						</Scripts>	
+					</CheckButton>
+											
+					<EditBox name="CTA_MyRaidFrameMaxSizeEditBox" inherits="CTA_AbstractEditBox" letters="2" numeric="true">
+						<Size>
+							<AbsDimension x="50" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="170" y="-124"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetTextInsets(4,0,0,0);
+							</OnLoad>
+							<OnEditFocusLost>
+								CTA_AcidUpdate();
+							</OnEditFocusLost>
+							<OnTabPressed>
+								this:ClearFocus();
+								CTA_MyRaidFrameMinLevelEditBox:SetFocus();
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+								--CTA_MyRaidFrameMinLevelEditBox:SetFocus();
+								if ( ChatFrameEditBox ) then
+									ChatFrameEditBox:Show();
+									ChatFrameEditBox:SetFocus();
+								end								
+							</OnEnterPressed>								
+						</Scripts>				
+					</EditBox>
+					<EditBox name="CTA_MyRaidFrameMinLevelEditBox" inherits="CTA_AbstractEditBox" letters="2" numeric="true">
+						<Size>
+							<AbsDimension x="50" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="170" y="-156"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetTextInsets(4,0,0,0);
+							</OnLoad>
+							<OnEditFocusLost>
+								CTA_MyRaidInstantUpdate();
+							</OnEditFocusLost>	
+							<OnTabPressed>
+								this:ClearFocus();
+								CTA_MyRaidFramePasswordEditBox:SetFocus();
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+								--CTA_MyRaidFramePasswordEditBox:SetFocus();
+								if ( ChatFrameEditBox ) then
+									ChatFrameEditBox:Show();
+									ChatFrameEditBox:SetFocus();
+								end								
+							</OnEnterPressed>													
+						</Scripts>				
+					</EditBox>
+					
+					<EditBox name="CTA_MyRaidFramePasswordEditBox" inherits="CTA_AbstractEditBox" letters="16" >
+						<Size>
+							<AbsDimension x="150" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="170" y="-188"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetTextInsets(4,0,0,0);
+							</OnLoad>
+							<OnEditFocusLost>
+								CTA_MyRaidInstantUpdate();
+							</OnEditFocusLost>	
+							<OnTabPressed>
+								this:ClearFocus();
+								CTA_MyRaidFrameDescriptionEditBox:SetFocus();
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+								if ( ChatFrameEditBox ) then
+									ChatFrameEditBox:Show();
+									ChatFrameEditBox:SetFocus();
+								end								
+							</OnEnterPressed>													
+						</Scripts>				
+					</EditBox>			
+			
+					
+					<Frame name="CTA_Acid1" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="50" y="-250"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>		
+					<Frame name="CTA_Acid2" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid1">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>							
+					<Frame name="CTA_Acid3" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid2">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>			
+					<Frame name="CTA_Acid4" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid3">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>		
+					<Frame name="CTA_Acid0" inherits="CTA_AcidItemTemplateAnyClass">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid4">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>								
+					<Frame name="CTA_Acid5" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid0">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>			
+					<Frame name="CTA_Acid6" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid5">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>		
+					<Frame name="CTA_Acid7" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid6">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>
+					<Frame name="CTA_Acid8" inherits="CTA_AcidItemTemplate">	
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CTA_Acid7">
+								<Offset>
+									<AbsDimension x="60" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Frame>
+					
+					<Button name="CTA_ShowACIDButton" hidden="true">
+						<Size>
+							<AbsDimension x="32" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="CTA_AcidNoteLabel">
+								<Offset>
+									<AbsDimension x="40" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								--CTA_ACID();
+							</OnClick>															
+						</Scripts>
+						<NormalTexture file="Interface\AddOns\CallToArms\cta3icon3"/>
+						<PushedTexture file="Interface\AddOns\CallToArms\cta3icon3"/>
+						<DisabledTexture file="Interface\AddOns\CallToArms\cta3icon3"/>
+						<HighlightTexture file="Interface\AddOns\CallToArms\cta3icon3" alphaMode="ADD"/>			
+					</Button>	
+												
+					<Button name="CTA_ToggleViewableButton" inherits="CTA_AbstractButton">
+						<Size>
+							<AbsDimension x="100" y="22"/>
+						</Size>				
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-32" y="14"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if ( CTA_MyRaidIsOnline ) then
+									CTA_ToggleViewableButton:SetText( CTA_GO_ONLINE );
+									CTA_IconMsg( CTA_IS_OFFLINE );
+									CTA_PublicStatusLabel:SetText( CTA_RAID_OFFLINE_MESSAGE );
+									CTA_PublicStatusLabel:SetTextColor( 1, 0.2, 0.2, 1 );
+									CTA_MyRaidIsOnline = nil;
+								else
+									CTA_ToggleViewableButton:SetText( CTA_GO_OFFLINE );
+									CTA_IconMsg( CTA_IS_ONLINE );
+									CTA_PublicStatusLabel:SetText( CTA_RAID_ONLINE_MESSAGE );
+									CTA_PublicStatusLabel:SetTextColor( 0.2, 1, 0.2, 1 );
+									CTA_MyRaidIsOnline = 1;
+								end
+							</OnClick>
+							<OnLoad>
+									this:SetText( CTA_GO_OFFLINE );
+									CTA_PublicStatusLabel:SetText( CTA_RAID_ONLINE_MESSAGE );
+									CTA_PublicStatusLabel:SetTextColor( 0.2, 1, 0.2, 1 );
+							</OnLoad>
+						</Scripts>
+					</Button>			
+				</Frames>
+			    <Scripts>
+			    <OnLoad>		    	
+					CTA_MyRaidFrameTitleLabel:SetText( CTA_CALL_TO_ARMS.." - "..CTA_HOST_A_RAID );
+			    </OnLoad>
+			  </Scripts>				
+			</Frame>
+		
+			
+			<Frame name="CTA_StartRaidFrame" hidden="true">	
+				<Size>
+					<AbsDimension x="640" y="480"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="ARTWORK">	
+						<FontString inherits="CTA_TitleFont" name="$parentTitleLabel" nonspacewrap="false" maxLines="1">
+							<Size>
+								<AbsDimension x="300" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>			
+						
+						<FontString inherits="CTA_Heading1Font" name="CTA_StartRaidLabel" justifyV="TOP"  nonspacewrap="false">
+							<Size>
+								<AbsDimension x="300" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-128"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+					</Layer>
+				</Layers>
+				<Frames>													
+					<Button name="CTA_StartRaidButton" inherits="CTA_AbstractButton" text="CTA_START_A_RAID">
+						<Anchors>
+							<Anchor point="TOP">
+								<Offset>
+									<AbsDimension x="0" y="-96"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_StartRaid();
+							</OnClick>
+						</Scripts>
+					</Button>			
+				</Frames>
+			    <Scripts>
+			    <OnLoad>		    	
+					CTA_StartRaidFrameTitleLabel:SetText( CTA_CALL_TO_ARMS.." - "..CTA_START_A_RAID );
+			    </OnLoad>
+			  </Scripts>				
+			</Frame>		
+
+
+			<Frame name = "CTA_JoinRaidWindow" inherits="CTA_AbstractWindow" toplevel="true" enableMouse="true" frameStrata="DIALOG"  hidden="true">
+				<Size>
+					<AbsDimension x="320" y="190"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">	
+						<FontString inherits="GameFontNormal" name="CTA_JoinRaidLabel" nonspacewrap="false">
+							<Size>
+								<AbsDimension x="300" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>											
+					</Layer>
+				</Layers>		
+				<Frames>
+					<EditBox name="CTA_JoinRaidPasswordEditBox" inherits="CTA_AbstractEditBox">
+						<Size>
+							<AbsDimension x="200" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" >
+								<Offset>
+									<AbsDimension x="0" y="-60"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString inherits="ChatFontNormal"/>
+						<Scripts>
+							<OnLoad>
+								this:SetTextInsets(4,0,0,0);
+							</OnLoad>
+						</Scripts>				
+					</EditBox>
+					<Button name="CTA_JoinRaidButton" inherits="CTA_AbstractButton" text="CTA_SEND_REQUEST">
+						<Size>
+							<AbsDimension x="100" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOM">
+								<Offset>
+									<AbsDimension x="50" y="16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_SendPasswordRaidInvitationRequest();
+							</OnClick>
+						</Scripts>
+					</Button>						
+					<Button name="$parentCloseButton" inherits="CTA_AbstractButton" text="CTA_CANCEL">
+						<Anchors>
+							<Anchor point="BOTTOM">
+								<Offset>
+									<AbsDimension x="-50" y="16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CTA_JoinRaidWindow:Hide();
+								CTA_SearchFrame:Show();
+							</OnClick>				
+						</Scripts>
+					</Button>	
+				</Frames>		
+			</Frame>
+
+																								
+		</Frames>	
+		
+	    <Scripts>
+		    <OnDragStart>
+		      this:StartMoving();
+		    </OnDragStart>
+		    <OnDragStop>
+		      this:StopMovingOrSizing();
+		    </OnDragStop>
+		    <OnLoad>		    	
+		      this:RegisterForDrag("LeftButton");
+		    </OnLoad>
+	  	</Scripts>				
+	</Frame>
+
+</Ui>

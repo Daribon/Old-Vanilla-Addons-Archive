@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (AutoBar)
+## Notes: CooldownCount for AutoBar
+## Author: sarf
+## RequiredDeps: AutoBar, CooldownCount
+CooldownCountAutoBar.xml

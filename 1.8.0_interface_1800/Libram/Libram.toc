@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: Libram
+## Author: Alexander Brazie
+## Notes: QuestLog Tracking
+## Dependencies: Sea, Chronos
+Libram.xml

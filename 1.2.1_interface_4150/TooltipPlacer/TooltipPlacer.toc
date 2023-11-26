@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: TooltipPlacer
+## Notes: Allows the user to place the tooltip where they want.
+## Author: sarf
+## OptionalDeps: Cosmos
+##SavedVariables: TooltipPlacer_Enabled, TooltipPlacer_VerticalGrowth
+TooltipPlacer.xml

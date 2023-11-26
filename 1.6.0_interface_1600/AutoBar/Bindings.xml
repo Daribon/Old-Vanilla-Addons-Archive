@@ -1,0 +1,41 @@
+<Bindings>
+<Binding name="AUTOBAR_CONFIG" header="AUTOBAR_SEP"> AutoBar_EditConfig(); </Binding>
+<Binding name="AUTOBAR_BUTTON_MERGED_HEAL" runOnUp="true"> if (keystate == "down") then AutoBar_Down("MERGED_HEAL"); else AutoBar_Up("MERGED_HEAL"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_MERGED_MANA" runOnUp="true"> if (keystate == "down") then AutoBar_Down("MERGED_MANA"); else AutoBar_Up("MERGED_MANA"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_MERGED_BANDAGE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("MERGED_BANDAGE"); else AutoBar_Up("MERGED_BANDAGE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_HEARTHSTONE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("HEARTHSTONE"); else AutoBar_Up("HEARTHSTONE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_BANDAGES" runOnUp="true"> if (keystate == "down") then AutoBar_Down("BANDAGES"); else AutoBar_Up("BANDAGES"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_BANDAGES_LESSER" runOnUp="true"> if (keystate == "down") then AutoBar_Down("BANDAGES_LESSER"); else AutoBar_Up("BANDAGES_LESSER"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_HEALPOTIONS" runOnUp="true"> if (keystate == "down") then AutoBar_Down("HEALPOTIONS"); else AutoBar_Up("HEALPOTIONS"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_HEALPOTIONS_LESSER" runOnUp="true"> if (keystate == "down") then AutoBar_Down("HEALPOTIONS_LESSER"); else AutoBar_Up("HEALPOTIONS_LESSER"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_MANAPOTIONS" runOnUp="true"> if (keystate == "down") then AutoBar_Down("MANAPOTIONS"); else AutoBar_Up("MANAPOTIONS"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_MANAPOTIONS_LESSER" runOnUp="true"> if (keystate == "down") then AutoBar_Down("MANAPOTIONS_LESSER"); else AutoBar_Up("MANAPOTIONS_LESSER"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_HEALTHSTONE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("HEALTHSTONE"); else AutoBar_Up("HEALTHSTONE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_MANASTONE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("MANASTONE"); else AutoBar_Up("MANASTONE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_WATER" runOnUp="true"> if (keystate == "down") then AutoBar_Down("WATER"); else AutoBar_Up("WATER"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_FOOD" runOnUp="true"> if (keystate == "down") then AutoBar_Down("FOOD"); else AutoBar_Up("FOOD"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_RAGEPOTIONS" runOnUp="true"> if (keystate == "down") then AutoBar_Down("RAGEPOTIONS"); else AutoBar_Up("RAGEPOTIONS"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_ENERGYPOTIONS" runOnUp="true"> if (keystate == "down") then AutoBar_Down("ENERGYPOTIONS"); else AutoBar_Up("ENERGYPOTIONS"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_SWIFTNESSPOTIONS" runOnUp="true"> if (keystate == "down") then AutoBar_Down("SWIFTNESSPOTIONS"); else AutoBar_Up("SWIFTNESSPOTIONS"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_SHARPENINGSTONES" runOnUp="true"> if (keystate == "down") then AutoBar_Down("SHARPENINGSTONES"); else AutoBar_Up("SHARPENINGSTONES"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_WEIGHTSTONE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("WEIGHTSTONE"); else AutoBar_Up("WEIGHTSTONE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_UNGORORESTORE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("UNGORORESTORE"); else AutoBar_Up("UNGORORESTORE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_UNGOROCHARGE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("UNGOROCHARGE"); else AutoBar_Up("UNGOROCHARGE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_UNGOROFORCE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("UNGOROFORCE"); else AutoBar_Up("UNGOROFORCE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_UNGOROSPIRE" runOnUp="true"> if (keystate == "down") then AutoBar_Down("UNGOROSPIRE"); else AutoBar_Up("UNGOROSPIRE"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_UNGOROWARD" runOnUp="true"> if (keystate == "down") then AutoBar_Down("UNGOROWARD"); else AutoBar_Up("UNGOROWARD"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_UNGOROYIELD" runOnUp="true"> if (keystate == "down") then AutoBar_Down("UNGOROYIELD"); else AutoBar_Up("UNGOROYIELD"); end </Binding>
+
+<Binding name="AUTOBAR_BUTTON_CUSTOM1" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM1"); else AutoBar_Up("CUSTOM1"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM2" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM2"); else AutoBar_Up("CUSTOM2"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM3" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM3"); else AutoBar_Up("CUSTOM3"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM4" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM4"); else AutoBar_Up("CUSTOM4"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM5" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM5"); else AutoBar_Up("CUSTOM5"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM6" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM6"); else AutoBar_Up("CUSTOM6"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM7" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM7"); else AutoBar_Up("CUSTOM7"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM8" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM8"); else AutoBar_Up("CUSTOM8"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM9" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM9"); else AutoBar_Up("CUSTOM9"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM10" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM10"); else AutoBar_Up("CUSTOM10"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM11" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM11"); else AutoBar_Up("CUSTOM11"); end </Binding>
+<Binding name="AUTOBAR_BUTTON_CUSTOM12" runOnUp="true"> if (keystate == "down") then AutoBar_Down("CUSTOM12"); else AutoBar_Up("CUSTOM12"); end </Binding>
+</Bindings>

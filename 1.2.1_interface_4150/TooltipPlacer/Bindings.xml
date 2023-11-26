@@ -1,0 +1,10 @@
+<Bindings>
+	<!-- Toggle TooltipPlacer On/Off -->
+	<Binding name="TOOLTIPPLACER" description="Toggle Tooltip Placer" header="TOOLTIPPLACERHEADER">
+		TooltipPlacer_Toggle_Enabled(-1);
+	</Binding>
+
+	<Binding name="NEWPLACE" description="Mark new place for tooltip">
+		TooltipPlacer_MarkNewPlace();
+	</Binding>
+</Bindings>

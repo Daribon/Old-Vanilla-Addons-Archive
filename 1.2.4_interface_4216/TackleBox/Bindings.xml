@@ -1,0 +1,10 @@
+<Bindings>
+	<!-- Execute throw -->
+	<Binding name="TACKLEBOX_THROW" header="TACKLEBOXHEADER">
+		if ( keystate == "down" ) then
+			TackleBox_ThrowStart();
+		else
+			TackleBox_ThrowStop();
+		end
+	</Binding>
+</Bindings>

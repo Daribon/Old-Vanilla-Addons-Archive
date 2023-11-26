@@ -1,0 +1,12 @@
+## Interface: 1800
+## Title: UnrealSoundPack
+## Author: sarf
+## Notes: Adds Unreal Sounds to WoW. Rampage!
+## SavedVariables: UnrealSoundPack_Options
+constants.lua
+localization_en.lua
+localization_de.lua
+localization_fr.lua
+localization_kr.lua
+UnrealSoundPack.lua
+UnrealSoundPack.xml

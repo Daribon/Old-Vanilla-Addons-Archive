@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: RestReminder
+## Notes: Gives you a reminder to get yourself to an inn if you try to logout outside.
+## Author: sarf
+## OptionalDeps: Cosmos
+##SavedVariables: RestReminder_Enabled
+RestReminder.xml

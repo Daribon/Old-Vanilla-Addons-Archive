@@ -1,0 +1,65 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="Nurfed_Buttons.lua"/>
+	<!-- Lock button to lock all capsule frames -->
+	<CheckButton name="Nurfed_LockButton" parent="Minimap" frameStrata="MEDIUM">
+		<Size>
+			<AbsDimension x="33" y="33"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="Nurfed_LockButtonIconTexture" file="Interface\AddOns\Nurfed_General\images\nurfedlocked">
+					<Size>
+						<AbsDimension x="23" y="23"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size>
+						<AbsDimension x="52" y="52"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="Nurfed_LockButtonDropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Scripts>
+					<OnLoad>
+						this:RegisterEvent("VARIABLES_LOADED");
+					</OnLoad>
+					<OnEvent>
+						Nurfed_MenuDropDown_OnLoad();
+					</OnEvent>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Nurfed_LockButtonOnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_LockButtonOnEvent(event);
+			</OnEvent>
+			<OnClick>
+				Nurfed_LockButtonOnClick(arg1);
+			</OnClick>
+			<OnEnter>
+					Nurfed_LockButtonOnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+</Ui>

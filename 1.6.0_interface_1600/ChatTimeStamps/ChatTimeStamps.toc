@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r ChatTimeStamps
+## Notes: This adds time stamps to chat.
+## Author: sarf, idea by Ravenfury, recode by Alexander
+## OptionalDeps: Khaos, UltimateUI
+ChatTimeStamps.xml

@@ -1,0 +1,6 @@
+## Interface: 1300
+## Author: Ravage
+## Title: PartyQuests
+## Notes: Allows you to show other party members what quests you have.
+## RequiredDeps: Cosmos, CosmosSchedule
+QuestShareFrame.xml

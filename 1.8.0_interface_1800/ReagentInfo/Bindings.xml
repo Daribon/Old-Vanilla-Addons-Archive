@@ -1,0 +1,7 @@
+<Bindings>
+	<Binding name="REAGENTINFO_CONFIG" runOnUp="true" header="REAGENTINFO">
+		if (keystate == "down" ) then
+			ShowUIPanel(ReagentInfo_ConfigFrame);
+		end
+	</Binding>
+</Bindings>

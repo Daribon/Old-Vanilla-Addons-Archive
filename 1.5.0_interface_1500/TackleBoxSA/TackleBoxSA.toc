@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: Tackle Box (SA)
+## Notes: Allows for easy casting, recasting, and gear swapping for those who fish.
+## SavedVariables: TackleBoxSA_Cfg
+TackleBoxSA.xml

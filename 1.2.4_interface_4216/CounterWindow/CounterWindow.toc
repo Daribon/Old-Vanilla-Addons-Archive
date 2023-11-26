@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: CounterWindow
+## Notes: Allows you to see all kinds of stuff being counted up and down.
+## Author: sarf
+## OptionalDeps: Cosmos
+##SavedVariables: CounterWindow_Enabled, CounterWindow_CurrentXPCounterType
+CounterWindow.xml

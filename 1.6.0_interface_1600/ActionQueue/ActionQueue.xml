@@ -1,0 +1,76 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="localization.de.lua"/>
+    <Script file="localization.fr.lua"/>
+    <Script file="localization.kr.lua"/>
+    <Script file="ActionQueue_Hook.lua"/>
+    <Script file="ActionQueue_Util.lua"/>
+    <Script file="ActionQueue_Range.lua"/>
+    <Script file="ActionQueue.lua"/>
+	<GameTooltip name="ActionQueueTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate" />
+	<Frame name="ActionQueueMessageFrame" parent="UIParent" frameStrata="LOW" toplevel="true">
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<AbsDimension x="768" y="128"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="ZoneTextFont">
+					<Size>
+						<AbsDimension x="768" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				FadingFrame_OnLoad();
+				FadingFrame_SetFadeInTime(this, 0.1);
+				FadingFrame_SetHoldTime(this, 5.0);
+				FadingFrame_SetFadeOutTime(this, 2.0);
+			</OnLoad>
+			<OnUpdate>
+				FadingFrame_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="ActionQueueFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+		<Scripts>
+			<OnLoad>
+				ActionQueue_OnLoad();
+			</OnLoad>
+			<OnEvent>
+			 	ActionQueue_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<Frame name="ActionQueueUtilFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+		<Scripts>
+			<OnLoad>
+				ActionQueueUtil_OnLoad();
+			</OnLoad>
+			<OnEvent>
+			 	ActionQueueUtil_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<Frame name="ActionQueueRangeFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+		<Scripts>
+			<OnLoad>
+				ActionQueueRange_OnLoad();
+			</OnLoad>
+			<OnEvent>
+			 	ActionQueueRange_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

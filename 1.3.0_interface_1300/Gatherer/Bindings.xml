@@ -1,0 +1,15 @@
+<Bindings>
+	<!--
+		Version: 2.0.1
+		Revision: $Id: Bindings.xml,v 1.3 2005/04/28 19:59:34 islorgris Exp $
+	-->
+	<!-- User interface key bindings -->
+	<Binding name="GATHERER_BINDING_TOGGLE_MENU" runOnUp="false" header="GATHERER_BINDINGS_HEADER">
+		if (GathererUI_Popup:IsVisible()) then
+				GathererUI_HideMenu();
+		else
+				GathererUI_ShowMenu();
+		end	
+	</Binding>
+</Bindings>
+

@@ -1,0 +1,254 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Button name="DAB_MenuOptionTemplate" virtual="true">
+	<Size><AbsDimension x="170" y="15"/></Size>
+	<HighlightTexture name = "$parentHighlight" alphaMode="ADD" file="Interface\QuestFrame\UI-QuestTitleHighlight"/>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString inherits="GameFontNormal" name="$parent_Text">
+				<Color r="1.0" g="1.0" b="1.0"/>
+				<Anchors><Anchor point="LEFT"/></Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnClick>
+			DAB_Menu_OnClick();
+		</OnClick>
+		<OnEnter>
+			this:GetParent().timer = nil;
+		</OnEnter>
+	</Scripts>
+</Button>
+
+<Button name="DAB_DropMenu" inherits="DAB_TooltipBGTemplate" hidden="true"  frameStrata="DIALOG" parent="DAB_Options">
+	<Size><AbsDimension x="10" y="10"/></Size>
+	<Anchors>
+		<Anchor point="CENTER"/>
+	</Anchors>
+	<Frames>
+		<Button name="$parent_Option1" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT">
+					<Offset><AbsDimension x="10" y="-10"/></Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option2" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option1" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option3" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option2" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option4" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option3" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option5" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option4" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option6" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option5" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option7" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option6" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option8" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option7" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option9" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option8" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option10" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option9" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option11" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option10" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option12" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option11" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option13" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option12" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option14" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option13" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option15" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option14" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option16" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option15" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option17" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option16" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option18" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option17" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option19" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option18" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option20" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option19" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option21" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option20" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option22" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option21" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option23" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option22" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option24" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option23" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option25" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option24" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option26" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option25" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option27" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option26" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option28" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option27" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option29" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option28" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option30" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option29" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option31" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option30" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option32" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option31" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option33" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option32" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option34" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option33" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option35" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option34" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option36" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option35" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option37" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option36" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option38" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option37" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option39" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option38" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+		<Button name="$parent_Option40" inherits="DAB_MenuOptionTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_Option39" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+		</Button>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropColor(.2,.2,.2);
+		</OnLoad>
+		<OnEnter>
+			this.timer = nil;
+		</OnEnter>
+		<OnLeave>
+			this.timer = .5;
+		</OnLeave>
+		<OnHide>
+			if (this.timer) then
+				this.timer = .01;
+			end
+		</OnHide>
+		<OnUpdate>
+			DAB_Menu_TimeOut(arg1);
+		</OnUpdate>
+	</Scripts>
+</Button>
+
+</Ui>

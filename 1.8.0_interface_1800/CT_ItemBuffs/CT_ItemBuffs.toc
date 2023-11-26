@@ -1,0 +1,6 @@
+## Interface: 1800
+## Version: 1.33 (CTMod 1.843)
+## Title: CT_ItemBuffs
+## Notes: Shows item buffs in the buff bar
+## Dependencies: CT_BuffMod, CT_MasterMod
+CT_ItemBuffs.xml

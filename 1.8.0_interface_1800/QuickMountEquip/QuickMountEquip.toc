@@ -1,0 +1,6 @@
+## Interface: 1800
+## SavedVariables: QuickMount_ConfigMap
+## Title: |cFF006699UUI -|r QuickMountEquip
+## Notes: Allows the user to auto-equip spurs, etc. when mounting/dismounting
+## OptionalDeps: myAddOns, Sea, UltimateUI, Fetch
+QuickMountEquip.xml

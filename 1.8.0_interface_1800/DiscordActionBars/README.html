@@ -1,0 +1,310 @@
+<HTML>
+
+<HEAD>
+<STYLE>
+A {font: 12pt Verdana; text-decoration: none;  color: #ff0000;}
+A:hover {color: #ffff00; background-color: #ff0000;}
+.top {font: 9pt Verdana; text-decoration: none;  color: #ff0000;}
+</STYLE>
+</HEAD>
+
+<BODY>
+<center><FONT size=5 color=red><b>DISCORD ACTION BARS</b><br>
+<FONT size=3>by Lozareth</FONT></FONT></center><br>
+
+<center><a href="#1">Overview</a><br><br>
+<a href="#2">The Features</a><br><br>
+<a href="#2.5">How to Set Keybindings for Dummies</a><br><br>
+<a href="#3">Slash Commands</a><br><br>
+<a href="#3.5">Options Overview</a><br><br>
+<a href="#4">Bar Options</a><br><br>
+<a href="#5">Background Options</a><br><br>
+<a href="#6">Control Box Options</a><br><br>
+<a href="#7">Label Options</a><br><br>
+<a href="#7">Other Bars</a><br><br>
+<a href="#9">Num Buttons</a><br><br>
+<a href="#10">Floaters</a><br><br>
+<a href="#11">On Event Macros</a><br><br>
+<a href="#12">Misc Options</a><br><br>
+<a href="#12.5">Setting Up Bars That Switch When You Shapeshift</a><br><br>
+<a href="#13">Useful Functions</a><br><br>
+<a href="#14">Event Macro Examples</a><br><br>
+<a href="#98">Known Issues</a><br><br>
+<a href="#99">Contact the Author</a><br>
+</center>
+<br>
+
+<a name="1"><b>Overview:</b></a><br><br>
+
+This mod provides you with 10 action bars that can use all 120 action buttons.  Each bar is hella configurable.  You can also place buttons that aren't attached to any bar (referred to as "floaters").  Lastly, the mod also creates control boxes that can be used to setup a neat menu for showing and hiding bars without the need for macros.
+
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="2"><b>The Features:</b></a><br><br>
+
+<li>You can define the number of buttons each bar holds.</li>
+<li>The appearance of the buttons is fully customizable: size, transparency, space between buttons, numbers of rows to use, hide empty buttons, and more.</li>
+<li>You can configure a background to display behind the buttons.</li>
+<li>Bars can be set to display when you're in combat, have a hostile target, when you move the mouse over the bar, when you hold down a specific key, and more.</li>
+<li>You can configure "control boxes", special buttons that can be configured to show a bar when clicked or you move the mouse over them.</li>
+<li>Bars and control boxes can be attached to other bars and control boxes so that they move together.</li>
+<li>You can configure "floaters", buttons that are free of any bar.</li>
+<li>You can define macros that run in response to game events.  These macros do not use up any of your base 18 macros.</li>
+<li>You can configure the pet action, shapeshift, bag, and micro menu bars.</li>
+<li>You can save and load different settings without having to relog or reload the ui.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="2.5"><b>How to Set Keybindings for Dummies</b></a><br><br>
+
+Press ESC.  Click the Key Bindings button.  Scroll down to the Discord Action Bars header.  Those are the keybindings for this mod (duh).
+
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="3"><b>Slash Commands:</b></a><br><br>
+<li><b>/dab </b>- toggle the options window</li>
+<li><b>/dab barshow # </b>- show bar #</li>
+<li><b>/dab barhide # </b>- hide bar #</li>
+<li><b>/dab bartoggle # </b>- show bar # if it's hidden else hide it</li>
+<li><b>/dab barswap barA barB </b>- swap the buttons on barA with those on barB</li>
+<li><b>/dab unswap </b>- swap the last two bars you swapped using the /dab barswap command</li>
+<li><b>/dab floatershow # </b>- show floater #</li>
+<li><b>/dab floaterhide # </b>- hide floater #</li>
+<li><b>/dab floatertoggle # </b>- show floater # if it's hidden else hide it</li>
+<li><b>/dab clearbar # </b>- removes the actions from all buttons on bar #</li>
+<li><b>/dab setkeybar # </b>- set bar # as the bar the dynamic keybindings use</li>
+<li><b>/dab hideallbars </b>- hide all bars</li>
+<li><b>/dab showallbars </b>- show all bars</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="3.5"><b>Options Overview:</b></a><br><br>
+You access the options window by typing /dab. <br>
+The top set of buttons on the left-side of the screen are used to select an action bar to configure.<br>
+The Other Bars button is used to configure the Pet Action, Shapeshift, Bag, and Menu bars.<br>
+The Num Buttons button brings up a window where you can set the number of buttons each bar holds.<br>
+The Floaters button brings up the options window for buttons that aren't attached to any bar.<br>
+On Event Macros is where you define macros to be run in response to game events.<br>
+Misc Options holds various options that don't fit in other categories.<br>
+Clicking the Unlock Dragging button will allow you to move all frames created by DAB by dragging them to where you want them.  Clicking the button again will re-lock all the frames.  You can also hold Ctrl to override the dragging lock.  A bar's label can also be always be used to drag a bar.<br>
+The Lock Buttons button will keep you from dragging actions out of all the buttons.  <br>
+The Show Button IDs button will bring up a display of each button's ID in the middle of the button.<br>
+The Quick Save button will save your settings using your character's name as the settings name.<br>
+The Quick Load button will load your settings using your character's name as the settings name.<br><br>
+All edit boxes require you to hit enter before they update the value they modify.<br>
+All sliders have an edit box attached to them where you can type in a value instead of using the slider.  For most of those edit boxes you can type in a value that's greater or less than what the slider allows.  This will disable the slider until you type in a value that's within the slider's range.
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="4"><b>Bar Options:</b></a><br><br>
+<li><b>Hide</b>: This hides the bar.</li>
+<li><b>Hide Empty Buttons</b>: This hides buttons on the bar that don't hold an action.</li>
+<li><b>Collapse Empty Buttons</b>: This hides empty buttons and causes other buttons to shift to the left to fill in the blank spots left by the empty buttons.</li>
+<li><b>Hide When an Action Button is Pressed</b>: This will cause the bar to be hidden right after you click any of its buttons.</li>
+<li><b>Show When In Combat</b>: The bar will be shown when you enter combat, whether through entering attack mode or you gain aggro.  It will be hidden when you leave combat.</li>
+<li><b>Show When Out of Combat</b>: The bar will be shown when you leave combat and will hide when you enter combat.</li>
+<li><b>Show For Friendly Target</b>: The bar will be shown when you target a friendly unit.  It will hide if you target a hostile unit or if you don't have a target.</li>
+<li><b>Show For Hostile Target</b>: The bar will be shown when you target a hostile unit.  It will hide if you target a friendly unit or if you don't have a target.</li>
+<li><b>Show When Mouse Moves Over the Bar</b>: The bar will be shown when you move the mouse over the area of the screen it occupies.  It will be hidden when you move the mouse off the bar.</li>
+<li><b>Show While A Key Is Pressed</b>: The bar will shown while you hold a key you set in the keybindings menu and will hide when you release the key.</li>
+<li><b>Right-click Bar</b>: This sets a bar to use actions from when you right-click a button.  The action used will match the location of button clicked.  For example, if you set right-click bar to 3 and right-click the 4th button on the bar, the 4th button on bar 3 is what will actually be pressed.</li>
+<li><b>Middle-click Bar</b>: This sets a bar to use actions from when you middle-click a button.</li>
+<li><b>Default Target</b>: Type in a unit id to use as the bar's default target.  That unit will be the one targetted whenever you cast a spell on the bar if you don't have a target selected.  Valid unit id's can be found at <a href="http://www.wowwiki.com/Units" class="top">http://www.wowwiki.com/Units</a>.</li>
+<li><b>Button Size</b>: This sets the height and width of buttons on the bar in pixels.  It is affected by your UI scale.</li>
+<li><b>Button Transparency</b>: This sets the alpha level of buttons on the bar.</li>
+<li><b>Horizontal Spacing</b>: This sets the amount of space between buttons in a row.</li>
+<li><b>Vertical Spacing</b>: This sets the amount of space between rows.</li>
+<li><b>Button Rows</b>: This sets the number of rows in which the buttons display.  Setting the rows equal to the number of buttons on the bar will give you a 1 column vertical bar.</li>
+<li><b>Attach to Frame</b>: Select another bar or control box to attach this bar to.  This bar will drag along with whatever frame you attach it to.</li>
+<li><b>Attach Point</b>: Select which part of the bar attaches to the frame selected in the above option.</li>
+<li><b>Attach To</b>: Select which part of the frame the bar attaches to.</li>
+<li><b>X Offset</b>: Set the horizontal distance between the bar and the frame it's attached to.</li>
+<li><b>Y Offset</b>: Set the vertical distance between the bar and the frame it's attached to.</li>
+<li><b>Use For Shapeshift Form</b>: Select a shapeshift form this bar is used for.</li>
+<li><b>When I Shapeshift</b>: Select what happens when you shapeshift into the bar's selected form.</li>
+<li><b>Copy Settings From Bar</b>: Select another bar to copy settings from then click the copy button.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="5"><b>Background Options:</b></a><br><br>
+<li><b>Background Style</b>: Use this to select a different style for the background.  The main difference between the styles is the border art.  Style 1 is the only style where you can define a custom background texture.  It's also the only style that can be fully opaque.  The background color for style 3 can't be changed.</li>
+<li><b>Background Color</b>: The name says what it is.</li>
+<li><b>Background Texture</b>: Use this box to type in the filename <i>without</i> a file extension of a custom texture to use for the background.  Texture files must be placed in your DiscordActionBars folder.  Custom textures only work with background style 1.</li>
+<li><b>Background Alpha</b>: Use this to set the transparency of the background.</li>
+<li><b>Padding</b>: Use this to set the amount of space between the edges of the background and the bar's buttons.</li>
+<li><b>Border Color</b>: Guess.</li>
+<li><b>Border Texture</b>: Use this box to type in the filename <i>without</i> a file extension of a custom texture to use for the background's border.  Texture files must be placed in your DiscordActionBars folder.  Custom textures only work with background style 1.</li>
+<li><b>Border Alpha</b>: Use this to set the transparency of the background's border.</li>
+<li><b>Button Border Color</b>: Use this to set the color of the border that surrounds the action buttons in the bar.</li>
+<li><b>Button Border Alpha</b>: Use this to set the transparency of the border that surrounds the action buttons in the bar.</li>
+<li><b>Button Border Padding</b>: Use this to set the amount of space between a button and its border.</li>
+<li><b>Copy Settings From Background of Bar</b>: Choose a bar and click the copy button to copy background settings from that bar to the bar you're editing.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="6"><b>Control Box Options:</b></a><br><br>
+<li><b>Text</b>: Used to set the text displayed in the middle of the control box.</li>
+<li><b>Text Color</b>: Used to set the text's color.</li>
+<li><b>Background Color</b>: Used to set the background's color.</li>
+<li><b>Border Color</b>: Used to set the border's color.</li>
+<li><b>Hide</b>: Check this to hide the control box.</li>
+<li><b>Show Bar On Click</b>: Checking this will cause the control box's bar to be shown if it's hidden or hidden if it's visible whenever you click the control box.</li>
+<li><b>Hide Other Bars On Click</b>: Checking this will hide all other bars set to be shown when thier control box is clicked whenever you click this control box.</li>
+<li><b>Show Bar On Mouseover</b>: Checking this will cause the control box's bar to be shown when you move the mouse over the control box.  The bar will hide after a short delay when you move the mouse off the control box (gives you time to move the mouse from the box to the bar).  The length of the delay can be adjusted in Misc Options.  The bar will hide immediately when you move the mouse off of it.</li>
+<li><b>Mouseover Background Color</b>: Check the checkbox to cause the control box's background to change color when you move the mouse over it.  Use the color box to set the color the background changes to.</li>
+<li><b>Mouseover Text Color</b>: Check the checkbox to cause the control box's text to change color when you move the mouse over it.  Use the color box to set the color the text changes to.</li>
+<li><b>Show Top/Left/Right/Bottom Border</b>: Uncheck the boxes for specific borders you want to hide.  You can use this to setup neat menus with one continous border around multiple control boxes.</li>
+<li><b>Perform Macro On Click</b>: Type in the name of a macro to perform when the control box is clicked.  This can be used to expand what happens when the box is clicked beyond just toggling a single bar.</li>
+<li><b>Height</b>: Sets the height of the control box.</li>
+<li><b>Width</b>: Sets the width of the control box.</li>
+<li><b>Text Alpha</b>: Sets the transparency of the control box's text.</li>
+<li><b>Text Size</b>: Sets the font size of the control box's text.</li>
+<li><b>Background Alpha</b>: Sets the transparency of the control box's background.</li>
+<li><b>BorderAlpha</b>: Sets the transparency of the control box's border.</li>
+<li><b>Attach to Frame</b>: Select another bar or control box to attach this control box to.  This control box will drag along with whatever frame you attach it to.</li>
+<li><b>Attach Point</b>: Select which part of the control box attaches to the frame selected in the above option.</li>
+<li><b>Attach To</b>: Select which part of the frame the control box attaches to.</li>
+<li><b>X Offset</b>: Set the horizontal distance between the control box and the frame it's attached to.</li>
+<li><b>Y Offset</b>: Set the vertical distance between the control box and the frame it's attached to.</li>
+<li><b>Copy Settings From Control Box</b>: Choose a bar and click the copy button to copy settings from that bar's control box to the control box you're editing.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="7"><b>Label Options:</b></a><br><br>
+<li><b>Text</b>: Sets the label's text.</li>
+<li><b>Text Color</b>: Used to set the text's color.</li>
+<li><b>Background Color</b>: Used to set the background's color.</li>
+<li><b>Border Color</b>: Used to set the border's color.</li>
+<li><b>Hide</b>: Check this to hide the label.</li>
+<li><b>Text Size</b>: Sets the font size of the label's text.</li>
+<li><b>Text Alpha</b>: Sets the transparency of the label's text.</li>
+<li><b>Background Alpha</b>: Sets the transparency of the label's background.</li>
+<li><b>BorderAlpha</b>: Sets the transparency of the label's border.</li>
+<li><b>Attach Point</b>: Select which part of the label attaches to the bar.</li>
+<li><b>Attach To</b>: Select which part of the bar the label attaches to.</li>
+<li><b>X Offset</b>: Set the horizontal distance between the label and the bar.</li>
+<li><b>Y Offset</b>: Set the vertical distance between the label and the bar.</li>
+<li><b>Copy Settings From Label of Bar</b>: Choose a bar and click the copy button to copy settings from that bar's label to the label you're editing.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="8"><b>Other Bars:</b></a><br><br>
+These settings are used to configure the Pet Action Bar, Shapeshift Bar, Bag Bar, and Menu Bar.  Use the dropdown menu at the top to select which bar to edit.
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="9"><b>Num Buttons:</b></a><br><br>
+Free Buttons at the top displays how many buttons you have that aren't attached to any bar and aren't declared as a floater.  This box cannot be edited by hand.<br>
+Use the + button next to a bar to add a button to that bar.  A new button can potentially show in any location on a bar - they're ordered by thier ID numbers.<br>
+Use the - button next to a bar to remove a button from that bar.  The button removed will always be the last button on the bar.<br>
+Use the Set All Bars to 0 button to remove all buttons from all bars.
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="10"><b>Floaters:</b></a><br><br>
+Floaters are usable buttons that aren't attached to any bar.<br>
+Create a new floater by clicking the Convert Free Button To Floater button at the top of the options window.  You must have a free button - a button not attached to a bar and not already declared as a floater - available to convert.  The new floater will appear in the middle of your screen. <i>Make sure you create a floater before you try to start editing one.</i><br>
+Use the < and > buttons to scroll through your floaters to choose one to edit.  The ID of the selected floater appears between those 2 buttons.<br>
+Use the Delete This Floater button to return the floater to the stack of free buttons.<br>
+<li><b>Hide</b>: Hides this floater.</li>
+<li><b>Hide When Clicked</b>: The button is hidden immediately after it's clicked.</li>
+<li><b>Show While A Key Is Pressed</b>: The button is shown only while you hold down a key you set in the keybindings menu and hides when you release that key.</li>
+<li><b>Show For Friendly Target</b>: The button is shown only when you have a friendly unit targetted.</li>
+<li><b>Show For Hostile Target</b>: The button is shown only when you have a hostile unit targetted.</li>
+<li><b>Show When In Combat</b>: The button is shown only when you're in combat.</li>
+<li><b>Show When Not In Combat</b>: The button is shown only when you're not in combat.</li>
+<li><b>Border Color</b>: This sets the color of the border around the button.</li>
+<li><b>Default Target</b>: Type in a unit id to use as the button's default target.  That unit will be the one targetted whenever you click that button if you don't have a target selected.  Valid unit id's can be found at <a href="http://www.wowwiki.com/Units" class="top">http://www.wowwiki.com/Units</a>.</li>
+<li><b>Middle-click Button</b>: Type in the ID of a button to be used instead of this button when you middle-click on this button.  It can be any button, not just another floater.</li>
+<li><b>Right-click Button</b>: Type in the ID of a button to be used instead of this button when you right-click on this button.  It can be any button, not just another floater.</li>
+<li><b>Show For Shapeshift Form</b>: The button only displays while you're in the selected shapeshift form.</li>
+<li><b>Button Size</b>: This sets the height and width of the button in pixels.</li>
+<li><b>Button Transparency</b>: This sets the alpha level of the button.</li>
+<li><b>Button Border Padding</b>: This sets the distance between the edges of the button and it's border.</li>
+<li><b>Button Border Alpha</b>: This sets the transparency of the button's border.</li>
+<li><b>Attach to Frame</b>: Select a frame from the menu to attach this button to.  This button will be dragged whenever you drag the frame it's attached to.</li>
+<li><b>Attach Point</b>: Select the part of the button that attaches to the frame selected above.</li>
+<li><b>Attach To</b>: Select the part of the frame that the button attaches to.</li>
+<li><b>X Offset</b>: Sets the horizontal distance between the button and the frame it's attached to.</li>
+<li><b>Y Offset</b>: Sets the vertical distance between the button and the frame it's attached to.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="11"><b>On Event Macros:</b></a><br><br>
+Here's where you can write your own blocks of code to execute in response to game events using all the normal macro conventions.  Choose the event from the dropdown menu at the top of the window and enter the macro's code in the large edit box beneath it.  These macros do not use any of your base 18 macros and have a limit of 7500 characters, so go nuts.   The macro will be executed every single time the event is thrown.  See the section  <a href="#13" class="top">Useful Functions</a> for a list of handy functions this mod provides and see the section <a href="#14" class="top">Event Macro Examples</a> for examples of how to display a button when your health's low, when your opponent dodges, etc.
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="12"><b>Misc Options:</b></a><br><br>
+<li><b>Auto-attack When Using an Action</b>: Checking this will cause you to automatically enter attack mode whenever you use an action.  It will check if you're already attacking and if you have a valid target before attempting to toggle auto-attack.</li>
+<li><b>Disable Action Button Tooltips</b>: Checking this will stop tooltips from displaying when you move the mouse of an action button.</li>
+<li><b>Hide Keybindings Text</b>: Checking this will hide the regular keybindings text on all action buttons.</li>
+<li><b>Hide Dynamic Keybindings Text</b>: Checking this will hide the dynamic keybindings text on all action buttons.</li>
+<li><b>Show a Text Display of Cooldown Time</b>: Checking this will cause a large number to display in the middle of each button that counts down the amount of time remaining on that button's cooldown.</li>
+<li><b>Out Of Range Color</b>: Use this to set the color a button becomes when your target is out of range.</li>
+<li><b>Not Enough Mana Color</b>: Use this to set the color a button becomes when you don't have enough mana to use its action.</li>
+<li><b>Unusable Color</b>: Use this to set the color a button becomes when its action is unusable.</li>
+<li><b>Main Bar for Shapeshifting</b>: Use this to set the bar other bars swap with when you shapeshift.</li>
+<li><b>Ghost Bar</b>: Use this to choose a bar to use as the ghost bar.  This bar will appear underneath the mouse when you hold down the key you bound to toggle the ghost bar.</li>
+<li><b>Options Window Scale</b>: Use this to set the size of the options window.</li>
+<li><b>Time to Hide on Mouseout</b>: Use this to set the number of seconds until a bar hides when you move the mouse off its control box if the control box is set to show the bar on mouseover.</li>
+<li><b>Cooldown Count Threshold</b>: Use this to set a minimum number of seconds a cooldown has to have for it to be displayed.</li>
+<li><b>Load Default Settings</b>: Click this button to return all settings for the mod to default settings.</li>
+<li><b>Load Custom Settings</b>: Click this button to load settings from the DAB_Custom.lua file.</li>
+<li><b>Save Settings</b>: Type in a name to save your settings as then click the Save button to save them.</li>
+<li><b>Load Settings</b>: Select settings in the dropdown menu then click the load button to load them or the delete button to delete them.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="12.5"><b>Setting Up Bars That Switch When You Shapeshift:</b></a><br><br>
+First, go to Misc Options and set the Main Bar for Shapeshift to whatever bar number you want the shapeshift bars to switch with.  Then go to the options for another bar and set the Use For Shapeshift Form option to whatever form you want to use with that bar.  Underneath there, set the When I Shapeshift option to Swap With Main Bar.  Once that's done, the next time you actually change stances, stealth, or shift into an animal form the bars will swap.  It's important to remember that the correct bar will not be in the Main Bar until you actually change forms.  For warriors, this means you need to switch to a different stance from your current one.  For druids and rogues, the main bar won't have the correct bar until you stealth or shift to an animal form from humanoid form (so if you setup your bar while stealthed or in an animal form, you won't have the correct bar in the main bar until you leave stealth/animal form and re-enter stealth/an animal form).  Another tip for warriors is to remove all the buttons from your main bar before you change stances for the first time or you'll never see those buttons again.  Bars only swap buttons and not settings so your shapeshift bars will appear however you set the main bar to appear and your keybindings for the main bar will be applied to whatever shapeshift bar it currently holds.
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="13"><b>Useful Functions:</b></a><br><br>
+<b>barnum</b> is a number from 1 to 10 specifying one of your action bars.<br>
+<b>floaternum</b> is the button ID of a floater.<br>
+<li><b>DAB_Bar_Hide(barnum)</b>: Hides the specified bar.</li>
+<li><b>DAB_Bar_Show(barnum)</b>: Shows the specified bar.</li>
+<li><b>DAB_Bar_Swap(barnum1, barnum2)</b>: Switches the buttons on barnum1 with those on barnum2.</li>
+<li><b>DAB_Bar_Toggle(barnum)</b>: Hides the specified bar if it's visible, shows it if it's hidden.</li>
+<li><b>DAB_Floater_Hide(floaternum)</b>: Hides the specified floater.</li>
+<li><b>DAB_Floater_Show(floaternum)</b>: Shows the specified floater.</li>
+<li><b>DAB_Floater_ShowWhenUsable(floaternum)</b>: This will cause DAB to wait to show the floater until its action becomes usable and isn't cooling down.</li>
+<li><b>DAB_Floater_Toggle(floaternum)</b>: Hides the specified floater if it's visible, shows it if it's hidden.</li>
+<li><b>DAB_Floater_TimeToHide(floaternum, seconds)</b>: Allows you to specify a number of seconds to wait before the specified floater gets hidden.  Useful for buttons set to show when your target dodges, etc.</li>
+<li><b>DAB_AttackTarget()</b>: Calls AttackTarget() only if you have an attackable target and you're not currently in attack mode.</li>
+<li><b>DAB_Run_Macro(macroname)</b>: Executes the macro with the specified macro name.  Yes, it works within a macro to create looping macros.</li>
+<li><b>DAB_SetKeybindingBar(barnum)</b>: Applies the dynamic keybindings to the specified bar.</li>
+<li><b>DAB_Get_CurrentForm()</b>: Returns the number and name of your current shapeshift form - syntax: number, name = DAB_Get_CurrentForm().  Returns 0 and Humanoid if you're not shapeshifted.</li>
+<li><b>DAB_Check_Mouseover(frame)</b>: This function returns true if the mouse is over the specified frame.  Frame is the actual frame object, not just the frame's name.  Works with any frame, not just DAB's.</li>
+<li><b>DAB_Options_LoadSettings(settingsname)</b>: Loads the specified settings.</li>
+<li><b>DAB_IsInContext(friendlytarget, hostiletarget, combat, notincombat, ontrue)</b>:  For the parameters pass true if the bar or floater is supposed to show for that parameter or false if it isn't.  The function will return true if the bar or floater is supposed to be shown.  If the onetrue parameter is true then only one of the conditions has to be true for the function to return true.</li>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="14"><b>Event Macro Examples:</b></a><br><br>
+<b>Showing a floater when your health drops below a certain percentage:</b><br>
+Choose the Unit's Health Changed event and enter the following for the macro text.  We'll say the percent you want is 50% so it'll be shown as .50 below and the floater's number is 23.
+<blockquote>
+	if arg1=="player" then if UnitHealth("player")/UnitHealthMax("player") < .50 then DAB_Floater_Show(23) else DAB_Floater_Hide(23) end end
+</blockquote>
+This will show floater number 23 when you health is below 50% and hide it if your health is 50% or greater.  So it'll hide the button if you get a heal that takes you above 50% before you press the button.<br><br>
+<b>Showing a floater when your target dodges:</b><br>
+Choose the 'You Miss' Chat Message event and enter the following for macro text.  We'll say the floater is number 23.
+<blockquote>
+if string.find(arg1, "dodges") then DAB_Floater_Show(23); DAB_Floater_TimeToHide(23, 5); end
+</blockquote>
+This will cause floater number 23 to show up whenever your target dodges your attack and it will automatically hide 5 seconds later. <br><br>
+<b>Swapping bars when your target enters melee range:</b><br>
+Choose OnUpdate from the event macros dropdown then the enter the code below for your macro.
+<blockquote>
+if CheckInteractDistance("target", 1) then if (not meleebar) then setglobal("meleebar", 1); DAB_Bar_Swap(bar1, bar2); end elseif meleebar then DAB_Bar_Swap(bar1, bar2); meleebar = nil; end
+</blockquote>
+Replace bar1 and bar2 with the numbers of the 2 bars you want to swap.  This script will swap the 2 bars when the target moves within 5 yards of you then swap them again when the target moves further away than that. <br>
+If you want to automatically swap back to your ranged bar when you lose your target, select You Change Targets from the events dropdown menu and enter the following for the macro.
+<blockquote>
+if (not UnitName("target")) and meleebar then DAB_Bar_Swap(bar1, bar2); meleebar = nil; end
+</blockquote><br>
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+
+<a name="98"><b>Known Issues:</b></a><br><br>
+
+Do not cross-attach frames.  If bar 1 is attached to bar 3, do not also attach bar 3 to bar 1.  WoW doesn't like that and will crash.<br>
+Using /say, /party, /raid, and /whisper in an On Event Macro will cause you to get disconnected.<br>
+If your Pet bar or Shapeshift bar are disappearing when you click a button, disable CT_BarMod.
+<center><a href=#top class="top">Back to Top</a></center><br>
+
+<a name="99"><b>Contact the Author</b></a><br><br>
+I run a forum and a guild at <a href="http://www.clandiscord.com" class="top">www.clandiscord.com</a> where there's a thread on this mod.  Good place for suggestions and bug notifications.
+<br>Email me at <a href="mailto:lozareth@clandiscord.com" class="top">lozareth@clandiscord.com</a> if email's your thing and you don't want to use a forum.
+<center><a href=#top class="top">Back to Top</a></center><br>
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+PetFeed
+=======
+
+changes in version 1.11 (05/01/2005)
+-----------------------------------
+- fixed a small bug in the remove food function (thanks to Grawl)
+
+
+changes in version 1.1 (05/01/2005)
+-----------------------------------
+
+- There was a misspelling in the german localization with fruit and fungus, which is 
+  now "Obst" and "Fungus".
+- changed the arguments for adding and removing food to "+" and "-" (less typing).
+- changed german localization for content and happy to "Zufrieden" and "Glücklich".
+- At last I found out why some pets didn't eat at all. This was because PF only reacted 
+  on a change of the happiness level, which is sent by the client as an event. 
+  When the pet was as unhappy as possible at the time the food was added, the pet would
+  never eat because the happiness never changed. So now I let it check if it is in the mood
+  for eating everytime food is added. That should solve the problem.
+- changed english food names to start with Uppercase (thanks to GandalfTW)
+- fixed the remove food function, it should work properly now. 
+  You should always use Shift+ClickonItem to add the item name when adding and removing food.

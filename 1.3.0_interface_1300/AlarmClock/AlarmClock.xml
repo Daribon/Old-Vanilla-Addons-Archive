@@ -1,0 +1,593 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="AlarmClock.lua"/>
+    <Button name="ACLeftArrowTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="24" y="24"/>
+        </Size>
+        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+    <Button name="ACRightArrowTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="24" y="24"/>
+        </Size>
+        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+    </Button>
+    <FontString name="AlarmClockNumberFont" inherits="GameFontNormal" virtual="true">
+        <Color r="0.6" g="0.6" b="0.6"/>
+    </FontString>
+	<Frame name="AlarmClockFrame" toplevel="true" movable="true" hidden="true" parent="UIParent" enableMouse="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="AlarmClockPortrait">
+					<Size>
+						<AbsDimension x="58" y="58"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="AlarmClockTitle" inherits="GameFontHighlight" text="ALARM_TITLE">
+					<Size>
+						<AbsDimension x="192" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-20"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextCurTimeLabel" inherits="GameFontHighlight" text="ALARM_CURRENTTIME">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextCurTime" inherits="AlarmClockNumberFont" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextAlarmLabel" inherits="GameFontHighlight" text="ALARM_ALARM">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="-110"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextAlarmTime" inherits="AlarmClockNumberFont" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-110"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextAlarmStatus" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="200" y="-110"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextAlarmHour" inherits="GameFontNormalSmall" text="ALARM_HOUR">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-136"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextAlarmMinute" inherits="GameFontNormalSmall" text="MINUTES">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-156"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextTimerLabel" inherits="GameFontHighlight" text="ALARM_TIMER">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="-190"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextTimerTime" inherits="AlarmClockNumberFont" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-190"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextTimerStatus" inherits="GameFontNormal" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="200" y="-190"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextTimerHour" inherits="GameFontNormalSmall" text="ALARM_HOUR">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-216"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextTimerMinute" inherits="GameFontNormalSmall" text="MINUTES">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-236"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextTimerSecond" inherits="GameFontNormalSmall" text="SECONDS">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="135" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextOptionsLabel" inherits="GameFontHighlight" text="ALARM_OPTION">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="-290"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="ACTextRepeatTimeLabel" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="112" y="-335"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+        </Layers>
+        <Frames>
+			<Button name="AlarmClockCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="AlarmClockFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-29" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+            <Button name="AlarmStartButton" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="60" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="35" y="-130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+					<OnLoad>
+						this:SetText(ALARM_START);
+					</OnLoad>
+                    <OnClick>
+                        AlarmClock_AlarmStart();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="AlarmStopButton" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="60" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="35" y="-150"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+					<OnLoad>
+						this:SetText(ALARM_STOP);
+					</OnLoad>
+                    <OnClick>
+                        AlarmClock_AlarmStop();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="AlarmHourDownButton" inherits="ACLeftArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="190" y="-128"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                 <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_AlarmHourChange(-6);
+                        else
+                            AlarmClock_AlarmHourChange(-1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="AlarmHourUpButton" inherits="ACRightArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="210" y="-128"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_AlarmHourChange(6);
+                        else
+                            AlarmClock_AlarmHourChange(1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="AlarmMinuteDownButton" inherits="ACLeftArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="190" y="-148"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_AlarmMinuteChange(-5);
+                        else
+                            AlarmClock_AlarmMinuteChange(-1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="AlarmMinuteUpButton" inherits="ACRightArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="210" y="-148"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_AlarmMinuteChange(5);
+                        else
+                            AlarmClock_AlarmMinuteChange(1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerStartButton" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="60" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="35" y="-210"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+					<OnLoad>
+						this:SetText(ALARM_START);
+					</OnLoad>
+                    <OnClick>
+                        AlarmClock_TimerStart();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerStopButton" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="60" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="35" y="-230"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+					<OnLoad>
+						this:SetText(ALARM_STOP);
+					</OnLoad>
+                    <OnClick>
+                        AlarmClock_TimerStop();
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerHourDownButton" inherits="ACLeftArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="190" y="-208"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_TimerHourChange(-2);
+                        else
+                            AlarmClock_TimerHourChange(-1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerHourUpButton" inherits="ACRightArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="210" y="-208"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_TimerHourChange(2);
+                        else
+                            AlarmClock_TimerHourChange(1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerMinuteDownButton" inherits="ACLeftArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="190" y="-228"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_TimerMinuteChange(-5);
+                        else
+                            AlarmClock_TimerMinuteChange(-1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerMinuteUpButton" inherits="ACRightArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="210" y="-228"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_TimerMinuteChange(5);
+                        else
+                            AlarmClock_TimerMinuteChange(1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerSecondDownButton" inherits="ACLeftArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="190" y="-248"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_TimerSecondChange(-5);
+                        else
+                            AlarmClock_TimerSecondChange(-1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TimerSecondUpButton" inherits="ACRightArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="210" y="-248"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        if (IsShiftKeyDown()) then
+                            AlarmClock_TimerSecondChange(5);
+                        else
+                            AlarmClock_TimerSecondChange(1);
+                        end
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <CheckButton name="RepeatMessageCheck" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="35" y="-305"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+					<OnLoad>
+						RepeatMessageCheckText:SetText(ALARM_KEEPSENDING);
+					</OnLoad>
+                    <OnClick>
+                        if (this:GetChecked()) then
+                            AlarmClock_SetRepeatMessage(1);
+                        else
+                            AlarmClock_SetRepeatMessage(0);
+                        end
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <Button name="MessageRepeatDownButton" inherits="ACLeftArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="65" y="-328"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        AlarmClock_MessageRepeatTimeChange(-1);
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="MessageRepeatUpButton" inherits="ACRightArrowTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="85" y="-328"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        AlarmClock_MessageRepeatTimeChange(1);
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+		<Scripts>
+			<OnLoad>
+				AlarmClock_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				AlarmClock_OnEvent(event);
+			</OnEvent>
+			<OnShow>
+                AlarmClock_OnShow();
+			</OnShow>
+			<OnHide>
+                AlarmClock_OnHide();
+			</OnHide>
+            <OnUpdate>
+                AlarmClock_OnUpdateFrame();
+				AlarmClock_OnUpdate();
+            </OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="AlarmClockOnUpdateFrame" hidden="false">
+		<Scripts>
+			<OnUpdate>
+                AlarmClock_OnUpdateFrame();
+				AlarmClock_OnUpdate();
+            </OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

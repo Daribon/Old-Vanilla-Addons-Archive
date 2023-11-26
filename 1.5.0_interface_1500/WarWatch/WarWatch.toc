@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: WarWatch
+## Notes: Filters zone under attack spam
+## SavedVariables: WarWatch_Enabled, WarWatch_Inhibit, WarWatch_Threshold
+WarWatch.xml

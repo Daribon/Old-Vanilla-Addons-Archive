@@ -1,0 +1,132 @@
+API documentation for ActionQueue
+--------------------------------
+
+NOTE: This document is a work in progress, and will change. 
+If you have any suggestions for it, send them to sarf on cursegaming.
+
+1. How do I use it?
+2. Advanced usage
+3. Function reference
+
+1. How do I use it?
+
+NOTE: parameters within brackets are optional arguments.
+In most cases, you just call :
+ActionQueue_QueueSpell(spellId[, spellBook[, target[, extraParams]]])
+
+where spellId is the id of the spell, spellBook an optional parameter which 
+indicates the spellBook to use (defaults to "spell" in the case of nil), 
+and target is an optional parameter which can be used to target the spell.
+extraParams are an optional parameter, it has to be a table whose values are 
+copied to the resulting ActionQueue entry (you can use it to override 
+shouldExecuteFunc and so on).
+
+You can find out the spellId by using :
+
+ActionQueue_FindSpellId(spellName[, spellRank[, spellBook]]);
+
+Id of highest available rank of the spell:
+ActionQueue_GetHighestSpellRankId(spellName[, spellBook[, startId]]);
+
+
+2. Advanced usage
+
+ActionQueue_QueueAction(table)
+-or-
+ActionQueue_QueueSpellAdvanced(table)
+
+table.shouldExecuteFunc - link to function that returns true if the action 
+                          should be executed
+table.executeFunc - optional function that is called when the action is 
+                    executed, it is given table as a parameter. 
+                    Optional, defaults to ActionQueue_ExecuteFunction_Spell.
+                    If it returns true, the button keypress has been "used up".
+table.spellBook - the spellbook that is used by 
+                  ActionQueue_ExecuteFunction_Spell (which is the default 
+                  executeFunc). Optional, defaults to "spell".
+table.nameFunc - optional but useful function that returns the "name" of the 
+                 table. Main usage is for the future, if the queue should be 
+                 displayed to the user.
+table.spellId - the spellId that is used by ActionQueue_ExecuteFunction_Spell
+                (which is the default executeFunc).
+table.target - used by ActionQueue_ExecuteFunction_Spell as a parameter to
+               SpellTargetUnit. 
+table.before - used by ActionQueue_ShouldExecuteFunction_Time to determine 
+               whether the time is appropriate. A GetTime() entry that has to 
+               be in the future. 
+               Optional, can be nil, which means that it will be disregarded.
+table.after - used by ActionQueue_ShouldExecuteFunction_Time to determine 
+              whether the time is appropriate. A GetTime() entry that has to 
+              be in the past, so to speak.
+              Optional, can be nil, which means that it will be disregarded.
+
+
+3. Function reference
+
+shouldExecuteFunc:
+ActionQueue_ShouldExecuteFunction_ASAP - tries to execute as soon as possible.
+ActionQueue_ShouldExecuteFunction_Time - delays execution until after GetTime() 
+                                        is larger than table.after and less 
+                                        than table.before
+ActionQueue_ShouldExecuteFunction_SpellCooldown - checks the spells cooldown
+
+executeFunc:
+ActionQueue_ExecuteFunction_Spell - tries to cast a spell.
+
+
+queueFunctions:
+ActionQueue_QueueAction
+-or-
+ActionQueue_QueueSpellAdvanced - queues up an action, returning true if it is 
+                                queued up OK, false if not.
+ActionQueue_QueueSpellTable - equivilent to ActionQueue_QueueSpellAdvanced.
+ActionQueue_QueueSpell - quick function to queue up spells to be cast.
+
+
+utility queue functions:
+ActionQueue_IsQueued(identifier) - determines if an action with the specified
+                                  identifier is queued or not.
+ActionQueue_IsMounted() - determines if the player is mounted (player mount,
+                         not taxi - use UnitOnTaxi("player") for that)
+
+utility functions:
+ActionQueue_IsAnySpellRunning() - returns true if there is any spell being 
+                                 cast
+ActionQueue_GlobalStringTogfind(str) - translates a format str into a pattern 
+                                      which can be used for string.gfind
+ActionQueue_ShowMessage(str, ...) - shows a short message on the user screen,
+                                   much like the zone text
+
+ActionQueue_IsGlobalSpellCooldown() - whether global cooldown is in effect
+
+ActionQueue_IsShapeshifter() - returns true if the player is a shapeshifter
+
+ActionQueue_FindSpellId() - find spell id
+
+ActionQueue_GetHighestSpellRankId() - find highest id of highest rank of spell
+
+ActionQueue_GetBuffPosition(texture, name) - get buff position based on texture and/or name of buff
+
+ActionQueue_protectTooltipMoney() - protect game tooltips money from disappearance 
+                                    (done prior to setting other tooltip object)
+                                    All credit to Sea AddOn and Telo for this one!
+ActionQueue_unprotectTooltipMoney() - unprotect game tooltips money from disappearance 
+                                    (done after setting other tooltip object)
+                                    All credit to Sea AddOn and Telo for this one!
+
+shapeshift functions/variables:
+ActionQueue_IsShapeshifted() - returns true if the player is shapeshifter
+ActionQueue_LastShapeshifted - GetTime() entry when the player last shapeshifted 
+                               back to normal
+ActionQueue_IsStealthed() - is player stealthed?
+ActionQueue_IsShadowmelded() - is player shadowmelded
+
+
+range functions:
+ActionQueue_RangeToUnit(unit) - range to unit in yards
+ActionQueue_IsInRange(unit[, range]) - if unit is within 30 yards (or specified range)
+
+
+special functions:
+ActionQueue_ShouldExecute() - overload this and return false when AQ should not execute
+                              be sure to call overloaded function as that does stuff too

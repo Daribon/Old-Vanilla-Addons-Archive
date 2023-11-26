@@ -1,0 +1,23 @@
+<Bindings>
+	<Binding name="COS_SSM_SEND_MESSAGE_ENABLE_TOGGLE" header="COS_SSM"> <!-- Toggle show/hide the "Send Message" button -->
+		SSM_SendMessageEnableToggle();
+	</Binding>
+	<Binding name="COS_SSM_SEND_PAGE_ENABLE_TOGGLE"> <!-- Toggle show/hide the "Send Page" button -->
+		SSM_SendPageEnableToggle();
+	</Binding>
+	<Binding name="COS_SN_ENABLE_TOGGLE"> <!-- Toggle show/hide the player's note -->
+		SN_NotesEnableToggle();
+	</Binding>
+	<Binding name="COS_SN_EDITOR_OPEN"> <!-- Open the player notes editor -->
+        SocialNotesEditorFrame:Show();
+	</Binding>
+	<Binding name="COS_SSM_EDIT_NOTE_ENABLE_TOGGLE"> <!-- Toggle show/hide the "Edit Note" button -->
+		SN_EditNoteEnableToggle();
+	</Binding>
+	<Binding name="COS_SN_PARTY_NOTES_ENABLE_TOGGLE"> <!-- Toggle show/hide the party notes -->
+		SN_PartyNotesEnableToggle();
+	</Binding>
+	<Binding name="COS_SN_TARGET_NOTE_ENABLE_TOGGLE"> <!-- Toggle show/hide the target notes -->
+		SN_TargetNoteEnableToggle();
+	</Binding>
+</Bindings>

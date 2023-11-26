@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: Atlas v1.1.3
+## Notes: Atlas is an instance map browser.
+## SavedVariables: AtlasOptions
+Atlas.xml
+AtlasButton.xml
+AtlasOptions.xml

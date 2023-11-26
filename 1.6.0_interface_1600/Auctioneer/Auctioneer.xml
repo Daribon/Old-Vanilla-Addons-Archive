@@ -1,0 +1,335 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+<!--
+	Version: 3.0.10
+	Revision: $Id: Auctioneer.xml,v 1.15 2005/07/11 21:03:54 luke1410 Exp $
+-->
+	<Script file="localization.lua"/>
+	<Script file="ItemData.lua"/>
+	<Script file="MeshData.lua"/>
+	<Script file="DisplayInfo.lua"/>
+	<Script file="AHScanning.lua"/>
+	<Script file="BalancedList.lua"/>
+	<Script file="Auctioneer.lua"/>
+	<Frame name="Auctioneer" parent="UIParent" hidden="true">
+		<Scripts>
+			<OnLoad>
+				Auctioneer_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Auctioneer_OnEvent(event);
+			</OnEvent>      
+		</Scripts>
+		<Frames>
+			<Button name="BrowseScanButton" parent="AuctionFrameBrowse" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="80" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="AuctionFrameMoneyFrame" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Auctioneer_RequestAuctionScan();
+					</OnClick>
+					<OnUpdate>
+						if (Auctioneer_CanScan()) then
+							this:Enable();
+						else
+							this:Disable();
+						end
+					</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="AuctionInfo" parent="AuctionFrameAuctions">
+		<Size>
+			<AbsDimension x="160" y="80"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="AuctionsDepositText" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-4" y="-36"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="INFO">
+				<FontString name="$parentText1" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText2" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText1" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText3" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText2" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText4" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText3" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText5" inherits="GameFontNormalSmall" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentText4" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentWarnText" inherits="GameFontNormal" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-76"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentMoney1" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText1" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney2" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText2" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney3" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText3" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney4" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText4" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentMoney5" inherits="TinyMoneyFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentText5" relativePoint="RIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+	<CheckButton name="AuctFilterTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+		<Scripts>
+			<OnClick>
+				if (this.filterVal) then
+					if (this:GetChecked()) then
+						Auctioneer_SetFilter(this.filterVal, "on");
+					else
+						Auctioneer_SetFilter(this.filterVal, "off");
+					end
+				end
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton1Checkbox" parent="AuctionFilterButton1" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton2Checkbox" parent="AuctionFilterButton2" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton3Checkbox" parent="AuctionFilterButton3" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton4Checkbox" parent="AuctionFilterButton4" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton5Checkbox" parent="AuctionFilterButton5" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton6Checkbox" parent="AuctionFilterButton6" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton7Checkbox" parent="AuctionFilterButton7" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton8Checkbox" parent="AuctionFilterButton8" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton9Checkbox" parent="AuctionFilterButton9" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton10Checkbox" parent="AuctionFilterButton10" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton11Checkbox" parent="AuctionFilterButton11" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton12Checkbox" parent="AuctionFilterButton12" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton12" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton13Checkbox" parent="AuctionFilterButton13" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton13" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton14Checkbox" parent="AuctionFilterButton14" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton14" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AuctionFilterButton15Checkbox" parent="AuctionFilterButton15" inherits="AuctFilterTemplate" hidden="true">
+		<Anchors>
+			<Anchor point="RIGHT" relativeTo="AuctionFilterButton15" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+</Ui>
+

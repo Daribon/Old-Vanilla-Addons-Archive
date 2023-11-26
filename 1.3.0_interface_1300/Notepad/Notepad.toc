@@ -1,0 +1,5 @@
+## Interface: 1300
+## Title: Notepad
+## Notes: A simple tabbed notepad window.
+## OptionalDeps: Cosmos
+Notepad.xml

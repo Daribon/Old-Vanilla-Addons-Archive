@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="AltSelfCast.lua"/> 
+	
+	<Frame name="AltSelfCastFrame" hidden="true">
+		<Scripts>
+			<OnLoad>
+				AltSelfCast_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<GameTooltip name="AltSelfCastTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: SelfCastL v0.3
+## Notes: Supports auto self-targeting for beneficial spells.  Use /selfcast help for a helpful list of commands.
+## Author: lua@lumpn.de
+## SavedVariables: SelfCastLState
+## OptionalDeps: 
+## Dependencies: 
+SelfCastL.xml

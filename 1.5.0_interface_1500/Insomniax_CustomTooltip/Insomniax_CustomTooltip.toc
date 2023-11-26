@@ -1,0 +1,9 @@
+## Interface: 1500
+## Title: CustomTooltip
+## Author: Verona/Biolution
+## Notes: Allows you to change the appearance of your tooltip completely. Use <</tooltip>> to access the configuration menu.
+## OptionalDeps:
+## Dependencies:
+## SavedVariables: CustomTooltip_Enabled, CustomTooltip_Text, CustomTooltip_Options, CustomTooltip_Colors, CustomTooltip_CustomText, CustomTooltip_LastVersion
+Insomniax_CustomTooltip.xml
+

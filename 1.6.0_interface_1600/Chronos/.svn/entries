@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="927"
+   name=""
+   committed-date="2005-03-04T15:52:24.282428Z"
+   url="svn://svn.cosmosui.org/trunk/Interface/AddOns/Chronos"
+   last-author="AlexYoshi"
+   kind="dir"
+   uuid="fb67d479-5fe8-0310-8e92-f23c0312408b"
+   revision="938"/>
+<entry
+   committed-rev="777"
+   name="Chronos.toc"
+   text-time="2005-02-25T17:39:20.562070Z"
+   committed-date="2005-02-22T14:35:06.151808Z"
+   checksum="36dec2fe62d965a99a520723a8d7c29b"
+   last-author="AlexYoshi"
+   kind="file"
+   prop-time="2005-02-25T17:39:20.552056Z"/>
+<entry
+   committed-rev="633"
+   name="localization.de.lua"
+   text-time="2005-02-25T17:39:20.582099Z"
+   committed-date="2005-02-18T07:14:21.354759Z"
+   checksum="6672767da7dcf2d5b80db533f35a22b5"
+   last-author="sarf"
+   kind="file"
+   prop-time="2005-02-25T17:39:20.582099Z"/>
+<entry
+   committed-rev="633"
+   name="localization.lua"
+   text-time="2005-02-25T17:39:20.612142Z"
+   committed-date="2005-02-18T07:14:21.354759Z"
+   checksum="bd1fbc3beb6987315675f6b63c3c5b9a"
+   last-author="sarf"
+   kind="file"
+   prop-time="2005-02-25T17:39:20.602128Z"/>
+<entry
+   committed-rev="633"
+   name="Chronos.xml"
+   text-time="2005-02-25T17:39:20.642185Z"
+   committed-date="2005-02-18T07:14:21.354759Z"
+   checksum="b959053cd559acd30f3d93a7a582c757"
+   last-author="sarf"
+   kind="file"
+   prop-time="2005-02-25T17:39:20.632171Z"/>
+<entry
+   committed-rev="927"
+   name="Chronos.lua"
+   text-time="2005-03-05T23:38:28.724747Z"
+   committed-date="2005-03-04T15:52:24.282428Z"
+   checksum="780dda091ab9fa65e45afefac419bbc7"
+   last-author="AlexYoshi"
+   kind="file"
+   prop-time="2005-03-05T23:38:28.714732Z"/>
+<entry
+   committed-rev="633"
+   name="localization.fr.lua"
+   text-time="2005-02-25T17:39:20.682243Z"
+   committed-date="2005-02-18T07:14:21.354759Z"
+   checksum="6482045ca058fec8f7c00cf5e30a1660"
+   last-author="sarf"
+   kind="file"
+   prop-time="2005-02-25T17:39:20.682243Z"/>
+</wc-entries>

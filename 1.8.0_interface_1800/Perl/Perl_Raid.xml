@@ -1,0 +1,912 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Perl_Raid.lua"/>
+	
+	
+	
+	<Frame name="Perl_Raid_Frame" movable="true" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<!-- The size of this frame determines what can be clicked for the menu and moving, hence it is the same size as the name frame. -->
+			<AbsDimension x="80" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="500" y="-200"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Perl_Raid_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Perl_Raid_OnEvent(event, arg1);
+			</OnEvent>
+			
+		</Scripts>
+	</Frame>
+	<Frame name="Perl_Raid_FrameTemplate" frameStrata="LOW" toplevel="true" movable="false" virtual="true">
+		<Size>
+			<!-- The size of this frame determines what can be clicked for the menu and moving, hence it is the same size as the name frame. -->
+			<AbsDimension x="80" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="500" y="-200"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<!-- Script Events -->
+		
+		<Scripts>
+			<OnMouseUp>
+				Perl_Raid_MouseUp(arg1);
+			</OnMouseUp>
+			<OnEnter>
+				Perl_Raid_PlayerTip();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		
+		
+		
+		<Frames>
+			
+			<!-- Raid Name -->
+			
+			<Frame name="$parent_NameFrame">				
+				<Size>
+					<AbsDimension x="80" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Backdrop bgFile="Interface\AddOns\Perl\Images\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Fontstring name="$parent_NameBarText" inherits="GameFontNormalSmall" text="Error!">
+						<FontHeight>
+							<AbsValue val="10"/>
+						</FontHeight>
+							<Anchors>
+								<Anchor point="BOTTOM" relativePoint="BOTTOM" >
+									<Offset>
+										<AbsDimension x="0" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Fontstring>
+					</Layer>
+				</Layers>
+			</Frame>
+			
+			
+			<Frame name="$parent_StatsFrame">
+				<Size>
+					<AbsDimension x="80" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parent_NameFrame">
+						<Offset>
+							<AbsDimension x="0" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnMouseUp>
+						Perl_Raid_MouseUp(arg1);
+					</OnMouseUp>
+					<OnEnter>
+						Perl_Raid_PlayerTip();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+				<Backdrop bgFile="Interface\AddOns\Perl\Images\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<Button name="$parent_CastClickOverlay">
+						<Size>
+							<AbsDimension x="80" y="30"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+ 							<OnLoad>
+								this:RegisterForClicks('LeftButtonUp', 'RightButtonUp', 'MiddleButtonUp', 'Button4Up', 'Button5Up');
+							</OnLoad>
+							<OnMouseUp>
+								Perl_Raid_MouseUp(arg1);
+							</OnMouseUp>
+							<OnClick>
+								Perl_Raid_OnClick(arg1);
+							</OnClick>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+ 						</Scripts>
+					</Button>
+						<!-- Health Bar -->
+						
+						<StatusBar name="$parent_HealthBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="70" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseUp>
+									Perl_Raid_MouseUp(arg1);
+								</OnMouseUp>
+								<OnEnter>
+									Perl_Raid_PlayerTip();
+								</OnEnter>
+								<OnLeave>
+									GameTooltip:Hide();
+								</OnLeave>
+							</Scripts>
+							<BarTexture name="$parent_HealthBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0.8" b="0"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="$parent_HealthBarText" inherits="GameFontNormalSmall" text="Error!">
+										<FontHeight>
+											<AbsValue val="11"/>
+										</FontHeight>
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										
+									</Fontstring>
+									
+								</Layer>					
+							</Layers>
+						</StatusBar>
+						<StatusBar name="$parent_HealthBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="70" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="$parent_HealthBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+		
+							</Anchors>
+							<Scripts>
+								<OnMouseUp>
+									Perl_Raid_MouseUp(arg1);
+								</OnMouseUp>
+								<OnEnter>
+									Perl_Raid_PlayerTip();
+								</OnEnter>
+								<OnLeave>
+									GameTooltip:Hide();
+								</OnLeave>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0.8" b="0" a="0.25"/>
+						</StatusBar>
+									
+						<!-- Mana Bar -->
+						
+						<StatusBar name="$parent_ManaBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="70" y="5"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parent_HealthBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseUp>
+									Perl_Raid_MouseUp(arg1);
+								</OnMouseUp>
+								<OnEnter>
+									Perl_Raid_PlayerTip();
+								</OnEnter>
+								<OnLeave>
+									GameTooltip:Hide();
+								</OnLeave>
+							</Scripts>
+							<BarTexture name="$parent_ManaBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0" b="1"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="$parent_ManaBarText" inherits="GameFontNormalSmall" text="Error!">
+										<FontHeight>
+											<AbsValue val="11"/>
+										</FontHeight>
+												<Anchors>
+													<Anchor point="CENTER" relativePoint="CENTER">
+														<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										
+									</Fontstring>
+									
+								</Layer>
+							</Layers>
+						</StatusBar>
+						<StatusBar name="$parent_ManaBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="70" y="5"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="$parent_ManaBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseUp>
+									Perl_Raid_MouseUp(arg1);
+								</OnMouseUp>
+								<OnEnter>
+									Perl_Raid_PlayerTip();
+								</OnEnter>
+								<OnLeave>
+									GameTooltip:Hide();
+								</OnLeave>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0" b="1" a="0.25"/>
+						</StatusBar>
+				</Frames>
+			</Frame>
+			
+		</Frames>
+	</Frame>
+	
+	
+	<Frame name="Perl_Raid_TitleFrameTemplate" frameStrata="LOW" toplevel="true" movable="true" virtual="true">
+		<Size>
+			<!-- The size of this frame determines what can be clicked for the menu and moving, hence it is the same size as the name frame. -->
+			<AbsDimension x="80" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="500" y="-200"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<!-- Script Events -->
+		<Scripts>
+			<OnMouseUp>
+				Perl_Raid_TitleMouseUp(arg1);
+			</OnMouseUp>
+			<OnMouseDown>
+				Perl_Raid_MouseDown(arg1);
+			</OnMouseDown>
+		</Scripts>
+		
+		
+		<Frames>
+			
+			
+			<Frame name="$parent_NameFrame">				
+				<Size>
+					<AbsDimension x="80" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				
+				<Layers>
+					<Layer level="OVERLAY">
+						
+						
+						<Fontstring name="$parent_NameBarText" inherits="GameFontNormal" text="Error!">
+							<Anchors>
+								<Anchor point="BOTTOM" relativePoint="BOTTOM" >
+									<Offset>
+										<AbsDimension x="0" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Fontstring>
+
+						
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+	<!--
+	
+	The Real Frames
+	
+	-->
+	<Frame name="Perl_Raid_Grp1" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	
+	<Frame name="Perl_Raid_Grp2" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="2">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp3" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="3">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp4" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="4">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp5" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="5">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp6" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="6">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp7" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="7">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp8" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="8">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid_Grp9" inherits="Perl_Raid_TitleFrameTemplate" parent="UIParent" toplevel="true" id="9">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="150" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid1" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid2" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="2">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-230"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid3" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="3">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-300"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid4" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="4">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-380"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid5" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="5">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid6" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="6">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid7" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="7">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid8" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="8">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid9" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="9">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid10" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="10">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid11" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="11">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid12" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="12">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid13" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="13">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid14" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="14">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid15" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="15">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid16" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="16">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid17" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="17">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid18" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="18">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid19" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="19">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid20" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="20">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid21" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="21">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid22" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="22">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid23" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="23">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid24" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="24">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid25" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="25">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid26" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="26">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid27" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="27">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid28" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="28">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid29" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="29">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid30" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="30">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid31" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="31">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid32" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="32">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid33" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="33">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid34" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="34">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid35" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="35">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid36" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="36">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid37" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="37">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid38" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="38">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid39" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="39">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid40" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="40">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid41" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="41">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid42" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="42">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid43" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="43">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid44" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="44">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid45" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="45">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid46" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="46">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid47" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="47">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid48" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="48">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid49" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="49">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+	<Frame name="Perl_Raid50" inherits="Perl_Raid_FrameTemplate" parent="UIParent" toplevel="true" id="50">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-150"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Frame>
+
+</Ui>	

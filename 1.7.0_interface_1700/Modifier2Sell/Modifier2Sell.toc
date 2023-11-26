@@ -1,0 +1,11 @@
+## Interface: 1700
+## Title: Modifier2Sell
+## Notes: Force holding of modifier button while clicking when selling items to a vendor to help prevent accidental item sales.
+## Notes-deDE:
+## Notes-frFR:
+## Author: Ryan 'Gryphon' Snook
+## Version: 1.0
+## OptionalDeps: Khaos
+## Dependencies: Sea
+## SavedVariables: Modifier2Sell_Enabled, Modifier2Sell_Modifier
+Modifier2Sell.xml

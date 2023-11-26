@@ -1,0 +1,293 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:ProjectsWoWBinInterfaceFrameXMLUI.xsd">
+
+<Script file="WatchTower.lua"/> 
+
+   <Frame name="WT_FrameTemplate" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true"> 
+		<Size>
+			<AbsDimension x="165" y="200"/>
+		</Size> 
+       <Anchors>
+			<Anchor point="CENTER"/>
+	   </Anchors> 
+	   
+	   <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+			
+		</Backdrop>
+		
+        		<Layers>
+					
+				
+					<Layer level="ARTWORK">
+						<FontString name="WTTitle" inherits="GameFontHighlight" text="WATCHTOWERTITLE">
+							<Size>
+								<AbsDimension x="125" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WT_FrameTemplate">
+									<Offset>
+										<AbsDimension x="0" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+					</Layer>
+				</Layers>
+		
+   <Frames> 
+  			<CheckButton name="WT_Checkbox0" id="0">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="130" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer name="PARTYLABEL">
+						<FontString name="WT_PARTY_TEXT" inherits="GameFontHighlight" text="WT_PARTY">
+							<Size>
+								<AbsDimension x="100" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="LEFT" >
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(10);
+					
+				</OnLoad>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+						SendPartyMess();
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						SendPartyMess();
+					end
+				</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+			</CheckButton>
+
+  			<CheckButton name="WT_Checkbox1" id="1">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="130" y="-60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer name="PARTYLABEL">
+						<FontString name="WT_RAID_TEXT" inherits="GameFontHighlight" text="WT_RAID">
+							<Size>
+								<AbsDimension x="100" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="LEFT" >
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(10);
+					
+				</OnLoad>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+						SendRaidMess();
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						SendRaidMess();
+					end
+				</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+			</CheckButton>
+			
+			<CheckButton name="WT_Checkbox2" id="2">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="130" y="-80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer name="GUILDLABEL">
+					<FontString name="WT_GUILD_TEXT" inherits="GameFontHighlight" text="WT_GUILD">
+							<Size>
+								<AbsDimension x="100" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						</Layer>
+					</Layers>
+				<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(10);
+					
+				</OnLoad>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+						SendGuildMess();
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						SendGuildMess();
+					end
+				</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+			</CheckButton>
+
+
+
+			<CheckButton name="WT_Checkbox3" id="3">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="130" y="-100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer name="WT_DEFENSE_LABEL">
+					<FontString name="WT_DEFENSE_TEXT" inherits="GameFontHighlight" text="WT_DEFENSE">
+							<Size>
+								<AbsDimension x="100" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						</Layer>
+					</Layers>
+				<Scripts>
+				<OnLoad>
+					this:SetFrameLevel(10);
+					
+				</OnLoad>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+						SendLocalMess();
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						SendLocalMess();
+					end
+				</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+			</CheckButton>	
+
+
+<Button name="WT_CloseButton" inherits="UIPanelCloseButton">
+			<Anchors>
+				<Anchor point="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="-5" y="-5"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					PlaySound("igMainMenuOptionCheckBoxOn");
+					HideUIPanel(WT_FrameTemplate);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="WT_ExitButton" inherits="UIPanelButtonTemplate" text="Exit">
+			<Size>
+				<AbsDimension x="77" y="21"/>
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOMRIGHT" relativeTo="WT_FrameTemplate" relativePoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="-15" y="15"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					PlaySound("igMainMenuOptionCheckBoxOn");
+					HideUIPanel(WT_FrameTemplate);
+				</OnClick>
+			</Scripts>
+		</Button>			
+   </Frames>  
+  
+<Scripts>
+				<OnLoad>
+					WT_OnLoad();
+				</OnLoad>
+				<OnEvent> 
+					WT_OnEvent(event);
+				</OnEvent> 
+	   </Scripts>
+    </Frame> 
+
+
+
+</Ui>

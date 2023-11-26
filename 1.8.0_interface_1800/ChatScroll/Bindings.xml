@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="CHATSCROLL_TOP" description="Scroll To Top" header="CHATSCROLL_HEADER">
+		ChatScroll_ScrollToTop();
+	</Binding>
+</Bindings>

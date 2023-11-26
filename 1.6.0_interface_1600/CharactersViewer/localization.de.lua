@@ -1,0 +1,52 @@
+--[[
+   Version: $Rev: 2025 $
+   Last Changed by: $LastChangedBy: Sinaloit $
+   Date: $Date: 2005-07-02 19:51:34 -0400 (Sat, 02 Jul 2005) $
+   
+   Note: Please don't remove commented line and change the layout of this file, the main goal is to have 3 localization files with the same layout for easy spotting of missing information.
+   The SVN tag at the begining of the file will automaticaly update upon uploading.
+]]--
+
+if (GetLocale() == "deDE") then
+
+   -- Configuration variables
+   --   SLASH_CHARACTERSVIEWER1                    = "/charactersviewer";
+   --   SLASH_CHARACTERSVIEWER2                    = "/cv";
+   --   CHARACTERSVIEWER_SUBCMD_SHOW               = "show";
+   --   CHARACTERSVIEWER_SUBCMD_CLEAR              = "clear";
+   --   CHARACTERSVIEWER_SUBCMD_CLEARALL           = "clearall";
+   --   CHARACTERSVIEWER_SUBCMD_PREVIOUS           = "previous";
+   --   CHARACTERSVIEWER_SUBCMD_NEXT               = "next";
+   --   CHARACTERSVIEWER_SUBCMD_SWITCH             = "switch";
+
+   -- Localization text
+   BINDING_HEADER_CHARACTERSVIEWER                 = "CharakterAnzeiger";
+   BINDING_NAME_CHARACTERSVIEWER_TOGGLE            = "Fenster anzeigen/verbergen";
+   BINDING_NAME_CHARACTERSVIEWER_SWITCH_PREVIOUS   = "Auf vorherigen Charakter wechseln";
+   BINDING_NAME_CHARACTERSVIEWER_SWITCH_NEXT       = "Auf n\195\164chsten Charakter wechseln";
+
+   CHARACTERSVIEWER_CRIT                           = "Kritisch";
+
+   CHARACTERSVIEWER_SELPLAYER                      = "Charakter w\195\164hlen";     --! Must be shortened (english version is "Switch")
+   CHARACTERSVIEWER_DROPDOWN2                      = "Vergleichen";
+   CHARACTERSVIEWER_TOOLTIP_BAGRESET               = "Links-Klick: Taschenanzeige an/aus\nRechts-Klick: Taschenpositionen zur\195\188cksetzen.";
+   CHARACTERSVIEWER_TOOLTIP_DROPDOWN2              = "Klicken um einen deiner anderen Charaktere vom selben Server auszuw\195\164hlen und im Fenster des CharaktersAnzeigers darzustellen.";
+         
+   CHARACTERSVIEWER_PROFILECLEARED                 = "Dieses Profil wurde gel\195\182scht";
+   CHARACTERSVIEWER_ALLPROFILECLEARED              = "Profile aller Server wurden gel\195\182scht. Der aktuelle Charakter wurde neu hinzugef\195\188gt.";
+   CHARACTERSVIEWER_NOT_FOUND                      = "Charakter nicht gefunden: ";
+
+   CHARACTERSVIEWER_USAGE                          = "Benutzung: '/cv <Befehl>' <Befehl> kann folgendes sein";
+   CHARACTERSVIEWER_USAGE_SUBCMD                   = {};
+   CHARACTERSVIEWER_USAGE_SUBCMD[1]                = CHARACTERSVIEWER_SUBCMD_SHOW.." : Ausr\195\188stung/Werte in einem Charakterfenster anzeigen.";
+   CHARACTERSVIEWER_USAGE_SUBCMD[2]                = CHARACTERSVIEWER_SUBCMD_CLEAR.." <arg1>: Charakterprofil von <arg1> l\195\182schen.";
+   CHARACTERSVIEWER_USAGE_SUBCMD[3]                = CHARACTERSVIEWER_SUBCMD_CLEARALL.." : Alle gespeicherten Daten f\195\188r ALLE Charaktere auf allen Servern l\195\182schen.";
+   CHARACTERSVIEWER_USAGE_SUBCMD[4]                = CHARACTERSVIEWER_SUBCMD_PREVIOUS.." : " .. BINDING_NAME_CHARACTERSVIEWER_SWITCH_PREVIOUS;
+   CHARACTERSVIEWER_USAGE_SUBCMD[5]                = CHARACTERSVIEWER_SUBCMD_NEXT .." : " .. BINDING_NAME_CHARACTERSVIEWER_SWITCH_NEXT;
+   CHARACTERSVIEWER_USAGE_SUBCMD[6]                = CHARACTERSVIEWER_SUBCMD_SWITCH.." <arg1>: Zu Charakter <arg1> wechseln.";
+      
+   CHARACTERSVIEWER_DESCRIPTION                     = "Speichert die Ausr\195\188stung, den Tascheninhalt und die Fertigkeiten all deiner Charaktere.";
+   CHARACTERSVIEWER_SHORT_DESC                     = "CharakterAnzeiger anzeigen/verbergen";
+   -- CHARACTERSVIEWER_ICON                        = "Interface\\Buttons\\Button-Backpack-Up";
+
+end

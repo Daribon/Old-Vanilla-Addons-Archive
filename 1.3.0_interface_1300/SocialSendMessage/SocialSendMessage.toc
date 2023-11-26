@@ -1,0 +1,5 @@
+## Interface: 1300
+## Title: Social Send Message
+## Notes: Adds a "Send Message" button to the Social frames that do not have one.
+## OptionalDeps: Cosmos, Pager
+SocialSendMessage.xml

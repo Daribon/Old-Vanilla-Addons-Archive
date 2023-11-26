@@ -1,0 +1,17 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="Insomniax_CombatCaller.lua"/>
+    <Script file="Insomniax_CC_Sounds.lua"/>
+    <Script file="Insomniax_Sound_Files.lua"/>
+    <Frame name="CombatCallerFrame" parent="UIParent" hidden="false">
+	<Scripts>
+		<OnLoad>
+			CombatCaller_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			CombatCaller_OnEvent(event);
+		</OnEvent>
+	</Scripts>
+    </Frame>
+</Ui>

@@ -1,0 +1,56 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <CheckButton name="SideBarButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="36" y="36"/>
+        </Size>        
+	</CheckButton>
+
+    <CheckButton name="SideBarButton" inherits="SideBarButtonTemplate" virtual="true">
+        <Scripts>
+            <OnLoad>
+                SideBarButton_OnLoad();
+            </OnLoad>
+            <OnShow>
+                SideBarButton_Update();
+            </OnShow>
+            <OnEvent>
+                SideBarButton_OnEvent(event);
+            </OnEvent>
+            <OnClick>
+                if ( IsShiftKeyDown() ) then
+                    PickupAction(SideBarButton_GetID(this));
+                else
+					MacroFrame_EditMacro();
+					if( IsAltKeyDown() ) then
+						UseAction(SideBarButton_GetID(this), 1, 1);
+					else
+						UseAction(SideBarButton_GetID(this), 1);
+					end
+                end
+                SideBarButton_UpdateState();
+            </OnClick>
+            <OnDragStart>
+                if ( (not ActionLockButton) or (ActionLockButton and (not ActionLockButton.isLocked)) ) then
+					PickupAction(SideBarButton_GetID(this));
+				end
+                SideBarButton_UpdateState();
+            </OnDragStart>
+            <OnReceiveDrag>
+				PlaceAction(SideBarButton_GetID(this));
+                SideBarButton_UpdateState();
+			</OnReceiveDrag>
+			<OnEnter>
+				SideBarButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateTooltip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+            <OnUpdate>
+                SideBarButton_OnUpdate(arg1);
+            </OnUpdate>
+       	</Scripts>
+	</CheckButton>
+</Ui>
+

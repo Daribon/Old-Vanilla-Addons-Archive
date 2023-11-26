@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: |cff00ffffFastQuest 2.10 By Vashen 
+## Notes: |cff00CC33Removes quest fade in delay, Displays quest levels and tags. Automatically loads unfinished quest-tracker quests back when you log in and removes completed quests from quest-tracker window! 
+## SavedVariables: FastQuestData
+## Author: Vashen
+FastQuest.xml

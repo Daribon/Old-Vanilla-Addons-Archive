@@ -1,0 +1,1356 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<CheckButton name="PopBarButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				PopBarButton_OnLoad();
+			</OnLoad>
+			<OnShow>
+				PopBarButton_Update();
+			</OnShow>
+			<OnEvent>
+				PopBarButton_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				if ( IsShiftKeyDown() ) then
+					PickupAction(PopBarButton_GetPagedID(this));
+				else
+					MacroFrame_EditMacro();
+					UseAction(PopBarButton_GetPagedID(this), 1);
+				end
+				PopBarButton_UpdateState();
+			</OnClick>
+			<OnDragStart>
+				if ( (not ActionLockButton) or (ActionLockButton and (not ActionLockButton.isLocked)) ) then
+					PickupAction(PopBarButton_GetPagedID(this));
+				end
+				PopBarButton_UpdateState();
+			</OnDragStart>
+			<OnReceiveDrag>
+				PlaceAction(PopBarButton_GetPagedID(this));
+				PopBarButton_UpdateState();
+			</OnReceiveDrag>
+			<OnEnter>
+				PopBarButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateTooltip = nil;
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnUpdate>
+				PopBarButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="PopBarButton101" inherits="PopBarButtonTemplate" parent="PopBar" id="101">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBar" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton102" inherits="PopBarButtonTemplate" parent="PopBar" id="102">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton101" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton103" inherits="PopBarButtonTemplate" parent="PopBar" id="103">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton102" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton104" inherits="PopBarButtonTemplate" parent="PopBar" id="104">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton103" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton105" inherits="PopBarButtonTemplate" parent="PopBar" id="105">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton104" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton106" inherits="PopBarButtonTemplate" parent="PopBar" id="106">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton105" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton107" inherits="PopBarButtonTemplate" parent="PopBar" id="107">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton106" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton108" inherits="PopBarButtonTemplate" parent="PopBar" id="108">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton107" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton109" inherits="PopBarButtonTemplate" parent="PopBar" id="109">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton108" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton110" inherits="PopBarButtonTemplate" parent="PopBar" id="110">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton109" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton111" inherits="PopBarButtonTemplate" parent="PopBar" id="111">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton110" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton112" inherits="PopBarButtonTemplate" parent="PopBar" id="112">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton111" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton201" inherits="PopBarButtonTemplate" parent="PopBar" id="201">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton101" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton202" inherits="PopBarButtonTemplate" parent="PopBar" id="202">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton201" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton203" inherits="PopBarButtonTemplate" parent="PopBar" id="203">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton202" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton204" inherits="PopBarButtonTemplate" parent="PopBar" id="204">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton203" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton205" inherits="PopBarButtonTemplate" parent="PopBar" id="205">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton204" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton206" inherits="PopBarButtonTemplate" parent="PopBar" id="206">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton205" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton207" inherits="PopBarButtonTemplate" parent="PopBar" id="207">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton206" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton208" inherits="PopBarButtonTemplate" parent="PopBar" id="208">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton207" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton209" inherits="PopBarButtonTemplate" parent="PopBar" id="209">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton208" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton210" inherits="PopBarButtonTemplate" parent="PopBar" id="210">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton209" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton211" inherits="PopBarButtonTemplate" parent="PopBar" id="211">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton210" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton212" inherits="PopBarButtonTemplate" parent="PopBar" id="212">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton211" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton301" inherits="PopBarButtonTemplate" parent="PopBar" id="301">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton201" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton302" inherits="PopBarButtonTemplate" parent="PopBar" id="302">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton301" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton303" inherits="PopBarButtonTemplate" parent="PopBar" id="303">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton302" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton304" inherits="PopBarButtonTemplate" parent="PopBar" id="304">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton303" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton305" inherits="PopBarButtonTemplate" parent="PopBar" id="305">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton304" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton306" inherits="PopBarButtonTemplate" parent="PopBar" id="306">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton305" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton307" inherits="PopBarButtonTemplate" parent="PopBar" id="307">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton306" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton308" inherits="PopBarButtonTemplate" parent="PopBar" id="308">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton307" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton309" inherits="PopBarButtonTemplate" parent="PopBar" id="309">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton308" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton310" inherits="PopBarButtonTemplate" parent="PopBar" id="310">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton309" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton311" inherits="PopBarButtonTemplate" parent="PopBar" id="311">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton310" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton312" inherits="PopBarButtonTemplate" parent="PopBar" id="312">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton311" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton401" inherits="PopBarButtonTemplate" parent="PopBar" id="401">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton301" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton402" inherits="PopBarButtonTemplate" parent="PopBar" id="402">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton401" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton403" inherits="PopBarButtonTemplate" parent="PopBar" id="403">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton402" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton404" inherits="PopBarButtonTemplate" parent="PopBar" id="404">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton403" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton405" inherits="PopBarButtonTemplate" parent="PopBar" id="405">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton404" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton406" inherits="PopBarButtonTemplate" parent="PopBar" id="406">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton405" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton407" inherits="PopBarButtonTemplate" parent="PopBar" id="407">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton406" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton408" inherits="PopBarButtonTemplate" parent="PopBar" id="408">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton407" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton409" inherits="PopBarButtonTemplate" parent="PopBar" id="409">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton408" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton410" inherits="PopBarButtonTemplate" parent="PopBar" id="410">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton409" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton411" inherits="PopBarButtonTemplate" parent="PopBar" id="411">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton410" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton412" inherits="PopBarButtonTemplate" parent="PopBar" id="412">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton411" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton501" inherits="PopBarButtonTemplate" parent="PopBar" id="501">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton401" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton502" inherits="PopBarButtonTemplate" parent="PopBar" id="502">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton501" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton503" inherits="PopBarButtonTemplate" parent="PopBar" id="503">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton502" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton504" inherits="PopBarButtonTemplate" parent="PopBar" id="504">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton503" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton505" inherits="PopBarButtonTemplate" parent="PopBar" id="505">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton504" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton506" inherits="PopBarButtonTemplate" parent="PopBar" id="506">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton505" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton507" inherits="PopBarButtonTemplate" parent="PopBar" id="507">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton506" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton508" inherits="PopBarButtonTemplate" parent="PopBar" id="508">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton507" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton509" inherits="PopBarButtonTemplate" parent="PopBar" id="509">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton508" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton510" inherits="PopBarButtonTemplate" parent="PopBar" id="510">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton509" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton511" inherits="PopBarButtonTemplate" parent="PopBar" id="511">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton510" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton512" inherits="PopBarButtonTemplate" parent="PopBar" id="512">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton511" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton601" inherits="PopBarButtonTemplate" parent="PopBar" id="601">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton501" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton602" inherits="PopBarButtonTemplate" parent="PopBar" id="602">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton601" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton603" inherits="PopBarButtonTemplate" parent="PopBar" id="603">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton602" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton604" inherits="PopBarButtonTemplate" parent="PopBar" id="604">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton603" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton605" inherits="PopBarButtonTemplate" parent="PopBar" id="605">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton604" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton606" inherits="PopBarButtonTemplate" parent="PopBar" id="606">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton605" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton607" inherits="PopBarButtonTemplate" parent="PopBar" id="607">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton606" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton608" inherits="PopBarButtonTemplate" parent="PopBar" id="608">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton607" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton609" inherits="PopBarButtonTemplate" parent="PopBar" id="609">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton608" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton610" inherits="PopBarButtonTemplate" parent="PopBar" id="610">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton609" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton611" inherits="PopBarButtonTemplate" parent="PopBar" id="611">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton610" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton612" inherits="PopBarButtonTemplate" parent="PopBar" id="612">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton611" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton701" inherits="PopBarButtonTemplate" parent="PopBar" id="701">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton601" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton702" inherits="PopBarButtonTemplate" parent="PopBar" id="702">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton701" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton703" inherits="PopBarButtonTemplate" parent="PopBar" id="703">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton702" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton704" inherits="PopBarButtonTemplate" parent="PopBar" id="704">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton703" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton705" inherits="PopBarButtonTemplate" parent="PopBar" id="705">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton704" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton706" inherits="PopBarButtonTemplate" parent="PopBar" id="706">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton705" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton707" inherits="PopBarButtonTemplate" parent="PopBar" id="707">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton706" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton708" inherits="PopBarButtonTemplate" parent="PopBar" id="708">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton707" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton709" inherits="PopBarButtonTemplate" parent="PopBar" id="709">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton708" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton710" inherits="PopBarButtonTemplate" parent="PopBar" id="710">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton709" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton711" inherits="PopBarButtonTemplate" parent="PopBar" id="711">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton710" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton712" inherits="PopBarButtonTemplate" parent="PopBar" id="712">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton711" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton801" inherits="PopBarButtonTemplate" parent="PopBar" id="801">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton701" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton802" inherits="PopBarButtonTemplate" parent="PopBar" id="802">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton801" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton803" inherits="PopBarButtonTemplate" parent="PopBar" id="803">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton802" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton804" inherits="PopBarButtonTemplate" parent="PopBar" id="804">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton803" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton805" inherits="PopBarButtonTemplate" parent="PopBar" id="805">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton804" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton806" inherits="PopBarButtonTemplate" parent="PopBar" id="806">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton805" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton807" inherits="PopBarButtonTemplate" parent="PopBar" id="807">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton806" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton808" inherits="PopBarButtonTemplate" parent="PopBar" id="808">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton807" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton809" inherits="PopBarButtonTemplate" parent="PopBar" id="809">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton808" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton810" inherits="PopBarButtonTemplate" parent="PopBar" id="810">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton809" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton811" inherits="PopBarButtonTemplate" parent="PopBar" id="811">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton810" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton812" inherits="PopBarButtonTemplate" parent="PopBar" id="812">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton811" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton901" inherits="PopBarButtonTemplate" parent="PopBar" id="901">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton801" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton902" inherits="PopBarButtonTemplate" parent="PopBar" id="902">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton901" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton903" inherits="PopBarButtonTemplate" parent="PopBar" id="903">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton902" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton904" inherits="PopBarButtonTemplate" parent="PopBar" id="904">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton903" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton905" inherits="PopBarButtonTemplate" parent="PopBar" id="905">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton904" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton906" inherits="PopBarButtonTemplate" parent="PopBar" id="906">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton905" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton907" inherits="PopBarButtonTemplate" parent="PopBar" id="907">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton906" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton908" inherits="PopBarButtonTemplate" parent="PopBar" id="908">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton907" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton909" inherits="PopBarButtonTemplate" parent="PopBar" id="909">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton908" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton910" inherits="PopBarButtonTemplate" parent="PopBar" id="910">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton909" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton911" inherits="PopBarButtonTemplate" parent="PopBar" id="911">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton910" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton912" inherits="PopBarButtonTemplate" parent="PopBar" id="912">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton911" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton1001" inherits="PopBarButtonTemplate" parent="PopBar" id="1001">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton901" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1002" inherits="PopBarButtonTemplate" parent="PopBar" id="1002">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1001" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1003" inherits="PopBarButtonTemplate" parent="PopBar" id="1003">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1002" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1004" inherits="PopBarButtonTemplate" parent="PopBar" id="1004">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1003" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1005" inherits="PopBarButtonTemplate" parent="PopBar" id="1005">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1004" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1006" inherits="PopBarButtonTemplate" parent="PopBar" id="1006">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1005" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1007" inherits="PopBarButtonTemplate" parent="PopBar" id="1007">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1006" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1008" inherits="PopBarButtonTemplate" parent="PopBar" id="1008">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1007" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1009" inherits="PopBarButtonTemplate" parent="PopBar" id="1009">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1008" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1010" inherits="PopBarButtonTemplate" parent="PopBar" id="1010">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1009" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1011" inherits="PopBarButtonTemplate" parent="PopBar" id="1011">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1010" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1012" inherits="PopBarButtonTemplate" parent="PopBar" id="1012">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1011" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton1101" inherits="PopBarButtonTemplate" parent="PopBar" id="1101">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton1001" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1102" inherits="PopBarButtonTemplate" parent="PopBar" id="1102">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1101" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1103" inherits="PopBarButtonTemplate" parent="PopBar" id="1103">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1102" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1104" inherits="PopBarButtonTemplate" parent="PopBar" id="1104">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1103" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1105" inherits="PopBarButtonTemplate" parent="PopBar" id="1105">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1104" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1106" inherits="PopBarButtonTemplate" parent="PopBar" id="1106">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1105" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1107" inherits="PopBarButtonTemplate" parent="PopBar" id="1107">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1106" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1108" inherits="PopBarButtonTemplate" parent="PopBar" id="1108">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1107" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1109" inherits="PopBarButtonTemplate" parent="PopBar" id="1109">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1108" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1110" inherits="PopBarButtonTemplate" parent="PopBar" id="1110">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1109" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1111" inherits="PopBarButtonTemplate" parent="PopBar" id="1111">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1110" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1112" inherits="PopBarButtonTemplate" parent="PopBar" id="1112">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1111" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	
+	<CheckButton name="PopBarButton1201" inherits="PopBarButtonTemplate" parent="PopBar" id="1201">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="PopBarButton1101" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1202" inherits="PopBarButtonTemplate" parent="PopBar" id="1202">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1201" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1203" inherits="PopBarButtonTemplate" parent="PopBar" id="1203">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1202" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1204" inherits="PopBarButtonTemplate" parent="PopBar" id="1204">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1203" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1205" inherits="PopBarButtonTemplate" parent="PopBar" id="1205">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1204" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1206" inherits="PopBarButtonTemplate" parent="PopBar" id="1206">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1205" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1207" inherits="PopBarButtonTemplate" parent="PopBar" id="1207">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1206" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1208" inherits="PopBarButtonTemplate" parent="PopBar" id="1208">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1207" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1209" inherits="PopBarButtonTemplate" parent="PopBar" id="1209">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1208" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1210" inherits="PopBarButtonTemplate" parent="PopBar" id="1210">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1209" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1211" inherits="PopBarButtonTemplate" parent="PopBar" id="1211">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1210" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="PopBarButton1212" inherits="PopBarButtonTemplate" parent="PopBar" id="1212">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="PopBarButton1211" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+
+</Ui>

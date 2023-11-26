@@ -1,0 +1,46 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<Script file="Insomniax_LootLink_Shell.lua"/>
+
+	<Button name="Insomniax_LootLink_Button" parent="Minimap" toplevel="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Insomniax_InitialiseIconMover(this, false, nIX_DEFAULTANGLE);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnClick>
+				Insomniax_LootLink_OptionsFrameToggle (arg1);
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				GameTooltip:SetText("Open Loot Link v1.5.0", 255/255, 209/255, 0/255);
+				GameTooltip:AddLine("Right-click to move", 1.00, 1.00, 1.00);				
+				GameTooltip:AddLine("Loot Link is a browseable, searchable in-game", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("item database that starts empty but will add", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("item information for you automatically.", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("Slash Commands:", 1.00, 1.00, 1.00);
+				GameTooltip:AddLine("/ll help : Shows list of commands.", 53/255, 95/255, 98/255);
+				GameTooltip:AddLine("/ll light : Disable text search to free up memory.", 53/255, 95/255, 98/255);
+				GameTooltip:AddLine("/ll full : Enable text search. (enabled by default)", 53/255, 95/255, 98/255);
+				GameTooltip:AddLine("/ll scan : Scans Auction House window for data.", 53/255, 95/255, 98/255);
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\Insomniax_LootLink_Shell\Insomniax_LootLink_Button_Up"/>
+		<PushedTexture file="Interface\AddOns\Insomniax_LootLink_Shell\Insomniax_LootLink_Button_Down"/>
+		<HighlightTexture file="Interface\AddOns\Insomniax_LootLink_Shell\Insomniax_Shell_Button_Glow" alphaMode="ADD"/>
+	</Button>
+</Ui>

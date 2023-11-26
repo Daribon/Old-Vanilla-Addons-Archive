@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: Khaos
+## Notes: Configuration Manager
+## Author: Alexander Brazie
+## Dependencies: Sea, Earth, Chronos
+## OptionalDeps: Sky, MobileFrames
+## SavedVariables: Khaos_Configurations, Khaos_Configuration_Locks, Khaos_Configuration_Data
+KhaosTemplates.xml
+Khaos.xml

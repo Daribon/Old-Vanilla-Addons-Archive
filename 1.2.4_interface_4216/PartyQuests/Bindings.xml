@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLEPARTYQUESTS" header="PARTYQUESTS"> 
+		TogglePartyQuests();
+	</Binding>
+</Bindings>

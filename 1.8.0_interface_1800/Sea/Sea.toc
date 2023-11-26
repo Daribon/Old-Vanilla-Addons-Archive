@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: Sea
+## Notes: An organized WoW Function Library
+## OptionalDeps: ImprovedErrorFrame
+Sea.xml

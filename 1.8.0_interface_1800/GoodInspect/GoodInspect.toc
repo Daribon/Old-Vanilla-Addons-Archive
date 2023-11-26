@@ -1,0 +1,4 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r GoodInspect
+## Notes: Improves inspect function and allows you to bind a key to inspect other players.
+goodinspect.xml

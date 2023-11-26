@@ -1,0 +1,9 @@
+## Interface: 1500
+## Version: 1.6.5
+## Title: StatusBars
+## Notes: Adds bars to monitor health, mana, rage, energy, combo points and target/pet stats in combat
+## Dependencies:
+## DefaultState: Disabled
+## OptionalDeps: DruidBar, MobHealth
+## SavedVariables: StatusBars_Settings5, StatusBars_locked
+StatusBars.xml

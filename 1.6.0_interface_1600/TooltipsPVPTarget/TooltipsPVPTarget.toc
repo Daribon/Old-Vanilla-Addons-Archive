@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Tooltips: PVP Target
+## Author: Celandro
+## Notes: Removes the PVP Enabled/Disabled line
+## RequiredDeps: TooltipsBase
+TooltipsPVPTarget.xml

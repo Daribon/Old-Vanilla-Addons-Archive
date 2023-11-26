@@ -1,0 +1,36 @@
+v2.35
+
+Ok, the same old emails and instant messages are getting to me, so:
+
+** READ THESE!!!  VERY IMPORTANT!!! **
+
+** IMPORTANT NOTE: **  This mod DOES NOT USE THE DEFAULT UI'S KEYBINDINGS for the action bars.  Scroll down in the keybindings menu until you see the Discord Action Bars header.  Beneath that is where you set your keybindings.  The pet and shapeshift bars still use the default keybindings.
+
+** IMPORTANT NOTE: **  This mod DOES NOT USE THE DEFAULT UI'S KEYBINDINGS for the action bars.  Scroll down in the keybindings menu until you see the Discord Action Bars header.  Beneath that is where you set your keybindings.  The pet and shapeshift bars still use the default keybindings.  It bears repeating.
+
+** IMPORTANT NOTE: ** Do NOT set the Use For Shapeshift Form option on the Main Bar to any form.  Why did you think the mod was spamming a warning at you when you tried to do so?
+
+** IMPORTANT NOTE: ** DO NOT USE CT_BARMOD OR CT_BOTTOMBAR WITH THIS MOD.  CT_BarMod is the mod making your pet/shapeshift bar disappear and probably the one causing your bag bar to display empty buttons.  CT_BottomBar is the mod causing the default UI's art to pop back up when you zone.  Either one of them can causes crashes when used with this mod.
+
+** IMPORTANT NOTE: ** Setting up bars that switch when you shapeshift.  It's easy.  There's a section in the readme devoted to it.  For those too lazy to read the readme, here it is again simplified somewhat:
+(1) Misc Options -> Main Bar For Shapeshifting -> choose a bar number
+(2) Go to that bar's options.  Set its appearance options and place it where you want it on-screen.  All bars that switch with this bar will use those appearance options and be placed there.
+(2b) If you're a warrior, go to Num Buttons and remove all but 1 button from the bar you set as the Main Bar.
+(3) Press ESC.  Click Key Bindings.  Scroll down until you see the Discord Action Bars header.  Scroll down to the BUTTON KEYBINDINGS header.  Find the bar you set as the Main Bar.  Set its keybindings.  All bars that switch with the main bar will use those keybindings.
+(4) Choose another bar.  Set the Use For Shapeshift Form option to the animal form / stance / stealth you want this bar to use.  Set the When I Shapeshift option to Swap With Main Bar.  Check the Hide option.  That's it.  You don't have to set a single other option.
+(5) Repeat step 4 for all your shapeshift forms.
+
+New Features:
+* Added a file named Bindings_MouseWheel.xml.  If you want to be able to bind your mousewheel to an action, discard the Bindings.xml file and rename this file Bindings.xml.  You will not be able to use chain-casting if you use this bindings file.
+* Added French translations courtesy of Miro.  Thanks, bud.
+* Bar backgrounds can now be fully opaque and background style 3 can be recolored.  The Background Texture option will now work with all background styles.  Removed a lot of frames that became unnecessary.
+* When you Unlock Dragging, the Other Bars should be dragable by thier buttons now.  Note the buttons won't be usable until you Lock Dragging.
+* The bar and floater functions will now tell you when you tried to call them on a bar or floater that doesn't exist.
+
+Bug Fixes:
+* Adjusted the editbox for On Event Macros to try to ensure you can always click it to give it the cursor's focus.
+* Changed it so the editbox for On Event Macros automatically gains focus when you select an event in the dropdown menu at the top.
+* Changed and improved the way the default UI's main menu bar is hidden.
+* Stopped the shapeshift bar from showing empty shapeshift buttons.
+* If you try to set the Main Bar to use a shapeshift form, it will revert the setting to nil so that you cannot set the Main Bar to any form.
+* Fixed an issue patch 1.7 introduced causing buttons to not display out of range for people out of detection range.

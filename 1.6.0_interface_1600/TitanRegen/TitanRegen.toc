@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: Titan Regen Addition v1.1
+## Notes: Adds Mana/Health Regen stats to Titan Panel
+## Author: skeetskeet@gmail.com
+## SavedVariables:
+## OptionalDeps: 
+## Dependencies: Titan
+TitanRegen.xml

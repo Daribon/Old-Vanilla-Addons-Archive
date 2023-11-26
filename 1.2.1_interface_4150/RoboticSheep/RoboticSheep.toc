@@ -1,0 +1,6 @@
+## Interface: 4150
+## Title: Robotic Sheep
+## Author: sarf
+## Notes: Tries to help you to re-sheep enemies. Mostly useful for Mages, I guess.
+## OptionalDeps: Cosmos, DynamicData, OneHitWonder
+RoboticSheep.xml

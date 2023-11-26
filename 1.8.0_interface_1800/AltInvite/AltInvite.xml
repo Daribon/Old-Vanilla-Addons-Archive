@@ -1,0 +1,17 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<Script file="AltInvite.lua" />
+	<Frame name="AltInvite" hidden="true">
+		<Scripts>
+			<OnLoad>
+				AltInvite_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

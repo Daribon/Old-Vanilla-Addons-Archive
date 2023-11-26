@@ -1,0 +1,517 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="MobileFrames.lua"/>
+	
+	<Frame name="MobileFrames" hidden="true">
+		<Scripts>
+			<OnLoad>
+				MobileFrames_OnLoad();
+				this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+			<OnEvent>
+				MobileFrames_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	
+    <Frame name="MobileBarTemplate" movable="true" enableMouse="true" virtual="true">
+        <Size>
+			<AbsDimension x="186" y="32"/>
+			<!-- x is the default LootFrame Width.  y is the standard height of the top bar -->
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-26"/>
+				</Offset>
+			</Anchor>
+        </Anchors>
+		<!--
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0.5" />
+				</Texture>
+			</Layer>
+		</Layers>
+		-->
+        <Scripts>
+			<OnLoad>
+				MobileFrames_BarOnLoad(this);
+			</OnLoad>
+            <OnShow>
+				MobileFrames_BarOnShow(this);
+            </OnShow>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+            <OnMouseUp>
+				MobileFrames_BarOnMouseUp(this);
+            </OnMouseUp>
+            <OnMouseDown>
+				MobileFrames_BarOnMouseDown(this);
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_BarOnHide(this);
+			</OnHide>
+        </Scripts>
+    </Frame>
+	<!-- Default Inset Width (35) -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="QuestLogFrame" id="35" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="TradeFrame" id="35" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="MerchantFrame" id="35" />
+	<!-- Default Inset Width (34) -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="ClassTrainerFrame" id="34" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="TradeSkillFrame" id="34" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="MacroFrame" id="34" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="PetStableFrame" id="34" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="BattlefieldFrame" id="34" />
+	<!-- Default Inset Width (30) -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="FriendsFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="CharacterFrame" id="30" >
+		<Scripts>
+			<OnLoad>
+				MobileFrames_BarOnLoad(this);
+				this:SetFrameLevel(this:GetFrameLevel() + 4);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="SpellBookFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="InspectFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="CraftFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="BankFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="QuestFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="GossipFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="GuildRegistrarFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="ItemTextFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="TabardFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="TalentFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="MailFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="OpenMailFrame" id="0" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="WorldStateScoreFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="DressUpFrame" id="30" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="TaxiFrame" id="30" />
+	
+	<!-- Other Inset -->
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="LootFrame" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileBarTemplate" parent="AuctionFrame" id="0" />
+	
+	<!-- Full Sized Mobile Overlays -->
+	<!-- Quest Watch Frame -->
+	<Frame name="$parentMobileBar" parent="QuestWatchFrame" setAllPoints="true">
+		<Scripts>
+			<OnLoad>
+				MobileFrames_OverlayOnLoad(this);
+			</OnLoad>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+            <OnMouseUp>
+				MobileFrames_BarOnMouseUp(this);
+            </OnMouseUp>
+            <OnMouseDown>
+				MobileFrames_BarOnMouseDown(this);
+				MobileFrames_RightSide_RemoveFrameRepositionIgnore(this:GetParent():GetName());
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_BarStopDrag(this);
+			</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<!-- Main Roll Window -->
+	<Frame name="$parentMobileBar" parent="GroupLootFrame1" setAllPoints="true">
+		<Scripts>
+			<OnLoad>
+				MobileFrames_OverlayOnLoad(this);
+				this:SetFrameLevel(this:GetFrameLevel()-1);
+			</OnLoad>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+            <OnMouseUp>
+				MobileFrames_BarOnMouseUp(this);
+            </OnMouseUp>
+            <OnMouseDown>
+				MobileFrames_BarOnMouseDown(this);
+				MobileFrames_RightSide_RemoveFrameRepositionIgnore(this:GetParent():GetName());
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_BarStopDrag(this);
+			</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<!-- Casting Bar -->
+	<Frame name="$parentMobileBar" parent="CastingBarFrame" setAllPoints="true" frameStrata="HIGH">
+		<Scripts>
+			<OnLoad>
+				MobileFrames_OverlayOnLoad(this);
+				this:SetFrameLevel(this:GetFrameLevel()-1);
+				MobileFrames_CastingBarFrame_isReset = true;
+			</OnLoad>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+            <OnMouseUp>
+				MobileFrames_BarOnMouseUp(this);
+            </OnMouseUp>
+            <OnMouseDown>
+				MobileFrames_BarOnMouseDown(this);
+				MobileFrames_CastingBarFrame_isReset = false;
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_BarStopDrag(this);
+			</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<!-- Framerate -->
+	<Frame name="FramerateLabelMobileBar" parent="WorldFrame" movable="true" enableMouse="true" hidden="true" frameStrata="HIGH">
+		<Size>
+			<AbsDimension x="85" y="20"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="64"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				MobileFrames_SetEnabledStatus(FramerateLabel);
+				FramerateLabel:ClearAllPoints();
+				FramerateLabel:SetPoint("LEFT", FramerateLabelMobileBar:GetName(), "LEFT", 0, 0);
+			</OnLoad>
+			<OnEnter>
+				MobileFrames_ShowTooltip(this, this:GetName());
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_HideTooltip(this);
+            </OnLeave>
+			<OnMouseUp>
+				MobileFrames_StopDrag(this);
+			</OnMouseUp>
+			<OnMouseDown>
+				if (arg1 == "RightButton") and (IsShiftKeyDown()) then
+					MobileFramesDropDown.displayMode = "MENU";
+					ToggleDropDownMenu(1, this:GetName(), MobileFramesDropDown, this:GetName());
+				else
+					MobileFrames_StartDrag(this);
+				end
+			</OnMouseDown>
+			<OnHide>
+				MobileFrames_StopDrag(this);
+			</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<!-- Durrability -->
+	<Frame name="$parentMobileBar" parent="DurabilityFrame">
+		<Size>
+			<AbsDimension x="85" y="70"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="-5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				MobileFrames_OverlayOnLoad(this);
+			</OnLoad>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+            <OnMouseUp>
+				MobileFrames_BarOnMouseUp(this);
+				UIParent_ManageRightSideFrames();
+            </OnMouseUp>
+            <OnMouseDown>
+				MobileFrames_BarOnMouseDown(this);
+				MobileFrames_RightSide_RemoveFrameRepositionIgnore(this:GetParent():GetName());
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_BarStopDrag(this);
+			</OnHide>
+		</Scripts>
+	</Frame>
+	
+	
+	<!-- Containers -->
+	<Frame name="MobileContainerBarTemplate" inherits="MobileBarTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				MobileFrames_ContainerBarOnLoad(this);
+			</OnLoad>
+			<OnShow>
+				--override template
+            </OnShow>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+            <OnMouseUp>
+				MobileFrames_BarOnMouseUp(this);
+				MobileFrames_MarkContainerCoords(this:GetParent());
+            </OnMouseUp>
+			<OnMouseDown>
+				MobileFrames_BarOnMouseDown(this);
+				updateContainerFrameAnchors();
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_BarStopDrag(this);
+			</OnHide>
+        </Scripts>
+	</Frame>
+	
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame1" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame2" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame3" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame4" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame5" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame6" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame7" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame8" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame9" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame10" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame11" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame12" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame13" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame14" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame15" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame16" id="70" />
+	<Frame name="$parentMobileBar" inherits="MobileContainerBarTemplate" parent="ContainerFrame17" id="70" />
+	
+	<!-- Unit Frame Anchor Buttons -->
+	<Button name="MobileFrameAnchor" frameStrata="HIGH" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture"  file="Interface\AddOns\MobileFrames\Skin\Anchor" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+        <Scripts>
+			<OnLoad>
+				MobileFrames_Anchor_OnLoad(this);
+			</OnLoad>
+			<OnShow>
+				MobileFrames_SideAnchor_OnShow(this);
+			</OnShow>
+            <OnEnter>
+				MobileFrames_BarOnEnter(this);
+            </OnEnter>
+            <OnLeave>
+				MobileFrames_BarOnLeave(this);
+            </OnLeave>
+			<OnMouseUp>
+				MobileFrames_Anchor_OnMouseUp(this);
+            </OnMouseUp>
+            <OnMouseDown>
+				MobileFrames_Anchor_OnMouseDown(this);
+            </OnMouseDown>
+			<OnHide>
+				MobileFrames_Anchor_OnHide(this);
+			</OnHide>
+        </Scripts>
+    </Button>
+	
+	<Button name="MobileFrameAnchorSmall" inherits="MobileFrameAnchor" virtual="true" >
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+	</Button>
+	
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="PartyMemberFrame1" />
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="PartyMemberFrame2" />
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="PartyMemberFrame3" />
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="PartyMemberFrame4" />
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="PetFrame" />
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchor" parent="PlayerFrame" >
+		<Scripts>
+			<OnLoad>
+				MobileFrames_Anchor_OnLoad(this);
+				this.rightx = 0;
+				this.leftx = 30;
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchor" parent="TargetFrame" >
+		<Scripts>
+			<OnLoad>
+				MobileFrames_Anchor_OnLoad(this);
+				this.rightx = -30;
+				this.leftx = 0;
+			</OnLoad>
+		</Scripts>
+	</Button>
+	
+	<!-- MultiBars -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MultiBarBottomLeft" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MultiBarBottomRight" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MultiBarLeft" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MultiBarRight" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	
+	<!-- Minimap -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MinimapCluster" />
+	
+	<!-- MainMenuBar -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MainMenuBar" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	
+	<!-- BackpackButton -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="MainMenuBarBackpackButton" />
+	
+	<!-- MicroButtons -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="CharacterMicroButton" />
+	
+	<!-- ActionButtons -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="ActionButton1" />
+	
+	<!-- ShapeshiftBar -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="ShapeshiftBarFrame" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	
+	<!-- PetActionBarFrame -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="PetActionBarFrame" >
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	
+	<!-- Buffs -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="TemporaryEnchantFrame">
+		<Scripts>
+			<OnShow>
+				MobileFrames_TopBottomAnchor_OnShow(this);
+			</OnShow>
+		</Scripts>
+	</Button>
+	
+	<!-- GM Ticket -->
+	<Button name="$parentMobileButton" inherits="MobileFrameAnchorSmall" parent="TicketStatusFrame" />
+	
+	<!-- Side Offset Marker -->
+	<Frame name="MobileOffsetMarker" parent="UIParent" movable="true" toplevel="true" hidden="true">
+        <Size>
+			<AbsDimension x="32" y="600"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="LEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" file="Interface\CastingBar\UI-CastingBar-Spark" setAllPoints="true" alphaMode="ADD" />
+			</Layer>
+			<!--
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="1" />
+				</Texture>
+			</Layer>
+			-->
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				MobileFrames_OffsetMarker_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				MobileFrames_OffsetMarker_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<!-- Reset Menu -->
+	<Frame name="MobileFramesDropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+		<Size>
+			<AbsDimension x="10" y="10"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="-10" y="-50"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				MobileFramesDropDown_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	<!-- MobileFrames Tooltip -->
+	<GameTooltip name="MobileFramesTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate" parent="UIParent" />
+</Ui>

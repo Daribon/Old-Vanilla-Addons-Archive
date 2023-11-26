@@ -1,0 +1,11 @@
+## Interface: 1500
+## Author: Kael		
+## Title: KC_EnhancedTrades
+## Notes:
+## DefaultState:
+## Dependencies: Ace, KC_Items
+## OptionalDeps: 
+## SavedVariables: KC_EnhancedTradesDB
+KC_EnhancedTrades.xml
+KC_EnhancedTrades_Buttons.xml
+KC_EnhancedTrades_Config.xml

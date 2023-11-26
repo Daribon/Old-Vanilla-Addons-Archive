@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX Core v1.0
+## Notes: Fonts used by the Insomniax Recompilation
+## Author: LedMirage
+## Dependencies:
+## OptionalDeps:

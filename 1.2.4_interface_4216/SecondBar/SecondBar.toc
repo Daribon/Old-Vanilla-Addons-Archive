@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: SecondBar
+## Notes: Adds a twelve button bar to the bottom side of the screen
+## RequiredDeps: Sea
+## OptionalDeps: Cosmos
+## SavedVariables: SecondActionBar_ENABLE
+SecondBar.xml

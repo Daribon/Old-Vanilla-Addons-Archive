@@ -1,0 +1,65 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<Frame name="UUIDockButtonFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent">
+		<Frames>
+			<Button name="UltimateUIDockMinimapButton" parent="UIParent" movable="true" toplevel="true">
+				<Size>
+					<AbsDimension x="34" y="34"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="MinimapBackdrop" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="25" y="42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				<OnLoad>
+				</OnLoad>
+				<OnClick>
+				if( not IsShiftKeyDown() ) then
+					if( UUIButtonFrame:IsVisible() ) then
+						HideUIPanel(UUIButtonFrame);
+						PlaySound("igSpellBookClose");
+					else				
+						ShowUIPanel(UUIButtonFrame);
+						PlaySound("igSpellBookOpen");
+					end
+				end
+				</OnClick>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetText("UUI Quick-Box", 1.0, 1.0, 1.0);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>		
+				
+				<OnEvent>
+				</OnEvent>			
+	
+				<OnUpdate>		
+				</OnUpdate>						
+
+				<OnMouseDown>
+					GameTooltip:Hide();
+					if(arg1 == "LeftButton" and IsShiftKeyDown() ) then
+						this:StartMoving();
+					end
+				</OnMouseDown>
+				
+				<OnMouseUp>
+					if(arg1 == "LeftButton") then
+						this:StopMovingOrSizing();
+					end
+				</OnMouseUp>
+
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonNotepad"/>
+				<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonNotepadDown"/>
+				<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

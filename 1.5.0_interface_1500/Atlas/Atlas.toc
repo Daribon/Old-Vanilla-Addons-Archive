@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: Atlas v0.9.5
+## Notes: Browse a collection of instance maps.
+## SavedVariables: Options
+Atlas.xml
+AtlasButton.xml
+AtlasOptions.xml

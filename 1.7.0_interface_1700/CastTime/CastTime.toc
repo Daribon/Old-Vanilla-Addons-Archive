@@ -1,0 +1,8 @@
+## Interface: 1700
+## Title: Cast Timer v1.4r2
+## Author: exi
+## Notes: Adds a timer (in seconds) to the casting bar.
+## SavedVariables: CastTime
+## Dependencies:
+## OptionalDeps: Khaos, Cosmos, CastingBarFrame
+CastTime.xml

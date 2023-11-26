@@ -1,0 +1,46 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+    <!-- The order these are loaded in is very important. -->
+    <Script file="AceLocals.lua"/>
+    <Script file="Ace.lua"/>
+    <Script file="AceDB.lua"/>
+    <Script file="AceData.lua"/>
+    <Script file="AceChatCmd.lua"/>
+    <Script file="AceCommands.lua"/>
+    <Script file="AceEvent.lua"/>
+    <Script file="AceState.lua"/>
+    <Script file="AceHook.lua"/>
+    <Script file="AceAddon.lua"/>
+
+    <!-- Event Frame -->
+    <Frame name="AceEventFrame" parent="UIParent">
+        <Scripts>
+            <OnLoad>
+                ace.event:OnLoad()
+            </OnLoad>
+            <OnEvent>
+                ace.event:EventHandler()
+            </OnEvent>
+        </Scripts>
+    </Frame>
+
+    <!-- This technique for waiting until all game data is initialized for use by the
+         addon was borrowed from Rowne and his Fetch library. Much credit goes to
+         Rowne for this brilliant improvement upon the standard, inefficient method of
+         capturing UNIT_NAME_UPDATE and other events. -->
+    <Frame name="AceStateInitFrame" hidden="false">
+        <Scripts>
+            <OnUpdate>
+                -- Hide the frame and eliminate the ace.state object since these will
+                -- no longer be needed once the state is initialized.
+                if( ace.state:InitializeState() ) then
+                    ace.state     = nil
+                    AceStateClass = nil
+                    this:Hide()
+                end
+            </OnUpdate>
+        </Scripts>
+    </Frame>
+</Ui>

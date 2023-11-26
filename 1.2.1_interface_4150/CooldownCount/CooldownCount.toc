@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: CooldownCount
+## Notes: Allows you to see time until actions have cooled down in the buttons.
+## Author: sarf
+## OptionalDeps: Cosmos, SecondBar, SideBar, PopBar, Gypsy_HotBar, FlexBar, CT_BarMod
+## SavedVariables: CooldownCount_Enabled, CooldownCount_SideBarsSideCount, CooldownCount_UseLongTimerDescriptions, CooldownCount_UseLongTimerDescriptionsForSeconds, CooldownCount_TimeBetweenFlashes
+CooldownCount.xml

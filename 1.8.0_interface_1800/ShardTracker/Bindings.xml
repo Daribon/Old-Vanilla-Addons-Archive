@@ -1,0 +1,17 @@
+<Bindings>
+    <Binding name="SHARDBUTTON_BINDING" header="SHARDTRACKER_HEADER">
+        ShardTracker_SortShards();
+    </Binding>
+    <Binding name="HEALTHBUTTON_BINDING">
+        ShardTracker_OnHealthButtonClick();
+    </Binding>
+    <Binding name="SOULBUTTON_BINDING">
+        ShardTracker_OnSoulButtonClick();
+    </Binding>
+    <Binding name="SPELLBUTTON_BINDING">
+        ShardTracker_OnSpellOrFireButtonClick("spell");
+    </Binding>
+    <Binding name="FIREBUTTON_BINDING">
+        ShardTracker_OnSpellOrFireButtonClick("fire");
+    </Binding>
+</Bindings>

@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: MainMenuBarRepositioner
+## Notes: Repositions the main menu bar to either side of the screen
+## Author: sarf
+## OptionalDeps: Cosmos
+##SavedVariables: MainMenuBarRepositioner_Position
+MainMenuBarRepositioner.xml

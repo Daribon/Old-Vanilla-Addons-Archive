@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle SpellChecker On/Off -->
+	<Binding name="SPELLCHECKER" description="Toggle mod name" header="SPELLCHECKERHEADER">
+		SpellChecker_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

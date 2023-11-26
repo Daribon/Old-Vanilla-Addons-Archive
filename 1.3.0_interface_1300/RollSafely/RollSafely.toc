@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: Roll Safely
+## Notes: Warn the user if they are about to roll on a 'Binds when picked up' item.
+## Author: Rosten, AnduinLothar, Wulph
+## Version: 1.1.0
+## OptionalDeps:
+## Dependencies:
+RollSafely.xml

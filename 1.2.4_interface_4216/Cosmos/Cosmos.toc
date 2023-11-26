@@ -1,0 +1,7 @@
+## Interface: 4216
+## OptionalDeps: ImprovedErrorFrame
+## RequiredDeps: Chronos, Sea, Sky
+## SavedVariables: CosmosMaster_CVars, CosmosMaster_CosmosUsers
+CommonFrameTemplate.xml
+CosmosMaster.xml
+CosmosMenu.xml

@@ -1,0 +1,334 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="Nurfed_ActionBars.lua"/>
+	<Frame name="Nurfed_ActionBarLoads">
+		<Scripts>
+			<OnLoad>
+				Nurfed_ActionBarsOnLoad();
+			</OnLoad>
+			<OnEvent>
+				Nurfed_ActionBarsOnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				ActionBar_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+		<Frames>
+			<Frame name="Nurfed_ActionBar" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="485" y="95"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_ActionBarBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="Nurfed_Bags" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="210" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_BagsBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="Nurfed_MicroButtons" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="230" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_MicroButtonsBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="Nurfed_ShapeShiftBar" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="250" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_ShapeShiftBarBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="Nurfed_PetBar" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="340" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_PetBarBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="Nurfed_CastingBar" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="226" y="45"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_CastingBarBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+			<Frame name="Nurfed_BGScore" frameStrata="BACKGROUND" parent="UIParent" movable="true">
+				<Size>
+					<AbsDimension x="200" y="45"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Frame name="Nurfed_BGScoreBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize>
+								<AbsValue val="4"/>
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="4" right="4" top="4" bottom="4"/>
+							</BackgroundInsets>
+						</Backdrop>
+						<Scripts>
+							<OnLoad>
+								this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+								this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+								this:SetFrameLevel(this:GetFrameLevel() - 1);
+							</OnLoad>
+						</Scripts>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnDragStart>
+						ActionBar_OnDragStart(this);
+					</OnDragStart>
+					<OnDragStop>
+						ActionBar_OnDragStop(this);
+					</OnDragStop>
+					<OnMouseUp>
+						ActionBar_OnDragStop(this);
+					</OnMouseUp>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+</Ui>

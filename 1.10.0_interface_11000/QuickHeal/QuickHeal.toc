@@ -1,0 +1,6 @@
+## Interface: 11100
+## Title: QuickHeal
+## Author: Thomas Thorsen, Scott Geeding and Kostas Karachalios
+## Notes: Quick healing of party/raid members
+## SavedVariables: QuickHealVariables
+QuickHeal.xml

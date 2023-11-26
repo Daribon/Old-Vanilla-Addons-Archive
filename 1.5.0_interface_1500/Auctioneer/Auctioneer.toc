@@ -1,0 +1,9 @@
+## Title: Auctioneer
+## Interface: 1500
+## Version: 3.0.4
+## Revision: $Id: Auctioneer.toc,v 1.10 2005/06/13 15:19:03 norganna Exp $
+## Notes: Displays collected information about item in the info window. Use "/lootlink scan" at AH to collect auction data. With Broker Mod.
+## OptionalDeps: LootLink, ItemsMatrix, AllInOneInventory, Enchantrix, EquipCompare
+## SavedVariables: AuctionConfig, AuctionPrices, AuctionBids, AHSnapshot, AHSnapshotItemPrices
+Tooltip.xml
+Auctioneer.xml

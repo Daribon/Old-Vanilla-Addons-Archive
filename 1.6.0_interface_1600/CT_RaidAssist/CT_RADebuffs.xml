@@ -1,0 +1,26 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="CT_RADebuffs.lua"/>
+	<Frame name="CT_RADebuffsFrame" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("SPELLCAST_FAILED");
+				this:RegisterEvent("SPELLCAST_INTERRUPTED");
+				this:RegisterEvent("SPELLCAST_STOP");
+			</OnLoad>
+			<OnEvent>
+				if ( event == "SPELLCAST_FAILED" or event == "SPELLCAST_INTERUPTED" ) then
+					if ( CT_RADebuff_CastingSpell ) then
+						CT_RADebuff_Blacklist[CT_RADebuff_CastingSpell] = CT_RADebuff_BlacklistTime;
+					end
+				else
+					CT_RADebuff_CastingSpell = nil;
+					CT_RADebuff_GlobalCD = 1.15;
+				end
+			</OnEvent>
+			<OnUpdate>
+				CT_RADebuff_ProcessBlacklist(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,6 @@
+## Interface: 1800
+## Author: axel0r
+## Title: ManaSave
+## RequiredDeps: Ace, Timex
+## SavedVariables: ManaSaveDB
+ManaSave.xml

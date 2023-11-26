@@ -1,0 +1,11 @@
+## Interface: 1800
+## Title: Modifier2Sell
+## Notes: Force holding of modifier button while clicking when selling items to a vendor to help prevent accidental item sales.
+## Notes-deDE: Erzwingt das gleichzeitige Dr\195\188cken einer bestimmten Taste beim Klicken zum Verkaufen beim H\195\164ndler, um so das versehentliche Verkaufen von Gegenst\195\164nden zu vermeiden.
+## Notes-frFR: Force l\'utilisation d\'une touche lors d\'une vente d\'objets afin d\'emp\195\170cher les ventes accidentelles.
+## Author: Ryan 'Gryphon' Snook
+## Version: 20050926
+## OptionalDeps: Khaos
+## Dependencies: Sea
+## SavedVariables: Modifier2Sell_Config
+Modifier2Sell.xml

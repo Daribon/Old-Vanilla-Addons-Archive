@@ -1,0 +1,38 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="healix.lua"/>
+	<Script file="SpellTell.lua"/>
+	<Include file="SpellTell.xml"/>
+	<Include file="healix.menu.xml"/>
+
+    <Frame name="healix" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				Hx_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Hx_OnEvent(event, arg1, arg2, arg3, arg4, arg5);
+			</OnEvent>
+		</Scripts>
+    </Frame>
+	<Frame name="Hx_Fetch_Frame" hidden="false">
+		<Scripts>
+			<OnUpdate>
+				Hx_OnUpdate(arg1);
+			</OnUpdate> 
+		</Scripts>
+	</Frame>
+	<Frame name="Hx_SpellsUpdateFrame" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("SPELLS_CHANGED");
+				Hx_GetClassSpells();
+			</OnLoad>
+			<OnEvent>
+				Hx_ClassSpells_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<GameTooltip name="Hx_Tooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

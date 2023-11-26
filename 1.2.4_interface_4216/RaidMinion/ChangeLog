@@ -1,0 +1,50 @@
+2005-03-07  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Fixed bug in debuff updating for non-RMUI users
+
+2005-03-05  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added /rm reset
+
+	* Fixed the clearing of expired players (callback wasn't
+	being scheduled for whatever reason)
+
+2005-03-04  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Fixed targetting 10th player in a tab
+
+	* Fixed selecting multiple classes per tab, erm.
+
+2005-03-03  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added ability to select more than one class for a tab
+
+2005-03-02  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Fixed debuff names with ":"'s in them from screwing up
+	the reception (:'s just get stripped now)
+
+	* Fixed the damn tooltip for debuffs
+
+	* Fixed debuff sending to split into max datagram size chunks.
+	Still needs heavy testing to make sure we don't spam.
+
+2005-03-01  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added debuff sending; also added debuff label type, and option
+	to show/hide debuff icons.  Tooltip coming soon to be able to
+	hover over the icons.
+
+	* Added ability to select a class to show in a tab; right-click a tab
+	and select a class (probably would need to /rm show # first).
+
+	* Added /rm scale to change size/scaling (directly
+	calls SetScale, so be aware of what this does with UIScale, e.g.
+	can move things off the screen; option is hidden in help because
+	of this)
+
+	* Fixed updates not being sent initially
+
+	* Fixed "?" remaining next to names even after update is received
+
+	* Fixed RM not appearing when you log in and/or reloadui while in a raid

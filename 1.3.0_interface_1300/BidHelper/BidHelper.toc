@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: BidHelper
+## Author: sarf
+## Notes: Helps with bids.
+## OptionalDeps: Cosmos
+BidHelper.xml

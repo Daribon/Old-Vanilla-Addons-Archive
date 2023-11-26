@@ -1,0 +1,9 @@
+## Interface: 1600
+## Title: Nurfed_ActionBars
+## Notes: Nurfed Action Bars With Telos Bars
+## Author: Tivoli, http://www.nurfed.com
+## SavedVariables: Nurfed_ActionBars, Nurfed_BottomBarState, Nurfed_SideBarState
+## OptionalDeps: Nurfed_General
+Nurfed_ActionBars.xml
+Nurfed_SideBar.xml
+Nurfed_BottomBar.xml

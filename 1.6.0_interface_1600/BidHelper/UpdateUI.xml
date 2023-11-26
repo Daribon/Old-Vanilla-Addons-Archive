@@ -1,0 +1,7 @@
+<Addon name="BidHelper" current="0.07" path="" author="Anders 'sarf' Kronquist" email="k AT fukt DOT bth DOT se" url="http://www.fukt.bth.se/~k/wow/scripts/BidHelper/">
+<Description>BidHelper is a little addon that will look for bid-messages from the auction house and put them in a little temporary storage. It adds a button on the minimap that, when moused over, shows the last 5 messages, and if clicked all messages since a few hours back.</Description>
+<Current number="0.07" date="2005-04-29">
+<File url="http://www.fukt.bth.se/~k/wow/scripts/BidHelper/BidHelper_1300_v0.07.zip" />
+</Current>
+<UpdateFile url="http://www.fukt.bth.se/~k/wow/scripts/BidHelper/Interface/AddOns/BidHelper/UpdateUI.xml" />
+</Addon>

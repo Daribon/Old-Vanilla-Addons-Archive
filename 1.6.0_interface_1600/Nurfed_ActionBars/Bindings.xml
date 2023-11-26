@@ -1,0 +1,256 @@
+<Bindings>
+	<Binding name="SIDEACTIONBUTTON1" runOnUp="true" header="SIDEBAR1">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(1);
+		else
+			SideBarButtonUp(1);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON2" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(2);
+		else
+			SideBarButtonUp(2);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON3" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(3);
+		else
+			SideBarButtonUp(3);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON4" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(4);
+		else
+			SideBarButtonUp(4);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON5" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(5);
+		else
+			SideBarButtonUp(5);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON6" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(6);
+		else
+			SideBarButtonUp(6);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON7" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(7);
+		else
+			SideBarButtonUp(7);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON8" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(8);
+		else
+			SideBarButtonUp(8);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON9" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(9);
+		else
+			SideBarButtonUp(9);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON10" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(10);
+		else
+			SideBarButtonUp(10);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON11" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(11);
+		else
+			SideBarButtonUp(11);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON12" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(12);
+		else
+			SideBarButtonUp(12);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON13" runOnUp="true" header="SIDEBAR2">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(13);
+		else
+			SideBarButtonUp(13);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON14" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(14);
+		else
+			SideBarButtonUp(14);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON15" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(15);
+		else
+			SideBarButtonUp(15);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON16" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(16);
+		else
+			SideBarButtonUp(16);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON17" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(17);
+		else
+			SideBarButtonUp(17);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON18" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(18);
+		else
+			SideBarButtonUp(18);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON19" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(19);
+		else
+			SideBarButtonUp(19);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON20" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(20);
+		else
+			SideBarButtonUp(20);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON21" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(21);
+		else
+			SideBarButtonUp(21);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON22" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(22);
+		else
+			SideBarButtonUp(22);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON23" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(23);
+		else
+			SideBarButtonUp(23);
+		end
+	</Binding>
+	<Binding name="SIDEACTIONBUTTON24" runOnUp="true">
+		if ( keystate == "down" ) then
+			SideBarButtonDown(24);
+		else
+			SideBarButtonUp(24);
+		end
+	</Binding>
+
+	
+	<Binding name="BOTTOMACTIONBUTTON1" runOnUp="true" header="BOTTOMBAR">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(1);
+		else
+			BottomBarButtonUp(1);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON2" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(2);
+		else
+			BottomBarButtonUp(2);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON3" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(3);
+		else
+			BottomBarButtonUp(3);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON4" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(4);
+		else
+			BottomBarButtonUp(4);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON5" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(5);
+		else
+			BottomBarButtonUp(5);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON6" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(6);
+		else
+			BottomBarButtonUp(6);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON7" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(7);
+		else
+			BottomBarButtonUp(7);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON8" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(8);
+		else
+			BottomBarButtonUp(8);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON9" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(9);
+		else
+			BottomBarButtonUp(9);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON10" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(10);
+		else
+			BottomBarButtonUp(10);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON11" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(11);
+		else
+			BottomBarButtonUp(11);
+		end
+	</Binding>
+	<Binding name="BOTTOMACTIONBUTTON12" runOnUp="true">
+		if ( keystate == "down" ) then
+			BottomBarButtonDown(12);
+		else
+			BottomBarButtonUp(12);
+		end
+	</Binding>
+</Bindings>

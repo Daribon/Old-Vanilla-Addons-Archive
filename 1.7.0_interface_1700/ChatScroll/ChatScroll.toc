@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: ChatScroll
+## Notes: Makes chat windows scrollable with the mouse wheel and has scroll button visibility options.
+## Author: AnduinLothar
+## OptionalDeps: Khaos, TransNUI, PopNUI, VisibilityOptions
+ChatScroll.xml

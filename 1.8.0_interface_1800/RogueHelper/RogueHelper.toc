@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: RogueHelper
+## Notes: Allows you to get a small window with your health, energy, combo points and targets health that you can drag around.
+## Author: sarf
+## OptionalDeps: Cosmos, Khaos, WeaponButtons, TransNUI, PopNUI
+## SavedVariables: RogueHelper_Enabled, RogueHelper_StatusBars, RogueHelper_Docked, RogueHelper_DockedFrame
+RogueHelper.xml

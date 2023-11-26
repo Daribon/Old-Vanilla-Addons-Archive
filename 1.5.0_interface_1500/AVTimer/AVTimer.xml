@@ -1,0 +1,67 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="AVTimer.lua"/>
+	<Frame name="AVTimerFrame" toplevel="true" enableMouse="true" frameStrata="BACKGROUND" hidden="true" parent="UIParent" moveable="true">
+		<Size>
+			<AbsDimension x="160" y="44"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="MinimapCluster" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="-140" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Frames>
+			<Button name="AVTimerButton"  id="1">
+				<Size>
+					<AbsDimension x="120" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalText name="AVTimerButtonText" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</NormalText>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				AVTimer_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				AVTimer_OnUpdate();
+			</OnUpdate>
+			<OnEvent>
+				AVTimer_OnEvent(event);
+			</OnEvent>
+			<OnShow>
+				--AVTimer_OnShow();
+			</OnShow>
+			<OnHide>
+				--AVTimer_OnHide();
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

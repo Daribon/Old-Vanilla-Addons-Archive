@@ -1,0 +1,20 @@
+## Interface: 1700
+## Title: Map Notes v1.5
+## Title-deDE: Map Notes v1.5
+## Title-enUS: Map Notes v1.5
+## Title-frFR: Map Notes v1.5
+## Title-koKR: Map Notes v1.5
+## Notes: Adds a note system to the Worldmap.
+## Notes-deDE: Ermöglicht es Notizen auf der Karte zu platzieren.
+## Notes-enUS: Adds a note system to the Worldmap.
+## Notes-frFR: Ajoute la possibilité de créer des annotations sur votre carte du monde.
+## SavedVariables: MapNotes_Data, MapNotes_Lines, MapNotes_Options, MapNotes_MiniNote_Data
+## OptionalDeps: Sky, Sea, Thottbot
+## RequiredDeps: 
+MapNotesDropDownMenu.xml
+ThottbotReplace.xml
+MapNotesMiniNoteFrame.xml
+MapNotesMenuFrame.xml
+MapNotesOptionsFrame.xml
+MapNotesSendFrame.xml
+MapNotesEditFrame.xml

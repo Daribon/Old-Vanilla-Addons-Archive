@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: Social Mods by |cFF8080FFGeoWar|r
+## Notes: Adds "Send Message" and "Send Page" buttons and Player notes!
+## OptionalDeps: Cosmos, Pager
+## SavedVariables: COS_SSM_SEND_MESSAGE_ENABLE, COS_SSM_SEND_PAGE_ENABLE, COS_SN_ENABLE
+SocialNotesEditor.xml
+SocialSendMessage.xml

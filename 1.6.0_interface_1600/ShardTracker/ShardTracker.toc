@@ -1,0 +1,4 @@
+## Interface: 1600
+## Author: Cragganmore
+## SavedVariables: SHARDTRACKER_CONFIG
+ShardTracker.xml

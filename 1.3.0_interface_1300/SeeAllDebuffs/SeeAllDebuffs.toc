@@ -1,0 +1,4 @@
+## Interface: 1300
+## Title: See All Debuffs
+## Author: Abaddon
+SeeAllDebuffs.xml

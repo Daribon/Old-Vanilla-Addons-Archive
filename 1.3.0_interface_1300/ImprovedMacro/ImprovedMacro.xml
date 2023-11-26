@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="ImprovedMacro.lua"/>
+	<Script file="localization.lua"/>
+	<Frame name="ImprovedMacroFrame" hidden="false">
+		<Scripts>
+			<OnLoad>
+				ImprovedMacro_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				ImprovedMacro_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				ImprovedMacro_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

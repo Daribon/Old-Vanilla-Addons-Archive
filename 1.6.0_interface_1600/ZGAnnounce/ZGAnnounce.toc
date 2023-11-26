@@ -1,0 +1,13 @@
+## Interface: 1600
+## Title: ZG Coin, Bijou, Primal Announcer v1.0
+## Notes: Announce which classes should roll on which item in raid chat.
+## Author: Whizzle
+## SavedVariables: ZGAnnounce_Options
+## SavedVariablesByCharacter: ZGAnnounce_PassItemList
+constants.lua
+localization_en.lua
+localization_fr.lua
+localization_de.lua
+localization_kr.lua
+ZGAnnounce.lua
+ZGAnnounce.xml

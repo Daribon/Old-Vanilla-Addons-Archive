@@ -1,0 +1,8 @@
+## Interface: 1500
+## Title: AutoTravel <-> AutoMount Glue Addon
+## Author: sarf
+## Notes: Allows you to AutoMount when AutoTraveling. Handy for Theramore/water paths. Loads of code from AutoMount stolen here (recoded for speed).
+## RequiredDeps: AutoTravel
+## OptionalDeps: AutoMount
+## SavedVariables: AutoTravelGlueAutoMount_Options
+AutoTravelGlueAutoMount.xml

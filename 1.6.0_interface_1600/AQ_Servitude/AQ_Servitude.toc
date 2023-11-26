@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: [AQ] Servitude
+## Author: sarf
+## Notes: Allows Servitude to work off of ActionQueue triggers.
+## RequiredDeps: ActionQueue, Servitude
+## SavedVariables: AQ_Servitude_Options
+AQ_Servitude.xml

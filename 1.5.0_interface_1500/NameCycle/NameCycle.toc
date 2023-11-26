@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: Name Cycle (v0.3)
+## Notes: Cycle between name display options  (v0.3)
+## Author: Iriel (iriel@vigilance-committee.org)
+NameCycle.xml

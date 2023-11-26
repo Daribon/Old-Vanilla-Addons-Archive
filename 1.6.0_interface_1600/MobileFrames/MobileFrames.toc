@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Mobile Frames
+## Notes: A template for making frames movable.
+## Author: AnduinLothar
+## OptionalDeps: UltimateUI, PopNUI
+## Dependencies: Sea
+## SavedVariables: MobileFrames_ContainerPositionsByID, MobileFrames_MinimapButtonCoords, MobileFrames_RightSide_IsReset
+MobileFrames.xml

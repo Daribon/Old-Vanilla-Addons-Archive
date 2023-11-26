@@ -1,0 +1,8 @@
+## Title: Auctioneer
+## Interface: 1600
+## Version: 3.0.10
+## Revision: $Id: Auctioneer.toc,v 1.14 2005/07/12 15:57:19 norganna Exp $
+## Notes: Displays item info and analyzes auction data. Use "/auctioneer scan" at AH to collect auction data.
+## Dependancies: EnhTooltip
+## SavedVariables: AuctionConfig, AuctionPrices, AuctionBids, AHSnapshot, AHSnapshotItemPrices
+Auctioneer.xml

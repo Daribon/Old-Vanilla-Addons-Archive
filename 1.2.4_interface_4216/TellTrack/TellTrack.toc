@@ -1,0 +1,8 @@
+## Interface: 4216
+## Title: TellTrack
+## Title-deDE: TellTrack
+## Notes: Allows you to quickly and easily talk to several people that have messaged you
+## Notes-deDE: Ermöglicht es schnell und einfach mit mehreren Leuten zu sprechen, die einem Nachrichten geschickt haben
+## OptionalDeps: Cosmos, PopNUI, TransNUI
+## SavedVariables: TellTrack_SavedList
+TellTrack.xml

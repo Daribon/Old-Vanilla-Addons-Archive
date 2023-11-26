@@ -1,0 +1,8 @@
+## Interface: 1800
+## Author: Ghash
+## Title: XRaid
+## Notes: Another Raid Addon
+## DefaultState: 
+## RequiredDeps: Ace, Timex
+## SavedVariables: XRaidDB
+XRaid.xml

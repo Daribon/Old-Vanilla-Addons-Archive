@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: Totem Killer
+## Author: evilsmoo
+## Note: Will help with killing pesky totems.
+## OptionalDeps: DynamicDataAction, DynamicDataSpell, SpellQueue
+## SavedVariables: TKill
+TKill.xml

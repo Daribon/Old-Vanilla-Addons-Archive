@@ -1,0 +1,30 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<GameTooltip name="AuraAspectsTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+
+	<Script file="AuraAspects.lua"/> 
+
+	<Frame name="AuraAspectsTempFrame" frameStrata="LOW" enableMouse="false" parent="UIParent" hidden="false">
+	</Frame>
+
+	<Frame name="AuraAspectsFrame" frameStrata="LOW" enableMouse="false" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				AuraAspects_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				--AuraAspects_OnUpdate();
+			</OnUpdate>
+			<OnEvent>
+				AuraAspects_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

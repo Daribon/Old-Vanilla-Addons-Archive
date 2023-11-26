@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Tooltips: Guild Target
+## Author: Celandro
+## Notes: Adds a guild tag to the target
+## RequiredDeps: TooltipsBase
+TooltipsGuildTarget.xml

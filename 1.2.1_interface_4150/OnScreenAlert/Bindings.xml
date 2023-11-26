@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle OnScreenAlert On/Off -->
+	<Binding name="ONSCREENALERT" description="Toggle On Screen Alert" header="ONSCREENALERTHEADER">
+		OnScreenAlert_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

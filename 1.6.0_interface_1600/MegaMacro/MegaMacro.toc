@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r MegaMacro
+## Author: Valconeye
+## Notes: 36 macro buttons
+MegaMacro.xml

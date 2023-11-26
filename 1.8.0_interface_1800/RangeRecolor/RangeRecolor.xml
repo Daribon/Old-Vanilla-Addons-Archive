@@ -1,0 +1,182 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="RangeRecolor.lua"/>
+
+	<CheckButton name="RangeRecolorCheckTemplate1" inherits="UICheckButtonTemplate" virtual="true">
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnClick>
+				if ( this:GetChecked() ) then
+					PlaySound("igMainMenuOptionCheckBoxOff");
+				else
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				end
+				RangeRecolor_OptionsCheckButtonOnClick1();
+			</OnClick>
+			<OnEnter>
+				if ( this.tooltipText ) then
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.0);
+					GameTooltip:SetText(this.tooltipText, 1.0, 1.0, 1.0);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="RangeRecolorCheckTemplate2" inherits="UICheckButtonTemplate" virtual="true">
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnClick>
+				if ( this:GetChecked() ) then
+					PlaySound("igMainMenuOptionCheckBoxOff");
+				else
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				end
+				RangeRecolor_OptionsCheckButtonOnClick2();
+			</OnClick>
+			<OnEnter>
+				if ( this.tooltipText ) then
+					GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.0);
+					GameTooltip:SetText(this.tooltipText, 1.0, 1.0, 1.0);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	
+	<Frame name="RangeRecolorOptions" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="225" y="150" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+			tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />	
+				<Size>
+					<AbsDimension x="128" y="17" />
+				</Size>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+		</Backdrop>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="RangeRecolorFrameTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="276" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="RangeRecolor">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="RangeRecolorOptions">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		
+
+		<Frames>
+			
+			<CheckButton name="RangeRecolorOptionsFrame_CheckButton1" inherits="RangeRecolorCheckTemplate1">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP" relativeTo="RangeRecolorOptions">
+						<Offset>
+							<AbsDimension x="-40" y="-50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="RangeRecolorOptionsFrame_CheckButton2" inherits="RangeRecolorCheckTemplate2">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP" relativeTo="RangeRecolorOptions">
+						<Offset>
+							<AbsDimension x="-40" y="-80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+
+			<Frame name="RangeRecolorOptionsFrame1" inherits="RangeRecolorColorOptionTemplate">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP" relativeTo="RangeRecolorOptions">
+						<Offset>
+							<AbsDimension x="-10" y="-85" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+					
+			<Button name="RangeRecolorOptionsSave" inherits="OptionsButtonTemplate" text="Close">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM" relativeTo="RangeRecolorOptions">
+						<Offset>
+							<AbsDimension x="-45" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionOK");
+						RangeRecolorOptions_Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="RangeRecolorOptionsReset" inherits="OptionsButtonTemplate" text="Defaults">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM" relativeTo="RangeRecolorOptions">
+						<Offset>
+							<AbsDimension x="45" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						RangeRecolorOptions_Defaults();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+		</Frames>
+		<Scripts>
+			<OnShow>
+				RangeRecolorOptions_Show();
+			</OnShow>
+			<OnLoad>
+				RangeRecolorAction_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				RangeRecolorAction_OnEvent(event);
+			</OnEvent>
+		</Scripts>	
+	</Frame>
+</Ui>

@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX PlayerFramePlus v1.1
+## Notes: Adds an experience bar and background to the player frame. Created for the Insomniax Recompilation.
+## Author: LedMirage
+## RequiredDeps: CT_UnitFrames
+Insomniax_PlayerFramePlus.xml

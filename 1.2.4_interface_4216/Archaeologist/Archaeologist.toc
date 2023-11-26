@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: Archaeologist
+## Notes: Unearthing Health and Mana values at a unit frame near you.
+## Author: AnduinLothar
+## OptionalDeps: Cosmos, ImprovedErrorFrame
+## Dependencies: Sea
+Archaeologist.xml

@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r AutoInnerFire 1.33
+## Author: deto (based by Gello)
+## Notes: Automatically casts inner fire if you need on movement
+## SavedVariables: AutoInnerFireProfile
+## OptionalDeps: myAddOns
+## DefaultState: disabled
+AutoInnerFire.xml
+AutoInnerFire_Options.xml

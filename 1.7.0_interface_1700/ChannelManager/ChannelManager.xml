@@ -1,0 +1,815 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- Localization Files -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+
+	<!-- Main Code -->
+	<Script file="ChannelManager.lua"/>
+	
+	<!-- ChannelManager Tabs -->
+	<Button name="ChannelManagerTabButtonTemplateRight" inherits="EarthVerticalTabButtonTemplateRight" hidden="true" parent="ChatFrame1" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="60"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0" />
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon">
+					<Size>
+						<AbsDimension x="18" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetParent():GetFrameLevel());
+				ChannelManager_Tab_ButtonUp();
+				getglobal(this:GetName().."HighlightTexture"):SetHeight(this:GetHeight() - 20);
+			</OnLoad>
+			<OnClick>
+				--EarthPanelTemplates_Vertical_Tab_OnClick(this:GetParent());
+				ChannelManager_Tab_OnClick();
+			</OnClick>
+			<OnShow>
+				EarthPanelTemplates_Vertical_TabResize(2, this, 58);
+			</OnShow>
+			<OnEnter>
+				ChannelManager_Tab_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				ChannelManager_Tab_OnLeave();
+				ChannelManager_Tab_ButtonUp();
+			</OnLeave>
+			<OnMouseDown>
+				ChannelManager_Tab_ButtonDown();
+			</OnMouseDown>
+			<OnMouseUp>
+				ChannelManager_Tab_ButtonUp();
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+	
+	<Button name="ChannelManagerTabButtonTemplate" inherits="EarthVerticalTabButtonTemplate" hidden="true" text=" " virtual="true">
+		<Size>
+			<AbsDimension x="32" y="60"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0" />
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon">
+					<Size>
+						<AbsDimension x="18" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetParent():GetFrameLevel());
+				ChannelManager_Tab_ButtonUp();
+				getglobal(this:GetName().."HighlightTexture"):SetHeight(this:GetHeight() - 20);
+			</OnLoad>
+			<OnClick>
+				--EarthPanelTemplates_Vertical_Tab_OnClick(this:GetParent());
+				ChannelManager_Tab_OnClick();
+			</OnClick>
+			<OnShow>
+				EarthPanelTemplates_Vertical_TabResize(2, this, 58);
+			</OnShow>
+			<OnEnter>
+				ChannelManager_Tab_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				ChannelManager_Tab_OnLeave();
+				ChannelManager_Tab_ButtonUp();
+			</OnLeave>
+			<OnMouseDown>
+				ChannelManager_Tab_ButtonDown();
+			</OnMouseDown>
+			<OnMouseUp>
+				ChannelManager_Tab_ButtonUp();
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+	
+	<Button name="$parentTabRight3" inherits="ChannelManagerTabButtonTemplateRight" id="3" parent="ChatFrame1">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="4" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentTabRight2" inherits="ChannelManagerTabButtonTemplateRight" id="2" parent="ChatFrame1">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="$parentTabRight3" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-16"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentTabRight1" inherits="ChannelManagerTabButtonTemplateRight" id="1" parent="ChatFrame1">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="$parentTabRight2" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-16"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	
+	<Button name="$parentTab3" inherits="ChannelManagerTabButtonTemplate" id="3" parent="ChatFrame1">
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="-4" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentTab2" inherits="ChannelManagerTabButtonTemplate" id="2" parent="ChatFrame1">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="$parentTab3" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-16"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="$parentTab1" inherits="ChannelManagerTabButtonTemplate" id="1" parent="ChatFrame1">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="$parentTab2" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-16"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+
+	
+	<Frame name="ChannelManagerFrame" parent="ChatFrame1" hidden="true" movable="true" resizable="true">
+		<Size>
+			<AbsDimension x="200" y="75" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+			<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<ResizeBounds>
+			<minResize>
+				<AbsDimension x="150" y="25"/>
+			</minResize>
+			<maxResize>
+				<AbsDimension x="400" y="100"/>
+			</maxResize>
+		</ResizeBounds>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" file="Interface\ChatFrame\ChatFrameBackground">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-2" y="3"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="-2" y="-6"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentResizeTopLeft">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentBackground">
+						<Offset>
+							<AbsDimension x="-2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.25" top="0" bottom="0.125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("LEFT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeTopRight">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentBackground">
+						<Offset>
+							<AbsDimension x="2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0.75" right="1.0" top="0" bottom="0.125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("RIGHT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeBottomLeft">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentBackground">
+						<Offset>
+							<AbsDimension x="-2" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.25" top="0.7265625" bottom="0.8515625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("LEFT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeBottomRight">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentBackground">
+						<Offset>
+							<AbsDimension x="2" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0.75" right="1.0" top="0.7265625" bottom="0.8515625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("RIGHT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeTop">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentResizeTopLeft" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativeTo="$parentResizeTopRight" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT"/>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.25" right="0.75" top="0" bottom="0.125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeBottom">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentResizeBottomLeft" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativeTo="$parentResizeBottomRight" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT"/>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.25" right="0.75" top="0.7265625" bottom="0.8515625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeLeft">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentResizeTopLeft" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOM" relativeTo="$parentResizeBottomLeft" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP"/>
+								<Anchor point="BOTTOM"/>
+							</Anchors>
+							<TexCoords left="0" right="0.25" top="0.125" bottom="0.7265625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("LEFT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeRight">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentResizeTopRight" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOM" relativeTo="$parentResizeBottomRight" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP"/>
+								<Anchor point="BOTTOM"/>
+							</Anchors>
+							<TexCoords left="0.75" right="1.0" top="0.125" bottom="0.7265625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("RIGHT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<!--
+			<Button name="$parentResizeTopRight">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentBackground">
+						<Offset>
+							<AbsDimension x="2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0.75" right="1.0" top="0" bottom="0.125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("RIGHT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeBottomRight">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentBackground">
+						<Offset>
+							<AbsDimension x="2" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<TexCoords left="0.75" right="1.0" top="0.7265625" bottom="0.8515625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("RIGHT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp> 
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeRight">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentResizeTopRight" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOM" relativeTo="$parentResizeBottomRight" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP"/>
+								<Anchor point="BOTTOM"/>
+							</Anchors>
+							<TexCoords left="0.75" right="1.0" top="0.125" bottom="0.7265625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+					<OnMouseDown>
+						ChannelManager_Resize("RIGHT");
+					</OnMouseDown>
+					<OnMouseUp>
+						ChannelManager_StopResize();
+					</OnMouseUp>
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeTop">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentBackground" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativeTo="$parentResizeTopRight" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT"/>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.25" right="0.75" top="0" bottom="0.125"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentResizeBottom">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentBackground" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="RIGHT" relativeTo="$parentResizeBottomRight" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="Interface\ChatFrame\ChatFrameBorder">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT"/>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.25" right="0.75" top="0.7265625" bottom="0.8515625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel()-1);
+					</OnLoad>
+				</Scripts>
+			</Button>
+			-->
+			<Frame name="$parentContainer">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-30"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-28" y="-30"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="10" y="10"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-28" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4" />	
+						<Size>
+							<AbsDimension x="128" y="17" />
+						</Size>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="16" />
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="16" />
+					</EdgeSize>
+				</Backdrop>
+				<Frames>
+					<Frame name="$parentTree" inherits="EarthTreeTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="-6"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-4" y="-6"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="4" y="4"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-4" y="4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!--
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentBackground" setAllPoints="true">
+									<Color r="1" g="0" b="0" a=".5" />
+								</Texture>
+							</Layer>
+						</Layers>
+						-->
+						<Scripts>
+							<OnLoad>
+								ChannelManager_Tree_OnLoad();
+							</OnLoad>
+							<OnSizeChanged>
+								this:SetWidth(this:GetParent():GetWidth());
+								ChannelManagerGUI.updateTree();
+							</OnSizeChanged>
+						</Scripts>
+					</Frame>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				ChannelManager_OnLoad();
+				--EarthPanelTemplates_Vertical_SetNumTabs(this:GetParent(), 2);
+			</OnLoad>
+			<OnEvent>
+				ChannelManager_OnEvent(event);
+			</OnEvent>
+			<OnSizeChanged>
+				--ChannelManagerGUI.updateTree();
+				--ChannelManagerGUI.updateTabs();
+			</OnSizeChanged>
+		</Scripts>
+	</Frame>
+</Ui>

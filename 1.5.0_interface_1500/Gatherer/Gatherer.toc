@@ -1,0 +1,13 @@
+## Interface: 1500
+## Title: Gatherer
+## Title-frFR: Gatherer
+## Title-deDE: Gatherer
+## Version: <%version%>
+## Notes: Gatherer, displays stuff you gather in your minimap
+## Notes-frFR: Gatherer, affiche les objets recoltes dans la minicarte et la carte du monde
+## Notes-deDE: Gatherer, zeigt gesammelte Kräuter und Erze auf der Minikarte und Weltkarte an
+## SavedVariables: GatherItems, GatherConfig
+## Revision: $Id: Gatherer.toc,v 1.6 2005/06/08 06:45:18 islorgris Exp $
+## OptionalDeps: myAddOns
+Gatherer.xml
+GathererUI.xml

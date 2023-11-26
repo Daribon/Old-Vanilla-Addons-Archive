@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r TrinketMenu
+## Author: Gello
+## Notes: AddOn to manage trinkets
+## SavedVariables: TrinketMenuOptions
+TrinketMenu.xml

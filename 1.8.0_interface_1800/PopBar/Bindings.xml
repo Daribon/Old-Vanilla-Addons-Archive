@@ -1,0 +1,895 @@
+<Bindings>
+	<Binding name="TOGGLEPOPBAR" runOnUp="true" header="POPBARHEADER">
+		if ( keystate ~= "down" ) then
+			PopBar_Toggle(-1);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON101" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,1);
+		else
+			PopBarButtonUp(1,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON102" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,2);
+		else
+			PopBarButtonUp(1,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON103" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,3);
+		else
+			PopBarButtonUp(1,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON104" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,4);
+		else
+			PopBarButtonUp(1,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON105" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,5);
+		else
+			PopBarButtonUp(1,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON106" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,6);
+		else
+			PopBarButtonUp(1,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON107" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,7);
+		else
+			PopBarButtonUp(1,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON108" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,8);
+		else
+			PopBarButtonUp(1,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON109" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,9);
+		else
+			PopBarButtonUp(1,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON110" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,10);
+		else
+			PopBarButtonUp(1,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON111" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,11);
+		else
+			PopBarButtonUp(1,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON112" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(1,12);
+		else
+			PopBarButtonUp(1,12);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON201" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,1);
+		else
+			PopBarButtonUp(2,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON202" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,2);
+		else
+			PopBarButtonUp(2,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON203" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,3);
+		else
+			PopBarButtonUp(2,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON204" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,4);
+		else
+			PopBarButtonUp(2,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON205" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,5);
+		else
+			PopBarButtonUp(2,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON206" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,6);
+		else
+			PopBarButtonUp(2,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON207" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,7);
+		else
+			PopBarButtonUp(2,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON208" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,8);
+		else
+			PopBarButtonUp(2,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON209" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,9);
+		else
+			PopBarButtonUp(2,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON210" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,10);
+		else
+			PopBarButtonUp(2,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON211" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,11);
+		else
+			PopBarButtonUp(2,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON212" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(2,12);
+		else
+			PopBarButtonUp(2,12);
+		end
+	</Binding>
+
+	<Binding name="POPBARBUTTON301" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,1);
+		else
+			PopBarButtonUp(3,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON302" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,2);
+		else
+			PopBarButtonUp(3,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON303" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,3);
+		else
+			PopBarButtonUp(3,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON304" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,4);
+		else
+			PopBarButtonUp(3,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON305" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,5);
+		else
+			PopBarButtonUp(3,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON306" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,6);
+		else
+			PopBarButtonUp(3,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON307" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,7);
+		else
+			PopBarButtonUp(3,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON308" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,8);
+		else
+			PopBarButtonUp(3,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON309" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,9);
+		else
+			PopBarButtonUp(3,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON310" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,10);
+		else
+			PopBarButtonUp(3,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON311" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,11);
+		else
+			PopBarButtonUp(3,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON312" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(3,12);
+		else
+			PopBarButtonUp(3,12);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON401" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,1);
+		else
+			PopBarButtonUp(4,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON402" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,2);
+		else
+			PopBarButtonUp(4,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON403" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,3);
+		else
+			PopBarButtonUp(4,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON404" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,4);
+		else
+			PopBarButtonUp(4,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON405" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,5);
+		else
+			PopBarButtonUp(4,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON406" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,6);
+		else
+			PopBarButtonUp(4,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON407" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,7);
+		else
+			PopBarButtonUp(4,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON408" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,8);
+		else
+			PopBarButtonUp(4,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON409" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,9);
+		else
+			PopBarButtonUp(4,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON410" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,10);
+		else
+			PopBarButtonUp(4,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON411" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,11);
+		else
+			PopBarButtonUp(4,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON412" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(4,12);
+		else
+			PopBarButtonUp(4,12);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON501" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,1);
+		else
+			PopBarButtonUp(5,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON502" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,2);
+		else
+			PopBarButtonUp(5,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON503" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,3);
+		else
+			PopBarButtonUp(5,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON504" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,4);
+		else
+			PopBarButtonUp(5,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON505" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,5);
+		else
+			PopBarButtonUp(5,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON506" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,6);
+		else
+			PopBarButtonUp(5,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON507" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,7);
+		else
+			PopBarButtonUp(5,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON508" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,8);
+		else
+			PopBarButtonUp(5,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON509" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,9);
+		else
+			PopBarButtonUp(5,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON510" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,10);
+		else
+			PopBarButtonUp(5,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON511" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,11);
+		else
+			PopBarButtonUp(5,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON512" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(5,12);
+		else
+			PopBarButtonUp(5,12);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON601" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,1);
+		else
+			PopBarButtonUp(6,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON602" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,2);
+		else
+			PopBarButtonUp(6,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON603" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,3);
+		else
+			PopBarButtonUp(6,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON604" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,4);
+		else
+			PopBarButtonUp(6,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON605" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,5);
+		else
+			PopBarButtonUp(6,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON606" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,6);
+		else
+			PopBarButtonUp(6,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON607" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,7);
+		else
+			PopBarButtonUp(6,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON608" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,8);
+		else
+			PopBarButtonUp(6,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON609" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,9);
+		else
+			PopBarButtonUp(6,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON610" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,10);
+		else
+			PopBarButtonUp(6,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON611" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,11);
+		else
+			PopBarButtonUp(6,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON612" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(6,12);
+		else
+			PopBarButtonUp(6,12);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON701" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,1);
+		else
+			PopBarButtonUp(7,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON702" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,2);
+		else
+			PopBarButtonUp(7,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON703" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,3);
+		else
+			PopBarButtonUp(7,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON704" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,4);
+		else
+			PopBarButtonUp(7,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON705" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,5);
+		else
+			PopBarButtonUp(7,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON706" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,6);
+		else
+			PopBarButtonUp(7,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON707" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,7);
+		else
+			PopBarButtonUp(7,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON708" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,8);
+		else
+			PopBarButtonUp(7,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON709" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,9);
+		else
+			PopBarButtonUp(7,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON710" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,10);
+		else
+			PopBarButtonUp(7,10);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON711" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,11);
+		else
+			PopBarButtonUp(7,11);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON712" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(7,12);
+		else
+			PopBarButtonUp(7,12);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON801" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,1);
+		else
+			PopBarButtonUp(8,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON802" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,2);
+		else
+			PopBarButtonUp(8,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON803" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,3);
+		else
+			PopBarButtonUp(8,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON804" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,4);
+		else
+			PopBarButtonUp(8,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON805" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,5);
+		else
+			PopBarButtonUp(8,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON806" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,6);
+		else
+			PopBarButtonUp(8,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON807" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,7);
+		else
+			PopBarButtonUp(8,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON808" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,8);
+		else
+			PopBarButtonUp(8,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON809" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,9);
+		else
+			PopBarButtonUp(8,9);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON810" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(8,10);
+		else
+			PopBarButtonUp(8,10);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON901" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,1);
+		else
+			PopBarButtonUp(9,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON902" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,2);
+		else
+			PopBarButtonUp(9,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON903" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,3);
+		else
+			PopBarButtonUp(9,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON904" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,4);
+		else
+			PopBarButtonUp(9,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON905" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,5);
+		else
+			PopBarButtonUp(9,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON906" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,6);
+		else
+			PopBarButtonUp(9,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON907" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,7);
+		else
+			PopBarButtonUp(9,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON908" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,8);
+		else
+			PopBarButtonUp(9,8);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON909" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(9,9);
+		else
+			PopBarButtonUp(9,9);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON1001" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,1);
+		else
+			PopBarButtonUp(10,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1002" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,2);
+		else
+			PopBarButtonUp(10,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1003" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,3);
+		else
+			PopBarButtonUp(10,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1004" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,4);
+		else
+			PopBarButtonUp(10,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1005" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,5);
+		else
+			PopBarButtonUp(10,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1006" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,6);
+		else
+			PopBarButtonUp(10,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1007" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,7);
+		else
+			PopBarButtonUp(10,7);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1008" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(10,8);
+		else
+			PopBarButtonUp(10,8);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON1101" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,1);
+		else
+			PopBarButtonUp(11,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1102" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,2);
+		else
+			PopBarButtonUp(11,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1103" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,3);
+		else
+			PopBarButtonUp(11,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1104" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,4);
+		else
+			PopBarButtonUp(11,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1105" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,5);
+		else
+			PopBarButtonUp(11,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1106" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,6);
+		else
+			PopBarButtonUp(11,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1107" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(11,7);
+		else
+			PopBarButtonUp(11,7);
+		end
+	</Binding>
+	
+	<Binding name="POPBARBUTTON1201" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,1);
+		else
+			PopBarButtonUp(12,1);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1202" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,2);
+		else
+			PopBarButtonUp(12,2);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1203" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,3);
+		else
+			PopBarButtonUp(12,3);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1204" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,4);
+		else
+			PopBarButtonUp(12,4);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1205" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,5);
+		else
+			PopBarButtonUp(12,5);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1206" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,6);
+		else
+			PopBarButtonUp(12,6);
+		end
+	</Binding>
+	<Binding name="POPBARBUTTON1207" runOnUp="true">
+		if ( keystate == "down" ) then
+			PopBarButtonDown(12,7);
+		else
+			PopBarButtonUp(12,7);
+		end
+	</Binding>
+
+</Bindings>

@@ -1,0 +1,31 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<FontString name="Nurfed_StatusText" outline="NORMAL" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+	</FontString>
+	<FontString name="Nurfed_StatusBarText" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="8.7"/>
+		</FontHeight>
+	</FontString>
+	<FontString name="Nurfed_CombatFont" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+		<FontHeight>
+			<AbsValue val="16"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<FontString name="Nurfed_NameFont" outline="NORMAL" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		<Color r="1" g="1" b="1"/>
+	</FontString>
+	<FontString name="Nurfed_ComboFont" outline="NORMAL" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="18" />
+		</FontHeight>
+		<Color r="1.0" g="0" b="0"/>
+	</FontString>
+</Ui>

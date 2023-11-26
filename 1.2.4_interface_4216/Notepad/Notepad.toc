@@ -1,0 +1,5 @@
+## Interface: 4216
+## Title: Notepad
+## Notes: A simple tabbed notepad window.
+## SavedVariables: Notepad_Entries, Notepad_SelectedEntry
+Notepad.xml

@@ -1,0 +1,6 @@
+## Interface: 1500
+## Version: 1.45 (CTMod 1.782)
+## Title: CT_PartyBuffs
+## Notes: Shows buffs at party member frames
+## Dependencies: CT_MasterMod
+CT_PartyBuffs.xml

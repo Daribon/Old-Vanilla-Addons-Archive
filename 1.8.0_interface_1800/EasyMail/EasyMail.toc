@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: EasyMail
+## Notes: EasyMail automatically fills in the name of last person you mailed.
+## RequiredDeps: Sea, Chronos
+## Title-deDE: EasyMail
+## Notes-deDE: Automatischer Betreff & Speicherung des letzten Adressaten für Post
+## SavedVariables: EasyMail_LastMailed
+EasyMail.xml

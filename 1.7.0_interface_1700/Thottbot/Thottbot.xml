@@ -1,0 +1,78 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+  <Script file="localization.lua"/>
+  <Script file="localization.de.lua"/>
+  <Script file="localization.fr.lua"/>
+  <Script file="TData.lua"/>
+  <Script file="ThottbotUtil.lua"/>
+  <Script file="ThottbotEngine.lua"/>
+  <Script file="Thottbot.lua"/>
+  <GameTooltip name="ThottbotTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
+    <Scripts>
+      <OnLoad>
+        this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+        this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+      </OnLoad>
+    </Scripts>
+  </GameTooltip>
+  <Frame name="Thottbot" frameStrata="ARTWORK" enableMouse="false" parent="UIParent">
+    <Size>
+      <AbsDimension x="120" y="52"/>
+    </Size>
+    <Frames>
+      <Button name="ThottbotTextButton" frameStrata="BACKGROUND">
+        <Size>
+          <AbsDimension x="120" y="52"/>
+        </Size>
+        <Anchors>
+          <Anchor point="CENTER">
+            <Offset>
+              <AbsDimension x="0" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <FontString name="ThottbotText" inherits="GameFontNormal" wraponspaces="true">
+              <Size>
+                <AbsDimension x="120" y="52"/>
+              </Size>
+              <Anchors>
+                <Anchor point="TOP"/>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Button>
+    </Frames>
+    <Anchors>
+      <Anchor point="TOP" relativeTo="MinimapCluster" relativePoint="BOTTOM">
+        <Offset>
+          <AbsDimension x="8" y="20"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Anchors>
+      <Anchor point="TOPRIGHT"/>
+    </Anchors>
+    <Scripts>
+      <OnLoad>
+        Thottbot_OnLoad();
+	ThottbotTooltip:SetOwner(this, "ANCHOR_RIGHT");
+      </OnLoad>
+      <OnEvent>
+        Thottbot_OnEvent(event, arg1, arg2, arg3);
+      </OnEvent>
+    </Scripts>
+  </Frame>
+  <Frame name="ThottbotLocationFrame" inherits="WorldMapUnitTemplate" id="5" parent="WorldMapButton">
+  	<Scripts>
+  		<OnLoad>
+  			this.unit = "player";
+  		</OnLoad>
+  		<OnEnter>
+  			WorldMapTooltip:SetText("ThottBot Location Marker");
+  		</OnEnter>
+  	</Scripts>
+  </Frame>
+</Ui>

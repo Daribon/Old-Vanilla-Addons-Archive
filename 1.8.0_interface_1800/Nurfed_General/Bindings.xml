@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="NURFEDRELOADUI"  runOnUp="true" header="NURFEDHEADER">
+		ReloadUI();
+	</Binding>
+	<Binding name="NURFEDLOCKALL">
+		Nurfed_ToggleLock();
+	</Binding>
+</Bindings>

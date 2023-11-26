@@ -1,0 +1,10 @@
+-------------------------------------------------------------------
+-- Use this file to have functions be loaded for use in custom filters
+--
+-- Don't forget the syntax
+--
+-- function <Name>(id)
+--   <Your code>
+--   return <index of id>;
+-- end
+-------------------------------------------------------------------

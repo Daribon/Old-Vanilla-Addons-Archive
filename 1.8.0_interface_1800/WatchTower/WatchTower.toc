@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r WatchTower (Redux)
+## Author: Clangadin (modified by Nathanmx)
+## Website: www.grimeygames.com/wow
+## Notes: Allows for quick reporting of Enemy Factions attacking. 
+## SavedVariables: WatchTowerEnabled, WatchTower_SendLocal, WatchTower_SendGuild, WatchTower_SendParty, WatchTower_SendRaid
+WatchTower.xml

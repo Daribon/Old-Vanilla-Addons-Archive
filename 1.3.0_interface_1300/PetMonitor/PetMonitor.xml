@@ -1,0 +1,234 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+	<Script file="localization.lua"/>
+	<Script file="PetMonitor.lua"/> 
+	<Frame name="PetMonitorManagerFrame" toplevel="false" hidden="true">
+		<Scripts> 
+			<OnLoad> 
+				PetMonitor_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				PetMonitor_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<Button name="PetMonitorPartyPetTemplate" frameStrata="LOW" toplevel="true" moveable="true" hidden="false" virtual="true">
+		<Scripts> 
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+				this:RegisterForClicks("LeftButtonUp","RightButtonUp");
+			</OnLoad>
+			<OnClick> 
+				PetMonitor_OnClick(arg1);
+			</OnClick>
+			<OnMouseUp>
+				PetMonitor_MouseUp();
+			</OnMouseUp>
+			<OnDragStart>
+				PetMonitor_StartDrag();
+			</OnDragStart>
+			<OnDragStop>
+				PetMonitor_StopDrag();
+			</OnDragStop>
+		</Scripts>
+		<Size>
+			<AbsDimension x="128" y="53"/>
+		</Size>
+		<HitRectInsets>
+			<AbsInset left="7" right="66" top="6" bottom="7"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentPortrait" file="Interface\AddOns\PetMonitor\Skin\NoPortrait">
+					<Size>
+						<AbsDimension x="37" y="37"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame setAllPoints="true">
+				<Frames>
+					<Frame setAllPoints="true">
+						<Layers>
+							<Layer level="ARTWORK">
+								<Texture name="$parentTexture" file="Interface\TargetingFrame\UI-PartyFrame">
+									<Size>
+										<AbsDimension x="128" y="64"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="-2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentName" inherits="GameFontNormalSmall">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="50" y="43"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentHealthBarText" inherits="TextStatusBarTextSmall">
+										<Anchors>
+												<Anchor point="CENTER" relativePoint="TOPLEFT">
+														<Offset>
+																<AbsDimension x="80" y="-16"/>
+														</Offset>
+												</Anchor>
+										</Anchors>
+								</FontString>
+								<FontString name="$parentManaBarText" inherits="TextStatusBarTextSmall">
+										<Anchors>
+												<Anchor point="CENTER" relativePoint="TOPLEFT">
+														<Offset>
+																<AbsDimension x="80" y="-24"/>
+														</Offset>
+												</Anchor>
+										</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+			<StatusBar name="$parentHealthBar" inherits="TextStatusBar">
+				<Size>
+					<AbsDimension x="70" y="8"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="47" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<Scripts>
+					<OnEnter>
+						PetMonitor_HealthBarRollover(true);
+					</OnEnter>
+					<OnLeave>
+						PetMonitor_HealthBarRollover(false);
+					</OnLeave>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentManaBar" inherits="TextStatusBar">
+				<Size>
+					<AbsDimension x="70" y="8"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="47" y="-21"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="0" b="1.0"/>
+			</StatusBar>
+		</Frames>
+	</Button>	
+	<Frame name="PetMonitorPartyFrame1" parent="PartyMemberFrame1" toplevel="false" movable="true" enableMouse="true" hidden="true"> 
+          <Size> 
+               <AbsDimension x="8" y="8"/> 
+          </Size> 
+          <Frames> 
+		  <Anchors> 
+				 <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="PartyMemberFrame1"> 
+					  <Offset> 
+						   <AbsDimension x="0" y="0"/> 
+					  </Offset> 
+				 </Anchor>
+		   </Anchors> 
+               <Button name="$parentPetFrame" inherits="PetMonitorPartyPetTemplate" toplevel="false" id="1"> 
+                    <Anchors> 
+                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="PetMonitorPartyFrame1"> 
+                              <Offset> 
+                                   <AbsDimension x="0" y="0"/> 
+                              </Offset> 
+                         </Anchor> 
+                    </Anchors> 
+               </Button>                
+          </Frames> 
+     </Frame> 
+	<Frame name="PetMonitorPartyFrame2" parent="PartyMemberFrame2" toplevel="false" movable="true" enableMouse="true" hidden="true"> 
+          <Size> 
+               <AbsDimension x="8" y="8"/> 
+          </Size>  
+		  <Anchors> 
+				 <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="PartyMemberFrame2"> 
+					  <Offset> 
+						   <AbsDimension x="0" y="0"/> 
+					  </Offset> 
+				 </Anchor>
+		   </Anchors> 
+          <Frames> 
+               <Button name="$parentPetFrame" inherits="PetMonitorPartyPetTemplate" toplevel="false" id="2"> 
+                    <Anchors> 
+                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="PetMonitorPartyFrame2"> 
+                              <Offset> 
+                                   <AbsDimension x="0" y="0"/> 
+                              </Offset> 
+                         </Anchor> 
+                    </Anchors> 
+               </Button>                
+          </Frames> 
+     </Frame> 
+	<Frame name="PetMonitorPartyFrame3" parent="PartyMemberFrame3" toplevel="false" movable="true" enableMouse="true" hidden="true"> 
+          <Size> 
+               <AbsDimension x="8" y="8"/> 
+          </Size>  
+		  <Anchors> 
+				 <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="PartyMemberFrame3"> 
+					  <Offset> 
+						   <AbsDimension x="0" y="0"/> 
+					  </Offset> 
+				 </Anchor>
+		   </Anchors>
+          <Frames> 
+               <Button name="$parentPetFrame" inherits="PetMonitorPartyPetTemplate" toplevel="false" id="3"> 
+                    <Anchors> 
+                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="PetMonitorPartyFrame3"> 
+                              <Offset> 
+                                   <AbsDimension x="0" y="0"/> 
+                              </Offset> 
+                         </Anchor> 
+                    </Anchors> 
+               </Button>                
+          </Frames> 
+     </Frame> 
+	<Frame name="PetMonitorPartyFrame4" parent="PartyMemberFrame4" toplevel="false" movable="true" enableMouse="true" hidden="true"> 
+          <Size> 
+               <AbsDimension x="8" y="8"/> 
+          </Size>  
+		  <Anchors> 
+				 <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="PartyMemberFrame4"> 
+					  <Offset> 
+						   <AbsDimension x="0" y="0"/> 
+					  </Offset> 
+				 </Anchor>
+		   </Anchors>
+          <Frames> 
+               <Button name="$parentPetFrame" inherits="PetMonitorPartyPetTemplate" toplevel="false" id="4"> 
+                    <Anchors> 
+                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="PetMonitorPartyFrame4"> 
+                              <Offset> 
+                                   <AbsDimension x="0" y="0"/> 
+                              </Offset> 
+                         </Anchor> 
+                    </Anchors> 
+               </Button>                
+          </Frames> 
+     </Frame> 
+</Ui>

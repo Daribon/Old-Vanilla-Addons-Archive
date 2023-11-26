@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: RaidMinion
+## Notes: Raid health, mana, and debuff monitoring (/rm or Ctrl+RightClick on player in raid window)
+## RequiredDeps: Sea, Chronos, Sky, Earth
+## OptionalDeps: Meteorologist
+## SavedVariables: RM_TabsOnlyInRaid, RM_TabPlayers, RM_TabNames, RM_TabOptions
+RaidMinion.xml

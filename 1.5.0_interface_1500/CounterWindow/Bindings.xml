@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="COUNTERWINDOW" description="Toggle mod name" header="COUNTERWINDOWHEADER">
+		CounterWindow_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

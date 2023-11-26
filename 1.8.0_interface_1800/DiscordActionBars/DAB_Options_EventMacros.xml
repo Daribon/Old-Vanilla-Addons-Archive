@@ -1,0 +1,174 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Frame name="DAB_OnEventMacros" parent="DAB_Options" inherits="DAB_TooltipBGTemplate" hidden="true">
+	<Size><AbsDimension x="397" y="605"/></Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="DAB_OptionsTitle" relativePoint="BOTTOMLEFT"/>
+	</Anchors>
+	<Frames>
+		<Button name="$parent_ChooseEvent" inherits="DAB_MenuControlTemplate">
+			<Size><AbsDimension x="250" y="24"/></Size>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0.0, 0.0, 0.0);
+					this.menu = DAB_MENU_EVENTS;
+					this.index = "EventMacros";
+					DAB_Set_Label(DAB_TEXT.ChooseEvent);
+					DAB_Set_Anchor("", 10, 565);
+				</OnLoad>
+			</Scripts>
+		</Button>
+
+			<ScrollFrame name="$parent_ScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Size><AbsDimension x="337" y="510"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset><AbsDimension x="20" y="-85"/></Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<EditBox name="$parent_Text" multiLine="true" letters="1020" autoFocus="false" enableMouse="true">
+						<Size><AbsDimension x="337" y="510"/></Size>
+						<Scripts>
+							<OnTextChanged>
+								local scrollBar = getglobal(this:GetParent():GetName().."ScrollBar")
+								this:GetParent():UpdateScrollChildRect();
+								local min;
+								local max;
+								min, max = scrollBar:GetMinMaxValues();
+								if ( max > 0 and (this.max ~= max) ) then
+									this.max = max;
+									scrollBar:SetValue(max);
+								end
+								if (DAB_MACRO_EVENT) then
+									if (this:GetText() == "") then
+										DAB_Settings[DAB_INDEX].EventMacros[DAB_MACRO_EVENT] = nil;
+									else
+										DAB_Settings[DAB_INDEX].EventMacros[DAB_MACRO_EVENT] = this:GetText();
+									end
+								end
+							</OnTextChanged>
+							<OnEscapePressed>
+								this:ClearFocus();
+								DAB_OnEventMacros_TextButton:Show();
+							</OnEscapePressed>
+							<OnFocusLost>
+								DAB_OnEventMacros_TextButton:Show();
+							</OnFocusLost>
+							<OnFocusGained>
+								DAB_OnEventMacros_TextButton:Hide();
+							</OnFocusGained>
+							<OnShow>
+								DAB_EDITING_MACRO = true;
+							</OnShow>
+							<OnHide>
+								DAB_OnEventMacros_TextButton:Show();
+								DAB_EDITING_MACRO = nil;
+								DAB_CompileEventMacros();
+							</OnHide>
+						</Scripts>
+						<FontString inherits="GameFontHighlightSmall"/>
+					</EditBox>
+				</ScrollChild>
+						<Layers>
+							<Layer level="ARTWORK">
+								<Texture name="$parent_ScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+									<Size>
+										<AbsDimension x="31" y="256"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOP" relativeTo="$parentScrollBarScrollUpButton">
+											<Offset>
+												<AbsDimension x="0" y="5"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+								</Texture>
+								<Texture name="$parent_ScrollBarBottom" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+									<Size>
+										<AbsDimension x="31" y="106"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOM" relativeTo="$parentScrollBarScrollDownButton">
+											<Offset>
+												<AbsDimension x="0" y="-2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+								</Texture>
+								<Texture name="$parent_ScrollBarMiddle" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+									<Size>
+										<AbsDimension x="31" y="60"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOP" relativeTo="$parent_ScrollBarTop" relativePoint="BOTTOM">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+										<Anchor point="BOTTOM" relativeTo="$parent_ScrollBarBottom" relativePoint="TOP">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0" right="0.484375" top=".75" bottom="1.0"/>
+								</Texture>
+							</Layer>
+						</Layers>
+			</ScrollFrame>
+			<Button name="$parent_TextButton" frameStrata="HIGH">
+				<Size><AbsDimension x="337" y="510"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="DAB_OnEventMacros_ScrollFrame_Text"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						DAB_OnEventMacros_ScrollFrame_Text:SetFocus();
+						this:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		<Frame name="$parent_ScrollFrameBackground" inherits="DAB_TooltipBGTemplate">
+			<Size><AbsDimension x="377" y="522"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent_ScrollFrame">
+					<Offset><AbsDimension x="-10" y="7"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0,0,0);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+
+		<Frame name="$parent_SomeText">
+			<Size><AbsDimension x="10" y="20"/></Size>
+			<Anchors>
+				<Anchor point="BOTTOMLEFT" relativeTo="$parent_ScrollFrame" relativePoint="TOPLEFT"/>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<FontString name="$parent_MoreText" inherits="GameFontNormal" text="DAB_ENTERMACROTEXT">
+						<Color r="1.0" g="1.0" b="1.0"/>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+								<Offset><AbsDimension x="5" y="1"/></Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropColor(.2, .2, .2);
+		</OnLoad>
+	</Scripts>
+</Frame>
+
+</Ui>

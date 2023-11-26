@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: CareBear
+## Notes: Automatically Reject All Duels
+## OptionalDeps:
+## Dependencies:
+## SavedVariables: CareBearOptions
+CareBear.xml

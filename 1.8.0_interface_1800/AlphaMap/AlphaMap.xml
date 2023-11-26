@@ -1,0 +1,1618 @@
+<!--
+	///////////////////////////////////////////////////////////////////////////////////////////
+
+    AlphaMap (BG) version  by Onur "Xtro" ER
+    Please read Notes.txt file for Edit Notes
+
+    Features:
+
+		   v1.7 - Battlegrounds Support
+                - Not tested with Warsong and Alterac. Tested and works well with Arathi Basin
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+	
+    AlphaMap: A worldmap frame that is transparent and allows character manipulation
+        copyright 2004-2005 by Jeromy Walsh ( DragonWalsh@yahoo.com )
+   
+    Official Site: AlphaMap has popped up on a number of related websites. This is great news!! But for the
+        latest and greatest version, check the following URL: http://www.curse-gaming.com/mod.php?addid=190
+		
+    Contributions: Part of the code for this is adapted from WorldMapFrame.xml and OpacitySliderFrame.xml
+        of the original Blizzard(tm) Entertainment distribution.
+
+    3rd Party Components: Part of the code is taken from MapNotes, MapNotes Gathering, and Gatherer.  This
+	is done to provide optional support for those addons.
+
+    Other Contributors: I'd like to thank "Ska Demon" of the Curse Gaming forums for helping me make v1.3
+	as good as it is.  Ska provided the base code for the slash commands to set various parameters,
+	as well as provided the base code to save variables between WoW sessions.  Finally, Ska provided 
+        the code to scale the AlphaMap via a slash command.
+
+    Special Thanks: Special thanks to Ska Demon for keeping AlphaMap alive during my busy schedule.
+	Also thanks to my wife Lindsey Walsh, for putting up with me during the midnight coding sessions.
+
+	
+    License: You are hereby authorized to freely modify and/or distribute all files of this add-on, in whole or in part,
+        providing that this header stays intact, and that you do not claim ownership of this Add-on.
+		
+        Additionally, the original owner wishes to be notified by email if you make any improvements to this add-on.
+        Any positive alterations will be added to a future release, and any contributing authors will be 
+        identified in the section above.
+	
+    Features:
+		v1.3.1 - Removed all references to the worldmap POI's - some other addon was conflicting
+        v1.3.0 - A large number of slash commands, usable via /AlphaMap or /am
+               - Every slash command setting is stored between WoW usage
+               - Raid Pins Shown ( togglable via /am raid )
+               - Optional Tooltips on Pins ( Party/Raid, MapNotes, Gatherer, and MapNotes Gathering )
+               - Tooltips Togglable via /am ptips, /am mntips, /am gtips, /am mngtips
+               - Slider is moveable and lockable via /am moveslider
+               - Optionally Show Slider via /am slider
+               - Optional Support for Gatherer 1.9.12 (1300) via /am gatherer
+               - Optional Support for MapNotes 0.5.4 (4196)  via /am mapnotes
+               - Optional Support for MapNotes Gathering 0.5.6 (4150) via /am gathering
+               - Optionally Close AlphaMap when entering combat via /am combat
+               - Optionally Close Alphamap when world map closes via /am wmclose
+               - Moveable AlphaMap; move by dragging along the top border  - lockable via /lock
+               - Scaleable AlphaMap via /am scale <value>
+               - AlphaMap togglable via /am tog
+               - AlphaMap alpha settable through /am alpha <value>
+               - Alpha value is saved between sessions
+               - Fixed a bug allowing you to set a scale < 0
+               - Fixed a bug allowing you to set alpha < 0 or > 1
+               - Fixed a bug caused by 1300 where GetMapLandmarkInfo returned an extra parameter
+        v1.2.1 - Fixed a bug causing AlphaMap to be closely tied to MapNotes
+        v1.2.0 - Automatic update of AlphaMap on zone change
+               - Now displays "Point of Interest" flags, such as set by guards
+               - Now displays "MapNotes" pins, until they change something with MapNotes that breaks AlphaMap
+               - Player pin is now shown as an arrow, indicating direction
+               - Added Hotkey assignment to Increment/Decrement map alpha by 10%
+               - Added player's coordinates near the top right of the AlphaMap. (Under the minimap in standard resolutions)
+        v1.1.0 - Fixed a bug with markers not becoming transparent when alpha is set to 0
+               - Player Corpse is now shown on AlphaMap
+        v1.0.0 - Displays a slider in the lower left corner that can be used to set window opacity
+        v0.9.0 - Displays the worldmap in a large, semi-transparent, non-movable window
+	
+    ///////////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="AlphaMap.lua"/>
+	
+	<Frame name="AlphaMapUnitTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" file="Interface\WorldMap\WorldMapPlayerIcon" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				if ( this:GetID() == 0 ) then
+					this.unit = "player";
+				else
+					this.unit = "party"..this:GetID();
+					getglobal(this:GetName().."Icon"):SetTexture("Interface\\WorldMap\\WorldMapPartyIcon");
+				end
+			</OnLoad>
+
+			<OnEnter>
+				if( AlphaMapConfig.ptips == true ) then
+			
+					local x, y = this:GetCenter();
+					local parentX, parentY = this:GetParent():GetCenter();
+					if ( x > parentX ) then
+						AlphaMapTooltip:SetOwner(this, "ANCHOR_LEFT");
+					else
+						AlphaMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					end
+					AlphaMapTooltip:SetText(UnitName( this.unit ) );
+					AlphaMapTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave>
+				AlphaMapTooltip:Hide();
+			</OnLeave>
+			
+		</Scripts>
+	</Frame>
+	
+	<Frame name="AlphaMapRaidUnitTemplate" inherits="AlphaMapUnitTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+				this.unit = "raid"..this:GetID();
+				getglobal(this:GetName().."Icon"):SetTexture("Interface\\WorldMap\\WorldMapPartyIcon");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="AlphaMapFlagTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 2);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="AlphaMapCorpseTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">			
+				<Texture name="$parentIcon" file="Interface\Minimap\POIIcons" setAllPoints="true">
+					<TexCoords left="0.875" right="1.0" top="0" bottom="0.125"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="AlphaMapPOITemplate" hidden="true" virtual="true" nableMouse="false">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\Minimap\POIIcons">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="GatheringPOITemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\AddOns\MapNotesGathering\POIIcons\Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 1);
+			</OnLoad>
+			<OnEnter>
+				if( AlphaMapConfig.mngtips == true ) then
+					AlphaNotesGathering_OnEnter( this:GetID() );
+				end
+			</OnEnter>
+			<OnLeave>
+				AlphaNotesGathering_OnLeave( this:GetID() );
+			</OnLeave>
+		</Scripts>
+	</Frame>
+	<Frame name="MapNotesPOITemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\AddOns\MapNotes\POIIcons\Icon1">
+					<Size>
+						<AbsDimension x="16" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel( this:GetFrameLevel() + 1);
+			</OnLoad>
+			<OnEnter>
+				if( AlphaMapConfig.mntips == true ) then
+					AlphaMapNotes_OnEnter( this:GetID() );
+				end
+			</OnEnter>
+			<OnLeave>
+				AlphaMapNotes_OnLeave( this:GetID() );
+			</OnLeave>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="AlphaGatherTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="8" y="8"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\AddOns\Gatherer\IconGatherTest">
+					<Size>
+						<AbsDimension x="8" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+					if( AlphaMapConfig.gtips == true ) then
+					
+						local x, y = this:GetCenter();
+						local parentX, parentY = this:GetParent():GetCenter();
+						if ( x > parentX ) then
+							AlphaMapTooltip:SetOwner(this, "ANCHOR_LEFT");
+						else
+							AlphaMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						end
+						AlphaMapTooltip:SetText( this.toolTip );
+						AlphaMapTooltip:Show();
+					
+					end
+			</OnEnter>
+			<OnLeave>
+				AlphaMapTooltip:Hide();
+			</OnLeave>
+			<OnLoad>
+				this:SetFrameLevel( this:GetFrameLevel() + 1);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+		
+	<Frame name="AlphaMapFrame" hidden="true" setAllPoints="true" frameStrata="PARENT" 
+	          toplevel="false" enableMouse="false" movable="true" resizable="false" parent="UIParent">
+		<Size>
+			<AbsDimension x="1002" y="668"/>
+		</Size>
+		
+		<Frames>
+			<Frame name="MovementFrame" hidden="false" enableMouse="true">
+				<Size>
+					<AbsDimension x="1002" y="16"/>
+				</Size>
+		
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
+				</Anchors>
+			
+				<Scripts>
+					<OnMouseDown>
+						if( not AlphaMapConfig.lock or AlphaMapConfig.lock == false ) then
+							this:GetParent():StartMoving();
+							this:GetParent().isMoving = true;
+						end
+					</OnMouseDown>
+		            
+					<OnMouseUp>
+						this:GetParent():StopMovingOrSizing();
+						this:GetParent().isMoving = false;
+					</OnMouseUp>
+		            
+					<OnHide>
+						this:GetParent():StopMovingOrSizing();
+						this:GetParent().isMoving = false;
+					</OnHide>
+				</Scripts>
+			</Frame>
+	<!--		
+			<Frame name="ResizeFrame" hidden="false" enableMouse="true">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+				</Anchors>
+				
+				<Scripts>
+					<OnMouseDown>
+						this:GetParent().resizing = true;
+						this:GetParent():StartSizing( "BOTTOMRIGHT" );
+					</OnMouseDown>
+					<OnMouseUp>
+						this:GetParent():StopMovingOrSizing();
+						this:GetParent().resizing = false;
+					</OnMouseUp>
+					<OnHide>
+						this:GetParent():StopMovingOrSizing();
+						this:GetParent().resizing = false;
+					</OnHide>
+				</Scripts>
+			</Frame>
+	-->
+			<Frame name="BorderFrame" hidden="false" alpha="1.0">
+				<Size>
+					<AbsDimension x="1002" y="668"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-502" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+			</Frame>
+			
+			<Frame name="AlphaMapDetailFrame" hidden="false" alpha="0.3">
+				<Size>
+					<AbsDimension x="1002" y="668"/>
+				</Size>
+				
+				<Backdrop edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="0" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-502" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="AlphaMapDetailTile1" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile2" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile1" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile3" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile2" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile4" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile3" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>	
+						<Texture name="AlphaMapDetailTile5" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile1" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile6" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile5" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile7" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile6" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile8" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile7" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile9" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile5" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile10" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile9" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile11" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile10" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>
+						<Texture name="AlphaMapDetailTile12" file="">
+							<Size>
+								<AbsDimension x="256" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailTile11" relativePoint="TOPRIGHT"/>
+							</Anchors>
+						</Texture>	
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture name="AlphaMapOverlay1" hidden="true"/>
+						<Texture name="AlphaMapOverlay2" hidden="true"/>
+						<Texture name="AlphaMapOverlay3" hidden="true"/>
+						<Texture name="AlphaMapOverlay4" hidden="true"/>
+						<Texture name="AlphaMapOverlay5" hidden="true"/>
+						<Texture name="AlphaMapOverlay6" hidden="true"/>
+						<Texture name="AlphaMapOverlay7" hidden="true"/>
+						<Texture name="AlphaMapOverlay8" hidden="true"/>
+						<Texture name="AlphaMapOverlay9" hidden="true"/>
+						<Texture name="AlphaMapOverlay10" hidden="true"/>
+						<Texture name="AlphaMapOverlay11" hidden="true"/>
+						<Texture name="AlphaMapOverlay12" hidden="true"/>
+						<Texture name="AlphaMapOverlay13" hidden="true"/>
+						<Texture name="AlphaMapOverlay14" hidden="true"/>
+						<Texture name="AlphaMapOverlay15" hidden="true"/>
+						<Texture name="AlphaMapOverlay16" hidden="true"/>
+						<Texture name="AlphaMapOverlay17" hidden="true"/>
+						<Texture name="AlphaMapOverlay18" hidden="true"/>
+						<Texture name="AlphaMapOverlay19" hidden="true"/>
+						<Texture name="AlphaMapOverlay20" hidden="true"/>
+						<Texture name="AlphaMapOverlay21" hidden="true"/>
+						<Texture name="AlphaMapOverlay22" hidden="true"/>
+						<Texture name="AlphaMapOverlay23" hidden="true"/>
+						<Texture name="AlphaMapOverlay24" hidden="true"/>
+						<Texture name="AlphaMapOverlay25" hidden="true"/>
+						<Texture name="AlphaMapOverlay26" hidden="true"/>
+						<Texture name="AlphaMapOverlay27" hidden="true"/>
+						<Texture name="AlphaMapOverlay28" hidden="true"/>
+						<Texture name="AlphaMapOverlay29" hidden="true"/>
+						<Texture name="AlphaMapOverlay30" hidden="true"/>
+						<Texture name="AlphaMapOverlay31" hidden="true"/>
+						<Texture name="AlphaMapOverlay32" hidden="true"/>
+						<Texture name="AlphaMapOverlay33" hidden="true"/>
+						<Texture name="AlphaMapOverlay34" hidden="true"/>
+						<Texture name="AlphaMapOverlay35" hidden="true"/>
+						<Texture name="AlphaMapOverlay36" hidden="true"/>
+						<Texture name="AlphaMapOverlay37" hidden="true"/>
+						<Texture name="AlphaMapOverlay38" hidden="true"/>
+						<Texture name="AlphaMapOverlay39" hidden="true"/>
+						<Texture name="AlphaMapOverlay40" hidden="true"/>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="AlphaMapUnits">
+				<Size>
+					<AbsDimension x="1002" y="668"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="AlphaMapDetailFrame">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="AlphaMapLocationText" inherits="GameFontNormal" text="Player" hidden="false" >
+                            <Color r="1.0" g="1.0" b="1.0"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="AlphaMapDetailFrame" >
+									<Offset>
+										<AbsDimension x="-60" y="510"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					
+					<Frame name="AlphaMapParty1" inherits="AlphaMapUnitTemplate" id="1"/>
+					<Frame name="AlphaMapParty2" inherits="AlphaMapUnitTemplate" id="2"/>
+					<Frame name="AlphaMapParty3" inherits="AlphaMapUnitTemplate" id="3"/>
+					<Frame name="AlphaMapParty4" inherits="AlphaMapUnitTemplate" id="4"/>
+					
+					<Frame name="AlphaMapRaid1" inherits="AlphaMapRaidUnitTemplate" id="1"/>
+					<Frame name="AlphaMapRaid2" inherits="AlphaMapRaidUnitTemplate" id="2"/>
+					<Frame name="AlphaMapRaid3" inherits="AlphaMapRaidUnitTemplate" id="3"/>
+					<Frame name="AlphaMapRaid4" inherits="AlphaMapRaidUnitTemplate" id="4"/>
+					<Frame name="AlphaMapRaid5" inherits="AlphaMapRaidUnitTemplate" id="5"/>
+					<Frame name="AlphaMapRaid6" inherits="AlphaMapRaidUnitTemplate" id="6"/>
+					<Frame name="AlphaMapRaid7" inherits="AlphaMapRaidUnitTemplate" id="7"/>
+					<Frame name="AlphaMapRaid8" inherits="AlphaMapRaidUnitTemplate" id="8"/>
+					<Frame name="AlphaMapRaid9" inherits="AlphaMapRaidUnitTemplate" id="9"/>
+					<Frame name="AlphaMapRaid10" inherits="AlphaMapRaidUnitTemplate" id="10"/>
+					<Frame name="AlphaMapRaid11" inherits="AlphaMapRaidUnitTemplate" id="11"/>
+					<Frame name="AlphaMapRaid12" inherits="AlphaMapRaidUnitTemplate" id="12"/>
+					<Frame name="AlphaMapRaid13" inherits="AlphaMapRaidUnitTemplate" id="13"/>
+					<Frame name="AlphaMapRaid14" inherits="AlphaMapRaidUnitTemplate" id="14"/>
+					<Frame name="AlphaMapRaid15" inherits="AlphaMapRaidUnitTemplate" id="15"/>
+					<Frame name="AlphaMapRaid16" inherits="AlphaMapRaidUnitTemplate" id="16"/>
+					<Frame name="AlphaMapRaid17" inherits="AlphaMapRaidUnitTemplate" id="17"/>
+					<Frame name="AlphaMapRaid18" inherits="AlphaMapRaidUnitTemplate" id="18"/>
+					<Frame name="AlphaMapRaid19" inherits="AlphaMapRaidUnitTemplate" id="19"/>
+					<Frame name="AlphaMapRaid20" inherits="AlphaMapRaidUnitTemplate" id="20"/>
+					<Frame name="AlphaMapRaid21" inherits="AlphaMapRaidUnitTemplate" id="21"/>
+					<Frame name="AlphaMapRaid22" inherits="AlphaMapRaidUnitTemplate" id="22"/>
+					<Frame name="AlphaMapRaid23" inherits="AlphaMapRaidUnitTemplate" id="23"/>
+					<Frame name="AlphaMapRaid24" inherits="AlphaMapRaidUnitTemplate" id="24"/>
+					<Frame name="AlphaMapRaid25" inherits="AlphaMapRaidUnitTemplate" id="25"/>
+					<Frame name="AlphaMapRaid26" inherits="AlphaMapRaidUnitTemplate" id="26"/>
+					<Frame name="AlphaMapRaid27" inherits="AlphaMapRaidUnitTemplate" id="27"/>
+					<Frame name="AlphaMapRaid28" inherits="AlphaMapRaidUnitTemplate" id="28"/>
+					<Frame name="AlphaMapRaid29" inherits="AlphaMapRaidUnitTemplate" id="29"/>
+					<Frame name="AlphaMapRaid30" inherits="AlphaMapRaidUnitTemplate" id="30"/>
+					<Frame name="AlphaMapRaid31" inherits="AlphaMapRaidUnitTemplate" id="31"/>
+					<Frame name="AlphaMapRaid32" inherits="AlphaMapRaidUnitTemplate" id="32"/>
+					<Frame name="AlphaMapRaid33" inherits="AlphaMapRaidUnitTemplate" id="33"/>
+					<Frame name="AlphaMapRaid34" inherits="AlphaMapRaidUnitTemplate" id="34"/>
+					<Frame name="AlphaMapRaid35" inherits="AlphaMapRaidUnitTemplate" id="35"/>
+					<Frame name="AlphaMapRaid36" inherits="AlphaMapRaidUnitTemplate" id="36"/>
+					<Frame name="AlphaMapRaid37" inherits="AlphaMapRaidUnitTemplate" id="37"/>
+					<Frame name="AlphaMapRaid38" inherits="AlphaMapRaidUnitTemplate" id="38"/>
+					<Frame name="AlphaMapRaid39" inherits="AlphaMapRaidUnitTemplate" id="39"/>
+					<Frame name="AlphaMapRaid40" inherits="AlphaMapRaidUnitTemplate" id="40"/>
+					
+					<Frame name="AlphaMapFlag1" inherits="AlphaMapFlagTemplate" id="1"/>
+					<Frame name="AlphaMapFlag2" inherits="AlphaMapFlagTemplate" id="2"/>
+					<Frame name="AlphaMapCorpse" inherits="AlphaMapCorpseTemplate"/>
+					<Frame name="AlphaMapPOI1"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI2"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI3"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI4"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI5"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI6"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI7"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI8"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI9"  inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI10" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI11" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI12" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI13" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI14" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI15" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI16" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI17" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI18" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI19" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI20" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI21" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI22" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI23" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI24" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI25" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI26" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI27" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI28" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI29" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI30" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI31" inherits="AlphaMapPOITemplate"/>
+					<Frame name="AlphaMapPOI32" inherits="AlphaMapPOITemplate"/>
+					
+					<Frame name="AlphaMapNotesPOI1"  inherits="MapNotesPOITemplate" id="1"/>
+					<Frame name="AlphaMapNotesPOI2"  inherits="MapNotesPOITemplate" id="2"/>
+					<Frame name="AlphaMapNotesPOI3"  inherits="MapNotesPOITemplate" id="3"/>
+					<Frame name="AlphaMapNotesPOI4"  inherits="MapNotesPOITemplate" id="4"/>
+					<Frame name="AlphaMapNotesPOI5"  inherits="MapNotesPOITemplate" id="5"/>
+					<Frame name="AlphaMapNotesPOI6"  inherits="MapNotesPOITemplate" id="6"/>
+					<Frame name="AlphaMapNotesPOI7"  inherits="MapNotesPOITemplate" id="7"/>
+					<Frame name="AlphaMapNotesPOI8"  inherits="MapNotesPOITemplate" id="8"/>
+					<Frame name="AlphaMapNotesPOI9"  inherits="MapNotesPOITemplate" id="9"/>
+					<Frame name="AlphaMapNotesPOI10" inherits="MapNotesPOITemplate" id="10"/>
+					<Frame name="AlphaMapNotesPOI11" inherits="MapNotesPOITemplate" id="11"/>
+					<Frame name="AlphaMapNotesPOI12" inherits="MapNotesPOITemplate" id="12"/>
+					<Frame name="AlphaMapNotesPOI13" inherits="MapNotesPOITemplate" id="13"/>
+					<Frame name="AlphaMapNotesPOI14" inherits="MapNotesPOITemplate" id="14"/>
+					<Frame name="AlphaMapNotesPOI15" inherits="MapNotesPOITemplate" id="15"/>
+					<Frame name="AlphaMapNotesPOI16" inherits="MapNotesPOITemplate" id="16"/>
+					<Frame name="AlphaMapNotesPOI17" inherits="MapNotesPOITemplate" id="17"/>
+					<Frame name="AlphaMapNotesPOI18" inherits="MapNotesPOITemplate" id="18"/>
+					<Frame name="AlphaMapNotesPOI19" inherits="MapNotesPOITemplate" id="19"/>
+					<Frame name="AlphaMapNotesPOI20" inherits="MapNotesPOITemplate" id="20"/>
+					<Frame name="AlphaMapNotesPOI21" inherits="MapNotesPOITemplate" id="21"/>
+					<Frame name="AlphaMapNotesPOI22" inherits="MapNotesPOITemplate" id="22"/>
+					<Frame name="AlphaMapNotesPOI23" inherits="MapNotesPOITemplate" id="23"/>
+					<Frame name="AlphaMapNotesPOI24" inherits="MapNotesPOITemplate" id="24"/>
+					<Frame name="AlphaMapNotesPOI25" inherits="MapNotesPOITemplate" id="25"/>
+					<Frame name="AlphaMapNotesPOI26" inherits="MapNotesPOITemplate" id="26"/>
+					<Frame name="AlphaMapNotesPOI27" inherits="MapNotesPOITemplate" id="27"/>
+					<Frame name="AlphaMapNotesPOI28" inherits="MapNotesPOITemplate" id="28"/>
+					<Frame name="AlphaMapNotesPOI29" inherits="MapNotesPOITemplate" id="29"/>
+					<Frame name="AlphaMapNotesPOI30" inherits="MapNotesPOITemplate" id="30"/>
+					<Frame name="AlphaMapNotesPOI31" inherits="MapNotesPOITemplate" id="31"/>
+					<Frame name="AlphaMapNotesPOI32" inherits="MapNotesPOITemplate" id="32"/>
+					<Frame name="AlphaMapNotesPOI33" inherits="MapNotesPOITemplate" id="33"/>
+					<Frame name="AlphaMapNotesPOI34" inherits="MapNotesPOITemplate" id="34"/>
+					<Frame name="AlphaMapNotesPOI35" inherits="MapNotesPOITemplate" id="35"/>
+					<Frame name="AlphaMapNotesPOI36" inherits="MapNotesPOITemplate" id="36"/>
+					<Frame name="AlphaMapNotesPOI37" inherits="MapNotesPOITemplate" id="37"/>
+					<Frame name="AlphaMapNotesPOI38" inherits="MapNotesPOITemplate" id="38"/>
+					<Frame name="AlphaMapNotesPOI39" inherits="MapNotesPOITemplate" id="39"/>
+					<Frame name="AlphaMapNotesPOI40" inherits="MapNotesPOITemplate" id="40"/>
+					<Frame name="AlphaMapNotesPOI41" inherits="MapNotesPOITemplate" id="41"/>
+					<Frame name="AlphaMapNotesPOI42" inherits="MapNotesPOITemplate" id="42"/>
+					<Frame name="AlphaMapNotesPOI43" inherits="MapNotesPOITemplate" id="43"/>
+					<Frame name="AlphaMapNotesPOI44" inherits="MapNotesPOITemplate" id="44"/>
+					<Frame name="AlphaMapNotesPOI45" inherits="MapNotesPOITemplate" id="45"/>
+					<Frame name="AlphaMapNotesPOI46" inherits="MapNotesPOITemplate" id="46"/>
+					<Frame name="AlphaMapNotesPOI47" inherits="MapNotesPOITemplate" id="47"/>
+					<Frame name="AlphaMapNotesPOI48" inherits="MapNotesPOITemplate" id="48"/>
+					<Frame name="AlphaMapNotesPOI49" inherits="MapNotesPOITemplate" id="49"/>
+					<Frame name="AlphaMapNotesPOI50" inherits="MapNotesPOITemplate" id="50"/>
+					<Frame name="AlphaMapNotesPOI51" inherits="MapNotesPOITemplate" id="51"/>
+					<Frame name="AlphaMapNotesPOI52" inherits="MapNotesPOITemplate" id="52"/>
+					<Frame name="AlphaMapNotesPOI53" inherits="MapNotesPOITemplate" id="53"/>
+					<Frame name="AlphaMapNotesPOI54" inherits="MapNotesPOITemplate" id="54"/>
+					<Frame name="AlphaMapNotesPOI55" inherits="MapNotesPOITemplate" id="55"/>
+					<Frame name="AlphaMapNotesPOI56" inherits="MapNotesPOITemplate" id="56"/>
+					<Frame name="AlphaMapNotesPOI57" inherits="MapNotesPOITemplate" id="57"/>
+					<Frame name="AlphaMapNotesPOI58" inherits="MapNotesPOITemplate" id="58"/>
+					<Frame name="AlphaMapNotesPOI59" inherits="MapNotesPOITemplate" id="59"/>
+					<Frame name="AlphaMapNotesPOI60" inherits="MapNotesPOITemplate" id="60"/>
+					<Frame name="AlphaMapNotesPOI61" inherits="MapNotesPOITemplate" id="61"/>
+					<Frame name="AlphaMapNotesPOI62" inherits="MapNotesPOITemplate" id="62"/>
+					<Frame name="AlphaMapNotesPOI63" inherits="MapNotesPOITemplate" id="63"/>
+					<Frame name="AlphaMapNotesPOI64" inherits="MapNotesPOITemplate" id="64"/>
+					<Frame name="AlphaMapNotesPOI65" inherits="MapNotesPOITemplate" id="65"/>
+					<Frame name="AlphaMapNotesPOI66" inherits="MapNotesPOITemplate" id="66"/>
+					<Frame name="AlphaMapNotesPOI67" inherits="MapNotesPOITemplate" id="67"/>
+					<Frame name="AlphaMapNotesPOI68" inherits="MapNotesPOITemplate" id="68"/>
+					<Frame name="AlphaMapNotesPOI69" inherits="MapNotesPOITemplate" id="69"/>
+					<Frame name="AlphaMapNotesPOI70" inherits="MapNotesPOITemplate" id="70"/>
+					<Frame name="AlphaMapNotesPOI71" inherits="MapNotesPOITemplate" id="71"/>
+					<Frame name="AlphaMapNotesPOI72" inherits="MapNotesPOITemplate" id="72"/>
+					<Frame name="AlphaMapNotesPOI73" inherits="MapNotesPOITemplate" id="73"/>
+					<Frame name="AlphaMapNotesPOI74" inherits="MapNotesPOITemplate" id="74"/>
+					<Frame name="AlphaMapNotesPOI75" inherits="MapNotesPOITemplate" id="75"/>
+					<Frame name="AlphaMapNotesPOI76" inherits="MapNotesPOITemplate" id="76"/>
+					<Frame name="AlphaMapNotesPOI77" inherits="MapNotesPOITemplate" id="77"/>
+					<Frame name="AlphaMapNotesPOI78" inherits="MapNotesPOITemplate" id="78"/>
+					<Frame name="AlphaMapNotesPOI79" inherits="MapNotesPOITemplate" id="79"/>
+					<Frame name="AlphaMapNotesPOI80" inherits="MapNotesPOITemplate" id="80"/>
+					<Frame name="AlphaMapNotesPOI81" inherits="MapNotesPOITemplate" id="81"/>
+					<Frame name="AlphaMapNotesPOI82" inherits="MapNotesPOITemplate" id="82"/>
+					<Frame name="AlphaMapNotesPOI83" inherits="MapNotesPOITemplate" id="83"/>
+					<Frame name="AlphaMapNotesPOI84" inherits="MapNotesPOITemplate" id="84"/>
+					<Frame name="AlphaMapNotesPOI85" inherits="MapNotesPOITemplate" id="85"/>
+					<Frame name="AlphaMapNotesPOI86" inherits="MapNotesPOITemplate" id="86"/>
+					<Frame name="AlphaMapNotesPOI87" inherits="MapNotesPOITemplate" id="87"/>
+					<Frame name="AlphaMapNotesPOI88" inherits="MapNotesPOITemplate" id="88"/>
+					<Frame name="AlphaMapNotesPOI89" inherits="MapNotesPOITemplate" id="89"/>
+					<Frame name="AlphaMapNotesPOI90" inherits="MapNotesPOITemplate" id="90"/>
+					<Frame name="AlphaMapNotesPOI91" inherits="MapNotesPOITemplate" id="91"/>
+					<Frame name="AlphaMapNotesPOI92" inherits="MapNotesPOITemplate" id="92"/>
+					<Frame name="AlphaMapNotesPOI93" inherits="MapNotesPOITemplate" id="93"/>
+					<Frame name="AlphaMapNotesPOI94" inherits="MapNotesPOITemplate" id="94"/>
+					<Frame name="AlphaMapNotesPOI95" inherits="MapNotesPOITemplate" id="95"/>
+					<Frame name="AlphaMapNotesPOI96" inherits="MapNotesPOITemplate" id="96"/>
+					<Frame name="AlphaMapNotesPOI97" inherits="MapNotesPOITemplate" id="97"/>
+					<Frame name="AlphaMapNotesPOI98" inherits="MapNotesPOITemplate" id="98"/>
+					<Frame name="AlphaMapNotesPOI99" inherits="MapNotesPOITemplate" id="99"/>
+					<Frame name="AlphaMapNotesPOI100" inherits="MapNotesPOITemplate" id="100"/>
+					
+					<Button name="AlphaMapGatheringPOI1" inherits="GatheringPOITemplate" id="1"  />
+					<Button name="AlphaMapGatheringPOI2" inherits="GatheringPOITemplate" id="2"  />
+					<Button name="AlphaMapGatheringPOI3" inherits="GatheringPOITemplate" id="3"  />
+					<Button name="AlphaMapGatheringPOI4" inherits="GatheringPOITemplate" id="4"  />
+					<Button name="AlphaMapGatheringPOI5" inherits="GatheringPOITemplate" id="5"  />
+					<Button name="AlphaMapGatheringPOI6" inherits="GatheringPOITemplate" id="6"  />
+					<Button name="AlphaMapGatheringPOI7" inherits="GatheringPOITemplate" id="7"  />
+					<Button name="AlphaMapGatheringPOI8" inherits="GatheringPOITemplate" id="8"  />
+					<Button name="AlphaMapGatheringPOI9" inherits="GatheringPOITemplate" id="9"  />
+					<Button name="AlphaMapGatheringPOI10" inherits="GatheringPOITemplate" id="10"  />
+					<Button name="AlphaMapGatheringPOI11" inherits="GatheringPOITemplate" id="11"  />
+					<Button name="AlphaMapGatheringPOI12" inherits="GatheringPOITemplate" id="12"  />
+					<Button name="AlphaMapGatheringPOI13" inherits="GatheringPOITemplate" id="13"  />
+					<Button name="AlphaMapGatheringPOI14" inherits="GatheringPOITemplate" id="14"  />
+					<Button name="AlphaMapGatheringPOI15" inherits="GatheringPOITemplate" id="15"  />
+					<Button name="AlphaMapGatheringPOI16" inherits="GatheringPOITemplate" id="16"  />
+					<Button name="AlphaMapGatheringPOI17" inherits="GatheringPOITemplate" id="17"  />
+					<Button name="AlphaMapGatheringPOI18" inherits="GatheringPOITemplate" id="18"  />
+					<Button name="AlphaMapGatheringPOI19" inherits="GatheringPOITemplate" id="19"  />
+					<Button name="AlphaMapGatheringPOI20" inherits="GatheringPOITemplate" id="20"  />
+					<Button name="AlphaMapGatheringPOI21" inherits="GatheringPOITemplate" id="21"  />
+					<Button name="AlphaMapGatheringPOI22" inherits="GatheringPOITemplate" id="22"  />
+					<Button name="AlphaMapGatheringPOI23" inherits="GatheringPOITemplate" id="23"  />
+					<Button name="AlphaMapGatheringPOI24" inherits="GatheringPOITemplate" id="24"  />
+					<Button name="AlphaMapGatheringPOI25" inherits="GatheringPOITemplate" id="25"  />
+					<Button name="AlphaMapGatheringPOI26" inherits="GatheringPOITemplate" id="26"  />
+					<Button name="AlphaMapGatheringPOI27" inherits="GatheringPOITemplate" id="27"  />
+					<Button name="AlphaMapGatheringPOI28" inherits="GatheringPOITemplate" id="28"  />
+					<Button name="AlphaMapGatheringPOI29" inherits="GatheringPOITemplate" id="29"  />
+					<Button name="AlphaMapGatheringPOI30" inherits="GatheringPOITemplate" id="30"  />
+					<Button name="AlphaMapGatheringPOI31" inherits="GatheringPOITemplate" id="31"  />
+					<Button name="AlphaMapGatheringPOI32" inherits="GatheringPOITemplate" id="32"  />
+					<Button name="AlphaMapGatheringPOI33" inherits="GatheringPOITemplate" id="33"  />
+					<Button name="AlphaMapGatheringPOI34" inherits="GatheringPOITemplate" id="34"  />
+					<Button name="AlphaMapGatheringPOI35" inherits="GatheringPOITemplate" id="35"  />
+					<Button name="AlphaMapGatheringPOI36" inherits="GatheringPOITemplate" id="36"  />
+					<Button name="AlphaMapGatheringPOI37" inherits="GatheringPOITemplate" id="37"  />
+					<Button name="AlphaMapGatheringPOI38" inherits="GatheringPOITemplate" id="38"  />
+					<Button name="AlphaMapGatheringPOI39" inherits="GatheringPOITemplate" id="39"  />
+					<Button name="AlphaMapGatheringPOI40" inherits="GatheringPOITemplate" id="40"  />
+					<Button name="AlphaMapGatheringPOI41" inherits="GatheringPOITemplate" id="41"  />
+					<Button name="AlphaMapGatheringPOI42" inherits="GatheringPOITemplate" id="42"  />
+					<Button name="AlphaMapGatheringPOI43" inherits="GatheringPOITemplate" id="43"  />
+					<Button name="AlphaMapGatheringPOI44" inherits="GatheringPOITemplate" id="44"  />
+					<Button name="AlphaMapGatheringPOI45" inherits="GatheringPOITemplate" id="45"  />
+					<Button name="AlphaMapGatheringPOI46" inherits="GatheringPOITemplate" id="46"  />
+					<Button name="AlphaMapGatheringPOI47" inherits="GatheringPOITemplate" id="47"  />
+					<Button name="AlphaMapGatheringPOI48" inherits="GatheringPOITemplate" id="48"  />
+					<Button name="AlphaMapGatheringPOI49" inherits="GatheringPOITemplate" id="49"  />
+					<Button name="AlphaMapGatheringPOI50" inherits="GatheringPOITemplate" id="50"  />
+					<Button name="AlphaMapGatheringPOI51" inherits="GatheringPOITemplate" id="51"  />
+					<Button name="AlphaMapGatheringPOI52" inherits="GatheringPOITemplate" id="52"  />
+					<Button name="AlphaMapGatheringPOI53" inherits="GatheringPOITemplate" id="53"  />
+					<Button name="AlphaMapGatheringPOI54" inherits="GatheringPOITemplate" id="54"  />
+					<Button name="AlphaMapGatheringPOI55" inherits="GatheringPOITemplate" id="55"  />
+					<Button name="AlphaMapGatheringPOI56" inherits="GatheringPOITemplate" id="56"  />
+					<Button name="AlphaMapGatheringPOI57" inherits="GatheringPOITemplate" id="57"  />
+					<Button name="AlphaMapGatheringPOI58" inherits="GatheringPOITemplate" id="58"  />
+					<Button name="AlphaMapGatheringPOI59" inherits="GatheringPOITemplate" id="59"  />
+					<Button name="AlphaMapGatheringPOI60" inherits="GatheringPOITemplate" id="60"  />
+					<Button name="AlphaMapGatheringPOI61" inherits="GatheringPOITemplate" id="61"  />
+					<Button name="AlphaMapGatheringPOI62" inherits="GatheringPOITemplate" id="62"  />
+					<Button name="AlphaMapGatheringPOI63" inherits="GatheringPOITemplate" id="63"  />
+					<Button name="AlphaMapGatheringPOI64" inherits="GatheringPOITemplate" id="64"  />
+					<Button name="AlphaMapGatheringPOI65" inherits="GatheringPOITemplate" id="65"  />
+					<Button name="AlphaMapGatheringPOI66" inherits="GatheringPOITemplate" id="66"  />
+					<Button name="AlphaMapGatheringPOI67" inherits="GatheringPOITemplate" id="67"  />
+					<Button name="AlphaMapGatheringPOI68" inherits="GatheringPOITemplate" id="68"  />
+					<Button name="AlphaMapGatheringPOI69" inherits="GatheringPOITemplate" id="69"  />
+					<Button name="AlphaMapGatheringPOI70" inherits="GatheringPOITemplate" id="70"  />
+					<Button name="AlphaMapGatheringPOI71" inherits="GatheringPOITemplate" id="71"  />
+					<Button name="AlphaMapGatheringPOI72" inherits="GatheringPOITemplate" id="72"  />
+					<Button name="AlphaMapGatheringPOI73" inherits="GatheringPOITemplate" id="73"  />
+					<Button name="AlphaMapGatheringPOI74" inherits="GatheringPOITemplate" id="74"  />
+					<Button name="AlphaMapGatheringPOI75" inherits="GatheringPOITemplate" id="75"  />
+					<Button name="AlphaMapGatheringPOI76" inherits="GatheringPOITemplate" id="76"  />
+					<Button name="AlphaMapGatheringPOI77" inherits="GatheringPOITemplate" id="77"  />
+					<Button name="AlphaMapGatheringPOI78" inherits="GatheringPOITemplate" id="78"  />
+					<Button name="AlphaMapGatheringPOI79" inherits="GatheringPOITemplate" id="79"  />
+					<Button name="AlphaMapGatheringPOI80" inherits="GatheringPOITemplate" id="80"  />
+					<Button name="AlphaMapGatheringPOI81" inherits="GatheringPOITemplate" id="81"  />
+					<Button name="AlphaMapGatheringPOI82" inherits="GatheringPOITemplate" id="82"  />
+					<Button name="AlphaMapGatheringPOI83" inherits="GatheringPOITemplate" id="83"  />
+					<Button name="AlphaMapGatheringPOI84" inherits="GatheringPOITemplate" id="84"  />
+					<Button name="AlphaMapGatheringPOI85" inherits="GatheringPOITemplate" id="85"  />
+					<Button name="AlphaMapGatheringPOI86" inherits="GatheringPOITemplate" id="86"  />
+					<Button name="AlphaMapGatheringPOI87" inherits="GatheringPOITemplate" id="87"  />
+					<Button name="AlphaMapGatheringPOI88" inherits="GatheringPOITemplate" id="88"  />
+					<Button name="AlphaMapGatheringPOI89" inherits="GatheringPOITemplate" id="89"  />
+					<Button name="AlphaMapGatheringPOI90" inherits="GatheringPOITemplate" id="90"  />
+					<Button name="AlphaMapGatheringPOI91" inherits="GatheringPOITemplate" id="91"  />
+					<Button name="AlphaMapGatheringPOI92" inherits="GatheringPOITemplate" id="92"  />
+					<Button name="AlphaMapGatheringPOI93" inherits="GatheringPOITemplate" id="93"  />
+					<Button name="AlphaMapGatheringPOI94" inherits="GatheringPOITemplate" id="94"  />
+					<Button name="AlphaMapGatheringPOI95" inherits="GatheringPOITemplate" id="95"  />
+					<Button name="AlphaMapGatheringPOI96" inherits="GatheringPOITemplate" id="96"  />
+					<Button name="AlphaMapGatheringPOI97" inherits="GatheringPOITemplate" id="97"  />
+					<Button name="AlphaMapGatheringPOI98" inherits="GatheringPOITemplate" id="98"  />
+					<Button name="AlphaMapGatheringPOI99" inherits="GatheringPOITemplate" id="99"  />
+					<Button name="AlphaMapGatheringPOI100" inherits="GatheringPOITemplate" id="100"  />
+					<Button name="AlphaMapGatheringPOI101" inherits="GatheringPOITemplate" id="101"  />
+					<Button name="AlphaMapGatheringPOI102" inherits="GatheringPOITemplate" id="102"  />
+					<Button name="AlphaMapGatheringPOI103" inherits="GatheringPOITemplate" id="103"  />
+					<Button name="AlphaMapGatheringPOI104" inherits="GatheringPOITemplate" id="104"  />
+					<Button name="AlphaMapGatheringPOI105" inherits="GatheringPOITemplate" id="105"  />
+					<Button name="AlphaMapGatheringPOI106" inherits="GatheringPOITemplate" id="106"  />
+					<Button name="AlphaMapGatheringPOI107" inherits="GatheringPOITemplate" id="107"  />
+					<Button name="AlphaMapGatheringPOI108" inherits="GatheringPOITemplate" id="108"  />
+					<Button name="AlphaMapGatheringPOI109" inherits="GatheringPOITemplate" id="109"  />
+					<Button name="AlphaMapGatheringPOI110" inherits="GatheringPOITemplate" id="110"  />
+					<Button name="AlphaMapGatheringPOI111" inherits="GatheringPOITemplate" id="111"  />
+					<Button name="AlphaMapGatheringPOI112" inherits="GatheringPOITemplate" id="112"  />
+					<Button name="AlphaMapGatheringPOI113" inherits="GatheringPOITemplate" id="113"  />
+					<Button name="AlphaMapGatheringPOI114" inherits="GatheringPOITemplate" id="114"  />
+					<Button name="AlphaMapGatheringPOI115" inherits="GatheringPOITemplate" id="115"  />
+					<Button name="AlphaMapGatheringPOI116" inherits="GatheringPOITemplate" id="116"  />
+					<Button name="AlphaMapGatheringPOI117" inherits="GatheringPOITemplate" id="117"  />
+					<Button name="AlphaMapGatheringPOI118" inherits="GatheringPOITemplate" id="118"  />
+					<Button name="AlphaMapGatheringPOI119" inherits="GatheringPOITemplate" id="119"  />
+					<Button name="AlphaMapGatheringPOI120" inherits="GatheringPOITemplate" id="120"  />
+					<Button name="AlphaMapGatheringPOI121" inherits="GatheringPOITemplate" id="121"  />
+					<Button name="AlphaMapGatheringPOI122" inherits="GatheringPOITemplate" id="122"  />
+					<Button name="AlphaMapGatheringPOI123" inherits="GatheringPOITemplate" id="123"  />
+					<Button name="AlphaMapGatheringPOI124" inherits="GatheringPOITemplate" id="124"  />
+					<Button name="AlphaMapGatheringPOI125" inherits="GatheringPOITemplate" id="125"  />
+					<Button name="AlphaMapGatheringPOI126" inherits="GatheringPOITemplate" id="126"  />
+					<Button name="AlphaMapGatheringPOI127" inherits="GatheringPOITemplate" id="127"  />
+					<Button name="AlphaMapGatheringPOI128" inherits="GatheringPOITemplate" id="128"  />
+					<Button name="AlphaMapGatheringPOI129" inherits="GatheringPOITemplate" id="129"  />
+					<Button name="AlphaMapGatheringPOI130" inherits="GatheringPOITemplate" id="130"  />
+					<Button name="AlphaMapGatheringPOI131" inherits="GatheringPOITemplate" id="131"  />
+					<Button name="AlphaMapGatheringPOI132" inherits="GatheringPOITemplate" id="132"  />
+					<Button name="AlphaMapGatheringPOI133" inherits="GatheringPOITemplate" id="133"  />
+					<Button name="AlphaMapGatheringPOI134" inherits="GatheringPOITemplate" id="134"  />
+					<Button name="AlphaMapGatheringPOI135" inherits="GatheringPOITemplate" id="135"  />
+					<Button name="AlphaMapGatheringPOI136" inherits="GatheringPOITemplate" id="136"  />
+					<Button name="AlphaMapGatheringPOI137" inherits="GatheringPOITemplate" id="137"  />
+					<Button name="AlphaMapGatheringPOI138" inherits="GatheringPOITemplate" id="138"  />
+					<Button name="AlphaMapGatheringPOI139" inherits="GatheringPOITemplate" id="139"  />
+					<Button name="AlphaMapGatheringPOI140" inherits="GatheringPOITemplate" id="140"  />
+					<Button name="AlphaMapGatheringPOI141" inherits="GatheringPOITemplate" id="141"  />
+					<Button name="AlphaMapGatheringPOI142" inherits="GatheringPOITemplate" id="142"  />
+					<Button name="AlphaMapGatheringPOI143" inherits="GatheringPOITemplate" id="143"  />
+					<Button name="AlphaMapGatheringPOI144" inherits="GatheringPOITemplate" id="144"  />
+					<Button name="AlphaMapGatheringPOI145" inherits="GatheringPOITemplate" id="145"  />
+					<Button name="AlphaMapGatheringPOI146" inherits="GatheringPOITemplate" id="146"  />
+					<Button name="AlphaMapGatheringPOI147" inherits="GatheringPOITemplate" id="147"  />
+					<Button name="AlphaMapGatheringPOI148" inherits="GatheringPOITemplate" id="148"  />
+					<Button name="AlphaMapGatheringPOI149" inherits="GatheringPOITemplate" id="149"  />
+					<Button name="AlphaMapGatheringPOI150" inherits="GatheringPOITemplate" id="150"  />
+					<Button name="AlphaMapGatheringPOI151" inherits="GatheringPOITemplate" id="151"  />
+					<Button name="AlphaMapGatheringPOI152" inherits="GatheringPOITemplate" id="152"  />
+					<Button name="AlphaMapGatheringPOI153" inherits="GatheringPOITemplate" id="153"  />
+					<Button name="AlphaMapGatheringPOI154" inherits="GatheringPOITemplate" id="154"  />
+					<Button name="AlphaMapGatheringPOI155" inherits="GatheringPOITemplate" id="155"  />
+					<Button name="AlphaMapGatheringPOI156" inherits="GatheringPOITemplate" id="156"  />
+					<Button name="AlphaMapGatheringPOI157" inherits="GatheringPOITemplate" id="157"  />
+					<Button name="AlphaMapGatheringPOI158" inherits="GatheringPOITemplate" id="158"  />
+					<Button name="AlphaMapGatheringPOI159" inherits="GatheringPOITemplate" id="159"  />
+					<Button name="AlphaMapGatheringPOI160" inherits="GatheringPOITemplate" id="160"  />
+					<Button name="AlphaMapGatheringPOI161" inherits="GatheringPOITemplate" id="161"  />
+					<Button name="AlphaMapGatheringPOI162" inherits="GatheringPOITemplate" id="162"  />
+					<Button name="AlphaMapGatheringPOI163" inherits="GatheringPOITemplate" id="163"  />
+					<Button name="AlphaMapGatheringPOI164" inherits="GatheringPOITemplate" id="164"  />
+					<Button name="AlphaMapGatheringPOI165" inherits="GatheringPOITemplate" id="165"  />
+					<Button name="AlphaMapGatheringPOI166" inherits="GatheringPOITemplate" id="166"  />
+					<Button name="AlphaMapGatheringPOI167" inherits="GatheringPOITemplate" id="167"  />
+					<Button name="AlphaMapGatheringPOI168" inherits="GatheringPOITemplate" id="168"  />
+					<Button name="AlphaMapGatheringPOI169" inherits="GatheringPOITemplate" id="169"  />
+					<Button name="AlphaMapGatheringPOI170" inherits="GatheringPOITemplate" id="170"  />
+					<Button name="AlphaMapGatheringPOI171" inherits="GatheringPOITemplate" id="171"  />
+					<Button name="AlphaMapGatheringPOI172" inherits="GatheringPOITemplate" id="172"  />
+					<Button name="AlphaMapGatheringPOI173" inherits="GatheringPOITemplate" id="173"  />
+					<Button name="AlphaMapGatheringPOI174" inherits="GatheringPOITemplate" id="174"  />
+					<Button name="AlphaMapGatheringPOI175" inherits="GatheringPOITemplate" id="175"  />
+					<Button name="AlphaMapGatheringPOI176" inherits="GatheringPOITemplate" id="176"  />
+					<Button name="AlphaMapGatheringPOI177" inherits="GatheringPOITemplate" id="177"  />
+					<Button name="AlphaMapGatheringPOI178" inherits="GatheringPOITemplate" id="178"  />
+					<Button name="AlphaMapGatheringPOI179" inherits="GatheringPOITemplate" id="179"  />
+					<Button name="AlphaMapGatheringPOI180" inherits="GatheringPOITemplate" id="180"  />
+					<Button name="AlphaMapGatheringPOI181" inherits="GatheringPOITemplate" id="181"  />
+					<Button name="AlphaMapGatheringPOI182" inherits="GatheringPOITemplate" id="182"  />
+					<Button name="AlphaMapGatheringPOI183" inherits="GatheringPOITemplate" id="183"  />
+					<Button name="AlphaMapGatheringPOI184" inherits="GatheringPOITemplate" id="184"  />
+					<Button name="AlphaMapGatheringPOI185" inherits="GatheringPOITemplate" id="185"  />
+					<Button name="AlphaMapGatheringPOI186" inherits="GatheringPOITemplate" id="186"  />
+					<Button name="AlphaMapGatheringPOI187" inherits="GatheringPOITemplate" id="187"  />
+					<Button name="AlphaMapGatheringPOI188" inherits="GatheringPOITemplate" id="188"  />
+					<Button name="AlphaMapGatheringPOI189" inherits="GatheringPOITemplate" id="189"  />
+					<Button name="AlphaMapGatheringPOI190" inherits="GatheringPOITemplate" id="190"  />
+					<Button name="AlphaMapGatheringPOI191" inherits="GatheringPOITemplate" id="191"  />
+					<Button name="AlphaMapGatheringPOI192" inherits="GatheringPOITemplate" id="192"  />
+					<Button name="AlphaMapGatheringPOI193" inherits="GatheringPOITemplate" id="193"  />
+					<Button name="AlphaMapGatheringPOI194" inherits="GatheringPOITemplate" id="194"  />
+					<Button name="AlphaMapGatheringPOI195" inherits="GatheringPOITemplate" id="195"  />
+					<Button name="AlphaMapGatheringPOI196" inherits="GatheringPOITemplate" id="196"  />
+					<Button name="AlphaMapGatheringPOI197" inherits="GatheringPOITemplate" id="197"  />
+					<Button name="AlphaMapGatheringPOI198" inherits="GatheringPOITemplate" id="198"  />
+					<Button name="AlphaMapGatheringPOI199" inherits="GatheringPOITemplate" id="199"  />
+					<Button name="AlphaMapGatheringPOI200" inherits="GatheringPOITemplate" id="200"  />
+					
+					<Frame name="AlphaMapGathererPOI1"  inherits="AlphaGatherTemplate" id="1"  />
+					<Frame name="AlphaMapGathererPOI2"  inherits="AlphaGatherTemplate" id="2"  />
+					<Frame name="AlphaMapGathererPOI3"  inherits="AlphaGatherTemplate" id="3"  />
+					<Frame name="AlphaMapGathererPOI4"  inherits="AlphaGatherTemplate" id="4"  />
+					<Frame name="AlphaMapGathererPOI5"  inherits="AlphaGatherTemplate" id="5"  />
+					<Frame name="AlphaMapGathererPOI6"  inherits="AlphaGatherTemplate" id="6"  />
+					<Frame name="AlphaMapGathererPOI7"  inherits="AlphaGatherTemplate" id="7"  />
+					<Frame name="AlphaMapGathererPOI8"  inherits="AlphaGatherTemplate" id="8"  />
+					<Frame name="AlphaMapGathererPOI9"  inherits="AlphaGatherTemplate" id="9"  />
+					<Frame name="AlphaMapGathererPOI10" inherits="AlphaGatherTemplate" id="10"  />
+					<Frame name="AlphaMapGathererPOI11" inherits="AlphaGatherTemplate" id="11"  />
+					<Frame name="AlphaMapGathererPOI12" inherits="AlphaGatherTemplate" id="12"  />
+					<Frame name="AlphaMapGathererPOI13" inherits="AlphaGatherTemplate" id="13"  />
+					<Frame name="AlphaMapGathererPOI14" inherits="AlphaGatherTemplate" id="14"  />
+					<Frame name="AlphaMapGathererPOI15" inherits="AlphaGatherTemplate" id="15"  />
+					<Frame name="AlphaMapGathererPOI16" inherits="AlphaGatherTemplate" id="16"  />
+					<Frame name="AlphaMapGathererPOI17" inherits="AlphaGatherTemplate" id="17"  />
+					<Frame name="AlphaMapGathererPOI18" inherits="AlphaGatherTemplate" id="18"  />
+					<Frame name="AlphaMapGathererPOI19" inherits="AlphaGatherTemplate" id="19"  />
+					<Frame name="AlphaMapGathererPOI20" inherits="AlphaGatherTemplate" id="20"  />
+					<Frame name="AlphaMapGathererPOI21" inherits="AlphaGatherTemplate" id="21"  />
+					<Frame name="AlphaMapGathererPOI22" inherits="AlphaGatherTemplate" id="22"  />
+					<Frame name="AlphaMapGathererPOI23" inherits="AlphaGatherTemplate" id="23"  />
+					<Frame name="AlphaMapGathererPOI24" inherits="AlphaGatherTemplate" id="24"  />
+					<Frame name="AlphaMapGathererPOI25" inherits="AlphaGatherTemplate" id="25"  />
+					<Frame name="AlphaMapGathererPOI26" inherits="AlphaGatherTemplate" id="26"  />
+					<Frame name="AlphaMapGathererPOI27" inherits="AlphaGatherTemplate" id="27"  />
+					<Frame name="AlphaMapGathererPOI28" inherits="AlphaGatherTemplate" id="28"  />
+					<Frame name="AlphaMapGathererPOI29" inherits="AlphaGatherTemplate" id="29"  />
+					<Frame name="AlphaMapGathererPOI30" inherits="AlphaGatherTemplate" id="30"  />
+					<Frame name="AlphaMapGathererPOI31" inherits="AlphaGatherTemplate" id="31"  />
+					<Frame name="AlphaMapGathererPOI32" inherits="AlphaGatherTemplate" id="32"  />
+					<Frame name="AlphaMapGathererPOI33" inherits="AlphaGatherTemplate" id="33"  />
+					<Frame name="AlphaMapGathererPOI34" inherits="AlphaGatherTemplate" id="34"  />
+					<Frame name="AlphaMapGathererPOI35" inherits="AlphaGatherTemplate" id="35"  />
+					<Frame name="AlphaMapGathererPOI36" inherits="AlphaGatherTemplate" id="36"  />
+					<Frame name="AlphaMapGathererPOI37" inherits="AlphaGatherTemplate" id="37"  />
+					<Frame name="AlphaMapGathererPOI38" inherits="AlphaGatherTemplate" id="38"  />
+					<Frame name="AlphaMapGathererPOI39" inherits="AlphaGatherTemplate" id="39"  />
+					<Frame name="AlphaMapGathererPOI40" inherits="AlphaGatherTemplate" id="40"  />
+					<Frame name="AlphaMapGathererPOI41" inherits="AlphaGatherTemplate" id="41"  />
+					<Frame name="AlphaMapGathererPOI42" inherits="AlphaGatherTemplate" id="42"  />
+					<Frame name="AlphaMapGathererPOI43" inherits="AlphaGatherTemplate" id="43"  />
+					<Frame name="AlphaMapGathererPOI44" inherits="AlphaGatherTemplate" id="44"  />
+					<Frame name="AlphaMapGathererPOI45" inherits="AlphaGatherTemplate" id="45"  />
+					<Frame name="AlphaMapGathererPOI46" inherits="AlphaGatherTemplate" id="46"  />
+					<Frame name="AlphaMapGathererPOI47" inherits="AlphaGatherTemplate" id="47"  />
+					<Frame name="AlphaMapGathererPOI48" inherits="AlphaGatherTemplate" id="48"  />
+					<Frame name="AlphaMapGathererPOI49" inherits="AlphaGatherTemplate" id="49"  />
+					<Frame name="AlphaMapGathererPOI50" inherits="AlphaGatherTemplate" id="50"  />
+					<Frame name="AlphaMapGathererPOI51" inherits="AlphaGatherTemplate" id="51"  />
+					<Frame name="AlphaMapGathererPOI52" inherits="AlphaGatherTemplate" id="52"  />
+					<Frame name="AlphaMapGathererPOI53" inherits="AlphaGatherTemplate" id="53"  />
+					<Frame name="AlphaMapGathererPOI54" inherits="AlphaGatherTemplate" id="54"  />
+					<Frame name="AlphaMapGathererPOI55" inherits="AlphaGatherTemplate" id="55"  />
+					<Frame name="AlphaMapGathererPOI56" inherits="AlphaGatherTemplate" id="56"  />
+					<Frame name="AlphaMapGathererPOI57" inherits="AlphaGatherTemplate" id="57"  />
+					<Frame name="AlphaMapGathererPOI58" inherits="AlphaGatherTemplate" id="58"  />
+					<Frame name="AlphaMapGathererPOI59" inherits="AlphaGatherTemplate" id="59"  />
+					<Frame name="AlphaMapGathererPOI60" inherits="AlphaGatherTemplate" id="60"  />
+					<Frame name="AlphaMapGathererPOI61" inherits="AlphaGatherTemplate" id="61"  />
+					<Frame name="AlphaMapGathererPOI62" inherits="AlphaGatherTemplate" id="62"  />
+					<Frame name="AlphaMapGathererPOI63" inherits="AlphaGatherTemplate" id="63"  />
+					<Frame name="AlphaMapGathererPOI64" inherits="AlphaGatherTemplate" id="64"  />
+					<Frame name="AlphaMapGathererPOI65" inherits="AlphaGatherTemplate" id="65"  />
+					<Frame name="AlphaMapGathererPOI66" inherits="AlphaGatherTemplate" id="66"  />
+					<Frame name="AlphaMapGathererPOI67" inherits="AlphaGatherTemplate" id="67"  />
+					<Frame name="AlphaMapGathererPOI68" inherits="AlphaGatherTemplate" id="68"  />
+					<Frame name="AlphaMapGathererPOI69" inherits="AlphaGatherTemplate" id="69"  />
+					<Frame name="AlphaMapGathererPOI70" inherits="AlphaGatherTemplate" id="70"  />
+					<Frame name="AlphaMapGathererPOI71" inherits="AlphaGatherTemplate" id="71"  />
+					<Frame name="AlphaMapGathererPOI72" inherits="AlphaGatherTemplate" id="72"  />
+					<Frame name="AlphaMapGathererPOI73" inherits="AlphaGatherTemplate" id="73"  />
+					<Frame name="AlphaMapGathererPOI74" inherits="AlphaGatherTemplate" id="74"  />
+					<Frame name="AlphaMapGathererPOI75" inherits="AlphaGatherTemplate" id="75"  />
+					<Frame name="AlphaMapGathererPOI76" inherits="AlphaGatherTemplate" id="76"  />
+					<Frame name="AlphaMapGathererPOI77" inherits="AlphaGatherTemplate" id="77"  />
+					<Frame name="AlphaMapGathererPOI78" inherits="AlphaGatherTemplate" id="78"  />
+					<Frame name="AlphaMapGathererPOI79" inherits="AlphaGatherTemplate" id="79"  />
+					<Frame name="AlphaMapGathererPOI80" inherits="AlphaGatherTemplate" id="80"  />
+					<Frame name="AlphaMapGathererPOI81" inherits="AlphaGatherTemplate" id="81"  />
+					<Frame name="AlphaMapGathererPOI82" inherits="AlphaGatherTemplate" id="82"  />
+					<Frame name="AlphaMapGathererPOI83" inherits="AlphaGatherTemplate" id="83"  />
+					<Frame name="AlphaMapGathererPOI84" inherits="AlphaGatherTemplate" id="84"  />
+					<Frame name="AlphaMapGathererPOI85" inherits="AlphaGatherTemplate" id="85"  />
+					<Frame name="AlphaMapGathererPOI86" inherits="AlphaGatherTemplate" id="86"  />
+					<Frame name="AlphaMapGathererPOI87" inherits="AlphaGatherTemplate" id="87"  />
+					<Frame name="AlphaMapGathererPOI88" inherits="AlphaGatherTemplate" id="88"  />
+					<Frame name="AlphaMapGathererPOI89" inherits="AlphaGatherTemplate" id="89"  />
+					<Frame name="AlphaMapGathererPOI90" inherits="AlphaGatherTemplate" id="90"  />
+					<Frame name="AlphaMapGathererPOI91" inherits="AlphaGatherTemplate" id="91"  />
+					<Frame name="AlphaMapGathererPOI92" inherits="AlphaGatherTemplate" id="92"  />
+					<Frame name="AlphaMapGathererPOI93" inherits="AlphaGatherTemplate" id="93"  />
+					<Frame name="AlphaMapGathererPOI94" inherits="AlphaGatherTemplate" id="94"  />
+					<Frame name="AlphaMapGathererPOI95" inherits="AlphaGatherTemplate" id="95"  />
+					<Frame name="AlphaMapGathererPOI96" inherits="AlphaGatherTemplate" id="96"  />
+					<Frame name="AlphaMapGathererPOI97" inherits="AlphaGatherTemplate" id="97"  />
+					<Frame name="AlphaMapGathererPOI98" inherits="AlphaGatherTemplate" id="98"  />
+					<Frame name="AlphaMapGathererPOI99" inherits="AlphaGatherTemplate" id="99"  />
+					<Frame name="AlphaMapGathererPOI100" inherits="AlphaGatherTemplate" id="100"  />
+					<Frame name="AlphaMapGathererPOI101" inherits="AlphaGatherTemplate" id="101"  />
+					<Frame name="AlphaMapGathererPOI102" inherits="AlphaGatherTemplate" id="102"  />
+					<Frame name="AlphaMapGathererPOI103" inherits="AlphaGatherTemplate" id="103"  />
+					<Frame name="AlphaMapGathererPOI104" inherits="AlphaGatherTemplate" id="104"  />
+					<Frame name="AlphaMapGathererPOI105" inherits="AlphaGatherTemplate" id="105"  />
+					<Frame name="AlphaMapGathererPOI106" inherits="AlphaGatherTemplate" id="106"  />
+					<Frame name="AlphaMapGathererPOI107" inherits="AlphaGatherTemplate" id="107"  />
+					<Frame name="AlphaMapGathererPOI108" inherits="AlphaGatherTemplate" id="108"  />
+					<Frame name="AlphaMapGathererPOI109" inherits="AlphaGatherTemplate" id="109"  />
+					<Frame name="AlphaMapGathererPOI110" inherits="AlphaGatherTemplate" id="110"  />
+					<Frame name="AlphaMapGathererPOI111" inherits="AlphaGatherTemplate" id="111"  />
+					<Frame name="AlphaMapGathererPOI112" inherits="AlphaGatherTemplate" id="112"  />
+					<Frame name="AlphaMapGathererPOI113" inherits="AlphaGatherTemplate" id="113"  />
+					<Frame name="AlphaMapGathererPOI114" inherits="AlphaGatherTemplate" id="114"  />
+					<Frame name="AlphaMapGathererPOI115" inherits="AlphaGatherTemplate" id="115"  />
+					<Frame name="AlphaMapGathererPOI116" inherits="AlphaGatherTemplate" id="116"  />
+					<Frame name="AlphaMapGathererPOI117" inherits="AlphaGatherTemplate" id="117"  />
+					<Frame name="AlphaMapGathererPOI118" inherits="AlphaGatherTemplate" id="118"  />
+					<Frame name="AlphaMapGathererPOI119" inherits="AlphaGatherTemplate" id="119"  />
+					<Frame name="AlphaMapGathererPOI120" inherits="AlphaGatherTemplate" id="120"  />
+					<Frame name="AlphaMapGathererPOI121" inherits="AlphaGatherTemplate" id="121"  />
+					<Frame name="AlphaMapGathererPOI122" inherits="AlphaGatherTemplate" id="122"  />
+					<Frame name="AlphaMapGathererPOI123" inherits="AlphaGatherTemplate" id="123"  />
+					<Frame name="AlphaMapGathererPOI124" inherits="AlphaGatherTemplate" id="124"  />
+					<Frame name="AlphaMapGathererPOI125" inherits="AlphaGatherTemplate" id="125"  />
+					<Frame name="AlphaMapGathererPOI126" inherits="AlphaGatherTemplate" id="126"  />
+					<Frame name="AlphaMapGathererPOI127" inherits="AlphaGatherTemplate" id="127"  />
+					<Frame name="AlphaMapGathererPOI128" inherits="AlphaGatherTemplate" id="128"  />
+					<Frame name="AlphaMapGathererPOI129" inherits="AlphaGatherTemplate" id="129"  />
+					<Frame name="AlphaMapGathererPOI130" inherits="AlphaGatherTemplate" id="130"  />
+					<Frame name="AlphaMapGathererPOI131" inherits="AlphaGatherTemplate" id="131"  />
+					<Frame name="AlphaMapGathererPOI132" inherits="AlphaGatherTemplate" id="132"  />
+					<Frame name="AlphaMapGathererPOI133" inherits="AlphaGatherTemplate" id="133"  />
+					<Frame name="AlphaMapGathererPOI134" inherits="AlphaGatherTemplate" id="134"  />
+					<Frame name="AlphaMapGathererPOI135" inherits="AlphaGatherTemplate" id="135"  />
+					<Frame name="AlphaMapGathererPOI136" inherits="AlphaGatherTemplate" id="136"  />
+					<Frame name="AlphaMapGathererPOI137" inherits="AlphaGatherTemplate" id="137"  />
+					<Frame name="AlphaMapGathererPOI138" inherits="AlphaGatherTemplate" id="138"  />
+					<Frame name="AlphaMapGathererPOI139" inherits="AlphaGatherTemplate" id="139"  />
+					<Frame name="AlphaMapGathererPOI140" inherits="AlphaGatherTemplate" id="140"  />
+					<Frame name="AlphaMapGathererPOI141" inherits="AlphaGatherTemplate" id="141"  />
+					<Frame name="AlphaMapGathererPOI142" inherits="AlphaGatherTemplate" id="142"  />
+					<Frame name="AlphaMapGathererPOI143" inherits="AlphaGatherTemplate" id="143"  />
+					<Frame name="AlphaMapGathererPOI144" inherits="AlphaGatherTemplate" id="144"  />
+					<Frame name="AlphaMapGathererPOI145" inherits="AlphaGatherTemplate" id="145"  />
+					<Frame name="AlphaMapGathererPOI146" inherits="AlphaGatherTemplate" id="146"  />
+					<Frame name="AlphaMapGathererPOI147" inherits="AlphaGatherTemplate" id="147"  />
+					<Frame name="AlphaMapGathererPOI148" inherits="AlphaGatherTemplate" id="148"  />
+					<Frame name="AlphaMapGathererPOI149" inherits="AlphaGatherTemplate" id="149"  />
+					<Frame name="AlphaMapGathererPOI150" inherits="AlphaGatherTemplate" id="150"  />
+					<Frame name="AlphaMapGathererPOI151" inherits="AlphaGatherTemplate" id="151"  />
+					<Frame name="AlphaMapGathererPOI152" inherits="AlphaGatherTemplate" id="152"  />
+					<Frame name="AlphaMapGathererPOI153" inherits="AlphaGatherTemplate" id="153"  />
+					<Frame name="AlphaMapGathererPOI154" inherits="AlphaGatherTemplate" id="154"  />
+					<Frame name="AlphaMapGathererPOI155" inherits="AlphaGatherTemplate" id="155"  />
+					<Frame name="AlphaMapGathererPOI156" inherits="AlphaGatherTemplate" id="156"  />
+					<Frame name="AlphaMapGathererPOI157" inherits="AlphaGatherTemplate" id="157"  />
+					<Frame name="AlphaMapGathererPOI158" inherits="AlphaGatherTemplate" id="158"  />
+					<Frame name="AlphaMapGathererPOI159" inherits="AlphaGatherTemplate" id="159"  />
+					<Frame name="AlphaMapGathererPOI160" inherits="AlphaGatherTemplate" id="160"  />
+					<Frame name="AlphaMapGathererPOI161" inherits="AlphaGatherTemplate" id="161"  />
+					<Frame name="AlphaMapGathererPOI162" inherits="AlphaGatherTemplate" id="162"  />
+					<Frame name="AlphaMapGathererPOI163" inherits="AlphaGatherTemplate" id="163"  />
+					<Frame name="AlphaMapGathererPOI164" inherits="AlphaGatherTemplate" id="164"  />
+					<Frame name="AlphaMapGathererPOI165" inherits="AlphaGatherTemplate" id="165"  />
+					<Frame name="AlphaMapGathererPOI166" inherits="AlphaGatherTemplate" id="166"  />
+					<Frame name="AlphaMapGathererPOI167" inherits="AlphaGatherTemplate" id="167"  />
+					<Frame name="AlphaMapGathererPOI168" inherits="AlphaGatherTemplate" id="168"  />
+					<Frame name="AlphaMapGathererPOI169" inherits="AlphaGatherTemplate" id="169"  />
+					<Frame name="AlphaMapGathererPOI170" inherits="AlphaGatherTemplate" id="170"  />
+					<Frame name="AlphaMapGathererPOI171" inherits="AlphaGatherTemplate" id="171"  />
+					<Frame name="AlphaMapGathererPOI172" inherits="AlphaGatherTemplate" id="172"  />
+					<Frame name="AlphaMapGathererPOI173" inherits="AlphaGatherTemplate" id="173"  />
+					<Frame name="AlphaMapGathererPOI174" inherits="AlphaGatherTemplate" id="174"  />
+					<Frame name="AlphaMapGathererPOI175" inherits="AlphaGatherTemplate" id="175"  />
+					<Frame name="AlphaMapGathererPOI176" inherits="AlphaGatherTemplate" id="176"  />
+					<Frame name="AlphaMapGathererPOI177" inherits="AlphaGatherTemplate" id="177"  />
+					<Frame name="AlphaMapGathererPOI178" inherits="AlphaGatherTemplate" id="178"  />
+					<Frame name="AlphaMapGathererPOI179" inherits="AlphaGatherTemplate" id="179"  />
+					<Frame name="AlphaMapGathererPOI180" inherits="AlphaGatherTemplate" id="180"  />
+					<Frame name="AlphaMapGathererPOI181" inherits="AlphaGatherTemplate" id="181"  />
+					<Frame name="AlphaMapGathererPOI182" inherits="AlphaGatherTemplate" id="182"  />
+					<Frame name="AlphaMapGathererPOI183" inherits="AlphaGatherTemplate" id="183"  />
+					<Frame name="AlphaMapGathererPOI184" inherits="AlphaGatherTemplate" id="184"  />
+					<Frame name="AlphaMapGathererPOI185" inherits="AlphaGatherTemplate" id="185"  />
+					<Frame name="AlphaMapGathererPOI186" inherits="AlphaGatherTemplate" id="186"  />
+					<Frame name="AlphaMapGathererPOI187" inherits="AlphaGatherTemplate" id="187"  />
+					<Frame name="AlphaMapGathererPOI188" inherits="AlphaGatherTemplate" id="188"  />
+					<Frame name="AlphaMapGathererPOI189" inherits="AlphaGatherTemplate" id="189"  />
+					<Frame name="AlphaMapGathererPOI190" inherits="AlphaGatherTemplate" id="190"  />
+					<Frame name="AlphaMapGathererPOI191" inherits="AlphaGatherTemplate" id="191"  />
+					<Frame name="AlphaMapGathererPOI192" inherits="AlphaGatherTemplate" id="192"  />
+					<Frame name="AlphaMapGathererPOI193" inherits="AlphaGatherTemplate" id="193"  />
+					<Frame name="AlphaMapGathererPOI194" inherits="AlphaGatherTemplate" id="194"  />
+					<Frame name="AlphaMapGathererPOI195" inherits="AlphaGatherTemplate" id="195"  />
+					<Frame name="AlphaMapGathererPOI196" inherits="AlphaGatherTemplate" id="196"  />
+					<Frame name="AlphaMapGathererPOI197" inherits="AlphaGatherTemplate" id="197"  />
+					<Frame name="AlphaMapGathererPOI198" inherits="AlphaGatherTemplate" id="198"  />
+					<Frame name="AlphaMapGathererPOI199" inherits="AlphaGatherTemplate" id="199"  />
+					<Frame name="AlphaMapGathererPOI200" inherits="AlphaGatherTemplate" id="200"  />
+					<Frame name="AlphaMapGathererPOI201" inherits="AlphaGatherTemplate" id="201"  />
+					<Frame name="AlphaMapGathererPOI202" inherits="AlphaGatherTemplate" id="202"  />
+					<Frame name="AlphaMapGathererPOI203" inherits="AlphaGatherTemplate" id="203"  />
+					<Frame name="AlphaMapGathererPOI204" inherits="AlphaGatherTemplate" id="204"  />
+					<Frame name="AlphaMapGathererPOI205" inherits="AlphaGatherTemplate" id="205"  />
+					<Frame name="AlphaMapGathererPOI206" inherits="AlphaGatherTemplate" id="206"  />
+					<Frame name="AlphaMapGathererPOI207" inherits="AlphaGatherTemplate" id="207"  />
+					<Frame name="AlphaMapGathererPOI208" inherits="AlphaGatherTemplate" id="208"  />
+					<Frame name="AlphaMapGathererPOI209" inherits="AlphaGatherTemplate" id="209"  />
+					<Frame name="AlphaMapGathererPOI210" inherits="AlphaGatherTemplate" id="210"  />
+					<Frame name="AlphaMapGathererPOI211" inherits="AlphaGatherTemplate" id="211"  />
+					<Frame name="AlphaMapGathererPOI212" inherits="AlphaGatherTemplate" id="212"  />
+					<Frame name="AlphaMapGathererPOI213" inherits="AlphaGatherTemplate" id="213"  />
+					<Frame name="AlphaMapGathererPOI214" inherits="AlphaGatherTemplate" id="214"  />
+					<Frame name="AlphaMapGathererPOI215" inherits="AlphaGatherTemplate" id="215"  />
+					<Frame name="AlphaMapGathererPOI216" inherits="AlphaGatherTemplate" id="216"  />
+					<Frame name="AlphaMapGathererPOI217" inherits="AlphaGatherTemplate" id="217"  />
+					<Frame name="AlphaMapGathererPOI218" inherits="AlphaGatherTemplate" id="218"  />
+					<Frame name="AlphaMapGathererPOI219" inherits="AlphaGatherTemplate" id="219"  />
+					<Frame name="AlphaMapGathererPOI220" inherits="AlphaGatherTemplate" id="220"  />
+					<Frame name="AlphaMapGathererPOI221" inherits="AlphaGatherTemplate" id="221"  />
+					<Frame name="AlphaMapGathererPOI222" inherits="AlphaGatherTemplate" id="222"  />
+					<Frame name="AlphaMapGathererPOI223" inherits="AlphaGatherTemplate" id="223"  />
+					<Frame name="AlphaMapGathererPOI224" inherits="AlphaGatherTemplate" id="224"  />
+					<Frame name="AlphaMapGathererPOI225" inherits="AlphaGatherTemplate" id="225"  />
+					<Frame name="AlphaMapGathererPOI226" inherits="AlphaGatherTemplate" id="226"  />
+					<Frame name="AlphaMapGathererPOI227" inherits="AlphaGatherTemplate" id="227"  />
+					<Frame name="AlphaMapGathererPOI228" inherits="AlphaGatherTemplate" id="228"  />
+					<Frame name="AlphaMapGathererPOI229" inherits="AlphaGatherTemplate" id="229"  />
+					<Frame name="AlphaMapGathererPOI230" inherits="AlphaGatherTemplate" id="230"  />
+					<Frame name="AlphaMapGathererPOI231" inherits="AlphaGatherTemplate" id="231"  />
+					<Frame name="AlphaMapGathererPOI232" inherits="AlphaGatherTemplate" id="232"  />
+					<Frame name="AlphaMapGathererPOI233" inherits="AlphaGatherTemplate" id="233"  />
+					<Frame name="AlphaMapGathererPOI234" inherits="AlphaGatherTemplate" id="234"  />
+					<Frame name="AlphaMapGathererPOI235" inherits="AlphaGatherTemplate" id="235"  />
+					<Frame name="AlphaMapGathererPOI236" inherits="AlphaGatherTemplate" id="236"  />
+					<Frame name="AlphaMapGathererPOI237" inherits="AlphaGatherTemplate" id="237"  />
+					<Frame name="AlphaMapGathererPOI238" inherits="AlphaGatherTemplate" id="238"  />
+					<Frame name="AlphaMapGathererPOI239" inherits="AlphaGatherTemplate" id="239"  />
+					<Frame name="AlphaMapGathererPOI240" inherits="AlphaGatherTemplate" id="240"  />
+					<Frame name="AlphaMapGathererPOI241" inherits="AlphaGatherTemplate" id="241"  />
+					<Frame name="AlphaMapGathererPOI242" inherits="AlphaGatherTemplate" id="242"  />
+					<Frame name="AlphaMapGathererPOI243" inherits="AlphaGatherTemplate" id="243"  />
+					<Frame name="AlphaMapGathererPOI244" inherits="AlphaGatherTemplate" id="244"  />
+					<Frame name="AlphaMapGathererPOI245" inherits="AlphaGatherTemplate" id="245"  />
+					<Frame name="AlphaMapGathererPOI246" inherits="AlphaGatherTemplate" id="246"  />
+					<Frame name="AlphaMapGathererPOI247" inherits="AlphaGatherTemplate" id="247"  />
+					<Frame name="AlphaMapGathererPOI248" inherits="AlphaGatherTemplate" id="248"  />
+					<Frame name="AlphaMapGathererPOI249" inherits="AlphaGatherTemplate" id="249"  />
+					<Frame name="AlphaMapGathererPOI250" inherits="AlphaGatherTemplate" id="250"  />
+					<Frame name="AlphaMapGathererPOI251" inherits="AlphaGatherTemplate" id="251"  />
+					<Frame name="AlphaMapGathererPOI252" inherits="AlphaGatherTemplate" id="252"  />
+					<Frame name="AlphaMapGathererPOI253" inherits="AlphaGatherTemplate" id="253"  />
+					<Frame name="AlphaMapGathererPOI254" inherits="AlphaGatherTemplate" id="254"  />
+					<Frame name="AlphaMapGathererPOI255" inherits="AlphaGatherTemplate" id="255"  />
+					<Frame name="AlphaMapGathererPOI256" inherits="AlphaGatherTemplate" id="256"  />
+					<Frame name="AlphaMapGathererPOI257" inherits="AlphaGatherTemplate" id="257"  />
+					<Frame name="AlphaMapGathererPOI258" inherits="AlphaGatherTemplate" id="258"  />
+					<Frame name="AlphaMapGathererPOI259" inherits="AlphaGatherTemplate" id="259"  />
+					<Frame name="AlphaMapGathererPOI260" inherits="AlphaGatherTemplate" id="260"  />
+					<Frame name="AlphaMapGathererPOI261" inherits="AlphaGatherTemplate" id="261"  />
+					<Frame name="AlphaMapGathererPOI262" inherits="AlphaGatherTemplate" id="262"  />
+					<Frame name="AlphaMapGathererPOI263" inherits="AlphaGatherTemplate" id="263"  />
+					<Frame name="AlphaMapGathererPOI264" inherits="AlphaGatherTemplate" id="264"  />
+					<Frame name="AlphaMapGathererPOI265" inherits="AlphaGatherTemplate" id="265"  />
+					<Frame name="AlphaMapGathererPOI266" inherits="AlphaGatherTemplate" id="266"  />
+					<Frame name="AlphaMapGathererPOI267" inherits="AlphaGatherTemplate" id="267"  />
+					<Frame name="AlphaMapGathererPOI268" inherits="AlphaGatherTemplate" id="268"  />
+					<Frame name="AlphaMapGathererPOI269" inherits="AlphaGatherTemplate" id="269"  />
+					<Frame name="AlphaMapGathererPOI270" inherits="AlphaGatherTemplate" id="270"  />
+					<Frame name="AlphaMapGathererPOI271" inherits="AlphaGatherTemplate" id="271"  />
+					<Frame name="AlphaMapGathererPOI272" inherits="AlphaGatherTemplate" id="272"  />
+					<Frame name="AlphaMapGathererPOI273" inherits="AlphaGatherTemplate" id="273"  />
+					<Frame name="AlphaMapGathererPOI274" inherits="AlphaGatherTemplate" id="274"  />
+					<Frame name="AlphaMapGathererPOI275" inherits="AlphaGatherTemplate" id="275"  />
+					<Frame name="AlphaMapGathererPOI276" inherits="AlphaGatherTemplate" id="276"  />
+					<Frame name="AlphaMapGathererPOI277" inherits="AlphaGatherTemplate" id="277"  />
+					<Frame name="AlphaMapGathererPOI278" inherits="AlphaGatherTemplate" id="278"  />
+					<Frame name="AlphaMapGathererPOI279" inherits="AlphaGatherTemplate" id="279"  />
+					<Frame name="AlphaMapGathererPOI280" inherits="AlphaGatherTemplate" id="280"  />
+					<Frame name="AlphaMapGathererPOI281" inherits="AlphaGatherTemplate" id="281"  />
+					<Frame name="AlphaMapGathererPOI282" inherits="AlphaGatherTemplate" id="282"  />
+					<Frame name="AlphaMapGathererPOI283" inherits="AlphaGatherTemplate" id="283"  />
+					<Frame name="AlphaMapGathererPOI284" inherits="AlphaGatherTemplate" id="284"  />
+					<Frame name="AlphaMapGathererPOI285" inherits="AlphaGatherTemplate" id="285"  />
+					<Frame name="AlphaMapGathererPOI286" inherits="AlphaGatherTemplate" id="286"  />
+					<Frame name="AlphaMapGathererPOI287" inherits="AlphaGatherTemplate" id="287"  />
+					<Frame name="AlphaMapGathererPOI288" inherits="AlphaGatherTemplate" id="288"  />
+					<Frame name="AlphaMapGathererPOI289" inherits="AlphaGatherTemplate" id="289"  />
+					<Frame name="AlphaMapGathererPOI290" inherits="AlphaGatherTemplate" id="290"  />
+					<Frame name="AlphaMapGathererPOI291" inherits="AlphaGatherTemplate" id="291"  />
+					<Frame name="AlphaMapGathererPOI292" inherits="AlphaGatherTemplate" id="292"  />
+					<Frame name="AlphaMapGathererPOI293" inherits="AlphaGatherTemplate" id="293"  />
+					<Frame name="AlphaMapGathererPOI294" inherits="AlphaGatherTemplate" id="294"  />
+					<Frame name="AlphaMapGathererPOI295" inherits="AlphaGatherTemplate" id="295"  />
+					<Frame name="AlphaMapGathererPOI296" inherits="AlphaGatherTemplate" id="296"  />
+					<Frame name="AlphaMapGathererPOI297" inherits="AlphaGatherTemplate" id="297"  />
+					<Frame name="AlphaMapGathererPOI298" inherits="AlphaGatherTemplate" id="298"  />
+					<Frame name="AlphaMapGathererPOI299" inherits="AlphaGatherTemplate" id="299"  />
+					<Frame name="AlphaMapGathererPOI300" inherits="AlphaGatherTemplate" id="300"  />
+					<Frame name="AlphaMapGathererPOI301" inherits="AlphaGatherTemplate" id="301"  />
+					<Frame name="AlphaMapGathererPOI302" inherits="AlphaGatherTemplate" id="302"  />
+					<Frame name="AlphaMapGathererPOI303" inherits="AlphaGatherTemplate" id="303"  />
+					<Frame name="AlphaMapGathererPOI304" inherits="AlphaGatherTemplate" id="304"  />
+					<Frame name="AlphaMapGathererPOI305" inherits="AlphaGatherTemplate" id="305"  />
+					<Frame name="AlphaMapGathererPOI306" inherits="AlphaGatherTemplate" id="306"  />
+					<Frame name="AlphaMapGathererPOI307" inherits="AlphaGatherTemplate" id="307"  />
+					<Frame name="AlphaMapGathererPOI308" inherits="AlphaGatherTemplate" id="308"  />
+					<Frame name="AlphaMapGathererPOI309" inherits="AlphaGatherTemplate" id="309"  />
+					<Frame name="AlphaMapGathererPOI310" inherits="AlphaGatherTemplate" id="310"  />
+					<Frame name="AlphaMapGathererPOI311" inherits="AlphaGatherTemplate" id="311"  />
+					<Frame name="AlphaMapGathererPOI312" inherits="AlphaGatherTemplate" id="312"  />
+					<Frame name="AlphaMapGathererPOI313" inherits="AlphaGatherTemplate" id="313"  />
+					<Frame name="AlphaMapGathererPOI314" inherits="AlphaGatherTemplate" id="314"  />
+					<Frame name="AlphaMapGathererPOI315" inherits="AlphaGatherTemplate" id="315"  />
+					<Frame name="AlphaMapGathererPOI316" inherits="AlphaGatherTemplate" id="316"  />
+					<Frame name="AlphaMapGathererPOI317" inherits="AlphaGatherTemplate" id="317"  />
+					<Frame name="AlphaMapGathererPOI318" inherits="AlphaGatherTemplate" id="318"  />
+					<Frame name="AlphaMapGathererPOI319" inherits="AlphaGatherTemplate" id="319"  />
+					<Frame name="AlphaMapGathererPOI320" inherits="AlphaGatherTemplate" id="320"  />
+					<Frame name="AlphaMapGathererPOI321" inherits="AlphaGatherTemplate" id="321"  />
+					<Frame name="AlphaMapGathererPOI322" inherits="AlphaGatherTemplate" id="322"  />
+					<Frame name="AlphaMapGathererPOI323" inherits="AlphaGatherTemplate" id="323"  />
+					<Frame name="AlphaMapGathererPOI324" inherits="AlphaGatherTemplate" id="324"  />
+					<Frame name="AlphaMapGathererPOI325" inherits="AlphaGatherTemplate" id="325"  />
+					<Frame name="AlphaMapGathererPOI326" inherits="AlphaGatherTemplate" id="326"  />
+					<Frame name="AlphaMapGathererPOI327" inherits="AlphaGatherTemplate" id="327"  />
+					<Frame name="AlphaMapGathererPOI328" inherits="AlphaGatherTemplate" id="328"  />
+					<Frame name="AlphaMapGathererPOI329" inherits="AlphaGatherTemplate" id="329"  />
+					<Frame name="AlphaMapGathererPOI330" inherits="AlphaGatherTemplate" id="330"  />
+					<Frame name="AlphaMapGathererPOI331" inherits="AlphaGatherTemplate" id="331"  />
+					<Frame name="AlphaMapGathererPOI332" inherits="AlphaGatherTemplate" id="332"  />
+					<Frame name="AlphaMapGathererPOI333" inherits="AlphaGatherTemplate" id="333"  />
+					<Frame name="AlphaMapGathererPOI334" inherits="AlphaGatherTemplate" id="334"  />
+					<Frame name="AlphaMapGathererPOI335" inherits="AlphaGatherTemplate" id="335"  />
+					<Frame name="AlphaMapGathererPOI336" inherits="AlphaGatherTemplate" id="336"  />
+					<Frame name="AlphaMapGathererPOI337" inherits="AlphaGatherTemplate" id="337"  />
+					<Frame name="AlphaMapGathererPOI338" inherits="AlphaGatherTemplate" id="338"  />
+					<Frame name="AlphaMapGathererPOI339" inherits="AlphaGatherTemplate" id="339"  />
+					<Frame name="AlphaMapGathererPOI340" inherits="AlphaGatherTemplate" id="340"  />
+					<Frame name="AlphaMapGathererPOI341" inherits="AlphaGatherTemplate" id="341"  />
+					<Frame name="AlphaMapGathererPOI342" inherits="AlphaGatherTemplate" id="342"  />
+					<Frame name="AlphaMapGathererPOI343" inherits="AlphaGatherTemplate" id="343"  />
+					<Frame name="AlphaMapGathererPOI344" inherits="AlphaGatherTemplate" id="344"  />
+					<Frame name="AlphaMapGathererPOI345" inherits="AlphaGatherTemplate" id="345"  />
+					<Frame name="AlphaMapGathererPOI346" inherits="AlphaGatherTemplate" id="346"  />
+					<Frame name="AlphaMapGathererPOI347" inherits="AlphaGatherTemplate" id="347"  />
+					<Frame name="AlphaMapGathererPOI348" inherits="AlphaGatherTemplate" id="348"  />
+					<Frame name="AlphaMapGathererPOI349" inherits="AlphaGatherTemplate" id="349"  />
+					<Frame name="AlphaMapGathererPOI350" inherits="AlphaGatherTemplate" id="350"  />
+					<Frame name="AlphaMapGathererPOI351" inherits="AlphaGatherTemplate" id="351"  />
+					<Frame name="AlphaMapGathererPOI352" inherits="AlphaGatherTemplate" id="352"  />
+					<Frame name="AlphaMapGathererPOI353" inherits="AlphaGatherTemplate" id="353"  />
+					<Frame name="AlphaMapGathererPOI354" inherits="AlphaGatherTemplate" id="354"  />
+					<Frame name="AlphaMapGathererPOI355" inherits="AlphaGatherTemplate" id="355"  />
+					<Frame name="AlphaMapGathererPOI356" inherits="AlphaGatherTemplate" id="356"  />
+					<Frame name="AlphaMapGathererPOI357" inherits="AlphaGatherTemplate" id="357"  />
+					<Frame name="AlphaMapGathererPOI358" inherits="AlphaGatherTemplate" id="358"  />
+					<Frame name="AlphaMapGathererPOI359" inherits="AlphaGatherTemplate" id="359"  />
+					<Frame name="AlphaMapGathererPOI360" inherits="AlphaGatherTemplate" id="360"  />
+					<Frame name="AlphaMapGathererPOI361" inherits="AlphaGatherTemplate" id="361"  />
+					<Frame name="AlphaMapGathererPOI362" inherits="AlphaGatherTemplate" id="362"  />
+					<Frame name="AlphaMapGathererPOI363" inherits="AlphaGatherTemplate" id="363"  />
+					<Frame name="AlphaMapGathererPOI364" inherits="AlphaGatherTemplate" id="364"  />
+					<Frame name="AlphaMapGathererPOI365" inherits="AlphaGatherTemplate" id="365"  />
+					<Frame name="AlphaMapGathererPOI366" inherits="AlphaGatherTemplate" id="366"  />
+					<Frame name="AlphaMapGathererPOI367" inherits="AlphaGatherTemplate" id="367"  />
+					<Frame name="AlphaMapGathererPOI368" inherits="AlphaGatherTemplate" id="368"  />
+					<Frame name="AlphaMapGathererPOI369" inherits="AlphaGatherTemplate" id="369"  />
+					<Frame name="AlphaMapGathererPOI370" inherits="AlphaGatherTemplate" id="370"  />
+					<Frame name="AlphaMapGathererPOI371" inherits="AlphaGatherTemplate" id="371"  />
+					<Frame name="AlphaMapGathererPOI372" inherits="AlphaGatherTemplate" id="372"  />
+					<Frame name="AlphaMapGathererPOI373" inherits="AlphaGatherTemplate" id="373"  />
+					<Frame name="AlphaMapGathererPOI374" inherits="AlphaGatherTemplate" id="374"  />
+					<Frame name="AlphaMapGathererPOI375" inherits="AlphaGatherTemplate" id="375"  />
+					<Frame name="AlphaMapGathererPOI376" inherits="AlphaGatherTemplate" id="376"  />
+					<Frame name="AlphaMapGathererPOI377" inherits="AlphaGatherTemplate" id="377"  />
+					<Frame name="AlphaMapGathererPOI378" inherits="AlphaGatherTemplate" id="378"  />
+					<Frame name="AlphaMapGathererPOI379" inherits="AlphaGatherTemplate" id="379"  />
+					<Frame name="AlphaMapGathererPOI380" inherits="AlphaGatherTemplate" id="380"  />
+					<Frame name="AlphaMapGathererPOI381" inherits="AlphaGatherTemplate" id="381"  />
+					<Frame name="AlphaMapGathererPOI382" inherits="AlphaGatherTemplate" id="382"  />
+					<Frame name="AlphaMapGathererPOI383" inherits="AlphaGatherTemplate" id="383"  />
+					<Frame name="AlphaMapGathererPOI384" inherits="AlphaGatherTemplate" id="384"  />
+					<Frame name="AlphaMapGathererPOI385" inherits="AlphaGatherTemplate" id="385"  />
+					<Frame name="AlphaMapGathererPOI386" inherits="AlphaGatherTemplate" id="386"  />
+					<Frame name="AlphaMapGathererPOI387" inherits="AlphaGatherTemplate" id="387"  />
+					<Frame name="AlphaMapGathererPOI388" inherits="AlphaGatherTemplate" id="388"  />
+					<Frame name="AlphaMapGathererPOI389" inherits="AlphaGatherTemplate" id="389"  />
+					<Frame name="AlphaMapGathererPOI390" inherits="AlphaGatherTemplate" id="390"  />
+					<Frame name="AlphaMapGathererPOI391" inherits="AlphaGatherTemplate" id="391"  />
+					<Frame name="AlphaMapGathererPOI392" inherits="AlphaGatherTemplate" id="392"  />
+					<Frame name="AlphaMapGathererPOI393" inherits="AlphaGatherTemplate" id="393"  />
+					<Frame name="AlphaMapGathererPOI394" inherits="AlphaGatherTemplate" id="394"  />
+					<Frame name="AlphaMapGathererPOI395" inherits="AlphaGatherTemplate" id="395"  />
+					<Frame name="AlphaMapGathererPOI396" inherits="AlphaGatherTemplate" id="396"  />
+					<Frame name="AlphaMapGathererPOI397" inherits="AlphaGatherTemplate" id="397"  />
+					<Frame name="AlphaMapGathererPOI398" inherits="AlphaGatherTemplate" id="398"  />
+					<Frame name="AlphaMapGathererPOI399" inherits="AlphaGatherTemplate" id="399"  />
+					<Frame name="AlphaMapGathererPOI400" inherits="AlphaGatherTemplate" id="400"  />
+					<Frame name="AlphaMapGathererPOI401" inherits="AlphaGatherTemplate" id="401"  />
+					<Frame name="AlphaMapGathererPOI402" inherits="AlphaGatherTemplate" id="402"  />
+					<Frame name="AlphaMapGathererPOI403" inherits="AlphaGatherTemplate" id="403"  />
+					<Frame name="AlphaMapGathererPOI404" inherits="AlphaGatherTemplate" id="404"  />
+					<Frame name="AlphaMapGathererPOI405" inherits="AlphaGatherTemplate" id="405"  />
+					<Frame name="AlphaMapGathererPOI406" inherits="AlphaGatherTemplate" id="406"  />
+					<Frame name="AlphaMapGathererPOI407" inherits="AlphaGatherTemplate" id="407"  />
+					<Frame name="AlphaMapGathererPOI408" inherits="AlphaGatherTemplate" id="408"  />
+					<Frame name="AlphaMapGathererPOI409" inherits="AlphaGatherTemplate" id="409"  />
+					<Frame name="AlphaMapGathererPOI410" inherits="AlphaGatherTemplate" id="410"  />
+					<Frame name="AlphaMapGathererPOI411" inherits="AlphaGatherTemplate" id="411"  />
+					<Frame name="AlphaMapGathererPOI412" inherits="AlphaGatherTemplate" id="412"  />
+					<Frame name="AlphaMapGathererPOI413" inherits="AlphaGatherTemplate" id="413"  />
+					<Frame name="AlphaMapGathererPOI414" inherits="AlphaGatherTemplate" id="414"  />
+					<Frame name="AlphaMapGathererPOI415" inherits="AlphaGatherTemplate" id="415"  />
+					<Frame name="AlphaMapGathererPOI416" inherits="AlphaGatherTemplate" id="416"  />
+					<Frame name="AlphaMapGathererPOI417" inherits="AlphaGatherTemplate" id="417"  />
+					<Frame name="AlphaMapGathererPOI418" inherits="AlphaGatherTemplate" id="418"  />
+					<Frame name="AlphaMapGathererPOI419" inherits="AlphaGatherTemplate" id="419"  />
+					<Frame name="AlphaMapGathererPOI420" inherits="AlphaGatherTemplate" id="420"  />
+					<Frame name="AlphaMapGathererPOI421" inherits="AlphaGatherTemplate" id="421"  />
+					<Frame name="AlphaMapGathererPOI422" inherits="AlphaGatherTemplate" id="422"  />
+					<Frame name="AlphaMapGathererPOI423" inherits="AlphaGatherTemplate" id="423"  />
+					<Frame name="AlphaMapGathererPOI424" inherits="AlphaGatherTemplate" id="424"  />
+					<Frame name="AlphaMapGathererPOI425" inherits="AlphaGatherTemplate" id="425"  />
+					<Frame name="AlphaMapGathererPOI426" inherits="AlphaGatherTemplate" id="426"  />
+					<Frame name="AlphaMapGathererPOI427" inherits="AlphaGatherTemplate" id="427"  />
+					<Frame name="AlphaMapGathererPOI428" inherits="AlphaGatherTemplate" id="428"  />
+					<Frame name="AlphaMapGathererPOI429" inherits="AlphaGatherTemplate" id="429"  />
+					<Frame name="AlphaMapGathererPOI430" inherits="AlphaGatherTemplate" id="430"  />
+					<Frame name="AlphaMapGathererPOI431" inherits="AlphaGatherTemplate" id="431"  />
+					<Frame name="AlphaMapGathererPOI432" inherits="AlphaGatherTemplate" id="432"  />
+					<Frame name="AlphaMapGathererPOI433" inherits="AlphaGatherTemplate" id="433"  />
+					<Frame name="AlphaMapGathererPOI434" inherits="AlphaGatherTemplate" id="434"  />
+					<Frame name="AlphaMapGathererPOI435" inherits="AlphaGatherTemplate" id="435"  />
+					<Frame name="AlphaMapGathererPOI436" inherits="AlphaGatherTemplate" id="436"  />
+					<Frame name="AlphaMapGathererPOI437" inherits="AlphaGatherTemplate" id="437"  />
+					<Frame name="AlphaMapGathererPOI438" inherits="AlphaGatherTemplate" id="438"  />
+					<Frame name="AlphaMapGathererPOI439" inherits="AlphaGatherTemplate" id="439"  />
+					<Frame name="AlphaMapGathererPOI440" inherits="AlphaGatherTemplate" id="440"  />
+					<Frame name="AlphaMapGathererPOI441" inherits="AlphaGatherTemplate" id="441"  />
+					<Frame name="AlphaMapGathererPOI442" inherits="AlphaGatherTemplate" id="442"  />
+					<Frame name="AlphaMapGathererPOI443" inherits="AlphaGatherTemplate" id="443"  />
+					<Frame name="AlphaMapGathererPOI444" inherits="AlphaGatherTemplate" id="444"  />
+					<Frame name="AlphaMapGathererPOI445" inherits="AlphaGatherTemplate" id="445"  />
+					<Frame name="AlphaMapGathererPOI446" inherits="AlphaGatherTemplate" id="446"  />
+					<Frame name="AlphaMapGathererPOI447" inherits="AlphaGatherTemplate" id="447"  />
+					<Frame name="AlphaMapGathererPOI448" inherits="AlphaGatherTemplate" id="448"  />
+					<Frame name="AlphaMapGathererPOI449" inherits="AlphaGatherTemplate" id="449"  />
+					<Frame name="AlphaMapGathererPOI450" inherits="AlphaGatherTemplate" id="450"  />
+					<Frame name="AlphaMapGathererPOI451" inherits="AlphaGatherTemplate" id="451"  />
+					<Frame name="AlphaMapGathererPOI452" inherits="AlphaGatherTemplate" id="452"  />
+					<Frame name="AlphaMapGathererPOI453" inherits="AlphaGatherTemplate" id="453"  />
+					<Frame name="AlphaMapGathererPOI454" inherits="AlphaGatherTemplate" id="454"  />
+					<Frame name="AlphaMapGathererPOI455" inherits="AlphaGatherTemplate" id="455"  />
+					<Frame name="AlphaMapGathererPOI456" inherits="AlphaGatherTemplate" id="456"  />
+					<Frame name="AlphaMapGathererPOI457" inherits="AlphaGatherTemplate" id="457"  />
+					<Frame name="AlphaMapGathererPOI458" inherits="AlphaGatherTemplate" id="458"  />
+					<Frame name="AlphaMapGathererPOI459" inherits="AlphaGatherTemplate" id="459"  />
+					<Frame name="AlphaMapGathererPOI460" inherits="AlphaGatherTemplate" id="460"  />
+					<Frame name="AlphaMapGathererPOI461" inherits="AlphaGatherTemplate" id="461"  />
+					<Frame name="AlphaMapGathererPOI462" inherits="AlphaGatherTemplate" id="462"  />
+					<Frame name="AlphaMapGathererPOI463" inherits="AlphaGatherTemplate" id="463"  />
+					<Frame name="AlphaMapGathererPOI464" inherits="AlphaGatherTemplate" id="464"  />
+					<Frame name="AlphaMapGathererPOI465" inherits="AlphaGatherTemplate" id="465"  />
+					<Frame name="AlphaMapGathererPOI466" inherits="AlphaGatherTemplate" id="466"  />
+					<Frame name="AlphaMapGathererPOI467" inherits="AlphaGatherTemplate" id="467"  />
+					<Frame name="AlphaMapGathererPOI468" inherits="AlphaGatherTemplate" id="468"  />
+					<Frame name="AlphaMapGathererPOI469" inherits="AlphaGatherTemplate" id="469"  />
+					<Frame name="AlphaMapGathererPOI470" inherits="AlphaGatherTemplate" id="470"  />
+					<Frame name="AlphaMapGathererPOI471" inherits="AlphaGatherTemplate" id="471"  />
+					<Frame name="AlphaMapGathererPOI472" inherits="AlphaGatherTemplate" id="472"  />
+					<Frame name="AlphaMapGathererPOI473" inherits="AlphaGatherTemplate" id="473"  />
+					<Frame name="AlphaMapGathererPOI474" inherits="AlphaGatherTemplate" id="474"  />
+					<Frame name="AlphaMapGathererPOI475" inherits="AlphaGatherTemplate" id="475"  />
+					<Frame name="AlphaMapGathererPOI476" inherits="AlphaGatherTemplate" id="476"  />
+					<Frame name="AlphaMapGathererPOI477" inherits="AlphaGatherTemplate" id="477"  />
+					<Frame name="AlphaMapGathererPOI478" inherits="AlphaGatherTemplate" id="478"  />
+					<Frame name="AlphaMapGathererPOI479" inherits="AlphaGatherTemplate" id="479"  />
+					<Frame name="AlphaMapGathererPOI480" inherits="AlphaGatherTemplate" id="480"  />
+					<Frame name="AlphaMapGathererPOI481" inherits="AlphaGatherTemplate" id="481"  />
+					<Frame name="AlphaMapGathererPOI482" inherits="AlphaGatherTemplate" id="482"  />
+					<Frame name="AlphaMapGathererPOI483" inherits="AlphaGatherTemplate" id="483"  />
+					<Frame name="AlphaMapGathererPOI484" inherits="AlphaGatherTemplate" id="484"  />
+					<Frame name="AlphaMapGathererPOI485" inherits="AlphaGatherTemplate" id="485"  />
+					<Frame name="AlphaMapGathererPOI486" inherits="AlphaGatherTemplate" id="486"  />
+					<Frame name="AlphaMapGathererPOI487" inherits="AlphaGatherTemplate" id="487"  />
+					<Frame name="AlphaMapGathererPOI488" inherits="AlphaGatherTemplate" id="488"  />
+					<Frame name="AlphaMapGathererPOI489" inherits="AlphaGatherTemplate" id="489"  />
+					<Frame name="AlphaMapGathererPOI490" inherits="AlphaGatherTemplate" id="490"  />
+					<Frame name="AlphaMapGathererPOI491" inherits="AlphaGatherTemplate" id="491"  />
+					<Frame name="AlphaMapGathererPOI492" inherits="AlphaGatherTemplate" id="492"  />
+					<Frame name="AlphaMapGathererPOI493" inherits="AlphaGatherTemplate" id="493"  />
+					<Frame name="AlphaMapGathererPOI494" inherits="AlphaGatherTemplate" id="494"  />
+					<Frame name="AlphaMapGathererPOI495" inherits="AlphaGatherTemplate" id="495"  />
+					<Frame name="AlphaMapGathererPOI496" inherits="AlphaGatherTemplate" id="496"  />
+					<Frame name="AlphaMapGathererPOI497" inherits="AlphaGatherTemplate" id="497"  />
+					<Frame name="AlphaMapGathererPOI498" inherits="AlphaGatherTemplate" id="498"  />
+					<Frame name="AlphaMapGathererPOI499" inherits="AlphaGatherTemplate" id="499"  />
+					<Frame name="AlphaMapGathererPOI500" inherits="AlphaGatherTemplate" id="500"  />
+
+					<Minimap name="AlphaMapMinimap" minimapPlayerModel="Interface\Minimap\MinimapArrow.mdx" minimapArrowModel="Interface\Minimap\Rotating-MinimapArrow.mdl">
+						<Size>
+							<AbsDimension x="8" y="8"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetFrameLevel( this:GetFrameLevel() + 1 );
+							</OnLoad>
+						</Scripts>
+					</Minimap>
+				</Frames>
+				<Scripts>
+					<OnUpdate>
+						AlphaMapUnits_OnUpdate();
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+			<Slider name="AlphaMapSliderFrame" orientation="VERTICAL" minValue="0" maxValue="1" valueStep="0.01" 
+					defaultValue="0.7" movable="true" parent="AlphaMapFrame" setAllPoints="true">
+				<Size>
+					<AbsDimension x="16" y="128"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="AlphaMapFrame" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="203"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="AlphaMapFrame" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="8"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="8"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="3" right="3" top="6" bottom="6"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalSmall">
+							<Anchors>
+								<Anchor point="BOTTOM" relativePoint="TOP"/>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontHighlightSmall" text="0%">
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="2" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontHighlightSmall" text="100%">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-2" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						if( AlphaMapConfig.slider == false) then
+							HideUIPanel( this );
+						end
+						
+						this:SetValue( 1 - AlphaMapConfig.alpha );
+					</OnLoad>
+					<OnValueChanged>
+							SetAlphaMapOpacity();
+					</OnValueChanged>
+
+					<OnMouseDown>
+						if( AlphaMapConfig.sliderlock == false ) then
+							this:StartMoving();
+							this.isMoving = true;
+						end 
+					</OnMouseDown>
+					<OnMouseUp>
+						this:StopMovingOrSizing();
+						this.isMoving = false;
+					</OnMouseUp>
+
+				</Scripts>
+				<ThumbTexture file="Interface\Buttons\UI-SliderBar-Button-Vertical">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+				</ThumbTexture>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				AlphaMapFrame_OnLoad();
+			</OnLoad>
+			<OnSizeChanged>
+			<!--
+				local width = this:GetWidth();
+				DEFAULT_CHAT_FRAME:AddMessage( "MainFrameWidth: ="..width );
+				DEFAULT_CHAT_FRAME:AddMessage( "Scale: ="..width / 1024.0 );
+			
+				if( width / 1024 >= 0.5 ) then
+					AlphaMapDetailFrame:SetScale( width / 1024 );
+				end
+			-->
+			</OnSizeChanged>
+			<OnShow>
+				SetMapToCurrentZone();
+				PlaySound("igQuestLogOpen");
+			</OnShow>
+			<OnHide>
+				PlaySound("igQuestLogClose");
+				if( AlphaMapFrame.UserHidden == false and AlphaMapConfig.wmclose ) then
+					HideUIPanel( this );
+				else
+					AlphaMapFrame.UserHidden = false;
+				end
+			</OnHide>
+			<OnEvent>
+				AlphaMapFrame_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				RequestBattlefieldPositions();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<GameTooltip name="AlphaMapTooltip" frameStrata="TOOLTIP" hidden="true" parent="AlphaMapFrame" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+</Ui>

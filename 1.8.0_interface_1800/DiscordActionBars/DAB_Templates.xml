@@ -1,0 +1,199 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+<Script file="localization.lua"/>
+<Script file="DAB_Initialization.lua"/>
+<Script file="DAB_Main.lua"/>
+<Script file="DAB_ActionButton.lua"/>
+<Script file="DAB_Bar.lua"/>
+<Script file="DAB_ControlBox.lua"/>
+<Script file="DAB_Options.lua"/>
+<Script file="DAB_Floaters.lua"/>
+<Script file="DAB_Custom.lua"/>
+
+<Frame name="DAB_TooltipBGTemplate" hidden="false" virtual="true">
+	<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+		<EdgeSize>
+			<AbsValue val="16"/>
+		</EdgeSize>
+		<TileSize>
+			<AbsValue val="16"/>
+		</TileSize>
+		<BackgroundInsets>
+			<AbsInset left="5" right="5" top="5" bottom="5"/>
+		</BackgroundInsets>
+	</Backdrop>
+</Frame>
+
+<Frame name="DAB_DialogueBGTemplate" hidden="false" virtual="true">
+	<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+		<BackgroundInsets>
+			<AbsInset left="11" right="12" top="12" bottom="11"/>
+		</BackgroundInsets>
+		<TileSize>
+			<AbsValue val="32"/>
+		</TileSize>
+		<EdgeSize>
+			<AbsValue val="32"/>
+		</EdgeSize>
+	</Backdrop>
+</Frame>
+
+<Frame name="DAB_PlainBGTemplate" hidden="false" virtual="true">
+	<Layers>
+		<Layer level="BACKGROUND">
+			<Texture name="$parent_Background" hidden="false">
+				<Size><AbsDimension x="10" y="10"/></Size>
+				<Color r="1" g="1" b="1"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+				</Anchors>
+			</Texture>
+		</Layer>
+		<Layer level="BORDER">
+			<Texture name="$parent_Left" hidden="false">
+				<Size><AbsDimension x="1" y="1"/></Size>
+				<Color r="1" g="1" b="1"/>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMLEFT"/>
+				</Anchors>
+			</Texture>
+			<Texture name="$parent_Right" hidden="false">
+				<Size><AbsDimension x="1" y="1"/></Size>
+				<Color r="1" g="1" b="1"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</Texture>
+			<Texture name="$parent_Top" hidden="false">
+				<Size><AbsDimension x="1" y="1"/></Size>
+				<Color r="1" g="1" b="1"/>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="TOPRIGHT"/>
+				</Anchors>
+			</Texture>
+			<Texture name="$parent_Bottom" hidden="false">
+				<Size><AbsDimension x="1" y="1"/></Size>
+				<Color r="1" g="1" b="1"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</Texture>
+		</Layer>
+	</Layers>
+</Frame>
+
+
+
+<Button name="DAB_ActionBarTemplate" movable="true" hidden="false" virtual="true" frameStrata="LOW">
+	<Size><AbsDimension x="10" y="10"/></Size>
+	<Frames>
+		<Button name="$parent_Label" inherits="DAB_PlainBGTemplate">
+			<Size><AbsDimension x="10" y="10"/></Size>
+			<Anchors>
+				<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT"/>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<FontString name="$parent_Text" inherits="DAB_BarLabelFont">
+						<Anchors>
+							<Anchor point="CENTER"/>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					this:RegisterForDrag("LeftButton");
+				</OnLoad>
+				<OnDragStart>
+					DAB_Bar_OnDragStart(1);
+				</OnDragStart>
+				<OnDragStop>
+					DAB_Bar_OnDragStop(1);
+				</OnDragStop>
+			</Scripts>
+		</Button>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:RegisterForDrag("LeftButton");
+		</OnLoad>
+		<OnEnter>
+			DAB_Bar_OnEnter(this:GetID());
+		</OnEnter>
+		<OnEvent>
+			DAB_Bar_OnEvent(event);
+		</OnEvent>
+		<OnLeave>
+			DAB_Bar_OnLeave(this:GetID());
+		</OnLeave>
+		<OnUpdate>
+			DAB_Bar_OnUpdate(arg1);
+		</OnUpdate>
+		<OnShow>
+			DAB_Bar_OnShow();
+		</OnShow>
+		<OnHide>
+			DAB_Bar_OnHide();
+		</OnHide>
+		<OnDragStart>
+			DAB_Bar_OnDragStart();
+		</OnDragStart>
+		<OnDragStop>
+			DAB_Bar_OnDragStop();
+		</OnDragStop>
+	</Scripts>
+</Button>
+
+<Button name="DAB_ControlBoxTemplate" inherits="DAB_PlainBGTemplate" movable="true" hidden="false" virtual="true" frameStrata="low">
+	<Size><AbsDimension x="10" y="10"/></Size>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString name="$parent_Text" inherits="DAB_ControlBoxFont" justifyH="CENTER" justifyV="CENTER">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnLoad>
+			this:RegisterForDrag("LeftButton");
+		</OnLoad>
+		<OnEnter>
+			DAB_ControlBox_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			DAB_ControlBox_OnLeave();
+		</OnLeave>
+		<OnClick>
+			DAB_ControlBox_OnClick();
+		</OnClick>
+		<OnDragStart>
+			DAB_StartMoving();
+		</OnDragStart>
+		<OnDragStop>
+			DAB_StopMoving();
+		</OnDragStop>
+	</Scripts>
+</Button>
+
+<Button name="DAB_MouseOverBarTemplate" hidden="false" virtual="true">
+	<Size><AbsDimension x="10" y="10"/></Size>
+	<Scripts>
+		<OnLoad>
+			DAB_MouseOverBar_OnLoad();
+		</OnLoad>
+		<OnEnter>
+			DAB_Bar_OnEnter(this:GetID());
+		</OnEnter>
+	</Scripts>
+</Button>
+
+</Ui>

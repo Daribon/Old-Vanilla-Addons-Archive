@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: ChatScroll
+## Notes: Makes chat windows scrollable with the mouse wheel and has scroll button visibility options.
+## Author: AnduinLothar
+## OptionalDeps: Khaos
+localization.lua
+localization.de.lua
+localization.fr.lua
+ChatScroll.lua

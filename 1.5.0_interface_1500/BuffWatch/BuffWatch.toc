@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: BuffWatch
+## Author: Tyrrael aka Paul2200
+## Notes: Keeps track of buffs on party members in a small window and colors them appropriately whether they are active or not!
+## SavedVariables: BuffWatchConfig
+BuffWatch.xml

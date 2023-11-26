@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: XPBarColor
+## Notes: Allows the user to specify the color of the XP Bar
+## OptionalDeps: Cosmos
+##SavedVariables: XPBarColor_Enabled, COS_XPBARCOLOR_opacity, COS_XPBARCOLOR_red, COS_XPBARCOLOR_green, COS_XPBARCOLOR_blue
+XPBarColor.xml

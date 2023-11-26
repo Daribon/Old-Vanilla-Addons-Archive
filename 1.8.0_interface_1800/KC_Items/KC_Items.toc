@@ -1,0 +1,17 @@
+## Interface: 1800
+## Author: Kael
+## Title: KC_Items .93 Beta
+## Notes: A centralized repository of all item information.
+## DefaultState:
+## Dependencies: Ace, AceGUI
+## OptionalDeps:
+## SavedVariables: KC_ItemsDB, KC_BankDB, KC_InvDB, KC_AuctionDB, KC_AuctionBrokerDB
+KC_Items.xml
+auction\KC_ItemsAuction.xml
+auctionbroker\KC_ItemsAuctionBroker.xml
+bank\KC_ItemsBank.xml
+inventory\KC_ItemsInventory.xml
+linknet\KC_ItemsLinknet.xml
+linkview\KC_ItemsLinkview.xml
+sellvalue\KC_ItemsSellValue.xml
+tooltiphooker\KC_ItemsTooltipHooker.xml

@@ -1,0 +1,7 @@
+## Interface: 1500
+## Version: 1.04 (CTMod 1.782)
+## Version: 1.02 (CTMod 1.78)
+## Notes: Counts raid loot and attendance
+## SavedVariables: CT_RaidTracker_RaidLog, CT_RaidTracker_GetCurrentRaid, CT_RaidTracker_DebugFlag, CT_RaidTracker_SortOptions
+## OptionalDeps: CT_MasterMod
+CT_RaidTracker.xml

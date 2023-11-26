@@ -1,0 +1,73 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+	<!-- Radial Buttons -->
+	<Button name="KC_EnhancedTrades_TSFButton" parent="TradeSkillFrame" toplevel="true" frameStrata="HIGH">
+		<Size>
+			<AbsDimension x="23" y="23"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TradeSkillFrameCloseButton" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="4" y="7"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:Show();
+			</OnLoad>
+			<OnShow>
+				this:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up");
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnShow>
+			<OnClick>
+				if (KC_EnhancedTrades_Config:IsVisible()) then
+					KC_EnhancedTrades_Config:Hide()
+					this:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up");
+				else
+					KC_EnhancedTrades_Config:Show()
+					this:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up");
+				end
+			</OnClick>
+		</Scripts>
+		<NormalTexture file="Interface\Buttons\UI-PlusButton-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-PlusButton-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD"/>
+	</Button>
+
+	<Button name="KC_EnhancedTrades_CFButton" parent="CraftFrame" toplevel="true" frameStrata="HIGH">
+		<Size>
+			<AbsDimension x="23" y="23"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="CraftFrameCloseButton" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="4" y="7"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:Show();
+			</OnLoad>
+			<OnShow>
+				this:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up");
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnShow>
+			<OnClick>
+				if (KC_EnhancedTrades_Config:IsVisible()) then
+					KC_EnhancedTrades_Config:Hide()
+					this:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up");
+				else
+					KC_EnhancedTrades_Config:Show()
+					this:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up");
+				end
+			</OnClick>
+		</Scripts>
+		<NormalTexture file="Interface\Buttons\UI-PlusButton-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-PlusButton-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD"/>
+	</Button>
+</Ui>

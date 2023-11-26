@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: PetDefend v1.6
+## Author: Rauen
+## Notes: Version 1.6
+## SavedVariables: PetDefend_Config
+PetDefend.xml
+

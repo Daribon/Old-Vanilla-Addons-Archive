@@ -1,0 +1,10 @@
+## Interface: 4216
+## Title: Clock by Telo
+## Title-deDE: Telos Uhr
+## Author: Telo
+## Notes: Adds a clock window with time-based tooltip information
+## Notes-deDE: Fügt ein Uhrfenster mit zeitbasiertem Tooltip hinzu
+## RequiredDeps: Cosmos
+## OptionalDeps: Cosmos, Sea
+## SavedVariables: Clock_PopupOnMouseOver
+Clock.xml

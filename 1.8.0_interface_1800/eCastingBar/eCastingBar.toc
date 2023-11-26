@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: eCastingBar|cffffffff by elvendawn
+## Author: elvendawn
+## Notes: Just a modified casting bar, made moveable and graphics overhaul, which includes CastingTime mod.
+## OptionalDeps: 
+## SavedVariables: eCastingBar_Saved
+eCastingBar.xml

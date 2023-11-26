@@ -1,0 +1,44 @@
+<Bindings>
+	<Binding name="TOYBARUSE1" header="TOYBAR" runOnUp="true">
+		if ( keystate == "down" ) then 
+			ToyBar_Down(1);
+		else
+			ToyBar_Up(1);
+		end
+	</Binding>
+	<Binding name="TOYBARUSE2" runOnUp="true">
+		if ( keystate == "down" ) then 
+			ToyBar_Down(2);
+		else
+			ToyBar_Up(2);
+		end
+	</Binding>
+	<Binding name="TOYBARUSE3" runOnUp="true">
+		if ( keystate == "down" ) then 
+			ToyBar_Down(3);
+		else
+			ToyBar_Up(3);
+		end
+	</Binding>
+	<Binding name="TOYBARUSE4" runOnUp="true">
+		if ( keystate == "down" ) then 
+			ToyBar_Down(4);
+		else
+			ToyBar_Up(4);
+		end
+	</Binding>
+	<Binding name="TOYBARUSE5" runOnUp="true">
+		if ( keystate == "down" ) then 
+			ToyBar_Down(5);
+		else
+			ToyBar_Up(5);
+		end
+	</Binding>
+	<Binding name="TOYBARUSE6" runOnUp="true">
+		if ( keystate == "down" ) then 
+			ToyBar_Down(6);
+		else
+			ToyBar_Up(6);
+		end
+	</Binding>
+</Bindings>

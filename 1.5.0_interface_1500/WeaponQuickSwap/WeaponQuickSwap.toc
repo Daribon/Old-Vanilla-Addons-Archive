@@ -1,0 +1,4 @@
+## Interface: 1500
+## Title: Weapon Quick Swap
+## Notes: Function for quickly swapping between 2 weapon sets
+WeaponQuickSwap.xml

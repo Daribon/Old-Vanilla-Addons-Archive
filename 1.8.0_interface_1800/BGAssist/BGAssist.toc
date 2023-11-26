@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r BGassist
+## Notes: Handy stuff for Battlegrounds such as Auto-Enter BG when your queue comes up, item tracking, auto accept and compelte AV turn-in quests, etc. A must if you are a frequent BG visitor.
+## Author: Marc aka Saien on Hyjal
+## DefaultState: disabled
+## SavedVariables: BGAssist_Config
+BGAssist.xml

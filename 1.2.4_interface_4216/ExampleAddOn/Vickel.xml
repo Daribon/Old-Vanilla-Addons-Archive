@@ -1,0 +1,96 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<!-- Vickel Script -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="Vickel.lua"/>
+
+	<Button name="VickelFrame" movable="true" hidden="true" parent="UIParent" frameStrata="BACKGROUND">
+		<Anchors>
+			<Anchor point="RIGHT">
+				<Offset>
+					<AbsDimension x="-70" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<TitleRegion setAllPoints="true"/>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="VickelHeadTexture" file="Interface\AddOns\ExampleAddOn\Vickel2.tga">
+				<Anchors>
+				<Anchor point="TOP">
+					<Offset>
+						<AbsDimension x="0" y="50" />
+					</Offset>
+						</Anchor>
+					</Anchors>
+						<Size>
+							<AbsDimension x="64" y="64"/>
+						</Size>
+						<Color r="0" g="1" b="0" a="0.0"/>				
+					</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+					<Texture name="VickelTexture" file="Interface\AddOns\ExampleAddOn\Vickel2.tga">
+						<Anchors>
+							<Anchor point="TOP">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Color r="0" g="1" b="0" a="0.0"/>				
+						</Texture>
+					</Layer>
+				</Layers>
+			<Frames>
+				<ScrollingMessageFrame name="VickelText" ignoreArrows="true" maxLines="8" historyLines="10" fade="true"
+					displayDuration="8" fadeDuration="6" letters="126" hidden="false">
+					<Size>
+						<AbsDimension x="200" y="128" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM" relativeTo="VickelFrame" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="64" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<FontString inherits="GameFontNormal"></FontString>
+				</ScrollingMessageFrame>
+			</Frames>
+		<Scripts>
+			<OnLoad>
+				Vickel_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				Vickel_OnUpdate(arg1);
+			</OnUpdate>
+			<OnDragStart>
+				Vickel_OnDragStart();
+				this:ClearAllPoints();
+				this:SetPoint("TOPLEFT", "UIParent", "BOTTOMLEFT", x, y);
+				this:StartMoving();
+			</OnDragStart>
+			<OnDragStop>
+				Vickel_OnDragEnd();
+				this:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseWheel>
+				Vickel_OnMouseWheel(arg1);
+			</OnMouseWheel>
+
+			<OnClick>
+				Vickel_OnClick();
+			</OnClick>
+
+		</Scripts>
+	</Button>
+</Ui>

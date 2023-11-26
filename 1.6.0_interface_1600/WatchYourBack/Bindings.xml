@@ -1,0 +1,16 @@
+<Bindings>
+	<Binding name="WatchYourBack" description="Hold to see whats behind you without changeing movement" runOnUp="true" header="WatchYourBack">
+		if ( keystate == "down" ) then
+			FlipCameraYaw(180);
+		else
+			FlipCameraYaw(-180);
+		end
+	</Binding>
+	<Binding name="WatchYourSide" description="Hold to see whats behind you without changeing movemen" runOnUp="true" header="WatchYourBack">
+		if ( keystate == "down" ) then
+			FlipCameraYaw(90);
+		else
+			FlipCameraYaw(-90);
+		end
+	</Binding>
+</Bindings>

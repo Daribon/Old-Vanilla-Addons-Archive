@@ -1,0 +1,12 @@
+## Interface: 1300 
+## Title: Guilded
+## Notes: Guilded allows multiple independant players to create a channel for chatting, crafting, trading and instance/raid organisation. Version 0.9.
+## Version: 0.9
+## OptionalDeps:
+## Dependencies: 
+## SavedVariables: GuildedConfigAll
+Guilded.xml
+GuildedList.xml
+GuildedTraders.xml
+GuildedRaiders.xml
+GuildedConfig.xml

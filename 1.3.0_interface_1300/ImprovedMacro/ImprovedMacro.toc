@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: Improved Macro
+## Title-frFR: Macros Améliorées
+## Notes: Add some macro to the game
+## Notes-frFR: Rajoute des macros au jeu 
+## OptionalDeps: Sea, Cosmos
+ImprovedMacro.xml

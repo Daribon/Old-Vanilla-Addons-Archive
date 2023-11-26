@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (CT)
+## Notes: CooldownCount for CT
+## Author: sarf
+## RequiredDeps: CT_BarMod, CooldownCount
+CooldownCountCT.xml

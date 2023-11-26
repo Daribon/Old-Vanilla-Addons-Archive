@@ -1,0 +1,8 @@
+## Interface: 1700
+## Title: CastOptions
+## Author: Mugendai
+## Notes: Provides enchanced casting options such as auto self casting.
+## OptionalDeps: MCom, Sky, Cosmos, Khaos, myAddOns, AltSelfCast
+## RequiredDeps: Sea
+MCom\MCom.xml
+CastOptions.xml

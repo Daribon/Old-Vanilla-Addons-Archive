@@ -1,0 +1,32 @@
+<Bindings>
+	<Binding name="DCRCLEAN" header="DECURSIVE">
+			Dcr_Clean();
+	</Binding>
+	<Binding name="DCRSHOW">
+			Dcr_ShowHideAfflictedListUI();
+	</Binding>
+	<Binding name="DCRPRADD">
+			Dcr_AddTargetToPriorityList();
+	</Binding>
+	<Binding name="DCRPRCLEAR">
+			Dcr_ClearPriorityList();
+	</Binding>
+	<Binding name="DCRPRLIST">
+			Dcr_PrintPriorityList();
+	</Binding>
+	<Binding name="DCRPRSHOW">
+			Dcr_ShowHidePriorityListUI();
+	</Binding>
+	<Binding name="DCRSKADD">
+			Dcr_AddTargetToSkipList();
+	</Binding>
+	<Binding name="DCRSKCLEAR">
+			Dcr_ClearSkipList();
+	</Binding>
+	<Binding name="DCRSKLIST">
+			Dcr_PrintSkipList();
+	</Binding>
+	<Binding name="DCRSKSHOW">
+			Dcr_ShowHideSkipListUI();
+	</Binding>
+</Bindings>

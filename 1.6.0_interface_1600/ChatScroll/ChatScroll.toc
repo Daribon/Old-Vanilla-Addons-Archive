@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r ChatScroll
+## Notes: Makes chat windows scrollable with the mouse wheel.
+## Author: AnduinLothar
+ChatScroll.xml

@@ -1,0 +1,6 @@
+## Interface: 1300	
+## Author: vjeux
+## Title: ToggleEquipView
+## Notes: Allows for easily toggling the display of the cloak and helm
+## OptionalDeps: Cosmos
+ToggleEquipView.xml

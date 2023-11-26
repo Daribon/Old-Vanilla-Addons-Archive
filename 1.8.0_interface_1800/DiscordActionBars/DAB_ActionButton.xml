@@ -1,0 +1,279 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Model name="DAB_CooldownFrameTemplate" file="Interface\Cooldown\UI-Cooldown-Indicator.mdx" hidden="true" setAllPoints="true" virtual="true" scale=".85">
+	<Scripts>
+		<OnUpdateModel>
+			CooldownFrame_OnUpdateModel();
+		</OnUpdateModel>
+		<OnAnimFinished>
+			CooldownFrame_OnAnimFinished();
+		</OnAnimFinished>
+	</Scripts>
+</Model>
+
+<CheckButton name="DAB_ActionButtonTemplate" movable="true" virtual="true">
+	<Size><AbsDimension x="36" y="36"/></Size>
+	<Layers>
+		<Layer level="BORDER">
+			<Texture name="$parentIcon">
+				<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+			</Texture>
+		</Layer>
+		<Layer level="ARTWORK">
+			<Texture name="$parentFlash" file="Interface\Buttons\UI-QuickslotRed" hidden="true">
+				<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+			</Texture>
+		</Layer>
+	</Layers>
+	<Frames>
+		<Frame name="$parentTextFrame">
+			<Size><AbsDimension x="36" y="36"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<FontString name="$parentHotKey" inherits="DAB_KeybindingsFont" justifyH="RIGHT">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+								<Offset><AbsDimension x="2" y="-2"/></Offset>
+							</Anchor>
+							<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+								<Offset><AbsDimension x="-2" y="-2"/></Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentDynamicHotKey" inherits="DAB_DynamicKeybindingsFont" justifyH="RIGHT">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+								<Offset><AbsDimension x="2" y="-17"/></Offset>
+							</Anchor>
+							<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+								<Offset><AbsDimension x="-2" y="-17"/></Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentCount" inherits="DAB_ItemCountFont" justifyH="RIGHT">
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+								<Offset><AbsDimension x="2" y="2"/></Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset><AbsDimension x="-2" y="2"/></Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+				<Layer level="OVERLAY">
+					<FontString name="$parentCooldownCount" inherits="DAB_CooldownCountFont" justifyH="CENTER">
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="LEFT">
+								<Offset><AbsDimension x="-2" y="0"/></Offset>
+							</Anchor>
+							<Anchor point="RIGHT" relativePoint="RIGHT">
+								<Offset><AbsDimension x="2" y="0"/></Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<FontString name="$parentName" inherits="DAB_MacroNameFont">
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+								<Offset><AbsDimension x="0" y="2"/></Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset><AbsDimension x="0" y="2"/></Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+		<Model name="$parentCooldown" inherits="DAB_CooldownFrameTemplate"/>
+	</Frames>
+	<NormalTexture name="$parentBorder" file="Interface\Buttons\UI-Quickslot2" hidden="true">
+		<Size><AbsDimension x="64" y="64"/></Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset><AbsDimension x="-12" y="12"/></Offset>
+			</Anchor>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset><AbsDimension x="13" y="-13"/></Offset>
+			</Anchor>
+		</Anchors>
+	</NormalTexture>
+	<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+	<CheckedTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+	<Scripts>
+		<OnLoad>
+			DAB_ActionButton_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			DAB_ActionButton_OnEvent(event);
+		</OnEvent>
+		<OnUpdate>
+			DAB_ActionButton_OnUpdate(arg1);
+		</OnUpdate>
+		<OnEnter>
+			DAB_ActionButton_OnEnter();
+		</OnEnter>
+		<OnLeave>
+			DAB_ActionButton_OnLeave();
+		</OnLeave>
+		<OnClick>
+			DAB_ActionButton_OnClick(this:GetID(), arg1);
+		</OnClick>
+		<OnShow>
+			DAB_ActionButton_OnShow();
+		</OnShow>
+		<OnDragStart>
+			DAB_ActionButton_OnDragStart();
+		</OnDragStart>
+		<OnDragStop>
+			DAB_ActionButton_OnDragStop();
+		</OnDragStop>
+		<OnReceiveDrag>
+			DAB_ActionButton_OnReceiveDrag();
+		</OnReceiveDrag>
+	</Scripts>
+</CheckButton>
+
+<CheckButton name="DAB_ActionButton_1" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="1"/>
+<CheckButton name="DAB_ActionButton_2" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="2"/>
+<CheckButton name="DAB_ActionButton_3" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="3"/>
+<CheckButton name="DAB_ActionButton_4" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="4"/>
+<CheckButton name="DAB_ActionButton_5" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="5"/>
+<CheckButton name="DAB_ActionButton_6" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="6"/>
+<CheckButton name="DAB_ActionButton_7" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="7"/>
+<CheckButton name="DAB_ActionButton_8" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="8"/>
+<CheckButton name="DAB_ActionButton_9" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="9"/>
+<CheckButton name="DAB_ActionButton_10" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="10"/>
+<CheckButton name="DAB_ActionButton_11" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="11"/>
+<CheckButton name="DAB_ActionButton_12" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="12"/>
+<CheckButton name="DAB_ActionButton_13" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="13"/>
+<CheckButton name="DAB_ActionButton_14" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="14"/>
+<CheckButton name="DAB_ActionButton_15" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="15"/>
+<CheckButton name="DAB_ActionButton_16" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="16"/>
+<CheckButton name="DAB_ActionButton_17" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="17"/>
+<CheckButton name="DAB_ActionButton_18" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="18"/>
+<CheckButton name="DAB_ActionButton_19" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="19"/>
+<CheckButton name="DAB_ActionButton_20" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="20"/>
+<CheckButton name="DAB_ActionButton_21" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="21"/>
+<CheckButton name="DAB_ActionButton_22" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="22"/>
+<CheckButton name="DAB_ActionButton_23" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="23"/>
+<CheckButton name="DAB_ActionButton_24" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="24"/>
+<CheckButton name="DAB_ActionButton_25" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="25"/>
+<CheckButton name="DAB_ActionButton_26" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="26"/>
+<CheckButton name="DAB_ActionButton_27" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="27"/>
+<CheckButton name="DAB_ActionButton_28" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="28"/>
+<CheckButton name="DAB_ActionButton_29" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="29"/>
+<CheckButton name="DAB_ActionButton_30" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="30"/>
+<CheckButton name="DAB_ActionButton_31" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="31"/>
+<CheckButton name="DAB_ActionButton_32" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="32"/>
+<CheckButton name="DAB_ActionButton_33" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="33"/>
+<CheckButton name="DAB_ActionButton_34" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="34"/>
+<CheckButton name="DAB_ActionButton_35" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="35"/>
+<CheckButton name="DAB_ActionButton_36" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="36"/>
+<CheckButton name="DAB_ActionButton_37" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="37"/>
+<CheckButton name="DAB_ActionButton_38" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="38"/>
+<CheckButton name="DAB_ActionButton_39" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="39"/>
+<CheckButton name="DAB_ActionButton_40" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="40"/>
+<CheckButton name="DAB_ActionButton_41" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="41"/>
+<CheckButton name="DAB_ActionButton_42" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="42"/>
+<CheckButton name="DAB_ActionButton_43" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="43"/>
+<CheckButton name="DAB_ActionButton_44" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="44"/>
+<CheckButton name="DAB_ActionButton_45" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="45"/>
+<CheckButton name="DAB_ActionButton_46" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="46"/>
+<CheckButton name="DAB_ActionButton_47" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="47"/>
+<CheckButton name="DAB_ActionButton_48" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="48"/>
+<CheckButton name="DAB_ActionButton_49" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="49"/>
+<CheckButton name="DAB_ActionButton_50" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="50"/>
+<CheckButton name="DAB_ActionButton_51" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="51"/>
+<CheckButton name="DAB_ActionButton_52" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="52"/>
+<CheckButton name="DAB_ActionButton_53" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="53"/>
+<CheckButton name="DAB_ActionButton_54" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="54"/>
+<CheckButton name="DAB_ActionButton_55" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="55"/>
+<CheckButton name="DAB_ActionButton_56" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="56"/>
+<CheckButton name="DAB_ActionButton_57" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="57"/>
+<CheckButton name="DAB_ActionButton_58" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="58"/>
+<CheckButton name="DAB_ActionButton_59" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="59"/>
+<CheckButton name="DAB_ActionButton_60" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="60"/>
+<CheckButton name="DAB_ActionButton_61" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="61"/>
+<CheckButton name="DAB_ActionButton_62" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="62"/>
+<CheckButton name="DAB_ActionButton_63" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="63"/>
+<CheckButton name="DAB_ActionButton_64" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="64"/>
+<CheckButton name="DAB_ActionButton_65" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="65"/>
+<CheckButton name="DAB_ActionButton_66" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="66"/>
+<CheckButton name="DAB_ActionButton_67" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="67"/>
+<CheckButton name="DAB_ActionButton_68" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="68"/>
+<CheckButton name="DAB_ActionButton_69" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="69"/>
+<CheckButton name="DAB_ActionButton_70" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="70"/>
+<CheckButton name="DAB_ActionButton_71" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="71"/>
+<CheckButton name="DAB_ActionButton_72" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="72"/>
+<CheckButton name="DAB_ActionButton_73" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="73"/>
+<CheckButton name="DAB_ActionButton_74" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="74"/>
+<CheckButton name="DAB_ActionButton_75" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="75"/>
+<CheckButton name="DAB_ActionButton_76" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="76"/>
+<CheckButton name="DAB_ActionButton_77" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="77"/>
+<CheckButton name="DAB_ActionButton_78" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="78"/>
+<CheckButton name="DAB_ActionButton_79" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="79"/>
+<CheckButton name="DAB_ActionButton_80" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="80"/>
+<CheckButton name="DAB_ActionButton_81" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="81"/>
+<CheckButton name="DAB_ActionButton_82" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="82"/>
+<CheckButton name="DAB_ActionButton_83" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="83"/>
+<CheckButton name="DAB_ActionButton_84" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="84"/>
+<CheckButton name="DAB_ActionButton_85" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="85"/>
+<CheckButton name="DAB_ActionButton_86" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="86"/>
+<CheckButton name="DAB_ActionButton_87" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="87"/>
+<CheckButton name="DAB_ActionButton_88" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="88"/>
+<CheckButton name="DAB_ActionButton_89" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="89"/>
+<CheckButton name="DAB_ActionButton_90" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="90"/>
+<CheckButton name="DAB_ActionButton_91" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="91"/>
+<CheckButton name="DAB_ActionButton_92" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="92"/>
+<CheckButton name="DAB_ActionButton_93" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="93"/>
+<CheckButton name="DAB_ActionButton_94" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="94"/>
+<CheckButton name="DAB_ActionButton_95" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="95"/>
+<CheckButton name="DAB_ActionButton_96" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="96"/>
+<CheckButton name="DAB_ActionButton_97" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="97"/>
+<CheckButton name="DAB_ActionButton_98" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="98"/>
+<CheckButton name="DAB_ActionButton_99" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="99"/>
+<CheckButton name="DAB_ActionButton_100" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="100"/>
+<CheckButton name="DAB_ActionButton_101" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="101"/>
+<CheckButton name="DAB_ActionButton_102" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="102"/>
+<CheckButton name="DAB_ActionButton_103" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="103"/>
+<CheckButton name="DAB_ActionButton_104" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="104"/>
+<CheckButton name="DAB_ActionButton_105" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="105"/>
+<CheckButton name="DAB_ActionButton_106" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="106"/>
+<CheckButton name="DAB_ActionButton_107" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="107"/>
+<CheckButton name="DAB_ActionButton_108" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="108"/>
+<CheckButton name="DAB_ActionButton_109" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="109"/>
+<CheckButton name="DAB_ActionButton_110" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="110"/>
+<CheckButton name="DAB_ActionButton_111" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="111"/>
+<CheckButton name="DAB_ActionButton_112" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="112"/>
+<CheckButton name="DAB_ActionButton_113" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="113"/>
+<CheckButton name="DAB_ActionButton_114" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="114"/>
+<CheckButton name="DAB_ActionButton_115" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="115"/>
+<CheckButton name="DAB_ActionButton_116" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="116"/>
+<CheckButton name="DAB_ActionButton_117" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="117"/>
+<CheckButton name="DAB_ActionButton_118" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="118"/>
+<CheckButton name="DAB_ActionButton_119" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="119"/>
+<CheckButton name="DAB_ActionButton_120" inherits="DAB_ActionButtonTemplate" parent="UIParent" id="120"/>
+
+<Button name="DAB_MouseoverBar_1" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="1"/>
+<Button name="DAB_MouseoverBar_2" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="2"/>
+<Button name="DAB_MouseoverBar_3" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="3"/>
+<Button name="DAB_MouseoverBar_4" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="4"/>
+<Button name="DAB_MouseoverBar_5" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="5"/>
+<Button name="DAB_MouseoverBar_6" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="6"/>
+<Button name="DAB_MouseoverBar_7" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="7"/>
+<Button name="DAB_MouseoverBar_8" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="8"/>
+<Button name="DAB_MouseoverBar_9" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="9"/>
+<Button name="DAB_MouseoverBar_10" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="10"/>
+<Button name="DAB_MouseoverBar_11" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="11"/>
+<Button name="DAB_MouseoverBar_12" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="12"/>
+<Button name="DAB_MouseoverBar_13" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="13"/>
+<Button name="DAB_MouseoverBar_14" inherits="DAB_MouseOverBarTemplate" parent="UIParent" id="14"/>
+
+</Ui>

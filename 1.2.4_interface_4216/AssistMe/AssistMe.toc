@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: Assist Me
+## Notes: Assist Tracking and Auto-Assist.
+## Author: AnduinLothar
+## OptionalDeps: Cosmos, Sea
+## Dependencies: 
+AssistMe.xml

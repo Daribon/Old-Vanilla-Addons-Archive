@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+<Script file="localization.lua" />
+<Script file="localization.de.lua" />
+<Script file="localization.fr.lua" />
+<Script file="MinimapZoom.lua" />
+
+<Frame name="MinimapZoom" frameStrata="LOW" enableMouse="false" parent="Minimap" Hidden="false" setAllPoints="true">         
+	<Scripts>
+		<OnLoad>
+			MinimapZoom_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			MinimapZoom_OnEvent();
+		</OnEvent>
+		<OnMouseWheel>
+			MinimapZoom_OnMouseWheel(arg1);
+		</OnMouseWheel>
+	</Scripts>
+</Frame>
+</Ui>

@@ -1,0 +1,4 @@
+## Interface: 1300
+## Title: Mozz Sound Volume Fix
+## Notes: Standalone fix for the bug where sound volume is too loud after alt-tabbing.
+MozzSoundVolumeFix.xml

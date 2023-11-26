@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: Reload UI
+## Notes: Adds /reloadui and a Reload UI Keybinding
+## RequiredDeps: Sea, Chronos
+## OptionalDeps: Sky
+ReloadUI.xml

@@ -1,0 +1,5 @@
+## Interface: 1800
+## Version: 1.1 (CTMod 1.843)
+## Title: CT_HailMod
+## Notes: Allows you to hail!
+CT_HailMod.xml

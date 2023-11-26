@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r Tooltips: Frame Target
+## Author: Nathanmx
+## Notes: Gives special frames to uui testers/developers and donators
+## RequiredDeps: TooltipsBase
+TooltipsFrameTarget.xml

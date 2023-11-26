@@ -1,0 +1,9 @@
+--------------------------------------------------------------------------
+-- API.txt 
+--------------------------------------------------------------------------
+
+To Make your third party addon use MobileMinimapButtons to optionally mobilize you minimap button:
+1) Add MobileMinimapButtons to your optional deps in the toc2) Call MobileMinimapButtons_AddButton(frameName, localizedFrameName[, notAButton]) to add the cutton to the list of mobile minimap buttons. It will store the reset position when this function is called or when the veriables are loded, whichever comes last.3) In the XML or before the function call position the button frame to its reset position, preferably relative to Minimap frame.Optimal Button size is 32x32. 
+Make sure if it is a 'Frame' and not a 'Button' that you pass the optional parameter notAButton as true.
+
+API by AnduinLothar

@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: [AQ] Always Perception
+## Notes: Example AddOn for ActionQueue - continuously uses Perception. Only usable for Humans, of course.
+## Author: sarf
+## DefaultState: disabled
+## RequiredDeps: ActionQueue
+AQ_AlwaysPerception.xml

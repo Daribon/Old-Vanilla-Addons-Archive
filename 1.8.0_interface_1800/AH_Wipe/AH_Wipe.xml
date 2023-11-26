@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+	<Button name="AHWButton" parent="AuctionFrameBrowse" framestrata="HIGH" hidden="true" inherits="UIPanelButtonTemplate" movable="true" text="Reset">
+		<Size>
+			<AbsDimension x="60" y="19"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="AuctionFrameBrowse">
+				<Offset>
+					<AbsDimension x="746" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				AHWipe:Wipe();
+				</OnClick>
+		<OnEnter>
+			AHWipe:Tooltip(AHW.Tooltip);
+		</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+</Ui>

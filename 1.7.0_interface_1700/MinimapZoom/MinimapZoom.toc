@@ -1,0 +1,9 @@
+## Interface: 1700
+## Title: MinimapZoom
+## Notes: Hide the + and - zoom buttons and zoom using the Mouse Wheel.
+## Author: AnduinLothar
+## Version: 1.0
+## OptionalDeps:
+## Dependencies: 
+## SavedVariables: MinimapZoom_Enabled
+MinimapZoom.xml

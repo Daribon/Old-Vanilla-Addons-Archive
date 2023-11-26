@@ -1,0 +1,1052 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Perl_Player.lua"/>
+	
+	
+	
+	<!-- 
+	
+		Real frames! 
+	
+	-->
+	
+	<Frame name="Perl_Player_Frame" movable="true" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<!-- The size of this frame determines what can be clicked for the menu and moving, hence it is the same size as the name frame. -->
+			<AbsDimension x="220" y="60"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-20"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<!-- Script Events -->
+		
+		<Scripts>
+			<OnLoad>
+				Perl_Player_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				Perl_TargetTarget_OnUpdate();
+				Perl_Player_ScalingUpdate();
+				Perl_Raid_OnUpdate();
+				CombatFeedback_OnUpdate(arg1);
+			</OnUpdate>
+			<OnEvent>
+				Perl_Player_OnEvent(event);
+			</OnEvent>
+			<OnMouseDown>
+				Perl_Player_MouseDown(arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				Perl_Player_MouseUp(arg1);
+			</OnMouseUp>
+		</Scripts>
+		
+		<Frames>
+			<!--
+			
+			Frame for the drop down menu.
+			
+			-->
+			<Frame name="Perl_Player_DropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						Perl_PlayerDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			
+			
+			
+			
+			<!-- 
+			
+			Level Frame
+			
+			-->
+			
+			<Frame name="Perl_Player_PortraitFrame">				
+				<Size>
+					<AbsDimension x="60" y="62"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="Perl_Player_Frame">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Backdrop bgFile="Interface\AddOns\Perl_Player\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+					</Backdrop>
+				<Layers>
+					<Layer level="ARTWORK">
+					
+					
+						<Texture name="PerlPlayerPortrait">
+							<Size><AbsDimension x="48" y="48"/></Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_Player_PortraitFrame">
+									<Offset><AbsDimension x="0" y="-6"/></Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+					</Layer>
+					<Layer level="OVERLAY">
+					
+						<Fontstring name="Perl_PlayerHitIndicator" inherits="NumberFontNormalHuge" hidden="true" text="Error!">
+						<FontHeight>
+						<AbsValue val="30"/>
+						</FontHeight>
+						<Color r="1.0" g="1.0" b="1.0"/>
+							<Anchors>
+								<Anchor point="CENTER" relativePoint="CENTER" relativeTo="Perl_Player_PortraitFrame">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Fontstring>
+					</Layer>
+					
+				</Layers>
+			</Frame>
+			<Frame name="Perl_Player_NameFrame">				
+				<Size>
+					<AbsDimension x="160" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="Perl_Player_PortraitFrame">
+						<Offset>
+							<AbsDimension x="-3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Backdrop bgFile="Interface\AddOns\Perl_Player\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="ARTWORK">
+						
+						<!-- PVP Icon -->
+						<Texture name="Perl_Player_PVPStatus" file="Interface\TargetingFrame\UI-PVP-FFA">
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="Perl_Player_PVPRankIcon">
+							<Size><AbsDimension x="32" y="32"/></Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_Player_NameFrame">
+									<Offset><AbsDimension x="-40" y="3"/></Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<!-- Rest/Combat Icon -->
+						<Texture name="Perl_Player_ActivityStatus" file="Interface\CharacterFrame\UI-StateIcon">
+							<Size>
+								<AbsDimension x="32" y="31"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+						<!-- Leader Icon -->
+						<Texture name="Perl_Player_LeaderIcon" file="Interface\GroupFrame\UI-Group-LeaderIcon" hidden="true">
+							<Size>
+								<AbsDimension x="16" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+						
+					</Layer>
+					
+				</Layers>
+			</Frame>
+			<Frame name="Perl_Player_Name">				
+				<Size>
+					<AbsDimension x="160" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="Perl_Player_PortraitFrame">
+						<Offset>
+							<AbsDimension x="-3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				
+				<Layers>
+					
+					<Layer level="OVERLAY">
+						<Fontstring name="Perl_Player_NameBarText" inherits="GameFontNormal" text="Error!">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="Perl_Player_ClassTexture" relativePoint="RIGHT" >
+									<Offset>
+										<AbsDimension x="5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="0" />
+						</Fontstring>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="Perl_Player_LevelFrame">				
+				<Size>
+					<AbsDimension x="27" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPLEFT" relativeTo="Perl_Player_PortraitFrame">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>
+						Perl_Player_MouseDown(arg1);
+					</OnMouseDown>
+					<OnMouseUp>
+						Perl_Player_MouseUp(arg1);
+					</OnMouseUp>
+				</Scripts>		
+				<Backdrop bgFile="Interface\AddOns\Perl_Player\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Fontstring name="Perl_Player_LevelFrame_LevelBarText" inherits="GameFontNormalSmall" text="Error!">
+						<FontHeight>
+						<AbsValue val="16"/>
+						</FontHeight>
+						<Color r="1.0" g="1.0" b="0"/>
+							<Anchors>
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Fontstring>
+					</Layer>
+				</Layers>
+			</Frame>
+			
+			<Frame name="Perl_Player_ClassTexture">				
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeTo="Perl_Player_PortraitFrame">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Scripts>
+					<OnMouseDown>
+						Perl_Player_MouseDown(arg1);
+					</OnMouseDown>
+					<OnMouseUp>
+						Perl_Player_MouseUp(arg1);
+					</OnMouseUp>
+				</Scripts>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="Perl_Player_ClassTexture" file="Interface\Glues\CharacterCreate\UI-CharacterCreate-Classes">
+							<Size>
+								<AbsDimension x="20" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+					
+			<!-- Player Stats -->
+			
+			<Frame name="Perl_Player_StatsFrame">
+				<Size>
+					<AbsDimension x="160" y="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="Perl_Player_NameFrame">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Scripts>
+					<OnMouseDown>
+						Perl_Player_MouseDown(arg1);
+					</OnMouseDown>
+					<OnMouseUp>
+						Perl_Player_MouseUp(arg1);
+					</OnMouseUp>
+				</Scripts>
+				<Backdrop bgFile="Interface\AddOns\Perl_Player\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<Button name="Perl_Player_CastClickOverlay">
+						<Size>
+							<AbsDimension x="160" y="40"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+ 							<OnLoad>
+								this:RegisterForClicks('LeftButtonUp', 'RightButtonUp', 'MiddleButtonUp', 'Button4Up', 'Button5Up');
+							</OnLoad>
+							<OnMouseDown>
+								Perl_Player_MouseDown(arg1);
+							</OnMouseDown>
+							<OnMouseUp>
+								Perl_Player_MouseUp(arg1);
+							</OnMouseUp>
+							<OnClick>
+								Perl_Player_OnClick(arg1);
+							</OnClick>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+ 						</Scripts>
+					</Button>
+						<StatusBar name="Perl_Player_HealthBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="Perl_Player_StatsFrame">
+									<Offset>
+										<AbsDimension x="8" y="-9"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture name="Perl_Player_HealthBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0.8" b="0"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_HealthBarTEXT" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>				
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_HealthBarText" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>					
+							</Layers>
+						</StatusBar>
+						<StatusBar name="Perl_Player_HealthBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_Player_HealthBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0.8" b="0" a="0.5"/>
+						</StatusBar>
+									
+						<!-- Mana Bar -->
+						
+						<StatusBar name="Perl_Player_ManaBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="Perl_Player_HealthBar">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture name="Perl_Player_ManaBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0" b="1"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_ManaBarTEXT" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>				
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_ManaBarText" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>
+							</Layers>
+						</StatusBar>
+						<StatusBar name="Perl_Player_ManaBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_Player_ManaBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0" b="1" a="0.5"/>
+						</StatusBar>
+						<StatusBar name="Perl_Player_DruidBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="1"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="Perl_Player_ManaBar">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture name="Perl_Player_DruidBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0" b="1"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_DruidBarTEXT" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>				
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_DruidBarText" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>
+							</Layers>
+						</StatusBar>
+						<StatusBar name="Perl_Player_DruidBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="1"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_Player_DruidBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0" b="1" a="0.5"/>
+						</StatusBar>
+						
+						<StatusBar name="Perl_Player_XPBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="Perl_Player_DruidBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnEnter>
+									Perl_PlayerXPBar_MouseEnter();
+								</OnEnter>
+								<OnLeave>
+									Perl_PlayerXPBar_MouseLeave();
+								</OnLeave>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture name="Perl_Player_XPBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0.8" b="0"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_XPBarText" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>				
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_Player_XPBarPercentText" inherits="GameFontNormalSmall" text="Error!">
+									<FontHeight>
+									<AbsValue val="11"/>
+									</FontHeight>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1" g="1" b="1" />
+									</Fontstring>
+								</Layer>					
+							</Layers>
+						</StatusBar>
+						<StatusBar name="Perl_Player_XPRestBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="Perl_Player_ManaBar">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnEnter>
+									Perl_PlayerXPBar_MouseEnter();
+								</OnEnter>
+								<OnLeave>
+									Perl_PlayerXPBar_MouseLeave();
+								</OnLeave>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture name="Perl_Player_XPRestBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0.8" b="0"/>
+						</StatusBar>
+						<StatusBar name="Perl_Player_XPBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_Player_XPBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnEnter>
+									Perl_PlayerXPBar_MouseEnter();
+								</OnEnter>
+								<OnLeave>
+									Perl_PlayerXPBar_MouseLeave();
+								</OnLeave>
+								<OnMouseDown>
+									Perl_Player_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_Player_MouseUp(arg1);
+								</OnMouseUp>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0.8" b="0" a="0.5"/>
+						</StatusBar>
+				</Frames>
+			</Frame>
+			
+			<!-- 
+			
+			Full coverage frame 
+			
+			-->
+			<!--
+			<Frame name="Perl_Player_CoverageFrame" frameStrata="Artwork">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="Perl_Player_StatsFrame">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						Perl_Player_MouseEnter();
+					</OnEnter>
+					<OnLeave>
+						Perl_Player_MouseLeave();
+					</OnLeave>
+					<OnLoad>
+						this:SetFrameLevel(Perl_Player_HealthBar:GetFrameLevel() + 1);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			-->
+			<!-- 
+			
+			Buffs Frame 
+			
+			-->
+			
+			<Frame name="Perl_Player_BuffFrame">
+				<Size>
+					<AbsDimension x="100" y="34"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="Perl_Player_StatsFrame">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Frames>
+					<Button name="Perl_Player_Buff1" inherits="Perl_Player_BuffTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff2" inherits="Perl_Player_BuffTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff1" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff3" inherits="Perl_Player_BuffTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff2" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff4" inherits="Perl_Player_BuffTemplate" id="4">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff3" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff5" inherits="Perl_Player_BuffTemplate" id="5">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff4" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff6" inherits="Perl_Player_BuffTemplate" id="6">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff5" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff7" inherits="Perl_Player_BuffTemplate" id="7">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff6" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff8" inherits="Perl_Player_BuffTemplate" id="8">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff7" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff9" inherits="Perl_Player_BuffTemplate" id="9">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-48"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff10" inherits="Perl_Player_BuffTemplate" id="10">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff9" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff11" inherits="Perl_Player_BuffTemplate" id="11">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff10" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff12" inherits="Perl_Player_BuffTemplate" id="12">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff11" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff13" inherits="Perl_Player_BuffTemplate" id="13">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff12" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff14" inherits="Perl_Player_BuffTemplate" id="14">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff13" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff15" inherits="Perl_Player_BuffTemplate" id="15">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff14" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff16" inherits="Perl_Player_BuffTemplate" id="16">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff15" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff17" inherits="Perl_Player_BuffTemplate" id="17">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff9" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-48"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff18" inherits="Perl_Player_BuffTemplate" id="18">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff17" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff19" inherits="Perl_Player_BuffTemplate" id="19">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff18" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff20" inherits="Perl_Player_BuffTemplate" id="20">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff19" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff21" inherits="Perl_Player_BuffTemplate" id="21">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff20" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff22" inherits="Perl_Player_BuffTemplate" id="22">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff21" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff23" inherits="Perl_Player_BuffTemplate" id="23">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff22" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="Perl_Player_Buff24" inherits="Perl_Player_BuffTemplate" id="24">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Perl_Player_Buff23" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<!-- End buttons -->
+					
+				</Frames>
+			</Frame>
+			
+		</Frames>
+	</Frame>
+	<GameTooltip name="Perl_Player_Tooltip" hidden="true" parent="Perl_Player_Frame" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+</Ui>	

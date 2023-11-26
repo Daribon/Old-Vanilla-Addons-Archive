@@ -1,0 +1,8 @@
+## Interface: 1700
+## Version: 1700.1
+## Title: CT_RaidAssist_Aggro
+## Notes: Notifies you when you get aggro from a main tanks target.
+## Author: sarf
+## RequiredDeps: CT_RaidAssist
+## SavedVariables: CT_RAA_Options
+CT_RaidAssist_Aggro.xml

@@ -1,0 +1,5 @@
+## Interface: 1600
+## Title: Telo's MobHealth
+## Notes: Keeps a database of estimated health for creatures and displays current and maximum health numbers for your target.
+## SavedVariables: MobHealthDB
+MobHealth.xml

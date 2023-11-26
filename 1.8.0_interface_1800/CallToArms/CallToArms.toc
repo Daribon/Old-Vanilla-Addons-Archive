@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r Call To Arms
+## Notes: Call To Arms (CTA) is an add-on (mod) for World of Warcraft that helps players create a group. CTA has several features that allow players to search for open groups, advertise group needs, and control which players are allowed to join the group and more.
+## SavedVariables: CTA_SavedVariables
+CallToArms.xml

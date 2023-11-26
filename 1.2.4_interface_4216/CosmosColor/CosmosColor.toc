@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: CosmosColor
+## Notes: Color Cosmos users in FriendsFrame.
+## Author: AnduinLothar
+## OptionalDeps:
+## Dependencies: Sky
+CosmosColor.xml

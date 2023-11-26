@@ -1,0 +1,819 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="CT_BarMod.lua"/>
+	<Button name="CT_DragTemplate" virtual="true" hidden="true" movable="true">
+		<NormalTexture file="Interface\AddOns\CT_BarMod\Images\DragButton"/>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMRIGHT");
+				GameTooltip:SetText("Left-click to drag\nRight-click to rotate");
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseDown>
+				if ( arg1 == "LeftButton" ) then
+					this:StartMoving();
+				else
+					CT_Sidebar_ChangeAxis(this:GetParent():GetID())
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+
+	<CheckButton name="CT_ActionBarButtonTemplate" inherits="ActionBarButtonTemplate" virtual="true">
+		<PushedTexture name="$parentPushedTexture" file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture name="$parentHighlightTexture"  alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+		<CheckedTexture name="$parentCheckedTexture" alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+		<Scripts>
+			<OnShow>
+				CT_ActionButton_Update();
+				this:SetFrameLevel(1);
+			</OnShow>
+			<OnEvent>
+				CT_ActionButton_OnEvent(event);
+			</OnEvent>
+			<OnClick>
+				CT_ActionButton_OnClick();
+			</OnClick>
+			<OnDragStart>
+				if ( ( CT_HotbarButtons_Locked == 0 and ( ( strsub( this:GetName(), 1, 3 ) ~= "CT3" and strsub( this:GetName(), 1, 3 ) ~= "CT4" ) or CT_Sidebar_ButtonInUse(this) ) ) or IsShiftKeyDown() ) then
+					if ( (not ActionLockButton) or (ActionLockButton and (not ActionLockButton.isLocked)) ) then				
+						PickupAction(CT_ActionButton_GetPagedID(this));
+						CT_ActionButton_UpdateState();
+					end
+				end
+			</OnDragStart>
+			<OnReceiveDrag>
+				if ( ( strsub( this:GetName(), 1, 3 ) ~= "CT3" and strsub( this:GetName(), 1, 3 ) ~= "CT4" ) or CT_Sidebar_ButtonInUse(this) ) then
+					PlaceAction(CT_ActionButton_GetPagedID(this));
+					CT_ActionButton_UpdateState();
+				end
+			</OnReceiveDrag>
+			<OnEnter>
+				if ( ( strsub( this:GetName(), 1, 3 ) ~= "CT3" and strsub( this:GetName(), 1, 3 ) ~= "CT4" ) or CT_Sidebar_ButtonInUse(this) ) then
+					CT_ActionButton_SetTooltip();
+				end
+			</OnEnter>
+			<OnUpdate>
+				CT_ActionButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	<Frame name="CT_HotbarLeft" id="1" frameStrata="MEDIUM" parent="UIParent" hidden="true">
+		<Frames>
+		<CheckButton name="CT_ActionButton1" inherits="CT_ActionBarButtonTemplate" id="1">
+			<Anchors>
+				<Anchor point="BOTTOM" relativeTo="ActionButton1" relativePoint="TOP">
+					<Offset>
+						<AbsDimension x="-6" y="14"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton2" inherits="CT_ActionBarButtonTemplate" id="2">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton1" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton3" inherits="CT_ActionBarButtonTemplate" id="3">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton2" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton4" inherits="CT_ActionBarButtonTemplate" id="4">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton3" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton5" inherits="CT_ActionBarButtonTemplate" id="5">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton4" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton6" inherits="CT_ActionBarButtonTemplate" id="6">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton5" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton7" inherits="CT_ActionBarButtonTemplate" id="7">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton6" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton8" inherits="CT_ActionBarButtonTemplate" id="8">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton7" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton9" inherits="CT_ActionBarButtonTemplate" id="9">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton8" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton10" inherits="CT_ActionBarButtonTemplate" id="10">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton9" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton11" inherits="CT_ActionBarButtonTemplate" id="11">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton10" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT_ActionButton12" inherits="CT_ActionBarButtonTemplate" id="12">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton11" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		</Frames>
+	</Frame>
+	<Button name="CT_HotbarLeft_Drag" toplevel="true" inherits="CT_DragTemplate" frameStrata="MEDIUM" parent="CT_HotbarLeft">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ActionButton1" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="-4" y="58"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				CT_LinkFrameDrag(CT_ActionButton1, this, "TOP", "BOTTOM", 0, -6);
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="CT_HotbarRight" id="2" toplevel="true" frameStrata="MEDIUM" parent="UIParent" hidden="true">
+		<Frames>
+		<CheckButton name="CT2_ActionButton1" inherits="CT_ActionBarButtonTemplate" id="1">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT_ActionButton12" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton2" inherits="CT_ActionBarButtonTemplate" id="2">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton1" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton3" inherits="CT_ActionBarButtonTemplate" id="3">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton2" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton4" inherits="CT_ActionBarButtonTemplate" id="4">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton3" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton5" inherits="CT_ActionBarButtonTemplate" id="5">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton4" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton6" inherits="CT_ActionBarButtonTemplate" id="6">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton5" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton7" inherits="CT_ActionBarButtonTemplate" id="7">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton6" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton8" inherits="CT_ActionBarButtonTemplate" id="8">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton7" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton9" inherits="CT_ActionBarButtonTemplate" id="9">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton8" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton10" inherits="CT_ActionBarButtonTemplate" id="10">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton9" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton11" inherits="CT_ActionBarButtonTemplate" id="11">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton10" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT2_ActionButton12" inherits="CT_ActionBarButtonTemplate" id="12">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT2_ActionButton11" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		</Frames>
+	</Frame>
+	<Button name="CT_HotbarRight_Drag" toplevel="true" inherits="CT_DragTemplate" frameStrata="MEDIUM" parent="CT_HotbarRight">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ActionButton11" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="85" y="58"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				CT_LinkFrameDrag(CT2_ActionButton1, this, "TOP", "BOTTOM", 0, -6);
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="CT_SidebarFrame" id="3" frameStrata="LOW" parent="UIParent" hidden="true">
+		<Frames>
+		<CheckButton name="CT3_ActionButton1" inherits="CT_ActionBarButtonTemplate" id="1">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="-128"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton2" inherits="CT_ActionBarButtonTemplate" id="2">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton1" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton3" inherits="CT_ActionBarButtonTemplate" id="3">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton2" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton4" inherits="CT_ActionBarButtonTemplate" id="4">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton3" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton5" inherits="CT_ActionBarButtonTemplate" id="5">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton4" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton6" inherits="CT_ActionBarButtonTemplate" id="6">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton5" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton7" inherits="CT_ActionBarButtonTemplate" id="7">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton6" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton8" inherits="CT_ActionBarButtonTemplate" id="8">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton7" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton9" inherits="CT_ActionBarButtonTemplate" id="9">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton8" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton10" inherits="CT_ActionBarButtonTemplate" id="10">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton9" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton11" inherits="CT_ActionBarButtonTemplate" id="11">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton10" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT3_ActionButton12" inherits="CT_ActionBarButtonTemplate" id="12">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT3_ActionButton11" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		</Frames>
+	</Frame>
+	<Button name="CT_SidebarLeft_Drag" toplevel="true" inherits="CT_DragTemplate" frameStrata="LOW" parent="CT_SidebarFrame">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="15" y="-86"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				CT_LinkFrameDrag(CT3_ActionButton1, this, "TOP", "BOTTOM", 0, -6);
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="CT_SidebarFrame2" id="4" frameStrata="LOW" parent="UIParent" hidden="true">
+		<Frames>
+		<CheckButton name="CT4_ActionButton1" inherits="CT_ActionBarButtonTemplate" id="1">
+			<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="UIParent" relativePoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="-5" y="-170"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton2" inherits="CT_ActionBarButtonTemplate" id="2">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton1" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton3" inherits="CT_ActionBarButtonTemplate" id="3">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton2" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton4" inherits="CT_ActionBarButtonTemplate" id="4">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton3" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton5" inherits="CT_ActionBarButtonTemplate" id="5">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton4" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton6" inherits="CT_ActionBarButtonTemplate" id="6">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton5" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton7" inherits="CT_ActionBarButtonTemplate" id="7">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton6" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton8" inherits="CT_ActionBarButtonTemplate" id="8">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton7" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton9" inherits="CT_ActionBarButtonTemplate" id="9">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton8" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton10" inherits="CT_ActionBarButtonTemplate" id="10">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton9" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton11" inherits="CT_ActionBarButtonTemplate" id="11">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton10" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT4_ActionButton12" inherits="CT_ActionBarButtonTemplate" id="12">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="CT4_ActionButton11" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		</Frames>
+	</Frame>
+	<Button name="CT_SidebarRight_Drag" toplevel="true" inherits="CT_DragTemplate" frameStrata="LOW" parent="CT_SidebarFrame2">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="UIParent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-15" y="-148"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				CT_LinkFrameDrag(CT4_ActionButton1, this, "TOP", "BOTTOM", 0, -6);
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="CT_HotbarTop" id="5" frameStrata="LOW" parent="UIParent" hidden="true">
+		<Frames>
+		<CheckButton name="CT5_ActionButton1" inherits="CT_ActionBarButtonTemplate" id="1">
+			<Anchors>
+				<Anchor point="BOTTOM" relativeTo="CT_ActionButton12" relativePoint="TOP">
+					<Offset>
+						<AbsDimension x="0" y="-6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton2" inherits="CT_ActionBarButtonTemplate" id="2">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton1" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton3" inherits="CT_ActionBarButtonTemplate" id="3">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton2" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton4" inherits="CT_ActionBarButtonTemplate" id="4">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton3" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton5" inherits="CT_ActionBarButtonTemplate" id="5">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton4" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton6" inherits="CT_ActionBarButtonTemplate" id="6">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton5" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton7" inherits="CT_ActionBarButtonTemplate" id="7">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton6" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton8" inherits="CT_ActionBarButtonTemplate" id="8">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton7" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton9" inherits="CT_ActionBarButtonTemplate" id="9">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton8" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton10" inherits="CT_ActionBarButtonTemplate" id="10">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton9" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton11" inherits="CT_ActionBarButtonTemplate" id="11">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton10" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		<CheckButton name="CT5_ActionButton12" inherits="CT_ActionBarButtonTemplate" id="12">
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="CT5_ActionButton11" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="6" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</CheckButton>
+		</Frames>
+	</Frame>
+	<Button name="CT_HotbarTop_Drag" toplevel="true" inherits="CT_DragTemplate" frameStrata="LOW" parent="CT_HotbarTop">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ActionButton10" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="84" y="100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				CT_LinkFrameDrag(CT5_ActionButton1, this, "TOP", "BOTTOM", 0, -6);
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="CT_BarMod_GlobalFrame" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnUpdate>
+				CT_GlobalFrame_OnUpdate(arg1);
+			</OnUpdate>
+			<OnLoad>
+				this.elapsed = 0;
+				this.update = 0;
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("PARTY_MEMBERS_CHANGED");
+			</OnLoad>
+			<OnEvent>
+				if ( event == "PARTY_MEMBERS_CHANGED" ) then
+					CT_CheckLSidebar();
+				else
+					if ( not CT_MovableParty_IsInstalled ) then
+						CT_BarMod_SidebarMoved = -0;
+					end
+					CT_BarMod_CheckRotations();
+				end
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	 <GameTooltip name="CTTooltip" hidden="true" parent="CT_BarMod_GlobalFrame" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+	<Button name="CT_PetBar_Drag" frameStrata="LOW" parent="UIParent" hidden="true" movable="true" toplevel="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="MainMenuBar" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="51" y="82"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+				GameTooltip:SetText("Left-click to drag.\nRight-click to change orientation.");
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseDown>
+				CT_Bar_DragFrame_OnMD();				
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing();
+			</OnMouseUp>
+			<OnEvent>
+				if ( event == "VARIABLES_LOADED" and CT_PetBar_DragFrame_Orientation == "V" ) then
+					CT_Bar_DragFrame_OnMD(1);
+				end
+					
+			</OnEvent>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				CT_LinkFrameDrag(PetActionButton1, this, "TOPLEFT", "BOTTOMRIGHT", 2, 2);
+			</OnLoad>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\CT_MasterMod\Images\DragButton"/>
+	</Button>
+	<Button name="CT_BABar_Drag" frameStrata="LOW" parent="UIParent" hidden="true" movable="true" toplevel="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="MainMenuBar" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="43" y="84"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+				GameTooltip:SetText("Left-click to drag.\nRight-click to change orientation.");
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseDown>
+				CT_Bar_DragFrame_OnMD();			
+			</OnMouseDown>
+			<OnMouseUp>
+				this:StopMovingOrSizing();
+			</OnMouseUp>
+			<OnEvent>
+				if ( event == "VARIABLES_LOADED" and CT_BABar_DragFrame_Orientation == "V" ) then
+					CT_Bar_DragFrame_OnMD(1);
+				end
+					
+			</OnEvent>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				CT_LinkFrameDrag(ShapeshiftButton1, this, "TOPLEFT", "TOPLEFT", 15, -15);
+			</OnLoad>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\CT_MasterMod\Images\DragButton"/>
+	</Button>
+</Ui>

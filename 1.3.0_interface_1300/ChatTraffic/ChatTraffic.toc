@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: ChatTraffic
+## Notes: Allows the user to restrain the amount of chat traffic that his or her client sends. It requires EITHER Chronos or CosmosSchedule.
+## Author: sarf
+## OptionalDeps: Cosmos, CosmosSchedule, Chronos
+##SavedVariables: ChatTraffic_Enabled, ChatTraffic_CharactersPerSecond
+ChatTraffic.xml

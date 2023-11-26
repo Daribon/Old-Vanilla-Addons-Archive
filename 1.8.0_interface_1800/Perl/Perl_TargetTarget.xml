@@ -1,0 +1,397 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="Perl_TargetTarget.lua"/>
+	
+	
+	<!--
+			 
+			 
+	 Frame to display TargetTarget's health 
+			
+			
+	-->
+
+	<Frame name="Perl_TargetTarget_Frame" movable="true" parent="UIParent" hidden="true" enableMouse="true">
+		<Size>
+			<!-- The size of this frame determines what can be clicked for the menu and moving, hence it is the same size as the name frame. -->
+			<AbsDimension x="160" y="60"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="Perl_Target_Frame">
+				<Offset>
+					<AbsDimension x="20" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		
+		<!-- Script Events -->
+		
+		<Scripts>
+			<OnLoad>
+				Perl_TargetTarget_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Perl_TargetTarget_OnEvent(event);
+			</OnEvent>
+			<OnMouseDown>
+				Perl_TargetTarget_MouseDown(arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				Perl_TargetTarget_MouseUp(arg1);
+			</OnMouseUp>
+			<OnEnter>
+				Perl_TargetTarget_PlayerTip();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		
+		<Frames>
+			
+			<!-- TargetTarget Name -->
+			
+			<Frame name="Perl_TargetTarget_NameFrame">				
+				<Size>
+					<AbsDimension x="160" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Backdrop bgFile="Interface\AddOns\Perl\Images\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="OVERLAY">
+						
+						
+						<Fontstring name="Perl_TargetTarget_NameBarText" inherits="GameFontNormal" text="Error!">
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Fontstring>
+					</Layer>
+				</Layers>
+			</Frame>
+			
+			<!--Level Frame-->
+			
+			<Frame name="Perl_TargetTarget_LevelFrame">
+				<Size>
+					<AbsDimension x="27" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="Perl_TargetTarget_Frame">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Backdrop bgFile="Interface\AddOns\Perl\Images\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Fontstring name="Perl_TargetTarget_LevelBarText" inherits="GameFontNormalSmall" text="Error!">
+						<FontHeight>
+						<AbsValue val="16"/>
+						</FontHeight>
+							<Anchors>
+								<Anchor point="BOTTOM">
+									<Offset>
+										<AbsDimension x="1" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Fontstring>
+					</Layer>
+				</Layers>
+			</Frame>
+			
+			
+					
+			<!-- TargetTarget Stats -->
+			
+			<Frame name="Perl_TargetTarget_StatsFrame">
+				<Size>
+					<AbsDimension x="160" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="Perl_TargetTarget_NameFrame">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnMouseDown>
+						Perl_TargetTarget_MouseDown(arg1);
+					</OnMouseDown>
+					<OnMouseUp>
+						Perl_TargetTarget_MouseUp(arg1);
+					</OnMouseUp>
+					<OnEnter>
+						Perl_TargetTarget_PlayerTip();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+				<Backdrop bgFile="Interface\AddOns\Perl\Images\AllBlack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+						<!-- Health Bar -->
+						
+						<StatusBar name="Perl_TargetTarget_HealthBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="8" y="-9"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_TargetTarget_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_TargetTarget_MouseUp(arg1);
+								</OnMouseUp>
+								<OnEnter>
+									Perl_TargetTarget_PlayerTip();
+								</OnEnter>
+								<OnLeave>
+									GameTooltip:Hide();
+								</OnLeave>
+							</Scripts>
+							<BarTexture name="Perl_TargetTarget_HealthBarTex" file="Interface\TargetTargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0.8" b="0"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_TargetTarget_HealthBarText" inherits="GameFontNormalSmall" text="Error!">
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+										<OnMouseDown>
+											Perl_TargetTarget_MouseDown(arg1);
+										</OnMouseDown>
+										<OnMouseUp>
+											Perl_TargetTarget_MouseUp(arg1);
+										</OnMouseUp>
+										<OnEnter>
+											Perl_TargetTarget_PlayerTip();
+										</OnEnter>
+										<OnLeave>
+											GameTooltip:Hide();
+										</OnLeave>
+									</Scripts>
+									</Fontstring>
+									<Fontstring name="Perl_TargetTarget_HealthBarPercent" inherits="GameFontNormalSmall" text="Error!">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+										<OnMouseDown>
+											Perl_TargetTarget_MouseDown(arg1);
+										</OnMouseDown>
+										<OnMouseUp>
+											Perl_TargetTarget_MouseUp(arg1);
+										</OnMouseUp>
+										<OnEnter>
+											Perl_TargetTarget_PlayerTip();
+										</OnEnter>
+										<OnLeave>
+											GameTooltip:Hide();
+										</OnLeave>
+									</Scripts>
+									</Fontstring>
+								</Layer>					
+							</Layers>
+						</StatusBar>
+						<StatusBar name="Perl_TargetTarget_HealthBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_TargetTarget_HealthBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0.8" b="0" a="0.25"/>
+						</StatusBar>
+									
+						<!-- Mana Bar -->
+						
+						<StatusBar name="Perl_TargetTarget_ManaBar" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="Perl_TargetTarget_HealthBar">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+										<OnMouseDown>
+											Perl_TargetTarget_MouseDown(arg1);
+										</OnMouseDown>
+										<OnMouseUp>
+											Perl_TargetTarget_MouseUp(arg1);
+										</OnMouseUp>
+										<OnEnter>
+											Perl_TargetTarget_PlayerTip();
+										</OnEnter>
+										<OnLeave>
+											GameTooltip:Hide();
+										</OnLeave>
+									</Scripts>
+							<BarTexture name="Perl_TargetTarget_ManaBarTex" file="Interface\TargetingFrame\UI-StatusBar"/>
+							<BarColor r="0" g="0" b="1"/>
+							<Layers>
+								<!-- Text -->
+								<Layer level="OVERLAY">
+									<Fontstring name="Perl_TargetTarget_ManaBarText" inherits="GameFontNormalSmall" text="Error!">
+										<Anchors>
+											<Anchor point="CENTER" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+										<OnMouseDown>
+											Perl_TargetTarget_MouseDown(arg1);
+										</OnMouseDown>
+										<OnMouseUp>
+											Perl_TargetTarget_MouseUp(arg1);
+										</OnMouseUp>
+										<OnEnter>
+											Perl_TargetTarget_PlayerTip();
+										</OnEnter>
+										<OnLeave>
+											GameTooltip:Hide();
+										</OnLeave>
+									</Scripts>
+									</Fontstring>
+									<Fontstring name="Perl_TargetTarget_ManaBarPercent" inherits="GameFontNormalSmall" text="Error!">
+										<Anchors>
+											<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+										<OnMouseDown>
+											Perl_TargetTarget_MouseDown(arg1);
+										</OnMouseDown>
+										<OnMouseUp>
+											Perl_TargetTarget_MouseUp(arg1);
+										</OnMouseUp>
+										<OnEnter>
+											Perl_TargetTarget_PlayerTip();
+										</OnEnter>
+										<OnLeave>
+											GameTooltip:Hide();
+										</OnLeave>
+									</Scripts>
+									</Fontstring>
+								</Layer>
+							</Layers>
+						</StatusBar>
+						<StatusBar name="Perl_TargetTarget_ManaBarBG" inherits="TextStatusBar">
+							<Size>
+								<AbsDimension x="112" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativePoint="TOP" relativeTo="Perl_TargetTarget_ManaBar">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnMouseDown>
+									Perl_TargetTarget_MouseDown(arg1);
+								</OnMouseDown>
+								<OnMouseUp>
+									Perl_TargetTarget_MouseUp(arg1);
+								</OnMouseUp>
+								<OnEnter>
+									Perl_TargetTarget_PlayerTip();
+								</OnEnter>
+								<OnLeave>
+									GameTooltip:Hide();
+								</OnLeave>
+							</Scripts>
+							<BarTexture file="Interface\TargetingFrame\UI-TargetingFrame-BarFill"/>
+							<BarColor r="0" g="0" b="1" a="0.25"/>
+						</StatusBar>
+						
+					
+				</Frames>
+			</Frame>
+		
+			
+			
+		</Frames>
+	</Frame>
+</Ui>	
+
+
+
+
+
+

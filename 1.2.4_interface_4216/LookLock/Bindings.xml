@@ -1,0 +1,64 @@
+<Bindings>
+	<!-- Toggle LookLock On/Off -->
+	<Binding name="LOOKLOCK" description="Toggle camera freelook" header="LOOKLOCKHEADER">
+		if (LookLockAlwaysLook == 0) then
+			if ( LookLockOn ~= 1 ) then
+				Sea.util.Hooks["TurnOrActionStart"].orig(arg1);
+				LookLock_InTurn = true;
+				LookLockOn = 1;
+			else
+				Sea.util.Hooks["TurnOrActionStop"].orig(arg1);
+				LookLock_InTurn = nil;
+				LookLockOn = nil;
+			end
+		else
+			if ( LookLockOn ~= 1 ) then
+				LookLockOn = 1;
+				LookLock_InTurn = nil;
+				Sea.util.Hooks["TurnOrActionStop"].orig(arg1);
+			else
+				LookLockOn = nil;
+			end
+		end
+	</Binding>
+	
+	<Binding name="LOOKLOCKPUSH" description="Hold down for camera freelook" runOnUp="true">		
+		if (LookLockAlwaysLook == 0) then
+			if ( LookLockOn ~= 1 ) then
+				Sea.util.Hooks["TurnOrActionStart"].orig(arg1);
+				LookLock_InTurn = true;
+				LookLockOn = 1;
+			else
+				Sea.util.Hooks["TurnOrActionStop"].orig(arg1);
+				LookLock_InTurn = nil;
+				LookLockOn = nil;
+			end
+		else
+			if ( LookLockOn ~= 1 ) then
+				LookLockOn = 1;
+				LookLock_InTurn = nil;
+				Sea.util.Hooks["TurnOrActionStop"].orig(arg1);
+			else
+				LookLockOn = nil;
+			end
+		end
+	</Binding>
+
+	<!-- Action for Look Lock -->
+	<Binding name="LOOKLOCKACTION" description="Action/Turn in normal mode, Action in Look Lock mode." runOnUp="true" hidden="false">
+		if ( keystate == "down" ) then
+			LookLock_TurnOrActionStart(arg1);
+		else
+			LookLock_TurnOrActionStop(arg1);
+		end
+	</Binding>	
+        
+    <!-- Camera for Look Lock -->
+    <Binding name="LOOKLOCKCAMERA" description="Camera/Select/Move in normal mode, Camera in Look Lock mode." runOnUp="true" hidden="false">
+		if ( keystate == "down" ) then
+			LookLock_CameraOrSelectOrMoveStart(arg1);
+		else
+			LookLock_CameraOrSelectOrMoveStop(arg1);
+		end
+	</Binding>	
+</Bindings>

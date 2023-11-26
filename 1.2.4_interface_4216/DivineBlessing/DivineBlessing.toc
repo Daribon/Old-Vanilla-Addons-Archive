@@ -1,0 +1,5 @@
+## Interface: 4216
+## Title: Divine Blessing 1.5
+## Notes: Allows a paladin to pick a selection of blessing spells which will be sequentially cast on the paladin and all party members with repeated button presses.
+## RequiredDeps: Cosmos, Sea
+DivineBlessing.xml

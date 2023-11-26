@@ -1,0 +1,80 @@
+-- Version : English - sarf
+-- Translation by : None
+
+BINDING_HEADER_TELLTRACKHEADER		= "Tell Track";
+BINDING_NAME_TELLTRACK				= "Tell Track Toggle";
+BINDING_NAME_TELLTRACK1				= "Send tell to first visible TellTrack slot";
+BINDING_NAME_TELLTRACK2				= "Send tell to second visible TellTrack slot";
+BINDING_NAME_TELLTRACK3				= "Send tell to third visible TellTrack slot";
+BINDING_NAME_TELLTRACK4				= "Send tell to fourth visible TellTrack slot";
+
+TELLTRACK_CONFIG_HEADER				= "Tell Track";
+TELLTRACK_CONFIG_HEADER_INFO		= "Contains settings for Tell Track,\nan AddOn which makes it easier for you to talk to several people simultaneously.\nClick the question-mark corner for more info.";
+
+TELLTRACK_ENABLED					= "Enable Tell Track";
+TELLTRACK_ENABLED_INFO				= "Enables Tell Track, displaying its window.";
+
+TELLTRACK_CHAT_ENABLED				= "Tell Track enabled.\nClick TellTracks question-mark corner for more info.";
+TELLTRACK_CHAT_DISABLED				= "Tell Track disabled.";
+
+TELLTRACK_CHAT_COMMAND_ENABLE_INFO	= "Enables/disables Tell Track.\nAlso, use /telltrack clearall to clear all entries.";
+TELLTRACK_QUESTION_MARK_TOOLTIP		= "Click here for more info."
+
+TELLTRACK_CHAT_QUESTION_MARK_INFO	= "TellTrack (by sarf and Lash)\n\nLMB on Slot:Send Tell\nRMB on Slot:Erase Slot\nMWheel:Scroll slots one by one (max 20)\nLMB on Arrows:Scroll slots page by page (max 20)\nRMB on Arrows:Go to first or last slot respectively.";
+
+TELLTRACK_WHISPER					= "Whisper";
+TELLTRACK_WHO						= "Who";
+TELLTRACK_GRPINV					= "Groupe Invite";
+TELLTRACK_ADDFRIEND					= "Add to Friends";
+TELLTRACK_DELETE					= "Delete"
+TELLTRACK_DELETE_ALL				= "Delete All"
+TELLTRACK_CANCEL					= "Cancel";
+
+
+TELLTRACK_CONFIG_TRANSNUI			= "Transparent TellTrack";
+TELLTRACK_CONFIG_TRANSNUI_INFO		= "Allows you to make TellTrack transparent";
+
+TELLTRACK_CONFIG_POPNUI				= "Autohide TellTrack";
+TELLTRACK_CONFIG_POPNUI_INFO		= "Check this to make TellTrack only show when you move your mouse over it.";
+
+if ( GetLocale() == "frFR" ) then
+
+elseif ( GetLocale() == "deDE" ) then
+	-- Translation by DoctorVanGogh
+
+
+    BINDING_HEADER_TELLTRACKHEADER      = "Tell Track";
+    BINDING_NAME_TELLTRACK              = "Tell Track ein-/ausschalten";
+    BINDING_NAME_TELLTRACK1             = "Nachricht an ersten sichbaren Telltrack Slot schicken";
+    BINDING_NAME_TELLTRACK2             = "Nachricht an zweiten sichbaren Telltrack Slot schicken";
+    BINDING_NAME_TELLTRACK3             = "Nachricht an dritten sichbaren Telltrack Slot schicken";
+    BINDING_NAME_TELLTRACK4             = "Nachricht an vierten sichbaren Telltrack Slot schicken";
+    
+    TELLTRACK_CONFIG_HEADER             = "Tell Track";
+    TELLTRACK_CONFIG_HEADER_INFO        = "Enthält Einstellungen für TellTrack,\nein AddOn, das es einfacher macht mit mehreren Leuten gleichzeitig zu sprechen.\nDas Fragezeichen in der Ecke für mehr Informationen anklicken.";
+    
+    TELLTRACK_ENABLED                   = "Aktiviert Tell Track";
+    TELLTRACK_ENABLED_INFO              = "Aktiviert Tell Track und zeigt das dazugehörende Fenster an.";
+    
+    TELLTRACK_CHAT_ENABLED              = "Tell Track aktiviert.\nTellTracks Hilfe-Ecke für mehr Informationen anklicken.";
+    TELLTRACK_CHAT_DISABLED             = "Tell Track deaktiviert.";
+    
+    TELLTRACK_CHAT_COMMAND_ENABLE_INFO  = "Aktiviert/deaktiviert TellTrack.";
+    TELLTRACK_QUESTION_MARK_TOOLTIP     = "Hier klicken für weitere Informationen."
+    
+    TELLTRACK_CHAT_QUESTION_MARK_INFO   = "TellTrack (von sarf und Lash)\n\nLinke Maustaste auf Slot: Nachricht schicken\nRechte Maustaste auf Slot: Slot löschen\nMausrad: Scrollt Slots einen nach dem anderen durch (max. 20)\nLinke Maustaste auf Pfeile: Scrollt Slots seitenweise durch (max. 20)\nRechte Maustaste auf Pfeile: Springe zur ersten/letzten Seite.";
+    
+    TELLTRACK_WHISPER                   = "Nachricht";
+    TELLTRACK_WHO                       = "Who";
+    TELLTRACK_GRPINV                    = "In Gruppe einladen";
+    TELLTRACK_ADDFRIEND                 = "Zu Freunden hinzufügen";
+    TELLTRACK_DELETE                    = "Löschen"
+    TELLTRACK_CANCEL                    = "Abbrechen";
+    
+    
+    TELLTRACK_CONFIG_TRANSNUI           = "Transparentes TellTrack";
+    TELLTRACK_CONFIG_TRANSNUI_INFO      = "Ermöglicht es, TellTrack transparent zu machen.";
+    
+    TELLTRACK_CONFIG_POPNUI             = "TellTrack automatisch ausblenden";
+    TELLTRACK_CONFIG_POPNUI_INFO        = "Ermöglicht es, TellTrack nur anzuzeigen, wenn man mit dem Cursor über das Fenster fährt.";
+end

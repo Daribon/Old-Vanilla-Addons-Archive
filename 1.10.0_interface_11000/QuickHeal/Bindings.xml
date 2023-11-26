@@ -1,0 +1,17 @@
+<Bindings>
+	<Binding name="QUICKHEAL_HEAL" header="QUICKHEAL">
+        if QUICKHEAL_LOADED then QuickHeal_Command("") end
+	</Binding>
+    <Binding name="QUICKHEAL_HEALPARTY" header="QUICKHEAL">
+        if QUICKHEAL_LOADED then QuickHeal_Command("party") end
+	</Binding>
+    <Binding name="QUICKHEAL_HEALSELF" header="QUICKHEAL">
+        if QUICKHEAL_LOADED then QuickHeal_Command("self") end
+	</Binding>
+    <Binding name="QUICKHEAL_HEALTARGET" header="QUICKHEAL">
+        if QUICKHEAL_LOADED then QuickHeal_Command("target") end
+	</Binding>
+    <Binding name="QUICKHEAL_HEALTARGETTARGET" header="QUICKHEAL">
+        if QUICKHEAL_LOADED then QuickHeal_Command("targettarget") end
+	</Binding>
+</Bindings>

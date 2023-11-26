@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r ZoomMap
+## Notes: Bind a key to inflate the minimap
+## DefaultState: disabled
+## OptionalDeps: 
+## Dependencies: 
+ZoomMap.xml

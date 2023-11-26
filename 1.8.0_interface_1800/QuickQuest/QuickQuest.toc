@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: QuickQuest
+## Description: QuickQuest displays quest text instantly
+## Notes: QuickQuest displays quest text instantly
+QuickQuest.xml
+

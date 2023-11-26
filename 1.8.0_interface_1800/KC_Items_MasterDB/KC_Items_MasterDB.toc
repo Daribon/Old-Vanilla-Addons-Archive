@@ -1,0 +1,12 @@
+## Interface: 1800
+## Author: Kael		
+## Title: |cFF006699Optional -|r KC_Items_MasterDB
+## Notes: Merges your LootLink database into your new KC_Items database. Type "/kcidb merge" (no quotes), then wait for a notice to indicate that it is finished. Then you can logout and disable this addon at this screen.
+## License: http://creativecommons.org/licenses/by-nc-sa/2.5
+## LegalCode: http://creativecommons.org/licenses/by-nc-sa/2.5/legalcode
+## DefaultState: disabled
+## Dependencies: Ace, KC_Items
+## OptionalDeps: 
+## SavedVariables:
+KC_Items_MasterDB.xml
+

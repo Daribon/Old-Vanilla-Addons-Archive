@@ -1,0 +1,7 @@
+## Interface: 1500
+## Author: Guvante
+## Notes: v1.08b - Adds a sortablity to the enchantment menu
+## OptionalDeps: Cosmos
+## RequiredDeps:
+## SavedVariables: SortEnchant_Master
+SortEnchant.xml

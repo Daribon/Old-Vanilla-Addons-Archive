@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX Custom Tooltip Shell v1.1
+## Notes: Adds a small icon to the Mini-map to access the options panel for Custom Tooltip.
+## Author: LedMirage
+## RequiredDeps: Insomniax_CustomTooltip, Insomniax_IconMover
+Insomniax_CustomTooltip_Shell.xml

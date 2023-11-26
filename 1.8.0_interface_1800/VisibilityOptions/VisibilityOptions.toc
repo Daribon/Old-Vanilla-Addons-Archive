@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: Visibility Options
+## Author: Mugendai
+## Notes: Provides ability to autohide, hide, and change transparency of frames.
+## OptionalDeps: Sky, Chronos, Cosmos, Khaos, myAddOns, BarOptions, MobileFrames, PopNUI, TransNUI
+## RequiredDeps: MCom, Sea
+## SavedVariables: Lunar_Config, Lunar_Storage, Solar_Config, Solar_Storage, Total_Config, Total_Storage
+MCom\MCom.xml
+Eclipse.xml

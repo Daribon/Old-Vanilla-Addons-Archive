@@ -1,0 +1,8 @@
+## Interface: 1500
+## Title: Healix
+## Notes: When casting spells this will notify your party
+## Author: Lelek
+## SavedVariables: HealixToggle, SpellTog, SpellNum, HXSave
+## RequiredDeps:
+## OptionalDeps: PartyComm, myAddOns
+healix.xml

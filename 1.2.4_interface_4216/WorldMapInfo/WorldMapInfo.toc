@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: World Map Info by |cFF8080FFGeoWar|r
+## Notes: Add's Player & Cursor Coordinates to the world map frame
+## OptionalDeps: Cosmos 
+## Dependencies:
+## SavedVariables: CWMI_Config
+WorldMapInfo.xml

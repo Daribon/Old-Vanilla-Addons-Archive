@@ -1,0 +1,13 @@
+## Interface: 1800
+## Author: Ramble 
+## Title: MyBags
+## Notes: Complete Replacement for Inventory and Bank Bags.
+## DefaultState: 
+## Dependancies: Ace
+## OptionalDeps: KC_Items
+## SavedVariables: MyInventoryDB, MyBankDB, MyBagsCacheDB
+MyBagsCache\MyBagsCache.xml
+MyBagsCore\MyBags.xml
+#MyBagsCore\MyBagsOptions.xml
+MyInventory\MyInventory.xml
+MyBank\MyBank.xml

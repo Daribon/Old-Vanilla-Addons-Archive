@@ -1,0 +1,353 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<!-- Frame to handle all core events -->
+	<Frame name="UUIButtonFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="155" y="75"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+			</Anchor>
+		</Anchors>
+		
+		<TitleRegion/>
+		<Backdrop name="UUIButtonsBackdrop" bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<!--<TileSize>
+				<AbsValue val="24"/>
+			</TileSize>-->
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		
+		<Frames>
+				<Backdrop name="UUIDragBackdrop" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<!--<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>-->
+					<BackgroundInsets>
+						<AbsInset left="2" right="2" top="2" bottom="2"/>
+					</BackgroundInsets>
+				</Backdrop>
+<!-- UUI Button -->
+	<Button name="UUIInfoMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="5" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				PlaySound("igMainMenuOption");
+				ShowUIPanel(UltimateUIMasterFrame);
+				UltimateUIMasterFrame_Show();
+			<!-- no longer shows the info, simply opens the UUI config menu
+				if( UUIinfo_MainFrame:IsVisible() ) then
+					HideUIPanel(UUIinfo_MainFrame);
+				else				
+					ShowUIPanel(UUIinfo_MainFrame);
+				end
+				-->
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("UUI Information", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\UltimateUIButton"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\UltimateUIButtonDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- BetterKeyBinding Button -->
+	<Button name="BetterKeyBindingMapMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="5" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				ToggleBetterKeyBinding();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("BetterKeyBinding", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonBetterKeyBinding"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonBetterKeyBindingDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+<!-- Atlas Button -->
+<Button name="AtlasMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="35" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				Atlas_Toggle();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("Atlas", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonAtlas"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonAtlasDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+<!-- Alphamap Button -->
+	<Button name="AlphamapMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="65" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				ToggleAlphaMap();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("Alphamap", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonAlphaMap"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonAlphaMapDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+<!-- ZoomMap Button -->
+	<Button name="ZoomMapMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="95" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				ToggleZoomMap(1);
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("ZoomMap", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonZoomMap"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonZoomMapDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- LootLink Button -->
+	<Button name="LootLinkMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="35" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				ToggleLootLink();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("LootLink", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonLootlink"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonLootlinkDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- Perl Button -->
+	<Button name="HidePartyframeMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="65" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				if (Perl) then
+					Perl_OptionsMenu_Frame:Show();
+				end
+			</OnClick>
+			<OnEnter>
+				if (Perl) then
+					GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+					GameTooltip:SetText("Perl menu", 1.0, 1.0, 1.0);'
+				else
+					GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+					GameTooltip:SetText("blank button", 1.0, 1.0, 1.0);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonKarma"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonKarmaDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+
+<!-- Notepad Button -->
+	<Button name="NotepadMinimapButton">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="95" y="35"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				Notepad_Toggle();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+				GameTooltip:SetText("Notepad", 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonNotepad"/>
+		<PushedTexture file="Interface\AddOns\UUIQuickBox\Images\MiniMapButtonNotepadDown"/>
+		<DisabledTexture file="Interface\Minimap\UI-Minimap-ZoomOutButton-Disabled"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+	<Frame name="UUIDragPart">
+				<Size>
+					<AbsDimension x="23" y="65"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT">
+						<Offset>
+							<AbsDimension x="-6" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			<Backdrop name="UUIDragBackdrop" bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<!--<TileSize>
+				<AbsValue val="24"/>
+			</TileSize>-->
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnLoad>
+			</OnLoad>
+		</Scripts>
+
+			</Frame>
+
+	</Frames>
+		<Scripts>
+			<OnLoad>
+			if( UUI_HideQuickBox == 1 ) then
+				HideUIPanel(UUIButtonFrame);
+			end
+			</OnLoad>
+			
+			<OnEvent>
+			</OnEvent>
+
+			<OnShow>
+			</OnShow>
+
+			<OnHide>
+			</OnHide>
+			
+			<OnUpdate>		
+			</OnUpdate>
+
+			<OnMouseDown>
+				if(arg1 == "LeftButton") then
+					this:StartMoving();
+				end
+			</OnMouseDown>
+			
+			<OnMouseUp>
+				if(arg1 == "LeftButton") then
+					this:StopMovingOrSizing();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>
+

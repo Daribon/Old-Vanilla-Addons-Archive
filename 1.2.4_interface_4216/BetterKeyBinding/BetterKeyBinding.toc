@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: BetterKeyBinding by |cFF8080FFGeoWar|r
+## Author: <geowar@apple.com>
+## Notes: a better key binding interface
+## RequiredDeps: Cosmos
+BetterKeyBinding.xml

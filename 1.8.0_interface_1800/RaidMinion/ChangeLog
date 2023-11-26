@@ -1,0 +1,124 @@
+2005-06-17  Vladimir Vukicevic  <vladimir@pobox.com>
+
+        * Nuked Sky dependency
+
+        * Added raid buff viewing (per-tab)
+
+2005-04-02  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* RaidMinion.lua: Fixed logic bug that was
+	causing us to try to send debuff updates for
+	your mouseover target, among other things.
+
+2005-03-26  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* RaidMinion.lua: added optional sending of
+	your target data; has to be explicitly enabled
+
+	* RaidMinion.lua: use pcall() for callback functions
+	instead of invoking directly
+
+2005-03-26  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* RaidMinionUI.lua: don't use | in chat print string
+
+2005-03-18  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* RaidMinion.lua: Don't call DidGroupChange in
+	ResetGroup, since it will always return false there
+	(since we just called it recently).
+
+	* Fix tabs not showing up on joining a raid.
+
+	* Don't complain if UnitName() returns nil for
+	someone in our group
+
+	* Fix /rm auto class, wasn't updating on click
+
+2005-03-17  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added /rm auto, auto-population of tabs
+	with either everyone in the current raid, or
+	auto setup of class lock, one per tab.  Also
+	available through two Cosmos buttons.
+	
+	* Added better tracking of tab hiding and showing.
+	
+2005-03-17  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Bumped RM data version number to 2, due to below
+	massive bug fix.
+
+	* Fixed bug causing updates to not get sent (Sky was
+	bandwidth limiting alerts, which would lock us out
+	from sending for ~20s at a time).  This bugfix is in
+	Sky; make sure you update Sky.
+	
+	* Fixed watching for expired data; if someone stops sending,
+	stale data will no longer be kept around.
+
+	* Drop debuffs that we can't send due to size, instead of
+	just not sending any debuffs
+
+	* Updated number of tabs to 8 (so 8 tabs, 10 players each)
+
+2005-03-16  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* More tweaking to intervals
+
+	* Added /rm disablesend and /rm enablesend, in case someone is
+	lagging (but they're the alphabetic sender)
+
+2005-03-01  AnduinLothar  <karlkfi@cosmosui.org>
+	* Added Meteorologist SkyCloud Menu registration
+
+2005-03-07  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Fixed bug in debuff updating for non-RMUI users
+
+2005-03-05  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added /rm reset
+
+	* Fixed the clearing of expired players (callback wasn't
+	being scheduled for whatever reason)
+
+2005-03-04  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Fixed targetting 10th player in a tab
+
+	* Fixed selecting multiple classes per tab, erm.
+
+2005-03-03  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added ability to select more than one class for a tab
+
+2005-03-02  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Fixed debuff names with ":"'s in them from screwing up
+	the reception (:'s just get stripped now)
+
+	* Fixed the damn tooltip for debuffs
+
+	* Fixed debuff sending to split into max datagram size chunks.
+	Still needs heavy testing to make sure we don't spam.
+
+2005-03-01  Vladimir Vukicevic  <vladimir@pobox.com>
+
+	* Added debuff sending; also added debuff label type, and option
+	to show/hide debuff icons.  Tooltip coming soon to be able to
+	hover over the icons.
+
+	* Added ability to select a class to show in a tab; right-click a tab
+	and select a class (probably would need to /rm show # first).
+
+	* Added /rm scale to change size/scaling (directly
+	calls SetScale, so be aware of what this does with UIScale, e.g.
+	can move things off the screen; option is hidden in help because
+	of this)
+
+	* Fixed updates not being sent initially
+
+	* Fixed "?" remaining next to names even after update is received
+
+	* Fixed RM not appearing when you log in and/or reloadui while in a raid

@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (BottomBar)
+## Notes: CooldownCount for BottomBar
+## Author: sarf
+## RequiredDeps: BottomBar, CooldownCount
+CooldownCountBottomBar.xml

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="UIRELOAD" header="RELOADUI"> <!-- Reload the User Interface -->
+		ReloadUI();
+	</Binding>
+</Bindings>

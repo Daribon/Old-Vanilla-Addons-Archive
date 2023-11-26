@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: Red Out
+## Description: Shade Out Action Buttons when Out of Range
+## SavedVariables: RedOutEnabled, RedOutColor
+RedOut.xml

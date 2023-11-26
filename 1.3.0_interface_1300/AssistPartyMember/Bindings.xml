@@ -1,0 +1,14 @@
+<Bindings>
+	<Binding name="ASSISTPARTY1" description="Assist party member 1" header="ASSISTPARTYMEMBERHEADER">
+		AssistUnit("party1");
+	</Binding>
+	<Binding name="ASSISTPARTY2" description="Assist party member 2">
+		AssistUnit("party2");
+	</Binding>
+	<Binding name="ASSISTPARTY3" description="Assist party member 3">
+		AssistUnit("party3");
+	</Binding>
+	<Binding name="ASSISTPARTY4" description="Assist party member 4">
+		AssistUnit("party4");
+	</Binding>
+</Bindings>

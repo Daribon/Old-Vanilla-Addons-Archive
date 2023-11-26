@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="SHAPESHIFTSHADOWFORM" description="Toggle Shapeshift Shadowform" header="SHAPESHIFTSHADOWFORMHEADER">
+		ShapeshiftShadowform_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

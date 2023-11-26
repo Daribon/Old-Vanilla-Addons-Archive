@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: AllInOneInventory (Cosmos)
+## Notes: Allows you to configure AllInOneInventory with Cosmos.
+## Author: sarf
+## RequiredDeps: AllInOneInventory, Cosmos
+AllInOneInventoryCosmos.xml

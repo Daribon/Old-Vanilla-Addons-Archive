@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: ChatTimeStamps
+## Notes: This adds time stamps to chat.
+## Author: sarf, idea by Ravenfury
+## RequiredDeps: Cosmos
+ChatTimeStamps.xml

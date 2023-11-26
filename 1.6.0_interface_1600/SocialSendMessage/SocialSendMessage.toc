@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Social Modifications
+## Notes: Adds "Send Message" and "Send Page" buttons and Player notes!
+## OptionalDeps: UltimateUI, Pager
+## SavedVariables: UUI_SSM_SEND_MESSAGE_ENABLE, UUI_SSM_SEND_PAGE_ENABLE, UUI_SN_ENABLE
+SocialNotesEditor.xml
+SocialSendMessage.xml

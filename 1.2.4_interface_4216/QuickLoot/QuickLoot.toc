@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: QuickLoot by Telo
+## Notes: Automatically positions the most relevant part of the loot window under your cursor
+## OptionalDeps: Cosmos
+## SavedVariables: QuickLoot_Enabled, QuickLoot_AutoHide, QuickLoot_OnScreen, QuickLoot_MoveOnce
+QuickLoot.xml

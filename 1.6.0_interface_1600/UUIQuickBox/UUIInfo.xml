@@ -1,0 +1,181 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Frame name="UUIinfo_MainFrame" frameStrata="DIALOG" parent="UIParent" toplevel="true" movable="true" enableMouse="true" hidden="true">
+		<Size>
+			<AbsDimension x="300" y="150"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="200"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				UUIinfo_FrameTwo:SetBackdropBorderColor(1, 1, 1);
+				UUIinfo_MainFrame:SetBackdropBorderColor(1, 1, 1);
+				UUIinfo_FrameTwo:SetBackdropColor(0, 0, 0);
+				UUIinfo_MainFrame:SetBackdropColor(0, 0, 0);
+			</OnLoad>
+		</Scripts>
+		<Backdrop name="UUIinfo_Frame" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<!-- Secondary frame to hold text -->
+			<Frame name="UUIinfo_FrameTwo">
+				<Size>
+					<AbsDimension x="292" y="120"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop name="UUIinfo_FrameTwoBackdrop" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="UUIinfo_FrameTwoLine1" inherits="GameFontNormal" text="Welcome to Ultimate UI!">
+							<Size>
+								<AbsDimension x="288" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP"/>
+							</Anchors>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine2" inherits="GameFontNormalSmall" text="Ultimate UI is a compilation of several extremely">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine1" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine3" inherits="GameFontNormalSmall" text="helpful addons from various different sources">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine2" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine4" inherits="GameFontNormalSmall" text="compiled into one package.">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine3" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine5" inherits="GameFontNormalSmall" text="Always get the full Ultimate UI compilation">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine4" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine6" inherits="GameFontNormalSmall" text="at http://www.wowbattle.net.">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine5" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine7" inherits="GameFontNormalSmall" text="Enjoy UUI! ;)">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine6" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+						<FontString name="UUIinfo_FrameTwoLine8" inherits="GameFontNormalSmall" text="- Nathanmx">
+							<Size>
+								<AbsDimension x="288" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="UUIinfo_FrameTwoLine7" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1" g="1" b="1"/>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<!-- Close button -->
+			<Button name="UUIinfo_FrameClose" inherits="GameMenuButtonTemplate" text="Ok">
+				<Size>
+					<AbsDimension x="80" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(UUIinfo_MainFrame);
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

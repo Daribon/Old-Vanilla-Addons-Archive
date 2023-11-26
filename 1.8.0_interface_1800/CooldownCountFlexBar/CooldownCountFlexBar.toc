@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r CooldownCount (FlexBar)
+## Notes: CooldownCount for FlexBar
+## Author: sarf
+## DefaultState: disabled
+## RequiredDeps: FlexBar, CooldownCount
+CooldownCountFlexBar.xml

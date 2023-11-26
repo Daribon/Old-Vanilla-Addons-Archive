@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOOGLEALARMCLOCK" description="Toggle the Alarm Clock Panel" header="ALARMCLOCK"> <!-- Toggle the alarm clock panel -->
+        ToggleAlarmClock();
+	</Binding>
+</Bindings>

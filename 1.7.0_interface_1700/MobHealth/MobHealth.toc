@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: MobHealth2
+## Notes: Displays current and maximum health numbers for targeted mobs.
+## OptionalDeps: Cosmos, Khaos
+## SavedVariables: MobHealthDB, MobHealthConfig, MobHealth_Enabled
+MobHealth.xml

@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<GameTooltip name="ArmorCalculatorRecorderTooltip">
+		<Script>
+			<OnLoad>
+			</OnLoad>
+		</Script>
+	</GameTooltip>
+	<Frame name="ArmorCalculatorRecorderFrame" enableMouse="true" movable="true" parent="UIParent" hidden="false">
+		<Script>
+			<OnLoad>
+				ArmorCalculatorRecorder_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				ArmorCalculatorRecorder_OnEvent(arg1);
+			</OnEvent>
+		</Script>
+	</Frame>
+</Ui>

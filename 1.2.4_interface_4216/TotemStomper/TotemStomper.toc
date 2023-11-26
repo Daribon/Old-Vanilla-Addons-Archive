@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: Totem Stomper 0.8
+## Author: Alexander Brazie
+## Notes: Allows a shaman to pick a selection of totem spells which will be dropped in the order specified with repeated button presses.
+## RequiredDeps: Cosmos, Sea
+## SavedVariables: TotemStomper_ButtonMap
+TotemStomper.xml

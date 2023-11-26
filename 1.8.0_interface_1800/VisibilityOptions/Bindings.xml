@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="TOGGLETOTAL" description="Toggle on/off hiding of UI elements" header="ECLIPSEHEADER">
+		Eclipse.Total.toggle();
+	</Binding>
+	<Binding name="TOGGLELUNAR" description="Toggle on/off autohiding of UI elements">
+		Eclipse.Lunar.toggle();
+	</Binding>
+	<Binding name="TOGGLESOLAR" description="Toggle on/off transparency of UI elements">
+		Eclipse.Solar.toggle();
+	</Binding>
+</Bindings>

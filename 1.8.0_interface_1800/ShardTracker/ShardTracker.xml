@@ -1,0 +1,589 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="localization.de.lua"/>
+    <Script file="localization.fr.lua"/>
+    <Script file="ShardTrackerSorting.lua"/>
+    <Script file="ShardTrackerComm.lua"/>
+    <Script file="ShardTrackerUI.lua"/>
+    <Script file="ShardTrackerOther.lua"/>
+    <Script file="ShardTrackerMain.lua"/>
+    <Script file="ShardTracker.lua"/>
+    <GameTooltip name="ShardTrackerTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate" />
+    <Button name="ShardTrackerMinimapButton" hidden="false" enableMouse="true" movable="true" parent="Minimap" toplevel="true">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="Minimap" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="-77" y="25"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\AddOns\ShardTracker\Images\Shard"/>
+        <Scripts>
+            <OnLoad>
+                ShardTracker_ButtonOnLoad(this);
+            </OnLoad>
+            <OnClick>
+                if (ShardTracker_DragLock) then
+                    if (IsShiftKeyDown()) then
+                        ShardTracker_PrintRiddle();
+                    elseif (IsControlKeyDown()) then
+                        ShardTracker_SelectButtonTextColor("shard");
+                    else
+                        ShardTracker_SortShards();
+                    end
+                else
+                    ShardTrackerPrint(ST_BUTTONSARELOCKED);
+                end
+            </OnClick>
+            <OnEnter>
+                ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_SHARDBUTTON_TIP1, SHARDTRACKER_SHARDBUTTON_TIP2, SHARDTRACKER_SHARDBUTTON_TIP3, SHARDTRACKER_SHARDBUTTON_TIP4);
+            </OnEnter>
+            <OnLeave>
+                ShardTracker_HideButtonTooltip();
+                ShardTracker_OnDragStop(this);
+            </OnLeave>          
+            <OnMouseUp>
+                ShardTracker_OnDragStop(this);
+            </OnMouseUp>
+            <OnDragStart>
+                ShardTracker_OnDragStart(this);
+            </OnDragStart>
+            <OnDragStop>
+                ShardTracker_OnDragStop(this);
+            </OnDragStop>
+        </Scripts>
+    </Button>
+    <Frame name="ShardTrackerMinimapButtonOverlay" hidden="true">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="ShardTrackerMinimapButton" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parentGraphic" file="Interface\AddOns\ShardTracker\Images\ShardRingGlow">
+                    <Size>
+                        <AbsDimension x="28" y="28"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>  
+    </Frame>
+    <Button name="ShardTrackerMinimapButtonHealth" hidden="false" enableMouse="true" movable="true" parent="Minimap" toplevel="true">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="Minimap" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="-81" y="5"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\AddOns\ShardTracker\Images\ShardHealth"/>
+        <Scripts>
+            <OnLoad>
+                ShardTracker_ButtonOnLoad(this);
+            </OnLoad>
+            <OnClick>
+                if (IsShiftKeyDown() and ShardTracker_DragLock) then
+                    ShardTracker_ToggleNagging(SHARDTRACKER_NAGHEALTH_CMD);
+                    ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_HEALTHBUTTON_TIP1, SHARDTRACKER_HEALTHBUTTON_TIP2, SHARDTRACKER_HEALTHBUTTON_TIP3, SHARDTRACKER_HEALTHBUTTON_TIP4);
+                elseif (ShardTracker_DragLock) then
+                    ShardTracker_OnHealthButtonClick();
+                else
+                    ShardTrackerPrint(ST_BUTTONSARELOCKED);
+                end
+            </OnClick>
+            <OnEnter>
+                ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_HEALTHBUTTON_TIP1, SHARDTRACKER_HEALTHBUTTON_TIP2, SHARDTRACKER_HEALTHBUTTON_TIP3, SHARDTRACKER_HEALTHBUTTON_TIP4);
+            </OnEnter>
+            <OnLeave>
+                ShardTracker_HideButtonTooltip();
+                ShardTracker_OnDragStop(this);
+            </OnLeave>          
+            <OnMouseUp>
+                ShardTracker_OnDragStop(this);
+            </OnMouseUp>
+            <OnDragStart>
+                ShardTracker_OnDragStart(this);
+            </OnDragStart>
+            <OnDragStop>
+                ShardTracker_OnDragStop(this);
+            </OnDragStop>
+        </Scripts>
+    </Button>
+    <Button name="ShardTrackerMinimapButtonSoul" hidden="false" enableMouse="true" movable="true" parent="Minimap" toplevel="true">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="Minimap" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="-80" y="-17"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\AddOns\ShardTracker\Images\ShardSoul"/>
+        <Scripts>
+            <OnLoad>
+                ShardTracker_ButtonOnLoad(this);
+            </OnLoad>
+            <OnClick>
+                if (IsControlKeyDown() and ShardTracker_DragLock) then
+                    ShardTracker_SelectButtonTextColor("soul");
+                elseif (IsShiftKeyDown() and ShardTracker_DragLock) then
+                    ShardTracker_ToggleNagging(SHARDTRACKER_NAGSOUL_CMD);
+                    ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_SOULBUTTON_TIP1, SHARDTRACKER_SOULBUTTON_TIP2, SHARDTRACKER_SOULBUTTON_TIP3, SHARDTRACKER_SOULBUTTON_TIP4, SHARDTRACKER_SOULBUTTON_TIP5);
+                elseif (ShardTracker_DragLock) then
+                    ShardTracker_OnSoulButtonClick();
+                else
+                    ShardTrackerPrint(ST_BUTTONSARELOCKED);
+                end
+            </OnClick>
+            <OnEnter>
+                ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_SOULBUTTON_TIP1, SHARDTRACKER_SOULBUTTON_TIP2, SHARDTRACKER_SOULBUTTON_TIP3, SHARDTRACKER_SOULBUTTON_TIP4, SHARDTRACKER_SOULBUTTON_TIP5);
+            </OnEnter>
+            <OnLeave>
+                ShardTracker_HideButtonTooltip();
+                ShardTracker_OnDragStop(this);
+            </OnLeave>          
+            <OnMouseUp>
+                ShardTracker_OnDragStop(this);
+            </OnMouseUp>
+            <OnDragStart>
+                ShardTracker_OnDragStart(this);
+            </OnDragStart>
+            <OnDragStop>
+                ShardTracker_OnDragStop(this);
+            </OnDragStop>
+        </Scripts>
+    </Button>
+    <Button name="ShardTrackerMinimapButtonSpell" hidden="false" enableMouse="true" movable="true" parent="Minimap" toplevel="true">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="Minimap" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="-74" y="-37"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\AddOns\ShardTracker\Images\ShardSpell"/>
+        <Scripts>
+            <OnLoad>
+                ShardTracker_ButtonOnLoad(this);
+            </OnLoad>
+            <OnClick>
+                if (IsControlKeyDown() and ShardTracker_DragLock) then
+                    ShardTracker_SelectButtonTextColor("spell");
+                elseif (ShardTracker_DragLock) then
+                    ShardTracker_OnSpellOrFireButtonClick("spell");
+                else
+                    ShardTrackerPrint(ST_BUTTONSARELOCKED);
+                end
+            </OnClick>
+            <OnEnter>
+               ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_SPELLBUTTON_TIP1, SHARDTRACKER_SPELLBUTTON_TIP2, SHARDTRACKER_SPELLBUTTON_TIP3, SHARDTRACKER_SPELLBUTTON_TIP4, SHARDTRACKER_SPELLBUTTON_TIP5);
+            </OnEnter>
+            <OnLeave>
+                ShardTracker_HideButtonTooltip();
+                ShardTracker_OnDragStop(this);
+            </OnLeave>          
+            <OnMouseUp>
+                ShardTracker_OnDragStop(this);
+            </OnMouseUp>
+            <OnDragStart>
+                ShardTracker_OnDragStart(this);
+            </OnDragStart>
+            <OnDragStop>
+                ShardTracker_OnDragStop(this);
+            </OnDragStop>
+        </Scripts>
+    </Button>
+    <Button name="ShardTrackerMinimapButtonFire" hidden="false" enableMouse="true" movable="true" parent="Minimap" toplevel="true">
+        <Size>
+            <AbsDimension x="28" y="28"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="Minimap" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="-70" y="-57"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\AddOns\ShardTracker\Images\ShardFire"/>
+        <Scripts>
+            <OnLoad>
+                ShardTracker_ButtonOnLoad(this);
+            </OnLoad>
+            <OnClick>
+                if (ShardTracker_DragLock) then
+                    ShardTracker_OnSpellOrFireButtonClick("fire");
+                else
+                    ShardTrackerPrint(ST_BUTTONSARELOCKED);
+                end
+            </OnClick>
+            <OnEnter>
+               ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_FIREBUTTON_TIP1, SHARDTRACKER_FIREBUTTON_TIP2, SHARDTRACKER_FIREBUTTON_TIP3, SHARDTRACKER_FIREBUTTON_TIP4, SHARDTRACKER_FIREBUTTON_TIP5);
+            </OnEnter>
+            <OnLeave>
+                ShardTracker_HideButtonTooltip();
+                ShardTracker_OnDragStop(this);
+            </OnLeave>          
+            <OnMouseUp>
+                ShardTracker_OnDragStop(this);
+            </OnMouseUp>
+            <OnDragStart>
+                ShardTracker_OnDragStart(this);
+            </OnDragStart>
+            <OnDragStop>
+                ShardTracker_OnDragStop(this);
+            </OnDragStop>
+        </Scripts>
+    </Button>
+    <Frame name="ShardTrackerText" toplevel="true" enableMouse="false" movable="true" parent="UIParent" hidden="false">
+        <Size>
+           <AbsDimension x="50" y="50"/>
+         </Size>
+         <Anchors>
+           <Anchor point="CENTER">
+             <Offset>
+               <AbsDimension x="0" y="0"/>
+             </Offset>
+           </Anchor>
+         </Anchors>
+         <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="ShardTrackerSoulText" inherits="GameFontHighlightSmall" text="" hidden="false">
+                    <Anchors>
+                            <Anchor point="CENTER" relativeTo="ShardTrackerMinimapButtonSoul" relativePoint="CENTER">
+                                <Offset>
+                                    <AbsDimension x="0" y="0"/>
+                                </Offset>
+                            </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="ShardTrackerSpellText" inherits="GameFontHighlightSmallOutline" text="" hidden="false">
+                    <Anchors>
+                            <Anchor point="CENTER" relativeTo="ShardTrackerMinimapButtonSpell" relativePoint="CENTER">
+                                <Offset>
+                                    <AbsDimension x="0" y="0"/>
+                                </Offset>
+                            </Anchor>
+                    </Anchors>
+                </FontString>               
+                <FontString name="ShardTrackerText" inherits="GameFontHighlightSmall" text="" hidden="false">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeTo="ShardTrackerMinimapButton" relativePoint="CENTER">
+                            <Offset>
+                                <AbsDimension x="-1" y="2"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+    <Frame name="ShardTrackerSortFrame" toplevel="true" frameStrata="BACKGROUND" hidden="true">
+        <Size>
+            <AbsDimension x="225" y="54"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+            <EdgeSize>
+                <AbsValue val="32"/>
+            </EdgeSize>
+            <TileSize>
+                <AbsValue val="32"/>
+            </TileSize>
+            <BackgroundInsets>
+                <AbsInset left="11" right="12" top="12" bottom="11"/>
+            </BackgroundInsets>
+         </Backdrop>
+         <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="ShardTrackerSortText" inherits="GameFontHighlightLarge" text="SHARDTRACKERSORT_SORTING">
+                    <Color r="0.52" g="0.22" b="0.86"/>
+                    <Size>
+                        <AbsDimension x="225" y="14"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="ShardTrackerSortFrame" relativePoint="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-18"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+    <Frame name="ShardTrackerScriptFrame" parent="UIParent" hidden="false">
+        <Scripts>
+            <OnEvent>
+                ShardTracker_OnEvent(event);
+            </OnEvent>
+            <OnLoad>
+                ShardTracker_OnLoad();
+                ShardTrackerScriptFrame:Show();
+            </OnLoad>
+            <OnUpdate>
+                ShardTracker_OnUpdate(arg1);
+            </OnUpdate>
+        </Scripts>
+    </Frame>
+    
+    <!-- party member icon BEGIN -->
+    <Button name="UnitFrameShardTrackerIconTemplate" level="OVERLAY" enableMouse="true" toplevel="true" hidden="true" virtual="true">
+        <Size>
+            <AbsDimension x="25" y="25"/>
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMLEFT">
+                <Offset>
+                    <AbsDimension x="25" y="35"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <NormalTexture file="Interface\AddOns\ShardTracker\Images\ShardHealth"/>
+        <Scripts>
+            <OnEnter>
+                ShardTracker_ShowShardButtonTooltip(SHARDTRACKER_PARTYHEALTH_TIP1, SHARDTRACKER_PARTYHEALTH_TIP2, SHARDTRACKER_PARTYHEALTH_TIP3);
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>          
+        </Scripts>
+    </Button>
+    <Button name="$parentShardTrackerIcon" inherits="UnitFrameShardTrackerIconTemplate" parent="PartyMemberFrame1" id="1" />
+    <Button name="$parentShardTrackerIcon" inherits="UnitFrameShardTrackerIconTemplate" parent="PartyMemberFrame2" id="2" />
+    <Button name="$parentShardTrackerIcon" inherits="UnitFrameShardTrackerIconTemplate" parent="PartyMemberFrame3" id="3" />
+    <Button name="$parentShardTrackerIcon" inherits="UnitFrameShardTrackerIconTemplate" parent="PartyMemberFrame4" id="4" />
+    <!-- party member icon END -->
+
+    <Frame name="ShardTrackerPartyGlowFrameTemplate" level="BACKGROUND" hidden="true" virtual="true">
+        <Size>
+            <AbsDimension x="110" y="110"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="-39" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Frames>
+            <Frame name="$parentFlash" hidden="false">
+                <Size>
+                    <AbsDimension x="110" y="110"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="CENTER">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture file="Interface\AddOns\ShardTracker\Images\PartyGlow">
+                            <Size>
+                                <AbsDimension x="110" y="110"/>
+                            </Size>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+    </Frame>
+    <Frame name="$parentShardTrackerGlowFrame" inherits="ShardTrackerPartyGlowFrameTemplate" parent="PartyMemberFrame1" id="1" />
+    <Frame name="$parentShardTrackerGlowFrame" inherits="ShardTrackerPartyGlowFrameTemplate" parent="PartyMemberFrame2" id="2" />
+    <Frame name="$parentShardTrackerGlowFrame" inherits="ShardTrackerPartyGlowFrameTemplate" parent="PartyMemberFrame3" id="3" />
+    <Frame name="$parentShardTrackerGlowFrame" inherits="ShardTrackerPartyGlowFrameTemplate" parent="PartyMemberFrame4" id="4" />
+
+    <Frame name="ShardTrackerRadarSoulGlowFrame" frameStrata="BACKGROUND" parent="Minimap" hidden="true">
+        <Size>
+            <AbsDimension x="256" y="256"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Frames>
+            <Frame name="$parentFlash" hidden="false">
+                <Size>
+                    <AbsDimension x="215" y="215"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="CENTER">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture file="Interface\AddOns\ShardTracker\Images\RadarSoulGlow1" alphamode="ADD">
+                            <Size>
+                                <AbsDimension x="215" y="215"/>
+                            </Size>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+    </Frame>
+    <Frame name="ShardTrackerNightfallFillScreenFrame" parent="UIParent" hidden="true">
+        <Size>
+            <AbsDimension x="1280" y="1024"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="ShardTrackerNightfallFillScreenTexture" file="Interface\AddOns\ShardTracker\Images\NightfallFill"/>
+            </Layer>
+        </Layers>        
+    </Frame>
+    <Frame name="ShardTrackerSoulShardFillScreenFrame" parent="UIParent" hidden="true">
+        <Size>
+            <AbsDimension x="1280" y="1024"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="ShardTrackerSoulShardFillScreenTexture" file="Interface\AddOns\ShardTracker\Images\NightfallFill"/>
+            </Layer>
+        </Layers>        
+    </Frame>   
+    <Frame name="ShardTrackerStatusBarFrameTemplate" toplevel="true" parent="UIParent" virtual="true">
+        <Size>
+            <AbsDimension x="206" y="26"/>
+        </Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture>
+                    <Size>
+                        <AbsDimension x="195" y="13"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-2"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <Color r="0" g="0" b="0" a="0.5"/>
+                </Texture>      
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentCastingBarText" inherits="GameFontHighlight">
+                    <Size>
+                        <AbsDimension x="185" y="16"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <Texture file="Interface\CastingBar\UI-CastingBar-Border">
+                    <Size>
+                        <AbsDimension x="256" y="64"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="25"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <StatusBar name="$parentStatusBar">
+                <Size>
+                    <AbsDimension x="195" y="13"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOP">
+                        <Offset>
+                            <AbsDimension x="0" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        this:SetFrameLevel(this:GetFrameLevel() - 1)
+                    </OnLoad>
+                </Scripts>
+                <BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+                <BarColor r="1.0" g="0.7" b="0.0"/>
+            </StatusBar>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                ShardTracker_StatusBar_OnLoad(this:GetName());
+            </OnLoad>
+            <OnEvent>
+                ShardTracker_StatusBar_OnEvent(this:GetName());
+            </OnEvent>
+        </Scripts>
+    </Frame>
+    <Frame name="ShardTrackerShieldTimerBarFrame" parent="UIParent" inherits="ShardTrackerStatusBarFrameTemplate" hidden="true">
+        <Anchors>
+            <Anchor point="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="500"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+    </Frame>
+    <Frame name="ShardTrackerShieldEnergyBarFrame" parent="ShardTrackerShieldTimerBarFrame" inherits="ShardTrackerStatusBarFrameTemplate">
+        <Anchors>
+            <Anchor point="BOTTOM" relativeTo="ShardTrackerShieldTimerBarFrame" relativePoint="TOP">
+                <Offset>
+                    <AbsDimension x="0" y="-8"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+    </Frame>
+</Ui>
+

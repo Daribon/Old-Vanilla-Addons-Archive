@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r EquipCompare
+## Author: Legorol
+## Notes: Compare items easily with ones you have equipped
+## SavedVariables: EquipCompare_Enabled
+## OptionalDeps: UltimateUI
+EquipCompare.xml

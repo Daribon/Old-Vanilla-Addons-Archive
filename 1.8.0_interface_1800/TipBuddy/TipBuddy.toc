@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: TipBuddy
+## Notes: Enhanced, configurable unit tooltip.
+## Author: Chester
+## SavedVariables: TipBuddy_SavedVars
+## OptionalDeps: myAddOns, MobInfo2, MobHealth, MobHealth2
+
+TipBuddy.xml

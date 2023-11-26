@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: EnemySpellDetector
+## Author: sarf
+## Notes: Allows addons an easy way to detect when a spell is being cast by an enemy.
+## DefaultState: enabled
+## RequiredDeps: 
+## SavedVariables: 
+EnemySpellDetector.xml

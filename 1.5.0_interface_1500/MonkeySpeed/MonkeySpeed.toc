@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: MonkeySpeed v1.5
+## Notes: Adds a simple movable speedometer displaying speed as a percentage of run speed. (http://wow.visualization.ca/)
+## Author: Trentin (monkeymods@gmail.com)
+## SavedVariables: MonkeySpeedConfig
+MonkeySpeed.xml

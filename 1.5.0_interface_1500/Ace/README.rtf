@@ -1,0 +1,202 @@
+_____________________________________________________________________________________
+
+Ace
+
+Author:	  Turan	(turan@gryffon.com)
+Version:  0.99o
+Release:  06/14/2005
+Website:  http://turan.gryffon.com/wow/ace
+_____________________________________________________________________________________
+
+
+
+Ace is a lightweight and powerful addon	development system that	is very	efficient
+and very flexible. It provides all the basic components	that virtually every addon
+needs, freeing the developer to	move right to the creative part	of addon design.
+
+
+FEATURES
+_____________________________________________________________________________________
+
+So what	does Ace have to offer?	Here is	a brief	list of	its features:
+
+    - Startup initialization of	variables and character	information.
+    - Simple, flexible,	and powerful data management.
+    - Customizable chat	command	handling.
+    - Improved function/method hooking.
+    - Enhanced event registering.
+    - Dynamic addon disabling and enabling.
+    - Easy saving of settings per character and	per class.
+    - Debug features with optional module.
+
+
+USAGE
+_____________________________________________________________________________________
+
+Ace provides some basic	commands to the	player for managing Ace-derived	addons.	To
+use Ace for addon development, see the note below.
+
+Commands:
+
+/ace
+
+Entered without options, this command will display a list of available options and
+other available	information.
+
+/ace info
+
+Display	summary	information about the addons installed and the loaded profile.
+
+/ace loadmsg (addon | none | sum)
+
+Change the load	message	at game	load. 'addon' will display a load message for every
+addon. 'none' will display no load messages at all. 'sum' will display a summary of
+the number of addons installed and the loaded profile.
+
+/ace profile (char | class | default) [<addon>]
+
+Change the basic profile your character	uses. A	profile	stores a specific set of
+configurations for your	addons.	By default, the	'char' and 'class' profiles will
+be created empty. You must add each addon to the profile individually. So, for
+example, the first time	you run	/ace profile char, that	character's profile will
+be empty, meaning you'll still be using	all addons' default settings. If you then,
+for example, type /ace profile char coins to add the Coins addon to your character's
+profile, then any setting changes you make to Coins after that will be reflected in
+the character's	profile	and not	the default profile.
+
+The reason for this approach is	to allow you to	specify	in a profile addons that you
+want to	use custom setting for and leave the rest using	defaults.
+
+Options:
+
+    - char    :	Use a profile specific to the current character.
+    - class   :	Use a profile specific to the character's class. This profile can
+		be shared by all characters of that class.
+    - default :	Use a default profile that will	be shared by all characters if no
+		specific profile is selected.
+    - <addon> :	An optional argument that lets you add an addon	to the 'char' or
+		'class'	profile. Once added to the profile, any	changes	you make to
+		the addon will be specific to 'char' or	'class'.
+
+
+DEVELOPMENT
+_____________________________________________________________________________________
+
+To use Ace for addon development, download the developer tool kit, which contains
+documentation, examples, templates, and	AceUtil, a unique, non-distributed library
+of shareable functions.
+
+
+CREDITS
+_____________________________________________________________________________________
+
+- Rowne	for his	Fetch and FetchDB, which AceState and AceDB, respectively, were
+  derived from.	While I	claim some credit for adding my	own ideas to AceDB's data-
+  handling approach, it	is primarily Rowne's concept. Rowne is a brilliant
+  efficiency expert. His work is what inspired me to create Ace. Much thanks goes to
+  Rowne	for his	ideas, feedback, and support in	helping	get Ace	ready for release.
+- Trimble, who got me started on Lua and addon development. His	debug usage is what
+  inspired my eventual implementation of debug statements in Ace.
+- Danboo for his wonderfully efficient and elegent event handling technique. Even
+  though his technique may not be readily recognizable in Ace's	variation on it,
+  the basic concept is still derived from his and would	not exist if he	hadn't
+  first	introduced his.
+- Lazything for	his suggestion in Rowne's Fetch	forum on Curse to have an addon
+  register itself for state initialization instead of needing its own frame. This
+  little trick greatly reduces redundant code in addons' XML files.
+- Titan	for the	ternary() function, something I've been	missing	in Lua since I
+  first	started	programming with it!
+- Derkyle, for code in his ItemsMatrix which inspired me to expand AceHook with	the
+  cability to hook object methods in addition to just functions.
+
+
+SPECIAL	THANKS
+_____________________________________________________________________________________
+
+The following people deserve very special thanks.
+
+- Rowne, not just for the many excellent ideas of his I	incorporated into Ace, but
+  also for his support and feedback while helping me to	test Ace and all my Ace(d)
+  addons. I can	happily	and gratefully say that	Rowne is the first developer other
+  than myself to adopt Ace. His	conversion of all his addons to	Ace was	a great	test
+  run that helped stabalize and	polish Ace for release.
+
+- Kalia	for her	kind and patient support and testing of	all my Ace addons. She
+  helped polish	these addons, stamp out	bugs, and plug up some memory leaks.
+
+- Kaelten for his contributions	and help in testing Ace	by adopting it for his
+  addons. Also for several good	suggestions for	tweaks and additions to	Ace,
+  including the	profile	system.
+
+
+VERSION	HISTORY
+_____________________________________________________________________________________
+
+[2005-06-14] v0.99p
+(changed)
+- Some code cleanup.
+- When a new profile is	created, such as through /ace profile char, the	profile	will
+  be made empty	and will continue to use the default profile of	every addon. To	add
+  a specific addon profile to the char or class	profile, simply	type
+  /ace profile char | class <addon> where <addon> is the addon's name. So the
+  command /ace profile char coins would	add the	coins addon to the char	profile.
+- Modified the command processing in AceChatCmd	so that	in cases where an entered
+  arg is not in	the args list or an args list exists but no arg	is entered, control
+  will be passed on to the method that parents the particular args list. If there is
+  no such method, then error messages will be reported.
+(fixed)
+- A couple more	errors resulting from no Ace addons installed.
+- A snippet of code I accidentally left	in AceChatCmd that broke enable/disable.
+
+[2005-06-14] v0.99o
+(fixed)
+- An error that	would result if	no Ace addons were running.
+- An unecessary	CopyTable() in AceData that was	causing	an error.
+- Updated the toc version number for the latest	WoW patch.
+
+[2005-06-13] v0.99n
+(added)
+- An AceData object with profile options. Addons will now use this to save their
+  options in order to give players more	configuration capability.
+- The ability to turn load messages off, show a	line for every addon, or display a
+  summary of the number	of addons loaded. A summary is displayed by default.
+(changed)
+- The ace.concat function will now concat key/value tables into	a string of key=val
+  pairs.
+- Reworked AceEvent and	AceHook	to manage their	registries through AceDB rather	than
+  global variables. There is now an ace.registry() AceDB object	that can be used to
+  access the addon registry.
+- set()	has been changed so that it will directly set the passed in value. Before,
+  it would perform a table copy	if it was passed a table as the	value. The main
+  reason for this change is because it consumes	extra resources	when tables are
+  created for the purpose of saving them, as opposed to	tables that are	reused.
+- AceDB's reset() has had more changes.	It works the same as before except that	the
+  first	argument can be	nil and	the second argument be a seed. So the possible uses
+  of reset() are now: reset() -	table reset to self.seed or empty table;
+  reset(path [,	seed]) - path reset with optional seed table; reset(nil, seed) -
+  reset	the table to the seed.
+- AceChatCmd will now check an options arg list	for valid argument entry.
+- No longer using MyAddons category globals. Instead, addons will now list a
+  descriptive string, such as "combat" or "inventory", and Ace will provide the
+  appropriate value. This was done because if the MyAddons globals aren't present,
+  the addon's category will be nil and category	information may	be needed by other
+  addons even if MyAddons isn't	installed.
+- self:RegisterCommands() is no	longer needed in the Initialize() method. If you
+  need to manually register a chat command handler, call self.cmd:Register().
+- The ace:call() method	now accepts as arguments the object, method, and a list	of
+  arguments to pass to the method. Before it only accepted a string that would be
+  parsed into the object and method. Allowing the object itself	to be passed in
+  allows objects within	objects	to be called. For example, ace:call(self.db, "get")
+  will work to call an object's	db object, whereas ace:call("self.db:get") wouldn't.
+- The 'table' parameter	on an AceDB object has been renamed to _table and is
+  expected now only to be access through get().	A call to db:get() without arguments
+  will return the table	object.	To replace the table with a new	ones, reset() should
+  be used. The reason for this change is to help avoid problems	if developers were
+  to set db.table directly. For	normal tables, this would likely not pose a problem,
+  but for an addon's database, it would, because self.table is a pointer to a global
+  database variable. A change to db.table would	break this connection and changes to
+  the addon's db object	would not get saved.
+(fixed)
+- In at	least one case,	the realm name was being returned by GetCVar("realmName")
+  with an extra	space at the end. So just to be	safe, all character strings are	now
+  trimmed of possible extra spaces.

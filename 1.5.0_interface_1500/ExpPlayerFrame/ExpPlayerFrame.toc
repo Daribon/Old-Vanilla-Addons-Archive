@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: ExpPlayerFrame
+## Notes: Adds experience bar and percentage text to the player frame, and removes original XP bar..
+## Author: Aggressor (credit to the author of PlayerFrameXPBar for the code to remove XP bar)
+ExpPlayerFrame.xml
+ExpPlayerFrameBar.xml

@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r RangeRecolor
+## Version: 2.1
+## Author: CrowGoblin
+## Notes: Recolors action bar buttons when out of range
+## OptionalDeps: myAddOns
+## SavedVariables: RangeRecolorEnabled, RangeRecolorRed, RangeRecolorGrey
+RangeRecolor.xml

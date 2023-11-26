@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: AllInOneInventory (Khaos)
+## Notes: Allows you to configure AllInOneInventory with Khaos.
+## Author: sarf
+## RequiredDeps: AllInOneInventory, Khaos
+## OptionalDeps: AllInOneInventoryCosmos
+AllInOneInventoryKhaos.xml

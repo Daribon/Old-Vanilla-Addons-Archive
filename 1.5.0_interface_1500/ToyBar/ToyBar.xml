@@ -1,0 +1,228 @@
+<!--
+	ToyBar!
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="ToyBar.lua"/>
+	<Frame name="ToyBar_Updater" parent="UIParent">
+		<Scripts>
+			<OnUpdate>
+				ToyBar_OnUpdate(arg1)
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<FontString name="ToyBarHotkeyFont" font="Fonts\ARIALN.TTF" outline="THICK" virtual="true" monochrome="true">
+		<FontHeight>
+			<AbsValue val="11"/>
+		</FontHeight>
+		<Color r="0.6" g="0.6" b="0.6"/>
+	</FontString>
+	<Button name="ToyBar_ButtonTemplate" hidden="true" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				ToyBar_Button_OnLoad();
+			</OnLoad>
+			<OnClick>
+				ToyBar_Button_OnClick(arg1);
+			</OnClick>
+			<OnEnter>
+				ToyBar_Button_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				this.updateToolTip = nil;
+				GameTooltip:Hide();
+				this:SetButtonState("NORMAL");
+			</OnLeave>
+			<OnUpdate>
+				ToyBar_Button_Update(this);
+			</OnUpdate>
+		</Scripts>
+		<NormalTexture/>
+		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+	</Button>
+	
+	<Button name="ToyBar_EquippedTemplate" inherits="ToyBar_ButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="42" y="42"/>
+		</Size>
+
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentHotKey" inherits="ToyBarHotkeyFont" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="32" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-3" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText" inherits="NumberFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+	
+	<FontString name="NumberFontNormalTiny" font="Fonts\ARIALN.TTF" outline="THICK" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	
+	<Button name="ToyBar_HeldTemplate" inherits="ToyBar_ButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="28" y="28"/>
+		</Size>		
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="NumberFontNormalTiny" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				ToyBar_Button_OnLoad()
+				this.sub = true
+			</OnLoad>
+		</Scripts>
+	</Button>
+	
+	<Frame name="ToyBar_Fetch_Frame" hidden="false">
+		<Scripts>
+			<OnUpdate>
+				ToyBar_Fetch_OnUpdate()
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="ToyBar" movable="true" hidden="true" enableMouse="false" parent="UIParent" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="290" y="85"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				ToyBar_Load();
+			</OnLoad>
+			<OnEvent>
+				ToyBar_OnEvent();
+			</OnEvent>
+		</Scripts>
+		<Frames>
+			<Button name="$parent_Backdrop" hidden="true" enableMouse="true" frameStrata="BACKGROUND" setAllPoints="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:RegisterForDrag("LeftButton");
+						this:RegisterForClicks("LeftButtonUp","RightButtonUp");
+						this:SetFrameLevel("1");
+						this:SetBackdropBorderColor(
+							TOOLTIP_DEFAULT_COLOR.r,
+							TOOLTIP_DEFAULT_COLOR.g,
+							TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.r,
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.g,
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);						
+					</OnLoad>
+					<OnDragStart>
+						ToyBar:StartMoving();
+					</OnDragStart>
+					<OnDragStop>
+						ToyBar:StopMovingOrSizing();
+					</OnDragStop>
+					<OnReceiveDrag>
+						ToyBar_Dragged();
+					</OnReceiveDrag>
+					<OnClick>
+						if ToyBar_Dragged() then
+						elseif arg1 == "LeftButton" then
+							ToyBar_Rotate()
+						else
+							ToyBar_Flip()
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="$parent_E">
+				
+				<Frames>
+				<Button name="$parent1" inherits="ToyBar_EquippedTemplate" id="1"/>
+				<Button name="$parent2" inherits="ToyBar_EquippedTemplate" id="2"/>
+				<Button name="$parent3" inherits="ToyBar_EquippedTemplate" id="3"/>
+				<Button name="$parent4" inherits="ToyBar_EquippedTemplate" id="4"/>
+				<Button name="$parent5" inherits="ToyBar_EquippedTemplate" id="5"/>
+				<Button name="$parent6" inherits="ToyBar_EquippedTemplate" id="6"/>
+				<Button name="$parent7" inherits="ToyBar_EquippedTemplate" id="7"/>
+				<Button name="$parent8" inherits="ToyBar_EquippedTemplate" id="8"/>
+				</Frames>
+			</Frame>
+			<Frame name="$parent_H">		
+				<Frames>				
+				<Button name="$parent1" inherits="ToyBar_HeldTemplate" id="1"/>
+				<Button name="$parent2" inherits="ToyBar_HeldTemplate" id="2"/>
+				<Button name="$parent3" inherits="ToyBar_HeldTemplate" id="3"/>
+				<Button name="$parent4" inherits="ToyBar_HeldTemplate" id="4"/>
+				<Button name="$parent5" inherits="ToyBar_HeldTemplate" id="5"/>
+				<Button name="$parent6" inherits="ToyBar_HeldTemplate" id="6"/>
+				<Button name="$parent7" inherits="ToyBar_HeldTemplate" id="7"/>
+				<Button name="$parent8" inherits="ToyBar_HeldTemplate" id="8"/>
+				<Button name="$parent9" inherits="ToyBar_HeldTemplate" id="9"/>
+				<Button name="$parent10" inherits="ToyBar_HeldTemplate" id="10"/>
+				<Button name="$parent11" inherits="ToyBar_HeldTemplate" id="11"/>
+				<Button name="$parent12" inherits="ToyBar_HeldTemplate" id="12"/>
+				<Button name="$parent13" inherits="ToyBar_HeldTemplate" id="13"/>
+				<Button name="$parent14" inherits="ToyBar_HeldTemplate" id="14"/>
+				<Button name="$parent15" inherits="ToyBar_HeldTemplate" id="15"/>
+				<Button name="$parent16" inherits="ToyBar_HeldTemplate" id="16"/>
+				<Button name="$parent17" inherits="ToyBar_HeldTemplate" id="17"/>
+				<Button name="$parent18" inherits="ToyBar_HeldTemplate" id="18"/>
+				<Button name="$parent19" inherits="ToyBar_HeldTemplate" id="19"/>
+				<Button name="$parent20" inherits="ToyBar_HeldTemplate" id="20"/>
+				<Button name="$parent21" inherits="ToyBar_HeldTemplate" id="21"/>
+				<Button name="$parent22" inherits="ToyBar_HeldTemplate" id="22"/>
+				<Button name="$parent23" inherits="ToyBar_HeldTemplate" id="23"/>
+				<Button name="$parent24" inherits="ToyBar_HeldTemplate" id="24"/>
+				<Button name="$parent25" inherits="ToyBar_HeldTemplate" id="25"/>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+</Ui>

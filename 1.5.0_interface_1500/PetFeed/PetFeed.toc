@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: PetFeed
+## Author: Rauen, modified by VincentGdG
+## Notes: localized and updated version by Vincent@wow.g-d-g.de
+## Version: 1.11
+## SavedVariables: PetFeed_Config, PetFeed_Foods_Meat, PetFeed_Foods_Fish, PetFeed_Foods_Bread, PetFeed_Foods_Cheese, PetFeed_Foods_Fruits, PetFeed_Foods_Fungus
+PetFeed.xml

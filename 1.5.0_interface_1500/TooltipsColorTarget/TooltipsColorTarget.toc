@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: Tooltips: Color Target
+## Author: Celandro, Geometrix
+## Notes: Colors the background of the tooltip based on target. Also changes player name color. if the target is in your group or guild.
+## RequiredDeps: TooltipsBase
+TooltipsColorTarget.xml

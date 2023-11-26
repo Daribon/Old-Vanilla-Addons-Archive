@@ -1,0 +1,9 @@
+<Bindings>
+   <Binding name="UIRELOAD" runOnUp="true" header="RELOADUI"> <!-- Reload the User Interface -->
+      if ( keystate == "down" ) then
+         ReloadUIHandler(3);
+      else
+         ReloadUICancelHandler("");
+      end
+   </Binding>
+</Bindings>

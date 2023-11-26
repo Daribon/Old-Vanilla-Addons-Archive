@@ -1,0 +1,49 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="SideBarButton.lua"/>
+
+	<Include file="SideBarButtonTemplate.xml"/>
+	<Frame name="SideBar" toplevel="true" frameStrata="LOW" enableMouse="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="40" y="196"/>
+		</Size>
+        <Anchors>
+    	    <Anchor point="RIGHT"/>
+		</Anchors>
+		<Scripts>
+	    	<OnLoad>
+				SideBar_OnLoad();
+			</OnLoad>
+	    	<OnShow>
+				SideBarRight_Show();
+			</OnShow>
+	    	<OnHide>
+				SideBarRight_Hide();
+			</OnHide>
+		</Scripts>
+    </Frame>
+    <Frame name="SideBar2" toplevel="true" frameStrata="LOW" enableMouse="true" parent="UIParent">
+        <Size>
+            <AbsDimension x="40" y="196"/>
+        </Size>
+        <Anchors>
+		<Anchor point="LEFT">
+			<Offset>
+				<AbsDimension x="-5" y="-80"/>
+			</Offset>
+		</Anchor>
+		<Scripts>
+	    	<OnShow>
+				SideBarLeft_Show();
+			</OnShow>
+	    	<OnHide>
+				SideBarLeft_Hide();
+			</OnHide>
+		</Scripts>
+	</Anchors>
+    </Frame>
+
+    <Include file="SideBarFrame.xml"/>
+</Ui>

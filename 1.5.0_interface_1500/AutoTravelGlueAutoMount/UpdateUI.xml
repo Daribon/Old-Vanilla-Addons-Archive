@@ -1,0 +1,7 @@
+<Addon name="AutoTravelGlueAutoMount" current="0.08" path="" author="Anders 'sarf' Kronquist" email="k AT fukt DOT bth DOT se" url="http://www.fukt.bth.se/~k/wow/scripts/AutoTravelGlueAutoMount/">
+<Description>AutoTravelGlueAutoMount allows AutoTravel to automatically mount. It will not try to mount in combat.</Description>
+<Current number="0.08" date="2005-06-07">
+<File url="http://www.fukt.bth.se/~k/wow/scripts/AutoTravelGlueAutoMount/AutoTravelGlueAutoMount_1300_v0.07.zip" />
+</Current>
+<UpdateFile url="http://www.fukt.bth.se/~k/wow/scripts/AutoTravelGlueAutoMount/Interface/AddOns/AutoTravelGlueAutoMount/UpdateUI.xml" />
+</Addon>

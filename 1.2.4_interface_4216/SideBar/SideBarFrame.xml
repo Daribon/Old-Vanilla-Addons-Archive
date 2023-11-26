@@ -1,0 +1,112 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<CheckButton name="SideBarButton1" inherits="SideBarButton" parent="SideBar" id="109">
+        <Anchors>
+            <Anchor point="TOP">
+                <Offset>
+                    <AbsDimension x="0" y="56"/>
+                </Offset>
+            </Anchor>
+    	</Anchors>
+    </CheckButton>
+    <CheckButton name="SideBarButton2" inherits="SideBarButton" parent="SideBar" id="110">
+	    <Anchors>
+            <Anchor point="TOP" relativeTo="SideBarButton1" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+	</CheckButton>
+	<CheckButton name="SideBarButton3" inherits="SideBarButton" parent="SideBar" id="111">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBarButton2" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+    </Anchors>
+    </CheckButton>
+    <CheckButton name="SideBarButton4" inherits="SideBarButton" parent="SideBar" id="112">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBarButton3" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+    </Anchors>
+    </CheckButton>
+    <CheckButton name="SideBarButton5" inherits="SideBarButton" parent="SideBar" id="113">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBarButton4" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+    </Anchors>
+    </CheckButton>
+    <CheckButton name="SideBarButton6" inherits="SideBarButton" parent="SideBar" id="114">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBarButton5" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+    </Anchors>
+
+    </CheckButton>
+    <CheckButton name="SideBar2Button1" inherits="SideBarButton" parent="SideBar2" id="115">
+        <Anchors>
+            <Anchor point="TOP">
+                <Offset>
+                    <AbsDimension x="0" y="56"/>
+                </Offset>
+            </Anchor>
+    </Anchors>
+    </CheckButton>
+    <CheckButton name="SideBar2Button2" inherits="SideBarButton" parent="SideBar2" id="116">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBar2Button1" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+	</CheckButton>
+	<CheckButton name="SideBar2Button3" inherits="SideBarButton" parent="SideBar2" id="117">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBar2Button2" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+	</CheckButton>
+	<CheckButton name="SideBar2Button4" inherits="SideBarButton" parent="SideBar2" id="118">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBar2Button3" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+	</CheckButton>
+	<CheckButton name="SideBar2Button5" inherits="SideBarButton" parent="SideBar2" id="119">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBar2Button4" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+	</CheckButton>
+	<CheckButton name="SideBar2Button6" inherits="SideBarButton" parent="SideBar2" id="120">
+        <Anchors>
+            <Anchor point="TOP" relativeTo="SideBar2Button5" relativePoint="BOTTOM">
+                <Offset>
+                    <AbsDimension x="0" y="-6"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+	</CheckButton>
+</Ui>

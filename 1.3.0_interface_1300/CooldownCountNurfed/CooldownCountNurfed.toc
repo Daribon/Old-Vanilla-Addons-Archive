@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (Nurfed)
+## Notes: CooldownCount for Nurfed
+## Author: sarf
+## RequiredDeps: Nurfed_ActionBars, CooldownCount
+CooldownCountNurfed.xml

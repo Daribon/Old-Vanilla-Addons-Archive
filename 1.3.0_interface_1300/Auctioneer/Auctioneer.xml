@@ -1,0 +1,22 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+<!--  <Script file="LootLinkHooks.lua"/> -->
+  <Script file="BasePrices.lua"/>
+  <Script file="Auctioneer.lua"/>
+  <Frame name="AuctioneerUpdateFrame" parent="UIParent">
+    <Scripts>
+      <OnUpdate>
+            Auctioneer_OnUpdate(arg1);
+      </OnUpdate>
+    </Scripts>
+  </Frame>
+  <Frame name="Auctioneer" parent="UIParent" hidden="true">
+    <Scripts>
+      <OnLoad>
+	      Auctioneer_OnLoad();
+      </OnLoad>
+    </Scripts>
+  </Frame>
+</Ui>
+

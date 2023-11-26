@@ -1,0 +1,139 @@
+<!--
+
+	SocialSendMessage: Adds a "Send Message" button to the Social frames that do not have one.
+	- by geowar 5 Sep, 2004.
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="SocialSendMessage.lua"/>
+	<Button name="WhoFrameSendMessageButton" inherits="UIPanelButtonTemplate" text="SEND_MESSAGE" parent="WhoFrame">
+		<Size>
+			<AbsDimension x="131" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativeTo="WhoFrame" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-56" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				SocialSendMessage_SendMessage(WhoFrame.selectedName);
+			</OnClick>
+			<OnUpdate>
+				SocialSendMessage_Update();
+			</OnUpdate>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall"/>
+		<HighlightText inherits="GameFontHighlightSmall"/>
+		<DisabledText inherits="GameFontDisableSmall"/>
+	</Button>
+	<Button name="GuildFrameSendMessageButton" inherits="UIPanelButtonTemplate" text="SEND_MESSAGE" parent="GuildFrame">
+		<Size>
+			<AbsDimension x="131" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" relativeTo="GuildFrame" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-56" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				SetGuildRosterShowOffline(0);
+				--this:SetChecked(GetGuildRosterShowOffline());
+			</OnLoad>
+			<OnClick>
+				SocialSendMessage_SendMessage(GuildFrame.selectedName);
+			</OnClick>
+			<OnUpdate>
+				SocialSendMessage_Update();
+			</OnUpdate>
+		</Scripts>
+    </Button>
+	<Button name="FriendsFrameSendPageButton" inherits="UIPanelButtonTemplate" text="COS_SSM_SEND_PAGE" parent="FriendsFrame">
+		<Size>
+			<AbsDimension x="131" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="FriendsFrame" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="66" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				SocialSendMessage_SendPage(FriendsFrame.selectedName);
+			</OnClick>
+			<OnUpdate>
+				SocialSendMessage_Update();
+			</OnUpdate>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall"/>
+		<HighlightText inherits="GameFontHighlightSmall"/>
+		<DisabledText inherits="GameFontDisableSmall"/>
+	</Button>
+	<Button name="WhoFrameSendPageButton" inherits="UIPanelButtonTemplate" text="COS_SSM_SEND_PAGE" parent="WhoFrame">
+		<Size>
+			<AbsDimension x="131" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="WhoFrame" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="66" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				SocialSendMessage_SendPage(WhoFrame.selectedName);
+			</OnClick>
+			<OnUpdate>
+				SocialSendMessage_Update();
+			</OnUpdate>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall"/>
+		<HighlightText inherits="GameFontHighlightSmall"/>
+		<DisabledText inherits="GameFontDisableSmall"/>
+	</Button>
+	<Button name="GuildFrameSendPageButton" inherits="UIPanelButtonTemplate" text="COS_SSM_SEND_PAGE" parent="GuildFrame">
+		<Size>
+			<AbsDimension x="131" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="WhoFrame" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="66" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				SetGuildRosterShowOffline(0);
+				--this:SetChecked(GetGuildRosterShowOffline());
+			</OnLoad>
+			<OnClick>
+				SocialSendMessage_SendPage(GuildFrame.selectedName);
+			</OnClick>
+			<OnUpdate>
+				SocialSendMessage_Update();
+			</OnUpdate>
+		</Scripts>
+    </Button>
+    <Frame name="SocialSendMessageFrame" parent="UIParent" hidden="false">
+	<Scripts>
+		<OnLoad>
+			SocialSendMessage_OnLoad();
+			--UIErrorsFrame:AddMessage("SocialSendMessage loaded", 0.0, 1.0, 1.0, 1.0, UIERRORS_HOLD_TIME);
+		</OnLoad>
+		<OnEvent>
+			SocialSendMessage_OnEvent(event);
+		</OnEvent>
+	</Scripts>
+    </Frame>
+</Ui>

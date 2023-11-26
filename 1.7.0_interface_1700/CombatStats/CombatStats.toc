@@ -1,0 +1,4 @@
+## Interface: 1700
+## SavedVariables: CombatStats_Config
+## OptionalDeps: Sea, Cosmos,InfoBar,Titan
+CombatStats.xml

@@ -1,0 +1,13 @@
+## Interface: 1500
+## Title: Frenn's Kill Log v2.19
+## Notes: A record of your exploits fighting creeps in Azeroth
+## Author: Daniel Risse <dan@risse.com>
+## SavedVariables: KillLog_CreepInfo, KillLog_CharacterData, KillLog_Options
+## OptionalDeps: Debug, Cosmos
+## Dependencies: 
+ChatParse.xml
+KillLogFrame.xml
+KillLog_GeneralFrame.xml
+KillLog_ListFrame.xml
+KillLog_DeathFrame.xml
+KillLog_OptionsFrame.xml

@@ -1,0 +1,36 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="CT_MapModCoords.lua"/>
+	<Frame name="CT_CoordModFrame" parent="WorldMapFrame" hidden="false">
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="CT_CoordX" hidden="false" inherits="GameFontNormal" text="X">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="WorldMapFrame" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-60"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CT_CoordY" hidden="false" inherits="GameFontNormal" text="Y">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="WorldMapFrame" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-72"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnUpdate>
+				CT_CoordMod_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

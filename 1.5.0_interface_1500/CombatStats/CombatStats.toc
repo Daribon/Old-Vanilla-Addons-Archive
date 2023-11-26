@@ -1,0 +1,6 @@
+## Interface: 1500
+## Version: 3.75 (CTMod 1.782)
+## Title: CombatStats
+## SavedVariables: defcritCount, speccritCount, players, playersTaken, defCrits, specCrits, defCritTotals, specCritTotals, totalDamage, overallCombatTime, overallSwings, overallMisses, overallDodged, overallParried, overallEvaded, overallBlocked, overallResisted, overallImmuned, overallDeflected, overallHits, overallNonCrits, overallCrits, overallmaxCrit, overallminCrit, overallmaxReg, overallminReg, overallRegDmg, overallCritDmg, overallLastcrit, attackNames, specialAttacks, specialAttackLog, totalHits, totalCrits, specialsCount
+## OptionalDeps: CT_MasterMod
+CombatStats.xml

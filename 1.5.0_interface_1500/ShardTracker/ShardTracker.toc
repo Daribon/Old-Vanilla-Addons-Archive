@@ -1,0 +1,9 @@
+## Interface: 1500
+## Title: ShardTracker NCS v2.34beta
+## Notes: Shardtracker addon for warlocks
+## Author: Gottac - wright_dj@hotmail.com
+## Version: 2.34
+## Dependencies:
+## OptionalDeps: Perl_Group, MiniGroup
+## SavedVariables: SHARDTRACKER_CONFIG
+ShardTracker.xml

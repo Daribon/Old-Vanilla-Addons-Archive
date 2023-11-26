@@ -1,0 +1,43 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="BibActionButtons.lua"/>
+	<!-- LedMirage 4/13/2005: Added FrameStrate="LOW" -->
+	<CheckButton name="BibActionBarButtonTemplate" frameStrata="LOW" inherits="ActionBarButtonTemplate" virtual="true">
+		<Layers>
+			<Layer><Texture name="$parentCover" file="Interface\AddOns\Insomniax_BibToolbars\Images\BibButtonCover"/></Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				ActionButton_OnLoad();
+				local cover = getglobal(this:GetName().."Cover");
+				cover:SetVertexColor(0.0, 0.0, 0.0, 0.0);
+				this.showgrid = 1;
+			</OnLoad>
+			<OnEvent>
+				if ( not (event == "UPDATE_BINDINGS") ) then
+					ActionButton_OnEvent(event);
+				end
+			</OnEvent>
+			<OnDragStart>
+				local PlayerString = UnitName("player");
+				if(not BibActionBarButtonsLocked[PlayerString]) then
+					PickupAction(ActionButton_GetPagedID(this));
+					ActionButton_UpdateState();
+				end
+			</OnDragStart>
+			<OnUpdate>
+				BibActionButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	
+	<Frame name="BibActionButtonMappingManagement">
+		<Scripts>
+			 <OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("UPDATE_BINDINGS");
+			</OnLoad>
+			<OnEvent>BibUpdateAllActionButtonMappings();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

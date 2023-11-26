@@ -1,0 +1,5 @@
+## Interface: 4216
+## Title: Cosmos Example AddOn
+## Notes: This is an example using Cosmos and Add-On Support
+## RequiredDeps: Cosmos
+Vickel.xml

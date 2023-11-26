@@ -1,0 +1,17 @@
+<!--
+  Reagent Helper - Lists the profession that the item is used for in the Tooltip
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+  <Script file="localization.lua"/>
+  <Script file="localization.de.lua"/>
+  <Script file="localization.fr.lua"/>
+  <Script file="ReagentHelper.lua"/>
+  <Frame name="ReagentFrame" hidden="false" parent="UIParent">
+    <Scripts>
+      <OnLoad>
+        ReagentHelper_OnLoad();
+      </OnLoad>
+    </Scripts>
+  </Frame>
+</Ui>

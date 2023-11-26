@@ -1,0 +1,11 @@
+## Interface: 1300
+## Title: BuffStatus UI Plugin
+## Notes: BuffStatus UI Plugin
+## © 2004, 2005 Miron
+## Version:
+##			1.0	Initial Version
+##			1.1 Added addition functions to get buff/debuff type
+##			1.2 Updated to WoW UI 4211
+##			1.3 Updated to WoW UI 4216
+##			1.4 Updated to WoW UI 1300
+BuffStatus.xml

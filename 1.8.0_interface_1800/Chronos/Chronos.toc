@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: Chronos
+## Notes: A Time Keeping and Scheduling System
+## Author: Alexander Brazie
+## Dependencies: Sea
+Chronos.xml

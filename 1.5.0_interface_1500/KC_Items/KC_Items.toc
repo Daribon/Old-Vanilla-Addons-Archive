@@ -1,0 +1,9 @@
+## Interface: 1500
+## Author: Kael
+## Title: KC_Items
+## Notes: A centralized repository of all item information.
+## DefaultState:
+## Dependencies: Ace
+## OptionalDeps:
+## SavedVariables: KC_ItemsDB, KC_BankDB, KC_InvDB
+KC_Items.xml

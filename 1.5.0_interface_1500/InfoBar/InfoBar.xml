@@ -1,0 +1,1542 @@
+<!--
+
+	InfoBar: a customizable information window
+		copyright 2005 by Telo
+
+	- Provides the user the ability to select and customize the information they want displayed
+	- Exposes hooks that allow additional plugins to be added to the InfoBar by other AddOns
+	- Includes eight sample plugins
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="InfoBar.lua"/>
+	
+	<!-- The InfoBar itself -->
+	<Frame name="InfoBarFrame" frameStrata="BACKGROUND" toplevel="true" enableMouse="true" movable="true" parent="UIParent">
+		<TitleRegion setAllPoints="true"/>
+		<Size>
+			<AbsDimension x="50" y="28"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP"/>
+		</Anchors>
+		<Frames>
+			<Frame name="InfoBarBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="1"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Button name="InfoBarExpand" inherits="UIPanelButtonTemplate" frameStrata="LOW" enableMouse="true" hidden="true">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-6" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText("+");
+						this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+						GameTooltip:SetText(TEXT(INFOBAR_SETUP_TT), 0.9569, 0.9176, 0.4078);
+						GameTooltip:AddLine(TEXT(INFOBAR_SETUP_TT_DETAIL));
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						if( arg1 == "LeftButton" ) then
+							InfoBar_ShowConfig();
+						else
+							InfoBar_ShowOptions();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="InfoBarTooltip" inherits="UIPanelButtonTemplate" frameStrata="LOW" enableMouse="true" hidden="true">
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-32" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText("?");
+					</OnLoad>
+					<OnEnter>
+						if( InfoBarState.mouseoverTooltip ) then
+							InfoBar_ShowTooltip();
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						InfoBar_ShowTooltip();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				InfoBar_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				InfoBar_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				InfoBar_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<!-- The plugin configuration dialog -->
+	<CheckButton name="InfoBarCheckbox" virtual="true">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentLabel" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+		<Scripts>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	
+	<Frame name="InfoBarConfigItemTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="300" y="33"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentName" inherits="GameFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="292" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentVersion" inherits="GameFontNormal" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="252" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-44" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentOptions" inherits="UIPanelButtonTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="36" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText(">>>");
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(INFOBARCONFIG_OPTIONS_TT), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						InfoBarConfig_Options();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMoveDown" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\Buttons\UI-MinusButton-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-MinusButton-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-MinusButton-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD"/>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(INFOBARCONFIG_MOVEDOWN_TT), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						InfoBarConfig_MoveDown();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMoveUp" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentMoveDown" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\Buttons\UI-PlusButton-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-PlusButton-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-PlusButton-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-PlusButton-Hilight" alphaMode="ADD"/>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(INFOBARCONFIG_MOVEUP_TT), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnClick>
+						InfoBarConfig_MoveUp();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="$parentDisplay" inherits="InfoBarCheckbox">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="16" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Label"):SetText(INFOBARCONFIG_DISPLAY);
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(INFOBARCONFIG_DISPLAY_TT), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnClick>
+						InfoBarConfig_Display();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentTooltip" inherits="InfoBarCheckbox">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="136" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						getglobal(this:GetName().."Label"):SetText(INFOBARCONFIG_TOOLTIP);
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(INFOBARCONFIG_TOOLTIP_TT), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnClick>
+						InfoBarConfig_Tooltip();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+	</Frame>
+
+	<Frame name="InfoBarConfigurationFrame" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="354" y="448"/>
+		</Size>
+		<Anchors>
+ 			<Anchor point="CENTER"/>
+ 		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="35" top="0" bottom="75"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+                <Texture name="InfoBarConfigurationPortrait" file="Interface\MailFrame\Mail-Icon">
+					<Size>
+						<AbsDimension x="58" y="58"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+                </Texture>
+            </Layer>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="InfoBarConfigurationTitleText" inherits="GameFontHighlight" text="INFOBARCONFIG_TITLE">
+					<Size>
+						<AbsDimension x="300" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="InfoBarConfigurationFrame" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="InfoBarConfigurationCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Frame name="InfoBarConfigurationItem1" inherits="InfoBarConfigItemTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationFrame">
+						<Offset>
+							<AbsDimension x="19" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem2" inherits="InfoBarConfigItemTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem3" inherits="InfoBarConfigItemTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem4" inherits="InfoBarConfigItemTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem5" inherits="InfoBarConfigItemTemplate" id="5" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem4" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem6" inherits="InfoBarConfigItemTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem7" inherits="InfoBarConfigItemTemplate" id="7" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem6" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem8" inherits="InfoBarConfigItemTemplate" id="8" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem7" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem9" inherits="InfoBarConfigItemTemplate" id="9" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem8" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem10" inherits="InfoBarConfigItemTemplate" id="10" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem9" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="InfoBarConfigurationItem11" inherits="InfoBarConfigItemTemplate" id="11" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationItem10" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<ScrollFrame name="InfoBarConfigurationListScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="296" y="354"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarConfigurationFrame">
+						<Offset>
+							<AbsDimension x="19" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentScrollBarScrollUpButton">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="106"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="$parentScrollBarScrollDownButton">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(INFOBARCONFIG_ITEM_HEIGHT, InfoBarConfig_Update);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				InfoBarConfig_Update();
+			</OnShow>
+			<OnKeyDown>
+				if( arg1 == "ESCAPE" ) then
+					this:Hide();
+				end
+			</OnKeyDown>
+		</Scripts>
+	</Frame>
+	
+	<!-- InfoBar options dialog templates -->
+	<Button name="IB_OptionsButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="104" y="21"/>
+		</Size>
+		<NormalText inherits="GameFontHighlight"/>
+		<DisabledText inherits="GameFontDisable"/>
+		<HighlightText inherits="GameFontHighlight"/>
+	</Button>
+	<FontString name="IB_OptionsLabelTemplate" inherits="GameFontNormal" justifyH="RIGHT" justifyV="BOTTOM" virtual="true">
+		<Size>
+			<AbsDimension x="134" y="14"/>
+		</Size>
+	</FontString>
+	<EditBox name="IB_OptionsEditBoxTemplate" letters="256" historyLines="0" virtual="true">
+		<Size>
+			<AbsDimension x="200" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-FilterBorder">
+					<Size>
+						<AbsDimension x="12" y="29"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-11" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.09375" top="0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\ClassTrainerFrame\UI-ClassTrainer-FilterBorder">
+					<Size>
+						<AbsDimension x="195" y="29"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.09375" right="0.90625" top="0" bottom="1.0"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-FilterBorder">
+					<Size>
+						<AbsDimension x="12" y="29"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0.90625" right="1.0" top="0" bottom="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEscapePressed>
+				InfoBarConfig_OptionsCancel();
+			</OnEscapePressed>
+			<OnEnterPressed>
+				InfoBarConfig_OptionsOkay();
+			</OnEnterPressed>
+		</Scripts>
+		<FontString inherits="ChatFontNormal"/>
+	</EditBox>
+	<CheckButton name="IB_OptionsCheckBoxTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<HitRectInsets>
+			<AbsInset left="0" right="-200" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentLabel" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+	</CheckButton>
+	<Frame name="IB_OptionsDialog" toplevel="true" frameStrata="DIALOG" enableMouse="true" enableKeyboard="true" movable="true" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+ 			<Anchor point="CENTER"/>
+ 		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCancel" inherits="IB_OptionsButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText(CANCEL);
+					</OnLoad>
+					<OnClick>
+						InfoBarConfig_OptionsCancel();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentOkay" inherits="IB_OptionsButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentCancel" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText(OKAY);
+					</OnLoad>
+					<OnClick>
+						InfoBarConfig_OptionsOkay();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnKeyDown>
+				if( arg1 == "ESCAPE" ) then
+					InfoBarConfig_OptionsCancel();
+				end
+			</OnKeyDown>
+		</Scripts>
+	</Frame>
+	
+	<CheckButton name="InfoBarOptionsCheckBox" inherits="IB_OptionsCheckBoxTemplate" virtual="true">
+		<Scripts>
+			<OnShow>
+				getglobal(this:GetName().."Label"):SetText(this.label);
+			</OnShow>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(TEXT(this.tooltip), nil, nil, nil, nil, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<Frame name="InfoBarOptionsFrame" inherits="IB_OptionsDialog" parent="UIParent">
+		<Size>
+			<AbsDimension x="384" y="301"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="InfoBarOptionsWidthLabel" inherits="IB_OptionsLabelTemplate" text="INFOBAROPTIONS_WIDTHLABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="InfoBarOptionsAlignmentLabel" inherits="IB_OptionsLabelTemplate" text="INFOBAROPTIONS_ALIGNMENTLABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsWidthLabel" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="InfoBarOptionsBackgroundLabel" inherits="IB_OptionsLabelTemplate" text="INFOBAROPTIONS_BACKGROUNDLABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsAlignmentLabel" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="InfoBarOptionsVisualsLabel" inherits="IB_OptionsLabelTemplate" text="INFOBAROPTIONS_VISUALSLABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsBackgroundLabel" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="InfoBarOptionsTooltipsLabel" inherits="IB_OptionsLabelTemplate" text="INFOBAROPTIONS_TOOLTIPSLABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsVisualsLabel" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-73"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="InfoBarOptionsWidthEditBox" inherits="IB_OptionsEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsWidthLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="16" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(INFOBAROPTIONS_WIDTH_TT), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</EditBox>
+			<Frame name="InfoBarOptionsAlignmentDropDown" inherits="UIDropDownMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsAlignmentLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						InfoBarOptionsAlignmentDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="InfoBarOptionsBackgroundDropDown" inherits="UIDropDownMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsBackgroundLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						InfoBarOptionsBackgroundDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<CheckButton name="InfoBarOptionsBordersCheckBox" inherits="InfoBarOptionsCheckBox">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsVisualsLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.label = INFOBAROPTIONS_BORDERS;
+						this.tooltip = INFOBAROPTIONS_BORDERS_TT;
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="InfoBarOptionsControlsCheckBox" inherits="InfoBarOptionsCheckBox">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsVisualsLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="-29"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.label = INFOBAROPTIONS_CONTROLS;
+						this.tooltip = INFOBAROPTIONS_CONTROLS_TT;
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="InfoBarOptionsPositionCheckBox" inherits="InfoBarOptionsCheckBox">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsVisualsLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="-58"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.label = INFOBAROPTIONS_POSITION;
+						this.tooltip = INFOBAROPTIONS_POSITION_TT;
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="InfoBarOptionsTooltipsCheckBox" inherits="InfoBarOptionsCheckBox">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsTooltipsLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.label = INFOBAROPTIONS_TOOLTIPS;
+						this.tooltip = INFOBAROPTIONS_TOOLTIPS_TT;
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="InfoBarOptionsMouseoverCheckBox" inherits="InfoBarOptionsCheckBox">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="InfoBarOptionsTooltipsLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="-29"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.label = INFOBAROPTIONS_MOUSEOVER;
+						this.tooltip = INFOBAROPTIONS_MOUSEOVER_TT;
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				InfoBarOptionsFrameTitle:SetText(INFOBAROPTIONS_TITLE);
+			</OnLoad>
+			<OnShow>
+				InfoBarOptions_OnShow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+	
+	<!-- InfoBar plugin templates -->
+	<Frame name="IB_BaseFrame" frameStrata="LOW" toplevel="true" enableMouse="true" movable="true" virtual="true">
+		<Size>
+			<AbsDimension x="0" y="16"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+				<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="4"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				InfoBar_RegisterFrame(this);
+				if( type(getglobal(this:GetName().."_OnShow")) == "function" ) then
+					getglobal(this:GetName().."_OnShow")();
+				end
+			</OnShow>
+			<OnEnter>
+				if( this.info and type(this.info.tooltip) == "function" ) then
+					InfoBar_ShowPluginTooltip(this);
+				end
+				if( type(getglobal(this:GetName().."_OnEnter")) == "function" ) then
+					getglobal(this:GetName().."_OnEnter")();
+				end
+			</OnEnter>
+			<OnLeave>
+				if( InfoBarFrame.tooltipOwner == this ) then
+					InfoBar_HidePluginTooltip();
+				end
+				if( type(getglobal(this:GetName().."_OnLeave")) == "function" ) then
+					getglobal(this:GetName().."_OnLeave")();
+				end
+			</OnLeave>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="IB_TextFrame" inherits="IB_BaseFrame" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentText" inherits="GameFontNormal"/>
+				<FontString name="$parentCenteredText" inherits="GameFontNormal" justifyH="CENTER" justifyV="CENTER"/>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	<Button name="IB_CoinButton" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="13"/>
+		</Size>
+		<NormalText name="$parentText" inherits="NumberFontNormal" justifyH="LEFT">
+			<Anchors>
+				<Anchor point="LEFT"/>
+			</Anchors>
+		</NormalText>
+		<PushedTextOffset>
+			<AbsDimension x="0" y="0"/>
+		</PushedTextOffset>
+		<Scripts>
+			<OnEnter>
+				local frame = this:GetParent();
+				if( frame ) then
+					frame = frame:GetParent();
+					if( frame ) then
+						if( frame.info and type(frame.info.tooltip) == "function" ) then
+							InfoBar_ShowPluginTooltip(frame);
+						end
+						if( type(getglobal(frame:GetName().."_OnEnter")) == "function" ) then
+							getglobal(frame:GetName().."_OnEnter")();
+						end
+					end
+				end
+			</OnEnter>
+			<OnLeave>
+				local frame = this:GetParent();
+				if( frame ) then
+					frame = frame:GetParent();
+					if( frame ) then
+						if( InfoBarFrame.tooltipOwner == frame ) then
+							InfoBar_HidePluginTooltip();
+						end
+						if( type(getglobal(frame:GetName().."_OnLeave")) == "function" ) then
+							getglobal(frame:GetName().."_OnLeave")();
+						end
+					end
+				end
+			</OnLeave>
+		</Scripts>
+	</Button>
+	
+	<Frame name="IB_MoneyFrame" inherits="IB_BaseFrame" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="16"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentMoney">
+				<Size>
+					<AbsDimension x="128" y="13"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Frames>
+					<Button name="$parentCopperButton" inherits="IB_CoinButton">
+						<Anchors>
+							<Anchor point="RIGHT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="Interface\MoneyFrame\UI-MoneyIcons">
+							<Size>
+								<AbsDimension x="13" y="13"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.5" right="0.75" top="0" bottom="1"/>
+						</NormalTexture>
+					</Button>
+					<Button name="$parentSilverButton" inherits="IB_CoinButton">
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="$parentCopperButton" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension x="-4" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="Interface\MoneyFrame\UI-MoneyIcons">
+							<Size>
+								<AbsDimension x="13" y="13"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.25" right="0.5" top="0" bottom="1"/>
+						</NormalTexture>
+					</Button>
+					<Button name="$parentGoldButton" inherits="IB_CoinButton">
+						<Size>
+							<AbsDimension x="32" y="13"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="$parentSilverButton" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension x="-4" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="Interface\MoneyFrame\UI-MoneyIcons">
+							<Size>
+								<AbsDimension x="13" y="13"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0" right="0.25" top="0" bottom="1"/>
+						</NormalTexture>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						if( type(getglobal(this:GetName().."_OnLoad")) == "function" ) then
+							getglobal(this:GetName().."_OnLoad")();
+						end
+					</OnLoad>
+					<OnEvent>
+						MoneyFrame_OnEvent();
+					</OnEvent>
+					<OnShow>
+						MoneyFrame_UpdateMoney();
+					</OnShow>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+	<Frame name="IB_BarFrame" inherits="IB_BaseFrame" virtual="true">
+		<Size>
+			<AbsDimension x="96" y="16"/>
+		</Size>
+		<Frames>
+			<StatusBar name="$parentBar">
+				<Size>
+					<AbsDimension x="96" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel(this:GetFrameLevel() - 1);
+					</OnLoad>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0.0" g="0.7" b="0.0"/>
+			</StatusBar>
+		</Frames>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="TextStatusBarText" justifyH="CENTER" justifyV="CENTER"/>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<!-- Sample InfoBar plugins -->
+	
+	<!-- Bag Space ....................................................... -->
+	<Frame name="IB_BagSpace_Options" inherits="IB_OptionsDialog" parent="UIParent">
+		<Size>
+			<AbsDimension x="384" y="115"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="IB_BagSpace_OptionsLabel" inherits="IB_OptionsLabelTemplate" text="IB_BAGSPACE_OPTIONS_STYLELABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="IB_BagSpace_StyleDropDown" inherits="UIDropDownMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="IB_BagSpace_OptionsLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						IB_BagSpace_StyleDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this.info = { load=IB_BagSpace_Load, save=IB_BagSpace_Save };
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="IB_BagSpace" inherits="IB_BarFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="72" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Bag Usage", version=110, init=IB_BagSpace_Init,
+					options=IB_BagSpace_Options, restore=IB_BagSpace_Restore,
+					forceBorder=true
+				};
+				IB_BagSpace_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				IB_BagSpace_SetValues();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<!-- Money ........................................................... -->
+	<Frame name="IB_Money" inherits="IB_MoneyFrame" parent="InfoBarFrame">
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Money", version=110, init=IB_Money_Init,
+					update=IB_Money_OnUpdate, tooltip=IB_Money_Tooltip
+				};
+			</OnLoad>
+			<OnMouseUp>
+				if( arg1 == "RightButton" and IsControlKeyDown() ) then
+					IB_Money_Reset();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+
+	<!-- Clock ........................................................... -->
+	<Frame name="IB_Clock_Options" inherits="IB_OptionsDialog" parent="UIParent">
+		<Size>
+			<AbsDimension x="384" y="139"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="IB_CO_FormatLabel" inherits="IB_OptionsLabelTemplate" text="IB_CLOCK_OPTIONS_FORMAT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="IB_CO_TooltipLabel" inherits="IB_OptionsLabelTemplate" text="IB_CLOCK_OPTIONS_TOOLTIP">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="IB_CO_FormatLabel" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="IB_CO_FormatEditBox" inherits="IB_OptionsEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="IB_CO_FormatLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="16" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(TEXT(IB_CLOCK_FORMATEXPLANATION), nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</EditBox>
+			<CheckButton name="IB_CO_SecondsCheckBox" inherits="IB_OptionsCheckBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="IB_CO_TooltipLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						IB_CO_SecondsCheckBoxLabel:SetText(IB_CLOCK_OPTIONS_DISABLESECONDS);
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this.info = { load=IB_Clock_Load, save=IB_Clock_Save };
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="IB_Clock" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="96" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Clock", version=110,
+					update=IB_Clock_OnUpdate, tooltip=IB_Clock_Tooltip,
+					options=IB_Clock_Options, restore=IB_Clock_Restore
+				};
+				IB_Clock_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				IB_Clock_OnEvent();
+			</OnEvent>
+			<OnMouseUp>
+				if( arg1 == "RightButton" and IsControlKeyDown() ) then
+					IB_Clock_Reset();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+
+	<!-- FrameRate ....................................................... -->
+	<Frame name="IB_FrameRate" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="84" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's FrameRate", version=100,
+					update=IB_FrameRate_OnUpdate, tooltip=IB_FrameRate_Tooltip
+				};
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- Network Stats ................................................... -->
+	<Frame name="IB_Network" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="84" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Network Stats", version=100,
+					update=IB_Network_OnUpdate, tooltip=IB_Network_Tooltip
+				};
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	<!-- Health Regen .................................................... -->
+	<Frame name="IB_HealthRegen" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="60" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Health Regen", version=100,
+					update=IB_HealthRegen_OnUpdate, tooltip=IB_HealthRegen_Tooltip
+				};
+				IB_HealthRegen_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				IB_HealthRegen_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<!-- Mana Regen ...................................................... -->
+	<Frame name="IB_ManaRegen" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="60" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Mana Regen", version=100,
+					update=IB_ManaRegen_OnUpdate, tooltip=IB_ManaRegen_Tooltip
+				};
+				IB_ManaRegen_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				IB_ManaRegen_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<!-- Map Coords ...................................................... -->
+	<Frame name="IB_Coords" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="84" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's Coords", version=100,
+					update=IB_Coords_OnUpdate, tooltip=IB_Coords_Tooltip
+				};
+				IB_Coords_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- DPS ............................................................. -->
+	<Frame name="IB_DPS_Options" inherits="IB_OptionsDialog" parent="UIParent">
+		<Size>
+			<AbsDimension x="384" y="139"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="IB_DPS_MeasureLabel" inherits="IB_OptionsLabelTemplate" text="IB_DPS_OPTIONS_MEASURELABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="IB_DPS_PartyLabel" inherits="IB_OptionsLabelTemplate" text="IB_DPS_OPTIONS_PARTYLABEL">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="IB_DPS_MeasureLabel" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="IB_DPS_MeasureDropDown" inherits="UIDropDownMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="IB_DPS_MeasureLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						IB_DPS_MeasureDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<CheckButton name="IB_DPS_PartyCheckBox" inherits="IB_OptionsCheckBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="IB_DPS_PartyLabel" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						IB_DPS_PartyCheckBoxLabel:SetText(IB_DPS_OPTIONS_PARTYCHECK);
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this.info = { load=IB_DPS_Load, save=IB_DPS_Save };
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="IB_DPS_PartyTemplate" frameStrata="LOW" toplevel="true" movable="true" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="53"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentCurrent" inherits="GameFontDisableSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTotal" inherits="GameFontDisableSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="IB_DPS_party1" inherits="IB_DPS_PartyTemplate" parent="PartyMemberFrame1" toplevel="true"/>
+	<Frame name="IB_DPS_party2" inherits="IB_DPS_PartyTemplate" parent="PartyMemberFrame2" toplevel="true"/>
+	<Frame name="IB_DPS_party3" inherits="IB_DPS_PartyTemplate" parent="PartyMemberFrame3" toplevel="true"/>
+	<Frame name="IB_DPS_party4" inherits="IB_DPS_PartyTemplate" parent="PartyMemberFrame4" toplevel="true"/>
+	<Frame name="IB_DPS" inherits="IB_TextFrame" parent="InfoBarFrame">
+		<Size>
+			<AbsDimension x="128" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this.info =
+				{
+					name="Telo's DPS", version=100,
+					update=IB_DPS_OnUpdate, tooltip=IB_DPS_Tooltip,
+					options=IB_DPS_Options, restore=IB_DPS_Restore
+				};
+				IB_DPS_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				IB_DPS_OnEvent();
+			</OnEvent>
+			<OnMouseUp>
+				if( arg1 == "RightButton" and IsControlKeyDown() ) then
+					IB_DPS_Reset();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

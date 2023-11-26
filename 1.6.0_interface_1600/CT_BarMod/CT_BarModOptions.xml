@@ -1,0 +1,284 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="CT_BarModOptions.lua"/>
+	<Slider name="CT_BarModOptionsSliderTemplate" virtual="true" inherits="OptionsSliderTemplate">
+		<Size>
+			<AbsDimension x="170" y="17"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				--CT_BarModOptions_Slider_OnLoad();
+			</OnLoad>
+			<OnShow>
+				CT_BarModOptions_Slider_OnShow();
+			</OnShow>
+			<OnValueChanged>
+				CT_BarModOptions_Slider_OnValueChanged();
+			</OnValueChanged>
+		</Scripts>
+	</Slider>
+	<Frame name="CT_BarModOptionsFrame" movable="true" enableMouse="true" frameStrata="DIALOG" toplevel="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="450" y="350"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeaderTexture" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Scaling Options">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeaderTexture">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="$parentRemoveSpaceBars" justifyV="top" justifyH="left" inherits="GameFontNormal" text="Remove space between hotbar buttons:">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-56"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRemoveSpaceSpecial" justifyV="top" justifyH="left" inherits="GameFontNormal" text="Remove space between pet and class bars:">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRemoveSpaceBags" justifyV="top" justifyH="left" inherits="GameFontNormal" text="Remove space between bags:">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="20" y="-72"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentInfo" justifyV="top" justifyH="center" inherits="ChatFontNormal" text="CT_BARMODOPTIONS_INFO">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="55"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentDrag">
+				<Size>
+					<AbsDimension x="150" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-12" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>
+						if ( arg1 == "LeftButton" ) then
+							this:GetParent():StartMoving();
+						elseif ( arg1 == "RightButton" ) then
+							this:GetParent():ClearAllPoints();
+							this:GetParent():SetPoint("CENTER", "UIParent", "CENTER");
+						end
+					</OnMouseDown>
+					<OnMouseUp>
+						this:GetParent():StopMovingOrSizing();
+					</OnMouseUp>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText("Left-click to drag\nRight-click to reset");
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Frame>
+			<CheckButton name="$parentCheckButtonSpecial" hidden="false" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentRemoveSpaceSpecial">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<HitRectInsets>
+					<AbsInset left="0" right="0" top="0" bottom="0"/>
+				</HitRectInsets>
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Scripts>
+					<OnClick>
+						CT_BarModOptions_RemoveSpaceSpecial(this:GetChecked());
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheckButtonBars" hidden="false" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="TOP" relativeTo="$parentCheckButtonSpecial">
+						<Offset>
+							<AbsDimension x="0" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<HitRectInsets>
+					<AbsInset left="0" right="0" top="0" bottom="0"/>
+				</HitRectInsets>
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Scripts>
+					<OnClick>
+						CT_BarModOptions_RemoveSpaceBars(this:GetChecked());
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheckButtonBags" hidden="false" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="TOP" relativeTo="$parentCheckButtonBars">
+						<Offset>
+							<AbsDimension x="0" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<HitRectInsets>
+					<AbsInset left="0" right="0" top="0" bottom="0"/>
+				</HitRectInsets>
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Scripts>
+					<OnClick>
+						CT_BarModOptions_RemoveSpaceBags(this:GetChecked());
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Slider name="$parentSliderHotbarLeft" id="1" inherits="CT_BarModOptionsSliderTemplate">
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-115"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+			<Slider name="$parentSliderHotbarRight" id="2" inherits="CT_BarModOptionsSliderTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="10" y="-115"/>
+						</Offset>
+					</Anchor>
+				</Anchors>>
+			</Slider>
+
+			<Slider name="$parentSliderSidebarLeft" id="3" inherits="CT_BarModOptionsSliderTemplate">
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-165"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+			<Slider name="$parentSliderSidebarRight" id="4" inherits="CT_BarModOptionsSliderTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="10" y="-165"/>
+						</Offset>
+					</Anchor>
+				</Anchors>>
+			</Slider>
+
+			<Slider name="$parentSliderHotbarTop" id="5" inherits="CT_BarModOptionsSliderTemplate">
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-10" y="-215"/>
+						</Offset>
+					</Anchor>
+				</Anchors>>
+			</Slider>
+
+			<Slider name="$parentSliderMainBar" id="6" inherits="CT_BarModOptionsSliderTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="10" y="-215"/>
+						</Offset>
+					</Anchor>
+				</Anchors>>
+			</Slider>
+
+			<Button name="$parentCloseButton" hidden="false" inherits="GameMenuButtonTemplate" text="Okay">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						this:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				PlaySound("UChatScrollButton");
+			</OnShow>
+			<OnHide>
+				PlaySound("UChatScrollButton");
+			</OnHide>
+			<OnLoad>
+				this:RegisterEvent("PLAYER_ENTERING_WORLD");
+			</OnLoad>
+			<OnEvent>
+				CT_BarModOptions_LoadOptions();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

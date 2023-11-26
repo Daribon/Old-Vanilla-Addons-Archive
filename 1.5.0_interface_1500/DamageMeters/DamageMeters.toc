@@ -1,0 +1,9 @@
+## Interface: 1500
+## Title: DamageMeters
+## Author: Dandelion
+## Version: 2.3.0
+## Notes: Displays accumulated damage totals for you and nearby players.
+## Dependencies:
+## OptionalDeps: 
+## SavedVariables: DamageMeters_BarCount, DamageMeters_alwaysShowText, DamageMeters_sort, DamageMeters_filter
+DamageMeters.xml

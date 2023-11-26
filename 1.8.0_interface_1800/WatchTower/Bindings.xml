@@ -1,0 +1,17 @@
+<Bindings>
+	<Binding name="WT_TOGGLE" header="WATCHTOWER">
+        ToggleWatchTower();
+	</Binding>
+	<Binding name="WT_REPORT">
+        WTReportEnemy();
+	</Binding>
+	<Binding name="WT_REPORT_MULTIPLE">
+        Sancho_ReportToggle();
+	</Binding>
+	<Binding name="WT_REPORT_PVP_TOGGLE">
+        PvPOnlyToggle();
+	</Binding>
+	<Binding name="WT_FACTION">
+        SetFaction(FactionSetTo);
+	</Binding>
+</Bindings>

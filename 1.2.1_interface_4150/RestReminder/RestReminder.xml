@@ -1,0 +1,58 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="RestReminder.lua"/> 
+	
+	<Frame name="RestReminderTextFrame" parent="UIParent" frameStrata="LOW" toplevel="true">
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="ZoneTextFont">
+					<Size>
+						<AbsDimension x="384" y="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				FadingFrame_OnLoad();
+				FadingFrame_SetFadeInTime(this, 0.5);
+				FadingFrame_SetHoldTime(this, 5.0);
+				FadingFrame_SetFadeOutTime(this, 2.0);
+			</OnLoad>
+			<OnUpdate>
+				FadingFrame_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="RestReminderFrame" hidden="true">
+		<Scripts>
+			<OnLoad>
+				RestReminder_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				RestReminder_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	<GameTooltip name="RestReminderTooltip" parent="UIParent" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+			this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+		</OnLoad>
+	</Scripts>
+	</GameTooltip>
+</Ui>

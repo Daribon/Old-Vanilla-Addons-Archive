@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (MyBank)
+## Notes: CooldownCount for MyBank
+## Author: sarf
+## RequiredDeps: MyBank, CooldownCount
+CooldownCountMyBank.xml

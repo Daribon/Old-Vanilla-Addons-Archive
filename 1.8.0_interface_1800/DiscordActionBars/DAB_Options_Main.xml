@@ -1,0 +1,392 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+<Frame name="DAB_Options" inherits="DAB_DialogueBGTemplate" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+	<Size><AbsDimension x="575" y="655"/></Size>
+	<Anchors><Anchor point="CENTER"/></Anchors>
+	<Frames>
+		<Button name="DAB_CloseButton" hidden="false">
+			<Size><AbsDimension x="42" y="42"/></Size>
+			<Anchors>
+				<Anchor point="TOPRIGHT">
+					<Offset><AbsDimension x="-2" y="-2"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					DAB_Show_OptionsFrame("main");
+				</OnClick>
+			</Scripts>
+			<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+			<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+			<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+		</Button>
+		<Frame name="DAB_TitleFrame" inherits="DAB_DialogueBGTemplate" hidden="false">
+			<Size><AbsDimension x="230" y="70"/></Size>
+			<Anchors>
+				<Anchor point="BOTTOM" relativePoint="TOP">
+					<Offset><AbsDimension x="0" y="-15"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<FontString name="$parent_Label" inherits="GameFontNormal" text="DAB_TITLE">
+						<Color r="1.0" g="1.0" b="0.0"/>
+						<Anchor point="CENTER"/>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropBorderColor(1.0, 0.0, 0.0);
+					this:SetBackdropColor(1.0, 0.0, 0.0);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+
+		<Frame name="DAB_ButtonBG_Bars" inherits="DAB_ButtonBGTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="DAB_Options" relativePoint="TOPLEFT">
+					<Offset><AbsDimension x="10" y="-10"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetHeight(11 * 23 + 20);
+					this:SetBackdropColor(.1, .1, 1);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Frame name="DAB_OptionsTitle" inherits="DAB_TooltipBGTemplate" hidden="false">
+			<Size><AbsDimension x="373" y="30"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="DAB_ButtonBG_Bars" relativePoint="TOPRIGHT">
+					<Offset><AbsDimension x="-2" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(.1, .1, 1);
+				</OnLoad>
+			</Scripts>
+			<Layers>
+				<Layer level="ARTWORK">
+					<FontString name="$parent_Label" inherits="GameFontNormal">
+						<Color r="1.0" g="1.0" b="0.0"/>
+						<Anchor point="CENTER"/>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+		<Button name="DAB_Bar_Button1" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_ButtonBG_Bars" relativePoint="TOP">
+					<Offset><AbsDimension x="0" y="-10"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."1");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(1);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button2" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button1" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."2");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(2);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button3" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button2" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."3");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(3);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button4" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button3" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."4");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(4);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button5" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button4" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."5");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(5);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button6" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button5" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."6");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(6);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button7" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button6" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."7");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(7);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button8" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button7" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."8");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(8);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button9" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button8" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."9");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(9);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Bar_Button10" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button9" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Bar.."10");
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame(10);
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_OtherBars_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Bar_Button10" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.OtherBars);
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame("other");
+				</OnClick>
+			</Scripts>
+		</Button>
+
+		<Frame name="DAB_MiscOptionsBG" inherits="DAB_ButtonBGTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="DAB_ButtonBG_Bars" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetHeight(4 * 23 + 20);
+					this:SetBackdropColor(.1, .1, 1);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Button name="DAB_NumButtons_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_MiscOptionsBG" relativePoint="TOP">
+					<Offset><AbsDimension x="0" y="-10"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.NumButtons);
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame("numbuttons");
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Floaters_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_NumButtons_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Floaters);
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame("floaters");
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_Events_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Floaters_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.Events);
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame("events");
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_MiscOptions_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_Events_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.MiscOptions);
+				</OnLoad>
+				<OnClick>
+					DAB_Show_OptionsFrame("misc");
+				</OnClick>
+			</Scripts>
+		</Button>
+
+		<Frame name="DAB_TogglesBG" inherits="DAB_ButtonBGTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="DAB_MiscOptionsBG" relativePoint="BOTTOMLEFT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetHeight(5 * 23 + 20);
+					this:SetBackdropColor(.1, .1, 1);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Button name="DAB_ToggleDragging_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_TogglesBG" relativePoint="TOP">
+					<Offset><AbsDimension x="0" y="-10"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.UnlockDragging);
+				</OnLoad>
+				<OnClick>
+					DAB_Toggle_Dragging();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_ToggleButtonsLock_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_ToggleDragging_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.UnlockButtons);
+				</OnLoad>
+				<OnClick>
+					DAB_Toggle_ButtonsLock();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_ToggleIDs_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_ToggleButtonsLock_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.ShowIDs);
+				</OnLoad>
+				<OnClick>
+					DAB_Toggle_IDs();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_QuickSave_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_ToggleIDs_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.QuickSave);
+				</OnLoad>
+				<OnClick>
+					DAB_Options_SaveSettings(UnitName("player"));
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="DAB_QuickLoad_Button" inherits="DAB_ButtonTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_QuickSave_Button" relativePoint="BOTTOM"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.QuickLoad);
+				</OnLoad>
+				<OnClick>
+					DAB_Options_LoadSettings(UnitName("player"));
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:RegisterForDrag("LeftButton");
+			this:SetBackdropBorderColor(1.0, 0.0, 0.0);
+		</OnLoad>
+		<OnDragStart>
+			DAB_StartMoving(1);
+		</OnDragStart>
+		<OnDragStop>
+			DAB_StopMoving();
+		</OnDragStop>
+		<OnUpdate>
+			if (this.scale) then
+				if (this:GetScale() ~= this.scale) then
+					this:SetScale(this.scale);
+				end
+			end
+		</OnUpdate>
+	</Scripts>
+</Frame>
+
+</Ui>

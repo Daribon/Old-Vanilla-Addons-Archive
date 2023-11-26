@@ -1,0 +1,17 @@
+## Interface: 1800
+## Title: ZGAnnounce GUI
+## Notes: Allows for graphical setup of ZGAnnounce. All credits to Servitude for the GUI stuff.
+## Author: sarf
+## DefaultState: enabled
+## RequiredDeps: ZGAnnounce
+## OptionalDeps: Earth
+constants.lua
+localization_en.lua
+localization_de.lua
+localization_fr.lua
+localization_kr.lua
+ZGAnnounceGUI.lua
+ZGAnnounceGUI.xml
+InterruptionDatabase.lua
+InterruptionDatabase.xml
+

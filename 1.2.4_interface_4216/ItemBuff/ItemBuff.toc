@@ -1,0 +1,8 @@
+## Interface: 4216
+## Title: ItemBuff by Telo
+## Title-deDE: Telos ItemBuffs
+## Notes: Displays icons and timer text for buffs cast on your items
+## Notes-deDE: Zeigt Icons und Timer für Buffs auf Items an
+## OptionalDeps: Cosmos
+## RequiredDeps: Sea
+ItemBuff.xml

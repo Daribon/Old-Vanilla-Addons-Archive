@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: ConsumeButton
+## Notes: Gives the user a button that can be clicked to consume food/drink. Will show amount left.
+## Author: sarf
+## OptionalDeps: Cosmos
+## RequiredDeps: Sea
+##SavedVariables: ConsumeButton_Enabled, ConsumeButton_Large
+ConsumeButton.xml

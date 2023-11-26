@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: ItemBuffCharges
+## Notes: Displays charges on item buffs. Use /ibc to configure (unless you have Cosmos/Khaos).
+## Author: sarf
+## DefaultState: enabled
+## OptionalDeps: Cosmos, Khaos
+## SavedVariables: ItemBuffCharges_Options
+ItemBuffCharges.xml

@@ -1,0 +1,45 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<Script file="Insomniax_SCT_Shell.lua"/>
+
+	<Button name="Insomniax_SCT_Button" parent="Minimap" toplevel="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Insomniax_InitialiseIconMover(this, false, nIX_DEFAULTANGLE);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnClick>
+				Insomniax_SCT_OptionsFrameToggle (arg1);
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				GameTooltip:SetText("Open Scrolling Combat Text v3.0", 255/255, 209/255, 0/255);
+				GameTooltip:AddLine("Right-click to move", 1.00, 1.00, 1.00);				
+				GameTooltip:AddLine("The SCT mod allows to see all combat text", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("above your character and lets you customize", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("how it is displayed.", 80/255, 143/255, 148/255);
+				GameTooltip:AddLine("Slash Commands:", 1.00, 1.00, 1.00);
+				GameTooltip:AddLine("/sctdisplay : Used to create your own custom messages.", 53/255, 95/255, 98/255);
+				GameTooltip:AddLine("You can further customize custom messages by editing", 53/255, 95/255, 98/255);
+				GameTooltip:AddLine("the sct_event_config.lua file in the SCT mod folder.", 53/255, 95/255, 98/255);					
+				GameTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\Insomniax_SCT_Shell\Insomniax_SCT_Button_Up"/>
+		<PushedTexture file="Interface\AddOns\Insomniax_SCT_Shell\Insomniax_SCT_Button_Down"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\AddOns\Insomniax_SCT_Shell\Insomniax_Shell_Button_Glow"/>
+	</Button>
+</Ui>

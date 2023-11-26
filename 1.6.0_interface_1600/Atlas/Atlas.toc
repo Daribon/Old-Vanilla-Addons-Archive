@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Atlas v1.0.1
+## Notes: Atlas is an instance map browser.
+## SavedVariables: AtlasOptions
+Atlas.xml
+AtlasButton.xml
+AtlasOptions.xml

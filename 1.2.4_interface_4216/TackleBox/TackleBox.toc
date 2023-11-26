@@ -1,0 +1,9 @@
+## Interface: 4216
+## Title: Tackle Box
+## Title-deDE: TackleBox
+## Notes: Makes the fishermans life much easer.
+## Notes-deDE: Erleichtert das Fischen enorm.
+## OptionalDeps: Cosmos, DynamicData
+## RequiredDeps: Sea
+## SavedVariables: TackleBox_Config
+TackleBox.xml

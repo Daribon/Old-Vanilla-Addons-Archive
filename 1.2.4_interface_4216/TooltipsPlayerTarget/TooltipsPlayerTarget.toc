@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: Tooltips: Player Target
+## Author: Celandro
+## Notes: Colors the background of the tooltip based on target
+## RequiredDeps: TooltipsBase
+TooltipsPlayerTarget.xml

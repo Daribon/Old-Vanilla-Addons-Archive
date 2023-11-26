@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: Friends Facts
+## Notes: Records and displays friend level, class, location, pvpname, sex, race, and guild.
+## Author: AnduinLothar
+## SavedVariables: FriendsFacts_Data, FriendsFacts_PVPName
+FriendsFacts.xml

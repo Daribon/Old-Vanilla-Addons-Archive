@@ -1,0 +1,16 @@
+## Interface: 1800
+## Title: StupidMount
+## Author: sarf
+## Notes: Will automatically mount/dismount when gathering stuff. Does not work for Paladin/Warlock class specific mounts. Will also dismount on any action that can not be performed mounted.
+## DefaultState: enabled
+## OptionalDeps: Khaos, AutoMount, IsMounted
+## RequiredDeps: 
+## SavedVariables: StupidMount_Options
+constants.lua
+localization_en.lua
+localization_de.lua
+localization_fr.lua
+localization_kr.lua
+StupidMount2.lua
+StupidMount2_Options.lua
+StupidMount2.xml

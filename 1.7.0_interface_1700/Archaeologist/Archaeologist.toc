@@ -1,0 +1,7 @@
+## Interface: 1700
+## Title: Archaeologist
+## Notes: Unearthing Health and Mana values at a unit frame near you.
+## Author: AnduinLothar
+## OptionalDeps: Cosmos, MobHealth, Khaos
+## Dependencies: Sea
+Archaeologist.xml

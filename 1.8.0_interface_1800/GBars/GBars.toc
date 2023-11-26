@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: GBars 0.9.3
+## SavedVariables: GBars_State
+## Notes: Goncyn's Bars - splits apart the main action bar and adds a second configurable bar
+GBars.xml
+GPetActionBar.xml
+GShapeshiftBar.xml
+GMicroButtons.xml
+GAutoBar.xml

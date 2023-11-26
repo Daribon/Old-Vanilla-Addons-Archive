@@ -1,0 +1,1145 @@
+<Bindings>
+	<Binding name="DAB_OPTIONS" header="DAB">
+		DAB_Show_OptionsFrame("main");
+	</Binding>
+	<Binding name="DAB_DRAGGING">
+		DAB_Toggle_Dragging();
+	</Binding>
+	<Binding name="DAB_BUTTONLOCK">
+		DAB_Toggle_ButtonsLock();
+	</Binding>
+	<Binding name="DAB_BUTTONIDS">
+		DAB_Toggle_IDs();
+	</Binding>
+	<Binding name="DAB_KEYPRESSBARS" runOnUp="true">
+		if (keystate == "down") then
+			for i=1,10 do
+				if (DAB_Settings[DAB_INDEX].Bar[i].showonkeypress) then
+					DAB_Bar_Show(i);
+				end
+			end
+			for i,v in DAB_Settings[DAB_INDEX].Floaters do
+				if (v.showonkeypress) then
+					DAB_Floater_Show(i);
+				end
+			end
+		else
+			for i=1,10 do
+				if (DAB_Settings[DAB_INDEX].Bar[i].showonkeypress) then
+					DAB_Bar_Hide(i);
+				end
+			end
+			for i,v in DAB_Settings[DAB_INDEX].Floaters do
+				if (v.showonkeypress) then
+					DAB_Floater_Hide(i);
+				end
+			end
+		end
+	</Binding>
+	<Binding name="DAB_SHOWGHOSTBAR" runOnUp="true">
+		if (not DAB_Settings[DAB_INDEX].GhostBar) then return; end
+		if (keystate == "down") then
+			local x, y = GetCursorPosition();
+			x = x / UIParent:GetScale();
+			y = y / UIParent:GetScale();
+			DAB_Bar_Show(DAB_Settings[DAB_INDEX].GhostBar);
+			getglobal("DAB_ActionBar_"..DAB_Settings[DAB_INDEX].GhostBar):ClearAllPoints();
+			getglobal("DAB_ActionBar_"..DAB_Settings[DAB_INDEX].GhostBar):SetPoint("CENTER", "UIParent", "BOTTOMLEFT", x, y);
+		else
+			DAB_Bar_Hide(DAB_Settings[DAB_INDEX].GhostBar);
+		end
+	</Binding>
+
+	<Binding name="DAB2_1" header="DAB2">
+			DAB_SetKeybindingBar(1);
+
+	</Binding>
+	<Binding name="DAB2_2">
+			DAB_SetKeybindingBar(2);
+
+	</Binding>
+	<Binding name="DAB2_3">
+			DAB_SetKeybindingBar(3);
+
+	</Binding>
+	<Binding name="DAB2_4">
+			DAB_SetKeybindingBar(4);
+
+	</Binding>
+	<Binding name="DAB2_5">
+			DAB_SetKeybindingBar(5);
+
+	</Binding>
+	<Binding name="DAB2_6">
+			DAB_SetKeybindingBar(6);
+
+	</Binding>
+	<Binding name="DAB2_7">
+			DAB_SetKeybindingBar(7);
+
+	</Binding>
+	<Binding name="DAB2_8">
+			DAB_SetKeybindingBar(8);
+
+	</Binding>
+	<Binding name="DAB2_9">
+			DAB_SetKeybindingBar(9);
+
+	</Binding>
+	<Binding name="DAB2_10">
+			DAB_SetKeybindingBar(10);
+	</Binding>
+
+	<Binding name="DAB3_1" header="DAB3" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(1);
+		else
+			DAB_DynamicKeybindingButtonDown(1);
+		end
+	</Binding>
+	<Binding name="DAB3_2" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(2);
+		else
+			DAB_DynamicKeybindingButtonDown(2);
+		end
+	</Binding>
+	<Binding name="DAB3_3" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(3);
+		else
+			DAB_DynamicKeybindingButtonDown(3);
+		end
+	</Binding>
+	<Binding name="DAB3_4" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(4);
+		else
+			DAB_DynamicKeybindingButtonDown(4);
+		end
+	</Binding>
+	<Binding name="DAB3_5" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(5);
+		else
+			DAB_DynamicKeybindingButtonDown(5);
+		end
+	</Binding>
+	<Binding name="DAB3_6" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(6);
+		else
+			DAB_DynamicKeybindingButtonDown(6);
+		end
+	</Binding>
+	<Binding name="DAB3_7" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(7);
+		else
+			DAB_DynamicKeybindingButtonDown(7);
+		end
+	</Binding>
+	<Binding name="DAB3_8" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(8);
+		else
+			DAB_DynamicKeybindingButtonDown(8);
+		end
+	</Binding>
+	<Binding name="DAB3_9" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(9);
+		else
+			DAB_DynamicKeybindingButtonDown(9);
+		end
+	</Binding>
+	<Binding name="DAB3_10" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(10);
+		else
+			DAB_DynamicKeybindingButtonDown(10);
+		end
+	</Binding>
+	<Binding name="DAB3_11" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(11);
+		else
+			DAB_DynamicKeybindingButtonDown(11);
+		end
+	</Binding>
+	<Binding name="DAB3_12" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(12);
+		else
+			DAB_DynamicKeybindingButtonDown(12);
+		end
+	</Binding>
+	<Binding name="DAB3_13" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(13);
+		else
+			DAB_DynamicKeybindingButtonDown(13);
+		end
+	</Binding>
+	<Binding name="DAB3_14" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(14);
+		else
+			DAB_DynamicKeybindingButtonDown(14);
+		end
+	</Binding>
+	<Binding name="DAB3_15" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(15);
+		else
+			DAB_DynamicKeybindingButtonDown(15);
+		end
+	</Binding>
+	<Binding name="DAB3_16" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(16);
+		else
+			DAB_DynamicKeybindingButtonDown(16);
+		end
+	</Binding>
+	<Binding name="DAB3_17" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(17);
+		else
+			DAB_DynamicKeybindingButtonDown(17);
+		end
+	</Binding>
+	<Binding name="DAB3_18" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(18);
+		else
+			DAB_DynamicKeybindingButtonDown(18);
+		end
+	</Binding>
+	<Binding name="DAB3_19" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(19);
+		else
+			DAB_DynamicKeybindingButtonDown(19);
+		end
+	</Binding>
+	<Binding name="DAB3_20" runOnUp="true">
+		if (keystate == "up") then
+			DAB_DynamicKeybindingUseAction(20);
+		else
+			DAB_DynamicKeybindingButtonDown(20);
+		end
+	</Binding>
+
+	<Binding name="DABCBOX_1" header="DABCBOX" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(1);
+		else
+			DAB_ControlBox_OnKeyPressed(1, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_2" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(2);
+		else
+			DAB_ControlBox_OnKeyPressed(2, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_3" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(3);
+		else
+			DAB_ControlBox_OnKeyPressed(3, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_4" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(4);
+		else
+			DAB_ControlBox_OnKeyPressed(4, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_5" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(5);
+		else
+			DAB_ControlBox_OnKeyPressed(5, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_6" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(6);
+		else
+			DAB_ControlBox_OnKeyPressed(6, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_7" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(7);
+		else
+			DAB_ControlBox_OnKeyPressed(7, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_8" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(8);
+		else
+			DAB_ControlBox_OnKeyPressed(8, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_9" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(9);
+		else
+			DAB_ControlBox_OnKeyPressed(9, 1);
+		end
+	</Binding>
+	<Binding name="DABCBOX_10" runOnUp="true">
+		if (keystate == "down") then
+			DAB_ControlBox_OnKeyPressed(10);
+		else
+			DAB_ControlBox_OnKeyPressed(10, 1);
+		end
+	</Binding>
+
+	<Binding name="DABBUTTON1" header="DABBARS" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(1);
+		else
+			DAB_KeybindingButtonDown(1);
+		end
+	</Binding>
+	<Binding name="DABBUTTON2" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(2);
+		else
+			DAB_KeybindingButtonDown(2);
+		end
+	</Binding>
+	<Binding name="DABBUTTON3" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(3);
+		else
+			DAB_KeybindingButtonDown(3);
+		end
+	</Binding>
+	<Binding name="DABBUTTON4" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(4);
+		else
+			DAB_KeybindingButtonDown(4);
+		end
+	</Binding>
+	<Binding name="DABBUTTON5" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(5);
+		else
+			DAB_KeybindingButtonDown(5);
+		end
+	</Binding>
+	<Binding name="DABBUTTON6" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(6);
+		else
+			DAB_KeybindingButtonDown(6);
+		end
+	</Binding>
+	<Binding name="DABBUTTON7" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(7);
+		else
+			DAB_KeybindingButtonDown(7);
+		end
+	</Binding>
+	<Binding name="DABBUTTON8" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(8);
+		else
+			DAB_KeybindingButtonDown(8);
+		end
+	</Binding>
+	<Binding name="DABBUTTON9" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(9);
+		else
+			DAB_KeybindingButtonDown(9);
+		end
+	</Binding>
+	<Binding name="DABBUTTON10" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(10);
+		else
+			DAB_KeybindingButtonDown(10);
+		end
+	</Binding>
+	<Binding name="DABBUTTON11" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(11);
+		else
+			DAB_KeybindingButtonDown(11);
+		end
+	</Binding>
+	<Binding name="DABBUTTON12" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(12);
+		else
+			DAB_KeybindingButtonDown(12);
+		end
+	</Binding>
+	<Binding name="DABBUTTON13" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(13);
+		else
+			DAB_KeybindingButtonDown(13);
+		end
+	</Binding>
+	<Binding name="DABBUTTON14" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(14);
+		else
+			DAB_KeybindingButtonDown(14);
+		end
+	</Binding>
+	<Binding name="DABBUTTON15" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(15);
+		else
+			DAB_KeybindingButtonDown(15);
+		end
+	</Binding>
+	<Binding name="DABBUTTON16" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(16);
+		else
+			DAB_KeybindingButtonDown(16);
+		end
+	</Binding>
+	<Binding name="DABBUTTON17" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(17);
+		else
+			DAB_KeybindingButtonDown(17);
+		end
+	</Binding>
+	<Binding name="DABBUTTON18" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(18);
+		else
+			DAB_KeybindingButtonDown(18);
+		end
+	</Binding>
+	<Binding name="DABBUTTON19" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(19);
+		else
+			DAB_KeybindingButtonDown(19);
+		end
+	</Binding>
+	<Binding name="DABBUTTON20" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(20);
+		else
+			DAB_KeybindingButtonDown(20);
+		end
+	</Binding>
+	<Binding name="DABBUTTON21" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(21);
+		else
+			DAB_KeybindingButtonDown(21);
+		end
+	</Binding>
+	<Binding name="DABBUTTON22" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(22);
+		else
+			DAB_KeybindingButtonDown(22);
+		end
+	</Binding>
+	<Binding name="DABBUTTON23" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(23);
+		else
+			DAB_KeybindingButtonDown(23);
+		end
+	</Binding>
+	<Binding name="DABBUTTON24" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(24);
+		else
+			DAB_KeybindingButtonDown(24);
+		end
+	</Binding>
+	<Binding name="DABBUTTON25" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(25);
+		else
+			DAB_KeybindingButtonDown(25);
+		end
+	</Binding>
+	<Binding name="DABBUTTON26" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(26);
+		else
+			DAB_KeybindingButtonDown(26);
+		end
+	</Binding>
+	<Binding name="DABBUTTON27" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(27);
+		else
+			DAB_KeybindingButtonDown(27);
+		end
+	</Binding>
+	<Binding name="DABBUTTON28" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(28);
+		else
+			DAB_KeybindingButtonDown(28);
+		end
+	</Binding>
+	<Binding name="DABBUTTON29" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(29);
+		else
+			DAB_KeybindingButtonDown(29);
+		end
+	</Binding>
+	<Binding name="DABBUTTON30" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(30);
+		else
+			DAB_KeybindingButtonDown(30);
+		end
+	</Binding>
+	<Binding name="DABBUTTON31" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(31);
+		else
+			DAB_KeybindingButtonDown(31);
+		end
+	</Binding>
+	<Binding name="DABBUTTON32" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(32);
+		else
+			DAB_KeybindingButtonDown(32);
+		end
+	</Binding>
+	<Binding name="DABBUTTON33" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(33);
+		else
+			DAB_KeybindingButtonDown(33);
+		end
+	</Binding>
+	<Binding name="DABBUTTON34" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(34);
+		else
+			DAB_KeybindingButtonDown(34);
+		end
+	</Binding>
+	<Binding name="DABBUTTON35" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(35);
+		else
+			DAB_KeybindingButtonDown(35);
+		end
+	</Binding>
+	<Binding name="DABBUTTON36" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(36);
+		else
+			DAB_KeybindingButtonDown(36);
+		end
+	</Binding>
+	<Binding name="DABBUTTON37" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(37);
+		else
+			DAB_KeybindingButtonDown(37);
+		end
+	</Binding>
+	<Binding name="DABBUTTON38" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(38);
+		else
+			DAB_KeybindingButtonDown(38);
+		end
+	</Binding>
+	<Binding name="DABBUTTON39" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(39);
+		else
+			DAB_KeybindingButtonDown(39);
+		end
+	</Binding>
+	<Binding name="DABBUTTON40" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(40);
+		else
+			DAB_KeybindingButtonDown(40);
+		end
+	</Binding>
+	<Binding name="DABBUTTON41" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(41);
+		else
+			DAB_KeybindingButtonDown(41);
+		end
+	</Binding>
+	<Binding name="DABBUTTON42" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(42);
+		else
+			DAB_KeybindingButtonDown(42);
+		end
+	</Binding>
+	<Binding name="DABBUTTON43" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(43);
+		else
+			DAB_KeybindingButtonDown(43);
+		end
+	</Binding>
+	<Binding name="DABBUTTON44" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(44);
+		else
+			DAB_KeybindingButtonDown(44);
+		end
+	</Binding>
+	<Binding name="DABBUTTON45" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(45);
+		else
+			DAB_KeybindingButtonDown(45);
+		end
+	</Binding>
+	<Binding name="DABBUTTON46" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(46);
+		else
+			DAB_KeybindingButtonDown(46);
+		end
+	</Binding>
+	<Binding name="DABBUTTON47" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(47);
+		else
+			DAB_KeybindingButtonDown(47);
+		end
+	</Binding>
+	<Binding name="DABBUTTON48" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(48);
+		else
+			DAB_KeybindingButtonDown(48);
+		end
+	</Binding>
+	<Binding name="DABBUTTON49" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(49);
+		else
+			DAB_KeybindingButtonDown(49);
+		end
+	</Binding>
+	<Binding name="DABBUTTON50" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(50);
+		else
+			DAB_KeybindingButtonDown(50);
+		end
+	</Binding>
+	<Binding name="DABBUTTON51" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(51);
+		else
+			DAB_KeybindingButtonDown(51);
+		end
+	</Binding>
+	<Binding name="DABBUTTON52" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(52);
+		else
+			DAB_KeybindingButtonDown(52);
+		end
+	</Binding>
+	<Binding name="DABBUTTON53" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(53);
+		else
+			DAB_KeybindingButtonDown(53);
+		end
+	</Binding>
+	<Binding name="DABBUTTON54" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(54);
+		else
+			DAB_KeybindingButtonDown(54);
+		end
+	</Binding>
+	<Binding name="DABBUTTON55" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(55);
+		else
+			DAB_KeybindingButtonDown(55);
+		end
+	</Binding>
+	<Binding name="DABBUTTON56" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(56);
+		else
+			DAB_KeybindingButtonDown(56);
+		end
+	</Binding>
+	<Binding name="DABBUTTON57" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(57);
+		else
+			DAB_KeybindingButtonDown(57);
+		end
+	</Binding>
+	<Binding name="DABBUTTON58" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(58);
+		else
+			DAB_KeybindingButtonDown(58);
+		end
+	</Binding>
+	<Binding name="DABBUTTON59" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(59);
+		else
+			DAB_KeybindingButtonDown(59);
+		end
+	</Binding>
+	<Binding name="DABBUTTON60" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(60);
+		else
+			DAB_KeybindingButtonDown(60);
+		end
+	</Binding>
+	<Binding name="DABBUTTON61" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(61);
+		else
+			DAB_KeybindingButtonDown(61);
+		end
+	</Binding>
+	<Binding name="DABBUTTON62" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(62);
+		else
+			DAB_KeybindingButtonDown(62);
+		end
+	</Binding>
+	<Binding name="DABBUTTON63" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(63);
+		else
+			DAB_KeybindingButtonDown(63);
+		end
+	</Binding>
+	<Binding name="DABBUTTON64" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(64);
+		else
+			DAB_KeybindingButtonDown(64);
+		end
+	</Binding>
+	<Binding name="DABBUTTON65" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(65);
+		else
+			DAB_KeybindingButtonDown(65);
+		end
+	</Binding>
+	<Binding name="DABBUTTON66" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(66);
+		else
+			DAB_KeybindingButtonDown(66);
+		end
+	</Binding>
+	<Binding name="DABBUTTON67" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(67);
+		else
+			DAB_KeybindingButtonDown(67);
+		end
+	</Binding>
+	<Binding name="DABBUTTON68" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(68);
+		else
+			DAB_KeybindingButtonDown(68);
+		end
+	</Binding>
+	<Binding name="DABBUTTON69" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(69);
+		else
+			DAB_KeybindingButtonDown(69);
+		end
+	</Binding>
+	<Binding name="DABBUTTON70" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(70);
+		else
+			DAB_KeybindingButtonDown(70);
+		end
+	</Binding>
+	<Binding name="DABBUTTON71" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(71);
+		else
+			DAB_KeybindingButtonDown(71);
+		end
+	</Binding>
+	<Binding name="DABBUTTON72" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(72);
+		else
+			DAB_KeybindingButtonDown(72);
+		end
+	</Binding>
+	<Binding name="DABBUTTON73" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(73);
+		else
+			DAB_KeybindingButtonDown(73);
+		end
+	</Binding>
+	<Binding name="DABBUTTON74" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(74);
+		else
+			DAB_KeybindingButtonDown(74);
+		end
+	</Binding>
+	<Binding name="DABBUTTON75" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(75);
+		else
+			DAB_KeybindingButtonDown(75);
+		end
+	</Binding>
+	<Binding name="DABBUTTON76" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(76);
+		else
+			DAB_KeybindingButtonDown(76);
+		end
+	</Binding>
+	<Binding name="DABBUTTON77" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(77);
+		else
+			DAB_KeybindingButtonDown(77);
+		end
+	</Binding>
+	<Binding name="DABBUTTON78" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(78);
+		else
+			DAB_KeybindingButtonDown(78);
+		end
+	</Binding>
+	<Binding name="DABBUTTON79" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(79);
+		else
+			DAB_KeybindingButtonDown(79);
+		end
+	</Binding>
+	<Binding name="DABBUTTON80" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(80);
+		else
+			DAB_KeybindingButtonDown(80);
+		end
+	</Binding>
+	<Binding name="DABBUTTON81" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(81);
+		else
+			DAB_KeybindingButtonDown(81);
+		end
+	</Binding>
+	<Binding name="DABBUTTON82" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(82);
+		else
+			DAB_KeybindingButtonDown(82);
+		end
+	</Binding>
+	<Binding name="DABBUTTON83" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(83);
+		else
+			DAB_KeybindingButtonDown(83);
+		end
+	</Binding>
+	<Binding name="DABBUTTON84" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(84);
+		else
+			DAB_KeybindingButtonDown(84);
+		end
+	</Binding>
+	<Binding name="DABBUTTON85" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(85);
+		else
+			DAB_KeybindingButtonDown(85);
+		end
+	</Binding>
+	<Binding name="DABBUTTON86" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(86);
+		else
+			DAB_KeybindingButtonDown(86);
+		end
+	</Binding>
+	<Binding name="DABBUTTON87" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(87);
+		else
+			DAB_KeybindingButtonDown(87);
+		end
+	</Binding>
+	<Binding name="DABBUTTON88" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(88);
+		else
+			DAB_KeybindingButtonDown(88);
+		end
+	</Binding>
+	<Binding name="DABBUTTON89" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(89);
+		else
+			DAB_KeybindingButtonDown(89);
+		end
+	</Binding>
+	<Binding name="DABBUTTON90" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(90);
+		else
+			DAB_KeybindingButtonDown(90);
+		end
+	</Binding>
+	<Binding name="DABBUTTON91" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(91);
+		else
+			DAB_KeybindingButtonDown(91);
+		end
+	</Binding>
+	<Binding name="DABBUTTON92" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(92);
+		else
+			DAB_KeybindingButtonDown(92);
+		end
+	</Binding>
+	<Binding name="DABBUTTON93" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(93);
+		else
+			DAB_KeybindingButtonDown(93);
+		end
+	</Binding>
+	<Binding name="DABBUTTON94" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(94);
+		else
+			DAB_KeybindingButtonDown(94);
+		end
+	</Binding>
+	<Binding name="DABBUTTON95" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(95);
+		else
+			DAB_KeybindingButtonDown(95);
+		end
+	</Binding>
+	<Binding name="DABBUTTON96" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(96);
+		else
+			DAB_KeybindingButtonDown(96);
+		end
+	</Binding>
+	<Binding name="DABBUTTON97" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(97);
+		else
+			DAB_KeybindingButtonDown(97);
+		end
+	</Binding>
+	<Binding name="DABBUTTON98" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(98);
+		else
+			DAB_KeybindingButtonDown(98);
+		end
+	</Binding>
+	<Binding name="DABBUTTON99" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(99);
+		else
+			DAB_KeybindingButtonDown(99);
+		end
+	</Binding>
+	<Binding name="DABBUTTON100" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(100);
+		else
+			DAB_KeybindingButtonDown(100);
+		end
+	</Binding>
+	<Binding name="DABBUTTON101" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(101);
+		else
+			DAB_KeybindingButtonDown(101);
+		end
+	</Binding>
+	<Binding name="DABBUTTON102" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(102);
+		else
+			DAB_KeybindingButtonDown(102);
+		end
+	</Binding>
+	<Binding name="DABBUTTON103" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(103);
+		else
+			DAB_KeybindingButtonDown(103);
+		end
+	</Binding>
+	<Binding name="DABBUTTON104" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(104);
+		else
+			DAB_KeybindingButtonDown(104);
+		end
+	</Binding>
+	<Binding name="DABBUTTON105" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(105);
+		else
+			DAB_KeybindingButtonDown(105);
+		end
+	</Binding>
+	<Binding name="DABBUTTON106" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(106);
+		else
+			DAB_KeybindingButtonDown(106);
+		end
+	</Binding>
+	<Binding name="DABBUTTON107" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(107);
+		else
+			DAB_KeybindingButtonDown(107);
+		end
+	</Binding>
+	<Binding name="DABBUTTON108" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(108);
+		else
+			DAB_KeybindingButtonDown(108);
+		end
+	</Binding>
+	<Binding name="DABBUTTON109" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(109);
+		else
+			DAB_KeybindingButtonDown(109);
+		end
+	</Binding>
+	<Binding name="DABBUTTON110" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(110);
+		else
+			DAB_KeybindingButtonDown(110);
+		end
+	</Binding>
+	<Binding name="DABBUTTON111" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(111);
+		else
+			DAB_KeybindingButtonDown(111);
+		end
+	</Binding>
+	<Binding name="DABBUTTON112" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(112);
+		else
+			DAB_KeybindingButtonDown(112);
+		end
+	</Binding>
+	<Binding name="DABBUTTON113" runOnUp="true">
+			if (keystate == "up") then
+			DAB_KeybindingUseAction(113);
+		else
+			DAB_KeybindingButtonDown(113);
+		end
+	</Binding>
+	<Binding name="DABBUTTON114" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(114);
+		else
+			DAB_KeybindingButtonDown(114);
+		end
+	</Binding>
+	<Binding name="DABBUTTON115" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(115);
+		else
+			DAB_KeybindingButtonDown(115);
+		end
+	</Binding>
+	<Binding name="DABBUTTON116" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(116);
+		else
+			DAB_KeybindingButtonDown(116);
+		end
+	</Binding>
+	<Binding name="DABBUTTON117" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(117);
+		else
+			DAB_KeybindingButtonDown(117);
+		end
+	</Binding>
+	<Binding name="DABBUTTON118" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(118);
+		else
+			DAB_KeybindingButtonDown(118);
+		end
+	</Binding>
+	<Binding name="DABBUTTON119" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(119);
+		else
+			DAB_KeybindingButtonDown(119);
+		end
+	</Binding>
+	<Binding name="DABBUTTON120" runOnUp="true">
+		if (keystate == "up") then
+			DAB_KeybindingUseAction(120);
+		else
+			DAB_KeybindingButtonDown(120);
+		end
+	</Binding>
+</Bindings>

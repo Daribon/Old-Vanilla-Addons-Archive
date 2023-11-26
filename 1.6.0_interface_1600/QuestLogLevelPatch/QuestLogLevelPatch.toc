@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: QuestLog Level Patch
+## Notes: Adds level within paranthesis to the quest log. Example: [62] Order Must Be Restored
+## OptionalDeps: Cosmos, Khaos
+## SavedVariables: QuestLogLevelPatch_Options
+## Author: sarf
+QuestLogLevelPatch.xml

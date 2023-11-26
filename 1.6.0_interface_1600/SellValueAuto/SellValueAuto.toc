@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: SellValueAuto
+## Author: sarf
+## Notes: Automation for SellValue addon. Can also use LootLink/SellValue to automatically destroy the most worthless item when running out of space.
+## OptionalDeps: SellValue, LootLink
+SellValueAuto.xml

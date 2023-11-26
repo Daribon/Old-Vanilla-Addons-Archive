@@ -1,0 +1,544 @@
+<!-- SocialNotesEditor.xml; see SocialNotesEditor.lua for more info -->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="SocialNotesEditor.lua"/>
+
+<!-- This template is used for every note title in the left-hand title scroll view -->
+
+	<Button name="SocialNotesEditorEntryButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="132" y="20"/>
+		</Size>
+		<Scripts>
+			<OnClick>SocialNotesEditor_OnEntryClick(this:GetID());</OnClick>
+		</Scripts>
+		<NormalTexture name="$parentNormalTexture" file="Interface\AuctionFrame\UI-AuctionFrame-FilterBg">
+			<TexCoords left="0" right="0.53125" top="0" bottom="0.625"/>
+		</NormalTexture>
+		<HighlightTexture file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD"/>
+		<NormalText name="$parentNormalText" inherits="GameFontNormalSmall" justifyH="LEFT">
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="4" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalText>
+		<HighlightText name="$parentHighlightText" inherits="GameFontHighlightSmall" justifyH="LEFT">
+			<Anchors>
+			<Anchor point="LEFT">
+				<Offset>
+					<AbsDimension x="4" y="0"/>
+			 	</Offset>
+			</Anchor>
+			</Anchors>
+		</HighlightText>
+	</Button>
+	<Frame name="SocialNotesEditorFrame" parent="UIParent" frameStrata="DIALOG" movable="true" resizable="true" enableKeyboard="true" enableMouse="true" hidden="true">
+		<Scripts>
+			<OnLoad>SocialNotesEditor_OnLoad();</OnLoad>
+			<OnEvent>SocialNotesEditor_OnEvent(event);</OnEvent>
+			<OnDragStart>SocialNotesEditor_OnDragStart();</OnDragStart>
+			<OnDragStop>SocialNotesEditor_OnDragStop();</OnDragStop>
+		</Scripts>
+		<Size>
+			<AbsDimension x="400" y="400"/>
+		</Size>
+		<ResizeBounds>
+			<minResize>
+				<AbsDimension x="300" y="200"/>
+			</minResize>
+			<maxResize>
+				<AbsDimension x="550" y="579"/>
+			</maxResize>
+		</ResizeBounds>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="FriendsFrame" relativePoint="TOPRIGHT" >
+				<Offset>
+					<AbsDimension x="0" y="-50"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+
+<!-- The entry title box -->
+
+			<FontString name="SocialNotesEditorEntryTitleText" inherits="GameFontHighlight" text="GeoWar">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="SocialNotesEditorFrame">
+						<Offset>
+							<AbsDimension x="171" y="-12"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeTo="SocialNotesEditorFrame">
+						<Offset>
+							<AbsDimension x="-35" y="-42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+		        <Color r="1.0" g="1.0" b="0.0"/>
+			</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Frames>
+			<Button name="SocialNotesEditorCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="SocialNotesEditorFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="-26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						SocialNotesEditor_OnCloseButtonClick(arg1);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SocialNotesEditorResizeButton">
+				<Size>
+					<AbsDimension x="6" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-4" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture>
+							<Color r="0.1" g="0.1" b="0.1" a="0.75"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnMouseDown>SocialNotesEditor_OnResizeButtonMouseDown("BOTTOMRIGHT");</OnMouseDown>
+					<OnMouseUp>SocialNotesEditor_OnResizeButtonMouseUp();</OnMouseUp>
+				</Scripts>
+			</Button>
+
+<!-- Buttons above left hand scroll frame -->
+
+			<Button name="SocialNotesEditorClearNoteButton" inherits="UIPanelButtonTemplate" text="COS_SNE_CLEAR_NOTE">
+				<Size>
+					<AbsDimension x="125" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="16" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SocialNotesEditor_OnClearButtonClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SocialNotesEditorDeleteNoteButton" inherits="UIPanelButtonTemplate" text="COS_SNE_DELETE_NOTE">
+				<Size>
+					<AbsDimension x="125" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorClearNoteButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SocialNotesEditor_OnDeleteButtonClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SocialNotesEditorAddTimeStampButton" inherits="UIPanelButtonTemplate" text="COS_SNE_ADD_TIMESTAMP">
+				<Size>
+					<AbsDimension x="125" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorDeleteNoteButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SocialNotesEditor_OnAddTimeStampButtonClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SocialNotesEditorAddPartyButton" inherits="UIPanelButtonTemplate" text="COS_SNE_ADD_PARTY">
+				<Size>
+					<AbsDimension x="125" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorAddTimeStampButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SocialNotesEditor_OnAddPartyButtonClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SocialNotesEditorAddLocationButton" inherits="UIPanelButtonTemplate" text="COS_SNE_ADD_LOCATION">
+				<Size>
+					<AbsDimension x="125" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorAddPartyButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SocialNotesEditor_OnAddLocationButtonClick();</OnClick>
+				</Scripts>
+			</Button>
+
+<!-- Left hand faux scroll frame of player names -->
+
+			<ScrollFrame name="SocialNotesEditorEntriesScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorAddLocationButton">
+						<Offset>
+							<AbsDimension x="15" y="-16"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorFrame">
+						<Offset>
+							<AbsDimension x="145" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnScrollRangeChanged>SocialNotesEditor_UpdateEntryList();</OnScrollRangeChanged>
+					<OnSizeChanged>SocialNotesEditor_UpdateEntryList();</OnSizeChanged>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(32, SocialNotesEditor_UpdateEntriesScrollFrame);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+
+<!-- These are the entry buttons -->
+
+			<Button name="SocialNotesEditorEntry1" inherits="SocialNotesEditorEntryButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="SocialNotesEditorEntriesScrollFrame">
+						<Offset>
+							<AbsDimension x="-16" y="-2`"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry2" inherits="SocialNotesEditorEntryButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry1">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry3" inherits="SocialNotesEditorEntryButtonTemplate" id="3">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry2">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry4" inherits="SocialNotesEditorEntryButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry3">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry5" inherits="SocialNotesEditorEntryButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry4">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry6" inherits="SocialNotesEditorEntryButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry5">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry7" inherits="SocialNotesEditorEntryButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry6">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry8" inherits="SocialNotesEditorEntryButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry7">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry9" inherits="SocialNotesEditorEntryButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry8">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry10" inherits="SocialNotesEditorEntryButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry9">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry11" inherits="SocialNotesEditorEntryButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry10">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry12" inherits="SocialNotesEditorEntryButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry11">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry13" inherits="SocialNotesEditorEntryButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry12">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry14" inherits="SocialNotesEditorEntryButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry13">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry15" inherits="SocialNotesEditorEntryButtonTemplate" id="15">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry14">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry16" inherits="SocialNotesEditorEntryButtonTemplate" id="16">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry15">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry17" inherits="SocialNotesEditorEntryButtonTemplate" id="17">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry16">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry18" inherits="SocialNotesEditorEntryButtonTemplate" id="18">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry17">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry19" inherits="SocialNotesEditorEntryButtonTemplate" id="19">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry18">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry20" inherits="SocialNotesEditorEntryButtonTemplate" id="20">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry19">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry21" inherits="SocialNotesEditorEntryButtonTemplate" id="21">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry20">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry22" inherits="SocialNotesEditorEntryButtonTemplate" id="22">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry21">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry23" inherits="SocialNotesEditorEntryButtonTemplate" id="23">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry22">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry24" inherits="SocialNotesEditorEntryButtonTemplate" id="24">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry23">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SocialNotesEditorEntry25" inherits="SocialNotesEditorEntryButtonTemplate" id="25">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="SocialNotesEditorEntry24">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+<!-- this is the chunk to the right -->
+
+<!-- The entry body scroll frame -->
+
+			<ScrollFrame name="SocialNotesEditorEntryScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="SocialNotesEditorFrame">
+						<Offset>
+							<AbsDimension x="171" y="-40"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="SocialNotesEditorFrame">
+						<Offset>
+							<AbsDimension x="-35" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="SocialNotesEditorBodyBackground">
+							<Color r="0" g="0" b="0" a="0.75"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<ScrollChild>
+					<Frame name="SocialNotesEditorScrollChildFrame" enableMouse="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="SocialNotesEditorEntryScrollFrame">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="SocialNotesEditorEntryScrollFrame">
+							<Offset>
+								<AbsDimension x="-25" y="0"/>
+							</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="SCBackground_Editor">
+								<Color r="0" g="0.5" b="0" a="1"/>
+							</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<EditBox name="SocialNotesEditorEntryEditBox" letters="4096" multiLine="true" enableMouse="true" autoFocus="false">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="SocialNotesEditorEntryScrollFrame">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="SocialNotesEditorEntryScrollFrame">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnShow>SocialNotesEditorEntryEditBox:SetFocus();</OnShow>
+								<OnEscapePressed>
+									--HideUIPanel(SocialNotesEditorFrame);
+									SocialNotesEditorFrame:Hide();
+								</OnEscapePressed>
+								<OnClick>this:SetFocus();</OnClick>
+								<OnTextChanged>SocialNotesEditor_OnEntryBodyTextChanged();</OnTextChanged>
+								<OnEditFocusLost>SocialNotesEditor_OnEntryBodyEditFocusLost();</OnEditFocusLost>
+							</Scripts>
+							<FontString inherits="ChatFontNormal"/>
+							</EditBox>
+						</Frames>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame>
+		</Frames>
+	</Frame>
+</Ui>

@@ -1,0 +1,11 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r ReagentInfo (v1.5.1)
+## Version: 1.5.1
+## Notes: Displays profession/recipe usage information in item tooltips
+## Author: Jerigord (reagentwatch -at- tarys -dot- com)
+## Dependencies: ReagentData
+## OptionalDeps: myAddOns, LootLink
+## SavedVariables: ReagentInfo_Config
+## DefaultState: enabled
+ReagentInfo.xml
+

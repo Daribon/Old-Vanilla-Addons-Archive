@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: PetMonitor
+## Notes: Shares Pet Health With Party Members
+## OptionalDeps:
+## Dependencies: Cosmos, Sea, Chronos
+## SavedVariables: PetMonitor_SavedVars
+PetMonitor.xml

@@ -1,0 +1,1510 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="AutoBar_Config.lua"/>
+	<Frame name="AutoBar_Config_Choose" toplevel="true" parent="UIParent" hidden = "true" frameStrata="MEDIUM">
+		<Size>
+			<AbsDimension x="300" y="470"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="80"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name = "$parent_Text1" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="6" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_Text2" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_Text1">
+							<Offset>
+								<AbsDimension x="0" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_Text3" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_Text2">
+							<Offset>
+								<AbsDimension x="0" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_Text4" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_Text3">
+							<Offset>
+								<AbsDimension x="0" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_Text5" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_Text4">
+							<Offset>
+								<AbsDimension x="0" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_Text6" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_Text5">
+							<Offset>
+								<AbsDimension x="0" y="-95"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_Text7" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent_Text6">
+							<Offset>
+								<AbsDimension x="0" y="-50"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name = "$parent_TextInstruction" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="6" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\RaidFrame\UI-RaidFrame-GroupBg"> 
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-5"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentBackdrop" setAllPoints="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetFrameLevel("1");
+						this:SetBackdropBorderColor(
+							TOOLTIP_DEFAULT_COLOR.r,
+							TOOLTIP_DEFAULT_COLOR.g,
+							TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.r,
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.g,
+							TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Button name="AutoBar_Config_TabTemplate" inherits="CharacterFrameTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				AutoBar_Config_Tab_OnClick();
+			</OnClick>
+		</Scripts>
+	</Button>
+	<CheckButton name="AutoBar_ConfigChoose_ButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				AutoBar_ConfigChooseButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				AutoBar_ConfigChooseButton_OnClick();
+				this:SetChecked(0);
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_ButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				AutoBar_ConfigButton_SetTooltip();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				AutoBar_ConfigButton_OnClick();
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<Button name="AutoBar_Config_TextEntry_Template" virtual="true">
+		<Size>
+			<AbsDimension x="298" y="16"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentText" setAllPoints="true">
+				<Layers>
+					<Layer level="BORDER">
+						<FontString name="$parentName" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				AutoBar_Config_TextEntry_OnClick();
+			</OnClick>
+		</Scripts>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
+	</Button>
+	<Frame name="AutoBar_ConfigFrame" toplevel="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="30" top="0" bottom="45"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnLoad>
+				AutoBar_Config_OnLoad();
+			</OnLoad>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name = "$parent_Title" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture file="Interface\FriendsFrame\FriendsFrameScrollIcon">
+					<Size>
+						<AbsDimension x="60" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopLeft" file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomLeft" file="Interface\FriendsFrame\UI-IgnoreFrame-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomRight" file="Interface\FriendsFrame\UI-IgnoreFrame-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name = "$parent_ButtonText" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-50" y="-120"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						AutoBar_EditConfig();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_CloseButton2" inherits="UIPanelButtonTemplate" text="Close and Save">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-40" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						AutoBar_EditConfig();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="AutoBar_ConfigFrameTab1" inherits="AutoBar_Config_TabTemplate" id="1" text="Buttons">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="11" y="45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoBar_ConfigFrameTab2" inherits="AutoBar_Config_TabTemplate" id="2" text="Bar">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="AutoBar_ConfigFrameTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoBar_ConfigFrameTab3" inherits="AutoBar_Config_TabTemplate" id="3" text="Categories">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="AutoBar_ConfigFrameTab2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-14" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Frame name="AutoBar_Config_Tab1" setAllPoints="true">
+				<Frames>
+					<CheckButton name="AutoBar_Config_Tab1_HideKeys" inherits="OptionsCheckButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AutoBar_Config_Tab1" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="20" y="-200"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Hide keybindings");
+								this.tooltipText="Hide the keybindings in the item icons.";
+							</OnLoad>
+							<OnClick>
+								if (this:GetChecked()) then
+									AutoBar_Config[AutoBar_Player].hidekeys = 1;
+								else
+									AutoBar_Config[AutoBar_Player].hidekeys = 0;
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab1_SelfCast" inherits="OptionsCheckButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab1_HideKeys" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Smart Selfcast");
+								this.tooltipText="Use 'smart selfcast' for targetable beneficial items.";
+							</OnLoad>
+							<OnClick>
+								if (this:GetChecked()) then
+									AutoBar_Config[AutoBar_Player].selfcast = 1;
+								else
+									AutoBar_Config[AutoBar_Player].selfcast = 0;
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab1_DoNotSkip" inherits="OptionsCheckButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab1_SelfCast" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Show empty buttons");
+								this.tooltipText="Empty buttons will not be skipped.";
+							</OnLoad>
+							<OnClick>
+								if (this:GetChecked()) then
+									AutoBar_Config[AutoBar_Player].donotskip = 1;
+								else
+									AutoBar_Config[AutoBar_Player].donotskip = 0;
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab1_ReverseButtons" inherits="OptionsCheckButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab1_DoNotSkip" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Reverse button order");
+								this.tooltipText=nil;
+							</OnLoad>
+							<OnClick>
+								if (this:GetChecked()) then
+									AutoBar_Config[AutoBar_Player].reversebuttons = 1;
+								else
+									AutoBar_Config[AutoBar_Player].reversebuttons = 0;
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab1_HideCount" inherits="OptionsCheckButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab1_ReverseButtons" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Hide Count in buttons");
+								this.tooltipText="";
+							</OnLoad>
+							<OnClick>
+								if (this:GetChecked()) then
+									AutoBar_Config[AutoBar_Player].hidecount = 1;
+								else
+									AutoBar_Config[AutoBar_Player].hidecount = nil;
+								end
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Frame>
+			<Frame name="AutoBar_Config_Tab2" setAllPoints="true">
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name = "$parent_Text1" inherits="GameFontHighlight" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-115"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Slider name="AutoBar_Config_Tab2_Rows" inherits="OptionsSliderTemplate" id="21">
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="AutoBar_Config_Tab2" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-80" y="-100"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnValueChanged>
+								AutoBar_Config_Slider_RowColumns();
+							</OnValueChanged>
+							<OnLoad>
+								this:SetMinMaxValues(1,12);
+								this:SetValueStep(1);
+								getglobal(this:GetName().."High"):SetText(12);
+								getglobal(this:GetName().."Low"):SetText(1);
+								getglobal(this:GetName().."Text"):SetText("Rows");
+							</OnLoad>
+						</Scripts>
+					</Slider>
+					<Slider name="AutoBar_Config_Tab2_Columns" inherits="OptionsSliderTemplate" id="22">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_Rows" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnValueChanged>
+								AutoBar_Config_Slider_RowColumns();
+							</OnValueChanged>
+							<OnLoad>
+								this:SetMinMaxValues(1,12);
+								this:SetValueStep(1);
+								getglobal(this:GetName().."High"):SetText(12);
+								getglobal(this:GetName().."Low"):SetText(1);
+								getglobal(this:GetName().."Text"):SetText("Columns");
+							</OnLoad>
+						</Scripts>
+					</Slider>
+					<Slider name="AutoBar_Config_Tab2_Scaling" inherits="OptionsSliderTemplate" id="23">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_Columns" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-36"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnValueChanged>
+								AutoBar_Config_Slider_Scaling();
+							</OnValueChanged>
+							<OnLoad>
+								this:SetMinMaxValues(0.25,2);
+								this:SetValueStep(0.01);
+								getglobal(this:GetName().."High"):SetText(2);
+								getglobal(this:GetName().."Low"):SetText(0.25);
+								getglobal(this:GetName().."Text"):SetText("Scaling");
+							</OnLoad>
+						</Scripts>
+					</Slider>
+					<CheckButton name="AutoBar_Config_Tab2_ScaleButtons" inherits="OptionsCheckButtonTemplate" id="25">
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="AutoBar_Config_Tab2_Scaling" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension x="-120" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Scale Buttons");
+								this.tooltipText="Will scale AutoBar buttons in addition to the rest of your UI scaling. Set exact scaling to the right.";
+							</OnLoad>
+							<OnClick>
+								AutoBar_Config_UpdateScaling();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab2_MicroAspect" inherits="OptionsCheckButtonTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_ScaleButtons" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Use MicroButton Aspect (1:2)");
+								this.tooltipText="Makes buttons look like 'MicroButtons' on the Main menu bar";
+							</OnLoad>
+							<OnClick>
+								if (this:GetChecked()) then
+									AutoBar_Config[AutoBar_Player].microaspect = 1;
+
+								else
+									AutoBar_Config[AutoBar_Player].microaspect = nil;
+								end
+								AutoBar_Config_Tab_OnClick();
+								AutoBar_Init();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab2_Docking_MainMenu" inherits="OptionsCheckButtonTemplate" id="26">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_ScaleButtons" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("Docking: Main Menu");
+							</OnLoad>
+							<OnClick>
+								AutoBar_Config_ChooseDocking();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab2_Docking_ChatFrame" inherits="OptionsCheckButtonTemplate" id="30">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_Docking_MainMenu" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("         Chat Window");
+							</OnLoad>
+							<OnClick>
+								AutoBar_Config_ChooseDocking();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab2_Docking_Hide" inherits="OptionsCheckButtonTemplate" id="31">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_Docking_ChatFrame" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("         Hide Buttons");
+							</OnLoad>
+							<OnClick>
+								AutoBar_Config_ChooseDocking();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab2_Docking_UnDocked" inherits="OptionsCheckButtonTemplate" id="32">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_Docking_Hide" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("         Undocked Buttons");
+							</OnLoad>
+							<OnClick>
+								AutoBar_Config_ChooseDocking();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="AutoBar_Config_Tab2_Docking_Locked" inherits="OptionsCheckButtonTemplate" id="33">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab2_Docking_UnDocked" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								getglobal(this:GetName().."Text"):SetText("         Buttons locked in place");
+							</OnLoad>
+							<OnClick>
+								AutoBar_Config_ChooseDocking();
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<Frame name="AutoBar_Config_Tab2_Docking_ChatFrame_PDFrame" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="AutoBar_Config_Tab2_Docking_ChatFrame" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="80" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								UIDropDownMenu_Initialize(this,getglobal(this:GetName().."_Init"));
+								UIDropDownMenu_SetWidth(50);
+								UIDropDownMenu_SetButtonWidth(24);
+								UIDropDownMenu_JustifyText("LEFT",this);
+
+							</OnLoad>
+							<OnShow>
+								UIDropDownMenu_Initialize(this,getglobal(this:GetName().."_Init"));
+								UIDropDownMenu_SetSelectedID(this,AutoBar_Config_Tab2_PDSetFrameIdx);
+							</OnShow>
+						</Scripts>
+					</Frame>
+					<Frame name="AutoBar_Config_Tab2_Docking_ChatFrame_PDSide" inherits="UIDropDownMenuTemplate" id="1">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="AutoBar_Config_Tab2_Docking_ChatFrame_PDFrame" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="-30" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								UIDropDownMenu_Initialize(this,getglobal(this:GetName().."_Init"));
+								UIDropDownMenu_SetWidth(60);
+								UIDropDownMenu_SetButtonWidth(24);
+								UIDropDownMenu_JustifyText("LEFT",this);
+
+							</OnLoad>
+							<OnShow>
+								UIDropDownMenu_Initialize(this,getglobal(this:GetName().."_Init"));
+								UIDropDownMenu_SetSelectedID(this,AutoBar_Config_Tab2_PDSetSideIdx);
+							</OnShow>
+						</Scripts>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Frame name="AutoBar_Config_Tab3" setAllPoints="true">
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name = "$parent_Text1" inherits="GameFontHighlight">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="AutoBar_Config_Tab3_PrevPageButton">
+						<Size>
+							<AbsDimension x="64" y="64"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="70" y="-20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltip = "Backup to the previous\nCustom Category";
+							</OnLoad>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+								GameTooltip:SetText(this.tooltip);
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								AutoBar_Config_Tab3_PrevPage_OnClick();
+							</OnClick>
+						</Scripts>
+						<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+						<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+						<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+						<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_NextPageButton">
+						<Size>
+							<AbsDimension x="64" y="64"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-60" y="-20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltip = "Advance to the next\nCustom Category";
+							</OnLoad>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+								GameTooltip:SetText(this.tooltip);
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+							<OnClick>
+								AutoBar_Config_Tab3_NextPage_OnClick();
+							</OnClick>
+						</Scripts>
+						<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+						<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+						<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+						<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry1" inherits="AutoBar_Config_TextEntry_Template" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="AutoBar_Config_Tab3">
+								<Offset>
+									<AbsDimension x="23" y="-80"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry2" inherits="AutoBar_Config_TextEntry_Template" id="2">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry1" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry3" inherits="AutoBar_Config_TextEntry_Template" id="3">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry2" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry4" inherits="AutoBar_Config_TextEntry_Template" id="4">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry3" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry5" inherits="AutoBar_Config_TextEntry_Template" id="5">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry4" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry6" inherits="AutoBar_Config_TextEntry_Template" id="6">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry5" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry7" inherits="AutoBar_Config_TextEntry_Template" id="7">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry6" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry8" inherits="AutoBar_Config_TextEntry_Template" id="8">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry7" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry9" inherits="AutoBar_Config_TextEntry_Template" id="9">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry8" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry10" inherits="AutoBar_Config_TextEntry_Template" id="10">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry9" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry11" inherits="AutoBar_Config_TextEntry_Template" id="11">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry10" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry12" inherits="AutoBar_Config_TextEntry_Template" id="12">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry11" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry13" inherits="AutoBar_Config_TextEntry_Template" id="13">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry12" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry14" inherits="AutoBar_Config_TextEntry_Template" id="14">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry13" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry15" inherits="AutoBar_Config_TextEntry_Template" id="15">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry14" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry16" inherits="AutoBar_Config_TextEntry_Template" id="16">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry15" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry17" inherits="AutoBar_Config_TextEntry_Template" id="17">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry16" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry18" inherits="AutoBar_Config_TextEntry_Template" id="18">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry17" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry19" inherits="AutoBar_Config_TextEntry_Template" id="19">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry18" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="AutoBar_Config_Tab3_Entry20" inherits="AutoBar_Config_TextEntry_Template" id="20">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="AutoBar_Config_Tab3_Entry19" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+	<CheckButton name="AutoBar_Config_Button1" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="30" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button2" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button3" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button4" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button5" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button6" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button7" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="7">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_Config_Button1" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button8" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="8">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button9" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button10" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button11" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="11">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_Config_Button12" inherits="AutoBar_Config_ButtonTemplate" parent="AutoBar_ConfigFrame" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_Config_Button11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button1" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="1">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="6" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button2" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="2">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button3" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="3">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button4" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="4">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button5" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="5">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button6" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="6">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button7" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="7">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button6" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button8" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="8">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button1" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button9" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="9">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button10" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="10">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button11" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="11">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button8" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button12" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="12">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button13" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="13">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button12" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button14" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="14">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button11" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button15" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="15">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button14" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button16" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="16">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button15" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button17" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="17">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button16" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button18" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="18">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button17" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+
+	<CheckButton name="AutoBar_ConfigChoose_Button19" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="19">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button18" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button20" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="20">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button14" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button21" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="21">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button20" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button22" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="22">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button21" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button23" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="23">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button22" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button24" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="24">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button23" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button25" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="25">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button24" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+
+	<CheckButton name="AutoBar_ConfigChoose_Button26" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="26">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button20" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button27" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="27">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button26" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button28" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="28">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button27" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button29" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="29">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button28" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+
+	<CheckButton name="AutoBar_ConfigChoose_Button30" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="30">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button26" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button31" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="31">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button30" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Button32" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose" id="32">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Button31" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+
+	<CheckButton name="AutoBar_ConfigChoose_Empty1" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Button30" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-15"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty2" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty3" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty2" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty4" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty3" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty5" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty4" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty6" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty5" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty7" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="AutoBar_ConfigChoose_Empty1" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="-6"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty8" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty7" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty9" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty8" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty10" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty9" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty11" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty10" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty12" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty11" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="AutoBar_ConfigChoose_Empty13" inherits="AutoBar_ConfigChoose_ButtonTemplate" parent="AutoBar_Config_Choose">
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="AutoBar_ConfigChoose_Empty12" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="6" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+</Ui>

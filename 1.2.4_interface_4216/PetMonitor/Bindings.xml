@@ -1,0 +1,14 @@
+<Bindings>
+	<Binding name="PETMONITOR1" header="PETMONITOR"> 
+		TargetUnitsPet("party1");
+	</Binding>
+	<Binding name="PETMONITOR2"> 
+		TargetUnitsPet("party2");
+	</Binding>
+	<Binding name="PETMONITOR3"> 
+		TargetUnitsPet("party3");
+	</Binding>
+	<Binding name="PETMONITOR4"> 
+		TargetUnitsPet("party4");
+	</Binding>
+</Bindings>

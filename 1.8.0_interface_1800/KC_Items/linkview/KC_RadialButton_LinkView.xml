@@ -1,0 +1,39 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+	<!-- Radial Buttons -->
+	<Button name="KC_RadialButton_LinkView" parent="Minimap" toplevel="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:Hide();
+			</OnLoad>
+			<OnShow>
+				KC_RadialButton:ButtonMover(this:GetName(), false);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnShow>
+			<OnClick>
+				KC_RadialButton:ClickHandler(arg1, this:GetName());
+			</OnClick>
+			<OnEnter>
+				KC_RadialButton:ToolTipSetup(this, "~/ LinkView \\~", "This addon collects and makes available", "information about every item you come across.");
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\KC_RadialButton\images\KC_RadialButton_ItemsMatrix_Up"/>
+		<PushedTexture file="Interface\AddOns\KC_RadialButton\images\KC_RadialButton_ItemsMatrix_Down"/>
+		<HighlightTexture file="Interface\AddOns\KC_RadialButton\images\KC_RadialButton_Glow" alphaMode="ADD"/>
+	</Button>
+</Ui>

@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: FilterKnown
+## Notes: Colors Auction items that are already known.
+## OptionalDeps: myAddOns
+FilterKnown.xml

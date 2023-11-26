@@ -1,0 +1,7 @@
+## Interface: 1800
+## Version: 2.31 (CTMod 1.843)
+## Title: CT_Tickmod
+## Notes: Displays HP ( & Mana ) per tick
+## OptionalDeps: CT_MasterMod, Titan
+## SavedVariables: CT_TickMod_Titan_ShowHP, CT_TickMod_Titan_ShowMP, CT_TickMod_Titan_HideFrame, CT_TickMod_HideBorder
+CT_Tickmod.xml

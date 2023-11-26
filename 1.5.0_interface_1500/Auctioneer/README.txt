@@ -1,0 +1,5 @@
+Auctioneer 3.0.4
+$Id: README.txt,v 1.2 2005/05/03 15:57:32 norganna Exp $
+-------------------------------
+FROM: http://norgs.internutter.org
+

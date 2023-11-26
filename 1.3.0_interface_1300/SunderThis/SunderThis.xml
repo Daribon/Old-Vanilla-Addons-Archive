@@ -1,0 +1,48 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+	<Script file="localization.lua"/>
+	<Script file="SunderThis.lua"/>
+	<Frame name="SunderThis" hidden="true" toplevel="true" frameStrata="LOW" enableMouse="true" parent="UIParent" movable="true">
+		<Size>
+			<AbsDimension x="128" y="20"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" RelativeTo="TargetFrame"/>
+		</Anchors>
+		<Layers>
+			<!--<Layer level="ARTWORK">
+				<Texture file="Interface\Tooltips\UI-StatusBar-Border">
+				</Texture>
+			</Layer>-->
+			<Layer level="BACKGROUND">
+				<FontString name="SunderThisText" inherits="GameFontNormalSmall" JustifyH="LEFT">
+					<Size>
+						<AbsDimension x="128" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				SunderThis_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				SunderThis_OnEvent( event );
+			</OnEvent>
+			<OnUpdate>
+				SunderThis_OnUpdate();
+			</OnUpdate>
+			<OnDragStart>
+				SunderThis_OnDragStart();
+			</OnDragStart>
+			<OnDragStop>
+				SunderThis_OnDragStop();
+			</OnDragStop>
+			<OnMouseUp>
+				SunderThis_OnDragStop();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

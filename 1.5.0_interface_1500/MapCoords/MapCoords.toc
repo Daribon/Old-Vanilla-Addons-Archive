@@ -1,0 +1,6 @@
+## Interface: 1500
+## Version: 0.3
+## Title: MapCoords
+## Notes: Shows cursor/player coords on worldmap and shows coords below your portrait and your party members portrait
+## SavedVariables: MapCoords
+MapCoords.xml

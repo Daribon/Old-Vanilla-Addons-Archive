@@ -1,0 +1,8 @@
+## Interface: 1500
+## Version: 1.73 (CTMod 1.782)
+## Title: CT_Buffmod
+## Notes: Repositions buffs and shows duration and buff names constantly.
+## Dependencies: CT_MasterMod
+## SavedVariables: CT_BuffMod_BuffSides
+CT_BuffFrame.xml
+CT_MiniBuffs.xml

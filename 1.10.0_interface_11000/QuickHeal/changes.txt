@@ -1,0 +1,191 @@
+Changes in version 1.7.5
+- Merged the "Out of Range" error message with the blacklisting message (by hooking a blizzard-function).
+- Merged the "Not in line-of-sight" error message with the blacklisting message (by hooking a blizzard-function).
+- Druid/Shaman: Fixed detection of Nature's Swiftness (Spell_Nature_Swiftness --> Spell_Nature_RavenForm)
+
+Changes in version 1.7.4
+- Added slash command '/qh listplayereffects' and '/qh listtargeteffects' which lists the icon names of the buffs and debuffs of the player and the current target respectively. The purpose is to enable people to more easily assist in determining icon names used for identifying buffs and debuffs that affects healing (please see the TODO list).
+- Optional Support for Titan Panel. It is now possible to display an icon at the right side of the panel for opening/closing the configuration panel.
+- It is now possible to close the configuration panel by pressing the escape key.
+
+Changes in version 1.7.3
+- Fixed the problem with QuickHeal getting stuck after trying to heal people in duels (and possibly other situations where healing is not possible).
+
+Changes in version 1.7.2
+- Shaman: Added support for talent Improved Healing Wave
+- Druid: Added support for talent Moonglow.
+- Druid: Fixed a number of bugs that affected the mana-calculations: Tranquil Spirit corrected to 2% per rank (was 5% per rank). Removed Tranquil Spirit influence from Regrowth mana calculation.
+- Priest: Added support for talent Divine Fury.
+- Priest: Added support for talent Spiritual Guidance.
+- More accurate calculations of healing bonus. Actual casting time is used in all cases instead of an average (including talents that change casting time).
+- The overheal detection is now aware of debuffs that reduce healing. This eliminates false overheal warnings when the healing target is debuffed.
+
+Changes in version 1.7.1
+- Updated toc-number to patch 1.11.
+- Position of Shaman talent Purification changed.
+
+Changes in version 1.7.0
+- Redesign of configuration panel to facilitate new message/notification functionality. Configuration panel can now be dragged.
+- On screen messages are divided in four groups (Healing, Info, Blacklist and Error) and these can individually be configured to be sent to the center of screen or the chat window, both places or nowhere.
+- Improved notification system. It is now possible to configure notifications for party/raid members by whisper, party-chat, raid-chat or a user-defined channel. Notifications are off by default and must be enabled in the configuration panel.
+- Added the option to select normal style notifications ("Healing X with Y"), as an alternative to the Role-Playing style notifications.
+- Internal optimisations and simplifications to configuration management.
+
+Changes in version 1.6.3
+- Activating QuickHeal when a healing spell (cast by QuickHeal) is going to overheal by more than 50% (red warning message) will abort the spell casting.
+
+Changes in version 1.6.2
+- Added slash command '/quickheal', which will work exactly as '/qh'.
+- Internal debug message changes.
+
+Changes in version 1.6.1
+- Blocks additional heal commands when a healing spell is being cast by QuickHeal.
+
+Changes in version 1.6.0
+- Added overheal warning functionality. Will display as a warning above the casting bar, if overheal will result from the current healing spell.
+- Druid and Priest: Fixed a bug that caused the healing lost during combat to be neglected, which in turn resulted in a tendency towards underhealing.
+
+Changes in version 1.5.4
+- Added support for Shaman talent 'Tidal Focus', which decreases mana usage by 1% on all healing spells.
+- More accurate calculation of healing bonus from equipment.
+- Internal changes to support overheal alert and automatic breaking of spell-casting in case of excessive overheal.
+
+Changes in version 1.5.3
+- Added the warrior ability 'Mortal Strike' and the Orc racial ability 'Blood Fury', which reduce healing by 50%. These are countered by doubling the healing effort.
+- Fixed a bug in the configuration panel.
+
+Changes in version 1.5.2
+- Fixed a bug in the german localisation that prevented the use of the priest spell 'Greater Heal'.
+- Added Night Elf specific party chat notification messages (party chat messages are off by default).
+
+Changes in version 1.5.1
+- Optimisations of buff/debuff detection code.
+- Added support for 'Curse of the Deadwood' which reduces healing by 50%. The healing effort is doubled to counter the decrease in healing.
+- Added support for the proc of 'Hand of Edward the Odd', which is similar to Nature's Swiftness. If the proc is active, QuickHeal will heal as if out of combat.
+
+Changes in version 1.5.0
+- Druid: Fixed a bug, which caused an error message when healing a target outside the party/raid.
+- Optional support for BonusScanner. Will take the healing bonus from equipment, calculated by BonusScanner, into consideration when choosing spell rank.
+
+Changes in version 1.4.0
+- Added support for Druid. Will use the spells Healing Touch and Regrowth.
+- Individual Healthy Thresholds for each class. Default values: Druid=0.4, Paladin=0.1, Priest=0.3, Shaman=0.6.
+- It is now possible to use 'Heal Target's Target' when the current target is friendly.s
+
+Changes in version 1.3.0
+- Added command '/qh targettarget' and corresponding key binding 'Heal Target's Target', which will force the healing to your current target's target.
+- Fixed a bug which would cause an error-message when trying to estimate the health of a paladin class external healing target.
+- Rewrote the spell casting code and the who-to-heal code. This will give better and more reliable spell casting in different (rare) situations and better error-detection and blacklisting.
+- Greatly improved message feedback system, which informs you why a healing spell is not cast (in cases where it isn't).
+- Will now ignore the blacklist in some cases where a blacklisted character is the only one in need of healing or if the healing is forced to this particular character.
+
+Changes in version 1.2.0
+- Added support for Paladin. Will use the spells Holy Light and Flash of Light.
+
+Changes in version 1.1.3
+- Priest: Fixed a bug in the talent modication, that would cause the wrong talent modifiers to be extracted.
+
+Changes in version 1.1.2
+- Priest: Added support for Greater Heal Rank 5, which can be obtained from a book which drops off some of the bosses in the Ruins of Ahn'Qiraj.
+
+Changes in version 1.1.1
+- Priest: Fixed a bug that would cause Flash Heal to be used in combat, even if the player doesn't have Flash Heal, which in turn would generate error messages.
+
+Changes in version 1.1.0
+- Added support for Priest. Will use the spells Lesser Heal, Heal, Greater Heal and Flash Heal.
+
+Changes in version 1.0.1
+- Fixed the QuickHealVariables bug.
+
+Changes in version 1.0.0 (relative to ShamanPartyHeal 3.3.2)
+- Mod name changed to QuickHeal to enable transition to multiple classes.
+- Healing logic delegated to modules to support multiple classes.
+- For Shamans QuickHeal 1.0.0 is essentially functionally equivalent to ShamanPartyHeal 3.3.2. No other classes are supported in this release. QuickHeal can coexist peacefully with ShamanPartyHeal.
+- Chat command changed from '/sph' to '/qh' (be sure to update macros and key bindings).
+- Added command and key binding '/qh party' which will restrict the healing to the party, even when in a raid.
+- Removed the option "Heal everyone in raid". The command '/qh' (key binding 'Heal') will heal everyone in a raid and '/qh party' (key binding 'Heal Party') is restricted to the party, even when in a raid.
+- Removed the commands '/sph raidmode on' and '/sph raidmode off' to toggle the "Heal everyone in raid" option (which is now absent).
+
+ShamanPartyHeal Changes:
+
+Changes in version 3.3.2
+- Added the commands '/sph raidmode on' and '/sph raidmode off' to toggle the "Heal everyone in raid" option.
+- Added the command '/sph reset' to reset configuration to default parameters.
+
+Changes in version 3.3.1
+- The configuration panel is now placed at the center of the screen.
+
+Changes in version 3.3
+- The mod has been enhanced to fully support healing of everyone in raids. This can be disabled in the configuration panel, in which case the local group in the raid will be healed instead.
+- Default value of Self Preservation Threshold has been changed to 0.4 to give more head-room for healing other party/raid members.
+- Fixed the "Target not in line-of-sight" detection. For some odd reason the out of range error message includes a period-sign at the end, whereas the not in line of sight error message does not.
+- Added additional key binding 'Heal Target', which will force the healing to the current target.
+
+Changes in version 3.2.5
+- Improved out-of-range detection. Will not even try to heal players that are not visible to the client (usually 100 yards). This means that blacklisting will be triggered less often, especially when party members are far away, and the correct healing will be given in the first attempt in many cases where it previously was neccesary to click twice.
+- Added support for Healing Wave Rank 10, which can be obtained from a book which drops off some of the bosses in the Ruins of Ahn'Qiraj.
+
+Changes in version 3.2.4
+- Improved out-of-range and line-of-sight detection (which is based on events, since there is no other way). Will now only trigger blacklisting in response to spells that are directly related to this mod, and only when the mod is the source of the spell. This will fix the problems with people being blacklisted because of completely unrelated spells being out of range (Lightning bolt, frost shock etc.), and also removes any errors that could possibly arise when playing other classes than Shaman.
+- Changed default value for "Healthy Threshold" back to 0.6 again. This gives better results after the changes to mana-cost in patch 1.10.
+
+Changes in version 3.2.3
+- Added blacklisting functionality. If a player is out of range he will be blacklisted for 5 seconds. If a player is not in line of sight he will be blacklisted for 2 seconds. This prevents a single player from blocking healing to other party members.
+- Improved estimation of health for non-party members by considering the units class.
+
+Changes in version 3.2.2
+- Will now detect if Nature's Swiftness is active. If so, the healing spell will be chosen as if the player is out of combat, regardless of whether the healing target or the player is in combat or not.
+
+Changes in version 3.2.1
+- Updated and tested for patch 1.10 (interface number: 11000)
+- New mana values for Healing Wave
+- Targeting friendly non-party players will no longer prevent healing of party members who are in need (including yourself). Friendly non-party players will be temporarily deselected before casting the healing spell. This happens so fast that the only noticable side-effect is the deselect sound (the wooosh sound). This is the only way to prevent a friendly non-party player from taking precedence over the entire party (and yourself) when targetet, since the main target will always get the healing, even if ShamanPartyHeal wants to heal someone else. This behaviour has actually been in the mod since the very first release, but no one have noticed, since friendly non-party players are very rarely targetet in a healing situation. In summary, the targeting function for non-party players works as described in the notes for version 3.2.
+
+Changes in version 3.2
+- Targeting a party members pet will temporarily raise it's priority for as long as it is targetet, so that it is considered equal to party members, regardless of the setting in the configuration panel.
+- Targeting yourself will temporarily raise your priority for as long as you are targetet, so that you take precendence over everyone else. If you don't need healing, anyone else who needs healing will be healed as was the case if you didn't target yourself. This behaviour is off by default and must be enabled in the configuration panel.
+- Targeting someone who is not in the party will temporarily include them in the party with lowest priority. That is, they will only be healed if no one in the party needs healing. Because health can only be determined for party members, the healing needed will be estimated and the appropriate spell and rank of Lesser Healing Wave or Healing Wave available will be used.
+- Key binding will now only be active if you're a Shaman.
+- Changed default value for "General Healing Threshold" to 0.9. This will make it slightly easier to heal tanks that loose life almost as fast as you can heal.
+- Changed default value for "Healthy Threshold" to 0.7. This will give a slight rise in the preference for Lesser Healing Wave.
+
+Changes in version 3.1.3
+- Added option in configuration panel for configuring healing of pets. There are three possible settings: 
+  1) Never heal pets
+  2) Only heal pets if no players need healing
+  3) Treat pets and players equally
+
+Changes in version 3.1.2
+- Added support for healing party member pets. Pets and party members will be treated equally.
+- Fixed a bug that would cause the healing chat messages to be absent in some cases for non-english localizations.
+
+Changes in version 3.1.1
+- Added key bindings in the standard key bindings interface for the commands '/sph' and '/sph self'.
+
+Changes in version 3.1
+- Added configuration panel where the thresholds and quiet mode can be set. To use type '/sph cfg' in chat. RatioHealthy, RatioFull and RatioForceself are now know as "Healthy Threshold", "General Healing Threshold" and "Selv Preservation Threshold" respectively. The configuration panel gives a textual description of the thresholds, and their consequences for the decision system when they are changed.
+- If mana is low, ShamanPartyHeal will now step down to a lower rank to squeeze out the last healing available with the given mana.
+
+Changes in version 3.0.3
+- Added French localization (not translated, but will work as intended). I have no means for testing this, and any help in this regard is highly appreciated. Thanks to Tenebrok for supplying the localized French strings.
+
+Changes in version 3.0.2
+- Added command line switches to change RatioHealthy, RatioFull and RatioForceself
+
+Changes in version 3.0.1
+- Added German localization (not translated, but will work as intended). I have no means for testing this, and any help in this regard is highly appreciated. Also if you can supply strings for other localizations (see the file localization.en.lua), please do so - it's only three strings!.
+
+Changes in version 3.0 (relative to 2.1):
+- Unification of all commands into '/sph'. '/sph help' will print out usage information.
+- Will only load the mod if player is a Shaman.
+- Will save the state of the quiet mode between sessions.
+- Correctly calculate influence of Purification talent.
+- Corrected average values for healing done by spells.
+- Added compensation for the life lost while in combat, when deciding which spell to choose.
+- Selv preservation has been fixed so it actually works.
+- Safeguard that falls back to Healing Wave, if Lesser Healing Wave is not available (if you're below level 20).
+- Special mode ('/sph self') for healing yourself. Will choose a lower rank/spell if less healing is neccessary. 
+- All action notifications are now delivered to the center of the screen instead of to the chat window.
+- Different notifications when not in a party (to stop the confusion about why the mod is not working).
+- Quiet mode that turns off party chat messages (quiet mode is on by default).
+

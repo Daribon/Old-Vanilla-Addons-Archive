@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: PopNUI
+## Notes: PopNUI lets you make many UI elements only show when you mouse over them.
+## OptionalDeps: Cosmos, Chronos
+## RequiredDeps: Sea
+## SavedVariables: PopNUI_Config
+PopNUI.xml

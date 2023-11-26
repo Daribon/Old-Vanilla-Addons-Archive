@@ -1,0 +1,14 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<GameTooltip name="ZGAnnounceTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate"/>
+	<Frame name="ZGAnnounce" parent="UIParent" frameStrata="LOW" hidden="true">
+		<Scripts>
+			<OnLoad>
+				ZGAnnounce_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				ZGAnnounce_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>		
+</Ui>

@@ -1,0 +1,10 @@
+<Bindings>
+	<!-- Execute throw -->
+	<Binding name="TACKLEBOX_THROW" header="TACKLEBOXHEADER">
+		TackleBox.ThrowStart();
+		TackleBox.ThrowStop();
+	</Binding>
+	<Binding name="TACKLEBOX_SWITCH">
+		TackleBox.Switch();
+	</Binding>
+</Bindings>

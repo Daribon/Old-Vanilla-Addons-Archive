@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: Titan Plugin - Defense
+## Notes: A Titan Plugin for Defense Tracker
+## Author: Tekkub@gmail.com
+## SavedVariables: 
+## Dependencies: Titan DefenseTracker
+TitanDefense.xml

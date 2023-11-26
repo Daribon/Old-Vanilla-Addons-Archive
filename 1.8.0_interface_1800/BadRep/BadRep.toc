@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: Reputation Tracker
+## Notes: Shows detailed reputation numbers
+## SavedVariablesPerCharacter: BadRep_SavedReputation, BadRep_Options
+## SavedVariables: BadRep_DummyVarToForceClearingAccountLevelDataDoNOTRemove
+BadRep.xml

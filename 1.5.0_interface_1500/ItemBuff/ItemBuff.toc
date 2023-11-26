@@ -1,0 +1,5 @@
+## Interface: 1500
+## Title: Telo's ItemBuff
+## Notes: Displays icons and timer text for buffs cast on your items in a small movable window. Use << /itembuff help >> or just << /ib >> for a helpful list of commands.
+## SavedVariables: ItemBuffState
+ItemBuff.xml

@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: AutoBar
+## Notes: Set of buttons that autoload with items for use
+## Author: Marc aka Saien on Hyjal
+## SavedVariables: AutoBar_Config
+AutoBar.xml
+AutoBar_Config.xml

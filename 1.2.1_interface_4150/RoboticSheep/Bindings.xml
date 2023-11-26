@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="FIND_SHEEP" description="Find Sheep" header="ROBOTICSHEEPHEADER">
+		RoboticSheep_Binding_FindSheep();
+	</Binding>
+	<Binding name="RESHEEPIFY" description="Find Sheep and re-Sheepify">
+		RoboticSheep_Binding_FindSheepAndResheepify();
+	</Binding>
+	<Binding name="CYCLE_SHEEP" description="Cycle through and sheep.">
+		RoboticSheep_Binding_CycleSheep();
+	</Binding>
+</Bindings>

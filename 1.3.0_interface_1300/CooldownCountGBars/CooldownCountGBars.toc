@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (GBars)
+## Notes: CooldownCount for GBars
+## Author: sarf
+## RequiredDeps: GBars, CooldownCount
+CooldownCountGBars.xml

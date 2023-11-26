@@ -1,0 +1,134 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+  <Script file="SpellTell.lua"/>
+<Frame name="SpellTellFrame" enableMouse="true" parent="UIParent" hidden="true">
+	<Frames>
+		<Frame name="SpellTellBarTemplate" enableMouse="true" movable="true">
+			<Layers>
+				<Layer level="ARTWORK">
+					<Texture file="Interface\Tooltips\UI-StatusBar-Border"/>
+				</Layer>
+				<Layer level="FOREGROUND">
+					<FontString name="$parentText" inherits="GameFontNormalSmall" wraponspaces="true">
+						<Size>
+							<AbsDimension x="0" y="60"/>
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER"/>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+			<TitleRegion setAllPoints="true"/>
+			<Frames>
+				<StatusBar name="$parentBar" movable="true" inherits="TextStatusBar">											
+					<Size>
+						<AbsDimension x="90" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>	
+					<Frames>
+						<Frame name="$parentBarBackground">
+							<Scripts>
+								<OnLoad>
+									this:GetParent():SetFrameLevel("2");
+									this:SetFrameLevel("1");
+								</OnLoad>
+							</Scripts>
+							<Layers>
+								<Layer level="BACKGROUND">
+									<Texture name="$parentBarLowerBackground">
+										<Size>
+											<AbsDimension x="80" y="12"/>
+										</Size>
+										<Anchors>
+											<Anchor point="CENTER" relativeTo="$Parent" relativePoint="CENTER">
+												<Offset>
+													<AbsDimension x="0" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Color r="1.0" g="0.7" b="0" a="0.5"/>
+									</Texture>	
+								</Layer>
+							</Layers>	
+						</Frame>
+					</Frames>			
+				</StatusBar>
+			</Frames>
+		</Frame>
+
+		<Frame name="STPartyFrame1" enableMouse="true" movable="true">
+			<Size>
+				<AbsDimension x="100" y="18"/>
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOM" relativeTo="PlayerFrame" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-20"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Frame>
+		<Frame name="STPartyFrame2" enableMouse="true" movable="true">
+				<Size>
+					<AbsDimension x="100" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativeTo="PlayerFrame" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+		</Frame>
+		
+		<Frame name="STPartyFrame3" enableMouse="true" movable="true">
+			<Size>
+				<AbsDimension x="100" y="18"/>
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOM" relativeTo="PlayerFrame" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-140"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Frame>
+		
+		<Frame name="STPartyFrame4" enableMouse="true" movable="true">
+			<Size>
+				<AbsDimension x="100" y="18"/>
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOM" relativeTo="PlayerFrame" relativePoint="BOTTOM">
+					<Offset>
+						<AbsDimension x="0" y="-180"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Frame>
+		
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			SpellTell_OnLoad();			
+		</OnLoad>
+		<OnShow>
+			SpellTell_OnShow();
+		</OnShow>
+		<OnEvent>
+			SpellTell_OnEvent();
+		</OnEvent>
+		<OnUpdate>
+			SpellTell_OnUpdate();
+		</OnUpdate>			
+		</Scripts>
+	</Frame>
+</Ui>

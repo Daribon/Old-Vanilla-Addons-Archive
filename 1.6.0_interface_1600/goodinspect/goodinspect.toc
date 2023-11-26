@@ -1,0 +1,4 @@
+## Interface: 1600
+## Title: GoodInspect
+## Notes: Improves inspect function
+goodinspect.xml

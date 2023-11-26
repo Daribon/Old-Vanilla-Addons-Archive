@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="REMEMBER_RESTORE_TOGGLE" description="Remember/restore" header="TARGETREMEMBERRESTOREHEADER">
+		TargetRememberRestore_Toggle();
+	</Binding>
+	<Binding name="REMEMBER_TARGET" description="Remember target">
+		TargetRememberRestore_RememberTarget();
+	</Binding>
+	<Binding name="RESTORE_TARGET" description="Restore target">
+		TargetRememberRestore_RestoreTarget();
+	</Binding>
+</Bindings>

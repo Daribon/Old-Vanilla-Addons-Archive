@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: IX Bank Items Shell v1.1
+## Notes: Adds a small icon to the Mini-map to access the Bank Items Mod Panel.
+## Author: LedMirage
+## RequiredDeps: BankItems, Insomniax_IconMover
+Insomniax_BankItems_Shell.xml

@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="CT_CPTOGGLE" header="CT_CPBINDS" runOnUp="true">
+		if ( keystate == "down" ) then
+			if ( CT_CPFrame:IsVisible() ) then
+				CT_CPFrame:Hide();
+			else
+				CT_CPFrame:Show();
+			end
+		end
+	</Binding>
+</Bindings>

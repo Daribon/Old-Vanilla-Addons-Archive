@@ -1,0 +1,262 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="TellTrack.lua"/> 
+
+	<Button name="TellTrackTextButton" virtual="true">
+		<Size>
+			<AbsDimension x="76" y="12"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" wraponspaces="false" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="64" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+        		TellTrackTextButton_OnLoad();
+			</OnLoad>
+  		<OnEnter>
+      		TellTrackTextButton_OnEnter();
+  		</OnEnter>
+  		<OnLeave>
+      		TellTrackTextButton_OnLeave();
+  		</OnLeave>
+			<OnClick>
+	    		TellTrackTextButton_OnClick(arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="TellTrackFrame" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="95" y="113"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="ChatFrame1" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop edgeFile="Interface\AddOns\TellTrack\Skin\TellTrackBorder" tile="false">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentButtonBackground" file="Interface\AddOns\TellTrack\Skin\TellTrackButtonSmall">
+					<Size>
+						<AbsDimension x="72" y="74"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="12" y="-20"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+		     </Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="TellTrack1" inherits="TellTrackTextButton" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-23"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TellTrack2" inherits="TellTrackTextButton" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TellTrack3" inherits="TellTrackTextButton" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TellTrack4" inherits="TellTrackTextButton" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-79"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+				<Button name="$parentArrowUpButton" virtual="false" id="5">
+					<Size>
+						<AbsDimension x="71" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="12" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="ARTWORK">
+							<Texture name="ArrowUp" file="Interface\AddOns\TellTrack\Skin\TellTrackArrowUp">
+								<Size>
+									<AbsDimension x="71" y="8"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+						</Layer>
+					</Layers>
+					<Scripts>
+						<OnLoad>
+							TellTrack_ArrowUpButton_OnLoad();
+						</OnLoad>
+						<OnClick>
+							TellTrack_ArrowUpButton_OnClick(arg1);
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentArrowDownButton" virtual="false" id="6">
+					<Size>
+						<AbsDimension x="71" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="12" y="-94"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="ARTWORK">
+							<Texture name="ArrowDown" file="Interface\AddOns\TellTrack\Skin\TellTrackArrowDown">
+								<Size>
+									<AbsDimension x="71" y="8"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+						</Layer>
+					</Layers>
+					<Scripts>
+						<OnLoad>
+							TellTrack_ArrowDownButton_OnLoad();
+						</OnLoad>
+						<OnClick>
+							TellTrack_ArrowDownButton_OnClick(arg1);
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentQButton" virtual="false" id="6">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="82" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					
+					<Scripts>
+						<OnLoad>
+				        	TellTrack_QButton_OnLoad();
+						</OnLoad>
+						<OnClick>
+				    		TellTrack_QButton_OnClick(arg1);
+						</OnClick>
+						<OnEnter>
+							TellTrack_QButton_OnEnter();
+						</OnEnter>
+						<OnLeave>
+							TellTrack_QButton_OnLeave();
+						</OnLeave>
+					</Scripts>
+				</Button>
+    	</Frames>
+		<Scripts>
+			<OnLoad>
+				TellTrack_OnLoad();
+				this:RegisterForDrag("LeftButton");
+				this:RegisterForClicks("LeftButtonUp");
+			</OnLoad>
+			<OnEvent>
+				TellTrack_OnEvent(event);
+			</OnEvent>
+			<OnHide>
+				if ( this.isMoving ) then
+					this:StopMovingOrSizing();
+					this.isMoving = false;
+				end
+			</OnHide>
+			<OnMouseUp>
+				if ( this.isMoving ) then
+					this:StopMovingOrSizing();
+					this.isMoving = false;
+				end
+			</OnMouseUp>
+			<OnMouseDown>
+				if ( not this.isMoving ) then
+					this:StartMoving();
+					this.isMoving = true;
+				end
+			</OnMouseDown>
+			<OnDragStart>
+				if ( not this.isMoving ) then
+					this:StartMoving();
+					this.isMoving = true;
+				end
+			</OnDragStart>
+			<OnDragStop>
+				this:StopMovingOrSizing();
+				this.isMoving = false;
+			</OnDragStop>
+			<OnMouseWheel>
+				TellTrack_OnMouseWheel(arg1);
+			</OnMouseWheel>
+		</Scripts>
+	</Button>
+	<GameTooltip name="TellTrackTooltip" frameStrata="TOOLTIP" hidden="true" inherits="GameTooltipTemplate">
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+			this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+		</OnLoad>
+	</Scripts>
+	</GameTooltip>
+</Ui>

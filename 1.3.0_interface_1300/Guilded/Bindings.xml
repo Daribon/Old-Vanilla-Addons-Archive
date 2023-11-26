@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLEGUILDED" header="GUILDED">
+		GuildedGUI.toggle();
+	</Binding>
+</Bindings>

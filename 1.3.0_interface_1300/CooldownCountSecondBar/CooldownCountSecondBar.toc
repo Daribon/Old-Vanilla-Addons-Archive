@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: CooldownCount (SecondBar)
+## Notes: CooldownCount for SecondBar
+## Author: sarf
+## RequiredDeps: SecondBar, CooldownCount
+CooldownCountSecondBar.xml

@@ -1,0 +1,189 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="localization.de.lua"/>
+    <Script file="localization.fr.lua"/>
+    <Script file="localization.post.lua"/>
+    <Script file="EnemyBuffs_Data.lua"/>
+    <Script file="EnemyBuffs_Data.de.lua"/>
+    <Script file="EnemyBuffs_Data.fr.lua"/>
+    <Script file="EnemyBuffs.lua"/>
+	<GameTooltip name="EnemyBuffTooltip" hidden="true" frameStrata="TOOLTIP" parent="UIParent" inherits="GameTooltipTemplate" movable="true" enableMouse="true" >
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+	
+
+	<Button name="EnemyBuffButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="21" y="21"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				EnemyBuffTooltip:SetOwner(this, "ANCHOR_BOTTOMRIGHT", 15, -25);
+				EnemyBuffs_SetUnitBuff(EnemyBuffTooltip, "target", this.id);
+			</OnEnter>
+			<OnLeave>
+				EnemyBuffTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Frame name="EnemyBuffsFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+		<Frames>
+			<Button name="TargetFrameEnemyBuff1" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TargetFrameDebuff1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff2" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff3" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff4" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff5" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff6" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TargetFrameEnemyBuff1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff7" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="7">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff8" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="8">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff9" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="9">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff8" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff10" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="10">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff9" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff11" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TargetFrameEnemyBuff6" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff12" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="12">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff11" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff13" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="13">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff12" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff14" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="14">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff13" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TargetFrameEnemyBuff15" inherits="EnemyBuffButtonTemplate" parent="TargetFrame" id="15">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="TargetFrameEnemyBuff14" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				EnemyBuffs_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				EnemyBuffs_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				EnemyBuffs_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

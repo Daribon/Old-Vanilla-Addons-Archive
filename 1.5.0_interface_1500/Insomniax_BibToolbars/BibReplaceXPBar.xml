@@ -1,0 +1,138 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="BibReplaceXPBar.lua"/>
+	
+	<!--This XP bar replaces the normal one that Bibmod removes before contructing the Action Bars -->
+	<Frame name="BibmodXPFrame" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="488" y="22"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="306"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="BibXPBarFrame" file="Interface\AddOns\Insomniax_BibToolbars\Images\Insomniax_XPBarFrame_512">
+					<Size>
+						<AbsDimension x="512" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP"/>
+					</Anchors>
+				</Texture>
+			</Layer>			
+		</Layers>
+
+		<Frames>
+			<Frame>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="BibXPBarText" inherits="GameFontNormal" virtual="true">
+							<Size>
+								<AbsDimension x="480" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="BibXPBarFrame" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1.00" g="1.00" b="1.00"/>
+						</FontString>
+						
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<StatusBar name="BibBackgroundBar" frameStrata="BACKGROUND" framelevel="2">
+				<Size>
+					<AbsDimension x="480" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0.0" g="0.0" b="0.0" a="0.55"/>
+			</StatusBar>
+			
+			<StatusBar name="BibFatigueBar" frameStrata="BACKGROUND" framelevel="3">
+				<Size>
+					<AbsDimension x="480" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<!-- <BarColor r="0.00" g="0.37" b="0.45"/> -->
+				<BarColor r="0.15" g="0.41" b="1.0"/>
+			</StatusBar>
+
+			<StatusBar name="BibXPBar" frameStrata="BACKGROUND" framelevel="4">
+				<Size>
+					<AbsDimension x="480" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseUp>
+						PlayerFrame_OnClick(arg1);
+					</OnMouseUp>
+					<OnLoad>
+						this:RegisterEvent("PLAYER_XP_UPDATE");
+						this:RegisterEvent("PLAYER_LEVEL_UP");
+						this:RegisterEvent("PLAYER_ENTERING_WORLD");
+						BibXPBarText:Hide();
+					</OnLoad>
+
+					<OnEvent>
+						BibmodXPBarOnEvent(event);
+					</OnEvent>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<!-- <BarColor r="0.20" g="0.91" b="1.0"/> -->
+				<BarColor r="0.50" g="0.0" b="0.75"/>
+			</StatusBar>
+				
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				BibXPBar_OnLoad();
+			</OnLoad>
+			<OnMouseDown>
+				BibXPBar_OnMouseDown(arg1);
+				
+			</OnMouseDown>
+			<OnMouseUp>
+				BibXPBar_OnMouseUp(arg1);
+			</OnMouseUp>
+			<OnEnter>
+				BibXPBar_OnEnter();
+				UpdateBibXPBarText();
+				BibXPBarText:Show();
+			</OnEnter>
+			<OnLeave>
+				BibXPBarText:Hide();
+				GameTooltip:Hide();
+			</OnLeave>			
+		</Scripts>
+	</Frame>
+</Ui>

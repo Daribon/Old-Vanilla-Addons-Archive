@@ -1,0 +1,4 @@
+## Interface: 1600 
+## Title: |cFF006699UUI -|r URL tracker
+## Notes: Allows you to click on url's and copy them into a browser. also keeps a list of all url's seen.
+linkSnag.xml

@@ -1,0 +1,11 @@
+Kind of basic right now.
+
+Three functions to hook. All functions should pass through as they do (kind of) important work.
+
+EnemyBuffs_BuffsAdded(buffName) - gets called when a buff is added to the target (note that this may mean refreshing of a buff, e.g. no change to the list)
+EnemyBuffs_BuffsRemoved(buffName) - gets called when a buff is removed from the target
+EnemyBuffs_TargetChanged() - gets called when the target changes
+
+These variables are accessible (and will remain so):
+EnemyBuffs_Buffs - contains a list of the names of the buffs currently on the target
+

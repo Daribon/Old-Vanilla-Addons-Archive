@@ -1,0 +1,1064 @@
+<!--
+	SocialSendMessage: Adds a "Send Message" button to the Social frames that do not have one.
+	- by geowar 5 Sep, 2004.
+	- added a "Send Page" button 6 Sep, 2004 - geowar
+	- added SocialNotes 4 Feb, 2005 - GeoWar (Keep notes about other players!)
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+    <Script file="SocialSendMessage.lua"/>
+	<Button name="SocialEditNoteButton" inherits="UIPanelButtonTemplate" text="UUI_SN_EDIT_NOTE" parent="FriendsFrame">
+		<Size>
+				<AbsDimension x="96" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="FriendsFrame" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="66" y="-14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				SocialNotes_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				SocialNotes_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				SocialNotes_OnUpdate();
+			</OnUpdate>
+			<OnClick>
+				SocialNotes_OnClick(arg1);
+			</OnClick>
+			<OnEnter>
+				SocialNotes_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall"/>
+		<HighlightText inherits="GameFontHighlightSmall"/>
+		<DisabledText inherits="GameFontDisableSmall"/>
+	</Button>
+	<Button name="SocialSendPageButton" inherits="UIPanelButtonTemplate" text="UUI_SSM_SEND_PAGE" parent="FriendsFrame">
+		<Size>
+			<AbsDimension x="96" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="SocialEditNoteButton" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				SocialSendMessage_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				SocialSendMessage_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				SocialSendMessage_OnUpdate();
+			</OnUpdate>
+			<OnClick>
+				SocialSendMessage_SendPage(false);
+			</OnClick>
+			<OnEnter>
+				--GameTooltip_AddNewbieTip(UUI_SSM_SEND_PAGE, 1.0, 1.0, 1.0, UUI_SSM_SENDPAGE_NEWBIE_TOOLTIP, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall"/>
+		<HighlightText inherits="GameFontHighlightSmall"/>
+		<DisabledText inherits="GameFontDisableSmall"/>
+	</Button>
+	<Button name="SocialSendMessageButton" inherits="UIPanelButtonTemplate" text="SEND_MESSAGE" parent="FriendsFrame">
+		<Size>
+			<AbsDimension x="96" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="SocialSendPageButton" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				--SocialSendMessage_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				SocialSendMessage_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				SocialSendMessage_OnUpdate();
+			</OnUpdate>
+			<OnClick>
+				SocialSendMessage_SendMessage(false);
+			</OnClick>
+			<OnEnter>
+				GameTooltip_AddNewbieTip(SEND_MESSAGE, 1.0, 1.0, 1.0, NEWBIE_TOOLTIP_SENDMESSAGE, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalText inherits="GameFontNormalSmall"/>
+		<HighlightText inherits="GameFontHighlightSmall"/>
+		<DisabledText inherits="GameFontDisableSmall"/>
+	</Button>
+	<Button name="SocialNotesButtonTemplate" virtual="true" hidden="false">
+		<Size>
+			<AbsDimension x="16" y="16"/>
+		</Size>
+		<Scripts>
+			<OnUpdate>
+				SocialNotes_OnUpdate();
+			</OnUpdate>
+			<OnClick>
+				SocialNotes_OnClick(arg1);
+			</OnClick>
+			<OnEnter>
+				SocialNotes_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Buttons\UI-GuildButton-PublicNote-Up"/>
+		<DisabledTexture file="Interface\Buttons\UI-GuildButton-PublicNote-Disabled"/>
+		<HighlightTexture file="Interface\Buttons\UI-GuildButton-PublicNote-Up" alphaMode="ADD"/>
+	</Button>
+	<!-- FRIENDS NOTES -->
+	<Button name="FriendsFrameNoteButton1" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton1">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton1" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton2" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton2">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton2" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton3" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton3">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton3" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton4" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton4">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton4" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton5" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton5">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton5" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton6" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton6">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton6" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton7" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton7">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton7" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton8" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton8">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton8" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton9" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton9">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton9" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameNoteButton10" inherits="SocialNotesButtonTemplate" parent="FriendsFrameFriendButton10">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameFriendButton10" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-8" y="-8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<!-- IGNORE NOTES -->
+	<Button name="FriendsFrameIgnoreNoteButton1" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton1">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton1" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton2" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton2">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton2" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton3" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton3">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton3" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton4" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton4">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton4" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton5" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton5">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton5" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton6" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton6">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton6" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton7" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton7">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton7" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton8" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton8">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton8" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton9" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton9">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton9" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton10" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton10">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton10" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton11" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton11">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton11" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton12" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton12">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton12" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton13" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton13">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton13" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton14" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton14">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton14" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton15" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton15">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton15" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton16" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton16">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton16" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton17" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton17">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton17" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton18" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton18">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton18" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton19" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton19">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton19" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="FriendsFrameIgnoreNoteButton20" inherits="SocialNotesButtonTemplate" parent="FriendsFrameIgnoreButton20">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="FriendsFrameIgnoreButton20" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<!-- WHO NOTES -->
+	<Button name="WhoFrameNoteButton1" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton1">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton1" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton2" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton2">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton2" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton3" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton3">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton3" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton4" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton4">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton4" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton5" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton5">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton5" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton6" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton6">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton6" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton7" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton7">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton7" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton8" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton8">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton8" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton9" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton9">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton9" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton10" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton10">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton10" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton11" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton11">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton11" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton12" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton12">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton12" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton13" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton13">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton13" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton14" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton14">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton14" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton15" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton15">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton15" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton16" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton16">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton16" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="WhoFrameNoteButton17" inherits="SocialNotesButtonTemplate" parent="WhoFrameButton17">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="WhoFrameButton17" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<!-- GUILD NOTES -->
+	<Button name="GuildFrameNoteButton1" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton1">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton1" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton2" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton2">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton2" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton3" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton3">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton3" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton4" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton4">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton4" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton5" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton5">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton5" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton6" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton6">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton6" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton7" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton7">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton7" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton8" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton8">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton8" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton9" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton9">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton9" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton10" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton10">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton10" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton11" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton11">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton11" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton12" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton12">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton12" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton13" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton13">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton13" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="GuildFrameNoteButton14" inherits="SocialNotesButtonTemplate" parent="GuildFrameButton14">
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="GuildFrameButton14" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-4" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<!-- RAID NOTES -->
+	<Button name="RaidGroupNoteButton1" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton1">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton1" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton2" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton2">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton2" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton3" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton3">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton3" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton4" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton4">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton4" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton5" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton5">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton5" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton6" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton6">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton6" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton7" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton7">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton7" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton8" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton8">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton8" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton9" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton9">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton9" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton10" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton10">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton10" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton11" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton11">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton11" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton12" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton12">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton12" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton13" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton13">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton13" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton14" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton14">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton14" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton15" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton15">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton15" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton16" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton16">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton16" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton17" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton17">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton17" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton18" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton18">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton18" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton19" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton19">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton19" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton20" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton20">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton20" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton21" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton21">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton21" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton22" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton22">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton22" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton23" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton23">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton23" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton24" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton24">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton24" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton25" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton25">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton25" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton26" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton26">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton26" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton27" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton27">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton27" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton28" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton28">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton28" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton29" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton29">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton29" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton30" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton30">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton30" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton31" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton31">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton31" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton32" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton32">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton32" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton33" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton33">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton33" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton34" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton34">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton34" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton35" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton35">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton35" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton36" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton36">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton36" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton37" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton37">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton37" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton38" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton38">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton38" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton39" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton39">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton39" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="RaidGroupNoteButton40" inherits="SocialNotesButtonTemplate" parent="RaidGroupButton40">
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="RaidGroupButton40" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Frames>
+		<Scripts>
+			<OnLoad>
+				SocialNotes_OnLoad();
+			</OnLoad>
+			<OnShow>
+				-- SocialNotes_OnShow();
+			</OnShow>
+		</Scripts>
+	</Frames>
+</Ui>

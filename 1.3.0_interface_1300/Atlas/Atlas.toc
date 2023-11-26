@@ -1,0 +1,8 @@
+## Interface: 1300
+## Title: Atlas v0.9.4
+## Notes: Browse a collection of instance maps.
+## OptionalDeps: myAddOns, Cosmos
+## SavedVariables: Options
+Atlas.xml
+AtlasButton.xml
+AtlasOptions.xml

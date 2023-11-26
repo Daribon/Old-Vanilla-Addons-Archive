@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r MissingHP
+## Notes: Shows missing HP next to a party members status bar. Particularly useful for healers.
+## OptionalDeps:
+## Dependencies:
+## DefaultState: disabled
+MissingHP.xml

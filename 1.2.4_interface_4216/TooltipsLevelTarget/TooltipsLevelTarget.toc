@@ -1,0 +1,6 @@
+## Interface: 4216
+## Title: Tooltips: Level Target
+## Author: Celandro
+## Notes: Reveal hidden player levels
+## RequiredDeps: TooltipsBase
+TooltipsLevelTarget.xml

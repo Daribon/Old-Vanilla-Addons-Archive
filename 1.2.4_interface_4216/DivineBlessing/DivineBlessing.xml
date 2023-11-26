@@ -1,0 +1,562 @@
+<!--
+
+	Divine Blessing
+
+	by Steve DeLong (CheshireKatt), based on Totem Stomper by AlexYoshi
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+<Script file="localization.lua"/>
+<Script file="localization.de.lua"/>
+<Script file="localization.fr.lua"/>
+<Script file="DivineBlessing.lua"/>
+	<CheckButton name="DivineBlessingButtonTemplate"	virtual="true" inherits="ActionButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				DivineBlessing_ButtonLoad();
+			</OnLoad>
+			<OnShow>
+				DivineBlessing_ButtonUpdate(this);
+			</OnShow>
+			<OnDragStart>
+				DivineBlessing_ButtonDragStart();
+			</OnDragStart>
+			<OnReceiveDrag>
+				DivineBlessing_ButtonDragEnd();
+			</OnReceiveDrag>
+			<OnClick>
+				DivineBlessing_ButtonClick();
+			</OnClick>
+			<OnEnter>
+				DivineBlessing_ButtonEnter();
+			</OnEnter>
+			<OnLeave>
+				DivineBlessing_ButtonLeave();
+			</OnLeave>
+			<OnEvent>
+				DivineBlessing_ButtonEvent(event);
+			</OnEvent>
+		</Scripts>
+	</CheckButton>
+	<Button name="DivineBlessingTabButtonTemplate" inherits="CommonTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				PanelTemplates_Tab_OnClick(DivineBlessingFrame);
+				DivineBlessingTab_OnClick(this);
+			</OnClick>
+			<OnShow>
+				PanelTemplates_TabResize(10);
+				getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 30);
+			</OnShow>
+		</Scripts>
+	</Button>
+	<CheckButton name="DivineBlessingCheckButtonTemplate" hidden="false" virtual="true">
+		<Anchors>
+			<Anchor point="LEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<AbsDimension x="32" y="32" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentCheckbuttonBackground" setAllPoints="true">
+					<Color r="0" g="0" b="1" a="0.0" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+		<CheckedDisabledTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+		<DisabledTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+	</CheckButton>
+	<CheckButton name="DivineBlessingWaitButtonTemplate" inherits="DivineBlessingCheckButtonTemplate" virtual="true" >
+		<Scripts>
+			<OnClick>
+				DivineBlessing_SetWait(this:GetParent():GetID(), this:GetChecked());
+			</OnClick>
+			<OnEnter>
+				DivineBlessing_WaitButtonEnter();
+			</OnEnter>
+			<OnLeave>
+				DivineBlessing_WaitButtonLeave();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<!-- Frame Bar Template -->
+	<Frame name="BlessingSetTemplate" virtual="true" id="1">
+		<Size>
+			<AbsDimension x="384" y="48"/>
+		</Size>
+		<Frames>
+			<CheckButton name="$parent1" inherits="DivineBlessingButtonTemplate" id ="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="70" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent2" inherits="DivineBlessingButtonTemplate" id ="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent3" inherits="DivineBlessingButtonTemplate" id ="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent4" inherits="DivineBlessingButtonTemplate" id ="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent5" inherits="DivineBlessingButtonTemplate" id ="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			
+			<CheckButton name="$parentWait" inherits="DivineBlessingWaitButtonTemplate" >
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-90" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			
+		</Frames>
+		<!-- Layers -->
+		<Layers>
+			<Layer level="ARTWORK">
+				<!-- Portrait Texture -->
+				<Texture name="$parentPortrait">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="48" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<!-- Text Labels -->
+				<FontString name="$parentLabel" inherits="WorldMapTextFont" text="A">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="48" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r=".9" g=".6" b="0.3"/>
+				</FontString>
+
+				<FontString name="$parentNameText" inherits="GameFontHighlight" text="YourName">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="48" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentPlayerText" inherits="GameFontHighlight" text="Self">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-104" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentParty1Text" inherits="GameFontHighlight" text="Party1">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-60" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentParty2Text" inherits="GameFontHighlight" text="Party2">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentParty3Text" inherits="GameFontHighlight" text="Party3">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="28" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentParty4Text" inherits="GameFontHighlight" text="Party4">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="72" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentWaitText" inherits="GameFontHighlight" text="Wait">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="116" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<!-- Real Frame -->
+	<Frame name="DivineBlessingFrame" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="400" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="35" top="0" bottom="75"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentMainIcon" file="Interface\QuestFrame\UI-QuestLog-BookIcon">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTopLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBotLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBotRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleText" inherits="GameFontHighlight" text="SOME_TITLE">
+					<Size>
+						<AbsDimension x="300" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="DivineBlessingFrameHelpText" inherits="CombatLogFont">
+					<Size>
+						<AbsDimension x="260" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="20" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0.6" g="0.6" b="0.8"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentExitButton" inherits="UIPanelButtonTemplate" text="GLOBAL_EXIT_TAG_C">
+				<Size>
+					<AbsDimension x="77" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-43" y="81"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(this:GetParent());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="$parentVersion">
+				<Size>
+					<AbsDimension x="70" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="63" y="-420"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+						<FontString name="$parentText" inherits="GameFontHighlightSmall" justifyH="RIGHT"/>
+					</Layer>	
+				</Layers>
+			</Frame>
+
+			<Frame name="DivineBlessingButtonSet1" inherits="BlessingSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="DivineBlessingFrame" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-118"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("1");
+						getglobal(this:GetName().."Label"):SetText("A");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="DivineBlessingButtonSet2" inherits="BlessingSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="DivineBlessingButtonSet1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("2");
+						getglobal(this:GetName().."Label"):SetText("B");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="DivineBlessingButtonSet3" inherits="BlessingSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="DivineBlessingButtonSet2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("3");
+						getglobal(this:GetName().."Label"):SetText("C");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="DivineBlessingButtonSet4" inherits="BlessingSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="DivineBlessingButtonSet3" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("4");
+						getglobal(this:GetName().."Label"):SetText("D");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="DivineBlessingButtonSet5" inherits="BlessingSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="DivineBlessingButtonSet4" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("5");
+						getglobal(this:GetName().."Label"):SetText("E");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Button name="$parentResetButton" inherits="UIPanelButtonTemplate" text="RESET">
+				<Size>
+					<AbsDimension x="77" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-124" y="81"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if ( this.reset ) then
+							DivineBlessing_Reset();
+							this.reset = nil;
+						else 
+							this.reset = 1;	
+						end
+						DivineBlessing_OnShow();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab1" inherits="DivineBlessingTabButtonTemplate" id="1" hidden="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="82" y="-78"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+					<Scripts>
+					<OnLoad>
+						this:SetText("Self");
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab2" inherits="DivineBlessingTabButtonTemplate" id="2" hidden="false">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText("Party");
+					</OnLoad>
+				</Scripts>
+			</Button>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				getglobal(this:GetName().."VersionLabel"):SetText(VERSIONLABEL);
+				getglobal(this:GetName().."VersionText"):SetText(DIVINEBLESSING_VERSION);
+				DivineBlessing_OnLoad();
+			</OnLoad>
+			<OnShow>
+				DivineBlessing_OnShow();
+			</OnShow>
+			<OnEvent>
+				DivineBlessing_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				--GameTooltip:SetOwner(this,"ANCHOR_RIGHT");
+				--GameTooltip:SetText(DIVINEBLESSING_VERSION_TIP, 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				--GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+
+	</Frame>
+</Ui>

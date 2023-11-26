@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: AlphaMap (v1.3.1)
+## Author: Jeromy Walsh (DragonWalsh@yahoo.com)
+## Notes: A semi-transparent worldmap overlay that does not interupt character control
+## OptionalDeps: MapNotes, Gatherer, MapNotesGathering
+## SavedVariables: AlphaMapConfig
+AlphaMap.xml

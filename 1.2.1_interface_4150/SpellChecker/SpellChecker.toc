@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: SpellChecker
+## Author: sarf
+## Notes: Allows you to spell-check your messages and auto-correct them before sending them.
+## OptionalDeps: Cosmos, Sea, DynamicData
+## SavedVariables: SpellChecker_Enabled, SpellChecker_Words
+SpellChecker.xml

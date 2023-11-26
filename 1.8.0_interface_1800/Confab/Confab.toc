@@ -1,0 +1,7 @@
+## Interface: 1800
+## Version: 1.77
+## Title: |cFF006699Optional -|r Confab v1.77
+## Author: Kulyeh of Archimonde
+## Notes: Addon that allows relocating, undocking, resizing and many other things to the chat editbox.
+## SavedVariables: ConfabUser
+Confab.xml

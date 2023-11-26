@@ -1,0 +1,7 @@
+## Interface: 1600
+## Author: sarf & Vaejor
+## Title: LootDestroyer
+## Notes: Adds the ability to destroy loot automatically on pickup.
+## OptionalDeps: Cosmos
+## RequiredDeps: DynamicDataItem
+LootDestroyer.xml

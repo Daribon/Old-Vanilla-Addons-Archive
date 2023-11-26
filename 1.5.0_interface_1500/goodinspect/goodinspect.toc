@@ -1,0 +1,4 @@
+## Interface: 1500
+## Title: GoodInspect
+## Notes: increases inspect range and adds guild info to the inspect window
+goodinspect.xml

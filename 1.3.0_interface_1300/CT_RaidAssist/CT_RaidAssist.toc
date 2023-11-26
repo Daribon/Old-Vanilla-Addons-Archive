@@ -1,0 +1,10 @@
+## Interface: 1300
+## Version: 1.094 (1.78)
+## Title: CT_RaidAssist
+## Notes: Allows you to monitor Raid HP.
+## SavedVariables: CT_RA_Channel, CT_RA_DebuffColors, CT_RA_BuffArray, CT_RA_NotifyDebuffs, CT_RA_NotifyDebuffs, CT_RA_MemberHeight, CT_RA_HideNames, CT_RA_DefaultColor, CT_RA_LockGroups, CT_RA_ShowMTs, CT_RA_HideParty, CT_RA_DefaultAlertColor, CT_RA_SORTTYPE, CT_RA_ShowGroups, CT_RA_HiddenGroups, CT_RA_ShowHP, CT_RA_PercentColor, CT_RA_MainTanks, CT_RA_MainTankStats, CT_RA_Stats, CT_RA_HideOffline, CT_RA_PartyMembers, CT_RA_HideNA, CT_RA_HideShort, CT_RA_ShowDebuffs, CT_RA_NumRaidMembers, CT_RA_HideBorder, CT_RA_KeyWord, CT_RA_ClassHealings, CT_RA_ChatInfo, CT_RA_RaidParticipant, CT_RA_CurrPositions, CT_RA_Comm_MinMessageInterval, CT_RA_Comm_HPChangeThreshold, CT_RA_Comm_MPChangeThreshold, CT_RA_Comm_MTHPChangeThreshold, CT_RA_Comm_MTMPChangeThreshold, CT_RA_WindowScaling, CT_RA_MTScaling, CT_RA_SpellCastDelay, CT_RA_NotifyClasses, CT_RA_ModVersion, CT_RA_HideMP, CT_RA_HideRP, CT_RA_PlayRSSound, CT_RA_MaintainTarget, CT_RA_HidePartyRaid, CT_RA_HideTooltip, CT_RA_ResFrame_Options, CT_RA_LeaveChannelRaid, CT_RAMenu_Locked
+## OptionalDeps: CastParty, CT_BarMod
+CT_RaidAssist.xml
+CT_RAOptions.xml
+CT_RAMenu.xml
+CT_RADetectSpells.xml

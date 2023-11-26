@@ -1,0 +1,165 @@
+<!--
+
+	ItemBuff: A simple mechanism for monitoring item buffs
+		copyright 2004 by Telo
+	
+	- Automatically displays up to six timed item buffs onscreen in a small movable window
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="ItemBuff.lua"/>
+	<Script file="localization.lua"/>
+	<CheckButton name="ItemBuffButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="20" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentLabel" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="23" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+		<Scripts>
+			<OnLoad>
+				ItemBuffButton_OnLoad();		 
+			</OnLoad>
+			<OnEnter>
+				ItemBuffButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				ItemBuffButton_OnLeave();
+			</OnLeave>
+			<OnUpdate>
+				ItemBuffButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</CheckButton>
+	<Frame name="ItemBuffFrame" toplevel="true" frameStrata="LOW" enableMouse="true" parent="ChatFrame1" movable="true">
+		<Size>
+			<AbsDimension x="66" y="106"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-30" y="30"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="ItemBuffBackdrop" setAllPoints="true" frameStrata="BACKGROUND" hidden="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="4" right="4" top="4" bottom="4"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				ItemBuff_OnLoad();
+			</OnLoad>
+			<OnShow>
+				ItemBuff_OnShow();
+			</OnShow>
+			<OnEvent>
+				ItemBuff_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				ItemBuff_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				ItemBuff_OnLeave();
+			</OnLeave>
+			<OnDragStart>
+				ItemBuff_OnDragStart();
+			</OnDragStart>
+			<OnDragStop>
+				ItemBuff_OnDragStop();
+			</OnDragStop>
+			<OnMouseUp>
+				ItemBuff_OnDragStop();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+	<CheckButton name="ItemBuffButton1" inherits="ItemBuffButtonTemplate" parent="ItemBuffFrame" id="1">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="14" y="14"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="ItemBuffButton2" inherits="ItemBuffButtonTemplate" parent="ItemBuffFrame" id="2">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ItemBuffButton1" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="ItemBuffButton3" inherits="ItemBuffButtonTemplate" parent="ItemBuffBar" id="3">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ItemBuffButton2" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="ItemBuffButton4" inherits="ItemBuffButtonTemplate" parent="ItemBuffBar" id="4">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ItemBuffButton3" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="ItemBuffButton5" inherits="ItemBuffButtonTemplate" parent="ItemBuffBar" id="5">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ItemBuffButton4" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<CheckButton name="ItemBuffButton6" inherits="ItemBuffButtonTemplate" parent="ItemBuffBar" id="6">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="ItemBuffButton5" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+	<GameTooltip name="ItemTempTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

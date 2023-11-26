@@ -1,0 +1,770 @@
+--[[
+path: /KillLog/
+filename: KillLogFrame.lua
+author: Daniel Risse <dan@risse.com>
+created: Sat, 15 Jan 2005 14:15:00 -0800
+updated: Mon, 24 Jan 2005 21:39:00 -0800
+
+Kill Log: A record of your exploits fighting creeps in Azeroth
+]]
+
+---------------
+-- constants --
+---------------
+
+KILLLOG_VERSION = 2.06;
+KILLLOG_DATA_VERSION = 2;
+
+KILLLOG_MAX_LEVEL = 60;
+UIPanelWindows["KillLogFrame"] = { area = "left", pushable = 0 };
+KILLLOG_TAB_SUBFRAMES = { "KillLog_GeneralFrame", "KillLog_ListFrame", "KillLog_DeathFrame", "KillLog_OptionsFrame" };
+
+local KILL_LOG_DIFFICULTY_COLOR = {
+	{ r = 0.50, g = 0.50, b = 0.50 },
+	{ r = 0.25, g = 0.75, b = 0.25 },
+	{ r = 1.00, g = 1.00, b = 0.00 },
+	{ r = 1.00, g = 0.50, b = 0.25 },
+	{ r = 1.00, g = 0.10, b = 0.10 },
+};
+
+KillLog_SessionData     = { };
+KillLog_CreepPortrait   = { };
+local KillLog_CreepPortraitID = 1;
+
+---------------------------
+-- XML handler functions --
+---------------------------
+function ToggleKillLog(tab)
+	if ( not tab ) then
+		if ( KillLogFrame:IsVisible() ) then
+			HideUIPanel(KillLogFrame);
+		else
+			ShowUIPanel(KillLogFrame);
+			local selectedFrame = getglobal(KILLLOG_TAB_SUBFRAMES[KillLogFrame.selectedTab]);
+			if ( not selectedFrame:IsVisible() ) then
+				selectedFrame:Show()
+			end
+		end
+	else
+		local subFrame = getglobal(tab);
+		if ( subFrame ) then
+			PanelTemplates_SetTab(KillLogFrame, subFrame:GetID());
+			if ( KillLogFrame:IsVisible() ) then
+				if ( subFrame:IsVisible() ) then
+					HideUIPanel(KillLogFrame);
+				else
+					PlaySound("igCharacterInfoTab");
+					KillLogFrame_ShowSubFrame(tab);
+				end
+			else
+				ShowUIPanel(KillLogFrame);
+				KillLogFrame_ShowSubFrame(tab);
+			end
+		end
+	end
+end
+
+function KillLogFrame_ShowSubFrame(frameName)
+	for index, value in KILLLOG_TAB_SUBFRAMES do
+		if ( value == frameName ) then
+			getglobal(value):Show();
+		else
+			getglobal(value):Hide();
+		end
+	end
+end
+
+function KillLogTab_OnClick()
+	if ( this:GetName() == "KillLogFrameTab1" ) then
+		ToggleKillLog("KillLog_GeneralFrame");
+	elseif ( this:GetName() == "KillLogFrameTab2" ) then
+		ToggleKillLog("KillLog_ListFrame");
+	elseif ( this:GetName() == "KillLogFrameTab3" ) then
+		ToggleKillLog("KillLog_DeathFrame");
+	elseif ( this:GetName() == "KillLogFrameTab4" ) then
+		ToggleKillLog("KillLog_OptionsFrame");
+	end
+	PlaySound("igCharacterInfoTab");
+end
+
+function KillLogFrame_OnLoad()
+	if ( not DebugMessage ) then
+		DebugMessage = function(x,y,z) if ( z == "error" ) then DEFAULT_CHAT_FRAME:AddMessage(format("|cffff0000[%s]: %s|r", x, y)) end end;
+	end
+
+
+
+	SlashCmdList["KILL_LOG_TOGGLE"] = function (msg) ToggleKillLog(nil); end;
+	SLASH_KILL_LOG_TOGGLE1 = "/killlog";
+	SLASH_KILL_LOG_TOGGLE2 = "/kl";
+
+	this:RegisterEvent("VARIABLES_LOADED");
+	this:RegisterEvent("UNIT_NAME_UPDATE");
+
+	-- Tab Handling code
+	PanelTemplates_SetNumTabs(this, 4);
+	PanelTemplates_SetTab(this, 2);
+	PanelTemplates_DisableTab(this, 1);
+	PanelTemplates_DisableTab(this, 3);
+	PanelTemplates_DisableTab(this, 4);
+
+	this.loaded = nil;
+	this.init   = 0;
+	-- this will only be filled with creeps that we do not expect experience for
+	--   that way, when we see a creep die we can count it as a kill if it's name is filled
+	this.lastHitSelfToOther = nil;
+	this.lastHitOtherToSelf = nil;
+end
+
+function KillLogFrame_OnEvent(event)
+	if ( not this.loaded ) then
+		if ( event == "VARIABLES_LOADED" or (event == "UNIT_NAME_UPDATE" and arg1 == "player" and UnitName("player") ~= "Unknown Entity") ) then
+			this.init = this.init + 1;
+		end
+
+		if ( this.init == 2 ) then
+			KillLogFrame_LoadData();
+		end
+		return;
+	end
+
+	if ( table.getn(this.stopEvent) ~= 0 ) then
+		local index, stopEvent;
+		for index, stopEvent in this.stopEvent do
+			if ( event ~= stopEvent ) then
+				this:UnregisterEvent(stopEvent);
+				table.remove(this.stopEvent, index);
+			end
+		end
+	end
+
+	if ( event == "MEMORY_EXHAUSTED" ) then
+		KillLog_FreeMemory();
+
+	elseif ( event == "UNIT_LEVEL" ) then
+		local characterLevel = UnitLevel("player");
+		if ( characterLevel == KILLLOG_MAX_LEVEL ) then
+			KillLogFrame.NoXpGain = true;
+		end
+		if ( not KillLog_ListFrame:IsVisible() ) then
+			KillLog_ListFrame.displayLevel = characterLevel;
+		end
+		if ( KillLog_Options.storeLevel ~= 0 and not KillLog_LevelDisplayData[characterLevel] ) then
+			KillLog_LevelDisplayData[characterLevel] = { };
+			KillLog_LevelData = KillLog_LevelDisplayData[characterLevel];
+
+			if ( KillLog_Options.storeLevel < KILLLOG_MAX_LEVEL ) then
+				local level, levelCount;
+				levelCount = 0;
+				for level=characterLevel, 1, -1 do
+					if ( KillLog_LevelDisplayData[level] ) then
+						if ( levelCount == KillLog_Options.storeLevel ) then
+							KillLog_LevelDisplayData[level] = nil;
+						else
+							levelCount = levelCount + 1;
+						end
+					end
+				end
+			end
+		end
+
+	elseif ( event == "PLAYER_TARGET_CHANGED" ) then
+		if ( UnitExists("target") and not UnitPlayerControlled("target") ) then
+			KillLogFrame_RecordCreepInfo("target");
+		end
+
+	elseif ( event == "UPDATE_MOUSEOVER_UNIT" ) then
+		if ( UnitExists("mouseover") and not UnitPlayerControlled("mouseover") ) then
+			local creepType;
+			if ( not UnitIsPlusMob("mouseover") ) then
+				creepType = string.gfind(getglobal(GameTooltip:GetName().."TextLeft2"):GetText(), KILLLOG_TOOLTIP_TYPE_PATTERN)();
+			else
+				creepType = string.gfind(getglobal(GameTooltip:GetName().."TextLeft2"):GetText(), KILLLOG_TOOLTIP_TYPE_PATTERN_PLUS)();
+			end
+			if ( creepType and creepType == "Corpse" ) then
+				creepType = nil;
+			end
+			KillLogFrame_RecordCreepInfo("mouseover", creepType);
+			if ( KillLog_Options.tooltip ) then
+				KillLog_Tooltip();
+			end
+		end
+	else
+		local match, index, pattern;
+		if ( not KILLLOG_EVENT_PATTERNS[event] ) then
+			DebugMessage("KL", "No pattern matching for event: "..event.."\n"..arg1, "error");
+			table.insert(this.stopEvent, event);
+			return;
+		end
+
+		for index, pattern in KILLLOG_EVENT_PATTERNS[event] do
+			match = { string.gfind(arg1, pattern)() };
+			if ( table.getn(match) ~= 0 ) then
+				DebugMessage("KL", "event: "..event, "helper");
+				DebugMessage("KL", "message: "..arg1, "helper");
+				DebugMessage("KL", "pattern: "..pattern, "helper");
+				DebugMessage("KL", "match: "..table.concat(match, ", "), "helper");
+				break;
+			end
+		end
+
+		if ( table.getn(match) ~= 0 ) then
+			if ( event == "CHAT_MSG_COMBAT_XP_GAIN" ) then
+				table.insert(match, 3, 'xp');
+				KillLogFrame_RecordData(match, 1, "kill");
+			elseif ( event == "CHAT_MSG_COMBAT_SELF_HITS" or event == "CHAT_MSG_SPELL_SELF_DAMAGE" or event == "CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE" ) then
+				if ( KillLogFrame_IsCreepTrivial(match[1]) ) then
+					this.lastHitSelfToOther = match[1];
+				end
+
+			elseif ( event == "CHAT_MSG_COMBAT_PET_HITS" or event == "CHAT_MSG_SPELL_PET_DAMAGE" ) then
+				if ( KillLogFrame_IsCreepTrivial(match[1]) ) then
+					this.lastHitSelfToOther = match[1];
+				end
+
+			-- TODO: check AOE spells vs trivial creeps
+			--   need to receive messages in proper order to count each kill
+			elseif ( event == "CHAT_MSG_COMBAT_HOSTILE_DEATH" ) then
+				if ( this.lastHitSelfToOther == match[1] ) then
+					KillLogFrame_RecordData(match, 1, "kill");
+					this.lastHitSelfToOther = nil;
+				end
+
+			elseif ( event == "CHAT_MSG_COMBAT_CREATURE_VS_SELF_HITS" ) then
+				this.lastHitOtherToSelf = match[1];
+			elseif ( event == "CHAT_MSG_COMBAT_FRIENDLY_DEATH" ) then
+				if ( this.lastHitOtherToSelf ) then
+					KillLogFrame_RecordData({ this.lastHitOtherToSelf, 1, "death" });
+					this.lastHitOtherToSelf = nil;
+				end
+
+			elseif ( event == "CHAT_MSG_SYSTEM" ) then
+				if ( table.getn(match) == 2 ) then
+					if ( KillLog_AllCharacterData["exploration xp"] ) then
+						KillLog_AllCharacterData["exploration xp"] = match[2] + KillLog_AllCharacterData["exploration xp"];
+					else
+						KillLog_AllCharacterData["exploration xp"] = match[2];
+					end
+					DebugMessage("KL", "Exploration XP: "..match[1], "info");
+				else
+					if ( KillLog_AllCharacterData["quest xp"] ) then
+						KillLog_AllCharacterData["quest xp"] = match[1] + KillLog_AllCharacterData["quest xp"];
+					else
+						KillLog_AllCharacterData["quest xp"] = match[1];
+					end
+					DebugMessage("KL", "Quest XP: "..match[1], "info");
+				end
+
+			else
+				DebugMessage("KL", "Match for event but not processed: "..event, "warning");
+			end
+		end
+	end
+	if ( DebugWatch3 ) then
+		DebugWatch3:SetText("portrait #"..(KillLog_CreepPortraitID-1));
+	end
+end
+
+function KillLogFrame_OnShow()
+	PlaySound("igCharacterInfoOpen");
+end
+
+function KillLogFrame_OnHide()
+	PlaySound("igCharacterInfoClose");
+end
+
+
+----------------------
+-- Helper functions --
+----------------------
+
+function KillLog_FreeMemory()
+	if ( KillLog_CreepPortrait ) then
+		DebugMessage("KL", "Out of Memory! discarding portraits!", "error");
+		KillLog_CreepPortrait = nil;
+		KillLog_CreepPortraitID = KILL_LOG_MAX_PORTRAITS;
+		local index;
+		-- I do not know if this loop works or not; my idea was to free the XML 
+		--   frames for the portraits to free memory
+		for index=1, KILL_LOG_MAX_PORTRAITS, 1 do
+			getglobal("KillLog_ListFrame_CreepPortrait"..index) = nil;
+		end
+	elseif ( KillLog_SessionData ) then
+		DebugMessage("KL", "Out of Memory! discarding data for current session!", "error");
+		KillLog_SessionData = nil;
+	elseif ( KillLogFrame ) then
+		DebugMessage("KL", "Out of Memory! discarding XML frames!!  The display will now be broken for the remainder of this session, but all of your data is still intact!", "error");
+		KillLogFrame = nil;
+	elseif ( KillLog_CreepData ) then
+		DebugMessage("KL", "Out of Memory! discarding creep data!", "error");
+		KillLog_CreepData = nil;
+	end
+end
+
+
+function KillLogFrame_LoadData()
+	local server         = GetCVar("realmName");
+	local characterName  = UnitName("player");
+	local characterLevel = UnitLevel("player");
+
+	if ( characterLevel == KILLLOG_MAX_LEVEL ) then
+		KillLogFrame.NoXpGain = true;
+	end
+
+	-- initialize options
+	if ( not KillLog_Options ) then
+		KillLog_Options = { portrait = KILLLOG_LIST_MAX_PORTRAITS, tooltip = true, trivial = true,
+			storeCreep = true, storeOverall = true, session = true, storeLevel = 5, dataVersion = KILLLOG_DATA_VERSION };
+		if ( KillLog_CharacterData ) then
+			KillLog_UpdateData();
+		end
+	end
+
+	while ( KillLog_Options.dataVersion ~= KILLLOG_DATA_VERSION ) do
+		KillLog_UpdateData();
+	end
+
+	if ( not KillLog_CreepInfo ) then
+		KillLog_CreepInfo = { };
+	end
+
+	if ( KillLog_Options.storeOverall ) then
+		if ( not KillLog_CharacterData ) then
+			KillLog_CharacterData = { };
+		end
+		if ( not KillLog_CharacterData[server] ) then
+			KillLog_CharacterData[server] = { };
+		end
+		if (not KillLog_CharacterData[server][characterName] ) then
+			KillLog_CharacterData[server][characterName] = { };
+		end
+		if (not KillLog_CharacterData[server][characterName]["overall"] ) then
+			KillLog_CharacterData[server][characterName]["overall"] = { };
+		end
+		-- we'll only be dealing with one character; so privide local name for data
+		KillLog_Data = KillLog_CharacterData[server][characterName]["overall"];
+		KillLog_AllCharacterData = KillLog_CharacterData[server][characterName];
+	end
+
+	if ( KillLog_Options.storeLevel ) then
+		if ( not KillLog_CharacterData ) then
+			KillLog_CharacterData = { };
+		end
+		if ( not KillLog_CharacterData[server] ) then
+			KillLog_CharacterData[server] = { };
+		end
+		if (not KillLog_CharacterData[server][characterName] ) then
+			KillLog_CharacterData[server][characterName] = { };
+		end
+		if (not KillLog_CharacterData[server][characterName]["level"] ) then
+			KillLog_CharacterData[server][characterName]["level"] = { };
+		end
+		if (not KillLog_CharacterData[server][characterName]["level"][characterLevel] ) then
+			KillLog_CharacterData[server][characterName]["level"][characterLevel] = { };
+		end
+		-- we'll only be dealing with one character; so privide local name for data
+		KillLog_LevelData = KillLog_CharacterData[server][characterName]["level"][characterLevel];
+		KillLog_LevelDisplayData = KillLog_CharacterData[server][characterName]["level"];
+	end
+
+	-- for switching to new /level table entry
+	if ( KillLog_Options.storeLevel ~= 0 ) then
+		this:RegisterEvent("UNIT_LEVEL");
+	end
+	-- for gathering creep info
+	if ( KillLog_Options.storeCreep ) then
+		this:RegisterEvent("PLAYER_TARGET_CHANGED");
+		this:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
+	elseif ( KillLog_Options.tooltip ) then
+		this:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
+	end
+	-- combat messages
+	this:RegisterEvent("CHAT_MSG_COMBAT_SELF_HITS");
+	this:RegisterEvent("CHAT_MSG_COMBAT_PET_HITS");
+	this:RegisterEvent("CHAT_MSG_COMBAT_CREATURE_VS_SELF_HITS");
+	this:RegisterEvent("CHAT_MSG_COMBAT_FRIENDLY_DEATH");
+	this:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH");
+	this:RegisterEvent("CHAT_MSG_COMBAT_XP_GAIN");
+	-- spell messages
+	this:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
+	this:RegisterEvent("CHAT_MSG_SPELL_PET_DAMAGE");
+	this:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE");
+	-- system messages
+	this:RegisterEvent("CHAT_MSG_SYSTEM");
+	-- error handling
+	this:RegisterEvent("MEMORY_EXHAUSTED");
+
+	this.loaded = true;
+	this.init   = nil;
+	this.stopEvent = { };
+	table.setn(this.stopEvent, 0);
+	table.insert(this.stopEvent, "VARIABLES_LOADED");
+	table.insert(this.stopEvent, "UNIT_NAME_UPDATE");
+end
+
+function KillLogFrame_RecordCreepInfo(unit, creepType)
+	  -- from observation, a reaction of 2 is hostile and 4 is neutral.
+	  -- based upon color specified in TargetFrame.lua; I am assuming that a reaction of 1 and 3 are also enemies
+	local creepReaction = UnitReaction(unit, "player");
+	if ( not creepReaction or creepReaction > 4 ) then
+		return;
+	end
+
+	local creepName     = UnitName(unit);
+	local creepLevel    = UnitLevel(unit);
+	-- check if we should store data
+	if ( KillLog_Options.storeCreep ) then
+		local creepClass    = UnitClassification(unit);
+		local creepPVP      = UnitIsPVP(unit);
+		local creepFaction  = UnitFactionGroup(unit);
+		local creepModel    = KillLog_GetCreepModel(creepName);
+
+		if ( creepClass == "normal" ) then
+			creepClass = nil;
+		end
+		if ( not creepPVP ) then
+			creepFaction = nil;
+		end
+
+		local creepInfo = KillLog_CreepInfo[creepName];
+		if ( not creepInfo ) then
+			DebugMessage("KL", "new CreepInfo: "..creepName..", level "..creepLevel, "info");
+			KillLog_CreepInfo[creepName] = { min = creepLevel, max = creepLevel, class = creepClass, type = creepType, faction = creepFaction, model = creepModel };
+		else
+			if ( not creepInfo.min or not creepInfo.max ) then
+				DebugMessage("KL", "new level: "..creepName..", "..creepLevel, "info");
+				creepInfo.min = creepLevel;
+				creepInfo.max = creepLevel;
+			else
+				if ( creepInfo.min > creepLevel ) then
+					DebugMessage("KL", "new min: "..creepName..", "..creepLevel.." - "..creepInfo.max, "info");
+					creepInfo.min = creepLevel;
+				elseif ( creepInfo.max < creepLevel ) then
+					DebugMessage("KL", "new max: "..creepName..", "..creepInfo.min.." - "..creepLevel, "info");
+					creepInfo.max = creepLevel;
+				end
+			end
+			if ( creepInfo.class ~= creepClass ) then
+				DebugMessage("KL", "new class: "..creepName..", "..creepClass, "info");
+				creepInfo.class = creepClass;
+			end
+			if ( creepInfo.faction ~= creepFaction ) then
+				DebugMessage("KL", "new faction: "..creepName..", "..creepFaction, "info");
+				creepInfo.faction = creepFaction;
+			end
+			-- only available by scanning GameTooltip
+			if ( creepType and not creepInfo.type ) then
+				DebugMessage("KL", "new type: "..creepName..", "..creepType, "info");
+				creepInfo.type = creepType;
+			end
+			-- only available by scanning creepName
+			if ( creepModel and not creepInfo.model ) then
+				DebugMessage("KL", "new model: "..creepName..", "..creepModel, "info");
+				creepInfo.model = creepModel;
+			end
+		end
+	end
+
+	if ( KillLog_Options.portrait and KillLog_CreepPortrait ) then
+		if ( not KillLog_CreepPortrait[creepName] and KillLog_CreepPortraitID <= KillLog_Options.portrait ) then
+			local portrait = getglobal("KillLog_ListFrame_CreepPortrait"..KillLog_CreepPortraitID);
+			if ( portrait ) then
+				DebugMessage("KL", "Portrait["..KillLog_CreepPortraitID.."]: for "..creepName, "helper");
+				SetPortraitTexture(portrait, unit);
+				KillLog_CreepPortrait[creepName] = KillLog_CreepPortraitID;
+				KillLog_CreepPortraitID = KillLog_CreepPortraitID + 1;
+			end
+		end
+	end
+
+	if ( unit == "target" ) then
+		if ( not UnitIsDead(unit) and KillLogFrame_IsCreepTrivial(creepName, creepLevel) ) then
+			KillLogFrame.lastHitSelfToOther = creepName;
+		else
+			KillLogFrame.lastHitSelfToOther = nil;
+		end
+	end
+end
+
+-- check if we should have received exp or not
+--  the highest level creep we've seen would need to return a grey color
+--  and we need to have just struck this creep
+--  we do not want to either receive credit twice for this kill or receive credit for someone else's kill
+function KillLogFrame_IsCreepTrivial(creepName, creepLevel)
+	if ( KillLogFrame.NoXpGain ) then
+		return true;
+	end
+	if ( creepLevel and KillLog_GetDifficultyRating(creepLevel) == 1 ) then
+		return true;
+	end
+	if ( KillLog_CreepInfo[creepName] ) then
+		if ( (KillLog_CreepInfo[creepName]["type"] and KillLog_CreepInfo[creepName]["type"] == "Critter") or KillLogFrame.NoXpGain ) then
+			return true;
+		elseif ( not creepLevel and KillLog_CreepInfo[creepName]["max"] and KillLog_GetDifficultyRating(KillLog_CreepInfo[creepName]["max"]) == 1 ) then
+			return true;
+		end
+	end
+	return nil;
+end
+
+function KillLogFrame_RecordData(creepTableData, ...)
+	local creepName = creepTableData[1];
+	local listData, index, data, message, amount, field;
+
+	listData = { };
+	if ( KillLog_Options.storeOverall ) then
+		if ( not KillLog_Data[creepName] ) then
+			KillLog_Data[creepName] = { };
+		end
+		table.insert(listData, KillLog_Data[creepName]);
+	end
+	if ( KillLog_Options.session and KillLog_SessionData ) then
+		index = table.foreach(KillLog_SessionData, function(k,v) if ( v.name == creepName ) then return k; end return nil; end);
+		if ( not index ) then
+			table.insert(KillLog_SessionData, 1, { name = creepName });
+		elseif ( index ~= 1 ) then
+			data = KillLog_SessionData[index];
+			for index=index, 2, -1 do
+				KillLog_SessionData[index] = KillLog_SessionData[index-1];
+			end
+			KillLog_SessionData[1] = data;
+		end
+		table.insert(listData, KillLog_SessionData[1]);
+	end
+	if ( KillLog_Options.storeLevel ) then
+		if ( not KillLog_LevelData[creepName] ) then
+			KillLog_LevelData[creepName] = { };
+		end
+		table.insert(listData, KillLog_LevelData[creepName]);
+	end
+
+	for index, data in listData do
+		message = "data["..index.."]: ";
+		for i=2, table.getn(creepTableData), 2 do
+			amount = creepTableData[i];
+			field = strlower(creepTableData[i+1]);
+			if ( not amount or not field ) then
+				if ( amount ) then
+					message = message..", value: "..value.." ???";
+				elseif ( field ) then
+					message = message..", field: "..field.." ???";
+				end
+				DebugMessage("KL", "Corrupt table passed into KillLogFrame_RecordData\n"..message, "error");
+				return;
+			end
+
+			if ( not data[field] ) then
+				message = message..", "..field.." = "..amount;
+				-- force numeric context
+				data[field] = 0 + amount;
+			else
+				message = message..", "..field.." = "..data[field].." + "..amount;
+				data[field] = data[field] + amount;
+				message = message.." => "..data[field];
+			end
+		end
+		for i=1, arg.n, 2 do
+			amount = arg[i];
+			field = arg[i+1];
+			if ( not amount or not field ) then
+				if ( amount ) then
+					message = message..", value: "..value.." ???";
+				elseif ( field ) then
+					message = message..", field: "..field.." ???";
+				end
+				DebugMessage("KL", "Corrupt table passed into KillLogFrame_RecordData\n"..message, "error");
+				return;
+			end
+
+			if ( not data[field] ) then
+				message = message..", "..field.." = "..amount;
+				-- force numeric context
+				data[field] = 0 + amount;
+			else
+				message = message..", "..field.." = "..data[field].." + "..amount;
+				data[field] = data[field] + amount;
+				message = message.." => "..data[field];
+			end
+		end
+		DebugMessage("KL", message, "helper");
+	end
+	KillLog_SendUpdate();
+end
+
+function KillLog_SendUpdate()
+	if ( KillLog_ListFrame:IsVisible() ) then
+		KillLog_ListFrame_OnShow();
+	elseif ( not KillLogFrame:IsVisible() ) then
+		-- clear the selection so that the recent creep will be selected instead
+		KillLog_ListFrame.selectedCreepID = nil;
+	end
+end
+
+function KillLog_Tooltip(creepName)
+	local creepName = UnitName("mouseover");
+	if ( KillLog_Data[creepName] ) then
+		local linesAdded = 0;
+		if ( KillLog_Data[creepName]["kill"] ) then
+			if ( KillLog_Data[creepName]["xp"] ) then
+				GameTooltip:AddLine(format(KILLLOG_TOOLTIP_KILL_COUNT, KillLog_Data[creepName]["kill"], (KillLog_Data[creepName]["xp"]/KillLog_Data[creepName]["kill"])), 1.0, 1.0, 0);
+				linesAdded = linesAdded + 1;
+			else
+				GameTooltip:AddLine(format(KILLLOG_TOOLTIP_KILL_COUNT, KillLog_Data[creepName]["kill"], 0), 1.0, 1.0, 0);
+				linesAdded = linesAdded + 1;
+			end
+		end
+		if ( KillLog_Data[creepName]["death"] ) then
+			GameTooltip:AddLine(format(KILLLOG_TOOLTIP_DEATH_COUNT, KillLog_Data[creepName]["death"]), 1.0, 0, 0);
+			linesAdded = linesAdded + 1;
+		end
+		if ( linesAdded ~= 0 ) then
+			-- Adjust width and height to account for new lines
+			GameTooltip:SetHeight(GameTooltip:GetHeight() + (14 * linesAdded));
+			local tooltipLineCount = GameTooltip:NumLines();
+			for i=(tooltipLineCount-linesAdded+1), tooltipLineCount, 1 do
+				width = 20 + getglobal(GameTooltip:GetName().."TextLeft"..i):GetWidth();
+				if ( GameTooltip:GetWidth() < width ) then
+					GameTooltip:SetWidth(width);
+				end
+			end
+		end
+	end
+end
+
+function KillLog_UpdateData()
+	local creepName, data;
+	-- data version nil => 1
+	if ( not KillLog_Options.dataVersion ) then
+		for creepName, data in KillLog_CreepInfo do
+			if ( data.elite ) then
+				data.class = "elite";
+				data.elite = nil;
+			end
+		end
+
+		local server, charList, char, data;
+		for server, charList in KillLog_CharacterData do
+			for char, data in charList do
+				charList[char] = { ["overall"] = data };
+			end
+		end
+		KillLog_Options.dataVersion = 1;
+		return;
+
+	-- data version 1 => 2
+	elseif ( KillLog_Options.dataVersion == 1 ) then
+		for creepName, data in KillLog_CreepInfo do
+			if ( not data.model ) then
+				data.model = KillLog_GetCreepModel(creepName);
+			end
+		end
+
+		KillLog_Options.dataVersion = 2;
+
+	-- data version ???? => current
+	--   since we are attempting to update the data in a while loop, this will ensure that nothing
+	--   strange happens causing an infinite loop
+	else
+		KillLog_Options.dataVersion = KILLLOG_DATA_VERSION;
+	end
+
+end
+
+
+--Same as GetDifficultyColor but also accepts characterLevel to compair based upon
+--  when you are level 40 looking at what you killed at level 20, it should be colored
+--  as if you were level 20
+function KillLog_GetDifficultyColor(creepLevel, atCharacterLevel)
+	local characterLevel = UnitLevel("player");
+	if ( not atCharacterLevel or atCharacterLevel == characterLevel ) then
+		return GetDifficultyColor(creepLevel);
+	else
+		--TODO: define this formula
+		return KILL_LOG_DIFFICULTY_COLOR[1];
+	end
+end
+
+function KillLog_GetDifficultyRating(creepLevel, atCharacterLevel)
+	local color = KillLog_GetDifficultyColor(creepLevel, atCharacterLevel);
+	for index, color2 in KILL_LOG_DIFFICULTY_COLOR do
+		if ( color.r == color2.r and color.g == color2.g and color.b == color2.b ) then
+			return index;
+		end
+	end
+	return 0;
+end
+
+function KillLog_GetCreepModel(creepName)
+	local index, patternList, pattern, model;
+	for model, patternList in KILLLOG_CREEP_MODELS do
+		for index, pattern in patternList do
+			if ( string.find(creepName, pattern) ) then
+				return model;
+			end
+		end
+	end
+	return nil;
+end
+
+
+function KL_LoadData(max)
+	if ( not max ) then
+		max = 200;
+	end
+	for index=1, max, 1 do
+		KillLog_Data["A Sample Creep  "..index] = { kill = index, xp = index*2 };
+		KillLog_Data["B Sample Creep  "..index] = { kill = index, xp = index*2 };
+		KillLog_Data["C Sample Creep  "..index] = { kill = index, xp = index*2 };
+		KillLog_Data["Z Sample Creep  "..index] = { kill = index, xp = index*2 };
+
+		KillLog_CreepInfo["A Sample Creep  "..index] = { min = index, max = index };
+	end
+end
+
+function KL_RemoveData()
+	for creepName, data in KillLog_Data do
+		if ( string.find(creepName, "Sample Creep") ) then
+			KillLog_Data[creepName] = nil;
+		end
+	end
+	for creepName, data in KillLog_CreepInfo do
+		if ( string.find(creepName, "Sample Creep") ) then
+			KillLog_Data[creepName] = nil;
+		end
+	end
+end
+
+function KLTest(Out, ...)
+	--COMBATLOG_XPGAIN_FIRSTPERSON = "%s dies, you gain %d experience.";
+	local klPattern = Out;
+	klPattern = string.gsub(klPattern, "%(", "%%(");
+	klPattern = string.gsub(klPattern, "%)", "%%)");
+	klPattern = string.gsub(klPattern, "%.", "%%.");
+	klPattern = string.gsub(klPattern, "%%d", "(%%d+)");
+	klPattern = string.gsub(klPattern, "%%s", "(.+)");
+	DebugMessage("KL", klPattern, "warning");
+	local test = "";
+	if ( arg.n == 2 ) then
+		test = string.format(Out, arg[1], arg[2]);
+	elseif ( arg.n == 3 ) then
+		test = string.format(Out, arg[1], arg[2], arg[3]);
+	elseif ( arg.n == 4 ) then
+		test = string.format(Out, arg[1], arg[2], arg[3], arg[4]);
+	end
+	DebugMessage("KL", test, "warning");
+	local match = { string.gfind(test, klPattern)() };
+	if ( table.getn(match) == 0 ) then
+		DebugMessage("KL", "Doh! no match!", "error");
+	else
+		DebugMessage("KL", "Wahoo!!!! -- "..table.concat(match, ", "), "info");
+	end
+end
+
+--UNIT_TYPE_LETHAL_LEVEL_TEMPLATE = "Level ?? %s"; -- As in Level ?? Beast
+--UNIT_TYPE_LEVEL_TEMPLATE = "Level %d %s"; -- As in Level 10 Beast
+--UNIT_TYPE_PLUS_LEVEL_TEMPLATE = "Level %d Elite %s"; -- As in Level 10+ Beast
+
+--TOOLTIP_UNIT_LEVEL = "Level %s";
+--TOOLTIP_UNIT_LEVEL_CLASS = "Level %s %s";
+--TOOLTIP_UNIT_LEVEL_CLASS_TYPE = "Level %s %s (%s)";
+--TOOLTIP_UNIT_LEVEL_TYPE = "Level %s (%s)";

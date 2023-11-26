@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: BarOptions
+## Author: Mugendai
+## Notes: Lets you configure extra options for the Main Bar and Action bars.
+## OptionalDeps: Sky, Cosmos, Khaos, myAddOns, Titan, MobileFrames
+## RequiredDeps: Sea, MCom
+## SavedVariables: BarOptions_Config
+BarOptions.xml

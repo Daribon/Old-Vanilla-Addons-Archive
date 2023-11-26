@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r Slash_GM
+## Notes: Command-line mechanism to open GM petition pane
+## OptionalDeps:
+## Dependencies:
+Slash_GM.xml

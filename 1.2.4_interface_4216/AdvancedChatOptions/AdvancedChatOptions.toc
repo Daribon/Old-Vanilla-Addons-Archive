@@ -1,0 +1,8 @@
+## Interface: 4216
+## Title: AdvancedChatOptions
+## Title-deDE: Erweiterter Chat
+## Notes: Configures advanced chat positioning options
+## Notes-deDE: Richtet das Chatfenster automatisch an zusätzlichen Leisten aus
+## RequiredDeps: Cosmos, Sea
+## OptionalDeps: SecondBar
+AdvancedChatOptions.xml

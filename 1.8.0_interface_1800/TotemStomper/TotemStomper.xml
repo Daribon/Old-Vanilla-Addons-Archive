@@ -1,0 +1,456 @@
+<!--
+
+	Totem Stomper
+
+	by Alexander Brazie (AlexYoshi)
+
+-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+<Script file="localization.lua"/>
+<Script file="localization.de.lua"/>
+<Script file="localization.fr.lua"/>
+<Script file="TotemStomper.lua"/>
+	<CheckButton name="TotemStomperButtonTemplate"	virtual="true" inherits="ActionButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				TotemStomper_ButtonLoad();
+			</OnLoad>
+			<OnShow>
+				TotemStomper_ButtonUpdate(this);
+			</OnShow>
+			<OnDragStart>
+				TotemStomper_ButtonDragStart();
+			</OnDragStart>
+			<OnReceiveDrag>
+				TotemStomper_ButtonDragEnd();
+			</OnReceiveDrag>
+			<OnClick>
+				TotemStomper_ButtonClick();
+			</OnClick>
+			<OnEnter>
+				TotemStomper_ButtonEnter();
+			</OnEnter>
+			<OnLeave>
+				TotemStomper_ButtonLeave();
+			</OnLeave>
+			<OnEvent>
+				TotemStomper_ButtonEvent(event);
+			</OnEvent>
+		</Scripts>
+	</CheckButton>
+	<Button name="TotemStomperTabButtonTemplate" inherits="CommonTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				PanelTemplates_Tab_OnClick(TotemStomperFrame);
+				TotemStomperTab_OnClick(this);
+			</OnClick>
+			<OnShow>
+				PanelTemplates_TabResize(10);
+				getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 30);
+			</OnShow>
+		</Scripts>
+	</Button>
+	<CheckButton name="TotemStomperCheckButtonTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32" />
+		</Size>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+		<CheckedDisabledTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+		<DisabledTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+	</CheckButton>
+	<CheckButton name="TotemStomperWaitButtonTemplate" inherits="TotemStomperCheckButtonTemplate" virtual="true" >
+		<Scripts>
+			<OnClick>
+				TotemStomper_SetWait(this:GetParent():GetID(), this:GetChecked());
+			</OnClick>
+			<OnEnter>
+				TotemStomper_WaitButtonEnter();
+			</OnEnter>
+			<OnLeave>
+				TotemStomper_WaitButtonLeave();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<!-- Frame Bar Template -->
+	<Frame name="TotemSetTemplate" virtual="true" id="1">
+		<Size>
+			<AbsDimension x="384" y="48"/>
+		</Size>
+		<Frames>
+			<CheckButton name="$parent1" inherits="TotemStomperButtonTemplate" id ="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="70" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent2" inherits="TotemStomperButtonTemplate" id ="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent3" inherits="TotemStomperButtonTemplate" id ="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent4" inherits="TotemStomperButtonTemplate" id ="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parent5" inherits="TotemStomperButtonTemplate" id ="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parent4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="16" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			
+			<CheckButton name="$parentWait" inherits="TotemStomperWaitButtonTemplate" >
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-54" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+		</Frames>
+		<!-- Layers -->
+		<Layers>
+			<Layer level="ARTWORK">
+				<!-- Portrait Texture -->
+				<Texture name="$parentPortrait">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="48" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<!-- Text Labels -->
+				<FontString name="$parentLabel" inherits="WorldMapTextFont" text="A">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="48" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r=".9" g=".6" b="0.3"/>
+				</FontString>
+
+				<FontString name="$parentNameText" inherits="GameFontHighlight" text="YourName">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="48" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentEarthText" inherits="GameFontHighlight" text="Earth">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-104" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFireText" inherits="GameFontHighlight" text="Fire">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-60" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentWaterText" inherits="GameFontHighlight" text="Water">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="-16" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentWindText" inherits="GameFontHighlight" text="Wind">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="28" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExtraText" inherits="GameFontHighlight" text="Spell">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="80" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentWaitText" inherits="GameFontHighlight" text="Wait">
+					<Size>
+						<AbsDimension x="100" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="124" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<!-- Real Frame -->
+	<Frame name="TotemStomperFrame" inherits="CommonFrameTemplate" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="400" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<!-- Real Contents -->
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="TotemStomperFrameHelpText" inherits="CombatLogFont">
+					<Size>
+						<AbsDimension x="260" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="20" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0.6" g="0.6" b="0.8"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="TotemStomperButtonSet1" inherits="TotemSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="TotemStomperFrame" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-118"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("1");
+						getglobal(this:GetName().."Label"):SetText("A");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="TotemStomperButtonSet2" inherits="TotemSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="TotemStomperButtonSet1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("2");
+						getglobal(this:GetName().."Label"):SetText("B");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="TotemStomperButtonSet3" inherits="TotemSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="TotemStomperButtonSet2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("3");
+						getglobal(this:GetName().."Label"):SetText("C");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="TotemStomperButtonSet4" inherits="TotemSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="TotemStomperButtonSet3" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("4");
+						getglobal(this:GetName().."Label"):SetText("D");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="TotemStomperButtonSet5" inherits="TotemSetTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="TotemStomperButtonSet4" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID("5");
+						getglobal(this:GetName().."Label"):SetText("E");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Button name="$parentHelpButton" inherits="UIPanelButtonTemplate" text="HELP">
+				<Size>
+					<AbsDimension x="77" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="81"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						TotemStomper_PrintHelp()
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentResetButton" inherits="UIPanelButtonTemplate" text="RESET">
+				<Size>
+					<AbsDimension x="77" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-124" y="81"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if ( this.reset ) then
+							TotemStomper_Reset();
+							this.reset = nil;
+						else 
+							this.reset = 1;	
+						end
+						TotemStomper_OnShow();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab1" inherits="TotemStomperTabButtonTemplate" id="1" hidden="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="82" y="-78"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+					<Scripts>
+					<OnLoad>
+						this:SetText("Self");
+					</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab2" inherits="TotemStomperTabButtonTemplate" id="2" hidden="false">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText("Party");
+					</OnLoad>
+				</Scripts>
+			</Button>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				TotemStomper_OnLoad();
+			</OnLoad>
+			<OnShow>
+				TotemStomper_OnShow();
+			</OnShow>
+			<OnEvent>
+				TotemStomper_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				--GameTooltip:SetOwner(this,"ANCHOR_RIGHT");
+				--GameTooltip:SetText(TOTEMSTOMPER_VERSION_TIP, 1.0, 1.0, 1.0);
+			</OnEnter>
+			<OnLeave>
+				--GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Frame>
+</Ui>

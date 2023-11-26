@@ -1,0 +1,11 @@
+## Interface: 1500
+## Title: Clean Player Frame
+## Title-deDE: Spielerporträt aufgeräumt
+## Notes: Removes text "Health" and "Mana" / "Rage" / "Focus" / "Energy" from the player frame.
+## Notes-deDE: Entfernt den Text "Gesundheit" sowie "Mana" / "Wut" / "Fokus" / "Energie" vom Spielerporträt.
+## Author: Bastian Pflieger <wb@illogical.de>
+## OptionalDeps: myAddOns
+## Dependencies:
+## SavedVariables: CleanPlayerFrame_IsEnabled
+CleanPlayerFrame.xml
+CleanPlayerFrameOptions.xml

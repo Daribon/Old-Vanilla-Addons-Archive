@@ -1,0 +1,26 @@
+<!--
+
+	ItemBuffCharges: Adding buff charges to item buffs.
+	
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.kr.lua"/>
+	<Script file="ItemBuffCharges_Cosmos.lua"/>
+	<Script file="ItemBuffCharges_Khaos.lua"/>
+	<Script file="ItemBuffCharges.lua"/>
+	<Button name="ItemBuffChargesFrame" frameStrata="LOW" enableMouse="false" movable="true">
+		<Scripts>
+			<OnLoad>
+				ItemBuffCharges_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				ItemBuffCharges_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Button>
+</Ui>

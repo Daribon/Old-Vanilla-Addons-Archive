@@ -1,0 +1,729 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+
+  <Script file="RaidMinion.lua"/>
+  <Script file="RaidMinionUI.lua"/>
+
+  <Frame name="RaidMinion" hidden="true">
+    <Scripts>
+      <OnLoad>
+	RaidMinion_OnLoad();
+      </OnLoad>
+      <OnEvent>
+	RaidMinion_OnEvent();
+      </OnEvent>
+    </Scripts>
+  </Frame>
+
+  <GameTooltip name="RaidMinionTooltip" hidden="true" inherits="GameTooltipTemplate" />
+
+  <!-- Templates -->
+  <Button name="RaidMinionTabTemplate" virtual="true" movable="true" toplevel="true" parent="UIParent" enableMouse="true">
+    <Size>
+      <AbsDimension x="80" y="20"/>
+    </Size>
+
+    <Layers>
+      <Layer level="BACKGROUND">
+	<Texture name="$parentDarkBackground" setAllPoints="true">
+	  <Color r="0.3" g="0.3" b="0.3" a="0.6"/>
+	</Texture>
+
+<!--	<Texture file="Interface\ChatFrame\ChatFrameBorder"/> -->
+      </Layer>
+      <Layer level="ARTWORK">
+	<FontString inherits="GameFontNormalSmall" name="$parentTitle" justifyH="CENTER" justifyV="CENTER">
+	  <Size>
+	    <AbsDimension x="80" y="18"/>
+	  </Size>
+	  <Anchors>
+	    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+	  </Anchors>
+	</FontString>
+      </Layer>
+    </Layers>
+
+    <Scripts>
+      <OnLoad>this:RegisterForClicks("LeftButtonDown", "LeftButtonUp", "RightButtonDown");</OnLoad>
+      <OnMouseDown>RaidMinion_UI_TabMouseDown(arg1);</OnMouseDown>
+      <OnMouseUp>RaidMinion_UI_TabMouseUp(arg1);</OnMouseUp>
+    </Scripts>
+  </Button>
+
+  <Button name="RaidMinionDebuffButtonTemplate" virtual="true" hidden="true">
+    <Size>
+      <AbsDimension x="15" y="15"/>
+    </Size>
+    <Layers>
+      <Layer level="ARTWORK">
+	<Texture name="$parentIcon" setAllPoints="true"/>
+      </Layer>
+      <Layer level="OVERLAY">
+	<Texture name="$parentOverlay" file="Interface\Buttons\UI-Debuff-Border">
+	  <Size>
+	    <AbsDimension x="17" y="17"/>
+	  </Size>
+	  <Anchors>
+	    <Anchor point="CENTER">
+	      <Offset>
+		<AbsDimension x="0" y="0"/>
+	      </Offset>
+	    </Anchor>
+	  </Anchors>
+	</Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnEnter>
+	RaidMinion_UI_DebuffButton_OnEnter();
+      </OnEnter>
+      <OnLeave>
+	GameTooltip:Hide();
+      </OnLeave>
+    </Scripts>
+  </Button>
+
+  <Frame name="RaidMinionPlayerButton" virtual="true" enableMouse="true">
+    <Size>
+      <AbsDimension x="80" y="25"/>
+    </Size>
+
+    <Layers>
+      <Layer level="ARTWORK">
+	<FontString inherits="GameFontNormalSmall" name="$parentName" justifyH="LEFT">
+	  <Size>
+	    <AbsDimension x="78" y="14"/>
+	  </Size>
+	  <Anchors>
+	    <Anchor point="TOP" relativePoint="TOP">
+	      <Offset><AbsDimension x="0" y="3"/></Offset>
+	    </Anchor>
+	  </Anchors>
+	</FontString>
+
+	<FontString inherits="GameFontNormalSmall" name="$parentNumLabel" justifyH="RIGHT">
+	  <Size>
+	    <AbsDimension x="78" y="14"/>
+	  </Size>
+	  <Anchors>
+	    <Anchor point="TOP" relativePoint="TOP">
+	      <Offset><AbsDimension x="0" y="3"/></Offset>
+	    </Anchor>
+	  </Anchors>
+	</FontString>
+
+	<Texture name="$parentBarBackground">
+	  <Size>
+	    <AbsDimension x="78" y="9"/>
+	  </Size>
+	  <Anchors>
+	    <Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT">
+	      <Offset>
+		<AbsDimension x="0" y="2"/>
+	      </Offset>
+	    </Anchor>
+	  </Anchors>
+	  <Color r="0.3" g="0.3" b="0.3" a="0.5"/>
+	</Texture>
+      </Layer>
+    </Layers>
+
+    <Frames>
+      <StatusBar name="$parentHealthBar" inherits="TextStatusBar">
+	<Size>
+	  <AbsDimension x="78" y="6"/>
+	</Size>
+
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT">
+	    <Offset>
+	      <AbsDimension x="0" y="2"/>
+	    </Offset>
+	  </Anchor>
+	</Anchors>
+
+	<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+	<BarColor r="0" g="1" b="0"/>
+
+	<Scripts>
+	  <OnMouseDown>RaidMinion_UI_PlayerMouseDown(this:GetParent():GetID(), arg1);</OnMouseDown>
+	</Scripts>
+      </StatusBar>
+
+      <StatusBar name="$parentManaBar" inherits="TextStatusBar">
+	<Size>
+	  <AbsDimension x="78" y="3"/>
+	</Size>
+
+	<Anchors>
+	  <Anchor point="TOP" relativeTo="$parentHealthBar" relativePoint="BOTTOM"/>
+	</Anchors>
+
+	<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+	<BarColor r="0" g="0" b="1"/>
+
+	<Scripts>
+	  <OnMouseDown>RaidMinion_UI_PlayerMouseDown(this:GetParent():GetID(), arg1);</OnMouseDown>
+	</Scripts>
+      </StatusBar>
+
+      <Button name="$parentDebuff1" inherits="RaidMinionDebuffButtonTemplate" id="1">
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+	    <Offset><AbsDimension x="5" y="0"/></Offset>
+	  </Anchor>
+	</Anchors>
+      </Button>
+
+      <Button name="$parentDebuff2" inherits="RaidMinionDebuffButtonTemplate" id="2">
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parentDebuff1">
+	    <Offset><AbsDimension x="5" y="0"/></Offset>
+	  </Anchor>
+	</Anchors>
+      </Button>
+
+      <Button name="$parentDebuff3" inherits="RaidMinionDebuffButtonTemplate" id="3">
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parentDebuff2">
+	    <Offset><AbsDimension x="5" y="0"/></Offset>
+	  </Anchor>
+	</Anchors>
+      </Button>
+
+      <Button name="$parentDebuff4" inherits="RaidMinionDebuffButtonTemplate" id="4">
+	<Anchors>
+	  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parentDebuff3">
+	    <Offset><AbsDimension x="5" y="0"/></Offset>
+	  </Anchor>
+	</Anchors>
+      </Button>
+    </Frames>
+
+    <Scripts>
+      <OnMouseDown>RaidMinion_UI_PlayerMouseDown(this:GetID(), arg1);</OnMouseDown>
+    </Scripts>
+  </Frame>
+
+  <!-- tab 1, player frames 1-10 -->
+  <Button name="RaidMinionTab1" parent="UIParent" inherits="RaidMinionTabTemplate" id="1" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer1" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="1" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab1"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer2" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="2" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer1"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer3" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="3" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer2"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer4" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="4" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer3"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer5" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="5" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer4"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer6" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="6" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer5"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer7" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="7" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer6"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer8" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="8" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer7"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer9" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="9" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer8"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer10" parent="RaidMinionTab1" inherits="RaidMinionPlayerButton" id="10" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer9"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 2, player frames 11-20 -->
+  <Button name="RaidMinionTab2" parent="UIParent" inherits="RaidMinionTabTemplate" id="2" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer11" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="11" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab2"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer12" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="12" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer11"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer13" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="13" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer12"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer14" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="14" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer13"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer15" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="15" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer14"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer16" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="16" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer15"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer17" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="17" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer16"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer18" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="18" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer17"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer19" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="19" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer18"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer20" parent="RaidMinionTab2" inherits="RaidMinionPlayerButton" id="20" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer19"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 3, player frames 21-30 -->
+  <Button name="RaidMinionTab3" parent="UIParent" inherits="RaidMinionTabTemplate" id="3" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer21" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="21" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab3"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer22" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="22" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer21"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer23" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="23" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer22"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer24" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="24" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer23"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer25" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="25" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer24"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer26" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="26" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer25"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer27" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="27" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer26"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer28" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="28" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer27"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer29" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="29" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer28"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer30" parent="RaidMinionTab3" inherits="RaidMinionPlayerButton" id="30" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer29"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 4, player frames 31-40 -->
+  <Button name="RaidMinionTab4" parent="UIParent" inherits="RaidMinionTabTemplate" id="4" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer31" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="31" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab4"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer32" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="32" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer31"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer33" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="33" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer32"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer34" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="34" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer33"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer35" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="35" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer34"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer36" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="36" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer35"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer37" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="37" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer36"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer38" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="38" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer37"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer39" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="39" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer38"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer40" parent="RaidMinionTab4" inherits="RaidMinionPlayerButton" id="40" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer39"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 5, player frames 41-50 -->
+  <Button name="RaidMinionTab5" parent="UIParent" inherits="RaidMinionTabTemplate" id="5" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer41" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="41" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab5"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer42" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="42" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer41"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer43" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="43" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer42"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer44" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="44" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer43"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer45" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="45" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer44"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer46" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="46" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer45"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer47" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="47" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer46"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer48" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="48" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer47"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer49" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="49" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer48"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer50" parent="RaidMinionTab5" inherits="RaidMinionPlayerButton" id="50" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer49"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 6, player frames 51-60 -->
+  <Button name="RaidMinionTab6" parent="UIParent" inherits="RaidMinionTabTemplate" id="6" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer51" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="51" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab6"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer52" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="52" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer51"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer53" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="53" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer52"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer54" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="54" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer53"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer55" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="55" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer54"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer56" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="56" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer55"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer57" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="57" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer56"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer58" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="58" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer57"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer59" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="59" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer58"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer60" parent="RaidMinionTab6" inherits="RaidMinionPlayerButton" id="60" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer59"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 7, player frames 61-70 -->
+  <Button name="RaidMinionTab7" parent="UIParent" inherits="RaidMinionTabTemplate" id="7" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer61" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="61" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab7"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer62" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="62" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer61"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer63" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="63" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer62"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer64" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="64" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer63"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer65" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="65" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer64"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer66" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="66" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer65"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer67" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="67" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer66"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer68" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="68" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer67"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer69" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="69" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer68"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer70" parent="RaidMinionTab7" inherits="RaidMinionPlayerButton" id="70" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer69"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 8, player frames 71-80 -->
+  <Button name="RaidMinionTab8" parent="UIParent" inherits="RaidMinionTabTemplate" id="8" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer71" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="71" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab8"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer72" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="72" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer71"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer73" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="73" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer72"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer74" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="74" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer73"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer75" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="75" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer74"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer76" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="76" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer75"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer77" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="77" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer76"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer78" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="78" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer77"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer79" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="79" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer78"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer80" parent="RaidMinionTab8" inherits="RaidMinionPlayerButton" id="80" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer79"/>
+    </Anchors>
+  </Frame>
+
+  <!-- tab 51, aka targetting tab, player frames 501-510 -->
+  <Button name="RaidMinionTab51" parent="UIParent" inherits="RaidMinionTabTemplate" id="51" hidden="true">
+    <Anchors>
+      <Anchor point="CENTER" relativePoint="CENTER"/>>
+    </Anchors>
+  </Button>
+
+  <Frame name="RaidMinionPlayer501" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="501" hidden="true">
+    <Anchors>
+      <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="RaidMinionTab51"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer502" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="502" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer501"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer503" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="503" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer502"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer504" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="504" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer503"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer505" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="505" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer504"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer506" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="506" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer505"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer507" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="507" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer506"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer508" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="508" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer507"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer509" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="509" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer508"/>
+    </Anchors>
+  </Frame>
+  <Frame name="RaidMinionPlayer510" parent="RaidMinionTab51" inherits="RaidMinionPlayerButton" id="510" hidden="true">
+    <Anchors>
+      <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="RaidMinionPlayer509"/>
+    </Anchors>
+  </Frame>
+
+</Ui>

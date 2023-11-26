@@ -1,0 +1,87 @@
+<Bindings>
+	<Binding name="SECONDACTIONBUTTON1" runOnUp="true" header="SECONDACTIONBAR">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(1);
+		else
+			SecondActionButtonUp(1);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON2" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(2);
+		else
+			SecondActionButtonUp(2);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON3" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(3);
+		else
+			SecondActionButtonUp(3);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON4" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(4);
+		else
+			SecondActionButtonUp(4);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON5" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(5);
+		else
+			SecondActionButtonUp(5);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON6" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(6);
+		else
+			SecondActionButtonUp(6);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON7" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(7);
+		else
+			SecondActionButtonUp(7);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON8" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(8);
+		else
+			SecondActionButtonUp(8);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON9" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(9);
+		else
+			SecondActionButtonUp(9);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON10" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(10);
+		else
+			SecondActionButtonUp(10);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON11" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(11);
+		else
+			SecondActionButtonUp(11);
+		end
+	</Binding>
+	<Binding name="SECONDACTIONBUTTON12" runOnUp="true">
+		if ( keystate == "down" ) then
+			SecondActionButtonDown(12);
+		else
+			SecondActionButtonUp(12);
+		end
+	</Binding>
+	
+</Bindings>

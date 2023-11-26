@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: Shapeshift Shadowform
+## Notes: Allows you to use the shapeshift buttons to enter/exit Shadowform
+## Author: sarf
+## OptionalDeps: Cosmos
+##SavedVariables: ShapeshiftShadowform_Enabled
+ShapeshiftShadowform.xml

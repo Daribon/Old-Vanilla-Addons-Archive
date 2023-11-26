@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: QuickLoot by Telo
+## Notes: Automatically positions the most relevant part of the loot window under your cursor
+## OptionalDeps: Cosmos, Khaos
+## SavedVariables: QuickLoot_Options
+QuickLoot.xml

@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: ActionButtonUnabridged
+## Author: sarf
+## Notes: Expands the tooltips of the action buttons
+## OptionalDeps: Cosmos
+## SavedVariables: ActionButtonUnabridged_Enabled
+ActionButtonUnabridged.xml

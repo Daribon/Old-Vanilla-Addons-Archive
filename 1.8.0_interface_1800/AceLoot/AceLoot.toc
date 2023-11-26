@@ -1,0 +1,4 @@
+## Interface: 1800
+## Title: AceLoot
+## Notes: Automatically positions the most relevant part of the loot window under your cursor.
+AceLoot.lua

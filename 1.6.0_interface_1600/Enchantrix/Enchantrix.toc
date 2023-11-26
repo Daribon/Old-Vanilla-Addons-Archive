@@ -1,0 +1,10 @@
+## Title: Enchantrix
+## Interface: 1600 
+## Version: 2.0.1
+## Revision: $Id: Enchantrix.toc,v 1.6 2005/07/12 16:01:51 norganna Exp $
+## Notes: Display information in item tooltips pertaining to the results of disenchanting said item.
+## SavedVariables: EnchantedLocal, EnchantConfig
+## Dependencies: EnhTooltip
+## OptionalDeps: Auctioneer
+Enchantrix.xml
+

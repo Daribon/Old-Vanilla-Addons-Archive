@@ -1,0 +1,10 @@
+## Interface: 1500
+## Title: IX BibToolbars v3.3
+## Notes: A modified version of BibToolbars for the Insomniax Recompilation
+## Author: Ian Bibby, modified by LedMirage
+## Dependencies: Insomniax_BibCore
+## OptionalDeps:
+BibActionButtons.xml
+BibActionBar.xml
+BibReplaceXPBar.xml
+BibActionBarControls.xml

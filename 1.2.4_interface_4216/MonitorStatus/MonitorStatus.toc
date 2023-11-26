@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: Monitor Status
+## Notes: Monitor Status shows party member and target status to help healers and warriors alike.
+## RequiredDeps: Chronos
+## OptionalDeps: Cosmos
+## SavedVariables: COS_MONITORSTATUS_ENABLED_X, COS_MONITORSTATUS_ONLYDURINGCOMBAT_X, COS_MONITORSTATUS_HIDEMANA_X, COS_MONITORSTATUS_SHOWPERCENT_X, COS_MONITORSTATUS_SHOWTARGET_X, COS_MONITORSTATUS_SHOWPLAYER_X, COS_MONITORSTATUS_SHOWPET_X, COS_MONITORSTATUS_SHOWPARTY_X
+MonitorStatus.xml

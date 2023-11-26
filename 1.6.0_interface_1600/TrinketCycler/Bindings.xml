@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="TINKETCYCLER" description="Toggle TrinketCycler" header="TINKETCYCLERHEADER">
+		ModName_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

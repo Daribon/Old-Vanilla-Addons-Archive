@@ -1,0 +1,60 @@
+<Bindings>	
+	<!-- CastOptions Temporary Self On/Off -->
+	<Binding name="CASTOPTIONS_SELF" header="CASTOPTIONS" runOnUp="true">
+		if ( keystate == "down" ) then
+			CastOptions.ToggleSelf(1);
+		else
+			CastOptions.ToggleSelf(0);
+		end
+	</Binding>
+
+	<!-- Toggle CastOptions continous Overriding On/Off -->
+	<Binding name="CASTOPTIONS_TOGGLESELF">
+		CastOptions.ToggleSelf(-1);
+	</Binding>
+	
+	<!-- CastOptions Temporary Party1 On/Off -->
+	<Binding name="CASTOPTIONS_PARTY1" runOnUp="true">
+		if ( keystate == "down" ) then
+			CastOptions.Targ.party1 = 1;
+		else
+			CastOptions.Targ.party1 = 0;
+		end
+	</Binding>
+	
+	<!-- CastOptions Temporary Party2 On/Off -->
+	<Binding name="CASTOPTIONS_PARTY2" runOnUp="true">
+		if ( keystate == "down" ) then
+			CastOptions.Targ.party2 = 1;
+		else
+			CastOptions.Targ.party2 = 0;
+		end
+	</Binding>
+	
+	<!-- CastOptions Temporary Party3 On/Off -->
+	<Binding name="CASTOPTIONS_PARTY3" runOnUp="true">
+		if ( keystate == "down" ) then
+			CastOptions.Targ.party3 = 1;
+		else
+			CastOptions.Targ.party3 = 0;
+		end
+	</Binding>
+	
+	<!-- CastOptions Temporary Party4 On/Off -->
+	<Binding name="CASTOPTIONS_PARTY4" runOnUp="true">
+		if ( keystate == "down" ) then
+			CastOptions.Targ.party4 = 1;
+		else
+			CastOptions.Targ.party4 = 0;
+		end
+	</Binding>
+	
+	<!-- CastOptions Temporary Aimed On/Off -->
+	<Binding name="CASTOPTIONS_AIMED" runOnUp="true">
+		if ( keystate == "down" ) then
+			CastOptions.Aimed = 1;
+		else
+			CastOptions.Aimed = 0;
+		end
+	</Binding>
+</Bindings>

@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: Gossip Safe
+## Author: Relyna
+## Notes: Opens a confirmation box for binding at a inn.
+## DefaultState: enabled
+GossipSafe.xml

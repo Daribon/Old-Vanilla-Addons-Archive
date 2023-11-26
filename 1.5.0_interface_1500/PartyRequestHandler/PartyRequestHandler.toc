@@ -1,0 +1,8 @@
+## Interface: 1500
+## Title: PartyRequestHandler
+## Author: sarf
+## Notes: Allows you to auto-accept/refuse party invites
+## OptionalDeps: Cosmos
+## RequiredDeps: AddOnHelper
+## SavedVariables: PartyRequestHandler_Enabled, PartyRequestHandler_List, PartyRequestHandler_Allow_Friend, PartyRequestHandler_Allow_Guild, PartyRequestHandler_Deny_Ignore, PartyRequestHandler_Deny_By_Default, PartyRequestHandler_Show_Deny
+PartyRequestHandler.xml

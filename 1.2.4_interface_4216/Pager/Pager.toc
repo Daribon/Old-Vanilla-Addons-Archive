@@ -1,0 +1,4 @@
+## Interface: 4216
+## Title: The Power Pager
+## RequiredDeps: Cosmos, Sea
+Pager.xml

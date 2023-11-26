@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: AlphaMap BG (v1.7)
+## Author: Onur "Xtro" ER (xtro_free@hotmail.com -Former Author : Jeromy Walsh (DragonWalsh@yahoo.com)
+## Notes: A semi-transparent worldmap overlay that does not interupt character control with BG support
+## OptionalDeps: MapNotes, Gatherer, MapNotesGathering
+## SavedVariables: AlphaMapConfig
+AlphaMap.xml

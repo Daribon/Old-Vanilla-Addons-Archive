@@ -1,0 +1,7 @@
+## Interface: 1300
+## Title: CooldownCount (BarOptions)
+## Notes: CooldownCount for BarOptions
+## Author: sarf
+## RequiredDeps: BarOptions, CooldownCount
+## OptionalDeps: CooldownCountCosmos
+CooldownCountBarOptions.xml

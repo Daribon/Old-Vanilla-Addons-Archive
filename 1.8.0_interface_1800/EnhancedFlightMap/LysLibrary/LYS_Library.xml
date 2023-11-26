@@ -1,0 +1,20 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<!-- LUA Scripts -->
+	<Script file="LYS_Globals.lua" />
+	<Script file="LYS_Locale-default.lua" />
+	<Script file="LYS_Locale-frFR.lua" />
+	<Script file="LYS_Locale-deDE.lua" />
+	<Script file="LYS_Library.lua" />
+
+	<!-- XML file used instead of directly referencing the lua in case of a future gui config menu -->
+	<Frame name="LYS_Frame" parent="UIParent" hidden="false">
+		<Scripts>
+			<OnLoad>
+				LYS_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				LYS_OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,6 @@
+## Interface: 1500
+## Title: ToyBar 0.4.2
+## Notes: Toy management aid.
+## SavedVariables: ToyBar_Config
+## OptionalDeps: Fetch, myAddOns
+ToyBar.xml

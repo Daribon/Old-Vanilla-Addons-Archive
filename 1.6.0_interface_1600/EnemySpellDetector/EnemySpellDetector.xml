@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/FrameXML/UI.xsd">
+    <Script file="localization.lua"/>
+    <Script file="localization.de.lua"/>
+    <Script file="localization.fr.lua"/>
+    <Script file="localization.post.lua"/>
+    <Script file="EnemySpellDetector.lua"/>
+
+	<Frame name="EnemySpellDetectorFrame" frameStrata="LOW" toplevel="true" parent="UIParent" hidden="true" movable="true">
+		<Scripts>
+			<OnLoad>
+				EnemySpellDetector_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				EnemySpellDetector_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				EnemySpellDetector_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

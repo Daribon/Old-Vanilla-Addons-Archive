@@ -1,0 +1,23 @@
+## Interface: 1800
+## Author: Turan
+## Title: Ace
+## Notes: AddOn development and management toolkit.
+## Notes-deDE: de
+## Notes-frFR: fr
+## Dependencies:
+## OptionalDeps:
+## SavedVariables: AceDB
+Ace.xml
+AceLocals_deDE.lua
+AceLocals.lua
+Ace.lua
+AceDB.lua
+AceData.lua
+AceChatCmd.lua
+AceCommands.lua
+AceEvent.lua
+AceState.lua
+AceHook.lua
+AceScript.lua
+AceModule.lua
+AceAddon.lua

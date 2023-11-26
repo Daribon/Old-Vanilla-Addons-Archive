@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle Vickel On/Off -->
+	<Binding name="TOGGLEVICKEL" header="VICKEL">
+		ToggleVickel();
+	</Binding>
+</Bindings>

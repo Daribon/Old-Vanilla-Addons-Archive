@@ -1,0 +1,16 @@
+## Interface: 1800
+## Title: myAddOns
+## Notes: An AddOn manager
+## Notes-deDE: Ein AddOn-Manager
+## Notes-frFR: Un gestionnaire d'AddOn
+## Version: 2.4
+## Author: Scheid
+## Dependencies:
+## OptionalDeps:
+## SavedVariables: myAddOnsAddOns
+## SavedVariablesPerCharacter:
+## LoadOnDemand:
+localization.lua
+myGameMenuButtonAddOns.xml
+myAddOnsFrame.xml
+

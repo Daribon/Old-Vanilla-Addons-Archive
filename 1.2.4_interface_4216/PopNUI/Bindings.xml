@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLEPOPNUI" description="Toggle on/off autohiding of UI elements" header="POPNUIHEADER">
+		PopNUI_Toggle();
+	</Binding>
+</Bindings>

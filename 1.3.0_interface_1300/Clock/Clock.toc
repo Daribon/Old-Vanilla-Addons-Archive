@@ -1,0 +1,6 @@
+## Interface: 1300
+## Title: Telo's Clock
+## Author: Telo
+## Notes: Adds a clock window with time-based tooltip information
+## OptionalDeps: Cosmos, CosmosSchedule
+Clock.xml

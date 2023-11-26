@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r Backdrop
+## Notes: Adds a few resizable backdrops to the UI
+## DefaultState: disabled
+Backdrop.xml

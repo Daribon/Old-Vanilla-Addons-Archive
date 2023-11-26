@@ -1,0 +1,87 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="SecondActionButton.lua"/>
+    <Frame name="SecondBar" toplevel="true" enableMouse="true" frameStrata="BACKGROUND" parent="UIParent" >
+        <Size>
+            <AbsDimension x="509" y="42"/>
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeTo="MainMenuBar" relativePoint="BOTTOMLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="53"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Frames>
+            <Frame name="SecondBarArtFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="SecondBar"/>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="SecondBar"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture name="SecondBarTexture0" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+                            <Size>
+                                <AbsDimension x="256" y="42"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeTo="SecondBar" relativePoint="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="0" y="0"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <TexCoords left="0" right="1.0" top="0.8359375" bottom="1.0"/>
+                        </Texture>
+                        <Texture name="SecondBarTexture1" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+                            <Size>
+                                <AbsDimension x="253" y="42"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeTo="SecondBar" relativePoint="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="256" y="0"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <TexCoords left="0" right="0.98828125" top="0.5859375" bottom="0.75"/>
+                        </Texture>
+                    </Layer>
+                    <Layer level="ARTWORK">
+                    		<!--
+								<Texture name="SecondBarLeftEndCap" file="Interface\MainMenuBar\UI-MainMenuBar-EndCap-Dwarf">
+									<Size>
+										<AbsDimension x="136" y="230"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOM" relativeTo="MainMenuBarArtFrame">
+											<Offset>
+												<AbsDimension x="-546" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								-->
+                        <Texture name="SecondBarRightEndCap" file="Interface\MainMenuBar\UI-MainMenuBar-EndCap-Dwarf">
+                            <Size>
+                                <AbsDimension x="104" y="104"/>
+                            </Size>
+                            <Anchors>
+                                <Anchor point="BOTTOMRIGHT" relativeTo="SecondBar" relativePoint="BOTTOMRIGHT">
+                                    <Offset>
+                                        <AbsDimension x="78" y="0"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <TexCoords left="1.0" right="0.0" top="0.0" bottom="1.0"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+    </Frame>
+    <Include file="SecondActionBarFrame.xml"/>
+</Ui>

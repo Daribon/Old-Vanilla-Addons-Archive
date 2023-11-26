@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Tell the target something -->
+	<Binding name="TELLTARGET" description="Set up the chat box to tell the target something" header="TELLTARGETHEADER">
+		TellTarget_DoTellTarget();
+	</Binding>
+</Bindings>

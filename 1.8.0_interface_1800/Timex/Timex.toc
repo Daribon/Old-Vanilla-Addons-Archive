@@ -1,0 +1,14 @@
+## Interface: 1700
+## Title: Timex
+## Author: Rowne
+## Notes: A timing system for the discerning.
+## RequiredDeps: Ace
+## SavedVariables: TimexDB
+Core\TimexSupport.lua
+Core\TimexLocals.lua
+ChatCmd\TimexChatCmdLocals.lua
+Core\TimexCore.lua
+ChatCmd\TimexChatCmd.lua
+Core\Timex.xml
+Bar\TimexBar.xml
+Bar\TimexBar.lua

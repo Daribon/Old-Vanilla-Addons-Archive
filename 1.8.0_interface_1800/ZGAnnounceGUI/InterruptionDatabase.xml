@@ -1,0 +1,523 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Button name="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="300" y="16"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				ZGAnnounceGUI_PassDatabase_CurrentSelection = this:GetText();
+				ZGAnnounceGUI_PassDatabase_Update();
+			</OnClick>
+			<OnEnter>
+				ZGAnnounceGUI_PassDatabaseItemButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalText name="$parentText" inherits="GameFontNormal" justifyH="LEFT">
+			<Size>
+				<AbsDimension x="275" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors> 
+		</NormalText>
+	</Button>
+	<Frame name="ZGAnnounceGUI_PassDatabaseFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="512"/>
+		</Size>
+		<Anchors>
+ 			<Anchor point="TOPLEFT">
+ 				<Offset>
+ 					<AbsDimension x="0" y="-104"/>
+ 				</Offset>
+ 			</Anchor>
+ 		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="0" right="35" top="0" bottom="75"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+                <Texture name="ZGAnnounceGUI_PassDatabaseFramePortrait" file="Interface\PetitionFrame\GuildCharter-Icon">
+					<Size>
+						<AbsDimension x="58" y="58"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+                </Texture>
+            </Layer>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\TaxiFrame\UI-TaxiFrame-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="ZGAnnounceGUI_PassDatabaseTitleText" inherits="GameFontHighlight" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_TITLE">
+					<Size>
+						<AbsDimension x="300" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="ZGAnnounceGUI_PassDatabaseFrame" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="ZGAnnounceGUI_PassDatabaseFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-29" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>						
+						ZGAnnounceGUI_PassDatabase_SaveArray();
+						HideUIPanel(ZGAnnounceGUI_PassDatabaseFrame);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameAddButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_ADD_INTERRUPT">
+				<Size>
+					<AbsDimension x="75" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="70" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ZGAnnounceGUI_PassDatabase_AddPass();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameSortButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_SORT">
+				<Size>
+					<AbsDimension x="75" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="150" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ZGAnnounceGUI_PassDatabase_SortPass();
+					</OnClick>
+				</Scripts>
+			</Button>			
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameRemoveButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_REMOVE_INTERRUPT">
+				<Size>
+					<AbsDimension x="75" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="230" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ZGAnnounceGUI_PassDatabase_RemovePass();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameMakeFirstButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_MAKE_FIRST" hidden="true">
+				<Size>
+					<AbsDimension x="75" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="70" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MakeFirstPass();
+						ZGAnnounceGUI_PassDatabase_Update();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameMakeLastButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_MAKE_LAST" hidden="true">
+				<Size>
+					<AbsDimension x="75" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="150" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MakeLastPass();
+						ZGAnnounceGUI_PassDatabase_Update();
+					</OnClick>
+				</Scripts>
+			</Button>			
+			
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameMoveUpButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_MOVE_UP" hidden="true">
+				<Size>
+					<AbsDimension x="45" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="230" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MoveUpPass();
+						ZGAnnounceGUI_PassDatabase_Update();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseFrameMoveDownButton" inherits="UIPanelButtonTemplate" text="ZG_ANNOUNCE_GUI_INTERRUPTION_DB_MOVE_DOWN" hidden="true">
+				<Size>
+					<AbsDimension x="45" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="280" y="-43"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MoveDownPass();
+						ZGAnnounceGUI_PassDatabase_Update();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem1" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseFrame">
+						<Offset>
+							<AbsDimension x="19" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem2" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem3" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem4" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem5" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="5" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem4" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem6" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem7" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="7" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem6" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem8" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="8" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem7" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem9" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="9" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem8" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem10" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="10" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem9" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem11" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="11" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem10" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem12" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="12" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem11" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem13" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="13" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem12" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem14" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="14" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem13" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem15" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="15" hidden="true">				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem14" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem16" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="16" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem15" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem17" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="17" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem16" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem18" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="18" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem17" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem19" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="19" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem18" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem20" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="20" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem19" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem21" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="21" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem20" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem22" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="22" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem21" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="ZGAnnounceGUI_PassDatabaseItem23" inherits="ZGAnnounceGUI_PassDatabaseItemButtonTemplate" id="23" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseItem22" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<ScrollFrame name="ZGAnnounceGUI_PassDatabaseFrameScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="296" y="354"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ZGAnnounceGUI_PassDatabaseFrame">
+						<Offset>
+							<AbsDimension x="19" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="ZGAnnounceGUI_PassDatabaseFrameScrollFrame">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="106"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="ZGAnnounceGUI_PassDatabaseFrameScrollFrame">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(ZGAnnounceGUI_PassDatabase_ITEM_HEIGHT, ZGAnnounceGUI_PassDatabase_Update);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				ZGAnnounceGUI_PassDatabase_Update();
+			</OnShow>
+			<OnHide>					
+				ZGAnnounceGUI_PassDatabase_SaveArray();
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: |cFF006699UUI -|r Tooltips: Base
+## Author: Celandro
+## Notes: Provides a base mod for moving and modifying tooltips
+## RequiredDeps: Sea
+## OptionalDeps: UltimateUI, Gymnast
+TooltipsBase.xml

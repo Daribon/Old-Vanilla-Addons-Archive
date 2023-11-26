@@ -1,0 +1,3 @@
+## Interface: 1800
+## Title: - |cFF00CC00Ultimate UI v9.7.5B|r -
+## Notes: Scroll down the list of optional addons below and check the ones you want to use. Remember, in order to use the Perl style of UUI, scroll to the bottom and uncheck the addons that start with 'A', and then check the addon that starts with 'B' (Perl).

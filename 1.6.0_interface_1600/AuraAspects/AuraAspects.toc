@@ -1,0 +1,9 @@
+## Interface: 1600
+## Title: Aura Aspects
+## Title-frFR: Aura Aspects (fr)
+## Notes: Allows you to use the shapeshift buttons to cast Aspects
+## Notes-frFR: Permet d'utiliser la barre de metamorphose pour activer les Aspects (hunter)/buff (shaman)
+## Author: sarf
+## OptionalDeps: Cosmos, CosmosSchedule, SecondBar, BottomBar
+## SavedVariables: AuraAspects_Enabled, AuraAspects_PreferredPositionOnTop
+AuraAspects.xml

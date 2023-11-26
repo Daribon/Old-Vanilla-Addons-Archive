@@ -1,0 +1,7 @@
+## Interface: 1700
+## Title: Auto Bind on Pickup
+## Notes: Allows you to bypass the Bind on Pickup box when not in a group.
+## Author: sarf
+## OptionalDeps: Cosmos, Chronos, CosmosSchedule, Khaos
+## SavedVariables: AutoBindOnPickup_Enabled
+AutoBindOnPickup.xml

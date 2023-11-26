@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: [AQ] BuffBot
+## Author: sarf
+## Notes: Allows BuffBot to work off of ActionQueue triggers.
+## RequiredDeps: ActionQueue
+## OptionalDeps: AutoTravel, BuffBot, MapLibrary
+## SavedVariables: AQ_BuffBot_Options
+AQ_BuffBot.xml

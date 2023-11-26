@@ -1,0 +1,586 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="Nurfed_Options.lua"/>
+	<Include file="Nurfed_OptionsTemplates.xml"/>
+	<!-- Options frame itself, anchored to the center of the screen -->
+	<Frame name="Nurfed_OptionsFrame" frameStrata="DIALOG" parent="UIParent" hidden="true" toplevel="true" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="416" y="480" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Nurfed_OptionsFrameHeaderText:SetText('Nurfed '..NURFED_VERSION);
+				Nurfed_OptionsFrame:SetBackdropBorderColor(0, 0, 0);
+				Nurfed_OptionsFrame:SetBackdropColor(0, 0, 0);
+			</OnLoad>
+			<!-- If we're hiding the frame, then tabs are initialized -->
+			<OnHide>
+				Nurfed_TabInit = 1;
+			</OnHide>
+		</Scripts>
+		<Backdrop name="Nurfed_OptionsFrameBackdrop" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<!-- Header graphic -->
+				<Texture name="Nurfed_OptionsFrameHeader" file="Interface\ChatFrame\ChatFrameTab">
+					<Size>
+						<AbsDimension x="140" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="28" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<!-- NurfedMod title text -->
+				<FontString name="Nurfed_OptionsFrameHeaderText" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="Nurfed_OptionsFrameHeader" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+
+<!-- * GENERAL OPTIONS 50-99 * -->
+
+			<CheckButton name="Nurfed_Tab50Button" hidden="true" inherits="Nurfed_OptionsTabButtonTemplate" id="50">
+				<Anchors>
+					<!-- Anchor this to the previous tab button -->
+					<Anchor point="TOP" relativeTo="Nurfed_Tab50Button" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Frame name="Nurfed_Tab50Text" hidden="true" inherits="Nurfed_OptionsTabTextTemplate" id="50">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_Tab50Button" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="Nurfed_OptionsPanel50" hidden="true" inherits="Nurfed_OptionsPanelTemplate">
+				<Frames>
+					<!-- General options header -->
+					<Frame name="Nurfed_Header51" inherits="Nurfed_OptionsHeaderTemplate" id="51">
+						<Anchors>
+							<Anchor point="CENTER" relativePoint="TOP">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Gold Repair Option-->
+					<CheckButton name="Nurfed_Option52" inherits="Nurfed_OptionsCheckButtonTemplate" id="52">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header51" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Gold Repair offset-->
+					<Slider name="Nurfed_Option53" inherits="Nurfed_OptionsSliderTemplate" id="53">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_Header51" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<!-- Mini Map Ping Option-->
+					<CheckButton name="Nurfed_Option54" inherits="Nurfed_OptionsCheckButtonTemplate" id="54">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option52" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Trainer Available Option-->
+					<CheckButton name="Nurfed_Option55" inherits="Nurfed_OptionsCheckButtonTemplate" id="55">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option53" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Time Stamps Option-->
+					<CheckButton name="Nurfed_Option56" inherits="Nurfed_OptionsCheckButtonTemplate" id="56">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option54" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+			</Frame>
+			<!-- * GENERAL OPTIONS 50-99 * -->
+
+<!-- * Unit Frame Options 100-149 * -->
+
+			<!-- Tab graphic and scripting to control its behavior when clicked -->
+			<CheckButton name="Nurfed_Tab100Button" hidden="true" inherits="Nurfed_OptionsTabButtonTemplate" id="100">
+				<!-- Anchor first tab to the top right with a slight padding, we'll anchor the rest off of this -->
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-4" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<!-- Tab text to overlay the graphic, contains scripting to control OnShow events -->
+			<Frame name="Nurfed_Tab100Text" hidden="true" inherits="Nurfed_OptionsTabTextTemplate" id="100">
+				<!-- Anchored to the button -->
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_Tab100Button" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+			<!-- General options panel, defaulted to show -->
+			<Frame name="Nurfed_OptionsPanel100" hidden="true" inherits="Nurfed_OptionsPanelTemplate">
+				<Frames>
+					<!-- Party options header -->
+					<Frame name="Nurfed_Header101" inherits="Nurfed_OptionsHeaderTemplate" id="101">
+						<Anchors>
+							<Anchor point="CENTER" relativePoint="TOP">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Unit Frames Party HP Warn Option -->
+					<CheckButton name="Nurfed_Option102" inherits="Nurfed_OptionsCheckButtonTemplate" id="102">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header101" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Unit Frames Party HP Warn Percent -->
+					<Slider name="Nurfed_Option103" inherits="Nurfed_OptionsSliderTemplate" id="103">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="Nurfed_Header101" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<!-- Unit Frames Party HP Option -->
+					<CheckButton name="Nurfed_Option104" inherits="Nurfed_OptionsCheckButtonTemplate" id="104">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option102" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Unit Frames Party Buffs Option -->
+					<CheckButton name="Nurfed_Option105" inherits="Nurfed_OptionsCheckButtonTemplate" id="105">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option104" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Unit Frames Party DeBuffs Option -->
+					<CheckButton name="Nurfed_Option106" inherits="Nurfed_OptionsCheckButtonTemplate" id="106">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option103" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-25"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option107" inherits="Nurfed_OptionsCheckButtonTemplate" id="107">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option105" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option108" inherits="Nurfed_OptionsCheckButtonTemplate" id="108">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option107" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="150" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option109" inherits="Nurfed_OptionsCheckButtonTemplate" id="109">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option107" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Player options header -->
+					<Frame name="Nurfed_Header111" inherits="Nurfed_OptionsHeaderTemplate" id="111">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option109" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Unit Frames Player HP Option -->
+					<CheckButton name="Nurfed_Option112" inherits="Nurfed_OptionsCheckButtonTemplate" id="112">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header111" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option115" inherits="Nurfed_OptionsCheckButtonTemplate" id="115">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option112" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="150" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option113" inherits="Nurfed_OptionsCheckButtonTemplate" id="113">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option112" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option114" inherits="Nurfed_OptionsCheckButtonTemplate" id="114">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option113" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="150" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option116" inherits="Nurfed_OptionsCheckButtonTemplate" id="116">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option113" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Pet options header -->
+					<Frame name="Nurfed_Header121" inherits="Nurfed_OptionsHeaderTemplate" id="121">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option116" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Unit Frames Pet HP Option -->
+					<CheckButton name="Nurfed_Option122" inherits="Nurfed_OptionsCheckButtonTemplate" id="122">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header121" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option125" inherits="Nurfed_OptionsCheckButtonTemplate" id="125">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option122" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="150" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option123" inherits="Nurfed_OptionsCheckButtonTemplate" id="123">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option122" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option124" inherits="Nurfed_OptionsCheckButtonTemplate" id="124">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option123" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="150" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<!-- Target options header -->
+					<Frame name="Nurfed_Header131" inherits="Nurfed_OptionsHeaderTemplate" id="131" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option123" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+			</Frame>
+
+<!-- * ACTION BAR OPTIONS 150-199 * -->
+
+			<CheckButton name="Nurfed_Tab150Button" hidden="true" inherits="Nurfed_OptionsTabButtonTemplate" id="150">
+				<Anchors>
+					<!-- Anchor this to the previous tab button -->
+					<Anchor point="TOP" relativeTo="Nurfed_Tab100Button" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Frame name="Nurfed_Tab150Text" hidden="true" inherits="Nurfed_OptionsTabTextTemplate" id="150">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Nurfed_Tab100Button" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame name="Nurfed_OptionsPanel150" hidden="true" inherits="Nurfed_OptionsPanelTemplate">
+				<Frames>
+					<!-- Action Bar options header -->
+					<Frame name="Nurfed_Header151" inherits="Nurfed_OptionsHeaderTemplate" id="151">
+						<Anchors>
+							<Anchor point="CENTER" relativePoint="TOP">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+
+					<!-- Action Bar option -->
+					<CheckButton name="Nurfed_Option152" inherits="Nurfed_OptionsCheckButtonTemplate" id="152">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header151" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- BottomBar Option -->
+					<CheckButton name="Nurfed_Option153" inherits="Nurfed_OptionsCheckButtonTemplate" id="153">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option152" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="100" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option154" inherits="Nurfed_OptionsCheckButtonTemplate" id="154">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option152" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Action Bar Scale Option -->
+					<Slider name="Nurfed_Option155" inherits="Nurfed_OptionsSliderTemplate" id="155">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option154" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="100" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<CheckButton name="Nurfed_Option156" inherits="Nurfed_OptionsCheckButtonTemplate" id="156">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option154" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option157" inherits="Nurfed_OptionsCheckButtonTemplate" id="157">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option156" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="100" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="Nurfed_Option158" inherits="Nurfed_OptionsCheckButtonTemplate" id="158">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option156" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					
+					<!-- SideBar options header -->
+					<Frame name="Nurfed_Header161" inherits="Nurfed_OptionsHeaderTemplate" id="161">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option158" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Show SideBar Option -->
+					<CheckButton name="Nurfed_Option162" inherits="Nurfed_OptionsCheckButtonTemplate" id="162">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header161" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- SideBar Unlink Option -->
+					<CheckButton name="Nurfed_Option163" inherits="Nurfed_OptionsCheckButtonTemplate" id="163">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option162" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="100" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- SideBar 1 Option -->
+					<CheckButton name="Nurfed_Option164" inherits="Nurfed_OptionsCheckButtonTemplate" id="164">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option162" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- SideBar 2 Option -->
+					<CheckButton name="Nurfed_Option165" inherits="Nurfed_OptionsCheckButtonTemplate" id="165">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option164" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="100" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- SideBar Scale Option -->
+					<Slider name="Nurfed_Option166" inherits="Nurfed_OptionsSliderTemplate" id="166">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option164" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-14"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					
+					<!-- Bag options header -->
+					<Frame name="Nurfed_Header171" inherits="Nurfed_OptionsHeaderTemplate" id="171">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Option166" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+					<!-- Vertical Bag Option -->
+					<CheckButton name="Nurfed_Option172" inherits="Nurfed_OptionsCheckButtonTemplate" id="172">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="Nurfed_Header171" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<!-- Bag Scale Option -->
+					<Slider name="Nurfed_Option173" inherits="Nurfed_OptionsSliderTemplate" id="173">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="Nurfed_Option172" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="100" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+				</Frames>
+			</Frame>
+
+
+			<!-- * END OPTIONS FRAMES * -->
+			<!-- Close Button -->
+			<Button name="Nurfed_OptionsClose" inherits="GameMenuButtonTemplate" text="Close">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Nurfed_OptionsFrameToggle();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

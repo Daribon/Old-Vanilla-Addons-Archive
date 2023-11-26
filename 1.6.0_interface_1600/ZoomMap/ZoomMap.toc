@@ -1,0 +1,6 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r ZoomMap
+## Notes: Bind a key to inflate the minimap
+## OptionalDeps: 
+## Dependencies: 
+ZoomMap.xml

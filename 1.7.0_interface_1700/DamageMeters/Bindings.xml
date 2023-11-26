@@ -1,0 +1,26 @@
+<Bindings>
+	<Binding name="DAMAGEMETERS_TOGGLESHOW" description="Toggle Visible" header="DAMAGEMETERSHEADER">
+		DamageMeters_ToggleShow();
+	</Binding>
+	<Binding name="DAMAGEMETERS_CYCLEQUANT" description="Cycle Visible Quantity">
+		DamageMeters_CycleQuant();
+	</Binding>
+	<Binding name="DAMAGEMETERS_CYCLEQUANTBACK" description="Cycle Visible Quantity Backwards">
+		DamageMeters_CycleQuantBack();
+	</Binding>
+	<Binding name="DAMAGEMETERS_CLEAR" description="Clear List">
+		DamageMeters_Clear();
+	</Binding>
+	<Binding name="DAMAGEMETERS_TOGGLEPAUSED" description="Toggle Paused">
+		DamageMeters_TogglePause(true);
+	</Binding>
+	<Binding name="DAMAGEMETERS_SHOWREPORTFRAME" description="Show Report Frame">
+		DamageMeters_ShowReportFrame();
+	</Binding>
+	<Binding name="DAMAGEMETERS_SWAPMEMORY" description="Swap Memory">
+		DamageMeters_Swap(false);
+	</Binding>
+	<Binding name="DAMAGEMETERS_TOGGLESHOWMAX" description="Toggle Show Max Bars">
+		DamageMeters_ToggleMaxBars(true);
+	</Binding>
+</Bindings>

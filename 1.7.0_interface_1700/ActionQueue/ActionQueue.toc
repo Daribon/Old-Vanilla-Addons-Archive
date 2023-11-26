@@ -1,0 +1,6 @@
+## Interface: 1700
+## Title: ActionQueue
+## Author: sarf
+## Notes: Allows scripts to queue up spells to be cast as soon as possible.
+## OptionalDeps: Smash
+ActionQueue.xml

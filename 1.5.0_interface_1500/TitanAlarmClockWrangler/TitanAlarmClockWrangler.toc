@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: Titan Panel Alarm Clock Wrangler
+## Notes: 
+## Author: Fallan
+## Dependencies: Titan
+## SavedVariables: TITAN_ACWOptions
+TitanAlarmClockWrangler.xml

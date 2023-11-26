@@ -1,0 +1,94 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+	<Script file="Insomniax_IconMover.lua"/>
+
+	<Frame name="IX_IconSettingsFrame" movable="false" toplevel="true" frameStrata="HIGH" parent="UIParent" hidden="true">
+		<!--
+		<Layers>
+			<Layer><Texture><Color r="0.0" g="0.0" b="0.0" a="0.85"/></Texture></Layer>
+		</Layers>
+		-->
+		<Size>
+			<AbsDimension x="220" y="84"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="-220" y="-32"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5" /> 
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="16" /> 
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="16" /> 
+			</EdgeSize>
+		</Backdrop>		
+		<Frames>
+			<Slider name="IX_Slider" inherits="OptionsSliderTemplate">
+				<Size>
+					<AbsDimension x="192" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+					
+						getglobal(this:GetName().."Text"):SetText("Button Position (in degrees)");
+						getglobal(this:GetName().."High"):SetText("360");
+						getglobal(this:GetName().."Low"):SetText("0");
+						
+						this:SetMinMaxValues(0, 360);
+						this:SetValueStep(0.5);
+					</OnLoad>
+					<OnValueChanged>
+						Insomniax_IconMover_MoveButton(this:GetValue(),IX_sButtonID);
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			
+			<Button name="IXIPClose" inherits="GameMenuButtonTemplate" text="CLOSE">
+				<Size>
+					<AbsDimension x="84" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM" relativeTo="IX_IconSettingsFrame">
+						<Offset>
+							<AbsDimension x="0" y="22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionOK");
+						Insomniax_HideIconMover();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+				RegisterForSave("IX_IconPositions"); -- not really needed as it is in the toc, ho hum
+			</OnLoad>
+			<OnShow>
+			</OnShow>
+			<OnEvent>
+				Insomniax_OnEvent();
+			</OnEvent>
+			<OnHide>
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

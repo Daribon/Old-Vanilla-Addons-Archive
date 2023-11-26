@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: AltInvite
+## Notes: Allows alt-clicking on a user name in chat to invite him/her in the group.
+## Author: <zespri@mail.ru>
+## OptionalDeps: Khaos
+## RequiredDeps: Sea
+AltInvite.xml

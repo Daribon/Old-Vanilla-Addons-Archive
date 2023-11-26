@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: AVTimer
+## Author: Darjk
+## Version: 1.00
+## Notes: Displays a simple timer of when the next wave of resurrections are.
+## DefaultState: enabled
+AVTimer.xml

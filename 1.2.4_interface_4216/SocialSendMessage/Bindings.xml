@@ -1,0 +1,17 @@
+<Bindings>
+	<Binding name="COS_SSM_SEND_MESSAGE_ENABLE_TOGGLE" header="COS_SSM"> <!-- Toggle show/hide the "Send Message" button -->
+		SSM_SendMessageEnableToggle();
+	</Binding>
+	<Binding name="COS_SSM_SEND_PAGE_ENABLE_TOGGLE"> <!-- Toggle Minimize the "Send Page" button -->
+		SSM_SendPageEnableToggle();
+	</Binding>
+	<Binding name="COS_SN_ENABLE_TOGGLE"> <!-- Toggle Minimize the player notes -->
+		SN_NotesEnableToggle();
+	</Binding>
+	<Binding name="COS_SSM_EDIT_NOTE_ENABLE_TOGGLE"> <!-- Toggle the "Edit Note" button -->
+		SN_EditNoteEnableToggle();
+	</Binding>
+	<Binding name="COS_SN_EDITOR_OPEN"> <!-- Open the player notes editor -->
+        SocialNotesEditorFrame:Show();
+	</Binding>
+</Bindings>

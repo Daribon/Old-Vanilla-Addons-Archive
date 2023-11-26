@@ -1,0 +1,6 @@
+<Bindings>
+	<!-- Toggle ModName On/Off -->
+	<Binding name="AURAASPECTS" description="Toggle Aura Aspects" header="AURAASPECTSHEADER">
+		AuraAspects_Toggle_Enabled(-1);
+	</Binding>
+</Bindings>

@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: OneHitWonder
+## Notes: Allows you to use one button / small script macro to do all the stuff you need. Some classes supported all-out.
+## Author: sarf (thez on Warlocks)
+## OptionalDeps: MobHealth, AuraAspects
+## RequiredDeps: Cosmos, DynamicData
+OneHitWonder.xml

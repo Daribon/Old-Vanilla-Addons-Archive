@@ -1,0 +1,143 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+
+<Frame name="DAB_NumButtonsTemplate" inherits="DAB_TooltipBGTemplate" virtual="true">
+	<Size><AbsDimension x="50" y="25"/></Size>
+	<Frames>
+		<Button name="$parent_RemoveButton" inherits="DAB_ButtonTemplate" text="-">
+			<Size><AbsDimension x="20" y="20"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativePoint="RIGHT"/>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					DAB_Options_RemoveButton(this:GetParent():GetID());
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parent_AddButton" inherits="DAB_ButtonTemplate" text="+">
+			<Size><AbsDimension x="20" y="20"/></Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parent_RemoveButton" relativePoint="RIGHT">
+					<Offset><AbsDimension x="3" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					DAB_Options_AddButton(this:GetParent():GetID());
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+	<Layers>
+		<Layer level="ARTWORK">
+			<FontString name="$parent_Text" inherits="GameFontNormal" justifyH="CENTER" justifyV="CENTER">
+				<Color r="1" g="1" b="0"/>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+			</FontString>
+			<FontString name="$parent_Label" inherits="GameFontNormal" justifyH="CENTER" justifyV="CENTER" text="DAB_FREEBUTTONS">
+				<Color r="1" g="1" b="1"/>
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="LEFT"/>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnLoad>
+			if (this:GetID()) then
+				this:SetBackdropColor(0,0,0,1);
+				local prev = this:GetID() - 1;
+				local prevframe = "DAB_NumButtonsOptions_Bar_"..prev;
+				this:SetPoint("TOPRIGHT", prevframe, "BOTTOMRIGHT", 0, -5);
+				getglobal(this:GetName().."_Label"):SetText(DAB_TEXT.Bar..this:GetID()..":");
+			end
+		</OnLoad>
+	</Scripts>
+</Frame>
+
+<Frame name="DAB_NumButtonsOptions" parent="DAB_Options" inherits="DAB_TooltipBGTemplate" hidden="true">
+	<Size><AbsDimension x="397" y="605"/></Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="DAB_OptionsTitle" relativePoint="BOTTOMLEFT"/>
+	</Anchors>
+	<Frames>
+		<Frame name="DAB_FreeButtons"  inherits="DAB_TooltipBGTemplate">
+			<Size><AbsDimension x="50" y="30"/></Size>
+			<Anchors>
+				<Anchor point="TOP">
+					<Offset><AbsDimension x="0" y="-40"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<FontString name="$parent_Text" inherits="GameFontNormalLarge" justifyH="CENTER" justifyV="CENTER">
+						<Color r="1" g="1" b="0"/>
+						<Anchors>
+							<Anchor point="TOPLEFT"/>
+							<Anchor point="BOTTOMRIGHT"/>
+						</Anchors>
+					</FontString>
+					<FontString name="$parent_Label" inherits="GameFontNormalLarge" justifyH="CENTER" justifyV="CENTER" text="DAB_FREEBUTTONSLABEL">
+						<Color r="1" g="1" b="0"/>
+						<Anchors>
+							<Anchor point="BOTTOM" relativePoint="TOP"/>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0,0,0,1);
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Frame name="$parent_Bar_1" inherits="DAB_NumButtonsTemplate" id="1">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="DAB_FreeButtons" relativePoint="BOTTOM">
+					<Offset><AbsDimension x="0" y="-20"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetBackdropColor(0,0,0,1);
+					getglobal(this:GetName().."_Label"):SetText(DAB_TEXT.Bar..this:GetID()..":");
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Frame name="$parent_Bar_2" inherits="DAB_NumButtonsTemplate" id="2"/>
+		<Frame name="$parent_Bar_3" inherits="DAB_NumButtonsTemplate" id="3"/>
+		<Frame name="$parent_Bar_4" inherits="DAB_NumButtonsTemplate" id="4"/>
+		<Frame name="$parent_Bar_5" inherits="DAB_NumButtonsTemplate" id="5"/>
+		<Frame name="$parent_Bar_6" inherits="DAB_NumButtonsTemplate" id="6"/>
+		<Frame name="$parent_Bar_7" inherits="DAB_NumButtonsTemplate" id="7"/>
+		<Frame name="$parent_Bar_8" inherits="DAB_NumButtonsTemplate" id="8"/>
+		<Frame name="$parent_Bar_9" inherits="DAB_NumButtonsTemplate" id="9"/>
+		<Frame name="$parent_Bar_10" inherits="DAB_NumButtonsTemplate" id="10"/>
+		<Button name="$parent_SetAllBarsToZero" inherits="DAB_ButtonTemplate">
+			<Size><AbsDimension x="175" y="26"/></Size>
+			<Anchors>
+				<Anchor point="TOP" relativeTo="$parent_Bar_10" relativePoint="BOTTOM">
+					<Offset><AbsDimension x="0" y="-20"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:SetText(DAB_TEXT.SetAllBarsToZero);
+				</OnLoad>
+				<OnClick>
+					DAB_Options_RemoveAllButtons();
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:SetBackdropColor(.2, .2, .2);			
+		</OnLoad>
+	</Scripts>
+</Frame>
+
+</Ui>

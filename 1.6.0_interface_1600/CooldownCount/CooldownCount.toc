@@ -1,0 +1,7 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r CooldownCount
+## Notes: Allows you to see time until actions have cooled down in the buttons.
+## Author: sarf
+## OptionalDeps: UltimateUI
+## SavedVariables: CooldownCount_Enabled, CooldownCount_SideBarsSideCount, CooldownCount_UseLongTimerDescriptions, CooldownCount_UseLongTimerDescriptionsForSeconds, CooldownCount_TimeBetweenFlashes
+CooldownCount.xml

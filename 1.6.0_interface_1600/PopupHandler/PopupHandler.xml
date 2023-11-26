@@ -1,0 +1,35 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+ 	<Script file="PopupHandler.lua"/>
+ 	<Script file="PopupHandler_Util.lua"/>
+ 	<Script file="PopupHandler_Options.lua"/>
+ 	<Script file="PopupHandler_BindonPickup.lua"/>
+ 	<Script file="PopupHandler_DuelRequest.lua"/>
+ 	<Script file="PopupHandler_OverwriteEnchant.lua"/>
+ 	<Script file="PopupHandler_PartyInvite.lua"/>
+ 	<Script file="PopupHandler_Resurrection.lua"/>
+
+
+
+	<Frame name="PopupHandlerFrame" hidden="true"> 
+ 		<Scripts> 
+ 			<OnLoad> 
+ 				PopupHandler_OnLoad(); 
+ 			</OnLoad> 
+ 			<OnEvent> 
+ 				PopupHandler_OnEvent(); 
+ 			</OnEvent> 
+ 		</Scripts> 
+ 	</Frame> 
+
+	<Frame name="PopupHandler_BindonPickupFrame" hidden="true"> 
+ 		<Scripts>
+ 			<OnUpdate> 
+ 				PopupHandler_BindonPickupFrame_OnUpdate(); 
+ 			</OnUpdate> 
+ 		</Scripts> 
+ 	</Frame> 
+
+</Ui>

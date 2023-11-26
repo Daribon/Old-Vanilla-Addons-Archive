@@ -1,0 +1,1035 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+	<!--Included files -->
+	<Script file="healix.options.lua"/>
+	<Include file = "SpellTell.xml"/>
+	<!-- taken from cosmos the common frame template -->
+	<Frame name="Hx_CommonFrameTemplate" virtual="true">	
+		<!-- Basic Graphics -->
+		<HitRectInsets>
+			<AbsInset left="0" right="35" top="0" bottom="75"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentMainIcon" file="Interface\LootFrame\LootPanel-Icon.tga">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTopLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBotLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBotRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleText" inherits="GameFontHighlight" text="SOME_TITLE">
+					<Size>
+						<AbsDimension x="300" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-30" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentExitButton" inherits="UIPanelButtonTemplate" text="Exit">
+				<Size>
+					<AbsDimension x="77" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-43" y="81"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(this:GetParent());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="$parentVersion">
+				<Size>
+					<AbsDimension x="70" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="63" y="-420"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentLabel" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+						<FontString name="$parentText" inherits="GameFontHighlightSmall" justifyH="RIGHT"/>
+					</Layer>	
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<!--Check box template -->
+	<CheckButton name="HxCheckTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+		<Scripts>
+            <OnShow>
+				HxOptions_CheckboxOnShow(this);
+			</OnShow>
+			<OnClick>
+				HxOptions_CheckboxOnClick(this);
+			</OnClick>
+			<OnEnter>
+				HxOptions_CheckboxToolTip(this);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<!-- NONE SPELL OPTIONS -->
+	<Frame name="HxOptions" inherits="Hx_CommonFrameTemplate" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="384" y="512" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="400" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Hx_Frame_OnLoad(this);
+			</OnLoad>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="HxOptionsText" inherits="GameFontNormal">
+					<Size>
+						<AbsDimension x="260" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="20" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0.6" g="0.6" b="0.8"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="Main" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="HxOptions" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-114" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Party" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Main" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="NonParty" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Party" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Time" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="NonParty" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="EmoteSelf" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Time" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="SmartParty" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EmoteSelf" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Prefix" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="SmartParty" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<!-- These checks are to the right of the previous ones -->
+			<CheckButton name="Target" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Main" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="150" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Raid" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Target" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Channel" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Raid" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Interrupt" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Channel" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Combat" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Interrupt" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="SpellTell" inherits="HxCheckTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="Combat" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<!-- <<Buttons for HxOptions>> -->
+			<Button name="AddSpell" inherits="UIPanelButtonTemplate" text="Add Spell">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="HxOptions">
+						<Offset>
+							<AbsDimension x="20" y="170"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						StaticPopup_Show("ADD_SPELL");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DisplaySpells" inherits="UIPanelButtonTemplate" text="Display Spells">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="AddSpell" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HxSpellOptionsDisplay();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="PrefixButton" inherits="UIPanelButtonTemplate" text="Set Prefix">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="DisplaySpells" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						StaticPopup_Show("GET_PREFIX");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!--To the right of addspell-->
+			<Button name="RemoveSpell" inherits="UIPanelButtonTemplate" text="Clear Spells"> 
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="AddSpell" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="58" y="0"/>     
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Hx_RemoveSpell();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- On top of remove spell -->
+			<Button name="InterruptButton" inherits="UIPanelButtonTemplate" text="Set Interrupt"> 
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="RemoveSpell" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="26"/>     
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						StaticPopup_Show("GET_INTERRUPT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- Below remove spell -->
+			<Button name="ChannelButton" inherits="UIPanelButtonTemplate" text="Channel">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="RemoveSpell" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						StaticPopup_Show("GET_CHANNEL");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="PostfixButton" inherits="UIPanelButtonTemplate" text="Postfix">
+				<Size>
+					<AbsDimension x="131" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="ChannelButton" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						StaticPopup_Show("GET_POSTFIX");
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<!--SPELL OPTIONS -->
+	<Frame name="HxSpellOptions" parent="UIParent" inherits="Hx_CommonFrameTemplate" hidden="true" title="Healix">
+		<Size>
+			<AbsDimension x="384" y="512" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="400" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				Hx_Frame_OnLoad(this);
+			</OnLoad>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="HxSpellOptionsText" inherits="CombatLogFont">
+					<Size>
+						<AbsDimension x="260" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="20" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0.6" g="0.6" b="0.8"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="HxSpell_1" inherits="HxCheckTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="HxSpellOptions" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-114" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_1" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_1" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 1; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_2" inherits="HxCheckTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_1" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_2" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_2" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 2; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_3" inherits="HxCheckTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_2" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_3" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_3" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 3; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_4" inherits="HxCheckTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_3" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_4" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_4" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 4; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_5" inherits="HxCheckTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_4" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_5" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_5" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 5; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_6" inherits="HxCheckTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_5" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_6" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_6" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 6; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_7" inherits="HxCheckTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_6" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_7" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_7" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 7; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_8" inherits="HxCheckTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_7" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_8" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_8" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 8; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_9" inherits="HxCheckTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_8" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_9" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_9" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 9; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_10" inherits="HxCheckTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_9" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_10" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_10" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 10; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- DEFAULT BUTTON -->
+			<Button name="Hx_DefaultSpells_Button" inherits="UIPanelButtonTemplate" text="Defaults" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_10" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="-28"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HxOptions_SpellTextDefault();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!--Righthand -->
+			<CheckButton name="HxSpell_11" inherits="HxCheckTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_1" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="150" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_11" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_11" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 11; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_12" inherits="HxCheckTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_11" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_12" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_12" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 12; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_13" inherits="HxCheckTemplate" id="13">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_12" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_13" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_13" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 13; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_14" inherits="HxCheckTemplate" id="14">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_13" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_14" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_14" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 14; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_15" inherits="HxCheckTemplate" id="15">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_14" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_15" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_15" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 15; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_16" inherits="HxCheckTemplate" id="16">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_15" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_16" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_16" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 16; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_17" inherits="HxCheckTemplate" id="17">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_16" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_17" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_17" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 17; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_18" inherits="HxCheckTemplate" id="18">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_17" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_18" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_18" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 18; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_19" inherits="HxCheckTemplate" id="19">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_18" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_19" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_19" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 19; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="HxSpell_20" inherits="HxCheckTemplate" id="20">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_19" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="SpellTextButton_20" inherits="UIPanelButtonTemplate" text="SpellText" hidden="false">
+				<Size>
+					<AbsDimension x="90" y="15"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOP" relativeTo="HxSpell_20" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="60" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>				
+						Hx_SpellTextIndex = 20; 
+						StaticPopup_Show("GET_SPELL_TEXT");
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

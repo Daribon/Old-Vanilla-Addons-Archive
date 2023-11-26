@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: CombatCaller
+## Title-deDE: CombatCaller
+## Notes: Allows the user to set up a way so that the client will start telling everyone that it has low mana/hitpoints.
+## Notes-deDE: Ermöglicht es, automatisch zu rufen, wenn Mana oder Lebenspunkte ausgehen
+## RequiredDeps: Cosmos
+CombatCaller.xml

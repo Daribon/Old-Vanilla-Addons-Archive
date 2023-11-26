@@ -1,0 +1,7 @@
+## Interface: 1800
+## Title: Divine Blessing 2.0
+## Notes: Simplifies buffing of parties and raids
+## Author: CheshireKatt
+## OptionalDeps: Cosmos, Khaos, Sea, MobileFrames
+## SavedVariables: DivineBlessing_Config
+DivineBlessing.xml

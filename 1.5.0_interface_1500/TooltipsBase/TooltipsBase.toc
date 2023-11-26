@@ -1,0 +1,7 @@
+## Interface: 1500
+## Title: Tooltips: Base
+## Author: Celandro
+## Notes: Provides a base mod for moving and modifying tooltips
+## RequiredDeps: Sea
+## OptionalDeps: Cosmos
+TooltipsBase.xml

@@ -1,0 +1,40 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: BarOptions.xml 1441 2005-05-05 08:41:19Z Sinaloit $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- Main Script -->
+	<Script file="BarOptions.lua"/>
+	<!-- Hooks Script -->
+	<Script file="BOHooks.lua"/>
+
+	<!--
+		BonusActionBar Replacement
+	-->
+	<Include file="BOBonusActionBarFrame.xml"/>
+	
+	<!--
+		Bar Artwork
+	-->
+	<Include file="BOBarArt.xml"/>
+	
+	<!--
+		Main Frame
+	-->
+	<Frame name="BarOptionsFrame" enableMouse="false" parent="UIParent" >
+		<Scripts>
+			<OnLoad>
+				BarOptions.OnLoad();
+			</OnLoad>
+			<OnEvent>
+				BarOptions.OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+
+</Ui>

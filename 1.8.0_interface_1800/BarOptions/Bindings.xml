@@ -1,0 +1,56 @@
+<Bindings>
+  <Binding name="INSTANTACTIONBAR1" header="INSTANTACTIONBAR">
+		if ( CURRENT_ACTIONBAR_PAGE ~= 1 ) then
+			if (Instant_ActionBar_Return == -1 ) then
+				Instant_ActionBar_Return = CURRENT_ACTIONBAR_PAGE;
+			end
+			CURRENT_ACTIONBAR_PAGE = 1;
+			ChangeActionBarPage();
+		end
+	</Binding>
+	<Binding name="INSTANTACTIONBAR2">
+		if ( CURRENT_ACTIONBAR_PAGE ~= 2 ) then
+			if (Instant_ActionBar_Return == -1 ) then
+				Instant_ActionBar_Return = CURRENT_ACTIONBAR_PAGE;
+			end
+			CURRENT_ACTIONBAR_PAGE = 2;
+			ChangeActionBarPage();
+		end
+	</Binding>
+	<Binding name="INSTANTACTIONBAR3">
+		if ( CURRENT_ACTIONBAR_PAGE ~= 3 ) then
+			if (Instant_ActionBar_Return == -1 ) then
+				Instant_ActionBar_Return = CURRENT_ACTIONBAR_PAGE;
+			end
+			CURRENT_ACTIONBAR_PAGE = 3;
+			ChangeActionBarPage();
+		end
+	</Binding>
+	<Binding name="INSTANTACTIONBAR4">
+		if ( CURRENT_ACTIONBAR_PAGE ~= 4 ) then
+			if (Instant_ActionBar_Return == -1 ) then
+				Instant_ActionBar_Return = CURRENT_ACTIONBAR_PAGE;
+			end
+			CURRENT_ACTIONBAR_PAGE = 4;
+			ChangeActionBarPage();
+		end
+	</Binding>
+	<Binding name="INSTANTACTIONBAR5">
+		if ( CURRENT_ACTIONBAR_PAGE ~= 5 ) then
+			if (Instant_ActionBar_Return == -1 ) then
+				Instant_ActionBar_Return = CURRENT_ACTIONBAR_PAGE;
+			end
+			CURRENT_ACTIONBAR_PAGE = 5;
+			ChangeActionBarPage();
+		end
+	</Binding>
+	<Binding name="INSTANTACTIONBAR6">
+		if ( CURRENT_ACTIONBAR_PAGE ~= 6 ) then
+			if (Instant_ActionBar_Return == -1 ) then
+				Instant_ActionBar_Return = CURRENT_ACTIONBAR_PAGE;
+			end
+		CURRENT_ACTIONBAR_PAGE = 6;
+				ChangeActionBarPage();
+		end
+	</Binding>
+</Bindings>

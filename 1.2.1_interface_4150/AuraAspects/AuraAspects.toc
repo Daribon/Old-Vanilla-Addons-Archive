@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: Aura Aspects
+## Notes: Allows you to use the shapeshift buttons to cast Aspects
+## Author: sarf
+## OptionalDeps: Cosmos, CosmosSchedule, SecondBar
+##SavedVariables: AuraAspects_Enabled, AuraAspects_PreferredPositionOnTop
+AuraAspects.xml

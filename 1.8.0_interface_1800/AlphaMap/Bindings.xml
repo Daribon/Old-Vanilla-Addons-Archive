@@ -1,0 +1,13 @@
+<Bindings>
+	<Binding name="TOGGLEALPHAMAP" header="ALPHAMAP">
+        ToggleAlphaMap();
+	</Binding>
+
+	<Binding name="INCREMENTALPHAMAP" header="ALPHAMAP">
+        IncrementAlphaMap();
+	</Binding>
+
+	<Binding name="DECREMENTALPHAMAP" header="ALPHAMAP">
+        DecrementAlphaMap();
+	</Binding>
+</Bindings>

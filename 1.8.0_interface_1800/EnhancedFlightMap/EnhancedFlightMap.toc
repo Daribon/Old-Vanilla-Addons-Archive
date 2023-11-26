@@ -1,0 +1,12 @@
+## Interface: 1800
+## Title: Enhanced Flight Map
+## Notes: Display all known flight path information at the flightmaster window
+## Dependencies: 
+## OptionalDeps: myAddOns
+## SavedVariables: EFM_Config, EnhancedFlightMap_TaxiData, EnhancedFlightMap_TaxiPathData, EFM_MapTranslation, EFM_KnownPaths
+LysLibrary\LYS_Library.xml
+localization.lua
+localization-frFR.lua
+localization-deDE.lua
+EnhancedFlightMap.xml
+EFM_GUI.xml

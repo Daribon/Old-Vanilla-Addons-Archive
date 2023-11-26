@@ -1,0 +1,17 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Script file="CosmosMenu.lua"/>
+	<Frame name="CosmosDropDown" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+		<Scripts>
+			<OnLoad>
+				CosmosMaster_MenuOnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="CosmosDropDownBis" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+		<Scripts>
+			<OnLoad>
+				CosmosMaster_MenuBisOnLoad();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

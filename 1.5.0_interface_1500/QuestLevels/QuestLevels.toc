@@ -1,0 +1,10 @@
+## Interface: 1500
+## Title: QuestLevels
+## Title-frFR: QuestLevels
+## Version: 0.3
+## Notes: Adds level information to the quest log, and speeds up quest text redraw speed.
+## Notes-frFR:
+## Author: Halfhand
+## OptionalDeps:
+## Dependencies:
+QuestLevels.xml

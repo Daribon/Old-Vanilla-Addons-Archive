@@ -1,0 +1,9 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r Wardrobe
+## Author: Cragganmore
+## Notes: Define and switch among 20 outfits/gearsets.
+## RequiredDeps: Chronos
+## OptionalDeps: Sea
+## DefaultState: disabled
+## SavedVariables: Wardrobe_Config
+Wardrobe.xml

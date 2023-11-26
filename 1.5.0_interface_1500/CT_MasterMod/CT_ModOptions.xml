@@ -1,0 +1,86 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="CT_ModOptions.lua"/>
+	<Frame name="CT_OptionBarFrame" parent="Minimap" frameStrata="MEDIUM" enableMouse="true" hidden="false">
+		<Size>
+			<!-- LedMirage 6/10/2005 Change Start [ 1 of 4] -->
+			<AbsDimension x="32" y="32"/>
+			<!-- LedMirage 6/10/2005 Change End [ 1 of 4] -->
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="CT_OptionButton">
+				<Size>
+					<!-- LedMirage 6/10/2005 Change Start [ 2 of 4] -->
+					<AbsDimension x="24" y="24"/>
+					<!-- LedMirage 6/10/2005 Change End [ 2 of 4] -->
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-15" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this.tooltip = "Mod Options";
+						this:SetFrameLevel(5);
+					</OnLoad>
+					<OnClick>
+						CT_OptionButton_OnClick();
+					</OnClick>
+					<OnEnter>
+						<!-- LedMirage 6/10/2005 Change Start [ 3 of 4] -->
+						GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+						GameTooltip:SetText("Open the CT Mod Control Panel v1.78", 255/255, 209/255, 0/255);
+						GameTooltip:AddLine("Left-click to open", 1.00, 1.00, 1.00);
+						GameTooltip:AddLine("The CT Mod control panel allows you to", 80/255, 143/255, 148/255);
+						GameTooltip:AddLine("configure all the CT Mod sub-modules to", 80/255, 143/255, 148/255);
+						GameTooltip:AddLine("your preference.", 80/255, 143/255, 148/255);
+						GameTooltip:AddLine("", 80/255, 143/255, 148/255);
+						GameTooltip:AddLine("To move the Player, Party, Cast, Buff", 1.00, 1.00, 1.00);
+						GameTooltip:AddLine("and target frames:", 1.00, 1.00, 1.00);
+						GameTooltip:AddLine("- Open the CT Mod Control Panel.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Click UNLOCK FRAMES to unlock.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Left click and drag the frame.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Click UNLOCK FRAMES again to lock.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("", 80/255, 143/255, 148/255);
+						GameTooltip:AddLine("To move the individual bags:", 1.00, 1.00, 1.00);
+						GameTooltip:AddLine("- Open the CT Mod Control Panel.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Click the MISC. MODS tab (5th down).", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Click MOVEABLE BAGS to unlock.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Left click and drag the bag.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("- Click MOVEABLE BAGS again to lock.", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine("(Note: RESET BAGS will set all bags", 53/255, 95/255, 98/255);
+						GameTooltip:AddLine(" to their default CT MOD positions.)", 53/255, 95/255, 98/255);
+						GameTooltip:Show();
+						<!-- LedMirage 6/10/2005 Change End [ 3 of 4] -->
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+				<!-- LedMirage 6/10/2005 Change Start [ 4 of 4] -->
+				<NormalTexture file="Interface\AddOns\CT_MasterMod\Images\Insomniax_CTMod_Button_Up"/>
+				<PushedTexture file="Interface\AddOns\CT_MasterMod\Images\Insomniax_CTMod_Button_Down"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\AddOns\CT_MasterMod\Images\Insomniax_Shell_Button_Glow"/>
+				<!-- LedMirage 6/10/2005 Change End [ 4 of 4] -->
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+			<OnEvent>
+				CT_OptionBar_MoveButton();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,10 @@
+## Interface: 1800
+## Title: myBindings
+## Author: Turan
+## Notes: An enhanced key bindings interface.
+## Notes_deDE:
+## Notes_frFR:
+## Dependencies: Ace
+## OptionalDeps: myAddOns
+## SavedVariables: myBindingsDB
+MyBindings.xml

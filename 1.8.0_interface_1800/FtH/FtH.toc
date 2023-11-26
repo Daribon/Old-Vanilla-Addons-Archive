@@ -1,0 +1,6 @@
+## Interface: 1800
+## Title: For the Horde UI v1.0
+## Notes: Shows a menu for direct access to some addons
+## SavedVariables:
+## Dependencies: Titan
+FtH.xml

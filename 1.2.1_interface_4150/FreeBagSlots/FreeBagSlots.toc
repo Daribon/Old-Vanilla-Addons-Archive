@@ -1,0 +1,7 @@
+## Interface: 4150
+## Title: FreeBagSlots
+## Notes: Will show how many slots are free in each bag.
+## Author: Sarf
+## OptionalDeps: Cosmos, DynamicData, Sea
+##SavedVariables: FreeBagSlots_Enabled, FreeBagSlots_ShowEmptySlotsOnShotBags, FreeBagSlots_ShowTotalSlots, FreeBagSlots_ShowTotalFreeSlots
+FreeBagSlots.xml

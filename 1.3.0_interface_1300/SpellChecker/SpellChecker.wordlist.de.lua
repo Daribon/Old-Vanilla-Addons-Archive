@@ -1,0 +1,3 @@
+--
+-- Use this format:
+-- SpellChecker_WordList["hactung"] = "achtung";

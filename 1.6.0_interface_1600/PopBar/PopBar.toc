@@ -1,0 +1,8 @@
+## Interface: 1600
+## Title: |cFF006699UUI -|r PopBar
+## Author: Mugendai
+## Notes: PopBar is a highly configurable self hiding action bar.
+## OptionalDeps: UltimateUI, Chronos
+## RequiredDeps: Sea
+## SavedVariables: PopBar_Config
+PopBar.xml

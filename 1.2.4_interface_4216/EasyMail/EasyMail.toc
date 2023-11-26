@@ -1,0 +1,7 @@
+## Interface: 4216
+## Title: EasyMail
+## RequiredDeps: Sea, Chronos
+## Title-deDE: EasyMail
+## Notes-deDE: Automatischer Betreff & Speicherung des letzten Adressaten für Post
+## SavedVariables: EasyMail_LastMailed
+EasyMail.xml

@@ -1,0 +1,8 @@
+## Interface: 1800
+## Title: Titan Plugin - Mail
+## Notes: A Titan Plugin to let you know you have mail.  Also remembers any Auction alerts
+## Author: tekkub@gmail.com
+## SavedVariables: TitanMailSettings
+## OptionalDeps: 
+## Dependencies: Titan
+TitanMail.xml

@@ -1,0 +1,5 @@
+## Interface: 1800
+## Title: |cFF006699Optional -|r RaidAttendance
+## Notes: Displays raid attendance in a window to allow copy/paste.
+## DefaultState: disabled
+RaidAttendance.xml

@@ -1,0 +1,8 @@
+## Interface: 1800
+## Author: Random
+## Title: AceCount
+## Notes: Displays #.#k instead of * for item counts > 999.
+## Dependencies: Ace
+## OptionalDeps:
+AceCountLocals.lua
+AceCount.lua

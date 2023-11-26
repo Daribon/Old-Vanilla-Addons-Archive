@@ -1,0 +1,17 @@
+## Interface: 1600
+## Version: 1.3 (CTMod 1.8)
+## Title: CT_RaidAssist
+## Notes: Allows you to monitor Raid HP.
+## SavedVariables: CT_RA_MainTanks, CT_RA_MainTankStats, CT_RA_Stats, CT_RA_PartyMembers, CT_RA_NumRaidMembers
+## SavedVariables: CT_RA_ChatInfo, CT_RA_RaidParticipant, CT_RA_CurrPositions, CT_RA_ModVersion, CT_RAMenu_CurrSet
+## SavedVariables: CT_RAMenu_Locked, CT_RA_HasJoinedRaid, CT_RAMenu_Options, CT_RASets_ButtonPosition, CT_RA_CustomPositions
+## SavedVariables: CT_RA_Channel, CT_RABoss_ScheduledActions, CT_RABoss_Save, CT_RABoss_Locations, CT_RA_DebuffTemplates
+## OptionalDeps: CT_BarMod
+CT_RASets.xml
+CT_RaidAssist.xml
+CT_RAOptions.xml
+CT_RABossMods.xml
+CT_RAMenu.xml
+CT_RADetectSpells.xml
+CT_RADebuffs.xml
+CT_RATest.xml

@@ -1,0 +1,7 @@
+## Interface: 1700
+## Title: BugSack
+## Author: Rowne
+## Notes: Toss those bugs inna sack.
+## SavedVariables: BugSackDB
+BugSack.xml
+BugSack.lua

@@ -1,0 +1,32 @@
+-- Version : English - sarf
+-- Translation by : None
+
+MAINMENUBARREPOSITIONER_CONFIG_HEADER						= "Main MenuBar Repositioner";
+MAINMENUBARREPOSITIONER_CONFIG_HEADER_INFO					= "Contains settings for the Main MenuBar Repositioner,\nan AddOn which allows you to reposition the main menu bar.";
+
+MAINMENUBARREPOSITIONER_POSITION							= "Move the main menu bar";
+MAINMENUBARREPOSITIONER_POSITION_INFO						= "Sets the position of the main menu bar.";
+
+MAINMENUBARREPOSITIONER_POSITION_SLIDER						= "Position";
+
+MAINMENUBARREPOSITIONER_POSITION_RESET						= "Resets the main menu bar";
+MAINMENUBARREPOSITIONER_POSITION_RESET_INFO					= "Resets the position of the main menu bar to the default.";
+MAINMENUBARREPOSITIONER_POSITION_RESET_NAME					= "Reset";
+
+MAINMENUBARREPOSITIONER_SLASH_COMMAND_LEFT					= "left";
+MAINMENUBARREPOSITIONER_SLASH_COMMAND_RIGHT					= "right";
+MAINMENUBARREPOSITIONER_SLASH_COMMAND_DEFAULT				= "default";
+MAINMENUBARREPOSITIONER_SLASH_COMMAND_RESTORE				= "restore";
+MAINMENUBARREPOSITIONER_SLASH_COMMAND_MIDDLE				= "middle";
+
+MAINMENUBARREPOSITIONER_SLASH_COMMAND_BOTTOM				= "bottom";
+
+MAINMENUBARREPOSITIONER_CHAT_EMPTY_PARAMETER				= "Can not use empty paremeter.";
+MAINMENUBARREPOSITIONER_CHAT_UNKNOWN_PARAMETER				= "Unknown parameter \"%s\".";
+MAINMENUBARREPOSITIONER_CHAT_VALID_PARAMETERS				= "Valid parameters are : ";
+
+MAINMENUBARREPOSITIONER_CHAT_POSITION_CHANGED				= "Main menu bar repositioned to %s.";
+MAINMENUBARREPOSITIONER_CHAT_POSITION_RESET					= "Main menu bar reset to original position.";
+
+MAINMENUBARREPOSITIONER_CHAT_COMMAND_POSITION_CHANGE_INFO	= "Sets the position of the main menu bar.";
+MAINMENUBARREPOSITIONER_CHAT_COMMAND_POSITION_RESET_INFO	= "Resets the position of the main menu bar.";

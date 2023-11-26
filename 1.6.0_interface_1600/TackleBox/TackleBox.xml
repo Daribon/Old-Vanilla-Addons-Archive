@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<!-- $Id: TackleBox.xml 1922 2005-06-25 10:54:03Z mugendai $ -->
+	
+	<!-- Localization -->
+	<Script file="localization.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	
+	<!-- Main Script -->
+	<Script file="TackleBox.lua"/>
+	
+	<!--
+		Main TackleBox Frame
+	-->
+	<Frame name="TackleBoxFrame" hidden="true">
+		<Scripts>
+			<OnLoad>
+				TackleBox.OnLoad();
+			</OnLoad>
+			<OnEvent>
+				TackleBox.OnEvent();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

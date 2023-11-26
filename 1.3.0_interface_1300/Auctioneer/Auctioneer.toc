@@ -1,0 +1,8 @@
+## Title: Auctioneer
+## Interface: 1300
+## Version: 2.03
+## Notes: Displays collected information about item in the info window. Use "/lootlink scan" at AH to collect auction data.
+## OptionalDeps: LootLink, Enchantrix
+## SavedVariables: AuctionConfig, AuctionPrices
+Auctioneer.xml
+
